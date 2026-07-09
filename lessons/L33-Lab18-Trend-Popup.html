@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson L33: Lab 18 – Trend Popup Symbol</title>
+<title>Lesson 33: Lab18 Trend Popup</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -35,7 +35,8 @@
 <body>
 
 <nav>
-  <a href="L32-Multi-Pens-Trend.html">&larr; Multi Pens Trend</a> &nbsp;|&nbsp; <a href="L34-Historian-Trend-Lab19.html">Historian Client Trend + Lab 19 &rarr;</a>
+  <a href="L32-Multi-Pens-Trend.html">&larr; Lesson 32: Multi Pens Trend</a> &nbsp;|&nbsp;
+  <a href="L34-Historian-Trend-Lab19.html">Lesson 34: Historian Trend Lab19 &rarr;</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -97,24 +98,24 @@
 </details>
 </nav>
 
-<h1>Lesson L33: Lab 18 – Trend Popup Symbol</h1>
+<h1>Lesson 33: Lab18 Trend Popup</h1>
 <p class="page-ref">Module 6 — Trend Visualization | Pages 423–430</p>
 
-<p>Do Not Copy 6-43 AVEVA™ InTouch for System Platform 2023 aaHistClientQuery Control The aaHistClientQuery control runs the Historian Client Query program (or a functional subset) from within the InTouch HMI software or a .NET container like Visual Basic .NET or Internet Explorer. Query is a client application that retrieves data from a Historian database or any SQL Server database and returns the results in a table format. If querying the Historian database, choose from a number of predefined query types and easily select the options for each type, eliminating the need to know SQL syntax. Custom queries can also be written, if the SQL syntax and the schema of the database are known.</p>
+<p>(or a functional subset) from within the InTouch HMI software or a .NET container like Visual Basic .NET or Internet Explorer. Query is a client application that retrieves data from a Historian database or any SQL Server database and returns the results in a table format. If querying the Historian database, choose from a number of predefined query types and easily select the options for each type, eliminating the need to know SQL syntax. Custom queries can also be written, if the SQL syntax and the schema of the database are known.</p>
 
 <div class="screenshot">
   <img src="../images/page_0423.png" alt="Screenshot of the aaHistClientQuery control showing a Historian Client Query interface with Tag Picker panel (LOCALHOST server with TT_001.PV selected), time range selection (October 12, 2007), and historical data results grid with 100 rows of temperature readings">
   <div class="caption">Screenshot of the aaHistClientQuery control showing a Historian Client Query interface with Tag Picker panel (LOCALHOST server with TT_001.PV selected), time range selection (October 12, 2007), and historical data results grid with 100 rows of temperature readings</div>
 </div>
 
-<p>Do Not Copy 6-44 AVEVA™ Training aaHistClientTagPicker Control The aaHistClientTagPicker control displays the hierarchy of objects in the Historian database (for example, tags, InTouch nodes, events, and so on) in a hierarchical format. Unlike the other Historian Client controls, the aaHistClientTagPicker control does not provide a user interface to select and connect to a Historian. A programmatic interface needs to be added to allow this functionality. The following code can be used in a script to allow a user to log on to the Historian located in the localhost: aaTagPicker1.Servers.Add( "localhost" );</p>
+<p>(for example, tags, InTouch nodes, events, and so on) in a hierarchical format. Unlike the other Historian Client controls, the aaHistClientTagPicker control does not provide a user interface to select and connect to a Historian. A programmatic interface needs to be added to allow this functionality. The following code can be used in a script to allow a user to log on to the Historian located in the localhost: aaTagPicker1.Servers.Add( "localhost" );</p>
 
 <div class="screenshot">
   <img src="../images/page_0424.png" alt="Screenshot of the aaHistClientTagPicker control showing a Tag Picker dialog with LOCALHOST server tree (Public Groups, Private Groups), tag list with columns for Tag Name (Agitator_001.PV through LIT_002.PV), Description, and I/O Address, plus filter tabs for All, Analog, Discrete, String, and Event">
   <div class="caption">Screenshot of the aaHistClientTagPicker control showing a Tag Picker dialog with LOCALHOST server tree (Public Groups, Private Groups), tag list with columns for Tag Name (Agitator_001.PV through LIT_002.PV), Description, and I/O Address, plus filter tabs for All, Analog, Discrete, String, and Event</div>
 </div>
 
-<p>Do Not Copy 6-45 AVEVA™ InTouch for System Platform 2023 aaHistClientTimeRangePicker Control The aaHistClientTimeRangePicker control allows date and time parameters to be selected.</p>
+<p>selected.</p>
 
 <div class="screenshot">
   <img src="../images/page_0425_0.png" alt="Screenshot of the aaHistClientTimeRangePicker control showing start and end date-time fields (October 12, 2007) with a calendar popup for October 2007 highlighting the 12th, and a time offset field showing 00:00:00">
@@ -126,30 +127,29 @@
   <div class="caption">Screenshot of the aaHistClientTimeRangePicker control showing a dropdown menu with preset time duration options (1 minute through 4 hours) with 30 minutes currently highlighted, and start/end timestamp fields showing a 5-minute span</div>
 </div>
 
-<p>Do Not Copy 6-46 AVEVA™ Training aaHistClientActiveDataGrid Control The aaHistClientActiveDataGrid control can run any SQL query from any Historian or Microsoft SQL Server database and return the results in a grid. Note: The aaHistClientActiveDataGrid control does not support data definition or data manipulation queries. Unlike the other Historian Client controls, the aaHistClientActiveDataGrid control does not provide a user interface to select and connect to a SQL Server or specify the query that will feed data to the grid. A programmatic interface needs to be added to allow this functionality. The following code can be used in a script to connect to the local Historian as aaUser and query history data for the SysTimeSec tag: aaTagPicker1.Servers.Add( "localhost" ); aaHistClientActiveDataGrid1.ServerName = "localhost"; aaHistClientActiveDataGrid1.UserName = "aaUser"; aaHistClientActiveDataGrid1.Password = "pwUser"; aaHistClientActiveDataGrid1.DatabaseName = "Runtime"; aaHistClientActiveDataGrid1.SQLString = "SELECT * FROM History WHERE Tagname = 'SysTimeSec'"; aaHistClientActiveDataGrid1.Connected = 1;</p>
+<p>grid. Note: The aaHistClientActiveDataGrid control does not support data definition or data manipulation queries. Unlike the other Historian Client controls, the aaHistClientActiveDataGrid control does not provide a user interface to select and connect to a SQL Server or specify the query that will feed data to the grid. A programmatic interface needs to be added to allow this functionality. The following code can be used in a script to connect to the local Historian as aaUser and query history data for the SysTimeSec tag: aaTagPicker1.Servers.Add( "localhost" ); aaHistClientActiveDataGrid1.ServerName = "localhost"; aaHistClientActiveDataGrid1.UserName = "aaUser"; aaHistClientActiveDataGrid1.Password = "pwUser"; aaHistClientActiveDataGrid1.DatabaseName = "Runtime"; aaHistClientActiveDataGrid1.SQLString = "SELECT * FROM History WHERE Tagname = 'SysTimeSec'"; aaHistClientActiveDataGrid1.Connected = 1;</p>
 
 <div class="screenshot">
   <img src="../images/page_0426.png" alt="Screenshot of the aaHistClientActiveDataGrid control showing a historical data grid with SysTimeSec tag entries, columns for DateTime, TagName, Value, and vValue, displaying a per-second counter that rolls over from 59 to 0 at minute boundaries">
   <div class="caption">Screenshot of the aaHistClientActiveDataGrid control showing a historical data grid with SysTimeSec tag entries, columns for DateTime, TagName, Value, and vValue, displaying a per-second counter that rolls over from 59 to 0 at minute boundaries</div>
 </div>
 
-<p>Do Not Copy 6-47 AVEVA™ InTouch for System Platform 2023 aaHistClientSingleValueEntry Control Use the aaHistClientSingleValueEntry control to manually add a tag value to the Historian database.</p>
+<p>database.</p>
 
 <div class="screenshot">
   <img src="../images/page_0427.png" alt="Screenshot of the aaHistClientSingleValueEntry control showing a Select tag dialog with LOCALHOST server highlighted, tag list showing Agitator speed and Inlet tags with Tag Name, Description, and I/O Address columns, and filter/search options at the bottom">
   <div class="caption">Screenshot of the aaHistClientSingleValueEntry control showing a Select tag dialog with LOCALHOST server highlighted, tag list showing Agitator speed and Inlet tags with Tag Name, Description, and I/O Address columns, and filter/search options at the bottom</div>
 </div>
 
-<p>Do Not Copy 6-48 AVEVA™ Training</p>
 
-<p>Do Not Copy 6-49 AVEVA™ InTouch for System Platform 2023 Display Introduction In this lab, you will create a symbol and embed the Historian Client Trend. This trend will be used to display and compare levels from different mixers. Additionally, you will add navigation to open this trend and view alarm highlights for the levels at runtime. Objectives Upon completion of this lab, you will be able to:  Embed the Historian Client Trend .NET control in a symbol  Use the AddServerEx() script function to initialize the Historian Client Trend  Use the Historian Client Trend Tag Picker to add tags to the trend at runtime</p>
+<p>lab, you will create a symbol and embed the Historian Client Trend. This trend will be used to display and compare levels from different mixers. Additionally, you will add navigation to open this trend and view alarm highlights for the levels at runtime. Objectives Upon completion of this lab, you will be able to:  Embed the Historian Client Trend .NET control in a symbol  Use the AddServerEx() script function to initialize the Historian Client Trend  Use the Historian Client Trend Tag Picker to add tags to the trend at runtime</p>
 
 <div class="screenshot">
   <img src="../images/page_0429.png" alt="Screenshot of the aaTrendControl embedded in InTouch HMI showing a historical trend display with Tag Picker panel (S01ENG server, Level_001.PV through Level_008.PV tags), time range controls for a 5-minute window, and a trend chart with annotated data points">
   <div class="caption">Screenshot of the aaTrendControl embedded in InTouch HMI showing a historical trend display with Tag Picker panel (S01ENG server, Level_001.PV through Level_008.PV tags), time range controls for a 5-minute window, and a trend chart with annotated data points</div>
 </div>
 
-<p>Do Not Copy 6-50 AVEVA™ Training Create a Historian Client Trend Display First, you will create a symbol and embed a Historian Client Trend .NET control. 1. In the IDE, on the Graphics tab, in the Training toolset, create a symbol named TrendHistDisplay, and then open it for editing. 2. On the Toolbox tab, search for aatrend and then drag aaTrendControl to the canvas. 3. Name the graphic Trend. 4. Right-click the canvas and select Custom Properties.</p>
+<p>First, you will create a symbol and embed a Historian Client Trend .NET control. 1. In the IDE, on the Graphics tab, in the Training toolset, create a symbol named TrendHistDisplay, and then open it for editing. 2. On the Toolbox tab, search for aatrend and then drag aaTrendControl to the canvas. 3. Name the graphic Trend. 4. Right-click the canvas and select Custom Properties.</p>
 
 <div class="screenshot">
   <img src="../images/page_0430.png" alt="Screenshot of the InTouch HMI Graphic Editor showing an empty aaTrendControl component placed on the canvas with Tag Picker panel (empty Servers and Tags sections), time range controls, and the Toolbox search panel showing aaTrendControl as the matching component">
@@ -158,18 +158,16 @@
 
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <details>
-    <summary>Q1: What are the key concepts covered in this lesson about Lab 18 – Trend Popup Symbol?</summary>
-    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
-  </details>
-  <details>
-    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
-    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
-  </details>
+  <p><strong>1.</strong> What are the key concepts covered in this lesson about Lab 18 – Trend Popup Symbol?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
+
+  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+
 </div>
 
 <p class="source">Module 6 — Trend Visualization. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson L34 — Historian Client Trend + Lab 19</p>
+<p class="source">Next: Lesson 34 — Historian Client Trend + Lab 19</p>
 
 <script>
 
@@ -178,12 +176,12 @@ function saveProgress() {
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
-  try { localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks)); } catch(e) {}
+  try { localStorage.setItem('aveva-lesson-progress', JSON.stringify(checks)); } catch(e) {}
   updateProgressText();
 }
 function loadProgress() {
   var data = null;
-  try { data = localStorage.getItem('intouch-lesson-progress'); } catch(e) {}
+  try { data = localStorage.getItem('aveva-lesson-progress'); } catch(e) {}
   if (!data) { updateProgressText(); return; }
   try {
     var checks = JSON.parse(data);

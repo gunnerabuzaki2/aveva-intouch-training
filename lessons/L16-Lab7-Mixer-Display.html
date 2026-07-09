@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson L16: Lab 7 – Creating the Mixer Display</title>
+<title>Lesson 16: Lab7 Mixer Display</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -35,7 +35,8 @@
 <body>
 
 <nav>
-  <a href="L15-Editor-Tools-Animations.html">&larr; Graphic Editor Tools and Animations</a> &nbsp;|&nbsp; <a href="L17-OwningObject-Lab8-Mixers.html">The OwningObject Property + Lab 8 &rarr;</a>
+  <a href="L15-Editor-Tools-Animations.html">&larr; Lesson 15: Editor Tools Animations</a> &nbsp;|&nbsp;
+  <a href="L17-OwningObject-Lab8-Mixers.html">Lesson 17: OwningObject Lab8 Mixers &rarr;</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -97,10 +98,10 @@
 </details>
 </nav>
 
-<h1>Lesson L16: Lab 7 – Creating the Mixer Display</h1>
+<h1>Lesson 16: Lab7 Mixer Display</h1>
 <p class="page-ref">Module 3 — Symbols | Pages 181–204</p>
 
-<p>Do Not Copy 3-83 AVEVA™ InTouch for System Platform 2023 5. In Content, click the Edit Content button to open the Graphic Editor. Note: You can also double-click MixingProcess_Detailed in the Content pane to open the Graphic Editor. You will now embed symbols from contained objects through relative references. 6. Right-click the canvas and select Embed Industrial Graphic. 7. In the Galaxy Browser, click the Relative References button, and then embed Me.Pump1\Pump_Detailed.</p>
+<p>5. In Content, click the Edit Content button to open the Graphic Editor. Note: You can also double-click MixingProcess_Detailed in the Content pane to open the Graphic Editor. You will now embed symbols from contained objects through relative references. 6. Right-click the canvas and select Embed Industrial Graphic. 7. In the Galaxy Browser, click the Relative References button, and then embed Me.Pump1\Pump_Detailed.</p>
 
 <div class="screenshot">
   <img src="../images/page_0181_0.png" alt="Galaxy Browser showing MixingProcess_Detailed content item with Edit Content button highlighted and properties panel displaying name and description">
@@ -112,7 +113,7 @@
   <div class="caption">Galaxy Browser Relative References list with Me.Pump1 selected and Pump_Detailed symbol preview shown in right pane</div>
 </div>
 
-<p>Do Not Copy 3-84 AVEVA™ Training 8. Place the graphic on the canvas as shown below: Leave space at the top-left of the canvas for text that you will add later in this lab. 9. Use the Galaxy Browser to embed Me.Pump2\Pump_Detailed on the canvas below the first pump as shown below:</p>
+<p>8. Place the graphic on the canvas as shown below: Leave space at the top-left of the canvas for text that you will add later in this lab. 9. Use the Galaxy Browser to embed Me.Pump2\Pump_Detailed on the canvas below the first pump as shown below:</p>
 
 <div class="screenshot">
   <img src="../images/page_0182_0.png" alt="Graphic Editor canvas with embedded SA_Pump_Blower_RotaryValve symbol placed and selected on grid background">
@@ -124,14 +125,14 @@
   <div class="caption">Graphic Editor canvas showing two pump symbols placed vertically one above the other on the grid</div>
 </div>
 
-<p>Do Not Copy 3-85 AVEVA™ InTouch for System Platform 2023 10. Embed the following symbols on the canvas, using the screen shot below as a guide. Relative Reference Symbol Name Me.Inlet1 Valve_Detailed Me.Inlet2 Valve_Detailed Me.Outlet Valve_Detailed Me.Agitator Agitator_Detailed Me.Level Level_Detailed Me.Temperature Temperature_Detailed</p>
+<p>10. Embed the following symbols on the canvas, using the screen shot below as a guide. Relative Reference Symbol Name Me.Inlet1 Valve_Detailed Me.Inlet2 Valve_Detailed Me.Outlet Valve_Detailed Me.Agitator Agitator_Detailed Me.Level Level_Detailed Me.Temperature Temperature_Detailed</p>
 
 <div class="screenshot">
   <img src="../images/page_0183.png" alt="Complete mixer process diagram with all embedded symbols arranged on canvas: two pumps, four valves (Inlet1, Inlet2, Outlet), agitator, level meter, and temperature sensor">
   <div class="caption">Complete mixer process diagram with all embedded symbols arranged on canvas: two pumps, four valves (Inlet1, Inlet2, Outlet), agitator, level meter, and temperature sensor</div>
 </div>
 
-<p>Do Not Copy 3-86 AVEVA™ Training 11. On the Toolbox tab, search for sa_tank, and then drag SA_Tank_Vessel to the canvas. 12. Move and resize SA_Tank_Vessel on the canvas to cover the Agitator, Level, and Temperature graphics.</p>
+<p>11. On the Toolbox tab, search for sa_tank, and then drag SA_Tank_Vessel to the canvas. 12. Move and resize SA_Tank_Vessel on the canvas to cover the Agitator, Level, and Temperature graphics.</p>
 
 <div class="screenshot">
   <img src="../images/page_0184_0.png" alt="Graphic Editor with SA_Tank_Vessel element dragged from Toolbox search results for sa_tank and placed on canvas with selection handles">
@@ -143,7 +144,7 @@
   <div class="caption">SA_Tank_Vessel resized and positioned on canvas to overlay the agitator, level, and temperature graphics</div>
 </div>
 
-<p>Do Not Copy 3-87 AVEVA™ InTouch for System Platform 2023 13. On the Properties tab, configure SA_Tank_Vessel as follows: 14. Right-click Tank and select Substitute | Substitute Strings. 15. Change Label to Mixer. 16. Click OK to close Substitute Strings. The label changes to Mixer. Name: Tank QualityStatusIndicator: False</p>
+<p>13. On the Properties tab, configure SA_Tank_Vessel as follows: 14. Right-click Tank and select Substitute | Substitute Strings. 15. Change Label to Mixer. 16. Click OK to close Substitute Strings. The label changes to Mixer. Name: Tank QualityStatusIndicator: False</p>
 
 <div class="screenshot">
   <img src="../images/page_0185_0.png" alt="Substitute Strings dialog showing Old value Label being replaced with New value Mixer in English locale">
@@ -155,7 +156,7 @@
   <div class="caption">SA_Tank_Vessel on canvas now displaying Mixer label after the Substitute Strings operation was applied</div>
 </div>
 
-<p>Do Not Copy 3-88 AVEVA™ Training 17. With Tank selected, right-click and select Order | Send To Back. The order of the elements is updated and displayed in Elements.</p>
+<p>17. With Tank selected, right-click and select Order | Send To Back. The order of the elements is updated and displayed in Elements.</p>
 
 <div class="screenshot">
   <img src="../images/page_0186_0.png" alt="Elements panel listing all mixer components with Tank element highlighted and selected at bottom of list">
@@ -167,7 +168,7 @@
   <div class="caption">Right-click context menu on Tank element with Order submenu expanded showing Send To Back option highlighted</div>
 </div>
 
-<p>Do Not Copy 3-89 AVEVA™ InTouch for System Platform 2023 Add Connection Points and Draw Connectors Between Graphics Next, you will add connection points to the Tank, and then draw connectors between the graphics to represent piping. You will use the Connection Point element and the Connector element from the Tools pane. 18. On the toolbar at the top, click the Canvas Zoom drop-down list, and select Fit. 19. Click Snap to Grid to turn off the snap to grid feature. 20. In Tools, double-click Connection Point. The cursor changes to a cross hair cursor. Note: Double-clicking a tool saves time by not requiring you to reselect the tool when using it to draw multiple elements of the same type on the canvas one after the other. Clicking another tool or pressing the Esc key will cancel the operation.</p>
+<p>Next, you will add connection points to the Tank, and then draw connectors between the graphics to represent piping. You will use the Connection Point element and the Connector element from the Tools pane. 18. On the toolbar at the top, click the Canvas Zoom drop-down list, and select Fit. 19. Click Snap to Grid to turn off the snap to grid feature. 20. In Tools, double-click Connection Point. The cursor changes to a cross hair cursor. Note: Double-clicking a tool saves time by not requiring you to reselect the tool when using it to draw multiple elements of the same type on the canvas one after the other. Clicking another tool or pressing the Esc key will cancel the operation.</p>
 
 <div class="screenshot">
   <img src="../images/page_0187_0.png" alt="Graphic Editor Tools panel with Connection Point tool highlighted and selected for placing connection points on shapes">
@@ -179,7 +180,7 @@
   <div class="caption">Full mixer process diagram on grid canvas showing all components: two pumps, four valves, agitator, meters, and Mixer boundary with blue selection handles</div>
 </div>
 
-<p>Do Not Copy 3-90 AVEVA™ Training 21. Move the cursor to the left-side border of the tank and align the cursor with the built-in connection point on the right side of the Inlet1 graphic. The tank border turns green when the connection point cursor hovers over it. 22. Click to place the Connection Point element on the border of the tank. 23. Add a second Connection Point element to the left side border of the tank, aligned with the built-in connection point on the right side of the Inlet2 graphic.</p>
+<p>21. Move the cursor to the left-side border of the tank and align the cursor with the built-in connection point on the right side of the Inlet1 graphic. The tank border turns green when the connection point cursor hovers over it. 22. Click to place the Connection Point element on the border of the tank. 23. Add a second Connection Point element to the left side border of the tank, aligned with the built-in connection point on the right side of the Inlet2 graphic.</p>
 
 <div class="screenshot">
   <img src="../images/page_0188_0.png" alt="Connection Point being placed on left border of Tank aligned with Inlet1 valve showing green border highlight at connection point">
@@ -196,7 +197,7 @@
   <div class="caption">Second Connection Point added to left border of Tank aligned with Inlet2 valve showing connection points on tank border</div>
 </div>
 
-<p>Do Not Copy 3-91 AVEVA™ InTouch for System Platform 2023 The second connection point is added to the left-side border of the tank. Next, you will add connectors. 24. In Tools, double-click Connector. 25. Hover over the bottom-center of the Tank until the connection point appears, then click and drag the connector to the connection point on the left side of the Outlet valve.</p>
+<p>left-side border of the tank. Next, you will add connectors. 24. In Tools, double-click Connector. 25. Hover over the bottom-center of the Tank until the connection point appears, then click and drag the connector to the connection point on the left side of the Outlet valve.</p>
 
 <div class="screenshot">
   <img src="../images/page_0189_0.png" alt="Tools panel with Connector tool highlighted and selected for drawing pipe connections between components">
@@ -213,7 +214,7 @@
   <div class="caption">SA_Valve_And_Damper and SA_Meters components shown with connection points and process flow lines on grid</div>
 </div>
 
-<p>Do Not Copy 3-92 AVEVA™ Training 26. Hover over the connection point on the right side of Pump1, and then drag the connector to the connection point on the left side of Valve1. 27. Create a connector between Valve1 and the adjacent connection point on the Tank.</p>
+<p>26. Hover over the connection point on the right side of Pump1, and then drag the connector to the connection point on the left side of Valve1. 27. Create a connector between Valve1 and the adjacent connection point on the Tank.</p>
 
 <div class="screenshot">
   <img src="../images/page_0190_0.png" alt="Tools panel with Connector tool still active for drawing additional pipe connections between remaining components">
@@ -225,7 +226,7 @@
   <div class="caption">Mixer process diagram showing Pump1 connected to Valve1 and Valve1 connected to Tank via drawn connector lines</div>
 </div>
 
-<p>Do Not Copy 3-93 AVEVA™ InTouch for System Platform 2023 28. Add connectors between Pump2, Inlet2, and Tank as shown below: 29. In Tools, click Pointer. Note: Clicking the Pointer cancels the connector drawing operation.</p>
+<p>28. Add connectors between Pump2, Inlet2, and Tank as shown below: 29. In Tools, click Pointer. Note: Clicking the Pointer cancels the connector drawing operation.</p>
 
 <div class="screenshot">
   <img src="../images/page_0191_0.png" alt="Process diagram with both pump-valve pairs connected to the Mixer tank, showing all connector lines drawn">
@@ -237,7 +238,7 @@
   <div class="caption">Tools panel with Pointer tool selected after completing all connector drawing operations</div>
 </div>
 
-<p>Do Not Copy 3-94 AVEVA™ Training 30. In Elements, press the Ctrl key and select the following elements:  Connector5  Connector4  Connector3  Connector2 31. On the Properties tab, in the ConnectionType drop-down list, select Straight. The bends in the selected connectors are removed. However, the valves and pumps may not be aligned. You will do this next.</p>
+<p>30. In Elements, press the Ctrl key and select the following elements:  Connector5  Connector4  Connector3  Connector2 31. On the Properties tab, in the ConnectionType drop-down list, select Straight. The bends in the selected connectors are removed. However, the valves and pumps may not be aligned. You will do this next.</p>
 
 <div class="screenshot">
   <img src="../images/page_0192_0.png" alt="Elements panel showing Connector2 through Connector5 all selected (highlighted in blue) for batch property editing">
@@ -249,14 +250,14 @@
   <div class="caption">Properties panel showing Connector type property set to Straight in the Appearance section to remove bends</div>
 </div>
 
-<p>Do Not Copy 3-95 AVEVA™ InTouch for System Platform 2023 32. On the canvas, select Pump1, press and hold the Shift key down, and then select Pump2 to add it to the selection. Both pumps are now selected. 33. With both pumps selected, use the up or down arrow keys on the keyboard to straighten the connectors between pumps and valves. If necessary, make other adjustments to the valves to ensure all the connectors are straight.</p>
+<p>32. On the canvas, select Pump1, press and hold the Shift key down, and then select Pump2 to add it to the selection. Both pumps are now selected. 33. With both pumps selected, use the up or down arrow keys on the keyboard to straighten the connectors between pumps and valves. If necessary, make other adjustments to the valves to ensure all the connectors are straight.</p>
 
 <div class="screenshot">
   <img src="../images/page_0193.png" alt="Mixer process diagram with straightened connectors between pumps, valves, and tank after adjusting alignment with arrow keys">
   <div class="caption">Mixer process diagram with straightened connectors between pumps, valves, and tank after adjusting alignment with arrow keys</div>
 </div>
 
-<p>Do Not Copy 3-96 AVEVA™ Training Add Text to Display Object Name and Area Name Now, you will add text elements to display the mixer name and area information. Then you will apply Element Styles and Value Display animations to these text elements. 34. In Tools, click Text. 35. Click at the top-left of the canvas. 36. Type Object Name and press Enter, and then type Area Name.</p>
+<p>Now, you will add text elements to display the mixer name and area information. Then you will apply Element Styles and Value Display animations to these text elements. 34. In Tools, click Text. 35. Click at the top-left of the canvas. 36. Type Object Name and press Enter, and then type Area Name.</p>
 
 <div class="screenshot">
   <img src="../images/page_0194_0.png" alt="Graphic Editor with Tools panel showing Text tool selected for adding text elements to the canvas">
@@ -268,7 +269,7 @@
   <div class="caption">Canvas with Object Name and Area Name text elements added in top-left corner of the mixer display</div>
 </div>
 
-<p>Do Not Copy 3-97 AVEVA™ InTouch for System Platform 2023 37. Click the canvas to cancel creating more text elements. The text elements should look similar to the following: 38. Select the Object Name text, and on the Properties tab, name the element ObjectName. 39. On the Properties tab, in the ElementStyle drop-down search field, enter title and select Title.</p>
+<p>37. Click the canvas to cancel creating more text elements. The text elements should look similar to the following: 38. Select the Object Name text, and on the Properties tab, name the element ObjectName. 39. On the Properties tab, in the ElementStyle drop-down search field, enter title and select Title.</p>
 
 <div class="screenshot">
   <img src="../images/page_0195_0.png" alt="Properties panel showing ObjectName element with Title style applied via ElementStyle dropdown field">
@@ -280,7 +281,7 @@
   <div class="caption">Canvas displaying Object Name and Area Name text labels positioned in top-left area of the mixer diagram</div>
 </div>
 
-<p>Do Not Copy 3-98 AVEVA™ Training 40. On the canvas, select the Area Name text and configure properties as follows: 41. Move the Area Name text down a little. In the following steps, you will add animations to your text. 42. On the canvas, double-click ObjectName. Edit Animations appears. 43. Click the Add Animation button. Name: AreaName ElementStyle: Heading</p>
+<p>40. On the canvas, select the Area Name text and configure properties as follows: 41. Move the Area Name text down a little. In the following steps, you will add animations to your text. 42. On the canvas, double-click ObjectName. Edit Animations appears. 43. Click the Add Animation button. Name: AreaName ElementStyle: Heading</p>
 
 <div class="screenshot">
   <img src="../images/page_0196_0.png" alt="Properties panel showing AreaName element configured with Heading style and X position set to 52">
@@ -297,7 +298,7 @@
   <div class="caption">Edit Animations dialog in empty state showing No Animations configured message with Add Animation button ready</div>
 </div>
 
-<p>Do Not Copy 3-99 AVEVA™ InTouch for System Platform 2023 44. Select the Value Display animation. 45. Configure the animation as follows: 46. Click OK to close Edit Animations. The text element is updated. States: Name Name to be displayed: Tag Name (default)</p>
+<p>44. Select the Value Display animation. 45. Configure the animation as follows: 46. Click OK to close Edit Animations. The text element is updated. States: Name Name to be displayed: Tag Name (default)</p>
 
 <div class="screenshot">
   <img src="../images/page_0197_0.png" alt="Edit Animations dialog with Add Animation menu expanded showing Value Display option highlighted among Visualization animation types">
@@ -314,7 +315,7 @@
   <div class="caption">Edit Animations dialog showing Value Display configured for ObjectName with Tag Name display setting enabled</div>
 </div>
 
-<p>Do Not Copy 3-100 AVEVA™ Training 47. On the canvas, double-click AreaName. 48. Add a Value Display animation. 49. In States, click String. 50. In Expression Or Reference, in the String field, enter Me.Area. 51. Click OK to close Edit Animations. 52. On the toolbar at the top, click Snap to Grid to enable the feature. 53. On the toolbar at the top, click Zoom to Normal. The elements on the canvas are resized.</p>
+<p>47. On the canvas, double-click AreaName. 48. Add a Value Display animation. 49. In States, click String. 50. In Expression Or Reference, in the String field, enter Me.Area. 51. Click OK to close Edit Animations. 52. On the toolbar at the top, click Snap to Grid to enable the feature. 53. On the toolbar at the top, click Zoom to Normal. The elements on the canvas are resized.</p>
 
 <div class="screenshot">
   <img src="../images/page_0198_0.png" alt="Edit Animations dialog with Add Animation menu showing all available animation types in Visualization and Interaction columns">
@@ -331,14 +332,14 @@
   <div class="caption">Toolbar showing Zoom to Normal button alongside drawing tools, shapes, and navigation controls</div>
 </div>
 
-<p>Do Not Copy 3-101 AVEVA™ InTouch for System Platform 2023 54. Click the canvas to set focus on the canvas. 55. On the Properties tab, change the Size property to Fixed. 56. Adjust the canvas size to fit all elements, leaving some white space around the edges. 57. Save and close the MixingProcess_Detailed graphic. 58. Save and close the $Mixer object and check it in.</p>
+<p>54. Click the canvas to set focus on the canvas. 55. On the Properties tab, change the Size property to Fixed. 56. Adjust the canvas size to fit all elements, leaving some white space around the edges. 57. Save and close the MixingProcess_Detailed graphic. 58. Save and close the $Mixer object and check it in.</p>
 
 <div class="screenshot">
   <img src="../images/page_0199.png" alt="Completed MixingProcess_Detailed graphic showing $Mixer label, all process components, straight connectors, and text labels on fixed-size canvas">
   <div class="caption">Completed MixingProcess_Detailed graphic showing $Mixer label, all process components, straight connectors, and text labels on fixed-size canvas</div>
 </div>
 
-<p>Do Not Copy 3-102 AVEVA™ Training Replace Level Graphic with MixingProcess Graphic in ContentDisplay Window In the following steps, you will replace the Level_Detailed graphic in the ContentDisplay window with the MixingProcess_Detailed graphic you just created. 59. Switch to WindowMaker. 60. Right-click the ContentDisplay window and select Embed Industrial Graphic. 61. In the Galaxy Browser, click the Instances button, and then select Mixer100\MixingProcess_Detailed. 62. Click OK. A WindowMaker message appears, prompting you to confirm the replacement. This is because frame windows can only host one embedded symbol.</p>
+<p>steps, you will replace the Level_Detailed graphic in the ContentDisplay window with the MixingProcess_Detailed graphic you just created. 59. Switch to WindowMaker. 60. Right-click the ContentDisplay window and select Embed Industrial Graphic. 61. In the Galaxy Browser, click the Instances button, and then select Mixer100\MixingProcess_Detailed. 62. Click OK. A WindowMaker message appears, prompting you to confirm the replacement. This is because frame windows can only host one embedded symbol.</p>
 
 <div class="screenshot">
   <img src="../images/page_0200_0.png" alt="Galaxy Browser showing Instances list with Mixer100 selected and MixingProcess_Detailed graphic preview in right pane">
@@ -350,7 +351,7 @@
   <div class="caption">WindowMaker confirmation dialog asking Are you sure you want to replace Level_001.Level_Detailed with Yes and No buttons</div>
 </div>
 
-<p>Do Not Copy 3-103 AVEVA™ InTouch for System Platform 2023 63. Click Yes to replace Level_001.Level_Detailed. The graphic is replaced. Test in Runtime Finally, you will view the MixingProcess_Detailed graphic in runtime. 64. Click Runtime. The MixingProcess_Detailed graphic appears in the ContentDisplay window.</p>
+<p>63. Click Yes to replace Level_001.Level_Detailed. The graphic is replaced. Test in Runtime Finally, you will view the MixingProcess_Detailed graphic in runtime. 64. Click Runtime. The MixingProcess_Detailed graphic appears in the ContentDisplay window.</p>
 <p>65. Click Development! to return to WindowMaker. <End of Lab></p>
 
 <div class="screenshot">
@@ -363,16 +364,15 @@
   <div class="caption">Runtime view of Mixer100 on Line1 showing live process values: Agitator at 0.00 rpm, Level at 54.43, Temperature at 134.98 C</div>
 </div>
 
-<p>Do Not Copy 3-104 AVEVA™ Training</p>
 
-<p>Do Not Copy 3-105 AVEVA™ InTouch for System Platform 2023 OwningObject Property OwningObject is a runtime property used to dynamically change the references within a graphic from one instance to another. It can be used as the object reference to replace all “Me.” references in expressions and scripts. The object name can be set using the tagname or the hierarchical name of an automation object. Windows Common Controls You can add the following Windows common controls to your graphic:  Radio button group  Check box  Edit box  Combo box  Calendar control  DateTime picker  List box You can place these Windows common controls as you would any other element by selecting them from the Tools pane. You click on the canvas to position a common control and, with exception of the calendar control, drag the rectangle to set the control. After placing the control on the canvas, you can configure:  Background color and text color (with exception of the DateTime Picker control).  Other control-specific properties  Control-specific animations This section introduces the OwningObject property and Windows common controls.</p>
+<p>another. It can be used as the object reference to replace all “Me.” references in expressions and scripts. The object name can be set using the tagname or the hierarchical name of an automation object. Windows Common Controls You can add the following Windows common controls to your graphic:  Radio button group  Check box  Edit box  Combo box  Calendar control  DateTime picker  List box You can place these Windows common controls as you would any other element by selecting them from the Tools pane. You click on the canvas to position a common control and, with exception of the calendar control, drag the rectangle to set the control. After placing the control on the canvas, you can configure:  Background color and text color (with exception of the DateTime Picker control).  Other control-specific properties  Control-specific animations This section introduces the OwningObject property and Windows common controls.</p>
 
 <div class="screenshot">
   <img src="../images/page_0203.png" alt="OwningObject property explanation page with Combo Box animation editor showing MixerDropDown configuration and Galaxy Browser hierarchy">
   <div class="caption">OwningObject property explanation page with Combo Box animation editor showing MixerDropDown configuration and Galaxy Browser hierarchy</div>
 </div>
 
-<p>Do Not Copy 3-106 AVEVA™ Training Combo Box Control and Combo Box Animation Combo Box controls allow users to select from a foldable list. You can configure a Combo Box element with a Combo Box animation. The Combo Box animation is only used by the Combo Box element. Combo Box types include:  Simple: At runtime, users can type a value or select one using up and down arrow buttons.  DropDown: At runtime, users can type a value or select one from the list  DropDownList: At runtime, users can only select a value from the list. They cannot type one. You can use the Static Values and Captions list to define values for the drop-down list. You can also use properties that are specific to the Combo Box control in scripting. At runtime, you can access the script to view and modify the items in the Combo Box Control. Some Combo Box-specific properties available at runtime include:  Count: Returns the number of items in a Combo Box control  NewIndex: Returns the index of the last item added to the Combo Box list These properties are available when you browse for a Combo Box control in your HMI's attribute/ tag browser.</p>
+<p>list. You can configure a Combo Box element with a Combo Box animation. The Combo Box animation is only used by the Combo Box element. Combo Box types include:  Simple: At runtime, users can type a value or select one using up and down arrow buttons.  DropDown: At runtime, users can type a value or select one from the list  DropDownList: At runtime, users can only select a value from the list. They cannot type one. You can use the Static Values and Captions list to define values for the drop-down list. You can also use properties that are specific to the Combo Box control in scripting. At runtime, you can access the script to view and modify the items in the Combo Box Control. Some Combo Box-specific properties available at runtime include:  Count: Returns the number of items in a Combo Box control  NewIndex: Returns the index of the last item added to the Combo Box list These properties are available when you browse for a Combo Box control in your HMI's attribute/ tag browser.</p>
 
 <div class="screenshot">
   <img src="../images/page_0204_0.png" alt="Tools panel from graphic editor showing drawing, text, shape, and navigation tools in grid layout">
@@ -386,18 +386,16 @@
 
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <details>
-    <summary>Q1: What are the key concepts covered in this lesson about Lab 7 – Creating the Mixer Display?</summary>
-    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
-  </details>
-  <details>
-    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
-    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
-  </details>
+  <p><strong>1.</strong> What are the key concepts covered in this lesson about Lab 7 – Creating the Mixer Display?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
+
+  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+
 </div>
 
 <p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson L17 — The OwningObject Property + Lab 8</p>
+<p class="source">Next: Lesson 17 — The OwningObject Property + Lab 8</p>
 
 <script>
 
@@ -406,12 +404,12 @@ function saveProgress() {
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
-  try { localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks)); } catch(e) {}
+  try { localStorage.setItem('aveva-lesson-progress', JSON.stringify(checks)); } catch(e) {}
   updateProgressText();
 }
 function loadProgress() {
   var data = null;
-  try { data = localStorage.getItem('intouch-lesson-progress'); } catch(e) {}
+  try { data = localStorage.getItem('aveva-lesson-progress'); } catch(e) {}
   if (!data) { updateProgressText(); return; }
   try {
     var checks = JSON.parse(data);

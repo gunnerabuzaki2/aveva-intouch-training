@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson L13: Graphics with Objects</title>
+<title>Lesson 13: Graphics With Objects</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -35,7 +35,8 @@
 <body>
 
 <nav>
-  <a href="L12-Lab5-Process-Overview.html">&larr; Lab 5 – Building a Process Overview</a> &nbsp;|&nbsp; <a href="L14-Lab6-Mixer-Components.html">Lab 6 – Creating the Mixer Components &rarr;</a>
+  <a href="L12-Lab5-Process-Overview.html">&larr; Lesson 12: Lab5 Process Overview</a> &nbsp;|&nbsp;
+  <a href="L14-Lab6-Mixer-Components.html">Lesson 14: Lab6 Mixer Components &rarr;</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -97,26 +98,26 @@
 </details>
 </nav>
 
-<h1>Lesson L13: Graphics with Objects</h1>
+<h1>Lesson 13: Graphics With Objects</h1>
 <p class="page-ref">Module 3 — Symbols | Pages 145–148</p>
 
-<p>Do Not Copy 3-47 AVEVA™ InTouch for System Platform 2023 Inserting Symbols from an Automation Object From the graphics perspective, symbols added to Automation objects are referenced like any other attribute within that object using the symbol’s name. When embedding a symbol, either into another symbol or in WindowMaker, select either the Template Toolbox button to embed a symbol from a template, or the Instances button to embed a symbol from an instance. Either way, the Galaxy Browser will only display the objects, templates, or instances that have symbols. Selecting an object will display all the symbols that object includes. When embedding a symbol in WindowMaker from an object template, you will be prompted for the name to create a new instance of the selected template. The name needs to be unique since the software will attempt to create a new instance in the Galaxy. If the intent is to add a symbol from an existing instance, then select the instance instead. Selecting Alternate Symbols of the Same Instance AutomationObjects can include more than one symbol. The Select Alternate Symbol feature allows the replacement of an embedded symbol with another symbol belonging to the same instance. This feature is available in both the Graphic Editor and WindowMaker. Note: This function cannot be used with symbols that originate from the Graphics tab, as they are not part of any object. To access this feature from the Graphic Editor do one of the following:  Select the embedded symbol, go to the Edit menu and click Embedded Symbol | Select Alternate Symbol  Right-click the embedded symbol and select Embedded Symbol | Select Alternate Symbol To access this feature from WindowMaker you can do one of the following:  Select the embedded symbol, go to the Edit menu and select Industrial Graphic “<current graphic name>” | Select Alternate Symbol  Right-click the embedded symbol and select Industrial Graphic “<current graphic name>” | Select Alternate Symbol</p>
+<p>perspective, symbols added to Automation objects are referenced like any other attribute within that object using the symbol’s name. When embedding a symbol, either into another symbol or in WindowMaker, select either the Template Toolbox button to embed a symbol from a template, or the Instances button to embed a symbol from an instance. Either way, the Galaxy Browser will only display the objects, templates, or instances that have symbols. Selecting an object will display all the symbols that object includes. When embedding a symbol in WindowMaker from an object template, you will be prompted for the name to create a new instance of the selected template. The name needs to be unique since the software will attempt to create a new instance in the Galaxy. If the intent is to add a symbol from an existing instance, then select the instance instead. Selecting Alternate Symbols of the Same Instance AutomationObjects can include more than one symbol. The Select Alternate Symbol feature allows the replacement of an embedded symbol with another symbol belonging to the same instance. This feature is available in both the Graphic Editor and WindowMaker. Note: This function cannot be used with symbols that originate from the Graphics tab, as they are not part of any object. To access this feature from the Graphic Editor do one of the following:  Select the embedded symbol, go to the Edit menu and click Embedded Symbol | Select Alternate Symbol  Right-click the embedded symbol and select Embedded Symbol | Select Alternate Symbol To access this feature from WindowMaker you can do one of the following:  Select the embedded symbol, go to the Edit menu and select Industrial Graphic “<current graphic name>” | Select Alternate Symbol  Right-click the embedded symbol and select Industrial Graphic “<current graphic name>” | Select Alternate Symbol</p>
 
 <div class="screenshot">
   <img src="../images/page_0145.png" alt="Galaxy Browser showing Level_001 through Level_006 instance objects with a tank level HMI widget preview displaying numeric value, engineering units, and Level_Detail button">
   <div class="caption">Galaxy Browser showing Level_001 through Level_006 instance objects with a tank level HMI widget preview displaying numeric value, engineering units, and Level_Detail button</div>
 </div>
 
-<p>Do Not Copy 3-48 AVEVA™ Training The Galaxy Browser displays symbols belonging to the same instance. An alternate symbol can be selected: In a non-frame window, if the alternate symbol is a different size than the original symbol, a message appears asking if the size of the currently inserted symbol should be retained. Yes will keep the current size of the selected symbol, while No will update the size of the selected symbol to the size of the new symbol.</p>
+<p>instance. An alternate symbol can be selected: In a non-frame window, if the alternate symbol is a different size than the original symbol, a message appears asking if the size of the currently inserted symbol should be retained. Yes will keep the current size of the selected symbol, while No will update the size of the selected symbol to the size of the new symbol.</p>
 
 <div class="screenshot">
   <img src="../images/page_0146.png" alt="Galaxy Browser listing Mixer100 through Mixer800 instances with Mixer100 selected, showing two alternate symbol thumbnails: MixingProcess_Detailed (full P&amp;ID with tank, valves, piping) and SwitchedMixingProcess (simplified mixer view)"Galaxy Browser - TrainingGalaxy">
   <div class="caption">Galaxy Browser listing Mixer100 through Mixer800 instances with Mixer100 selected, showing two alternate symbol thumbnails: MixingProcess_Detailed (full P&amp;ID with tank, valves, piping) and SwitchedMixingProcess (simplified mixer view)</div>
 </div>
 
-<p>Do Not Copy 3-49 AVEVA™ InTouch for System Platform 2023 Introduction In this lab, you will create graphics to represent equipment modeled in the Galaxy, including motors such as an agitator, valves, and pumps. Additionally, you will create meters for temperature and level. You will also configure these to meet the requirements of the corresponding mixing equipment and sensors. Then you will configure the graphics with I/O links using relative references. This will allow the single graphic in each template to be reused in all of its derived templates that represent the corresponding mixing equipment and sensors. Finally, you will associate the graphics with their corresponding template objects using the Link Content feature. Objectives Upon completion of this lab, you will be able to:  Link symbols to template objects  Duplicate symbols  Search for graphics in the Graphic Editor Toolbox  Configure graphics with relative references  Use Substitute References to modify references in embedded graphics</p>
+<p>lab, you will create graphics to represent equipment modeled in the Galaxy, including motors such as an agitator, valves, and pumps. Additionally, you will create meters for temperature and level. You will also configure these to meet the requirements of the corresponding mixing equipment and sensors. Then you will configure the graphics with I/O links using relative references. This will allow the single graphic in each template to be reused in all of its derived templates that represent the corresponding mixing equipment and sensors. Finally, you will associate the graphics with their corresponding template objects using the Link Content feature. Objectives Upon completion of this lab, you will be able to:  Link symbols to template objects  Duplicate symbols  Search for graphics in the Graphic Editor Toolbox  Configure graphics with relative references  Use Substitute References to modify references in embedded graphics</p>
 
-<p>Do Not Copy 3-50 AVEVA™ Training Create the Level Graphic First, you will create a Level_Detailed symbol. Then you will embed the SA_Meters graphic and configure it to show the mixer level. 1. In the IDE, on the Graphics tab, right-click the Training toolset and select New | Symbol. 2. Name the new symbol as Level_Detailed. 3. Double-click Level_Detailed to edit it.</p>
+<p>First, you will create a Level_Detailed symbol. Then you will embed the SA_Meters graphic and configure it to show the mixer level. 1. In the IDE, on the Graphics tab, right-click the Training toolset and select New | Symbol. 2. Name the new symbol as Level_Detailed. 3. Double-click Level_Detailed to edit it.</p>
 
 <div class="screenshot">
   <img src="../images/page_0148_0.png" alt="Graphics pane in the IDE with right-click context menu on the Training toolset folder, showing New submenu with options for Graphic Toolset, Screen Profile, Layout, Symbol, ViewApp Namespace, and External Content">
@@ -130,18 +131,16 @@
 
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <details>
-    <summary>Q1: What are the key concepts covered in this lesson about Graphics with Objects?</summary>
-    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
-  </details>
-  <details>
-    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
-    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
-  </details>
+  <p><strong>1.</strong> What are the key concepts covered in this lesson about Graphics with Objects?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
+
+  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+
 </div>
 
 <p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson L14 — Lab 6 – Creating the Mixer Components</p>
+<p class="source">Next: Lesson 14 — Lab 6 – Creating the Mixer Components</p>
 
 <script>
 
@@ -150,12 +149,12 @@ function saveProgress() {
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
-  try { localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks)); } catch(e) {}
+  try { localStorage.setItem('aveva-lesson-progress', JSON.stringify(checks)); } catch(e) {}
   updateProgressText();
 }
 function loadProgress() {
   var data = null;
-  try { data = localStorage.getItem('intouch-lesson-progress'); } catch(e) {}
+  try { data = localStorage.getItem('aveva-lesson-progress'); } catch(e) {}
   if (!data) { updateProgressText(); return; }
   try {
     var checks = JSON.parse(data);
