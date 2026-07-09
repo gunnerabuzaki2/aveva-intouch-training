@@ -98,45 +98,79 @@
 </details>
 </nav>
 
-<h1>Lesson 13: Graphics With Objects</h1>
-<p class="page-ref">Module 3 — Symbols | Pages 145–148</p>
+<h1>Lesson 13: Graphics with Objects</h1>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 3 (pages 145–148)</p>
+<p class="page-ref">This lesson covers how graphics are embedded in and associated with automation objects, including inserting symbols from objects and selecting alternate symbols.</p>
 
-<p>perspective, symbols added to Automation objects are referenced like any other attribute within that object using the symbol’s name. When embedding a symbol, either into another symbol or in WindowMaker, select either the Template Toolbox button to embed a symbol from a template, or the Instances button to embed a symbol from an instance. Either way, the Galaxy Browser will only display the objects, templates, or instances that have symbols. Selecting an object will display all the symbols that object includes. When embedding a symbol in WindowMaker from an object template, you will be prompted for the name to create a new instance of the selected template. The name needs to be unique since the software will attempt to create a new instance in the Galaxy. If the intent is to add a symbol from an existing instance, then select the instance instead. Selecting Alternate Symbols of the Same Instance AutomationObjects can include more than one symbol. The Select Alternate Symbol feature allows the replacement of an embedded symbol with another symbol belonging to the same instance. This feature is available in both the Graphic Editor and WindowMaker. Note: This function cannot be used with symbols that originate from the Graphics tab, as they are not part of any object. To access this feature from the Graphic Editor do one of the following:  Select the embedded symbol, go to the Edit menu and click Embedded Symbol | Select Alternate Symbol  Right-click the embedded symbol and select Embedded Symbol | Select Alternate Symbol To access this feature from WindowMaker you can do one of the following:  Select the embedded symbol, go to the Edit menu and select Industrial Graphic “<current graphic name>” | Select Alternate Symbol  Right-click the embedded symbol and select Industrial Graphic “<current graphic name>” | Select Alternate Symbol</p>
+<!-- ============================================================ -->
+<h2>13.1 Inserting Symbols from Automation Objects</h2>
+<p class="page-ref">Reference: Module 3, Section 3 (pages 145–146)</p>
+
+<p>From a graphics perspective, symbols added to automation objects are referenced like any other attribute within that object — using the symbol's unique name. When you need to embed a symbol into another symbol or into a WindowMaker window, the Galaxy Browser provides two workflows: you can select the <strong>Template Toolbox</strong> button to embed a symbol from a template, or the <strong>Instances</strong> button to embed a symbol from an existing instance.</p>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> When embedding a symbol from a template in WindowMaker, you will be prompted to name a new unique instance — the software will attempt to create a new instance in the Galaxy. If you want to use an existing instance, select it directly from the Instances view instead.
+</div>
 
 <div class="screenshot">
   <img src="../images/page_0145.png" alt="Galaxy Browser showing Level_001 through Level_006 instance objects with a tank level HMI widget preview displaying numeric value, engineering units, and Level_Detail button">
-  <div class="caption">Galaxy Browser showing Level_001 through Level_006 instance objects with a tank level HMI widget preview displaying numeric value, engineering units, and Level_Detail button</div>
+  <div class="caption">The Galaxy Browser showing level instances with symbol previews — selecting an instance embeds its associated symbols (page 145)</div>
 </div>
 
-<p>instance. An alternate symbol can be selected: In a non-frame window, if the alternate symbol is a different size than the original symbol, a message appears asking if the size of the currently inserted symbol should be retained. Yes will keep the current size of the selected symbol, while No will update the size of the selected symbol to the size of the new symbol.</p>
+<h3>Selecting Alternate Symbols</h3>
+<p>Automation objects can include more than one symbol. The <strong>Select Alternate Symbol</strong> feature allows you to replace an embedded symbol with another symbol belonging to the same instance. This feature is available in both the Graphic Editor and WindowMaker.</p>
+
+<div class="pitfall">
+  <strong>Important:</strong> Select Alternate Symbol cannot be used with symbols that originate from the Graphics tab, as those symbols are not part of any automation object.
+</div>
+
+<p>To access this feature from the Graphic Editor, either select the embedded symbol and go to <strong>Edit → Embedded Symbol → Select Alternate Symbol</strong>, or right-click the symbol and select <strong>Embedded Symbol → Select Alternate Symbol</strong>. From WindowMaker, select the embedded symbol, go to <strong>Edit → Industrial Graphic "&lt;name&gt;" → Select Alternate Symbol</strong>, or right-click and use the equivalent context menu option.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0146.png" alt="Galaxy Browser listing Mixer100 through Mixer800 instances with Mixer100 selected, showing two alternate symbol thumbnails: MixingProcess_Detailed (full P&amp;ID with tank, valves, piping) and SwitchedMixingProcess (simplified mixer view)"Galaxy Browser - TrainingGalaxy">
-  <div class="caption">Galaxy Browser listing Mixer100 through Mixer800 instances with Mixer100 selected, showing two alternate symbol thumbnails: MixingProcess_Detailed (full P&amp;ID with tank, valves, piping) and SwitchedMixingProcess (simplified mixer view)</div>
+  <img src="../images/page_0146.png" alt="Galaxy Browser listing Mixer100 through Mixer800 instances with Mixer100 selected, showing two alternate symbol thumbnails: MixingProcess_Detailed and SwitchedMixingProcess">
+  <div class="caption">The Galaxy Browser showing two alternate symbols for Mixer100 — MixingProcess_Detailed and SwitchedMixingProcess (page 146)</div>
 </div>
 
-<p>lab, you will create graphics to represent equipment modeled in the Galaxy, including motors such as an agitator, valves, and pumps. Additionally, you will create meters for temperature and level. You will also configure these to meet the requirements of the corresponding mixing equipment and sensors. Then you will configure the graphics with I/O links using relative references. This will allow the single graphic in each template to be reused in all of its derived templates that represent the corresponding mixing equipment and sensors. Finally, you will associate the graphics with their corresponding template objects using the Link Content feature. Objectives Upon completion of this lab, you will be able to:  Link symbols to template objects  Duplicate symbols  Search for graphics in the Graphic Editor Toolbox  Configure graphics with relative references  Use Substitute References to modify references in embedded graphics</p>
-
-<p>First, you will create a Level_Detailed symbol. Then you will embed the SA_Meters graphic and configure it to show the mixer level. 1. In the IDE, on the Graphics tab, right-click the Training toolset and select New | Symbol. 2. Name the new symbol as Level_Detailed. 3. Double-click Level_Detailed to edit it.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0148_0.png" alt="Graphics pane in the IDE with right-click context menu on the Training toolset folder, showing New submenu with options for Graphic Toolset, Screen Profile, Layout, Symbol, ViewApp Namespace, and External Content">
-  <div class="caption">Graphics pane in the IDE with right-click context menu on the Training toolset folder, showing New submenu with options for Graphic Toolset, Screen Profile, Layout, Symbol, ViewApp Namespace, and External Content</div>
+<div class="tip">
+  <strong>Note:</strong> In a non-frame window, if the alternate symbol is a different size than the original, a confirmation dialog will ask whether to keep the current size or update it to match the new symbol's dimensions.
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0148_1.png" alt="Graphics pane showing the Training folder expanded with newly created Level_Detailed and ProcessOverview symbols, both marked with red checkmark icons indicating valid graphic files">
-  <div class="caption">Graphics pane showing the Training folder expanded with newly created Level_Detailed and ProcessOverview symbols, both marked with red checkmark icons indicating valid graphic files</div>
+<!-- ============================================================ -->
+<h2>13.2 Linked Symbols vs. Added Symbols</h2>
+<p class="page-ref">Reference: Module 3, Section 3 (pages 143–144)</p>
+
+<p>When working with graphics in automation objects, there are two distinct approaches: <strong>linked symbols</strong> and <strong>added symbols</strong>. Understanding the difference is critical for choosing the right approach.</p>
+
+<div class="key-concept">
+  <strong>Key Concept — Linked vs. Added Symbols:</strong><br>
+  <strong>Linked Symbols</strong> create an association between an automation object and a symbol on the Graphics tab. The symbol can be linked to multiple objects (not necessarily in the same derivation hierarchy), and all edits propagate everywhere the symbol is linked. However, custom properties in linked symbols cannot be customized directly, and only Graphics tab symbols can be linked.<br><br>
+  <strong>Added Symbols</strong> are natively stored inside the automation object. They can be customized locally, and template edits propagate to child objects. Deleting the object deletes these symbols.
 </div>
+
+<p>When adding or linking a symbol in a template object, the symbol propagates to all derived objects and cannot be removed from them. You can add or link symbols from the <strong>Content</strong> pane on the Attributes tab in the Object Editor — the Add button creates a new internal symbol, while the Link Content button opens the Galaxy Browser to select a symbol from the Graphics tab.</p>
+
+<h3>Relative References in Graphics</h3>
+<p>When configuring graphics, you can use <strong>relative references</strong> — references that traverse up the object hierarchy to parent objects. Valid relative references include:</p>
+<ul>
+  <li><code>Me</code> — the current object</li>
+  <li><code>MyArea</code>, <code>MyContainer</code>, <code>MyEngine</code>, <code>MyHost</code>, <code>MyPlatform</code> — parent containers in the hierarchy</li>
+</ul>
+
+<p>Relative references are resolved at runtime when the graphic is displayed. This is what allows a single graphic in a template to work across all its derived instances — the <code>Me</code> keyword resolves to the specific instance name at runtime.</p>
 
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> What are the key concepts covered in this lesson about Graphics with Objects?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
+  <p><strong>1.</strong> What is the difference between linking a symbol to an automation object and adding a symbol to one?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Linked symbols create an association with a Graphics tab symbol that can be shared across multiple objects. Added symbols are natively stored inside the object and can be customized locally. Deleting an object deletes added symbols but not linked symbols.</p></details>
 
-  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <p><strong>2.</strong> Why can't the Select Alternate Symbol feature be used with symbols originating from the Graphics tab?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Graphics tab symbols are not part of any automation object, so they don't have the concept of multiple alternate symbols within the same object instance. Select Alternate Symbol only works with symbols that are native to an automation object.</p></details>
 
+  <p><strong>3.</strong> What happens to relative references like "Me" at runtime?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Relative references are resolved at runtime when the graphic is displayed. The "Me" keyword is replaced with the actual name of the instance displaying the graphic, allowing a single template graphic to work across all derived instances.</p></details>
+
+  <p><strong>4.</strong> When you link a symbol from a template object to a derived object, can the derived object remove that symbol?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">No. Symbols inherited from a template object through linking cannot be removed from derived objects.</p></details>
 </div>
 
 <p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 2: System Platform Overview</title>
+<title>Lesson 1: Course Introduction</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -13,12 +13,12 @@
   .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
   .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
   .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
-  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%%; margin: 1em 0; }
   th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
   th { background: #f5f5f5; }
   code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
   .screenshot { text-align: center; margin: 1.5em 0; }
-  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot img { max-width: 100%%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
   .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
   .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
   .quiz h3 { margin-top: 0; }
@@ -36,9 +36,8 @@
 
 <nav>
   <a href="L01-Course-Introduction.html">&larr; Lesson 1: Course Introduction</a> &nbsp;|&nbsp;
-  <a href="L03-Lab1-Creating-Galaxy.html">Lesson 3: Lab1 Creating Galaxy &rarr;</a>
+  <a href="L03-Lab1-Creating-Galaxy.html">Lesson 3: Lab 1 &ndash; Creating a Galaxy &rarr;</a>
 </nav>
-
 <nav style="margin-bottom:1.5em;">
 <details style="background:#f5f5f5;padding:0.8em;border-radius:6px;border:1px solid #ddd;margin-bottom:1.5em;">
 <summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">&#128218; All Lessons</summary>
@@ -47,83 +46,176 @@
 <strong style="color:#2c5f2d;">&#9989; Progress: <span id="progress-text">0 / 40 completed</span></strong>
 </div>
 <strong>Module 1 &#8212; Introduction</strong><br>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction.html">L01: Course Introduction</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" checked onchange="saveProgress()"> <a href="L01-Course-Introduction.html" style="font-weight:bold;">L01: Course Introduction</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L02" checked onchange="saveProgress()"> <a href="L02-System-Platform-Overview.html" style="font-weight:bold;">L02: System Platform Overview</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html">L03: Lab 1 – Creating and Deploying a Galaxy</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html">L03: Lab 1 &#8211; Creating and Deploying a Galaxy</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Encryption-Requirements.html">L04: Encrypted Communication + System Requirements</a></label>
 <strong>Module 2 &#8212; Getting Started</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-InTouch-Visualization-Objects.html">L05: InTouch Visualization + Automation Objects</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 – Creating a Managed InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 &#8211; Creating a Managed InTouch Application</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-WindowMaker-Development.html">L07: InTouch Development Environment</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 – Building the Application Layout</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 &#8211; Building the Application Layout</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Runtime-Environment.html">L09: Runtime Environment and Application Design</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 – Deploying an InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 &#8211; Deploying an InTouch Application</a></label>
 <strong>Module 3 &#8212; Symbols</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Symbol-Overview-Graphic-Editor.html">L11: Symbol Overview + Graphic Editor</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 – Building a Process Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 &#8211; Building a Process Overview</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Graphics-With-Objects.html">L13: Graphics with Objects</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 – Creating the Mixer Components</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 &#8211; Creating the Mixer Components</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Editor-Tools-Animations.html">L15: Graphic Editor Tools and Animations</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 – Creating the Mixer Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 &#8211; Creating the Mixer Display</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-OwningObject-Lab8-Mixers.html">L17: The OwningObject Property + Lab 8</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Custom-Properties.html">L18: Custom Properties</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 – Creating a Custom Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 &#8211; Creating a Custom Symbol</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Scripts-In-Graphics.html">L20: Scripts in Graphics</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 – Creating a Navigation Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 &#8211; Creating a Navigation Symbol</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Galaxy-Styles.html">L22: Galaxy Styles</a></label>
 <strong>Module 4 &#8212; Widgets</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Widgets-Lab11-Carousel.html">L23: Widgets Overview + Lab 11</a></label>
 <strong>Module 5 &#8212; Alarms and Events Visualization</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-Alarming-Overview-Lab12.html">L24: Alarming Overview + Lab 12</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 – Alarm Aggregation</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 &#8211; Alarm Aggregation</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">L26: Live Alarms Visualization</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 – Current Alarms Display</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 – Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 &#8211; Current Alarms Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 &#8211; Alarm Popup Symbol</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">L29: Historical Alarms + Lab 16</a></label>
 <strong>Module 6 &#8212; Trend Visualization</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">L30: Historization + Real-Time Trending</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 – Adding Trending to Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 &#8211; Adding Trending to Graphics</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Multi-Pens-Trend.html">L32: Multi Pens Trend</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 – Trend Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 &#8211; Trend Popup Symbol</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Historian-Trend-Lab19.html">L34: Historian Client Trend + Lab 19</a></label>
 <strong>Module 7 &#8212; Security</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Security-Overview.html">L35: Security Overview</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 – Security Features in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 &#8211; Security Features in Graphics</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Signed-Writes-Lab21.html">L37: Signed Writes + Lab 21</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Runtime-Customization-Lab22.html">L38: Runtime Customization + Lab 22</a></label>
 <strong>Module 8 &#8212; Web Client</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Web-Client-Overview.html">L39: Web Client Overview</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 – Using the Web Client</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 &#8211; Using the Web Client</a></label>
 </div>
 </details>
 </nav>
 
 <h1>Lesson 2: System Platform Overview</h1>
-<p class="page-ref">Module 1 — Introduction | Pages 7–10</p>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 1, Section 2 (pages 7&ndash;10)</p>
+<p class="page-ref">Understanding AVEVA System Platform, its layered architecture, ArchestrA technology, and the role of Application Server as the foundation for InTouch visualization.</p>
 
-<p>4-day, instructor-led class designed to provide an overview of the features and functionalities released with AVEVA InTouch for System Platform. It covers the components and capabilities of the software, as well as topics to help you build and deploy an AVEVA InTouch for System Platform visualization application. It also introduces tools for creating graphics, visualizing alarms and events, visualizing trends and history, and implementing security in an AVEVA InTouch for System Platform application. Hands- on labs are provided to reinforce the knowledge necessary to use the AVEVA InTouch for System Platform software. Objectives Upon completion of this course, you will be able to:  Describe AVEVA InTouch for System Platform visualization components  Create and run visualization applications  Describe situational awareness concepts  Create and use graphics  Implement navigation for visualization applications  Implement alarm visualization  Implement real-time and historical trending  Implement visualization application security  View graphics in a browser Audience Individuals who need to configure or modify AVEVA InTouch for System Platform applications Prerequisites Knowledge of the following tools, features, and technologies is required.  Industrial automation software concepts  From the AVEVA™ Application Server software product:  System Platform IDE  AutomationObjects  Alarms of attributes  Historization of attributes  Security  Deployment model  Plant model  QuickScript.NET scripting language This section describes the objectives, prerequisites, intended audience, and agenda for the course.</p>
+<!-- ============================================================ -->
+<h2>2.1 AVEVA System Platform &mdash; The Big Picture</h2>
+<p class="page-ref">Reference: Module 1, Section 2 (pages 7&ndash;8)</p>
 
-<p>objectives, prerequisites, intended audience, and agenda for the course. This section describes fundamental concepts about AVEVA System Platform and AVEVA System Platform Enterprise. It also introduces ArchestrA technology. This section describes the encrypted communication for end-to-end communication between server and client software applications. This section describes system requirements for System Platform software and introduces the licensing model. This section introduces visualization concepts and describes InTouch for System Platform as one of the visualization clients of Application Server. It also introduces AVEVA Connect for graphics. This section introduces the InTouchViewApp and ViewEngine automation objects. This section provides a brief overview of the features of the WindowMaker environment and its settings and describes InTouch windows. This section provides a brief overview of InTouch WindowViewer and explains how to deploy and run a Managed InTouch application. This section introduces industrial graphics, including managing them in the System Platform IDE and the out-of-the-box symbol libraries provided with Application Server. It also provides an overview of Situational Awareness concepts. This section describes the Graphic Editor, including an overview of its interface and using it to create graphics. This section provides a brief overview of using graphics in automation objects and referencing them.</p>
+<p>AVEVA System Platform (formerly Wonderware System Platform) is an industrial software platform built on <strong>ArchestrA technology</strong>. It provides an integrated set of services and an extensible data model to manage plant control and information management systems. System Platform supports both the supervisory control layer and the manufacturing execution system layer, presenting them as a single information source.</p>
 
-<p>Editor, as well as visualization and interaction animations. It also reviews containment relationships between automation objects. This section introduces the OwningObject property and Windows common controls. This section provides a brief overview of custom properties for symbols. It also describes the Button tool and explains how to use the PushButton and Show Symbol animations. Additionally, it describes the TreatAsIcon property. This section provides a brief overview of the scripting environment, explains execution types and triggers, and introduces ShowGraphic functions. This section explains how to work with Galaxy Styles. This section describes using HTML5 widgets in your InTouch for System Platform application and introduces the Carousel widget. This section provides a brief overview of alarms and events and explains how System Platform handles them. An introduction to the Alarm Border animation, Alarms aggregation, severity, and shelving is also provided. This section explains how to use the Alarm Client control in your InTouch for System Platform application to visualize live alarms. This section explains how to use the Alarm Client control in your InTouch for System Platform application to visualize historical alarms and events. This section provides a brief review of how Application Server handles the configuration and logging of historical data. This section introduces the Trend pen and two situational awareness symbols for trending and explains how to configure them. This section describes the Trend Client control as a real-time trend plot. It introduces Multi Pens Trend as a real-time trend solution and explains backfilling data from Historian.</p>
-
-<p>control. This section provides an overview of security in Application Server, including authentication modes, permissions, roles, and users. It also describes security classifications for attributes, the security audit trail, InTouch security tags, and script functions. This section provides a brief overview of the Secured Write and Verified Write security classifications, the Can Verify Writes Operational permission, and the Secured Write and Verified Write dialog boxes. This section explains how to customize the runtime environment to more fully secure and protect the application. It also describes how to configure the InTouch runtime environment for inactivity and introduces the EnableDisableKeys() script function. This section describes the Web Client features and dependencies.</p>
-
-<div class="quiz">
-  <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> What are the key concepts covered in this lesson about System Platform Overview?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
-
-  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
-
+<div class="key-concept">
+  <strong>Key Concept:</strong> System Platform provides the core framework and tools for developing, executing, monitoring, and visualizing industrial automation applications. Core services (data acquisition, historization, alarming) come from System Platform components, while client services (visualization, trending) come from its clients.
 </div>
 
-<p class="source">Module 1 — Introduction. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson 3 — Lab 1 – Creating and Deploying a Galaxy</p>
+<p>The System Platform software is built on industry standards and Microsoft technologies, including Windows, .NET, SQL Server, and IIS. ArchestrA provides the fundamental technology and services for the multi-user, object-oriented platform.</p>
+
+<h3>System Platform Components</h3>
+<p>System Platform components access and process external data from controllers, software applications, and other data sources. The three main components are:</p>
+
+<table>
+  <thead><tr><th>Component</th><th>Role</th></tr></thead>
+  <tbody>
+    <tr><td><strong>AVEVA Application Server</strong></td><td>The heart of System Platform. Provides an object-oriented framework with tools for developing and deploying applications.</td></tr>
+    <tr><td><strong>AVEVA Historian</strong></td><td>Provides process data historization and alarm/event logging. Data is exposed through SQL Server and/or OData interfaces.</td></tr>
+    <tr><td><strong>AVEVA Communication Drivers</strong></td><td>Platform for communication with controllers and data sources. Supports MQTT, OPC DA, OPC UA, and controller-specific protocols.</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<h2>2.2 System Platform Clients</h2>
+<p class="page-ref">Reference: Module 1, Section 2 (pages 8&ndash;9)</p>
+
+<p>System Platform clients access information from the core platform and provide the operator-facing interfaces. There are several client products designed for different use cases:</p>
+
+<h3>Supervisory Clients</h3>
+<p>Supervisory clients run the operator interface and provide real-time access to Application Server data, alarms, and events. Two supervisory client products can coexist in the same System Platform solution:</p>
+<ul>
+  <li><strong>AVEVA Operations Management Interface (OMI)</strong> &mdash; a rapid-design visualization framework with out-of-the-box navigation based on the application&rsquo;s data model.</li>
+  <li><strong>AVEVA InTouch for System Platform</strong> &mdash; based on traditional development tools to create displays and navigation from scratch. This is the focus of this training course.</li>
+</ul>
+
+<h3>Remote Access</h3>
+<p>Supervisory client applications can be accessed remotely through a web browser using <strong>AVEVA InTouch Access Anywhere</strong>. Simply enter a URL in a web browser on a desktop or mobile device, log on, and interact with the application &mdash; no separate client software installation required.</p>
+
+<h3>Historian Clients</h3>
+<ul>
+  <li><strong>AVEVA Historian Client</strong> &mdash; a collection of tools for accessing historized data: a Trend application for graphing, a Query application for SQL queries, and add-ins for Microsoft Excel and Word.</li>
+  <li><strong>AVEVA Historian Client Web</strong> &mdash; a browser-based tool for quick data query, trending, and analysis.</li>
+</ul>
+
+<h3>Core Services Provided</h3>
+<ul>
+  <li>Real-time data acquisition from field devices</li>
+  <li>Scaling, statistics, and data manipulation</li>
+  <li>Process control</li>
+  <li>Alarm triggering, logging, acknowledgment, and management</li>
+  <li>Historization, trending, and analysis of process data</li>
+  <li>Visualization of real-time process data</li>
+  <li>Reporting</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>2.3 ArchestrA Technology</h2>
+<p class="page-ref">Reference: Module 1, Section 2 (page 1-9)</p>
+
+<p>ArchestrA is a distributed architecture developed for supervisory control and manufacturing information systems. It is an open, extensible technology based on a distributed, object-oriented design that leverages the Microsoft .NET Framework for industrial automation.</p>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> ArchestrA provides the foundational technology layer for System Platform, including object management, a component framework, global namespace, inter-process communications, centralized security, and version management.
+</div>
+
+<p>ArchestrA provides the following system services:</p>
+<ul>
+  <li><strong>Object management</strong> for creating object-oriented applications</li>
+  <li><strong>Component object framework</strong> for modeling plants, factories, and equipment</li>
+  <li><strong>Common global namespace</strong> for all application types, from single-node to distributed</li>
+  <li><strong>Inter-process communications</strong> with system maintenance and diagnostic information</li>
+  <li><strong>Centralized security</strong> with support for multi-user environments</li>
+  <li><strong>Version management</strong> for every object, including development operation logging</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>2.4 System Platform Enterprise</h2>
+<p class="page-ref">Reference: Module 1, Section 2 (page 1-9)</p>
+
+<p>AVEVA System Platform Enterprise builds on the core technology to bring enhanced accessibility and exclusive visualization extensions for enterprise users building AVEVA Unified Operations Center (UOC) solutions. It is an AVEVA Flex subscription-activated product.</p>
+
+<p>Exclusive features of System Platform Enterprise include:</p>
+<ul>
+  <li>A web client for Operations Management Interface (OMI)</li>
+  <li>Additional web widgets: ScatterChart, Breadcrumb, NavigationTree, Hamburger, TitleBar, Graphic Repeater, MapApp</li>
+  <li>Additional OMI Apps: Power BI, PI Vision, Sankey</li>
+  <li>UOC documentation</li>
+</ul>
+
+<div class="pitfall">
+  <strong>Important:</strong> System Platform Enterprise does <em>not</em> include InTouch HMI (WindowMaker and WindowViewer), InTouch Web Client, or InTouch Workspaces. These are part of the standard AVEVA InTouch for System Platform product.
+</div>
+
+<!-- ============================================================ -->
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <p><strong>1.</strong> What technology is AVEVA System Platform built upon, and what does it provide?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">System Platform is built on ArchestrA technology, which provides object management, a component framework, global namespace, inter-process communications, centralized security, and version management for the multi-user, object-oriented platform.</p></details>
+
+  <p><strong>2.</strong> Name the three core System Platform components.</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">AVEVA Application Server (application development and deployment), AVEVA Historian (data historization and alarm/event logging), and AVEVA Communication Drivers (communication with controllers and data sources).</p></details>
+
+  <p><strong>3.</strong> What is the difference between the two supervisory client products?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Operations Management Interface (OMI) uses rapid-design frameworks with out-of-the-box navigation. InTouch for System Platform uses traditional development tools to create displays and navigation from scratch. Both can coexist in the same solution.</p></details>
+
+  <p><strong>4.</strong> Which product is NOT included in System Platform Enterprise?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">InTouch HMI (WindowMaker and WindowViewer) is not included in System Platform Enterprise. Enterprise focuses on OMI web client and UOC features.</p></details>
+</div>
+
+<p class="source">Module 1 &mdash; Introduction. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: Lesson 3 &mdash; Lab 1 &ndash; Creating and Deploying a Galaxy</p>
 
 <script>
-
 function saveProgress() {
   var checks = {};
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
@@ -151,7 +243,6 @@ function updateProgressText() {
   if (el) el.textContent = done + ' / ' + total + ' completed';
 }
 document.addEventListener('DOMContentLoaded', loadProgress);
-
 </script>
 </body>
 </html>

@@ -99,38 +99,142 @@
 </nav>
 
 <h1>Lesson 22: Galaxy Styles</h1>
-<p class="page-ref">Module 3 — Symbols | Pages 277–280</p>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 3 — Symbols, Section 8 (pages 277–280)</p>
+<p class="page-ref">Galaxy Styles provide a centralized way to control the visual appearance of graphics across your entire application. This lesson covers the six types of style overrides, how to manage style cards, and how to import and export styles.</p>
 
-<p>severity, alarm states, and user acknowledgment. The four severities are color coded as:  Red - Critical  Yellow - High  Cyan - Medium  Magenta - Low The visual indicators also includes three states of these severities:  ACK - acknowledged but in alarm  RTN - return to normal but unacknowledged  UNACK - unacknowledged and in alarm The Alarm Element styles also include alarm border styles in the form of visual outlines. Trend Element Styles Trend Element styles support the SA_SinglePen and SA_MultiTrendPen symbols found in the Situation Awareness Library. User defined Styles This list provides 24 user-customizable styles. Format Styles Format styles are used to provide visual overrides for numerical values displayed in the InTouchViewApp. These styles allow overriding the format of value range, fixed width, and precision for each numerical value. This allows standardization across the InTouchViewApp for the display of numbers. The list also contains 25 user-defined format styles.</p>
+<!-- ============================================================ -->
+<h2>22.1 What Are Galaxy Styles?</h2>
+<p class="page-ref">Reference: Module 3, Section 8 (page 277)</p>
 
-<p>top-right of the Styles area, buttons are available for adding and deleting style cards, as well as displaying a menu of options for importing and exporting style cards. Add or Delete a Style Card You can add new Style card to the list of styles by clicking the Add button. The card that is selected when you click Add is duplicated with a incremented name and a copy of all styles from the selected card. The new card can be renamed and edited. You can delete a card by selecting a card and clicking the Delete button.</p>
+<p>A Galaxy Style applies visual and numerical standards to the presentation of graphics. Rather than configuring the appearance of every element individually, you define a style once and apply it across your entire Galaxy. This ensures consistent visual standards throughout your application — critical for large projects where multiple developers may be creating graphics.</p>
 
-<div class="screenshot">
-  <img src="../images/page_0278.png" alt="Styles management panel showing Standard_Style listed as the default style card, with add, delete, and vertical ellipsis (import/export options) buttons in the top action bar">
-  <div class="caption">Styles management panel showing Standard_Style listed as the default style card, with add, delete, and vertical ellipsis (import/export options) buttons in the top action bar</div>
+<p>You access Galaxy Styles from the menu: <strong>Galaxy &gt; Configure &gt; Galaxy &gt; Styles</strong>. The configuration area displays each style as a card, and each card provides access to all available override types.</p>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> By default, the <strong>Standard_Style</strong> is provided and set as the active style for the Galaxy. You can add additional styles, designate a different active style, delete styles, and duplicate styles from the configuration area. Predefined styles cannot be deleted and new styles cannot be added to the style list itself — you work with the existing cards.
 </div>
 
-<p>styles. In the top-right of the Configure Styles area, click the vertical ellipsis to display the menu.  Import allows you to import one or more styles. Additional styles are available in the product installation path: C:\Program Files (x86)\ArchestrA\FrameWork\Bin\AdditionalElementStyles This folder contains a list of XML files which may be imported for use in your Galaxy.  Export All allows you to export all of the style cards from the list. The export file format is XML type. Manage Style Cards Each style card allows you to make default, rename, duplicate, delete, and export that style. In the bottom-right of a card, click the vertical ellipsis to display a menu of options.  Make default activates the selected style card for the Galaxy. Only one style card can be active (default) in the Galaxy at a time.  Rename allows you to rename the selected style card. Alternatively, you can click the title of the card to make the title editable or select a card and press F2.  Duplicate makes a copy of the selected style card. Alternatively, you can select a card and press Ctrl+D.  Delete allows you to delete the selected style card.  Export allows you to export the selected style card.</p>
+<!-- ============================================================ -->
+<h2>22.2 The Six Style Categories</h2>
+<p class="page-ref">Reference: Module 3, Section 8 (pages 277–278)</p>
+
+<p>Each Galaxy Style card contains overrides for six categories of visual properties:</p>
+
+<table>
+  <thead><tr><th>Style Category</th><th>Purpose</th><th>Key Overrides</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Quality &amp; Status</strong></td><td>Visual indicators for tag quality and status states</td><td>Icons, colors, and text for communication errors, configuration errors, warnings, bad quality, security errors, and more</td></tr>
+    <tr><td><strong>HMI Element</strong></td><td>Appearance of graphic elements in symbols</td><td>Text (font, size, style, color, blink), Fill (color, blink), Line (pattern, weight, color, blink), Outline (show/hide)</td></tr>
+    <tr><td><strong>Alarm Element</strong></td><td>Alarm severity and state indicators</td><td>Four severity colors (Red=Critical, Yellow=High, Cyan=Medium, Magenta=Low) and three states (ACK, RTN, UNACK) plus border styles</td></tr>
+    <tr><td><strong>Trend Element</strong></td><td>Visual settings for trend symbols</td><td>Supports SA_SinglePen and SA_MultiTrendPen from the Situation Awareness Library</td></tr>
+    <tr><td><strong>User Defined</strong></td><td>Customizable style slots</td><td>24 user-customizable styles for application-specific needs</td></tr>
+    <tr><td><strong>Format</strong></td><td>Numerical display formatting</td><td>Value range, fixed width, and precision overrides for InTouchViewApp numerical values (25 user-defined format styles)</td></tr>
+  </tbody>
+</table>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> HMI Element style overrides take precedence over the native visual properties of elements. If a style specifies a red fill color for a certain state, that color will be used regardless of what the individual symbol defines.
+</div>
+
+<!-- ============================================================ -->
+<h2>22.3 Quality and Status Styles</h2>
+<p class="page-ref">Reference: Module 3, Section 8 (page 278)</p>
+
+<p>The Quality &amp; Status tab defines visual elements for runtime quality and status states. You can configure text, fill, outline, blink, and associated display icons for various conditions including:</p>
+
+<ul>
+  <li>Communication errors and configuration errors</li>
+  <li>Pending states and operational errors</li>
+  <li>Software errors and security errors</li>
+  <li>Warnings, out-of-service states, and device failures</li>
+  <li>Bad quality, uncertain quality, and initializing states</li>
+  <li>Live value playback indicators</li>
+</ul>
+
+<p>Each status item has a configurable icon (typically a colored circle with a symbol), and you can customize the text, fill color, and outline for each. This level of control ensures that operators can immediately recognize the state of any data point at a glance.</p>
+
+<!-- ============================================================ -->
+<h2>22.4 HMI Element Styles</h2>
+<p class="page-ref">Reference: Module 3, Section 8 (page 278)</p>
+
+<p>HMI Element styles define the visual properties of text, lines, outlines, and fills for elements shown in symbols. The four sub-categories are:</p>
+
+<ul>
+  <li><strong>Text:</strong> Font, size, style, color, and blink settings for text elements</li>
+  <li><strong>Fill:</strong> Fill color and blink settings for graphic fills</li>
+  <li><strong>Line:</strong> Pattern, weight, color, and blink settings for lines</li>
+  <li><strong>Outline:</strong> Whether outlines are shown or hidden</li>
+</ul>
+
+<p>Each override specifies a preconfigured visual property that takes precedence over the native properties of an element. This means a single style change can update the appearance of every matching element across the entire Galaxy.</p>
+
+<!-- ============================================================ -->
+<h2>22.5 Managing Style Cards</h2>
+<p class="page-ref">Reference: Module 3, Section 8 (pages 278–280)</p>
+
+<p>The Styles configuration area provides tools for creating, organizing, and managing style cards.</p>
+
+<h3>Adding and Deleting Cards</h3>
+<p>Click the <strong>Add</strong> button (+) to duplicate the currently selected card with an incremented name and a copy of all its styles. The new card can be renamed and edited independently. To delete a card, select it and click the <strong>Delete</strong> button (−).</p>
+
+<h3>Importing and Exporting</h3>
+<p>Click the vertical ellipsis (⋮) in the top-right of the Styles area to access import/export options:</p>
+
+<ul>
+  <li><strong>Import:</strong> Loads one or more style cards from XML files. Additional styles are available at:<br>
+  <code>C:\Program Files (x86)\ArchestrA\FrameWork\Bin\AdditionalElementStyles</code></li>
+  <li><strong>Export All:</strong> Exports all style cards as an XML file for backup or reuse in other Galaxies.</li>
+</ul>
+
+<h3>Individual Card Management</h3>
+<p>Each card has its own vertical ellipsis menu with these options:</p>
+
+<table>
+  <thead><tr><th>Option</th><th>Effect</th><th>Shortcut</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Make Default</strong></td><td>Activates this style card for the Galaxy (only one can be active)</td><td>—</td></tr>
+    <tr><td><strong>Rename</strong></td><td>Renames the card (or click the title, or press F2)</td><td>F2</td></tr>
+    <tr><td><strong>Duplicate</strong></td><td>Makes a copy of the card</td><td>Ctrl+D</td></tr>
+    <tr><td><strong>Delete</strong></td><td>Removes the card from the list</td><td>—</td></tr>
+    <tr><td><strong>Export</strong></td><td>Exports just this card as an XML file</td><td>—</td></tr>
+  </tbody>
+</table>
 
 <div class="screenshot">
   <img src="../images/page_0279_0.png" alt="Application Manager showing a partial view of application entries with plus and minus buttons, and an open context menu with Import and Export all options for managing InTouch application style cards">
-  <div class="caption">Application Manager showing a partial view of application entries with plus and minus buttons, and an open context menu with Import and Export all options for managing InTouch application style cards</div>
+  <div class="caption">The Import/Export menu — Import loads XML files from the AdditionalElementStyles folder, Export All saves all cards (page 279)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0279_1.png" alt="Style Manager with HPHMI and Metal style cards listed, HPHMI selected with Quality &amp; Status and HMI Element tabs, and a right-click context menu showing Make default, Rename (F2), Duplicate (Ctrl+D), Delete, and Export options">
-  <div class="caption">Style Manager with HPHMI and Metal style cards listed, HPHMI selected with Quality &amp; Status and HMI Element tabs, and a right-click context menu showing Make default, Rename (F2), Duplicate (Ctrl+D), Delete, and Export options</div>
+  <div class="caption">Each style card has its own context menu for management operations (page 279)</div>
 </div>
 
+<div class="tip">
+  <strong>Tip:</strong> Use the Duplicate feature (Ctrl+D) to create a new style based on an existing one. This is faster than building a style from scratch — duplicate an existing card and then modify only the overrides that need to change.
+</div>
 
+<div class="pitfall">
+  <strong>Important:</strong> Only one style card can be set as the default (active) style for the Galaxy at a time. When you make a new card the default, the previous default is deactivated. Choose the active style carefully as it affects the visual appearance of all graphics that use it.
+</div>
+
+<!-- ============================================================ -->
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> What are the key concepts covered in this lesson about Galaxy Styles?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
+  <p><strong>1.</strong> What are the six categories of overrides available in a Galaxy Style card?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Quality &amp; Status, HMI Element, Alarm Element, Trend Element, User Defined, and Format. Each category controls a different aspect of how graphics appear at runtime.</p></details>
 
-  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <p><strong>2.</strong> How do you access the Galaxy Styles configuration area?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">From the Galaxy menu, select Configure &gt; Galaxy &gt; Styles. This opens the Configure Galaxy Styles area where you can view, manage, and configure all style cards.</p></details>
 
+  <p><strong>3.</strong> What happens when you click the Add button in the Styles area?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">The currently selected style card is duplicated with an incremented name and a complete copy of all its styles. The new card can then be renamed and edited independently.</p></details>
+
+  <p><strong>4.</strong> Where can you find additional style XML files for import?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Additional styles are available at <code>C:\Program Files (x86)\ArchestrA\FrameWork\Bin\AdditionalElementStyles</code>. This folder contains XML files that can be imported through the Import option in the vertical ellipsis menu.</p></details>
+
+  <p><strong>5.</strong> What are the four alarm severity color codes defined in Alarm Element styles?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Red for Critical, Yellow for High, Cyan for Medium, and Magenta for Low. Each severity also has three states: ACK (acknowledged), RTN (return to normal, unacknowledged), and UNACK (unacknowledged and in alarm).</p></details>
 </div>
 
 <p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>

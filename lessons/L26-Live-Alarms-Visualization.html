@@ -99,139 +99,153 @@
 </nav>
 
 <h1>Lesson 26: Live Alarms Visualization</h1>
-<p class="page-ref">Module 5 — Alarms and Events Visualization | Pages 341–350</p>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 5 – Alarms and Events Visualization, Section 2 (pages 333–350)</p>
+<p class="page-ref">This lesson introduces the Alarm Client control — the primary tool for visualizing live alarms in InTouch. You will learn how to embed, configure, and customize the Alarm Client, and then begin building a current alarms display in Lab 14.</p>
 
-<p>occurs. In the Event drop-down list, select the event to run a script. For the selected event, the Parameters list shows:  Type: The data type of each parameter  Name: The name of each parameter</p>
+<!-- ============================================================ -->
+<h2>26.1 The Alarm Client Control</h2>
+<p class="page-ref">Reference: Module 5, Section 2 (pages 333–335)</p>
 
-<div class="screenshot">
-  <img src="../images/page_0341.png" alt="AVEVA InTouch AlarmClient Edit Animations dialog showing Event configuration tab (8 of 8) with AutoSizeChanged event, parameters sender/System.Object and e/System.EventArgs, blank script editor ready for custom event-triggered code">
-  <div class="caption">AVEVA InTouch AlarmClient Edit Animations dialog showing Event configuration tab (8 of 8) with AutoSizeChanged event, parameters sender/System.Object and e/System.EventArgs, blank script editor ready for custom event-triggered code</div>
+<p>The Alarm Client control is a graphic element delivered as part of the Graphic Editor. It replaces the older Alarm Viewer and Alarm DB View controls and extends alarm visualization directly into the graphics environment. You place it on a canvas just like any other tool, and then customize it with additional graphics, interactions, and scripts.</p>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> The Alarm Client control has five client modes that can be grouped by data source: it supports the InTouch Database (WWALMDB), the ArchestrA Database (A2ALMDB), and Historian History Blocks. This flexibility allows a single control to display current alarms, recent alarms and events, historical alarms, historical events, or a combination of both.
 </div>
 
+<p>At runtime, operators can interact with the Alarm Client in several ways:</p>
+<ul>
+  <li>Refresh the grid to show the most current alarms</li>
+  <li>Use the status bar to view alarm record information</li>
+  <li>Acknowledge, hide, filter, or sort alarms</li>
+  <li>Freeze the grid to examine a specific snapshot</li>
+  <li>Switch between client modes</li>
+  <li>Switch between languages</li>
+</ul>
 
-<p>lab, you will create a graphic and add the Alarm Client to it. The Alarm Client will be configured to query, filter, and display current alarms at runtime. Additionally, you will use the Alarm Client to acknowledge alarms. Objectives Upon completion of this lab, you will be able to:  Use and configure the Alarm Client to visualize current alarms  Configure and select alarm filters in the Alarm Client</p>
+<h3>Embedding the Alarm Client</h3>
+<p>To embed the Alarm Client control, open the Graphic Editor, select the <strong>Alarm Client</strong> tool from the Tools pane, and click the canvas to place it. You can resize the control and double-click it to access configuration options.</p>
 
-<div class="screenshot">
-  <img src="../images/page_0343.png" alt="Alarm Viewer in AVEVA InTouch showing current alarms in a tabular grid with columns User1, State, Node, Group, Name, AlarmComment, Type, TimeLCT; displaying 6 of 53 alarms with UNACK_RTN state for communication and LoLo/Lo alarms for production lines">
-  <div class="caption">Alarm Viewer in AVEVA InTouch showing current alarms in a tabular grid with columns User1, State, Node, Group, Name, AlarmComment, Type, TimeLCT; displaying 6 of 53 alarms with UNACK_RTN state for communication and LoLo/Lo alarms for production lines</div>
+<!-- ============================================================ -->
+<h2>26.2 Configuration Options</h2>
+<p class="page-ref">Reference: Module 5, Section 2 (pages 335–341)</p>
+
+<h3>Alarm Mode</h3>
+<p>The Client Mode property determines which type of alarms to display. You can set this at design time or switch it at runtime using the <code>ClientMode</code> integer property in scripting. The available modes are:</p>
+
+<table>
+  <thead><tr><th>Client Mode</th><th>Description</th><th>Value</th></tr></thead>
+  <tbody>
+    <tr><td>Current Alarms</td><td>Displays real-time active alarms from the alarm provider</td><td>1</td></tr>
+    <tr><td>Recent Alarms and Events</td><td>Shows recently occurred alarms and events</td><td>2</td></tr>
+    <tr><td>Historical Alarms</td><td>Retrieves alarm records from the alarm database or History Blocks</td><td>3</td></tr>
+    <tr><td>Historical Events</td><td>Retrieves event records from the alarm database or History Blocks</td><td>4</td></tr>
+    <tr><td>Historical Alarms and Events</td><td>Retrieves both alarm and event records</td><td>5</td></tr>
+  </tbody>
+</table>
+
+<p>The <strong>Alarm Query</strong> field specifies which alarms to retrieve using the query syntax covered in Lesson 24. Use <code>Ctrl + Enter</code> to create new lines in the query field.</p>
+
+<h3>Colors</h3>
+<p>Different alarm types can be displayed in different colors using priority breakpoints. The Alarm Client supports four priority ranges, each with separate colors for acknowledged and unacknowledged states. You can also customize the control background, grid, and heading colors.</p>
+
+<h3>Column Details</h3>
+<p>Column headers can be renamed, resized, and reordered. Changes are reflected in the grid preview, where you can also use the pointer to adjust column widths and order.</p>
+
+<h3>Queries and Filters</h3>
+<p>Query filters allow you to narrow the displayed alarms using logical constructs. For example, you can filter to show only alarms with priorities between 500 and 750. Filters created at design time can be reused at runtime, and vice versa.</p>
+
+<div class="pitfall">
+  <strong>Important:</strong> When using TimeLCT, TimeOAT, or TimeLCTOAT as filter criteria for historical alarm modes, ensure the TimeSelector.StartDate and TimeSelector.EndDate properties do not inadvertently limit your query. Set StartDate earlier and EndDate later than any time filtering requirement.
 </div>
 
-<p>First, you will create a symbol with the Alarm Client. Then, you will add queries and filters for use at runtime. 1. In the IDE, on the Graphics tab, in the Training toolset, create a new symbol named AlarmLiveDisplay, and then open it for editing. 2. In Tools, click Alarm Client and place it on the canvas. You will now configure the Alarm Client to filter the alarms for the Line1, Line2, and Production areas. 3. On the canvas, double-click the Alarm Client to configure it. 4. With Alarm Mode selected, ensure Client Mode is set to Current Alarms. 5. In Alarm Query, enter \\<NodeName>\Galaxy!Production. Note: Your instructor will provide your node name. In a real-world scenario, the node name would point to a production node for the plant. For the purposes of this course, you will use the GR node to provide alarms.</p>
+<h3>Run-Time Behavior</h3>
+<p>The Alarm Client's runtime behavior is highly configurable: you can show or hide the heading, grid, and status bar; control whether the grid queries on startup; enable auto-scrolling to new alarms; hide warnings and errors; restrict operator access; and customize the context menu.</p>
 
-<div class="screenshot">
-  <img src="../images/page_0344_0.png" alt="AVEVA InTouch Tools palette showing drawing and HMI tools including selection, line, rectangle, ellipse, arc, text, gauge, and the highlighted Alarm Client tool with tooltip for adding an alarm display component to the canvas">
-  <div class="caption">AVEVA InTouch Tools palette showing drawing and HMI tools including selection, line, rectangle, ellipse, arc, text, gauge, and the highlighted Alarm Client tool with tooltip for adding an alarm display component to the canvas</div>
+<h3>Events</h3>
+<p>The Event configuration lets you write scripts that execute when specific client control events occur. Each event provides parameters with defined data types and names.</p>
+
+<!-- ============================================================ -->
+<h2>26.3 Lab 14 – Building a Current Alarms Display (Part 1)</h2>
+<p class="page-ref">Reference: Module 5, Lab 14 (pages 343–350)</p>
+
+<div class="lab">
+  <strong>Lab Objectives:</strong>
+  <ul>
+    <li>Use and configure the Alarm Client to visualize current alarms</li>
+    <li>Configure and select alarm filters in the Alarm Client</li>
+  </ul>
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0344_1.png" alt="Edit Animations dialog for AlarmClient showing Alarm Mode configuration (1 of 8): Client Mode set to Current Alarms, Alarm Query path set to \\SO1ENG\Galaxy\Production, Use Default Ack Comment unchecked">
-  <div class="caption">Edit Animations dialog for AlarmClient showing Alarm Mode configuration (1 of 8): Client Mode set to Current Alarms, Alarm Query path set to \\SO1ENG\Galaxy\Production, Use Default Ack Comment unchecked</div>
-</div>
+<p>In this lab, you will create a symbol with the Alarm Client, configure it to query alarms from the Production area, and add filters for Line1, Line2, and Production.</p>
 
-<p>6. In Animations, select Queries and Filters. 7. In Query and Filter Favorites, click Add new filter. Add Query or Filter appears.</p>
+<h3>Create the Alarm Display</h3>
+<ol>
+  <li>In the IDE, on the <strong>Graphics</strong> tab, in the <strong>Training</strong> toolset, create a new symbol named <strong>AlarmLiveDisplay</strong> and open it for editing.</li>
+  <li>In <strong>Tools</strong>, click <strong>Alarm Client</strong> and place it on the canvas.</li>
+  <li>Double-click the Alarm Client to configure it.</li>
+  <li>With <strong>Alarm Mode</strong> selected, ensure <strong>Client Mode</strong> is set to <strong>Current Alarms</strong>.</li>
+  <li>In <strong>Alarm Query</strong>, enter <code>\\&lt;NodeName&gt;\Galaxy!Production</code>.</li>
+</ol>
 
-<div class="screenshot">
-  <img src="../images/page_0345_0.png" alt="AlarmClient Queries and Filters configuration (4 of 8): Default query showing condition (Node='SO1ENG' AND Provider='Galaxy' AND Group='Production'), empty Filters section with Add new filter button">
-  <div class="caption">AlarmClient Queries and Filters configuration (4 of 8): Default query showing condition (Node='SO1ENG' AND Provider='Galaxy' AND Group='Production'), empty Filters section with Add new filter button</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0345_1.png" alt="Add Query or Filter dialog showing empty filter builder with left panel of alarm fields (User1, State, Node, Group, Name, etc.), green arrow buttons for moving fields, Group/AND/OR logic buttons, Operator dropdown and Value input, OK and Cancel buttons">
-  <div class="caption">Add Query or Filter dialog showing empty filter builder with left panel of alarm fields (User1, State, Node, Group, Name, etc.), green arrow buttons for moving fields, Group/AND/OR logic buttons, Operator dropdown and Value input, OK and Cancel buttons</div>
-</div>
-
-<p>8. In Query or Filter Name, enter Line1. 9. On the left, in the filter criteria list, select Group, and then click the right arrow button. Group is added to the filter definition list.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0346_0.png" alt="Add Query or Filter dialog with filter named 'Line1', Comment field selected in left panel, Group folder in center, ready to add filter criteria using Group/AND/OR logic and Operator/Value configuration">
-  <div class="caption">Add Query or Filter dialog with filter named 'Line1', Comment field selected in left panel, Group folder in center, ready to add filter criteria using Group/AND/OR logic and Operator/Value configuration</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0346_1.png" alt="Add Query or Filter dialog with filter named 'Line1', Group field selected with = operator set, Value field empty, green arrow buttons for field movement, ready to define Line1 filter criteria">
-  <div class="caption">Add Query or Filter dialog with filter named 'Line1', Group field selected with = operator set, Value field empty, green arrow buttons for field movement, ready to define Line1 filter criteria</div>
-</div>
-
-<p>10. In the filter definition list, select Group, and then on the right side, in the Operator drop-down list, verify = is selected. 11. In Value, enter Line1. 12. Click Set.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0347_0.png" alt="Add Query or Filter dialog showing Group field added to filter definition with = operator and Value set to 'Line1', Set button highlighted for confirming the Group=Line1 filter condition">
-  <div class="caption">Add Query or Filter dialog showing Group field added to filter definition with = operator and Value set to 'Line1', Set button highlighted for confirming the Group=Line1 filter condition</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0347_1.png" alt="Add Query or Filter dialog with completed Line1 filter showing Group='Line1' condition in the filter rule display, Set button highlighted, filter ready to be saved with OK">
-  <div class="caption">Add Query or Filter dialog with completed Line1 filter showing Group='Line1' condition in the filter rule display, Set button highlighted, filter ready to be saved with OK</div>
-</div>
-
-<p>updated. 13. Click OK to close Add Query or Filter. In Filters, the new filter is listed. 14. Click the Add new filter button. 15. In Query or Filter Name, enter Line2.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0348_0.png" alt="Add Query or Filter dialog with Line1 filter fully configured showing Group='Line1' equality condition, filter rule displayed in center panel, ready to save">
-  <div class="caption">Add Query or Filter dialog with Line1 filter fully configured showing Group='Line1' equality condition, filter rule displayed in center panel, ready to save</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0348_1.png" alt="Filters management panel showing Line1 filter with Group='Line1' expression, with +, X, and sort buttons for managing alarm filters in the AlarmClient configuration">
-  <div class="caption">Filters management panel showing Line1 filter with Group='Line1' expression, with +, X, and sort buttons for managing alarm filters in the AlarmClient configuration</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0348_2.png" alt="Detail pane header with blue toolbar, showing empty content area with +, X, and expand buttons for viewing detailed properties of selected alarm filter items">
-  <div class="caption">Detail pane header with blue toolbar, showing empty content area with +, X, and expand buttons for viewing detailed properties of selected alarm filter items</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0348_3.png" alt="Add Query or Filter dialog showing new filter being created with name 'Line2', empty filter builder ready for defining the Line2 filter criteria">
-  <div class="caption">Add Query or Filter dialog showing new filter being created with name 'Line2', empty filter builder ready for defining the Line2 filter criteria</div>
-</div>
-
-<p>16. In the filter criteria list, select Group, and then click the right arrow button. 17. In the filter definition list, select Group, and then in Value, enter Line2. 18. Click Set. 19. Click OK to close Add Query or Filter. 20. Add a third filter for Group named Production with a value of Production. The Production filter is added. 21. Click OK to close Edit Animations.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0349_0.png" alt="Add Query or Filter dialog with Line2 filter: Group field added with = operator and Value set to 'Line2', filter condition ready to be saved">
-  <div class="caption">Add Query or Filter dialog with Line2 filter: Group field added with = operator and Value set to 'Line2', filter condition ready to be saved</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0349_1.png" alt="Add Query or Filter dialog showing Production filter being created with Group field selected, = operator, and Value set to 'Production' with filter name 'PrOduction' (typo in name)">
-  <div class="caption">Add Query or Filter dialog showing Production filter being created with Group field selected, = operator, and Value set to 'Production' with filter name 'PrOduction' (typo in name)</div>
+<div class="tip">
+  <strong>Tip:</strong> Your instructor will provide the node name. In a real-world scenario, this would point to a production node. For this course, the GR node provides alarms.
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0349_2.png" alt="Filters management panel showing three filters listed: Line1 (Group='Line1'), Line2 (Group='Line2'), and Production (Group='Production' with checkbox checked and blue background indicating active selection)">
-  <div class="caption">Filters management panel showing three filters listed: Line1 (Group='Line1'), Line2 (Group='Line2'), and Production (Group='Production' with checkbox checked and blue background indicating active selection)</div>
+  <img src="../images/page_0344_1.png" alt="Edit Animations dialog for AlarmClient showing Alarm Mode configuration with Client Mode set to Current Alarms and Alarm Query path set to the Galaxy Production area">
+  <div class="caption">Configuring the Alarm Client with Current Alarms mode and the Production area alarm query (page 344)</div>
 </div>
 
-<p>22. Click AlarmClient and configure it as follows: 23. Save and close and check in the graphic. Test in Runtime Now, you will view current alarms in runtime. 24. In WindowMaker, embed AlarmLiveDisplay on the AlarmDisplay window. 25. In Properties, uncheck Maintain aspect ratio. AlarmLiveDisplay is stretched to fit the window. 26. Click Runtime and verify that current alarms are displayed in the AlarmDisplay window. Width: 1920 Height: 200</p>
+<h3>Add Filters</h3>
+<ol start="6">
+  <li>In Animations, select <strong>Queries and Filters</strong>.</li>
+  <li>In Query and Filter Favorites, click <strong>Add new filter</strong>.</li>
+  <li>Name the filter <strong>Line1</strong>. Select <strong>Group</strong> from the filter criteria list and click the right arrow to add it.</li>
+  <li>In the filter definition, select Group, verify the operator is <code>=</code>, enter <code>Line1</code> in Value, and click <strong>Set</strong>.</li>
+  <li>Click OK to close Add Query or Filter.</li>
+  <li>Click <strong>Add new filter</strong> again. Name it <strong>Line2</strong> and configure <code>Group = Line2</code>.</li>
+  <li>Add a third filter named <strong>Production</strong> with <code>Group = Production</code>.</li>
+  <li>Click OK to close Edit Animations.</li>
+</ol>
+
+<h3>Test at Runtime</h3>
+<ol start="14">
+  <li>Click <strong>AlarmClient</strong> and configure its size: Width <strong>1920</strong>, Height <strong>200</strong>.</li>
+  <li>Save and close, then check in the graphic.</li>
+  <li>In WindowMaker, embed <strong>AlarmLiveDisplay</strong> on the AlarmDisplay window.</li>
+  <li>In Properties, uncheck <strong>Maintain aspect ratio</strong> so the display stretches to fit.</li>
+  <li>Click <strong>Runtime</strong> and verify that current alarms are displayed in the AlarmDisplay window.</li>
+</ol>
 
 <div class="screenshot">
-  <img src="../images/page_0350_0.png" alt="WindowMaker development environment showing AlarmLiveDisplay embedded in ContentDisplay window with alarm table grid, Consumed Materials panel, Select Mixer dropdown, and Industrial Graphics library with AlarmLiveDisplay highlighted in Properties panel">
-  <div class="caption">WindowMaker development environment showing AlarmLiveDisplay embedded in ContentDisplay window with alarm table grid, Consumed Materials panel, Select Mixer dropdown, and Industrial Graphics library with AlarmLiveDisplay highlighted in Properties panel</div>
+  <img src="../images/page_0350_1.png" alt="Runtime Alarm Overview showing live alarm table with columns for State, Node, Group, Name, AlarmComment, Type, TimeLCT, displaying current alarms from the Production area">
+  <div class="caption">Live alarms displayed in the AlarmDisplay window at runtime, showing current alarms from the Production area (page 350)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0350_1.png" alt="AVEVA InTouch runtime Alarm Overview screen showing live alarm table with columns User1, State, Node, Group, Name, AlarmComment, Type, TimeLCT, Limit, Current, AlarmDuration, Operator, UnAckDuration; displaying 6 of 53 alarms with UNACK_RTN and UNACK states for communication, level, and agitator speed alarms">
-  <div class="caption">AVEVA InTouch runtime Alarm Overview screen showing live alarm table with columns User1, State, Node, Group, Name, AlarmComment, Type, TimeLCT, Limit, Current, AlarmDuration, Operator, UnAckDuration; displaying 6 of 53 alarms with UNACK_RTN and UNACK states for communication, level, and agitator speed alarms</div>
+  <img src="../images/page_0350_2.png" alt="Full runtime HMI screen showing Alarm Overview tab with alarm table, Consumed Materials panel, and navigation tabs">
+  <div class="caption">The complete runtime HMI with the Alarm Overview tab active alongside the main application layout (page 350)</div>
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0350_2.png" alt="Full runtime HMI screen showing Alarm Overview tab active with alarm table displaying 53 alarms, Consumed Materials batch tracking panel, ContentDisplay area with Mixer100 and Select Mixer dropdown, navigation tabs for Mixers, Line 1, Line 2, and Alarm Overview, and analog clock showing ~5:32 PM">
-  <div class="caption">Full runtime HMI screen showing Alarm Overview tab active with alarm table displaying 53 alarms, Consumed Materials batch tracking panel, ContentDisplay area with Mixer100 and Select Mixer dropdown, navigation tabs for Mixers, Line 1, Line 2, and Alarm Overview, and analog clock showing ~5:32 PM</div>
-</div>
-
+<!-- ============================================================ -->
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> What are the key concepts covered in this lesson about Live Alarms Visualization?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
 
-  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <p><strong>1.</strong> What are the five client modes available in the Alarm Client control?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Current Alarms (1), Recent Alarms and Events (2), Historical Alarms (3), Historical Events (4), and Historical Alarms and Events (5). These modes determine what data the Alarm Client displays.</p></details>
 
+  <p><strong>2.</strong> How do you switch the Alarm Client between Current Alarms and Historical Alarms at runtime?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Use the <code>ClientMode</code> integer property in scripting. Set it to 3 for Historical Alarms, 4 for Historical Events, or 5 for Historical Alarms and Events.</p></details>
+
+  <p><strong>3.</strong> What must you do to the AlarmLiveDisplay after embedding it in the AlarmDisplay window to ensure it fills the available space?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Uncheck the Maintain aspect ratio property. This allows the embedded symbol to stretch and fill the entire window rather than maintaining its original proportions.</p></details>
+
+  <p><strong>4.</strong> What is the purpose of the three filters (Line1, Line2, Production) created in this lab?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">These filters allow operators to narrow the displayed alarms to a specific area at runtime. By right-clicking and selecting Queries and Filters, an operator can switch between viewing all Production alarms, Line1-only alarms, or Line2-only alarms.</p></details>
 </div>
 
 <p class="source">Module 5 — Alarms and Events Visualization. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson 27 — Lab 14 – Current Alarms Display</p>
+<p class="source">Next: Lesson 27 — Lab 14 – Current Alarms Display (continued)</p>
 
 <script>
 

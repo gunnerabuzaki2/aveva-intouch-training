@@ -98,144 +98,212 @@
 </details>
 </nav>
 
-<h1>Lesson 17: OwningObject Lab8 Mixers</h1>
-<p class="page-ref">Module 3 — Symbols | Pages 205–216</p>
+<h1>Lesson 17: The OwningObject Property + Lab 8</h1>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 3, Section 5 + Lab 8 (pages 205–213)</p>
+<p class="page-ref">This lesson introduces the OwningObject property for dynamically switching object references at runtime, covers Windows common controls, and walks through Lab 8 — building a mixer selector using a Combo Box.</p>
 
-<p>lab, you will add a Combo Box to provide a drop-down list that operators can use to select which mixer they want to view at runtime. The mechanism used to switch mixers is the OwningObject property. The OwningObject property will be linked to the drop-down list to allow operators to change the instance reference used by the graphic to show data and animations. Objectives Upon completion of this lab, you will be able to:  Use the OwningObject property to dynamically change instance references of a graphic  Add and configure a Combo Box</p>
+<!-- ============================================================ -->
+<h2>17.1 The OwningObject Property</h2>
+<p class="page-ref">Reference: Module 3, Section 5 (page 203)</p>
 
-<div class="screenshot">
-  <img src="../images/page_0205.png" alt="Development view showing generic mixer HMI template with Object Name, Area Name labels, Select Mixer dropdown, and schematic process graphics with placeholder labels for piping, tank/mixer vessel, and input nodes">
-  <div class="caption">Development view showing generic mixer HMI template with Object Name, Area Name labels, Select Mixer dropdown, and schematic process graphics with placeholder labels for piping, tank/mixer vessel, and input nodes</div>
+<p>The <strong>OwningObject</strong> is a runtime property that allows you to dynamically change which object a graphic references — without redesigning the graphic. When you set the OwningObject property on an embedded graphic, it replaces all <code>Me.</code> references in that graphic's expressions and scripts with the specified object. This means a single graphic can display data from different instances at runtime simply by changing the OwningObject value.</p>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> The OwningObject property replaces all "Me." references in a graphic with a specified object instance, enabling one graphic to display data from multiple objects at runtime by simply changing the OwningObject value.
 </div>
 
-<p>First, you will create a SwitchedMixingProcess symbol in the $Mixer template, which will be used to switch between mixers at runtime. 1. In the IDE, on the Templates tab, in the Training\Project template toolset, double-click the $Mixer template. 2. In Content, click the Add button. 3. Name the symbol SwitchedMixingProcess, and then click the Edit Content button to open for editing. 4. Right-click the canvas and select Embed Industrial Graphic. 5. In Relative References, verify Me is selected, and then in the Me pane, select MixingProcess_Detailed.</p>
+<p>The OwningObject value can be set using the tagname or hierarchical name of an automation object. For example, if a graphic contains the expression <code>Me.PV</code> and you set OwningObject to <code>Mixer500</code>, the expression resolves to <code>Mixer500.PV</code> at runtime.</p>
+
+<p>You can link the OwningObject property to a Combo Box animation, allowing operators to select which object instance the graphic should display from a dropdown list.</p>
+
+<!-- ============================================================ -->
+<h2>17.2 Windows Common Controls</h2>
+<p class="page-ref">Reference: Module 3, Section 5 (page 203)</p>
+
+<p>In addition to standard drawing elements, the Graphic Editor provides several Windows common controls that you can add to your graphics:</p>
+
+<table>
+  <thead>
+    <tr><th>Control</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Radio Button Group</td><td>Allows selection of one option from a group</td></tr>
+    <tr><td>Check Box</td><td>Toggles a Boolean value on or off</td></tr>
+    <tr><td>Edit Box</td><td>Allows users to type text input</td></tr>
+    <tr><td>Combo Box</td><td>Provides a dropdown list for selection</td></tr>
+    <tr><td>Calendar Control</td><td>Displays a calendar for date selection</td></tr>
+    <tr><td>Date-Time Picker</td><td>Provides date and time selection</td></tr>
+    <tr><td>List Box</td><td>Displays a scrollable list of items</td></tr>
+  </tbody>
+</table>
+
+<p>Place these controls by selecting them from the Tools pane and clicking (or dragging) on the canvas. After placement, you can configure background and text colors (except DateTime Picker), control-specific properties, and control-specific animations.</p>
+
+<!-- ============================================================ -->
+<h2>17.3 Lab 8 Introduction — Switching Between Mixers</h2>
+<p class="page-ref">Reference: Module 3, Lab 8 (pages 205–213)</p>
+
+<div class="lab">
+  <strong>Lab 8 Objectives:</strong> Upon completion of this lab, you will be able to:<br>
+  &#8226; Use the OwningObject property to dynamically change instance references of a graphic<br>
+  &#8226; Add and configure a Combo Box
+</div>
+
+<p>In this lab, you will add a Combo Box to the Mixer display that lets operators select which of the eight mixers (Mixer100 through Mixer800) they want to view at runtime. The Combo Box is linked to the OwningObject property of the MixingProcess graphic, so selecting a different mixer from the dropdown causes the graphic to display data from that mixer instance.</p>
 
 <div class="screenshot">
   <img src="../images/page_0206_0.png" alt="AVEVA InTouch Content panel showing MixingProcess_Detailed listed under Content section with Add button (Ctrl+=) tooltip visible, for managing HMI screen content in the $Mixer template">
-  <div class="caption">AVEVA InTouch Content panel showing MixingProcess_Detailed listed under Content section with Add button (Ctrl+=) tooltip visible, for managing HMI screen content in the $Mixer template</div>
+  <div class="caption">The Content pane showing MixingProcess_Detailed in the $Mixer template (page 206)</div>
 </div>
+
+<!-- ============================================================ -->
+<h2>17.4 Creating the SwitchedMixingProcess Symbol</h2>
+<p class="page-ref">Reference: Module 3, Lab 8 (pages 206–207)</p>
+
+<p>First, create a new symbol called <code>SwitchedMixingProcess</code> in the <code>$Mixer</code> template. Open the template, click Add in the Content pane, name the symbol, and open it for editing. Embed the <code>MixingProcess_Detailed</code> graphic using Relative References — select <code>Me</code> in the Galaxy Browser, then choose <code>MixingProcess_Detailed</code>.</p>
 
 <div class="screenshot">
   <img src="../images/page_0206_1.png" alt="Content panel showing MixingProcess_Detailed with thumbnail preview and SwitchedMixingProcess (selected/highlighted) listed, with Edit Content pencil icon, 2 of 2 items displayed">
-  <div class="caption">Content panel showing MixingProcess_Detailed with thumbnail preview and SwitchedMixingProcess (selected/highlighted) listed, with Edit Content pencil icon, 2 of 2 items displayed</div>
+  <div class="caption">Both MixingProcess_Detailed and SwitchedMixingProcess in the Content pane (page 206)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0206_2.png" alt="Galaxy Browser - TrainingGalaxy showing Relative References pane with Me hierarchy (Me.Agitator, Me.Inlet1/2, Me.Level, Me.Outlet, Me.Pump1/2, Me.Temperature, Me.Totalizer1-3), and Me pane with MixingProcess_Detailed thumbnail showing tank schematic">
-  <div class="caption">Galaxy Browser - TrainingGalaxy showing Relative References pane with Me hierarchy (Me.Agitator, Me.Inlet1/2, Me.Level, Me.Outlet, Me.Pump1/2, Me.Temperature, Me.Totalizer1-3), and Me pane with MixingProcess_Detailed thumbnail showing tank schematic</div>
+  <div class="caption">Embedding MixingProcess_Detailed from Relative References (page 206)</div>
 </div>
 
-<p>6. Click OK and place MixingProcess_Detailed on the canvas. 7. Name the graphic MixingProcess. Add the Combo Box Next, you will add a Combo Box and a text label to the canvas. 8. Aligned to the right of the $Mixer text, add a Text element with the text Select Mixer. 9. Configure the properties of the Text element as follows: Name: SelectMixer Element Style: Heading</p>
+<p>Place the MixingProcess_Detailed graphic on the canvas and name it <code>MixingProcess</code>. Then add a Text element to the right of the $Mixer text with the label "Select Mixer". Configure it with the name <code>SelectMixer</code> and set its ElementStyle to <strong>Heading</strong>.</p>
 
 <div class="screenshot">
   <img src="../images/page_0207_0.png" alt="MixingProcess graphic on design canvas showing $Mixer area with Select Mixer label, SA_Pump_Blower_RotaryValve and SA_Valve_And_Damper symbols on inlet lines, SA_Agitator_Settler with ##.### EU placeholder, SA_Meters symbols, green connection nodes for process flow">
-  <div class="caption">MixingProcess graphic on design canvas showing $Mixer area with Select Mixer label, SA_Pump_Blower_RotaryValve and SA_Valve_And_Damper symbols on inlet lines, SA_Agitator_Settler with ##.### EU placeholder, SA_Meters symbols, green connection nodes for process flow</div>
+  <div class="caption">The MixingProcess graphic placed on the canvas with the Select Mixer label (page 207)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0207_1.png" alt="MixingProcess graphic design canvas with $Mixer and Area Name labels, Select Mixer text, pump/valve/damper symbols (SA_Pump_Blower_Rotary, SA_Valve_And_Damper) with yellow status indicators and green process flow lines">
-  <div class="caption">MixingProcess graphic design canvas with $Mixer and Area Name labels, Select Mixer text, pump/valve/damper symbols (SA_Pump_Blower_Rotary, SA_Valve_And_Damper) with yellow status indicators and green process flow lines</div>
+  <div class="caption">The mixer display with the "Select Mixer" text label positioned (page 207)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0207_2.png" alt="Properties panel showing SelectMixer text element with Name=SelectMixer, ElementStyle set to Heading, X=720, Y=140 position coordinates on the HMI canvas">
-  <div class="caption">Properties panel showing SelectMixer text element with Name=SelectMixer, ElementStyle set to Heading, X=720, Y=140 position coordinates on the HMI canvas</div>
+  <div class="caption">Configuring the SelectMixer text element properties (page 207)</div>
 </div>
 
-<p>Box. 10. In Tools, click Combo Box. 11. Below the Select Mixer text, click and drag diagonally to draw a Combo Box. 12. Name the Combo Box as MixerDropDown.</p>
+<!-- ============================================================ -->
+<h2>17.5 Adding and Configuring the Combo Box</h2>
+<p class="page-ref">Reference: Module 3, Lab 8 (pages 208–211)</p>
+
+<p>Select the Combo Box tool from the Tools pane, then click and drag below the Select Mixer text to draw the Combo Box on the canvas. Name it <code>MixerDropDown</code> on the Properties tab.</p>
 
 <div class="screenshot">
   <img src="../images/page_0208_0.png" alt="Tools palette showing all available drawing and HMI tools in a 5-row grid, with the Combo Box tool highlighted at bottom right for adding dropdown selection controls to the canvas">
-  <div class="caption">Tools palette showing all available drawing and HMI tools in a 5-row grid, with the Combo Box tool highlighted at bottom right for adding dropdown selection controls to the canvas</div>
+  <div class="caption">The Combo Box tool in the Tools pane (page 208)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0208_1.png" alt="MixingProcess design canvas with $Mixer title, Area Name, Select Mixer label, SA_Pump_Blower_RotaryValve and SA_Valve_And_Damper symbols with blue selection handles indicating active editing of the valve graphic element">
-  <div class="caption">MixingProcess design canvas with $Mixer title, Area Name, Select Mixer label, SA_Pump_Blower_RotaryValve and SA_Valve_And_Damper symbols with blue selection handles indicating active editing of the valve graphic element</div>
+  <div class="caption">The Combo Box drawn on the canvas below the Select Mixer label (page 208)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0208_2.png" alt="Properties panel showing MixerDropDown combo box element with Name=MixerDropDown, ElementStyle=None, X=720, Y=170 position coordinates">
-  <div class="caption">Properties panel showing MixerDropDown combo box element with Name=MixerDropDown, ElementStyle=None, X=720, Y=170 position coordinates</div>
+  <div class="caption">Setting the Combo Box name to MixerDropDown (page 208)</div>
 </div>
 
-<p>13. On the canvas, double-click the Combo Box to open Edit Animations. 14. In Edit Animations, in the Reference field, enter MixingProcess.OwningObject. Note: MixingProcess is the name you gave to the $Mixer.MixingProcess_Detailed graphic that you embedded on the canvas in this lab. The Combo Box will modify the OwningObject property of this graphic at runtime. 15. In Static Values and Captions, click the Add a row [Insert] button five times. One row in the table is needed for each of the eight mixers.</p>
+<p>Double-click the Combo Box to open Edit Animations. In the Reference field, enter <code>MixingProcess.OwningObject</code>. This links the Combo Box selection to the OwningObject property of the MixingProcess graphic — when the operator selects a mixer from the dropdown, the OwningObject updates and the graphic switches to display that mixer's data.</p>
 
 <div class="screenshot">
   <img src="../images/page_0209_0.png" alt="Edit Animations dialog for MixerDropDown Combo Box showing Reference field set to MixingProcess.OwningObject, Static tab selected, Submit Value Changes set to Immediately, for linking dropdown selection to OwningObject property">
-  <div class="caption">Edit Animations dialog for MixerDropDown Combo Box showing Reference field set to MixingProcess.OwningObject, Static tab selected, Submit Value Changes set to Immediately, for linking dropdown selection to OwningObject property</div>
+  <div class="caption">Linking the Combo Box to MixingProcess.OwningObject (page 209)</div>
 </div>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> The Reference field <code>MixingProcess.OwningObject</code> connects the Combo Box selection to the OwningObject property. When a user selects a mixer name, the OwningObject changes, causing all "Me." references in MixingProcess to resolve to the selected mixer instance.
+</div>
+
+<p>In the Static Values and Captions table, click the Add a row button to create eight rows (one for each mixer). Check <strong>Use Values as Captions</strong> so the caption automatically mirrors the value text. Uncheck <strong>AllowDuplicates</strong> and set the Type to <strong>DropDown</strong>.</p>
 
 <div class="screenshot">
   <img src="../images/page_0209_1.png" alt="Static Values and Captions table for Combo Box showing 8 items (Item1-Item8) with Caption and Value columns, Use Values as Captions checked, AllowDuplicates checked, for configuring dropdown list entries">
-  <div class="caption">Static Values and Captions table for Combo Box showing 8 items (Item1-Item8) with Caption and Value columns, Use Values as Captions checked, AllowDuplicates checked, for configuring dropdown list entries</div>
+  <div class="caption">The Static Values and Captions table with eight empty rows ready for data entry (page 209)</div>
 </div>
-
-<p>table, you will enable a property that affects the workflow for entering values. You will also set additional properties. 16. Below the table, check the Use Values as Captions check box. 17. Uncheck AllowDuplicates. 18. In the Type drop-down list, select DropDown.</p>
 
 <div class="screenshot">
   <img src="../images/page_0210.png" alt="Static Values and Captions table showing Item4 through Item8 with Caption=Value pairs, Use Values as Captions enabled, Sorted unchecked, AllowDuplicates unchecked, Type set to DropDown for defining dropdown list behavior">
-  <div class="caption">Static Values and Captions table showing Item4 through Item8 with Caption=Value pairs, Use Values as Captions enabled, Sorted unchecked, AllowDuplicates unchecked, Type set to DropDown for defining dropdown list behavior</div>
+  <div class="caption">Configuring Use Values as Captions, AllowDuplicates, and DropDown type (page 210)</div>
 </div>
 
-<p>19. In the Value column, enter the following values, pressing Tab after each entry to move to the next row. Notice that the Caption field automatically uses the value text.  Mixer100  Mixer200  Mixer300  Mixer400  Mixer500  Mixer600  Mixer700  Mixer800 The configuration of your Combo Box animation will appear as follows: 20. Click OK to close Edit Animations. 21. Save and close the graphic. 22. Save and close and check in the $Mixer template.</p>
+<p>Enter the following mixer names in the Value column (press Tab after each entry to move to the next row):</p>
+
+<table>
+  <thead>
+    <tr><th>Row</th><th>Value</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>Mixer100</td></tr>
+    <tr><td>2</td><td>Mixer200</td></tr>
+    <tr><td>3</td><td>Mixer300</td></tr>
+    <tr><td>4</td><td>Mixer400</td></tr>
+    <tr><td>5</td><td>Mixer500</td></tr>
+    <tr><td>6</td><td>Mixer600</td></tr>
+    <tr><td>7</td><td>Mixer700</td></tr>
+    <tr><td>8</td><td>Mixer800</td></tr>
+  </tbody>
+</table>
+
+<p>Click OK to close Edit Animations, save and close the graphic, then save, close, and check in the <code>$Mixer</code> template.</p>
 
 <div class="screenshot">
   <img src="../images/page_0211.png" alt="Edit Animations dialog fully configured for MixerDropDown showing 8 mixer entries (Mixer100-Mixer800) in Static Values and Captions table, Reference=MixingProcess.OwningObject, Use Values as Captions checked, Type=DropDown, for runtime mixer selection">
-  <div class="caption">Edit Animations dialog fully configured for MixerDropDown showing 8 mixer entries (Mixer100-Mixer800) in Static Values and Captions table, Reference=MixingProcess.OwningObject, Use Values as Captions checked, Type=DropDown, for runtime mixer selection</div>
+  <div class="caption">The completed Combo Box animation with all eight mixer entries (page 211)</div>
 </div>
 
-<p>Now, you will replace the symbol in WindowMaker with the new SwitchedMixingProcess symbol you just created. 23. In WindowMaker, in the ContentDisplay window, right-click and select Embed Industrial Graphic to open the Galaxy Browser. 24. In Instances, scroll down and select Mixer100, and then in the Mixer100 pane, select SwitchedMixingProcess. 25. Click OK. 26. In the WindowMaker message, click Yes to replace the symbol. The symbol is replaced.</p>
+<!-- ============================================================ -->
+<h2>17.6 Embedding and Testing the New Symbol</h2>
+<p class="page-ref">Reference: Module 3, Lab 8 (pages 212–213)</p>
+
+<p>Switch to WindowMaker and replace the existing symbol in the ContentDisplay window with the new SwitchedMixingProcess. Right-click the ContentDisplay window, select Embed Industrial Graphic, navigate to Mixer100 in Instances, select SwitchedMixingProcess, click OK, and confirm the replacement.</p>
 
 <div class="screenshot">
   <img src="../images/page_0212_0.png" alt="Galaxy Browser showing Instances pane with tag list (Inlet2_006-008, Level_001-008, Mixer100-400) and Mixer100 detail pane with MixingProcess_Detailed and SwitchedMixingProcess templates, SwitchedMixingProcess highlighted">
-  <div class="caption">Galaxy Browser showing Instances pane with tag list (Inlet2_006-008, Level_001-008, Mixer100-400) and Mixer100 detail pane with MixingProcess_Detailed and SwitchedMixingProcess templates, SwitchedMixingProcess highlighted</div>
+  <div class="caption">Selecting SwitchedMixingProcess from Mixer100 in the Galaxy Browser (page 212)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0212_1.png" alt="WindowMaker ContentDisplay window showing SwitchedMixingProcess embedded with Object Name, Area Name, Select Mixer dropdown, process graphics (pump, valve, mixer tank symbols) with placeholder labels, and left orange batch control panel">
-  <div class="caption">WindowMaker ContentDisplay window showing SwitchedMixingProcess embedded with Object Name, Area Name, Select Mixer dropdown, process graphics (pump, valve, mixer tank symbols) with placeholder labels, and left orange batch control panel</div>
+  <div class="caption">The ContentDisplay window showing the SwitchedMixingProcess symbol (page 212)</div>
 </div>
 
-<p>Finally, you will test the functionality of the drop-down list. 27. Click Runtime. 28. Use the Select Mixer drop-down list to select Mixer500. 29. Observe that the graphic updates to show Mixer500 names and values. 30. Use the Select Mixer drop-down list to switch to other mixers. 31. When you are finished testing, click Development! to return to WindowMaker. <End of Lab></p>
+<p>Click Runtime to test the display. Use the Select Mixer dropdown to switch between mixers — selecting Mixer500 causes the graphic to update with Mixer500's tag names and live values. Switch to other mixers to verify that the OwningObject mechanism works correctly. When finished, click Development! to return to WindowMaker.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0213.png" alt="Runtime HMI screen showing Mixer500 on Line2 with Select Mixer dropdown, process schematic with Agitator_005 (0.00 rpm), Level_005 (21.17), Temperature_005 (115.45°C), Inlet1/2_005, Pump1/2_005, Outlet_005 components displaying live values">
-  <div class="caption">Runtime HMI screen showing Mixer500 on Line2 with Select Mixer dropdown, process schematic with Agitator_005 (0.00 rpm), Level_005 (21.17), Temperature_005 (115.45°C), Inlet1/2_005, Pump1/2_005, Outlet_005 components displaying live values</div>
+  <img src="../images/page_0213.png" alt="Runtime HMI screen showing Mixer500 on Line2 with Select Mixer dropdown, process schematic with Agitator_005 (0.00 rpm), Level_005 (21.17), Temperature_005 (115.45 C), Inlet1/2_005, Pump1/2_005, Outlet_005 components displaying live values">
+  <div class="caption">The Mixer500 display in runtime after selecting it from the dropdown (page 213)</div>
 </div>
 
-
-<p>graphic. A custom property can contain:  A value or valid expression  An attribute from the automation object  A property of an element or graphic  A custom property of an embedded graphic  A script function Custom properties can be set to either Private or Public:  A Private custom property is not exposed when the graphic is embedded.  A Public custom property can be customized when the graphic is embedded. Custom properties can also have Absolute or Relative references:  An Absolute reference to an attribute that is fully defined, such as Tank1.InletValve.PV  A Relative reference up the hierarchy to parent objects, such as Me.InletValve.PV If public custom properties exist for an embedded graphic, they display on the Properties tab in the Custom Properties category when the embedded graphic is selected. This section provides a brief overview of custom properties for symbols. It also describes the Button tool and explains how to use the PushButton and Show Symbol animations. Additionally, it describes the TreatAsIcon property.</p>
-
-<p>properties. To add a custom property, click the Add custom property (+) button on the top-left of the dialog box. A new line appears in the list of custom properties on the left, and you can enter a name for the new custom property. Then you can configure the custom property in the configuration area on the right.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0216_0.png" alt="Edit Custom Properties dialog with + Add custom property button, empty property grid with Name and Default Value columns, right panel with Data Type, Default Value, Visibility, Description fields ready for defining new custom properties">
-  <div class="caption">Edit Custom Properties dialog with + Add custom property button, empty property grid with Name and Default Value columns, right panel with Data Type, Default Value, Visibility, Description fields ready for defining new custom properties</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0216_1.png" alt="Custom Properties table showing one property: Name=Cmd, Default Value=False, with blue highlight indicating selected property for editing">
-  <div class="caption">Custom Properties table showing one property: Name=Cmd, Default Value=False, with blue highlight indicating selected property for editing</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0216_2.png" alt="Edit Custom Properties dialog for CommandPanel showing Cmd property with Data Type=Boolean, Default Value=Me.Cmd (self-referencing), Visibility=Public, Description='Command for button', status text confirming property configured as reference to Me.Cmd">
-  <div class="caption">Edit Custom Properties dialog for CommandPanel showing Cmd property with Data Type=Boolean, Default Value=Me.Cmd (self-referencing), Visibility=Public, Description='Command for button', status text confirming property configured as reference to Me.Cmd</div>
+<div class="tip">
+  <strong>Tip:</strong> The OwningObject property is a powerful pattern for creating reusable graphics. Instead of creating separate graphics for each mixer, you build one graphic and let the OwningObject property switch which data it displays at runtime.
 </div>
 
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> What are the key concepts covered in this lesson about The OwningObject Property + Lab 8?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
+  <p><strong>1.</strong> What does the OwningObject property do when set on an embedded graphic?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">It replaces all "Me." references in the graphic's expressions and scripts with the specified object instance. For example, setting OwningObject to Mixer500 causes Me.PV to resolve to Mixer500.PV at runtime.</p></details>
 
-  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <p><strong>2.</strong> What type of animation is used to configure a Combo Box control, and what makes it unique?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">A Combo Box animation is used, and it is unique to the Combo Box element type — no other element type supports this animation. It defines the dropdown list items through Static Values and Captions.</p></details>
 
+  <p><strong>3.</strong> In the Combo Box configuration, what does the "Use Values as Captions" checkbox do?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">When checked, the Caption column automatically mirrors whatever is entered in the Value column. This saves time because you only need to type the value once instead of entering both the display text and the underlying value separately.</p></details>
+
+  <p><strong>4.</strong> Why do you create a SwitchedMixingProcess symbol instead of modifying MixingProcess_Detailed directly?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">The SwitchedMixingProcess symbol wraps MixingProcess_Detailed and adds the Combo Box for mixer selection. Keeping MixingProcess_Detailed unchanged preserves it as a reusable component, while SwitchedMixingProcess adds the runtime switching capability as a separate layer.</p></details>
+
+  <p><strong>5.</strong> What are the three types of Combo Box behavior available in AVEVA InTouch?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Simple (type or use arrow buttons), DropDown (type or select from dropdown list), and DropDownList (only select from predefined list — no typing allowed).</p></details>
 </div>
 
-<p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson 18 — Custom Properties</p>
+<p class="source">Module 3 — Section 5 + Lab 8. AVEVA InTouch for System Platform 2023 Training.</p>
 
 <script>
 

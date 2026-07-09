@@ -98,103 +98,206 @@
 </details>
 </nav>
 
-<h1>Lesson 11: Symbol Overview Graphic Editor</h1>
-<p class="page-ref">Module 3 — Symbols | Pages 99–112</p>
+<h1>Lesson 11: Symbol Overview + Graphic Editor</h1>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 3 (pages 99–112)</p>
+<p class="page-ref">This lesson introduces symbols and the Graphic Editor — the two foundational tools for building process visualizations in System Platform.</p>
 
+<!-- ============================================================ -->
+<h2>11.1 Symbol Overview</h2>
+<p class="page-ref">Reference: Module 3, Section 1 (pages 101–104)</p>
 
-<div class="screenshot">
-  <img src="../images/page_0099.png" alt="Stock photograph of collaborative tech training workspace showing four people at desktop computer workstations in a modern open-plan office environment">
-  <div class="caption">Stock photograph of collaborative tech training workspace showing four people at desktop computer workstations in a modern open-plan office environment</div>
+<p>Symbols are the building blocks of process visualization in AVEVA System Platform. A symbol is a graphic element that can be embedded in or linked to automation objects, providing an efficient way to visualize object-specific information such as processing status, alarms, and history. System Platform ships with two prebuilt symbol libraries — the <strong>Industrial Graphic Library</strong> and the <strong>Situational Awareness Library</strong> — and you can also create your own symbols using the Graphic Editor.</p>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> Symbols can be created in three places depending on your needs: on the Graphics tab for reusable, standard symbols; in an object template for symbols shared by derived objects; or in an object instance for a symbol used only in that specific instance.
 </div>
 
-<p> Provide a brief overview of graphics  Describe situational awareness concepts  Introduce the Graphics tab in the IDE  Explain using graphics with automation objects  Review containment relationships between AutomationObjects  Introduce the Graphic Editor  Discuss Element Styles  Introduce the OwningObject property  Introduce various visualization animations and interaction animations  Provide a brief overview of custom properties in symbols  Provide a brief overview of the scripting environment  Introduce ShowGraphic-related functions  Describe Galaxy Styles</p>
+<h3>Graphics Tab</h3>
+<p>The Graphics tab in the System Platform IDE hosts libraries of symbols, controls, and other graphic-related content available to your Galaxy. The items shown depend on the Galaxy template used to create the Galaxy. Items on the Graphics tab are organized into a hierarchy of <strong>toolsets</strong>. Some toolsets are included by default, and you can create your own toolsets and sub-toolsets to organize content as needed.</p>
 
-<p>application. They can be embedded in or linked to automation objects, providing an efficient way to visualize object-specific information in your application, such as processing status, alarms, history and more. Prebuilt libraries of symbols are provided with System Platform, including the Industrial Graphic Library and the Situational Awareness Library. You can use symbols from these libraries in your applications or create your own symbols with the Graphic Editor in the System Platform IDE. Depending on your application development needs, you can create symbols on the Graphics tab or create them directly in automation objects. Some guidelines include:  Create symbols on the Graphics tab to use them as reusable, standard symbols.  Create symbols in an object template to use them in objects derived from the template.  Create symbols in an object instance to use them only in that object instance. Graphics Tab The Graphics tab in the System Platform IDE hosts libraries of symbols, controls, and other graphic-related content that can be used in the Galaxy. Items available on the Graphics tab by default depend on which Galaxy template was used to create the Galaxy. Items on the graphics tab can be organized into a hierarchy of toolsets. Some toolsets are included on the Graphics tab by default, and you can create your own toolsets and sub-toolsets to organize your graphic-related items as needed.  To create a toolset on the Graphics tab: Right-click the Galaxy name or a toolset name and select New | Graphic Toolset. The toolset is created and a prompt to name it appears.  To create a symbol on Graphics tab: Right-click the Galaxy name or a toolset name on the Graphics tab and select New | Symbol. The symbol is created with a default name, but you can rename it. Once created, you can double-click the symbol to edit it in the Graphic Editor. Symbol Libraries Two symbol libraries are provided with System Platform for all Galaxy types:  Industrial Graphic Library contains pre-built, realistic-looking symbols of standard industrial objects.  Situational Awareness Library contains pre-built symbols with a simplified look and minimum visual detail, designed to enhance an operator’s situational awareness of current process conditions. This section introduces industrial graphics, including managing them in the System Platform IDE and the out-of-the-box symbol libraries provided with Application Server. It also provides an overview of Situational Awareness concepts.</p>
+<p>To create a toolset, right-click the Galaxy name or an existing toolset and select <strong>New → Graphic Toolset</strong>. To create a symbol, right-click the Galaxy name or a toolset and select <strong>New → Symbol</strong>. The symbol is created with a default name and can be renamed, then double-clicked to open it for editing in the Graphic Editor.</p>
 
-<p>take. In broad terms, it can be broken down into three levels: the perception of new information, the comprehension of the information, and the projection of the impact the information has on goals. Achieving proper situational awareness can help you make effective decisions to deliver overall business success. In an HMI/SCADA application, situational awareness is a visual design approach devoted to providing operators with the most relevant and necessary information at the right time. The idea is to present users with contextualized and easily interpreted information that is specific to the most important process issues, while filtering out visual noise to keep operators focused on what matters most. Operators see the situation at hand in full context of what is happening in real time, how the current situation links to previous events, and where the process might be headed. This enables operators to more easily move from perception to comprehension and then to projection for better and safer operating conditions. The situational awareness approach also encourages standardization, which helps to eliminate the confusion of an inconsistent use of color and other visual elements. Some of the benefits of incorporating situational awareness principles into visualization applications include faster problem identification, maximized uptime, accelerated alarm recognition, increased operational consistency, safer conditions, and more. System Platform includes features and tools that allow the creation of displays based on situational awareness concepts. Situational Awareness Library Symbols The Situational Awareness Library provided with System Platform contains symbols created with situational awareness in mind. The symbols have a simplified look and provide a minimum of visual detail to efficiently convey their functional purpose and status, without showing extraneous information that could be distracting to operators. By default, symbols in the Situational Awareness Library use a color palette designed to increase the contrast between normal and abnormal operating conditions. Normal operating conditions are shown in largely monochromatic colors, while abnormal operating conditions are shown in more vivid colors.</p>
+<h3>Symbol Libraries</h3>
+<p>Two symbol libraries ship with System Platform for all Galaxy types:</p>
+<ul>
+  <li><strong>Industrial Graphic Library</strong> — Contains pre-built, realistic-looking symbols of standard industrial objects such as valves, motors, pumps, and tanks.</li>
+  <li><strong>Situational Awareness Library</strong> — Contains pre-built symbols with a simplified look and minimum visual detail, designed to enhance an operator's situational awareness of current process conditions.</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>11.2 Situational Awareness Visualization</h2>
+<p class="page-ref">Reference: Module 3, Section 1 (pages 102–103)</p>
+
+<p>Situational awareness visualization provides operators with contextual information so they can figure out what actions to take. In broad terms, it operates on three cognitive levels: <strong>perception</strong> of new information, <strong>comprehension</strong> of the information's meaning and importance, and <strong>projection</strong> of the impact on goals. Achieving proper situational awareness helps operators make effective decisions and deliver overall business success.</p>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> In an HMI/SCADA application, situational awareness is a visual design philosophy that presents contextualized, easily interpreted information while filtering out visual noise. This enables operators to move from perception to comprehension to projection for safer operating conditions.
+</div>
+
+<p>The situational awareness approach also encourages standardization, which helps eliminate the confusion caused by inconsistent use of color and other visual elements. Benefits include faster problem identification, maximized uptime, accelerated alarm recognition, increased operational consistency, and safer conditions.</p>
 
 <div class="screenshot">
   <img src="../images/page_0102.png" alt="Situational Awareness conceptual diagram showing three-level cognitive model: Perception of new information (Cognition), Comprehension of information (Judgment), Projection of impact on goals (Decision Making), leading to Safe Success">
-  <div class="caption">Situational Awareness conceptual diagram showing three-level cognitive model: Perception of new information (Cognition), Comprehension of information (Judgment), Projection of impact on goals (Decision Making), leading to Safe Success</div>
+  <div class="caption">The Situational Awareness cognitive model — perception, comprehension, and projection form the foundation of effective operator decision-making (page 102)</div>
 </div>
 
-<p>symbol. Selecting a functional configuration of a symbol is a simple matter of selecting options from the symbol’s Wizard Options. One example is the SA_Meters symbol, which can be used as a flow meter, temperature meter, level meter, or other meter types simply by configuring Wizard Options for the symbol. Situational Awareness Library symbols are provided with an extensive set of default custom properties. The properties can be set to show or hide parts of the symbol itself, set a full array of alarm conditions, and show reported values based on the configuration. Situational Awareness Library symbols incorporate a variety of animations that enable operators to quickly assess current process conditions. Some of the animations particularly suited for Situational Awareness Library symbols include Point, Alarm Border, Polar Star, and Sweep Angle animations. Element Styles An element style defines a set of visual properties that determine the appearance of text, lines, graphic outlines, and interior fill shown in graphics. An Element Style applied to a graphic sets preconfigured visual property values that take precedence over a graphic’s native visual properties. For more information, see Section 8 – Galaxy Styles.</p>
+<h3>Situational Awareness Library Symbols</h3>
+<p>The Situational Awareness Library contains symbols created with situational awareness principles in mind. These symbols have a simplified look and provide a minimum of visual detail to efficiently convey their functional purpose and status without showing extraneous information that could distract operators.</p>
 
+<p>By default, SA Library symbols use a color palette that increases contrast between normal and abnormal operating conditions. Normal conditions are shown in largely monochromatic, low-saturation colors, while abnormal conditions appear in vivid, high-contrast colors. Most SA Library symbols are designed as <strong>symbol wizards</strong> with multiple visual and functional configurations. For example, the <code>SA_Meters</code> symbol can function as a flow meter, temperature meter, level meter, or other meter type simply by selecting different Wizard Options.</p>
 
-<p>create, configure, and modify symbols. The editor provides a drawing area called the canvas, on which you can build graphics. You can embed basic graphic elements, such as lines, rectangles, curves, and more onto the canvas. Or you can embed symbols from the Toolbox tab, Assets tab, and Templates tab onto the canvas and use the symbols as-is or modify them. The appearance of graphic elements and embedded symbols on the canvas can be changed through their properties or tools available from toolbars and menus. Additionally, you can configure elements and embedded symbols with animations, scripts, custom properties, and more.  (1) Toolbars and Menus: Buttons and menu commands for performing various functions, such as saving the symbol, zooming the display, selecting line color, and more.  (2) Drawing Canvas: Area where elements are placed and arranged to create a symbol.  (3) Elements List: Hierarchical list of elements on the canvas.  (4) Element Tools: Collection of elements that you can use to create symbols on the canvas. Includes basic elements, such as lines, rectangles, and so on, as well as other tools and controls.  (5) Tabbed Area:  Properties tab: Lists properties belonging to selected elements or the embedded symbols on the canvas. When no element is selected on the canvas, this tab lists properties belonging to the symbol itself.  Assets tab: Provides access to graphics found in instances.  Toolbox tab: Provides access to graphics found in the symbol libraries.  Templates tab: Provides access to graphics found in templates. This section describes the Graphic Editor, including an overview of its interface and using it to create graphics.</p>
+<p>SA Library symbols also come with an extensive set of default custom properties that control show/hide behavior, alarm conditions, and displayed values. They incorporate animations particularly suited for situational awareness, including Point, Alarm Border, Polar Star, and Sweep Angle animations.</p>
+
+<h3>Element Styles</h3>
+<p>An element style defines a set of visual properties that determine the appearance of text, lines, graphic outlines, and interior fill in graphics. When an Element Style is applied, the preconfigured values take precedence over a graphic's native visual properties. Element Styles are covered in more detail in the Galaxy Styles lesson.</p>
+
+<!-- ============================================================ -->
+<h2>11.3 The Graphic Editor Interface</h2>
+<p class="page-ref">Reference: Module 3, Section 2 (pages 105–107)</p>
+
+<p>The Graphic Editor is the tool you use to create, configure, and modify symbols. It provides a drawing area called the <strong>canvas</strong>, on which you build graphics by embedding basic elements (lines, rectangles, curves) or by embedding symbols from the Toolbox, Assets, or Templates tabs. You can modify the appearance of elements through properties, toolbars, and menus, and configure them with animations, scripts, and custom properties.</p>
+
+<p>The Graphic Editor interface is organized into five main areas:</p>
+
+<div class="key-concept">
+  <strong>Key Concept — Graphic Editor Layout:</strong><br>
+  <strong>(1) Toolbars and Menus</strong> — Buttons and menu commands for saving, zooming, line color, and other functions.<br>
+  <strong>(2) Drawing Canvas</strong> — The central area where elements are placed and arranged to create a symbol.<br>
+  <strong>(3) Elements List</strong> — A hierarchical list of all elements on the canvas.<br>
+  <strong>(4) Element Tools</strong> — Tools for drawing basic shapes like lines, rectangles, ellipses, and text.<br>
+  <strong>(5) Tabbed Area</strong> — Properties, Toolbox, Assets, and Templates tabs for configuring elements and accessing symbol libraries.
+</div>
 
 <div class="screenshot">
   <img src="../images/page_0105.png" alt="Graphic Editor overview showing labeled UI components: (1) Toolbars and Menus, (2) Drawing Canvas with grid, (3) Elements List panel, (4) Element Tools toolbar, (5) Tabbed Area with Properties, Toolbox, and Assets tabs">
-  <div class="caption">Graphic Editor overview showing labeled UI components: (1) Toolbars and Menus, (2) Drawing Canvas with grid, (3) Elements List panel, (4) Element Tools toolbar, (5) Tabbed Area with Properties, Toolbox, and Assets tabs</div>
+  <div class="caption">The Graphic Editor interface with all five labeled areas visible (page 105)</div>
 </div>
 
-<p>area, where elements are placed and configured as need. Canvas Properties When the canvas is selected in the Graphic Editor, the Properties tab updates to show properties of the entire graphic. The properties are organized into categories, such as the following:  Graphic: Includes a description of the graphic and canvas sizing properties.  Appearance: Includes anchor properties and smoothing properties.  Runtime Behavior: Includes content type, faceplate mode, scripts, and zoom percent properties.  Custom Properties: Lists custom properties defined for the symbol. Canvas Size By default, the Size property for the canvas is set to Auto, which automatically sizes the graphic by cropping all white space outside of the graphics that appear at runtime. When set to Fixed, the FixedWidth and FixedHeight properties determine the absolute size at runtime. Elements List The Elements list shows a hierarchical list of graphic elements and embedded symbols by name on the canvas. When adding a new item to the canvas, by default, it is listed at the top of the Elements list. The order (z-order) can be manually changed. Elements and embedded symbols can be selected on the canvas or from the Elements list. Select from the Elements list can be particularly useful for selecting one or more elements and embedded symbols that are visually hidden by other elements on the canvas. Elements and embedded symbols can be managed through the Elements list, such as duplicating items, changing the order of selected items, renaming items, grouping items, and editing items within a group. Elements and embedded symbols can be used as references for animations and scripts within the symbol. They are referenced in a format as <Element name>.<Property name>. If an element, a group, or an embedded symbol is referenced in an animation or a script, then renaming the</p>
+<h3>Canvas Properties</h3>
+<p>When the canvas is selected in the Graphic Editor, the Properties tab displays properties for the entire graphic, organized into four categories: <strong>Graphic</strong> (description and sizing), <strong>Appearance</strong> (anchor and smoothing), <strong>Runtime Behavior</strong> (content type, faceplate mode, scripts, zoom percent), and <strong>Custom Properties</strong> (user-defined properties).</p>
+
+<p>By default, the canvas <strong>Size</strong> property is set to <strong>Auto</strong>, which automatically sizes the graphic by cropping all white space outside runtime elements. When set to <strong>Fixed</strong>, the <code>FixedWidth</code> and <code>FixedHeight</code> properties determine the absolute runtime size.</p>
+
+<h3>Elements List</h3>
+<p>The Elements list shows a hierarchical view of all graphic elements and embedded symbols by name. New items appear at the top by default, and the z-order can be manually adjusted. The Elements list is particularly useful for selecting elements that are visually hidden behind other elements on the canvas.</p>
 
 <div class="screenshot">
   <img src="../images/page_0106.png" alt="Elements panel showing hierarchical tree list of objects: SA_Meters1, SA_NumericDataBlock1, Text1, Group2 containing nested Group1 with Polygon1, Rectangle1, Ellipse1, plus Button1, Button2, and Rectangle1">
-  <div class="caption">Elements panel showing hierarchical tree list of objects: SA_Meters1, SA_NumericDataBlock1, Text1, Group2 containing nested Group1 with Polygon1, Rectangle1, Ellipse1, plus Button1, Button2, and Rectangle1</div>
+  <div class="caption">The Elements list showing the hierarchical structure of elements on a canvas (page 106)</div>
 </div>
 
-<p>element, group, or embedded symbol will not update the references automatically. Animations or scripts referencing the old name will need to be updated manually. You can use the list to:  See a list of all elements, groups of elements, embedded symbols, and client controls on the canvas  Select elements or groups of elements to work with them  Rename an element or group of elements. Note that if an element or a group is renamed, any animation references to it are not automatically updated. You must manually change all animation links referencing the old name. Adjust the Z-Order of Elements The z-order of items in the Elements list determines which element or embedded symbol appears on top if they overlap on the canvas. The order also determines how elements of a path graphic connect. You can use the Elements list to see or change the order of the elements. To change the z-order of an element, you can right-click the element, select Order, and then select the desired order position. You can also access Order commands from the Arrange menu. Moving elements forward moves them higher in the Elements list. Moving elements backward moves them lower in the Elements list. Group Elements You can group elements in the Elements list, which allows you to manage the elements as one unit. To group elements, select the elements you want to group, right-click, and then use Grouping commands. You can also access Grouping commands from the Arrange menu. A group is assigned a default name when you create it, but you can rename it. Groups can have properties that are different than the properties of the elements. To group elements, select the elements you want to group, right-click, and use the Grouping command.</p>
+<h3>Z-Order and Grouping</h3>
+<p>The <strong>z-order</strong> of items in the Elements list determines which element appears on top when elements overlap on the canvas. It also determines how elements of a path graphic connect. To change the z-order, right-click an element, select <strong>Order</strong>, and choose the desired position (Send To Back, Send Backward, Bring To Front, or Bring Forward).</p>
+
+<p>You can also <strong>group</strong> elements to manage them as a single unit. Select the elements, right-click, and use the Grouping commands. Groups are assigned default names but can be renamed, and they can have properties different from their individual elements.</p>
 
 <div class="screenshot">
   <img src="../images/page_0107.png" alt="Right-click context menu showing Order submenu with Send To Back highlighted, along with Duplicate, Cut, Copy, Paste, Delete, Lock, Select All, Transform, Industrial Graphic, Grouping, Edit Animations, Substitute, Custom Properties, and Symbol Wizard options">
-  <div class="caption">Right-click context menu showing Order submenu with Send To Back highlighted, along with Duplicate, Cut, Copy, Paste, Delete, Lock, Select All, Transform, Industrial Graphic, Grouping, Edit Animations, Substitute, Custom Properties, and Symbol Wizard options</div>
+  <div class="caption">The right-click context menu with the Order submenu for managing z-order (page 107)</div>
 </div>
 
-<p>element, a group of elements, or multiple elements with functions on the toolbar at the top of the Graphic Editor or with properties on the Properties tab. The Properties tab shows properties common to all selected elements. Read-only properties appear in gray and non-default values appear in bold. Properties are organized in categories:  Graphic: Includes element name or other identifiers.  Wizard Options: Includes options for customizing the visual and function properties of the element.  Appearance: Includes parameters related to the appearance of the element, including location, size, orientation, and transparency.  Runtime Behavior: Includes element visibility, tab order, and other element behaviors at runtime.  Custom Properties: Includes user-defined properties you can associate with elements. Selecting Elements You can select elements by:  Selecting them in the Elements list  Clicking on them with the mouse  Dragging a lasso around them with the mouse When an element is selected, it appears on the canvas with handles that enable control over its size and orientation. If multiple elements are selected, the last select element is the primary element. Other elements within the selection are secondary elements. To select multiple elements, you can press and hold</p>
+<div class="pitfall">
+  <strong>Warning:</strong> Renaming an element, group, or embedded symbol does <em>not</em> automatically update references in animations or scripts. If you rename an element that is referenced in an animation or script, you must manually update all references to the old name.
+</div>
+
+<!-- ============================================================ -->
+<h2>11.4 Element Properties and Selection</h2>
+<p class="page-ref">Reference: Module 3, Section 2 (pages 108–109)</p>
+
+<p>You can control the appearance of elements using toolbar functions or the Properties tab. Read-only properties appear in gray, and non-default (modified) values appear in bold. Properties are organized into five categories: <strong>Graphic</strong> (name, identifiers), <strong>Wizard Options</strong> (visual/functional customization), <strong>Appearance</strong> (location, size, orientation, transparency), <strong>Runtime Behavior</strong> (visibility, tab order), and <strong>Custom Properties</strong> (user-defined).</p>
+
+<p>Elements can be selected by clicking on them with the mouse, selecting from the Elements list, or dragging a lasso around them. When multiple elements are selected, the <strong>last-selected element is the primary element</strong> — it serves as the reference point for alignment and spacing operations. The other selected elements are <strong>secondary elements</strong>.</p>
+
+<table>
+  <thead><tr><th>Selection Type</th><th>Appearance</th><th>Behavior</th></tr></thead>
+  <tbody>
+    <tr><td>Primary Element</td><td>Color-filled handles</td><td>Active element; reference point for alignment and spacing</td></tr>
+    <tr><td>Secondary Elements</td><td>White handles</td><td>Inactive; follow edits made to the primary element</td></tr>
+  </tbody>
+</table>
 
 <div class="screenshot">
   <img src="../images/page_0108.png" alt="Selected light green rectangle on canvas with eight blue square resize handles at corners and edge midpoints, plus black circular rotation handle at top center">
-  <div class="caption">Selected light green rectangle on canvas with eight blue square resize handles at corners and edge midpoints, plus black circular rotation handle at top center</div>
+  <div class="caption">A selected element showing eight resize handles and a rotation handle for geometry editing (page 108)</div>
 </div>
 
-<p>select. You can also drag a lasso around all of the elements. Embed Symbols Embedding a symbol creates a linked copy of the original symbol. If the original symbol is modified, the changes are propagated to all embedded locations. Existing symbols can be embedded onto the canvas in the Graphic Editor and edited as needed. They can be embedded from the Industrial Graphic Library and the Situational Awareness Library, and from templates and instances available in the Galaxy. In the Graphic Editor, there are several ways of using the Galaxy Browser to select a source symbol to embed onto the canvas. You can click the Embed Industrial Graphic button from the toolbar, select Embed Industrial Graphic from the Edit menu, or right-click the canvas and select Embed Industrial Graphic from a context menu. The Galaxy Browser opens, allowing you to select a graphic. Another way of embedding a graphic is by finding the graphic from the Toolbox, Assets, or Templates tabs available on the right side of the Graphic Editor, and then dragging and dropping the symbol from the preview area onto the canvas. For example, you can navigate to the Situational Awareness Library from the Toolbox tab and select the Meters toolset. All the symbols in that toolset appear in the preview area at the bottom of the Toolbox tab, and you can drag the symbol you want to embed onto the canvas. Selected Element Description Primary Element Appears with color-filled handles Behaves as an active selected element Is the point of reference for all operations, such as aligning or spacing multiple selected elements Secondary Elements Appear with white handles Behave as inactive selected elements Follow the edits made to the primary element</p>
+<!-- ============================================================ -->
+<h2>11.5 Embedding Symbols</h2>
+<p class="page-ref">Reference: Module 3, Section 2 (pages 109–110)</p>
+
+<p><strong>Embedding</strong> a symbol creates a linked copy of the original. If the original symbol is modified, changes propagate to all embedded locations. Symbols can be embedded from the Industrial Graphic Library, the Situational Awareness Library, and from templates and instances in the Galaxy.</p>
+
+<p>There are two main methods for embedding symbols:</p>
+<ol>
+  <li><strong>Galaxy Browser</strong> — Click the Embed Industrial Graphic button from the toolbar, select it from the Edit menu, or right-click the canvas and choose Embed Industrial Graphic from the context menu.</li>
+  <li><strong>Drag-and-Drop</strong> — Find the symbol in the Toolbox, Assets, or Templates tab, then drag it from the preview area onto the canvas. For example, navigate to the Situational Awareness Library from the Toolbox tab, select the Meters toolset, and drag a symbol to the canvas.</li>
+</ol>
 
 <div class="screenshot">
   <img src="../images/page_0109_0.png" alt="Selected yellow filled oval (ellipse) on canvas with eight blue resize handles and rotation handle, demonstrating geometry editing mode for HMI screen design">
-  <div class="caption">Selected yellow filled oval (ellipse) on canvas with eight blue resize handles and rotation handle, demonstrating geometry editing mode for HMI screen design</div>
+  <div class="caption">A selected element on the canvas showing the selection handles used for resizing and rotation (page 109)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0109_1.png" alt="Graphic Editor showing green rectangular object, black vertical line, and light blue rectangular tank/vessel object all selected with connection handles, demonstrating custom HMI graphic creation from basic shapes">
-  <div class="caption">Graphic Editor showing green rectangular object, black vertical line, and light blue rectangular tank/vessel object all selected with connection handles, demonstrating custom HMI graphic creation from basic shapes</div>
+  <div class="caption">Multiple elements selected together, showing how primary and secondary elements are distinguished (page 109)</div>
 </div>
 
-<p>Additionally, the Toolbox, Assets, and Templates tabs include a search feature, allowing you to search for symbols. For example, on the Toolbox tab, you can enter the text meters in the search box to search for items with names that include that search string. Wizard Options When a graphic for which Wizard Options have been configured is selected on the drawing canvas, its Wizard Options properties appear on the Properties tab. Many of the symbols from the Situational Awareness Library have Wizard Options already configured.</p>
+<h3>Symbol Search</h3>
+<p>The Toolbox, Assets, and Templates tabs include a search feature that lets you find symbols by name. For example, entering <code>meters</code> in the search box on the Toolbox tab will show all items with names containing that string.</p>
 
 <div class="screenshot">
   <img src="../images/page_0110.png" alt="Toolbox panel with search term meters entered, showing 3 matching items including SA_Meters (green digital meter) and SA_Meters (black digital meter with red indicator) widget previews for drag-and-drop placement">
-  <div class="caption">Toolbox panel with search term meters entered, showing 3 matching items including SA_Meters (green digital meter) and SA_Meters (black digital meter with red indicator) widget previews for drag-and-drop placement</div>
+  <div class="caption">Searching for "meters" in the Toolbox tab reveals matching symbols available for embedding (page 110)</div>
 </div>
 
-<p>box. Right-click an embedded symbol and select Custom Properties. If custom properties are available within the embedded symbol, the Edit Custom Properties dialog box appears. Each available custom property has a defined date type, default value, visibility setting, and a description. The default value is the initial value as defined in the source symbol, which can be overridden with a value, reference, or expression. Available custom properties for a selected symbol and their default value configurations are also listed and editable on the Properties tab in the Graphic Editor. Substitute Strings You can search for and replace strings of any element on the canvas that has the Text property. To substitute strings for an embedded symbol that has text graphics, select the embedded symbol on the drawing canvas and select Special | Substitute Strings from the menu. Or, right-click the embedded symbol on the canvas and select Substitute | Substitute Strings from the context menu. The Substitute Strings dialog box appears.</p>
+<!-- ============================================================ -->
+<h2>11.6 Wizard Options, Custom Properties, and String Substitution</h2>
+<p class="page-ref">Reference: Module 3, Section 2 (pages 110–112)</p>
+
+<h3>Wizard Options</h3>
+<p>When a symbol with configured Wizard Options is selected on the canvas, its Wizard Options appear on the Properties tab. Many Situational Awareness Library symbols come with pre-configured Wizard Options that provide a simplified configuration menu for common settings — for example, you can configure a meter type without needing to modify low-level parameters.</p>
+
+<h3>Custom Properties</h3>
+<p>You can configure custom properties via the <strong>Edit Custom Properties</strong> dialog box, accessed by right-clicking an embedded symbol and selecting <strong>Custom Properties</strong>. Each property has a data type (such as Float), a default value, a visibility setting (public or private), and a description. The default value can be overridden with a value, reference, or expression.</p>
 
 <div class="screenshot">
   <img src="../images/page_0111.png" alt="Edit Custom Properties dialog for Bar01A showing Float data type, Default Value overridden to Mixer100.Totalizer1.PV tag reference, Public visibility selected, with 33 total custom properties listed">
-  <div class="caption">Edit Custom Properties dialog for Bar01A showing Float data type, Default Value overridden to Mixer100.Totalizer1.PV tag reference, Public visibility selected, with 33 total custom properties listed</div>
+  <div class="caption">The Edit Custom Properties dialog showing 33 properties with their data types and tag references (page 111)</div>
 </div>
 
-<p>list, or use Find & Replace functions such as Find What and Replace with, Match Case, Use Wildcards, and others. Substitute References You can search for and replace references used by any element on the canvas. To substitute references for an embedded symbol that has references configured, select the embedded symbol on the canvas and select Special | Substitute References from the menu. Or, right-click the embedded symbol on the canvas and select Substitute | Substitute References from the context menu. The Substitute Reference dialog box appears. You can use the basic mode to replace references in a list or use Find & Replace functions, such as Find What and Replace with, Match Case, Use Wildcards, and others You can use the Galaxy Browser to select a new reference, but the auto-complete function is not available in the Substitute Reference dialog box.</p>
+<h3>Substitute Strings</h3>
+<p>You can search for and replace text strings in any element on the canvas that has a Text property. To do this, select the embedded symbol and choose <strong>Special → Substitute Strings</strong> from the menu, or right-click and select <strong>Substitute → Substitute Strings</strong>. The Substitute Strings dialog lets you replace text directly in the list or use Find &amp; Replace functions like Match Case and Use Wildcards.</p>
 
 <div class="screenshot">
   <img src="../images/page_0112_0.png" alt="Substitute Strings dialog showing string replacement table with Level replaced by Temperature, Find What Level, Replace with Temperature, Replace All button, Match Case and Match Whole Word options, confirming 1 string replaced">
-  <div class="caption">Substitute Strings dialog showing string replacement table with Level replaced by Temperature, Find What Level, Replace with Temperature, Replace All button, Match Case and Match Whole Word options, confirming 1 string replaced</div>
+  <div class="caption">The Substitute Strings dialog — replacing "Level" with "Temperature" across all text elements (page 112)</div>
 </div>
+
+<h3>Substitute References</h3>
+<p>Similarly, you can search for and replace data references used by elements. Select the embedded symbol and choose <strong>Special → Substitute References</strong> from the menu. This opens the Substitute Reference dialog, where you can replace reference paths directly or use Find &amp; Replace. Note that while the Galaxy Browser can be used to select new references, auto-complete is not available in this dialog.</p>
 
 <div class="screenshot">
   <img src="../images/page_0112_1.png" alt="Substitute Reference dialog showing reference replacements: Me.PV to Me.Speed.PV, Me.PV.EngUnits to Me.Speed.PV.EngUnits, Me.SP to Me.Speed.SP, with 4 strings replaced out of 5 found">
-  <div class="caption">Substitute Reference dialog showing reference replacements: Me.PV to Me.Speed.PV, Me.PV.EngUnits to Me.Speed.PV.EngUnits, Me.SP to Me.Speed.SP, with 4 strings replaced out of 5 found</div>
+  <div class="caption">The Substitute Reference dialog — replacing Me.PV references with Me.Speed.PV paths (page 112)</div>
 </div>
 
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> What are the key concepts covered in this lesson about Symbol Overview + Graphic Editor?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
+  <p><strong>1.</strong> What are the two symbol libraries that ship with System Platform, and how do they differ in their design philosophy?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">The Industrial Graphic Library provides realistic-looking symbols of standard industrial objects, while the Situational Awareness Library provides simplified, minimal-detail symbols designed to enhance operator situational awareness through color-coded normal/abnormal states.</p></details>
 
-  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <p><strong>2.</strong> In the Graphic Editor's Elements list, what happens if you rename an element that is referenced in an animation or script?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Renaming does not automatically update references. Animations or scripts referencing the old name will break and must be manually updated to reference the new name.</p></details>
 
+  <p><strong>3.</strong> What is the difference between the primary element and secondary elements when multiple items are selected on the canvas?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">The primary element (last selected) is the active element that serves as the reference point for alignment and spacing operations. Secondary elements are inactive and follow edits made to the primary element.</p></details>
+
+  <p><strong>4.</strong> How does the Substitute Strings feature differ from Substitute References?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Substitute Strings replaces visible text labels in elements (like "Level" → "Temperature"), while Substitute References replaces data binding paths (like Me.PV → Me.Speed.PV) that link graphics to runtime data.</p></details>
+
+  <p><strong>5.</strong> What does the canvas Size property set to "Auto" do at runtime compared to "Fixed"?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Auto automatically crops all white space outside runtime graphics, while Fixed uses FixedWidth and FixedHeight to define the exact pixel dimensions of the graphic at runtime.</p></details>
 </div>
 
 <p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>

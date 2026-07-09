@@ -98,304 +98,395 @@
 </details>
 </nav>
 
-<h1>Lesson 16: Lab7 Mixer Display</h1>
-<p class="page-ref">Module 3 — Symbols | Pages 181–204</p>
+<h1>Lesson 16: Lab 7 – Creating the Mixer Display</h1>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 3, Lab 7 (pages 181–201)</p>
+<p class="page-ref">In this lab, you will build the complete Mixer display by embedding graphics from contained objects, adding text elements with Value Display animations, drawing connectors between equipment, and replacing the placeholder graphic in the ContentDisplay window.</p>
 
-<p>5. In Content, click the Edit Content button to open the Graphic Editor. Note: You can also double-click MixingProcess_Detailed in the Content pane to open the Graphic Editor. You will now embed symbols from contained objects through relative references. 6. Right-click the canvas and select Embed Industrial Graphic. 7. In the Galaxy Browser, click the Relative References button, and then embed Me.Pump1\Pump_Detailed.</p>
+<div class="lab">
+  <strong>Lab Objectives:</strong> Upon completion of this lab, you will be able to:<br>
+  &#8226; Add a symbol in an automation object<br>
+  &#8226; Embed graphics from relative references<br>
+  &#8226; Add Text elements and configure Value Display animations<br>
+  &#8226; Apply element styles to elements<br>
+  &#8226; Use connectors and connection points<br>
+  &#8226; Change element display order<br>
+  &#8226; Replace a graphic in a frame window
+</div>
+
+<!-- ============================================================ -->
+<h2>16.1 Creating the MixingProcess_Detailed Symbol</h2>
+<p class="page-ref">Reference: Module 3, Lab 7 (pages 180–181)</p>
+
+<p>You begin by creating a new symbol inside the <code>$Mixer</code> template. This symbol — named <code>MixingProcess_Detailed</code> — will contain all the equipment graphics for the mixer process. Open the <code>$Mixer</code> template from the Templates tab, click Add in the Content pane, name the symbol <code>MixingProcess_Detailed</code>, and give it the description "Includes symbols from all contained objects."</p>
+
+<p>Next, you open the symbol for editing by clicking the Edit Content button (or double-clicking the symbol name in the Content pane). You will now embed the individual equipment graphics from the contained objects using relative references.</p>
 
 <div class="screenshot">
   <img src="../images/page_0181_0.png" alt="Galaxy Browser showing MixingProcess_Detailed content item with Edit Content button highlighted and properties panel displaying name and description">
-  <div class="caption">Galaxy Browser showing MixingProcess_Detailed content item with Edit Content button highlighted and properties panel displaying name and description</div>
+  <div class="caption">The MixingProcess_Detailed symbol in the Content pane, ready to open in the Graphic Editor (page 181)</div>
 </div>
+
+<!-- ============================================================ -->
+<h2>16.2 Embedding Pump Graphics</h2>
+<p class="page-ref">Reference: Module 3, Lab 7 (pages 181–182)</p>
+
+<p>To embed equipment from contained objects, right-click the canvas and select Embed Industrial Graphic. In the Galaxy Browser, click the Relative References button to view the list of contained objects. Select <code>Me.Pump1\Pump_Detailed</code> to embed the first pump graphic.</p>
 
 <div class="screenshot">
   <img src="../images/page_0181_1.png" alt="Galaxy Browser Relative References list with Me.Pump1 selected and Pump_Detailed symbol preview shown in right pane">
-  <div class="caption">Galaxy Browser Relative References list with Me.Pump1 selected and Pump_Detailed symbol preview shown in right pane</div>
+  <div class="caption">Embedding Me.Pump1\Pump_Detailed from Relative References in the Galaxy Browser (page 181)</div>
 </div>
 
-<p>8. Place the graphic on the canvas as shown below: Leave space at the top-left of the canvas for text that you will add later in this lab. 9. Use the Galaxy Browser to embed Me.Pump2\Pump_Detailed on the canvas below the first pump as shown below:</p>
+<p>Place the pump graphic on the canvas, leaving space at the top-left for text labels you will add later. Then repeat the process to embed <code>Me.Pump2\Pump_Detailed</code> and place it below the first pump.</p>
 
 <div class="screenshot">
   <img src="../images/page_0182_0.png" alt="Graphic Editor canvas with embedded SA_Pump_Blower_RotaryValve symbol placed and selected on grid background">
-  <div class="caption">Graphic Editor canvas with embedded SA_Pump_Blower_RotaryValve symbol placed and selected on grid background</div>
+  <div class="caption">The first pump graphic placed on the canvas with space reserved at top-left (page 182)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0182_1.png" alt="Graphic Editor canvas showing two pump symbols placed vertically one above the other on the grid">
-  <div class="caption">Graphic Editor canvas showing two pump symbols placed vertically one above the other on the grid</div>
+  <div class="caption">Both pump graphics placed vertically on the canvas (page 182)</div>
 </div>
 
-<p>10. Embed the following symbols on the canvas, using the screen shot below as a guide. Relative Reference Symbol Name Me.Inlet1 Valve_Detailed Me.Inlet2 Valve_Detailed Me.Outlet Valve_Detailed Me.Agitator Agitator_Detailed Me.Level Level_Detailed Me.Temperature Temperature_Detailed</p>
+<!-- ============================================================ -->
+<h2>16.3 Embedding Remaining Equipment</h2>
+<p class="page-ref">Reference: Module 3, Lab 7 (page 183)</p>
+
+<p>Continue embedding the remaining equipment from the contained objects. The following table shows each relative reference and its corresponding symbol name:</p>
+
+<table>
+  <thead>
+    <tr><th>Relative Reference</th><th>Symbol Name</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>Me.Inlet1</code></td><td>Valve_Detailed</td></tr>
+    <tr><td><code>Me.Inlet2</code></td><td>Valve_Detailed</td></tr>
+    <tr><td><code>Me.Outlet</code></td><td>Valve_Detailed</td></tr>
+    <tr><td><code>Me.Agitator</code></td><td>Agitator_Detailed</td></tr>
+    <tr><td><code>Me.Level</code></td><td>Level_Detailed</td></tr>
+    <tr><td><code>Me.Temperature</code></td><td>Temperature_Detailed</td></tr>
+  </tbody>
+</table>
+
+<p>Place each graphic on the canvas according to the layout shown in the screenshot below. The valves go to the left and right of the mixer area, the agitator sits in the center, and the level and temperature meters are positioned inside the mixer boundary.</p>
 
 <div class="screenshot">
   <img src="../images/page_0183.png" alt="Complete mixer process diagram with all embedded symbols arranged on canvas: two pumps, four valves (Inlet1, Inlet2, Outlet), agitator, level meter, and temperature sensor">
-  <div class="caption">Complete mixer process diagram with all embedded symbols arranged on canvas: two pumps, four valves (Inlet1, Inlet2, Outlet), agitator, level meter, and temperature sensor</div>
+  <div class="caption">All equipment graphics placed on the canvas — valves, pumps, agitator, level, and temperature (page 183)</div>
 </div>
 
-<p>11. On the Toolbox tab, search for sa_tank, and then drag SA_Tank_Vessel to the canvas. 12. Move and resize SA_Tank_Vessel on the canvas to cover the Agitator, Level, and Temperature graphics.</p>
+<!-- ============================================================ -->
+<h2>16.4 Adding the Tank Vessel</h2>
+<p class="page-ref">Reference: Module 3, Lab 7 (pages 184–185)</p>
+
+<p>To represent the mixer tank, you add the <code>SA_Tank_Vessel</code> graphic from the Toolbox. Search for "sa_tank" in the Toolbox tab search bar, then drag <code>SA_Tank_Vessel</code> onto the canvas. Resize and reposition it so it covers the Agitator, Level, and Temperature graphics.</p>
 
 <div class="screenshot">
   <img src="../images/page_0184_0.png" alt="Graphic Editor with SA_Tank_Vessel element dragged from Toolbox search results for sa_tank and placed on canvas with selection handles">
-  <div class="caption">Graphic Editor with SA_Tank_Vessel element dragged from Toolbox search results for sa_tank and placed on canvas with selection handles</div>
+  <div class="caption">Dragging SA_Tank_Vessel from the Toolbox onto the canvas (page 184)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0184_1.png" alt="SA_Tank_Vessel resized and positioned on canvas to overlay the agitator, level, and temperature graphics">
-  <div class="caption">SA_Tank_Vessel resized and positioned on canvas to overlay the agitator, level, and temperature graphics</div>
+  <div class="caption">SA_Tank_Vessel resized to cover the internal mixer components (page 184)</div>
 </div>
 
-<p>13. On the Properties tab, configure SA_Tank_Vessel as follows: 14. Right-click Tank and select Substitute | Substitute Strings. 15. Change Label to Mixer. 16. Click OK to close Substitute Strings. The label changes to Mixer. Name: Tank QualityStatusIndicator: False</p>
+<p>On the Properties tab, rename the tank to <code>Tank</code> and set <code>QualityStatusIndicator</code> to <code>False</code>. Then right-click the Tank and select Substitute | Substitute Strings. Change the default "Label" string to "Mixer" to display the correct name on the graphic.</p>
 
 <div class="screenshot">
   <img src="../images/page_0185_0.png" alt="Substitute Strings dialog showing Old value Label being replaced with New value Mixer in English locale">
-  <div class="caption">Substitute Strings dialog showing Old value Label being replaced with New value Mixer in English locale</div>
+  <div class="caption">Using Substitute Strings to change the tank label from "Label" to "Mixer" (page 185)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0185_1.png" alt="SA_Tank_Vessel on canvas now displaying Mixer label after the Substitute Strings operation was applied">
-  <div class="caption">SA_Tank_Vessel on canvas now displaying Mixer label after the Substitute Strings operation was applied</div>
+  <div class="caption">The tank now displays "Mixer" as its label (page 185)</div>
 </div>
 
-<p>17. With Tank selected, right-click and select Order | Send To Back. The order of the elements is updated and displayed in Elements.</p>
+<!-- ============================================================ -->
+<h2>16.5 Changing Element Display Order</h2>
+<p class="page-ref">Reference: Module 3, Lab 7 (page 186)</p>
+
+<p>The Tank graphic currently appears on top of the other elements, covering the agitator and meters. To fix this, you need to send it to the back of the display order. With the Tank selected, right-click and select Order | Send To Back. The tank moves behind all other elements, and the Elements panel updates to show the new stacking order.</p>
 
 <div class="screenshot">
   <img src="../images/page_0186_0.png" alt="Elements panel listing all mixer components with Tank element highlighted and selected at bottom of list">
-  <div class="caption">Elements panel listing all mixer components with Tank element highlighted and selected at bottom of list</div>
+  <div class="caption">The Elements panel showing Tank at the bottom of the z-order after Send To Back (page 186)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0186_1.png" alt="Right-click context menu on Tank element with Order submenu expanded showing Send To Back option highlighted">
-  <div class="caption">Right-click context menu on Tank element with Order submenu expanded showing Send To Back option highlighted</div>
+  <div class="caption">The right-click context menu with Order | Send To Back selected (page 186)</div>
 </div>
 
-<p>Next, you will add connection points to the Tank, and then draw connectors between the graphics to represent piping. You will use the Connection Point element and the Connector element from the Tools pane. 18. On the toolbar at the top, click the Canvas Zoom drop-down list, and select Fit. 19. Click Snap to Grid to turn off the snap to grid feature. 20. In Tools, double-click Connection Point. The cursor changes to a cross hair cursor. Note: Double-clicking a tool saves time by not requiring you to reselect the tool when using it to draw multiple elements of the same type on the canvas one after the other. Clicking another tool or pressing the Esc key will cancel the operation.</p>
+<div class="key-concept">
+  <strong>Key Concept:</strong> The z-order (stacking order) in the Elements panel determines which elements appear on top when they overlap on the canvas. Use Order | Send To Back or Bring To Front to rearrange elements.
+</div>
+
+<!-- ============================================================ -->
+<h2>16.6 Adding Connection Points and Connectors</h2>
+<p class="page-ref">Reference: Module 3, Lab 7 (pages 187–191)</p>
+
+<p>Now you will wire up the equipment by adding connection points to the Tank and drawing connectors between the graphics to represent piping. First, zoom the canvas to fit all elements (Canvas Zoom dropdown → Fit) and disable Snap to Grid for more precise placement.</p>
+
+<p>Double-click the Connection Point tool in the Tools pane to lock it for repeated use. Move the cursor to the left border of the Tank — the border turns green when the connection point cursor hovers over it. Click to place a connection point aligned with Inlet1's right-side connection point, then add a second connection point aligned with Inlet2.</p>
 
 <div class="screenshot">
   <img src="../images/page_0187_0.png" alt="Graphic Editor Tools panel with Connection Point tool highlighted and selected for placing connection points on shapes">
-  <div class="caption">Graphic Editor Tools panel with Connection Point tool highlighted and selected for placing connection points on shapes</div>
+  <div class="caption">The Connection Point tool selected from the Tools pane (page 187)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0187_1.png" alt="Full mixer process diagram on grid canvas showing all components: two pumps, four valves, agitator, meters, and Mixer boundary with blue selection handles">
-  <div class="caption">Full mixer process diagram on grid canvas showing all components: two pumps, four valves, agitator, meters, and Mixer boundary with blue selection handles</div>
+  <div class="caption">The full mixer layout on the canvas before adding connection points (page 187)</div>
 </div>
-
-<p>21. Move the cursor to the left-side border of the tank and align the cursor with the built-in connection point on the right side of the Inlet1 graphic. The tank border turns green when the connection point cursor hovers over it. 22. Click to place the Connection Point element on the border of the tank. 23. Add a second Connection Point element to the left side border of the tank, aligned with the built-in connection point on the right side of the Inlet2 graphic.</p>
 
 <div class="screenshot">
   <img src="../images/page_0188_0.png" alt="Connection Point being placed on left border of Tank aligned with Inlet1 valve showing green border highlight at connection point">
-  <div class="caption">Connection Point being placed on left border of Tank aligned with Inlet1 valve showing green border highlight at connection point</div>
+  <div class="caption">Placing the first connection point on the Tank border, aligned with Inlet1 (page 188)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0188_1.png" alt="Close-up of SA_Valve_And_Damper component with warning icon, green connection nodes, and vertical wire on grid background">
-  <div class="caption">Close-up of SA_Valve_And_Damper component with warning icon, green connection nodes, and vertical wire on grid background</div>
+  <div class="caption">Connection point placement detail showing the green highlight on the tank border (page 188)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0188_2.png" alt="Second Connection Point added to left border of Tank aligned with Inlet2 valve showing connection points on tank border">
-  <div class="caption">Second Connection Point added to left border of Tank aligned with Inlet2 valve showing connection points on tank border</div>
+  <div class="caption">The second connection point added to the Tank border, aligned with Inlet2 (page 188)</div>
 </div>
 
-<p>left-side border of the tank. Next, you will add connectors. 24. In Tools, double-click Connector. 25. Hover over the bottom-center of the Tank until the connection point appears, then click and drag the connector to the connection point on the left side of the Outlet valve.</p>
+<p>Next, switch to the Connector tool (double-click to lock it). Draw a connector from the Tank's bottom-center connection point to the Outlet valve's left-side connection point. Then draw connectors between Pump1 → Valve1, Valve1 → Tank, Pump2 → Inlet2, and Inlet2 → Tank. Click the Pointer tool when finished to exit connector mode.</p>
 
 <div class="screenshot">
   <img src="../images/page_0189_0.png" alt="Tools panel with Connector tool highlighted and selected for drawing pipe connections between components">
-  <div class="caption">Tools panel with Connector tool highlighted and selected for drawing pipe connections between components</div>
+  <div class="caption">The Connector tool selected for drawing piping connections (page 189)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0189_1.png" alt="Mixer process diagram showing Tank with agitator and two SA_Meters displayed inside Mixer boundary">
-  <div class="caption">Mixer process diagram showing Tank with agitator and two SA_Meters displayed inside Mixer boundary</div>
+  <div class="caption">The Tank with its internal agitator and meter graphics (page 189)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0189_2.png" alt="SA_Valve_And_Damper and SA_Meters components shown with connection points and process flow lines on grid">
-  <div class="caption">SA_Valve_And_Damper and SA_Meters components shown with connection points and process flow lines on grid</div>
+  <div class="caption">Connector being drawn between Tank and Outlet valve (page 189)</div>
 </div>
-
-<p>26. Hover over the connection point on the right side of Pump1, and then drag the connector to the connection point on the left side of Valve1. 27. Create a connector between Valve1 and the adjacent connection point on the Tank.</p>
 
 <div class="screenshot">
   <img src="../images/page_0190_0.png" alt="Tools panel with Connector tool still active for drawing additional pipe connections between remaining components">
-  <div class="caption">Tools panel with Connector tool still active for drawing additional pipe connections between remaining components</div>
+  <div class="caption">Connector tool active for drawing the remaining connections (page 190)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0190_1.png" alt="Mixer process diagram showing Pump1 connected to Valve1 and Valve1 connected to Tank via drawn connector lines">
-  <div class="caption">Mixer process diagram showing Pump1 connected to Valve1 and Valve1 connected to Tank via drawn connector lines</div>
+  <div class="caption">Connectors drawn between Pump1 → Valve1 → Tank (page 190)</div>
 </div>
-
-<p>28. Add connectors between Pump2, Inlet2, and Tank as shown below: 29. In Tools, click Pointer. Note: Clicking the Pointer cancels the connector drawing operation.</p>
 
 <div class="screenshot">
   <img src="../images/page_0191_0.png" alt="Process diagram with both pump-valve pairs connected to the Mixer tank, showing all connector lines drawn">
-  <div class="caption">Process diagram with both pump-valve pairs connected to the Mixer tank, showing all connector lines drawn</div>
+  <div class="caption">All connectors drawn between pumps, valves, and the Tank (page 191)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0191_1.png" alt="Tools panel with Pointer tool selected after completing all connector drawing operations">
-  <div class="caption">Tools panel with Pointer tool selected after completing all connector drawing operations</div>
+  <div class="caption">Clicking the Pointer tool to exit connector drawing mode (page 191)</div>
 </div>
 
-<p>30. In Elements, press the Ctrl key and select the following elements:  Connector5  Connector4  Connector3  Connector2 31. On the Properties tab, in the ConnectionType drop-down list, select Straight. The bends in the selected connectors are removed. However, the valves and pumps may not be aligned. You will do this next.</p>
+<!-- ============================================================ -->
+<h2>16.7 Straightening Connectors and Aligning Elements</h2>
+<p class="page-ref">Reference: Module 3, Lab 7 (pages 192–193)</p>
+
+<p>The connectors may have bends that you want to remove. In the Elements panel, hold Ctrl and select Connector2, Connector3, Connector4, and Connector5. On the Properties tab, change the ConnectionType dropdown to <strong>Straight</strong>. This removes the bends from the selected connectors.</p>
 
 <div class="screenshot">
   <img src="../images/page_0192_0.png" alt="Elements panel showing Connector2 through Connector5 all selected (highlighted in blue) for batch property editing">
-  <div class="caption">Elements panel showing Connector2 through Connector5 all selected (highlighted in blue) for batch property editing</div>
+  <div class="caption">Selecting multiple connectors in the Elements panel for batch editing (page 192)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0192_1.png" alt="Properties panel showing Connector type property set to Straight in the Appearance section to remove bends">
-  <div class="caption">Properties panel showing Connector type property set to Straight in the Appearance section to remove bends</div>
+  <div class="caption">Setting ConnectionType to Straight to remove connector bends (page 192)</div>
 </div>
 
-<p>32. On the canvas, select Pump1, press and hold the Shift key down, and then select Pump2 to add it to the selection. Both pumps are now selected. 33. With both pumps selected, use the up or down arrow keys on the keyboard to straighten the connectors between pumps and valves. If necessary, make other adjustments to the valves to ensure all the connectors are straight.</p>
+<p>To align the pumps and valves, select Pump1 on the canvas, hold Shift and select Pump2, then use the arrow keys to nudge both pumps until the connectors between pumps and valves are straight. Adjust the valves if needed to ensure all connectors appear straight.</p>
 
 <div class="screenshot">
   <img src="../images/page_0193.png" alt="Mixer process diagram with straightened connectors between pumps, valves, and tank after adjusting alignment with arrow keys">
-  <div class="caption">Mixer process diagram with straightened connectors between pumps, valves, and tank after adjusting alignment with arrow keys</div>
+  <div class="caption">The mixer display with straightened connectors after alignment adjustments (page 193)</div>
 </div>
 
-<p>Now, you will add text elements to display the mixer name and area information. Then you will apply Element Styles and Value Display animations to these text elements. 34. In Tools, click Text. 35. Click at the top-left of the canvas. 36. Type Object Name and press Enter, and then type Area Name.</p>
+<!-- ============================================================ -->
+<h2>16.8 Adding Text Labels with Animations</h2>
+<p class="page-ref">Reference: Module 3, Lab 7 (pages 194–198)</p>
+
+<p>To display the mixer name and area information at runtime, you add two text elements at the top-left of the canvas: "Object Name" and "Area Name". Select the Text tool, click on the canvas, type "Object Name", press Enter, then type "Area Name". Click elsewhere on the canvas to stop adding text.</p>
 
 <div class="screenshot">
   <img src="../images/page_0194_0.png" alt="Graphic Editor with Tools panel showing Text tool selected for adding text elements to the canvas">
-  <div class="caption">Graphic Editor with Tools panel showing Text tool selected for adding text elements to the canvas</div>
+  <div class="caption">The Text tool selected for adding labels (page 194)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0194_1.png" alt="Canvas with Object Name and Area Name text elements added in top-left corner of the mixer display">
-  <div class="caption">Canvas with Object Name and Area Name text elements added in top-left corner of the mixer display</div>
+  <div class="caption">Object Name and Area Name text elements placed at the top-left of the canvas (page 194)</div>
 </div>
 
-<p>37. Click the canvas to cancel creating more text elements. The text elements should look similar to the following: 38. Select the Object Name text, and on the Properties tab, name the element ObjectName. 39. On the Properties tab, in the ElementStyle drop-down search field, enter title and select Title.</p>
+<p>Configure the Object Name text element: rename it to <code>ObjectName</code> on the Properties tab, and set its ElementStyle to <strong>Title</strong>. Configure the Area Name element: rename it to <code>AreaName</code> and set its ElementStyle to <strong>Heading</strong>.</p>
 
 <div class="screenshot">
   <img src="../images/page_0195_0.png" alt="Properties panel showing ObjectName element with Title style applied via ElementStyle dropdown field">
-  <div class="caption">Properties panel showing ObjectName element with Title style applied via ElementStyle dropdown field</div>
+  <div class="caption">Setting the ObjectName element style to Title (page 195)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0195_1.png" alt="Canvas displaying Object Name and Area Name text labels positioned in top-left area of the mixer diagram">
-  <div class="caption">Canvas displaying Object Name and Area Name text labels positioned in top-left area of the mixer diagram</div>
+  <div class="caption">The text labels positioned in the top-left area (page 195)</div>
 </div>
-
-<p>40. On the canvas, select the Area Name text and configure properties as follows: 41. Move the Area Name text down a little. In the following steps, you will add animations to your text. 42. On the canvas, double-click ObjectName. Edit Animations appears. 43. Click the Add Animation button. Name: AreaName ElementStyle: Heading</p>
 
 <div class="screenshot">
   <img src="../images/page_0196_0.png" alt="Properties panel showing AreaName element configured with Heading style and X position set to 52">
-  <div class="caption">Properties panel showing AreaName element configured with Heading style and X position set to 52</div>
+  <div class="caption">Setting the AreaName element style to Heading (page 196)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0196_1.png" alt="Canvas with Object Name displayed as $Mixer and Area Name text labels positioned at top-left of diagram">
-  <div class="caption">Canvas with Object Name displayed as $Mixer and Area Name text labels positioned at top-left of diagram</div>
+  <div class="caption">The text elements positioned on the canvas before adding animations (page 196)</div>
 </div>
+
+<p>Now you add Value Display animations to make these text elements show dynamic data at runtime. Double-click ObjectName to open Edit Animations, click the Add Animation button, and select <strong>Value Display</strong>. In the Name tab, select the <strong>Tag Name</strong> radio button so the text displays the hosting object's tag name at runtime.</p>
 
 <div class="screenshot">
   <img src="../images/page_0196_2.png" alt="Edit Animations dialog in empty state showing No Animations configured message with Add Animation button ready">
-  <div class="caption">Edit Animations dialog in empty state showing No Animations configured message with Add Animation button ready</div>
+  <div class="caption">The Edit Animations dialog ready to add a Value Display animation (page 196)</div>
 </div>
-
-<p>44. Select the Value Display animation. 45. Configure the animation as follows: 46. Click OK to close Edit Animations. The text element is updated. States: Name Name to be displayed: Tag Name (default)</p>
 
 <div class="screenshot">
   <img src="../images/page_0197_0.png" alt="Edit Animations dialog with Add Animation menu expanded showing Value Display option highlighted among Visualization animation types">
-  <div class="caption">Edit Animations dialog with Add Animation menu expanded showing Value Display option highlighted among Visualization animation types</div>
+  <div class="caption">Selecting Value Display from the animation type list (page 197)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0197_1.png" alt="Edit Animations dialog with Value Display animation selected and Name tab showing Tag Name radio button option">
-  <div class="caption">Edit Animations dialog with Value Display animation selected and Name tab showing Tag Name radio button option</div>
+  <div class="caption">Configuring Value Display to show the Tag Name (page 197)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0197_2.png" alt="Edit Animations dialog showing Value Display configured for ObjectName with Tag Name display setting enabled">
-  <div class="caption">Edit Animations dialog showing Value Display configured for ObjectName with Tag Name display setting enabled</div>
+  <div class="caption">The completed Value Display animation for ObjectName (page 197)</div>
 </div>
 
-<p>47. On the canvas, double-click AreaName. 48. Add a Value Display animation. 49. In States, click String. 50. In Expression Or Reference, in the String field, enter Me.Area. 51. Click OK to close Edit Animations. 52. On the toolbar at the top, click Snap to Grid to enable the feature. 53. On the toolbar at the top, click Zoom to Normal. The elements on the canvas are resized.</p>
+<p>For AreaName, add a Value Display animation with the String state. In the Expression Or Reference field, enter <code>Me.Area</code> so the text displays the area name at runtime. After configuring both animations, enable Snap to Grid and set the zoom to Normal.</p>
 
 <div class="screenshot">
   <img src="../images/page_0198_0.png" alt="Edit Animations dialog with Add Animation menu showing all available animation types in Visualization and Interaction columns">
-  <div class="caption">Edit Animations dialog with Add Animation menu showing all available animation types in Visualization and Interaction columns</div>
+  <div class="caption">Adding a Value Display animation to AreaName (page 198)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0198_1.png" alt="Edit Animations dialog showing String tab configured with Me.Area expression reference for the AreaName element">
-  <div class="caption">Edit Animations dialog showing String tab configured with Me.Area expression reference for the AreaName element</div>
+  <div class="caption">Configuring the String reference to Me.Area for the AreaName element (page 198)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0198_2.png" alt="Toolbar showing Zoom to Normal button alongside drawing tools, shapes, and navigation controls">
-  <div class="caption">Toolbar showing Zoom to Normal button alongside drawing tools, shapes, and navigation controls</div>
+  <div class="caption">Resetting zoom to Normal and re-enabling Snap to Grid (page 198)</div>
 </div>
 
-<p>54. Click the canvas to set focus on the canvas. 55. On the Properties tab, change the Size property to Fixed. 56. Adjust the canvas size to fit all elements, leaving some white space around the edges. 57. Save and close the MixingProcess_Detailed graphic. 58. Save and close the $Mixer object and check it in.</p>
+<!-- ============================================================ -->
+<h2>16.9 Finalizing and Saving the Symbol</h2>
+<p class="page-ref">Reference: Module 3, Lab 7 (pages 199)</p>
+
+<p>Click the canvas to set focus on it, then on the Properties tab change the Size property to <strong>Fixed</strong>. Adjust the canvas size to fit all elements with some white space around the edges. Save and close the MixingProcess_Detailed graphic, then save and close the <code>$Mixer</code> object and check it in.</p>
 
 <div class="screenshot">
   <img src="../images/page_0199.png" alt="Completed MixingProcess_Detailed graphic showing $Mixer label, all process components, straight connectors, and text labels on fixed-size canvas">
-  <div class="caption">Completed MixingProcess_Detailed graphic showing $Mixer label, all process components, straight connectors, and text labels on fixed-size canvas</div>
+  <div class="caption">The completed MixingProcess_Detailed graphic ready for use (page 199)</div>
 </div>
 
-<p>steps, you will replace the Level_Detailed graphic in the ContentDisplay window with the MixingProcess_Detailed graphic you just created. 59. Switch to WindowMaker. 60. Right-click the ContentDisplay window and select Embed Industrial Graphic. 61. In the Galaxy Browser, click the Instances button, and then select Mixer100\MixingProcess_Detailed. 62. Click OK. A WindowMaker message appears, prompting you to confirm the replacement. This is because frame windows can only host one embedded symbol.</p>
+<!-- ============================================================ -->
+<h2>16.10 Replacing the Graphic in ContentDisplay</h2>
+<p class="page-ref">Reference: Module 3, Lab 7 (pages 200–201)</p>
+
+<p>Now you replace the existing Level_Detailed graphic in the ContentDisplay window with your new MixingProcess_Detailed graphic. Switch to WindowMaker, right-click the ContentDisplay window, and select Embed Industrial Graphic. In the Galaxy Browser, click the Instances button, select <code>Mixer100\MixingProcess_Detailed</code>, and click OK.</p>
+
+<p>WindowMaker prompts you to confirm the replacement because frame windows can only host one embedded symbol. Click Yes to replace the old graphic.</p>
 
 <div class="screenshot">
   <img src="../images/page_0200_0.png" alt="Galaxy Browser showing Instances list with Mixer100 selected and MixingProcess_Detailed graphic preview in right pane">
-  <div class="caption">Galaxy Browser showing Instances list with Mixer100 selected and MixingProcess_Detailed graphic preview in right pane</div>
+  <div class="caption">Selecting Mixer100\MixingProcess_Detailed in the Galaxy Browser (page 200)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0200_1.png" alt="WindowMaker confirmation dialog asking Are you sure you want to replace Level_001.Level_Detailed with Yes and No buttons">
-  <div class="caption">WindowMaker confirmation dialog asking Are you sure you want to replace Level_001.Level_Detailed with Yes and No buttons</div>
+  <div class="caption">Confirming the replacement of the old Level_Detailed graphic (page 200)</div>
 </div>
-
-<p>63. Click Yes to replace Level_001.Level_Detailed. The graphic is replaced. Test in Runtime Finally, you will view the MixingProcess_Detailed graphic in runtime. 64. Click Runtime. The MixingProcess_Detailed graphic appears in the ContentDisplay window.</p>
-<p>65. Click Development! to return to WindowMaker. <End of Lab></p>
 
 <div class="screenshot">
   <img src="../images/page_0201_0.png" alt="ContentDisplay window showing placeholder template with Object Name, Area Name, and generic valve symbols before replacement">
-  <div class="caption">ContentDisplay window showing placeholder template with Object Name, Area Name, and generic valve symbols before replacement</div>
+  <div class="caption">The ContentDisplay window after the graphic is replaced (page 201)</div>
 </div>
+
+<div class="pitfall">
+  <strong>Important:</strong> Frame windows can only host one embedded symbol. When you embed a new symbol in a frame window that already contains one, you must confirm the replacement — the old symbol is removed.
+</div>
+
+<p>Click Runtime to verify the display. The MixingProcess_Detailed graphic appears in the ContentDisplay window, showing all the equipment with live process values: Agitator at 0.00 RPM, Level at 54.43, and Temperature at 134.98°C. When you are finished testing, click Development! to return to WindowMaker.</p>
 
 <div class="screenshot">
   <img src="../images/page_0201_1.png" alt="Runtime view of Mixer100 on Line1 showing live process values: Agitator at 0.00 rpm, Level at 54.43, Temperature at 134.98 C">
-  <div class="caption">Runtime view of Mixer100 on Line1 showing live process values: Agitator at 0.00 rpm, Level at 54.43, Temperature at 134.98 C</div>
+  <div class="caption">The Mixer100 display in runtime showing live process values (page 201)</div>
 </div>
 
+<!-- ============================================================ -->
+<h2>16.11 Introduction to Combo Box Controls</h2>
+<p class="page-ref">Reference: Module 3, Section 5 (pages 203–204)</p>
 
-<p>another. It can be used as the object reference to replace all “Me.” references in expressions and scripts. The object name can be set using the tagname or the hierarchical name of an automation object. Windows Common Controls You can add the following Windows common controls to your graphic:  Radio button group  Check box  Edit box  Combo box  Calendar control  DateTime picker  List box You can place these Windows common controls as you would any other element by selecting them from the Tools pane. You click on the canvas to position a common control and, with exception of the calendar control, drag the rectangle to set the control. After placing the control on the canvas, you can configure:  Background color and text color (with exception of the DateTime Picker control).  Other control-specific properties  Control-specific animations This section introduces the OwningObject property and Windows common controls.</p>
+<p>Before moving on to the next lab, it is helpful to understand the Combo Box control, which you will use in Lab 8 to create a mixer selector. Combo Box controls allow users to select from a foldable list at runtime. There are three types:</p>
 
-<div class="screenshot">
-  <img src="../images/page_0203.png" alt="OwningObject property explanation page with Combo Box animation editor showing MixerDropDown configuration and Galaxy Browser hierarchy">
-  <div class="caption">OwningObject property explanation page with Combo Box animation editor showing MixerDropDown configuration and Galaxy Browser hierarchy</div>
-</div>
+<table>
+  <thead>
+    <tr><th>Type</th><th>Behavior</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Simple</strong></td><td>Users can type a value or select one using up/down arrow buttons</td></tr>
+    <tr><td><strong>DropDown</strong></td><td>Users can type a value or select one from the dropdown list</td></tr>
+    <tr><td><strong>DropDownList</strong></td><td>Users can only select from the predefined list — they cannot type custom values</td></tr>
+  </tbody>
+</table>
 
-<p>list. You can configure a Combo Box element with a Combo Box animation. The Combo Box animation is only used by the Combo Box element. Combo Box types include:  Simple: At runtime, users can type a value or select one using up and down arrow buttons.  DropDown: At runtime, users can type a value or select one from the list  DropDownList: At runtime, users can only select a value from the list. They cannot type one. You can use the Static Values and Captions list to define values for the drop-down list. You can also use properties that are specific to the Combo Box control in scripting. At runtime, you can access the script to view and modify the items in the Combo Box Control. Some Combo Box-specific properties available at runtime include:  Count: Returns the number of items in a Combo Box control  NewIndex: Returns the index of the last item added to the Combo Box list These properties are available when you browse for a Combo Box control in your HMI's attribute/ tag browser.</p>
+<p>You configure a Combo Box with a Combo Box animation, which is unique to this control type. The Static Values and Captions list defines the selectable options, and you can access runtime properties like <code>Count</code> (number of items) and <code>NewIndex</code> (index of the last added item) through scripting.</p>
 
 <div class="screenshot">
   <img src="../images/page_0204_0.png" alt="Tools panel from graphic editor showing drawing, text, shape, and navigation tools in grid layout">
-  <div class="caption">Tools panel from graphic editor showing drawing, text, shape, and navigation tools in grid layout</div>
+  <div class="caption">The Tools pane showing the Combo Box tool for adding dropdown controls (page 204)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0204_1.png" alt="Combo Box animation editor showing Static Values list with Mixer100 through Mixer800 entries and MixingProcess.OwningObject reference">
-  <div class="caption">Combo Box animation editor showing Static Values list with Mixer100 through Mixer800 entries and MixingProcess.OwningObject reference</div>
+  <div class="caption">A fully configured Combo Box animation with mixer entries and OwningObject reference (page 204)</div>
 </div>
 
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> What are the key concepts covered in this lesson about Lab 7 – Creating the Mixer Display?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
+  <p><strong>1.</strong> How do you embed a graphic from a contained object into a symbol on the canvas?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Right-click the canvas and select Embed Industrial Graphic. In the Galaxy Browser, click the Relative References button to see contained objects, then select the desired relative reference (e.g., Me.Pump1\Pump_Detailed) and click OK.</p></details>
 
-  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <p><strong>2.</strong> Why do you need to use Order | Send To Back on the Tank graphic?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">The Tank graphic is placed on top of the agitator, level, and temperature graphics. Sending it to the back moves it behind those elements so they are visible inside the tank boundary.</p></details>
 
+  <p><strong>3.</strong> What happens when you change a connector's ConnectionType to "Straight"?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">The bends in the connector are removed, making the connector a straight line between the two connection points. You may then need to adjust element positions to ensure the connectors align properly.</p></details>
+
+  <p><strong>4.</strong> What does the Value Display animation with the Tag Name option show at runtime?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">It displays the tag name of the hosting object — for example, it shows "$Mixer" for the mixer template, allowing operators to identify which object the graphic represents.</p></details>
+
+  <p><strong>5.</strong> Why does WindowMaker prompt you to confirm when replacing an embedded symbol in a frame window?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Frame windows can only host one embedded symbol. Confirming the replacement removes the old symbol (e.g., Level_Detailed) and replaces it with the new one (MixingProcess_Detailed).</p></details>
 </div>
 
-<p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson 17 — The OwningObject Property + Lab 8</p>
+<p class="source">Module 3 — Lab 7: Creating the Mixer Display. AVEVA InTouch for System Platform 2023 Training.</p>
 
 <script>
 

@@ -99,372 +99,578 @@
 </nav>
 
 <h1>Lesson 35: Security Overview</h1>
-<p class="page-ref">Module 7 — Security | Pages 439–472</p>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 7, Section 1 (pages 439–472)</p>
+<p class="page-ref">Comprehensive overview of the AVEVA security model — authentication modes, user roles and permissions, object-level security classifications, the security audit trail, and InTouch security script functions.</p>
 
+<hr>
 
-<div class="screenshot">
-  <img src="../images/page_0439.png" alt="Title/cover photo showing diverse people working at desktop computers in a shared workspace or computer lab setting">
-  <div class="caption">Title/cover photo showing diverse people working at desktop computers in a shared workspace or computer lab setting</div>
+<!-- ============================================================ -->
+<h2>35.1 Introduction to Application Security</h2>
+<p class="page-ref">Reference: Module 7, Section 1 (pages 441–442)</p>
+
+<p>Security in AVEVA's System Platform is a <strong>global, relationship-based system</strong> that governs every object in the Galaxy database. Rather than relying on simple file-level permissions, the security model defines explicit relationships between users, roles, and the objects and functions they are permitted to interact with. This gives system administrators fine-grained control over who can perform which operations — from routine day-to-day tasks to critical configuration changes.</p>
+
+<p>The security system is designed so that administrators can easily define users, assign them to roles, and grant those roles specific operational permissions on particular objects. Permissions are defined in terms of what operations a user can perform on Automation objects, and these permissions flow through a hierarchy of security roles, security groups, and access levels.</p>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> The InTouch security model is deeply integrated with Application Server. When you configure security for a node, InTouch uses methods and dialog boxes from Application Server for log-on and log-off operations. Users are configured in the System Platform IDE, not directly in InTouch.
 </div>
 
-<p> Review configuring Application Security  Describe Authentication Modes, General permissions, and Operational permissions  Provide a brief overview of Secured and Verified Write Security classifications  Customize the runtime environment for better security  Configure the InTouch runtime environment for inactivity functionality  Introduce the EnableDisableKeys() script function</p>
+<p>Security includes two advanced write-protection mechanisms that specifically affect InTouch:</p>
+<ul>
+  <li><strong>Secured Write:</strong> When writing data to a Galaxy attribute from InTouch, the operator must re-enter their password to complete the write. This adds an authentication confirmation step for routine operations.</li>
+  <li><strong>Verified Write:</strong> Writing data requires authentication from <em>two different</em> users — the operator who initiates the write, and a second user who verifies it. This implements a "four-eyes" principle for critical changes.</li>
+</ul>
 
-<p>database. It is a relationship-based security system between users and the objects and functions of the Galaxy. Security is designed to allow system administrators easily define users and assign the operations they are allowed to perform. The security permissions are defined in terms of the operations the users can perform using Automation objects. Configuring Security Before the security editor for a Galaxy is opened, ensure that:  No other user is connected to the Galaxy  All objects in the Galaxy are checked in  The user profile has configuration permissions to change Framework Configuration/Modify Security Model, if security is previously configured If the security editor is opened before these conditions are met, a warning message appears and access is denied. Do not configure security settings of the IDE while a Managed InTouch application is open for editing in WindowMaker. Other users who try to open the Galaxy while security is being configured are denied access to the Galaxy. Only change the System Administrator username or password using the Change Network Account Utility. The administrator account information is cached, and the engines may need to be redeployed after the account is changed, so that the engines run using the current information. Key Points Security is based on security roles (configuration, system administration, and runtime permissions) and security groups, which determine the runtime permissions for a particular security role on an object-level basis. When configuring a node to use security, the InTouch HMI uses methods and dialog boxes from Application Server for log on and log off operations. Users are configured in the System Platform IDE. Security includes advanced security mechanisms that also affect InTouch, such as:  Secured Write: Writing data to a Galaxy attribute from InTouch that requires operators with the right permission to reenter their passwords to complete the writeback  Verified Write: Writing data to a Galaxy attribute from InTouch that requires operators with the right permission to reenter their passwords and also authorization from a second operator with the right permission to complete the writeback For more information, see the InTouch HMI Application Management and Extension Guide. This section provides an overview of security in Application Server, including authentication modes, permissions, roles, and users. It also describes security classifications for attributes, the security audit trail, InTouch security tags, and script functions.</p>
+<!-- ============================================================ -->
+<h2>35.2 Configuring Security for the Galaxy</h2>
+<p class="page-ref">Reference: Module 7, Section 1 (pages 441–442)</p>
 
-<p>security:  Galaxy: Uses local Galaxy configuration to authenticate users. All security for the Galaxy is specified and contained at the specific Galaxy level. When the user logs on, security credentials are checked and access to areas and activities is granted at the Galaxy level.  OS User based: Uses the user authentication system of the operating system on an individual user level. All security for the Galaxy is specified and contained in the operating system (OS) on a user level basis. When the user logs on, security credentials are checked and access to areas and activities are granted at the OS user level.  OS Group based: Uses the user authentication system of the operating system on a group basis. All security for the Galaxy is specified and contained in the user-to-roles mapping created in the OS to assign security. When a user logs on, security credentials are checked and verified at the OS group level. OS groups are mapped to security roles in the Galaxy to allow access to areas and activities in the Galaxy.  Authentication providers: Uses the AVEVA Identity Manager (AIM) to create a unified security management infrastructure across your local System Platform nodes and Azure VMs by leveraging operating system security and Azure Active Directory (AD). Refer to your System Platform documentation for more information about the AVEVA Identity Manager and configuring Azure AD as an identity provider.</p>
+<p>Before you can open the security editor for a Galaxy, several conditions must be met. First, no other user should be connected to the Galaxy — if others are connected, they will be denied access while security is being configured. Second, all objects in the Galaxy must be checked in. You can use the Find button on the Home ribbon in the IDE to search for checked-out objects (enable "Only checked-out objects" and search in both templates and instances), then right-click and select check-in. Third, your user profile must have the configuration permissions required to change Framework Configuration/Modify Security Model if security was previously configured.</p>
 
-<p>work-based authorities. Two roles are defined by default: Administrator and Default. You can specify General and Operational Permissions for each role:  General permissions relate to application configuration and administration tasks.  Operational permissions relate to the security groups listed on the Security groups page. By default, the Administrator and Default roles have all permissions. All users belong to the Default role and this relationship cannot be changed. Therefore, it is highly recommended that you remove all permissions from the Default role. Note: The General permissions for the role of Administrator cannot be modified. The following Operational permissions can be associated with a role:  Can Modify ''Operate'' Attributes: Allows users with operational permissions to do certain normal day-to-day tasks like changing setpoint, output, and control mode for a PID object, or commanding a Discrete Device object.  Can Modify ''Tune'' Attributes: Allows users to tune the attribute in the runtime environment; examples of tuning are attributes that adjust alarm setpoints and PID sensitivity.  Can Modify ''Configure'' Attributes: Allows users to configure the value of an attribute, which requires that the user first put the object Off scan; writing to these attributes is considered a significant configuration change, for example, a PLC register that defines a Discrete Device input.  Can Acknowledge Alarms: Allows users to manually acknowledge an alarm in the runtime environment.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0443.png" alt="AVEVA System Platform Security configuration panel, Roles tab, showing Administrator (level 9999) and Default (level 0) roles with General and Operational permissions tree">
-  <div class="caption">AVEVA System Platform Security configuration panel, Roles tab, showing Administrator (level 9999) and Default (level 0) roles with General and Operational permissions tree</div>
+<div class="pitfall">
+  <strong>Warning:</strong> Do not configure security settings in the IDE while a Managed InTouch application is open for editing in WindowMaker. Also, only change the System Administrator username or password using the Change Network Account Utility — the administrator account information is cached, and engines may need to be redeployed after the account is changed.
 </div>
-
-<p> Can Verify Writes: Allows users to provide an authentication signature for attributes configured with Verified Writes security classification; only users with this permission can verify a task performed by users with the Can Modify ''Operate'' Attributes permission.  Can Shelve Alarms: Allows users to manually shelve and unshelve alarms.  Can Modify Alarm Modes: Allows users to modify the mode of an alarm.  Can Modify Plant States: Allows users to modify plant states, for state-based alarming. Important: For Galaxies that have security enabled, and are migrated to Application Server, the Can Modify Operate Attributes Operational permission setting will be copied to the Can Verify Writes attribute. Starting with Application Server, Galaxies have the Can Verify Writes Operational permission setting disabled by default. Setting Object Security Operators interact with objects through the individual attributes of those objects. Each attribute on the Object Editor can be modified by operators at runtime and can have an associated security control, which is used to modify its runtime security classification. If the security classification of an attribute is configurable, click the security control to select one of the following possible states: If the security of an attribute is shown in gray, its security classification is locked in its parent object and cannot be changed or it requires the enabling of a group attribute. Security Icon Description FreeAccess Change this value without restriction, even if there are no defined permissions on the object. Anyone can write to these attributes to perform safety or time critical tasks that can be hampered by an untimely logon request. For example, halting a failing process. Operate Work with Operate permissions to do certain normal day-to-day tasks. These include writing to attributes like Setpoint or Command for a Discrete Device object. This level of security requires Operate permission for the security group for the object. SecuredWrite Requires authentication using user name and password each time the attribute is written to. This security state also requires Operate permissions for the object. VerifiedWrite Requires Operate permissions to log on again and a second, different user to also log on as the verifier before writing to the attribute. The verifier needs to have Can Verify Writes permission for the object. Tune Allows end users with Tune Operational permissions to tune the attribute in the runtime environment. Examples of tuning are attributes that adjust alarm setpoints and PID sensitivity. Configure Allows end users with Configure Operational permissions to configure the value of the attribute. Requires that the user first put the object Off scan. Writing to these attributes is considered a significant configuration change. For example, a PLC register that defines a Discrete Device input. ViewOnly Only allows users to read the value of the attribute in the runtime environment. This attribute is never written to at runtime, regardless of the user's permissions.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0444_0.png" alt="Small shield-shaped logo icon in light blue/purple gradient, decorative element for security chapter">
-  <div class="caption">Small shield-shaped logo icon in light blue/purple gradient, decorative element for security chapter</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0444_1.png" alt="Shield icon with circular refresh/sync arrows symbol inside, representing secure data synchronization">
-  <div class="caption">Shield icon with circular refresh/sync arrows symbol inside, representing secure data synchronization</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0444_2.png" alt="Blue shield icon with clockwise refresh arrows, representing security update or scanning function">
-  <div class="caption">Blue shield icon with clockwise refresh arrows, representing security update or scanning function</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0444_3.png" alt="Hexagonal shield icon with purple letter D inside, decorative brand/logo element">
-  <div class="caption">Hexagonal shield icon with purple letter D inside, decorative brand/logo element</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0444_4.png" alt="Square icon with light blue background containing stylized dark blue letter U, decorative element">
-  <div class="caption">Square icon with light blue background containing stylized dark blue letter U, decorative element</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0444_5.png" alt="Rounded hexagon icon with checkmark/tick symbol inside, representing task completion or verification">
-  <div class="caption">Rounded hexagon icon with checkmark/tick symbol inside, representing task completion or verification</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0444_6.png" alt="Shield icon with lock/eye hybrid symbol inside, representing secure monitoring or protection">
-  <div class="caption">Shield icon with lock/eye hybrid symbol inside, representing secure monitoring or protection</div>
-</div>
-
-<p>Locking/Security The lock and security controls associated with option groups set those conditions for all options in the group. The group control typically reflects the setting for all options in the group. But, if at least one option in the group has a lock or security control that is different from the other options, the group control shows an indeterminate icon. In addition to the undefined controls, the group controls for locking and security are the same as those for individual options. Configuring Security for Symbols You can set security permissions so that at design time, the user cannot:  Import or export symbols  Create, modify, or delete symbols on the Graphics tab  Create, modify, or delete symbols in any AutomationObject template  Create, modify, or delete symbols in any AutomationObject instance  Create, modify, or delete View Applications, such as the InTouch View Applications  Deploy or undeploy View Applications, such as InTouch View Applications  Edit the configuration of the Quality and Status Display Security Audit Trail Auditing is a primary function of any security system. Use a set of security system tags to identify the users who logged on to an InTouch application, the domain from which the user logged on, and when the attempt was made. System Tags in InTouch Related to Security The following system tags are available to deal with security. Tagname Type Valid Values Access $AccessLevel System Integer 0-9999 Read Only $ChangePassword System Discrete 1 or 0 Read Write $InactivityTimeout System Discrete 1 or 0 Read Only $InactivityWarning System Discrete 1 or 0 Read Only $Operator System Message 16-characters max Read Only $OperatorName System Message 131-characters max Read Only $OperatorEntered System Message 16-characters max Write Only $PasswordEntered System Message 16-characters max Write Only $VerifiedUserName System Message 16-characters max Read Only</p>
-
-<p>script:  Logoff  AttemptInvisibleLogon  ChangePassword  InvisibleVerifyCredentials  LogonCurrentUser  PostLogonDialog Logoff() Function Logs off the currently logged on user and sets the current user status to the default None operator. This script function is also available in scripting. AttemptInvisibleLogon() Function The AttemptInvisibleLogon() function can be used in a script to log on a user to InTouch using the supplied credentials. The user is not required to enter a password or user ID. If the logon attempt succeeds, then True is returned and the $OperatorName, $AccessLevel, and $Operator system tags are updated accordingly. If the log on attempt fails, then FALSE is returned and the user currently logged on (if any) continues to be the current user. The Domain argument must be an empty string. If the security mode is using operating system- based security, the UserId argument should contain the fully qualified user name with domain name or computer name. ChangePassword() Function Shows the Change Password dialog box, allowing the operator logged on to the system to change his or her password. InvisibleVerifyCredentials() Function The InvisibleVerifyCredentials() function can be used in a synchronous QuickScript to verify the credentials of the given user without logging the user on to the InTouch HMI. If the supplied combination of user, password, and domain are valid, then the corresponding access level associated with the user is returned as an integer. Otherwise, -1 is returned. This function does not change the currently logged on user. The Domain argument must be an empty string. If the security mode is using operating system-based security, the UserId argument should contain the fully qualified user name with domain name or computer name. LogonCurrentUser() Function Logs on to InTouch with the user account that is currently logged on to the Windows operating system. Use this function only for operating system-based security. Returns -1 and does not change the values assigned to $Operator, $OperatorName and $AccessLevel, if the logon fails. PostLogonDialog() Function Shows the InTouch Logon dialog box and returns True. This script function is also available in scripting.</p>
-
-<p>lab, you will create a custom logon display using built-in script functions for security. Additionally, you will enable security for your Galaxy and configure users, passwords, roles, and access levels. Then you will add and configure Visibility and Disable animations containing the InTouch:$AccessLevel tag to protect your application from unauthorized access. Finally, you will use the logon display to authenticate users in runtime and test the impact of security on your InTouch application. Objectives Upon completion of this lab, you will be able to:  Create a symbol to authenticate users at runtime and display the currently logged on user and their access level  Add Visibility and Disable animations using access levels to prevent unauthorized access  Create scripts using PostLogonDialog() and Logoff() security functions</p>
-
-<div class="screenshot">
-  <img src="../images/page_0447.png" alt="Runtime login panel showing Logon/Logoff buttons with user info fields (User: TUser, Full Name: Training User, Access Level: 1000)">
-  <div class="caption">Runtime login panel showing Logon/Logoff buttons with user info fields (User: TUser, Full Name: Training User, Access Level: 1000)</div>
-</div>
-
-<p>First, you will configure security. To do this, you will set the authentication mode, add a role, set its access level, add a user, and associate the user to the role. 1. Close WindowMaker and check in the $MixerView template. Note: To configure security, all objects in the Galaxy must be checked in. To do this, use the Find button on the Home ribbon in the IDE. There, you can enable Only checked-out objects and search in both templates and instances. For all objects found, right-click and select check-in. 2. In the IDE, on the Galaxy menu, select Configure | Security. The Security area appears.</p>
 
 <div class="screenshot">
   <img src="../images/page_0448.png" alt="AVEVA IDE Configure panel with Security section expanded, showing Galaxy, IDE, Communication, and System configuration options">
-  <div class="caption">AVEVA IDE Configure panel with Security section expanded, showing Galaxy, IDE, Communication, and System configuration options</div>
+  <div class="caption">The IDE Configure panel — access the Security settings from Galaxy &gt; Configure &gt; Security (page 448)</div>
 </div>
 
-<p>3. In Security, on the Authentication mode tab, select Galaxy. 4. On the Roles tab, click Add new Role.</p>
+<p>To open the Security editor, go to <strong>Galaxy menu &gt; Configure &gt; Security</strong> in the IDE. This is where you will set the authentication mode, define roles, create users, and assign passwords — all of which we will walk through in Lab 20.</p>
+
+<!-- ============================================================ -->
+<h2>35.3 Authentication Modes</h2>
+<p class="page-ref">Reference: Module 7, Section 1 (page 442)</p>
+
+<p>The authentication mode determines <em>how</em> user credentials are validated when someone logs on to the system. AVEVA offers four authentication options, each suited to different deployment scenarios:</p>
+
+<table>
+  <thead>
+    <tr><th>Mode</th><th>How It Works</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Galaxy</strong></td><td>Uses the local Galaxy configuration to authenticate users. All security is contained at the Galaxy level. When a user logs on, their credentials are checked against the Galaxy's own user database and access is granted accordingly. This is the simplest option and ideal for standalone installations.</td></tr>
+    <tr><td><strong>OS User based</strong></td><td>Leverages the operating system's user authentication on an individual user level. Security credentials are checked against the OS user accounts. Useful when you want a single sign-on experience tied to Windows login.</td></tr>
+    <tr><td><strong>OS Group based</strong></td><td>Uses OS authentication at a group level. OS groups are mapped to security roles in the Galaxy. When a user logs on, their OS group membership is verified and mapped to Galaxy roles. Each node in the Galaxy must have the same OS Users, Groups, and user-group mappings for consistent access.</td></tr>
+    <tr><td><strong>Authentication providers (AIM)</strong></td><td>Uses AVEVA Identity Manager (AIM) to create a unified security infrastructure across local nodes and Azure VMs, leveraging Azure Active Directory (AD) as an identity provider.</td></tr>
+  </tbody>
+</table>
 
 <div class="screenshot">
-  <img src="../images/page_0449_0.png" alt="Security &gt; Authentication mode tab with Galaxy authentication mode selected, showing None/Galaxy/OS User/OS Group/Authentication providers options">
-  <div class="caption">Security &gt; Authentication mode tab with Galaxy authentication mode selected, showing None/Galaxy/OS User/OS Group/Authentication providers options</div>
+  <img src="../images/page_0449_0.png" alt="Security Authentication mode tab with Galaxy authentication mode selected, showing None/Galaxy/OS User/OS Group/Authentication providers options">
+  <div class="caption">The Authentication mode tab — select Galaxy, OS User, OS Group, or Authentication providers (page 449)</div>
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0449_1.png" alt="Security &gt; Roles tab showing Administrator (9999) and Default (0) roles, with full General and Operational permissions expanded for Administrator">
-  <div class="caption">Security &gt; Roles tab showing Administrator (9999) and Default (0) roles, with full General and Operational permissions expanded for Administrator</div>
+<div class="key-concept">
+  <strong>Key Concept:</strong> The Galaxy authentication mode is the most commonly used for training and standalone deployments. It keeps all user credentials within the Galaxy database itself, making it self-contained and easy to manage.
 </div>
 
-<p>5. Name the new role Training. 6. In Access level, double-click and enter 1000. 7. On the Users tab, for the Administrator user, double-click in Full name and enter System Administrator.</p>
+<!-- ============================================================ -->
+<h2>35.4 General and Operational Permissions</h2>
+<p class="page-ref">Reference: Module 7, Section 1 (pages 443–444)</p>
 
-<div class="screenshot">
-  <img src="../images/page_0450_0.png" alt="Security &gt; Roles tab now showing three roles: Administrator (9999), Default (0), and Training (0) with Training role highlighted">
-  <div class="caption">Security &gt; Roles tab now showing three roles: Administrator (9999), Default (0), and Training (0) with Training role highlighted</div>
+<p>The security model organizes permissions into two categories. <strong>General permissions</strong> relate to application configuration and administration tasks — things like starting the IDE, importing/exporting, and general configuration. <strong>Operational permissions</strong> relate to runtime operations on objects, such as modifying attributes or acknowledging alarms.</p>
+
+<p>Two roles are defined by default in every Galaxy:</p>
+<ul>
+  <li><strong>Administrator</strong> — has all permissions and cannot have its General permissions modified</li>
+  <li><strong>Default</strong> — all users belong to this role automatically; this relationship cannot be changed</li>
+</ul>
+
+<div class="pitfall">
+  <strong>Best Practice:</strong> Since every user automatically belongs to the Default role, you should remove all permissions from the Default role and instead grant permissions through other, more specific roles. This prevents unauthorized users from gaining excessive access simply by being in the Galaxy.
 </div>
 
+<h3>Operational Permissions</h3>
+<p>The following operational permissions can be associated with a role:</p>
+
+<table>
+  <thead>
+    <tr><th>Permission</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Can Modify "Operate" Attributes</strong></td><td>Allows day-to-day tasks like changing setpoints, outputs, and control modes for PID objects, or commanding Discrete Device objects.</td></tr>
+    <tr><td><strong>Can Modify "Tune" Attributes</strong></td><td>Allows tuning attributes in the runtime environment, such as adjusting alarm setpoints and PID sensitivity.</td></tr>
+    <tr><td><strong>Can Modify "Configure" Attributes</strong></td><td>Allows configuration changes that require the object to first be placed Off scan. This is for significant changes like modifying PLC register definitions.</td></tr>
+    <tr><td><strong>Can Acknowledge Alarms</strong></td><td>Allows manual acknowledgment of alarms in the runtime environment.</td></tr>
+    <tr><td><strong>Can Verify Writes</strong></td><td>Allows providing an authentication signature for Verified Write attributes. Only users with this permission can verify a task performed by operators with Can Modify "Operate" Attributes.</td></tr>
+    <tr><td><strong>Can Shelve Alarms</strong></td><td>Allows manually shelving and unshelving alarms.</td></tr>
+    <tr><td><strong>Can Modify Alarm Modes</strong></td><td>Allows modifying the mode of an alarm (e.g., enabling or disabling alarm groups).</td></tr>
+    <tr><td><strong>Can Modify Plant States</strong></td><td>Allows modifying plant states for state-based alarming.</td></tr>
+  </tbody>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0450_1.png" alt="Security &gt; Roles tab with Training role selected, showing its access level has been set to 1000">
-  <div class="caption">Security &gt; Roles tab with Training role selected, showing its access level has been set to 1000</div>
+  <img src="../images/page_0449_1.png" alt="Security Roles tab showing Administrator (9999) and Default (0) roles, with full General and Operational permissions expanded for Administrator">
+  <div class="caption">The Roles tab showing Administrator with full permissions — note the General and Operational permissions trees (page 449)</div>
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0450_2.png" alt="Security &gt; Users tab showing Authorized users list with Administrator (System Administrator) and DefaultUser">
-  <div class="caption">Security &gt; Users tab showing Authorized users list with Administrator (System Administrator) and DefaultUser</div>
+<div class="tip">
+  <strong>Tip:</strong> For Galaxies migrated from earlier versions to Application Server, the "Can Modify Operate Attributes" setting is copied to "Can Verify Writes." In new Application Server Galaxies, Can Verify Writes is disabled by default.
 </div>
 
-<p>8. Click Add new User. 9. Name the new user TUser. 10. In Full name, double-click and enter Training User.</p>
+<!-- ============================================================ -->
+<h2>35.5 Setting Object Security Classifications</h2>
+<p class="page-ref">Reference: Module 7, Section 1 (page 444)</p>
 
-<div class="screenshot">
-  <img src="../images/page_0451_0.png" alt="Security &gt; Users tab with Administrator and DefaultUser listed, Change Password and +/- buttons visible">
-  <div class="caption">Security &gt; Users tab with Administrator and DefaultUser listed, Change Password and +/- buttons visible</div>
+<p>Operators interact with automation objects through individual attributes. Each attribute that can be modified at runtime can have an associated <strong>security classification</strong> — a setting that controls who may write to it and under what conditions. Clicking the security control (shield icon) next to an attribute lets you select from one of seven possible security states:</p>
+
+<table>
+  <thead>
+    <tr><th>Classification</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>FreeAccess</strong></td><td>No restrictions — anyone can write to this attribute without logging in. Used for safety-critical tasks like halting a failing process where a login request could cause dangerous delays.</td></tr>
+    <tr><td><strong>Operate</strong></td><td>Requires Operate permissions for the object's security group. Used for normal tasks like writing to Setpoint or Command attributes.</td></tr>
+    <tr><td><strong>SecuredWrite</strong></td><td>Requires username/password authentication each time the attribute is written to, plus Operate permissions. Adds an explicit confirmation step.</td></tr>
+    <tr><td><strong>VerifiedWrite</strong></td><td>Requires two users: the operator (with Operate permissions) and a verifier (with Can Verify Writes permission). Implements a four-eyes principle.</td></tr>
+    <tr><td><strong>Tune</strong></td><td>Requires Tune operational permissions. Used for tuning alarm setpoints and PID sensitivity at runtime.</td></tr>
+    <tr><td><strong>Configure</strong></td><td>Requires Configure operational permissions. The object must first be placed Off scan before writing. Used for significant configuration changes.</td></tr>
+    <tr><td><strong>ViewOnly</strong></td><td>Read-only access — users can view the attribute but can never write to it at runtime, regardless of permissions.</td></tr>
+  </tbody>
+</table>
+
+<div class="tip">
+  <strong>Tip:</strong> If an attribute's security is shown in gray, its classification is locked in the parent object and cannot be changed, or it requires enabling a group attribute first.
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0451_1.png" alt="Security &gt; Users tab now showing three users: Administrator, DefaultUser, and TUser (highlighted)">
-  <div class="caption">Security &gt; Users tab now showing three users: Administrator, DefaultUser, and TUser (highlighted)</div>
+<!-- ============================================================ -->
+<h2>35.6 Group Locking and Security</h2>
+<p class="page-ref">Reference: Module 7, Section 1 (page 445)</p>
+
+<p>The lock and security controls associated with option groups allow you to set conditions for <em>all</em> options in the group at once. The group control typically reflects the uniform setting for every option in the group. However, if even one option differs from the others, the group control shows an <strong>indeterminate icon</strong> — alerting you that the group has mixed settings.</p>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> Group controls behave identically to individual option controls. If you change the security classification at the group level, it propagates to all options within the group — unless an individual option has been explicitly overridden.
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0451_2.png" alt="Security &gt; Users tab with TUser selected, role assignment panel below showing Default (checked) and Training (checked) roles assigned to TUser">
-  <div class="caption">Security &gt; Users tab with TUser selected, role assignment panel below showing Default (checked) and Training (checked) roles assigned to TUser</div>
-</div>
+<!-- ============================================================ -->
+<h2>35.7 Configuring Security for Symbols</h2>
+<p class="page-ref">Reference: Module 7, Section 1 (page 445)</p>
 
-<p>11. In the Role list, check Training to associate the Training role with TUser. 12. Click Change Password.</p>
+<p>Security extends beyond runtime operations to protect design-time activities as well. You can set permissions so that users cannot:</p>
+<ul>
+  <li>Import or export symbols</li>
+  <li>Create, modify, or delete symbols on the Graphics tab</li>
+  <li>Create, modify, or delete symbols in any AutomationObject template or instance</li>
+  <li>Create, modify, or delete View Applications (such as InTouch View Applications)</li>
+  <li>Deploy or undeploy View Applications</li>
+  <li>Edit the configuration of the Quality and Status Display</li>
+</ul>
 
-<div class="screenshot">
-  <img src="../images/page_0452_0.png" alt="Security &gt; Users tab with TUser selected, showing role assignments: Administrator unchecked, Default checked, Training checked (highlighted)">
-  <div class="caption">Security &gt; Users tab with TUser selected, showing role assignments: Administrator unchecked, Default checked, Training checked (highlighted)</div>
-</div>
+<!-- ============================================================ -->
+<h2>35.8 Security Audit Trail</h2>
+<p class="page-ref">Reference: Module 7, Section 1 (page 445)</p>
 
-<div class="screenshot">
-  <img src="../images/page_0452_1.png" alt="Close-up of Change Password button and +/- buttons in the Users tab header">
-  <div class="caption">Close-up of Change Password button and +/- buttons in the Users tab header</div>
-</div>
+<p>Auditing is a fundamental function of any security system. AVEVA provides a set of <strong>security system tags</strong> that let you track which users logged on to an InTouch application, from which domain, and when the attempt was made.</p>
 
-<p>appears. 13. In New password, enter ww. 14. In Confirm new password, enter ww. 15. Click Save to close Change password.</p>
+<h3>Security-Related System Tags</h3>
 
-<div class="screenshot">
-  <img src="../images/page_0453_0.png" alt="Change password dialog for TUser with new password field containing two masked characters, old password empty">
-  <div class="caption">Change password dialog for TUser with new password field containing two masked characters, old password empty</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0453_1.png" alt="Change password dialog for TUser with both new password and confirm fields filled with two masked characters each">
-  <div class="caption">Change password dialog for TUser with both new password and confirm fields filled with two masked characters each</div>
-</div>
-
-<p>16. Click Save to close Security. Sign in to TrainingGalaxy appears. 17. In User name, enter administrator. 18. Click Next.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0454_0.png" alt="Security &gt; Users tab showing TUser selected with Training role checked, Save and Cancel buttons at bottom">
-  <div class="caption">Security &gt; Users tab showing TUser selected with Training role checked, Save and Cancel buttons at bottom</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0454_1.png" alt="Sign in to TrainingGalaxy login dialog with AVEVA logo, administrator username pre-filled, Cancel and Next buttons">
-  <div class="caption">Sign in to TrainingGalaxy login dialog with AVEVA logo, administrator username pre-filled, Cancel and Next buttons</div>
-</div>
-
-<p>19. Click Sign in. The administrator account has no password. After a moment, the IDE closes and then reopens. 20. In the IDE, on the top-right of the title bar, click the profile icon. Notice that administrator is shown as the logged-in user. Note: Alternatively, you can verify the logged-in user from the backstage. You can do this by selecting Galaxy | User | Galaxy User, and notice that administrator is shown as the logged- in user.</p>
+<table>
+  <thead>
+    <tr><th>Tagname</th><th>Type</th><th>Valid Values</th><th>Access</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>$AccessLevel</code></td><td>System Integer</td><td>0–9999</td><td>Read Only</td></tr>
+    <tr><td><code>$ChangePassword</code></td><td>System Discrete</td><td>1 or 0</td><td>Read Write</td></tr>
+    <tr><td><code>$InactivityTimeout</code></td><td>System Discrete</td><td>1 or 0</td><td>Read Only</td></tr>
+    <tr><td><code>$InactivityWarning</code></td><td>System Discrete</td><td>1 or 0</td><td>Read Only</td></tr>
+    <tr><td><code>$Operator</code></td><td>System Message</td><td>16 characters max</td><td>Read Only</td></tr>
+    <tr><td><code>$OperatorName</code></td><td>System Message</td><td>131 characters max</td><td>Read Only</td></tr>
+    <tr><td><code>$OperatorEntered</code></td><td>System Message</td><td>16 characters max</td><td>Write Only</td></tr>
+    <tr><td><code>$PasswordEntered</code></td><td>System Message</td><td>16 characters max</td><td>Write Only</td></tr>
+    <tr><td><code>$VerifiedUserName</code></td><td>System Message</td><td>16 characters max</td><td>Read Only</td></tr>
+  </tbody>
+</table>
 
 <div class="screenshot">
-  <img src="../images/page_0455_0.png" alt="Sign in to TrainingGalaxy dialog showing password entry field with cursor ready for administrator login">
-  <div class="caption">Sign in to TrainingGalaxy dialog showing password entry field with cursor ready for administrator login</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0455_1.png" alt="AVEVA System Platform IDE with user profile dropdown open showing administrator logged in and AVEVA Connect section">
-  <div class="caption">AVEVA System Platform IDE with user profile dropdown open showing administrator logged in and AVEVA Connect section</div>
-</div>
-
-<p>Next, you will secure interactive elements of your application from unauthorized access. You will do this by configuring Disable and Visibility animations with expressions linked to InTouch:$AccessLevel. 21. In the IDE, on the Templates tab, in the Training\Project template toolset, open $Mixer for editing. 22. In Content, open SwitchedMixingProcess for editing. 23. On the canvas, double-click Select Mixer. 24. Add a Visibility animation. 25. In States, click Boolean. 26. In Reference, enter InTouch:$AccessLevel >= 1000. 27. In Visible When Expression is, verify the True, 1, On setting is selected.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0456_0.png" alt="WindowMaker context menu under Visualization section with Visibility option highlighted, along with Fill Style, Line Style, Text Style, and Blink options">
-  <div class="caption">WindowMaker context menu under Visualization section with Visibility option highlighted, along with Fill Style, Line Style, Text Style, and Blink options</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0456_1.png" alt="Edit Animations dialog for SelectMixer object: Visibility animation configured with Boolean expression InTouch:$AccessLevel &gt;= 1000, visible when True">
-  <div class="caption">Edit Animations dialog for SelectMixer object: Visibility animation configured with Boolean expression InTouch:$AccessLevel &gt;= 1000, visible when True</div>
-</div>
-
-<p>28. Click OK to close Edit Animations. 29. On the canvas, double-click MixerDropDown. 30. Add a Disable animation. 31. In States, click Boolean. 32. In Expression, enter InTouch:$AccessLevel >= 1000. 33. In Disable When Expression is, select False, 0, off. 34. Click OK to close Edit Animations. 35. Save and close the graphic.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0457.png" alt="Edit Animations dialog for MixerDropDown combo box: Disable animation configured with InTouch:$AccessLevel &gt;= 1000, disabled when False">
-  <div class="caption">Edit Animations dialog for MixerDropDown combo box: Disable animation configured with InTouch:$AccessLevel &gt;= 1000, disabled when False</div>
-</div>
-
-<p>36. Save and close the $Mixer template. Because you changed users and reopened the IDE in an earlier step, the check-in warning for automation objects must be re-acknowledged. 37. Click Check-in and complete the check-in process. Protect Equipment Controls from Unauthorized Access Now, you will continue securing your application by adding Disable animations to the commands and setpoint of the valve, pump, and agitator. 38. On the Graphics tab, in the Training toolset, open Valve_Detailed for editing. 39. On the canvas, double-click Valve and add a Disable animation.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0458_0.png" alt="Check-in dialog with warning message about propagating changes to 9 derived objects, with Comment input field">
-  <div class="caption">Check-in dialog with warning message about propagating changes to 9 derived objects, with Comment input field</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0458_1.png" alt="Show Symbol animation panel showing Visualization options (Visibility, Fill Style, Line Style) and Interaction options (Disable highlighted, User Input, Slider)">
-  <div class="caption">Show Symbol animation panel showing Visualization options (Visibility, Fill Style, Line Style) and Interaction options (Disable highlighted, User Input, Slider)</div>
-</div>
-
-<p>40. Configure the animation as follows: 41. Click OK to close Edit Animations. 42. Right-click Valve and select Animations | Copy. 43. Save and close and check in the graphic. States: Boolean Reference: InTouch:$AccessLevel == 0 Disabled When Expression is: True, 1, On (default)</p>
-
-<div class="screenshot">
-  <img src="../images/page_0459.png" alt="Edit Animations dialog for Valve object: Disable animation with InTouch:$AccessLevel == 0, disabled when True, plus Show Symbol animation also listed"Do Not" watermark">
-  <div class="caption">Edit Animations dialog for Valve object: Disable animation with InTouch:$AccessLevel == 0, disabled when True, plus Show Symbol animation also listed</div>
-</div>
-
-<p>44. On the Graphics tab, open Pump_Detailed for editing. 45. On the canvas, right-click Pump and select Animations | Paste. A message appears, indicating the Pump already has a Show Symbol animation. Paste will only add animations, it will not replace animations. Because the Pump already has a Show Symbol animation, only the Disable animation will be pasted to the graphic. 46. Click OK to acknowledge the message. 47. Save and close and check in the graphic. 48. On the Graphics tab, open Agitator_Detailed for editing. 49. On the canvas, right-click Agitator and select Animations | Paste. 50. Click OK to acknowledge the message. 51. Save and close and check in the graphic.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0460.png" alt="Graphic Editor information dialog stating Pump already has Show Symbol animation so paste will only add Disable animation"Do Not Copy" watermark">
-  <div class="caption">Graphic Editor information dialog stating Pump already has Show Symbol animation so paste will only add Disable animation</div>
-</div>
-
-<p>Now, you will create a symbol that users will use to log in and log out during runtime. 52. On the Graphics tab, in the Training toolset, create a symbol named SecurityDisplay, and then open it for editing. 53. On the canvas, add a Text element and enter User:. Note: Leave room to the left of the text element for some buttons that will be configured later in this lab. 54. Configure the text element as follows: 55. On the canvas, duplicate User: and place the duplicate below the original. 56. Change the text of the duplicate to User Full Name:. 57. On the canvas, duplicate User Full Name: and place the duplicate below the original. 58. Change the text of the duplicate to Access Level:. 59. Use alignment tools to position the text elements as follows: ElementStyle: Label Alignment: MiddleRight</p>
-
-<div class="screenshot">
-  <img src="../images/page_0461_0.png" alt="Form design canvas with alignment grid, showing layout dropdown menu open with a table/grid element selected on the canvas">
-  <div class="caption">Form design canvas with alignment grid, showing layout dropdown menu open with a table/grid element selected on the canvas</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0461_1.png" alt="Form canvas with three right-aligned text labels: User, User Full Name, and Access Level on a grid background">
-  <div class="caption">Form canvas with three right-aligned text labels: User, User Full Name, and Access Level on a grid background</div>
-</div>
-
-<p>60. To the right of each label, add a related Text Box and configure as follows: 61. Align the Text Box elements as shown below: 62. Select all three Text Box elements and configure them as follows: Elements Width Height User: 300 40 User Full Name: 300 40 Access Level: 300 40 ElementStyle: Actual_Value Alignment: MiddleLeft</p>
-
-<div class="screenshot">
-  <img src="../images/page_0462_0.png" alt="Form design with three label-textbox pairs: User, User Full Name, Access Level, all using default TextBox1 names">
-  <div class="caption">Form design with three label-textbox pairs: User, User Full Name, Access Level, all using default TextBox1 names</div>
+  <img src="../images/page_0444_0.png" alt="Security-related icon elements for the training module">
+  <div class="caption">Security system icons used throughout the module (page 444)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0462_1.png" alt="Form design with all three TextBoxes selected (showing resize handles), Actual Value property setting visible in toolbar">
-  <div class="caption">Form design with all three TextBoxes selected (showing resize handles), Actual Value property setting visible in toolbar</div>
-</div>
-
-<p>63. For the Text Box to the right of User:, add a Value Display animation and configure it as follows: 64. For the Text Box to the right of User Full Name:, add a Value Display animation and configure it as follows: 65. For the Text Box to the right of Access Level:, add a Value Display animation and configure it as follows: States: String Reference: InTouch:$Operator States: String Reference: InTouch:$OperatorName States: Analog Reference: InTouch:$AccessLevel</p>
-
-<div class="screenshot">
-  <img src="../images/page_0463_0.png" alt="Value Display configuration for TextBox1: String type showing InTouch:$Operator system variable (logged-in username)">
-  <div class="caption">Value Display configuration for TextBox1: String type showing InTouch:$Operator system variable (logged-in username)</div>
+  <img src="../images/page_0444_1.png" alt="Shield icon with refresh symbol representing secure data synchronization">
+  <div class="caption">Shield with refresh arrows — representing secure data synchronization (page 444)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0463_1.png" alt="Value Display configuration for TextBox2: String type showing InTouch:$OperatorName system variable (operator full name)">
-  <div class="caption">Value Display configuration for TextBox2: String type showing InTouch:$OperatorName system variable (operator full name)</div>
+  <img src="../images/page_0444_2.png" alt="Blue shield icon with clockwise refresh arrows">
+  <div class="caption">Shield with scanning arrows — representing security update (page 444)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0463_2.png" alt="Value Display configuration for TextBox3: Analog type showing InTouch:$AccessLevel system variable (user access level)">
-  <div class="caption">Value Display configuration for TextBox3: Analog type showing InTouch:$AccessLevel system variable (user access level)</div>
-</div>
-
-<p>66. To the left of User: draw a button, and for the text enter Logon. 67. For Logon, change the Element Style to Intensity2. 68. Double-click Logon and add an Action Scripts animation. 69. In the script body, enter: PostLogonDialog();</p>
-
-<div class="screenshot">
-  <img src="../images/page_0464_0.png" alt="Form design canvas showing Logon button and three label-textbox pairs for User, User Full Name, Access Level">
-  <div class="caption">Form design canvas showing Logon button and three label-textbox pairs for User, User Full Name, Access Level</div>
+  <img src="../images/page_0444_3.png" alt="Hexagonal shield icon with letter D">
+  <div class="caption">Security designation icon (page 444)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0464_1.png" alt="Edit Animations - Action Scripts for Button1 (Logon): script body contains PostLogonDialog(); function call, triggered on Left/Key/Touch Up">
-  <div class="caption">Edit Animations - Action Scripts for Button1 (Logon): script body contains PostLogonDialog(); function call, triggered on Left/Key/Touch Up</div>
-</div>
-
-<p>70. Add an Element Style animation and configure it as follows: 71. Click OK to close Edit Animations. 72. Duplicate Logon and place the duplicate below the original. 73. For the duplicate, change the text to Logoff. States: Boolean Expression Or Reference: InTouch:$AccessLevel <> 0 True, 1, On: Element Style: checked (default) Intensity4 selected False, 0, Off: Element Style: unchecked</p>
-
-<div class="screenshot">
-  <img src="../images/page_0465_0.png" alt="Edit Animations - Element Style for Button1 (Logon): Boolean expression InTouch:$AccessLevel &lt;&gt; 0, uses Intensity4 style when True (user logged in)">
-  <div class="caption">Edit Animations - Element Style for Button1 (Logon): Boolean expression InTouch:$AccessLevel &lt;&gt; 0, uses Intensity4 style when True (user logged in)</div>
+  <img src="../images/page_0444_4.png" alt="Square icon with letter U">
+  <div class="caption">User designation icon (page 444)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0465_1.png" alt="Form design canvas showing Logon and Logoff buttons with three label-textbox pairs on grid background">
-  <div class="caption">Form design canvas showing Logon and Logoff buttons with three label-textbox pairs on grid background</div>
-</div>
-
-<p>74. Double-click Logoff and modify the animations as follows: Element Style Action Scripts 75. Click OK to close Edit Animations. States: Boolean (default) Expression Or Reference: InTouch:$AccessLevel == 0 True, 1, On: Element Style: checked (default) Intensity4 (default) False, 0, Off: Element Style: unchecked (default) Script body: Logoff();</p>
-
-<div class="screenshot">
-  <img src="../images/page_0466_0.png" alt="Edit Animations - Element Style for Button2 (Logoff): Boolean expression InTouch:$AccessLevel == 0, uses Intensity4 style when True (no user logged in)">
-  <div class="caption">Edit Animations - Element Style for Button2 (Logoff): Boolean expression InTouch:$AccessLevel == 0, uses Intensity4 style when True (no user logged in)</div>
+  <img src="../images/page_0444_5.png" alt="Shield with checkmark representing verification">
+  <div class="caption">Verification icon — representing task completion or verification (page 444)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0466_1.png" alt="Edit Animations - Action Scripts for Button2 (Logoff): script body contains Logoff(); function call, triggered on Left/Key/Touch Up">
-  <div class="caption">Edit Animations - Action Scripts for Button2 (Logoff): script body contains Logoff(); function call, triggered on Left/Key/Touch Up</div>
+  <img src="../images/page_0444_6.png" alt="Shield with lock/eye symbol">
+  <div class="caption">Secure monitoring icon — representing protected observation (page 444)</div>
 </div>
 
-<p>76. On the Toolbox tab, search for analogwall and embed ClockAnalogWall on the canvas. 77. On the canvas, position the clock to the right of the text boxes, ensuring that the clock does not overlap the text boxes. The example below shows all elements selected on the canvas and shows that the clock does not overlap the text boxes. 78. Save and close and check in the graphic. Embed SecurityDisplay on a Window Now, you will replace the original graphic in the Logon window with the SecurityDisplay symbol. 79. In the IDE, on the Templates tab, in the Training\ViewApps template toolset, double-click $MixerView to open WindowMaker. 80. In WindowMaker, click Open to open the selected windows. 81. Scroll to the right to show the Logon window.</p>
+<!-- ============================================================ -->
+<h2>35.9 Security Script Functions</h2>
+<p class="page-ref">Reference: Module 7, Section 1 (page 446)</p>
+
+<p>InTouch provides several script functions for working with security programmatically. These are essential for building custom logon displays, handling credentials, and managing user sessions from within your application scripts.</p>
+
+<table>
+  <thead>
+    <tr><th>Function</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>Logoff()</code></td><td>Logs off the currently logged on user and sets the current user status to the default "None" operator. Available in both scripts and scripting.</td></tr>
+    <tr><td><code>AttemptInvisibleLogon()</code></td><td>Logs on a user with supplied credentials without requiring manual entry of a password or user ID. Returns True on success (updating $OperatorName, $AccessLevel, and $Operator) or False on failure.</td></tr>
+    <tr><td><code>ChangePassword()</code></td><td>Displays the Change Password dialog box, allowing the currently logged on operator to change their password.</td></tr>
+    <tr><td><code>InvisibleVerifyCredentials()</code></td><td>Verifies a user's credentials without logging them on. Returns the associated access level as an integer, or -1 if invalid. Does not change the currently logged on user.</td></tr>
+    <tr><td><code>LogonCurrentUser()</code></td><td>Logs on using the Windows account currently logged in to the operating system. Use only with OS-based security. Returns -1 on failure.</td></tr>
+    <tr><td><code>PostLogonDialog()</code></td><td>Displays the InTouch Logon dialog box and returns True. Available in both scripts and scripting.</td></tr>
+  </tbody>
+</table>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> The <code>PostLogonDialog()</code> and <code>Logoff()</code> functions are the most commonly used in building custom logon panels. They handle the standard login/logout dialogs while giving you control over when and how they appear in your application.
+</div>
+
+<!-- ============================================================ -->
+<h2>35.10 Lab 20 — Using Security Features in Graphics</h2>
+<p class="page-ref">Reference: Module 7, Lab 20 (pages 447–472)</p>
+
+<div class="lab">
+  <strong>Lab 20 Overview:</strong> In this lab, you will enable security for your Galaxy, configure users and roles, create a custom logon display using built-in script functions, and add Visibility and Disable animations using the <code>InTouch:$AccessLevel</code> tag to protect your application from unauthorized access. You will then test the security at runtime with different user accounts.
+</div>
+
+<h3>Set Up Security for the Galaxy</h3>
+
+<p>Begin by configuring security for your Galaxy. This involves setting the authentication mode, creating roles, defining users, and assigning passwords.</p>
+
+<p><strong>Step 1.</strong> Close WindowMaker and check in the $MixerView template. Remember that all objects must be checked in before security configuration can proceed.</p>
+
+<p><strong>Step 2.</strong> In the IDE, on the Galaxy menu, select <strong>Configure &gt; Security</strong>. The Security configuration area appears.</p>
+
+<p><strong>Step 3.</strong> On the Authentication mode tab, select <strong>Galaxy</strong> to use Galaxy-based authentication.</p>
+
+<p><strong>Step 4.</strong> On the Roles tab, click <strong>Add new Role</strong>.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0467_0.png" alt="Form design canvas showing Logon/Logoff buttons, label-textbox pairs, and an analog clock widget (showing 12:00) embedded on the right side">
-  <div class="caption">Form design canvas showing Logon/Logoff buttons, label-textbox pairs, and an analog clock widget (showing 12:00) embedded on the right side</div>
+  <img src="../images/page_0450_0.png" alt="Security Roles tab now showing three roles: Administrator (9999), Default (0), and Training (0) with Training role highlighted">
+  <div class="caption">After creating the Training role — it appears alongside Administrator and Default (page 450)</div>
+</div>
+
+<p><strong>Step 5.</strong> Name the new role <strong>Training</strong>. Set its Access level to <strong>1000</strong>.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0450_1.png" alt="Security Roles tab with Training role selected, showing its access level has been set to 1000">
+  <div class="caption">Training role configured with access level 1000 (page 450)</div>
+</div>
+
+<p><strong>Step 6.</strong> On the Users tab, for the Administrator user, double-click in Full name and enter <strong>System Administrator</strong>.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0450_2.png" alt="Security Users tab showing Authorized users list with Administrator (System Administrator) and DefaultUser">
+  <div class="caption">The Users tab with the Administrator's full name updated (page 450)</div>
+</div>
+
+<h3>Creating Users</h3>
+
+<p><strong>Steps 8–10.</strong> Click <strong>Add new User</strong>. Name the new user <strong>TUser</strong> with Full name <strong>Training User</strong>.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0451_0.png" alt="Security Users tab with Administrator and DefaultUser listed, Change Password and add/remove buttons visible">
+  <div class="caption">Clicking the Add new User button to create a new user (page 451)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0467_1.png" alt="Industrial HMI runtime screen showing Mixer100 with active alarms table (LoLo/Lo/HiHi/Hi), process diagram with pump, valve, mixer level chart, and navigation buttons">
-  <div class="caption">Industrial HMI runtime screen showing Mixer100 with active alarms table (LoLo/Lo/HiHi/Hi), process diagram with pump, valve, mixer level chart, and navigation buttons</div>
-</div>
-
-<p>82. In Industrial Graphics, expand Training and drag SecurityDisplay to the Logon window. A message appears. 83. Click Yes to replace the existing symbol. The Logon window is updated. 84. In Canvas, scroll back to the left. Test in Runtime Finally, you will test security at runtime. 85. Click Runtime. In the Logon window, User shows None, which means that no user is logged in.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0468_0.png" alt="Runtime view of Mixer100 content display with Select Mixer dropdown, process schematic (Pump1_001, Inlet1_001, Mixer level chart)">
-  <div class="caption">Runtime view of Mixer100 content display with Select Mixer dropdown, process schematic (Pump1_001, Inlet1_001, Mixer level chart)</div>
+  <img src="../images/page_0451_1.png" alt="Security Users tab now showing three users: Administrator, DefaultUser, and TUser highlighted">
+  <div class="caption">TUser has been created and appears in the user list (page 451)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0468_1.png" alt="Logon panel showing no user logged in: User: None, Access Level: 0, with analog clock showing approximately 10:40">
-  <div class="caption">Logon panel showing no user logged in: User: None, Access Level: 0, with analog clock showing approximately 10:40</div>
+  <img src="../images/page_0451_2.png" alt="Security Users tab with TUser selected, role assignment panel showing Default and Training roles checked">
+  <div class="caption">TUser selected — assign roles by checking the appropriate boxes (page 451)</div>
 </div>
 
-<p>86. In the ContentDisplay window, notice the Select Mixer text is invisible and the drop-down list is disabled and cannot be clicked. 87. Click the valves, pumps, and agitator to verify their command panels are disabled. 88. In the Logon window, click Logon. Login to ArchestrA - Galaxy based appears. 89. In User name, enter TUser. 90. In Password, enter ww. 91. Click OK to log in. Notice that Training User is logged on. The Logon window shows the Logon button highlighted to indicate a valid user is logged in. Additionally, the text boxes show user information, including an Access Level of 1000.</p>
+<p><strong>Step 11.</strong> In the Role list, check <strong>Training</strong> to associate it with TUser. <strong>Step 12.</strong> Click <strong>Change Password</strong>.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0469_0.png" alt="ContentDisplay showing Mixer100 process flow diagram with Pump1_001, Inlet1_001, and Mixer level chart with red dashed selection border">
-  <div class="caption">ContentDisplay showing Mixer100 process flow diagram with Pump1_001, Inlet1_001, and Mixer level chart with red dashed selection border</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0469_1.png" alt="Login to ArchestrA - Galaxy based dialog with TUser username and masked password entered, OK and Cancel buttons">
-  <div class="caption">Login to ArchestrA - Galaxy based dialog with TUser username and masked password entered, OK and Cancel buttons</div>
+  <img src="../images/page_0452_0.png" alt="Security Users tab with TUser selected, showing role assignments with Training checked">
+  <div class="caption">TUser role assignment — Training role is now checked (page 452)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0469_2.png" alt="Logon panel showing TUser logged in: User: TUser, Full Name: Training User, Access Level: 1000, Logon button highlighted">
-  <div class="caption">Logon panel showing TUser logged in: User: TUser, Full Name: Training User, Access Level: 1000, Logon button highlighted</div>
+  <img src="../images/page_0452_1.png" alt="Change Password button and add/remove buttons in the Users tab header">
+  <div class="caption">The Change Password button — click this to set a password for the selected user (page 452)</div>
 </div>
 
-<p>window, the Select Mixer text is visible and the drop-down list is enabled. 92. Click the valves, pumps, and the agitator to verify their command panels are enabled, closing each command panel when done.</p>
+<p><strong>Steps 13–15.</strong> Enter <strong>ww</strong> in New password and Confirm new password. Click <strong>Save</strong> to close the Change Password dialog.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0470_0.png" alt="ContentDisplay showing Mixer100 process overview: Select Mixer dropdown, Pump1_001, Inlet1_001, Mixer level trend chart with cyclic fill pattern">
-  <div class="caption">ContentDisplay showing Mixer100 process overview: Select Mixer dropdown, Pump1_001, Inlet1_001, Mixer level trend chart with cyclic fill pattern</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0470_1.png" alt="Mixer100 process view with Pump1_001 command panel popup showing Start and Stop buttons overlaid on the process diagram">
-  <div class="caption">Mixer100 process view with Pump1_001 command panel popup showing Start and Stop buttons overlaid on the process diagram</div>
-</div>
-
-<p>93. In the Logon window, click Logon. 94. In User name, enter administrator. The administrator user has no password. 95. Click OK. Notice that System Administrator is logged in and has an Access Level of 9999. 96. Verify the Administrator user has access to all the same features of the application as Training User. 97. Click Logoff. 98. Verify that no one is logged in and the secured features are unavailable. 99. Click Development! to return to WindowMaker. <End of Lab></p>
-
-<div class="screenshot">
-  <img src="../images/page_0471_0.png" alt="Login to ArchestrA - Galaxy based dialog with administrator username pre-filled, empty password field, Domain dropdown, OK and Cancel buttons">
-  <div class="caption">Login to ArchestrA - Galaxy based dialog with administrator username pre-filled, empty password field, Domain dropdown, OK and Cancel buttons</div>
+  <img src="../images/page_0453_0.png" alt="Change password dialog for TUser with new password field containing masked characters">
+  <div class="caption">Entering the new password for TUser (page 453)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0471_1.png" alt="Runtime login panel showing administrator logged in: User: administrator, Full Name: System Administrator, Access Level: 9999, with Logon/Logoff buttons">
-  <div class="caption">Runtime login panel showing administrator logged in: User: administrator, Full Name: System Administrator, Access Level: 9999, with Logon/Logoff buttons</div>
+  <img src="../images/page_0453_1.png" alt="Change password dialog for TUser with both password fields filled">
+  <div class="caption">Password confirmed — both fields must match (page 453)</div>
 </div>
 
+<p><strong>Steps 16–18.</strong> Click <strong>Save</strong> to close the Security editor. The Galaxy sign-in dialog appears. Enter <strong>administrator</strong> as the User name and click <strong>Next</strong>.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0454_0.png" alt="Security Users tab showing TUser selected with Training role checked, Save and Cancel buttons at bottom">
+  <div class="caption">Saving the security configuration — click Save to apply all changes (page 454)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0454_1.png" alt="Sign in to TrainingGalaxy login dialog with AVEVA logo and administrator username pre-filled">
+  <div class="caption">The Galaxy sign-in dialog — enter the administrator credentials (page 454)</div>
+</div>
+
+<p><strong>Step 19.</strong> Click <strong>Sign in</strong>. The administrator account has no password, so the IDE will close and reopen.</p>
+
+<p><strong>Step 20.</strong> In the IDE, click the profile icon on the top-right of the title bar to verify that <strong>administrator</strong> is shown as the logged-in user.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0455_0.png" alt="Sign in dialog showing password entry field for administrator login">
+  <div class="caption">Password entry for the administrator account (page 455)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0455_1.png" alt="AVEVA System Platform IDE with user profile dropdown showing administrator logged in">
+  <div class="caption">Verify the logged-in user from the profile dropdown or from Galaxy &gt; User &gt; Galaxy User (page 455)</div>
+</div>
+
+<h3>Configure Security Settings in the Mixer Display</h3>
+
+<p>Next, you will secure interactive elements of your application by configuring <strong>Visibility</strong> and <strong>Disable</strong> animations with expressions linked to <code>InTouch:$AccessLevel</code>. This controls which elements are visible or interactive based on the user's access level.</p>
+
+<p><strong>Steps 21–27.</strong> Open $Mixer &gt; SwitchedMixingProcess for editing. Double-click <strong>Select Mixer</strong> and add a Visibility animation. Set States to Boolean and enter the expression <code>InTouch:$AccessLevel >= 1000</code>. Ensure Visible When Expression is set to True.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0456_0.png" alt="WindowMaker visualization menu with Visibility option highlighted">
+  <div class="caption">Adding a Visibility animation from the Visualization menu (page 456)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0456_1.png" alt="Edit Animations dialog for SelectMixer with Visibility animation configured with Boolean expression InTouch:$AccessLevel >= 1000">
+  <div class="caption">Visibility animation configuration — the Select Mixer element is only visible when access level is 1000 or above (page 456)</div>
+</div>
+
+<p><strong>Steps 28–35.</strong> Click OK. Double-click <strong>MixerDropDown</strong> and add a Disable animation. Set States to Boolean, enter <code>InTouch:$AccessLevel >= 1000</code>, and set Disable When Expression to <strong>False, 0, off</strong>. This disables the dropdown for users with access level below 1000.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0457.png" alt="Edit Animations dialog for MixerDropDown with Disable animation configured with InTouch:$AccessLevel >= 1000">
+  <div class="caption">Disable animation on MixerDropDown — disabled when access level is below 1000 (page 457)</div>
+</div>
+
+<p><strong>Steps 36–37.</strong> Save and close the $Mixer template, then check it in.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0458_0.png" alt="Check-in dialog with warning about propagating changes to 9 derived objects">
+  <div class="caption">Check-in confirmation — changes propagate to all derived objects (page 458)</div>
+</div>
+
+<h3>Protect Equipment Controls from Unauthorized Access</h3>
+
+<p><strong>Steps 38–43.</strong> Open Valve_Detailed and double-click the Valve symbol. Add a Disable animation with Boolean states, expression <code>InTouch:$AccessLevel == 0</code>, and Disabled When set to <strong>True, 1, On</strong>. This disables the valve control when no user is logged in (access level 0). Then right-click Valve and select Animations &gt; Copy to copy the animation for reuse.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0458_1.png" alt="Show Symbol animation panel with Disable option highlighted in the Interaction section">
+  <div class="caption">Adding a Disable animation from the Interaction panel (page 458)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0459.png" alt="Edit Animations dialog for Valve with Disable animation using InTouch:$AccessLevel == 0">
+  <div class="caption">Valve Disable animation — disabled when no user is logged in (page 459)</div>
+</div>
+
+<p><strong>Steps 44–51.</strong> Open Pump_Detailed and paste the animation onto the Pump symbol. Acknowledge the warning about the existing Show Symbol animation. Repeat for Agitator_Detailed. Paste will add the Disable animation without replacing existing animations.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0460.png" alt="Graphic Editor information dialog about Pump already having Show Symbol animation">
+  <div class="caption">The paste dialog confirms that only the new Disable animation is added (page 460)</div>
+</div>
+
+<h3>Create a Login Symbol</h3>
+
+<p><strong>Steps 52–59.</strong> Create a new symbol named <strong>SecurityDisplay</strong>. Add three text labels — User:, User Full Name:, and Access Level: — configured with ElementStyle Label and MiddleRight alignment. Place them vertically aligned on the canvas.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0461_0.png" alt="Form design canvas with alignment grid and text elements">
+  <div class="caption">Building the SecurityDisplay symbol — text labels placed on the canvas (page 461)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0461_1.png" alt="Three right-aligned text labels: User, User Full Name, and Access Level on grid background">
+  <div class="caption">Three labels aligned vertically on the canvas (page 461)</div>
+</div>
+
+<p><strong>Steps 60–62.</strong> To the right of each label, add a Text Box element (300×40 pixels). Configure them with ElementStyle Actual_Value and MiddleLeft alignment.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0462_0.png" alt="Form design with three label-textbox pairs: User, User Full Name, Access Level">
+  <div class="caption">Text boxes added to the right of each label (page 462)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0462_1.png" alt="All three TextBoxes selected with Actual Value property in toolbar">
+  <div class="caption">Selecting all three text boxes to set ElementStyle to Actual_Value (page 462)</div>
+</div>
+
+<p><strong>Steps 63–65.</strong> Add Value Display animations to each text box — String type for User: (binding to <code>InTouch:$Operator</code>) and User Full Name: (binding to <code>InTouch:$OperatorName</code>), and Analog type for Access Level: (binding to <code>InTouch:$AccessLevel</code>).</p>
+
+<div class="screenshot">
+  <img src="../images/page_0463_0.png" alt="Value Display configuration for TextBox1: String type showing InTouch:$Operator">
+  <div class="caption">Value Display binding to InTouch:$Operator for the User field (page 463)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0463_1.png" alt="Value Display configuration for TextBox2: String type showing InTouch:$OperatorName">
+  <div class="caption">Value Display binding to InTouch:$OperatorName for the full name field (page 463)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0463_2.png" alt="Value Display configuration for TextBox3: Analog type showing InTouch:$AccessLevel">
+  <div class="caption">Value Display binding to InTouch:$AccessLevel for the access level field (page 463)</div>
+</div>
+
+<p><strong>Steps 66–69.</strong> Draw a Logon button to the left of the User label. Set its Element Style to Intensity2. Double-click it and add an Action Scripts animation with the body <code>PostLogonDialog();</code></p>
+
+<div class="screenshot">
+  <img src="../images/page_0464_0.png" alt="Form design canvas showing Logon button and three label-textbox pairs">
+  <div class="caption">Logon button added to the SecurityDisplay symbol (page 464)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0464_1.png" alt="Edit Animations Action Scripts for Logon button with PostLogonDialog function call">
+  <div class="caption">The PostLogonDialog() script function triggers the login dialog when the button is clicked (page 464)</div>
+</div>
+
+<p><strong>Steps 70–75.</strong> Add an Element Style animation to the Logon button: Boolean expression <code>InTouch:$AccessLevel <> 0</code>, with Intensity4 style when True (user is logged in). Duplicate the button to create a Logoff button with expression <code>InTouch:$AccessLevel == 0</code> and a Logoff() script body.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0465_0.png" alt="Element Style animation for Logon button using Intensity4 when user is logged in">
+  <div class="caption">Element Style animation — the Logon button highlights when a user is logged in (page 465)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0465_1.png" alt="Form canvas with Logon and Logoff buttons above label-textbox pairs">
+  <div class="caption">Both Logon and Logoff buttons placed on the canvas (page 465)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0466_0.png" alt="Element Style animation for Logoff button using Intensity4 when no user is logged in">
+  <div class="caption">Logoff button Element Style — highlights when no user is logged in (page 466)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0466_1.png" alt="Action Scripts for Logoff button with Logoff function call">
+  <div class="caption">The Logoff() script function logs off the current user (page 466)</div>
+</div>
+
+<p><strong>Steps 76–78.</strong> Optionally, search for "analogwall" on the Toolbox tab and embed a ClockAnalogWall widget to the right of the text boxes. Position it so it does not overlap the labels or text boxes. Save, close, and check in the graphic.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0467_0.png" alt="Form canvas with Logon/Logoff buttons, label-textbox pairs, and analog clock widget">
+  <div class="caption">Completed SecurityDisplay symbol with Logon/Logoff buttons, user info fields, and analog clock (page 467)</div>
+</div>
+
+<h3>Embed SecurityDisplay on a Window</h3>
+
+<p><strong>Steps 79–84.</strong> Open $MixerView in WindowMaker. In Industrial Graphics, expand the Training folder and drag SecurityDisplay to the Logon window. Click Yes to replace the existing symbol.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0467_1.png" alt="Industrial HMI runtime showing Mixer100 with active alarms table and navigation buttons">
+  <div class="caption">The WindowMaker development environment with the Mixer100 layout visible (page 467)</div>
+</div>
+
+<h3>Test in Runtime</h3>
+
+<p><strong>Step 85.</strong> Click Runtime. In the Logon window, User shows None — no user is logged in.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0468_0.png" alt="Runtime view with Logon/Logoff buttons, User: None, Access Level: 0">
+  <div class="caption">Runtime view — no user logged in, showing User: None and Access Level: 0 (page 468)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0468_1.png" alt="Content display with Mixer100 process overview and analog clock">
+  <div class="caption">The ContentDisplay window — Select Mixer dropdown and controls are visible (page 468)</div>
+</div>
+
+<p><strong>Step 86.</strong> Notice that the Select Mixer text is invisible and the dropdown is disabled. Click the valves, pumps, and agitator to verify their command panels are disabled.</p>
+
+<p><strong>Steps 88–91.</strong> Click Logon. Enter <strong>TUser</strong> with password <strong>ww</strong>. Click OK. Training User is now logged in with an Access Level of 1000.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0469_0.png" alt="Content display with Mixer100 process flow and red dashed selection border">
+  <div class="caption">The ContentDisplay with TUser logged in — Select Mixer is now visible and enabled (page 469)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0469_1.png" alt="Login dialog with TUser username and masked password entered">
+  <div class="caption">The Galaxy login dialog — enter TUser credentials (page 469)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0469_2.png" alt="Logon panel showing TUser logged in with Access Level: 1000">
+  <div class="caption">TUser successfully logged in — Logon button highlighted, showing Access Level: 1000 (page 469)</div>
+</div>
+
+<p><strong>Steps 92.</strong> Verify that the Select Mixer dropdown is now enabled and all equipment command panels are accessible.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0470_0.png" alt="Content display showing Mixer100 with enabled dropdown and level chart">
+  <div class="caption">With TUser logged in, the mixer controls are fully enabled (page 470)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0470_1.png" alt="Mixer100 process view with Pump1_001 command panel showing Start and Stop buttons">
+  <div class="caption">The pump command panel is now accessible — Start and Stop buttons are active (page 470)</div>
+</div>
+
+<p><strong>Steps 93–98.</strong> Log off, then log in as administrator (no password). Verify that the Administrator has the same access features as Training User but with an Access Level of 9999. Log off again to confirm that secured features become unavailable when no user is logged in.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0471_0.png" alt="Login dialog with administrator username pre-filled, empty password field">
+  <div class="caption">Logging in as administrator — the account has no password (page 471)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0471_1.png" alt="Runtime login panel showing administrator logged in with Access Level: 9999">
+  <div class="caption">Administrator logged in — Access Level: 9999, full access to all features (page 471)</div>
+</div>
+
+<!-- ============================================================ -->
 
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> What are the key concepts covered in this lesson about Security Overview?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
 
-  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <p><strong>1.</strong> What are the four authentication modes available in AVEVA System Platform security, and which is the simplest for standalone deployments?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">The four modes are Galaxy, OS User based, OS Group based, and Authentication providers (AIM). Galaxy is the simplest — it stores all user credentials within the Galaxy database itself, making it self-contained and ideal for standalone installations.</p></details>
 
+  <p><strong>2.</strong> Why is it a best practice to remove all permissions from the Default role?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">All users automatically belong to the Default role, and this relationship cannot be changed. If the Default role has permissions, every user inherits them. Removing permissions from the Default role and granting them only through specific roles ensures that users only receive the access they explicitly need.</p></details>
+
+  <p><strong>3.</strong> What is the difference between Secured Write and Verified Write security classifications?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Secured Write requires a single user to authenticate with their username and password each time they write to an attribute. Verified Write requires two different users: the primary operator (with Operate permissions) and a verifier (with Can Verify Writes permission) — implementing a four-eyes principle for critical changes.</p></details>
+
+  <p><strong>4.</strong> In the lab, what does the expression <code>InTouch:$AccessLevel >= 1000</code> achieve when used with a Visibility animation?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">The expression makes the element visible only when the logged-in user has an access level of 1000 or higher. Since the Default role has access level 0 and the Training role has access level 1000, this ensures that elements like the Select Mixer dropdown are only visible to users with the Training role or higher — not to unauthenticated users.</p></details>
+
+  <p><strong>5.</strong> Which InTouch script function displays the standard logon dialog box, and which function logs off the current user?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">PostLogonDialog() displays the InTouch Logon dialog box and returns True. Logoff() logs off the currently logged on user and sets the current user status to the default "None" operator.</p></details>
 </div>
 
 <p class="source">Module 7 — Security. AVEVA InTouch for System Platform 2023 Training.</p>

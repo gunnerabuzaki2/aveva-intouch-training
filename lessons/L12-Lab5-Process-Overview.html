@@ -98,321 +98,561 @@
 </details>
 </nav>
 
-<h1>Lesson 12: Lab5 Process Overview</h1>
-<p class="page-ref">Module 3 — Symbols | Pages 113–144</p>
-
-<p>lab, you will create graphic toolsets on the Graphics tab for organizing some out-of-the-box items, as well as a toolset for organizing the graphic items created in this course. You will use the Graphic Editor to create a new symbol on the Graphics tab. You will embed the SA_StackedColumnChart and SA_BarChart graphics from the Situational Awareness dashboard tools library in your symbol. This combination of dashboard graphics will represent consumed materials and produced products for eight mixers in your plant. Objectives Upon completion of this lab, you will be able to:  Create a Graphics toolset  Create a symbol to edit in the Graphic Editor  Embed a graphic using the Graphic Editor Toolbox tab  Embed a graphic from the Galaxy Browser using the Embed Industrial Graphic menu  Create a process overview using Situational Awareness Library  Configure Wizard Options  Configure Custom Properties  Configure strings and references  Configure the canvas to a fixed size</p>
+<h1>Lesson 12: Lab 5 – Building a Process Overview</h1>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 3 (pages 113–144)</p>
+<p class="page-ref">In this lab you will create a ProcessOverview symbol using Situational Awareness dashboard charts, configure it with live data references, and embed it in the OverviewDisplay window.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0113.png" alt="Lab 5 introduction showing consumed materials and produced products bar charts with batch production data for mixers M100-M800">
-  <div class="caption">Lab 5 introduction showing consumed materials and produced products bar charts with batch production data for mixers M100-M800</div>
+  <img src="../images/page_0113.png" alt="Lab 5 introduction showing consumed materials stacked column chart and produced products horizontal bar chart with batch production data for mixers M100-M800">
+  <div class="caption">The completed ProcessOverview dashboard showing consumed materials and produced products for eight mixers (page 113)</div>
 </div>
 
-<p>First, you will organize some out-of-the-box items into toolsets. Then, you will create a toolset for organizing the graphic items you will create in this course. 1. In the IDE, on the Graphics tab, right-click TrainingGalaxy and select New | Graphic Toolset. 2. Name the new toolset as Apps. 3. Right-click TrainingGalaxy and select New | Graphic Toolset. 4. Name the new toolset as .NET Controls.</p>
+<div class="key-concept">
+  <strong>Lab Objectives:</strong> Upon completion, you will be able to create graphic toolsets, create and edit a symbol in the Graphic Editor, embed SA Library graphics via the Toolbox tab and the Galaxy Browser, configure Wizard Options and Custom Properties, set up string and reference substitutions, and configure a fixed canvas size.
+</div>
 
-<div class="screenshot">
-  <img src="../images/page_0114_0.png" alt="IDE Graphics tab with TrainingGalaxy right-clicked showing New submenu with Graphic Toolset option">
-  <div class="caption">IDE Graphics tab with TrainingGalaxy right-clicked showing New submenu with Graphic Toolset option</div>
+<!-- ============================================================ -->
+<h2>12.1 Create Graphic Toolsets</h2>
+<p class="page-ref">Reference: Module 3, Lab 5 (pages 114–116)</p>
+
+<p>First, you will organize the out-of-the-box items into toolsets, then create a toolset for the graphics you build during this course.</p>
+
+<div class="lab">
+  <strong>Steps 1–4: Create Toolsets</strong><br>
+  <ol>
+    <li>In the IDE, on the Graphics tab, right-click <strong>TrainingGalaxy</strong> and select <strong>New → Graphic Toolset</strong>.</li>
+    <li>Name the new toolset <strong>Apps</strong>.</li>
+    <li>Right-click <strong>TrainingGalaxy</strong> again and select <strong>New → Graphic Toolset</strong>.</li>
+    <li>Name this toolset <strong>.NET Controls</strong>.</li>
+  </ol>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0114_1.png" alt="Graphics panel tree view with TrainingGalaxy expanded showing folder structure (Apps, Industrial Graphic Library, Situational Awareness Library, SQLGrid, Widgets)">
-  <div class="caption">Graphics panel tree view with TrainingGalaxy expanded showing folder structure (Apps, Industrial Graphic Library, Situational Awareness Library, SQLGrid, Widgets)</div>
+  <img src="../images/page_0114_0.png" alt="IDE Graphics tab with TrainingGalaxy right-clicked showing New submenu with Graphic Toolset option highlighted">
+  <div class="caption">Creating a new Graphic Toolset from the TrainingGalaxy context menu (page 114)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0114_1.png" alt="Graphics panel tree view with TrainingGalaxy showing new Apps and .NET Controls folders alongside default libraries">
+  <div class="caption">The Graphics panel showing the newly created toolsets alongside the default libraries (page 114)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0114_2.png" alt="Graphics panel tree with .NET Controls folder selected and expanded under TrainingGalaxy">
-  <div class="caption">Graphics panel tree with .NET Controls folder selected and expanded under TrainingGalaxy</div>
+  <div class="caption">The .NET Controls toolset created under TrainingGalaxy (page 114)</div>
 </div>
 
-<p>5. Select the following apps and drag them to the Apps toolset:  AlarmApp  ContentPresenterApp  DocViewerApp  GraphicRepeaterApp  HamburgerApp  HistoricalTrendApp  ImageViewerApp  InSightApp  MapApp  NavigationApp  PDFViewerApp  SpreadsheetViewerApp  TitleBarApp  WWWebAppControls</p>
-
-<div class="screenshot">
-  <img src="../images/page_0115.png" alt="Graphics panel with Apps and .NET Controls folders expanded showing all app components (AlarmApp, ContentPresenterApp, etc.) and .NET controls (aaTrendControl, AlarmClient, TrendClient)">
-  <div class="caption">Graphics panel with Apps and .NET Controls folders expanded showing all app components (AlarmApp, ContentPresenterApp, etc.) and .NET controls (aaTrendControl, AlarmClient, TrendClient)</div>
-</div>
-
-<p>6. Select the following client controls and drag them to the .NET Controls toolset:  aaTrendControl  AlarmClient  TrendClient 7. Collapse the Apps and .NET Controls toolsets. 8. Right-click TrainingGalaxy and create another toolset named Training.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0116_0.png" alt="Graphics panel tree with .NET Controls folder selected, showing aaTrendControl, AlarmClient, and TrendClient items">
-  <div class="caption">Graphics panel tree with .NET Controls folder selected, showing aaTrendControl, AlarmClient, and TrendClient items</div>
+<div class="lab">
+  <strong>Step 5: Organize Apps into Toolset</strong><br>
+  Select the following apps and drag them to the <strong>Apps</strong> toolset: AlarmApp, ContentPresenterApp, DocViewerApp, GraphicRepeaterApp, HamburgerApp, HistoricalTrendApp, ImageViewerApp, InSightApp, MapApp, NavigationApp, PDFViewerApp, SpreadsheetViewerApp, TitleBarApp, and WWWebAppControls.
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0116_1.png" alt="Graphics panel tree with Training folder created and selected under TrainingGalaxy">
-  <div class="caption">Graphics panel tree with Training folder created and selected under TrainingGalaxy</div>
+  <img src="../images/page_0115.png" alt="Graphics panel with Apps folder expanded showing all 14 organized app components (AlarmApp, ContentPresenterApp, etc.) and .NET Controls with aaTrendControl, AlarmClient, TrendClient">
+  <div class="caption">The Apps toolset populated with 14 application components (page 115)</div>
 </div>
 
-<p>Next, you will create a ProcessOverview symbol on the Graphics tab. You will embed two Situational Awareness graphics in the symbol. 9. Right-click the Training toolset and select New | Symbol. 10. Name the new symbol as ProcessOverview.</p>
+<div class="lab">
+  <strong>Steps 6–8: Finalize Toolsets</strong><br>
+  <ol start="6">
+    <li>Select <strong>aaTrendControl</strong>, <strong>AlarmClient</strong>, and <strong>TrendClient</strong> and drag them to the <strong>.NET Controls</strong> toolset.</li>
+    <li>Collapse the Apps and .NET Controls toolsets.</li>
+    <li>Right-click TrainingGalaxy and create another toolset named <strong>Training</strong>.</li>
+  </ol>
+</div>
 
 <div class="screenshot">
-  <img src="../images/page_0117_0.png" alt="Graphics panel with Training folder right-clicked showing context menu with Export submenu expanded">
-  <div class="caption">Graphics panel with Training folder right-clicked showing context menu with Export submenu expanded</div>
+  <img src="../images/page_0116_0.png" alt="Graphics panel with .NET Controls folder showing aaTrendControl, AlarmClient, and TrendClient items organized">
+  <div class="caption">The .NET Controls toolset with three client controls (page 116)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0116_1.png" alt="Graphics panel with empty Training folder created and selected under TrainingGalaxy">
+  <div class="caption">The new empty Training toolset ready for custom symbols (page 116)</div>
+</div>
+
+<!-- ============================================================ -->
+<h2>12.2 Create a Process Overview Symbol</h2>
+<p class="page-ref">Reference: Module 3, Lab 5 (pages 117–118)</p>
+
+<p>Next, you will create a ProcessOverview symbol on the Graphics tab and embed two Situational Awareness dashboard graphics into it.</p>
+
+<div class="lab">
+  <strong>Steps 9–12: Create and Open Symbol</strong><br>
+  <ol start="9">
+    <li>Right-click the <strong>Training</strong> toolset and select <strong>New → Symbol</strong>.</li>
+    <li>Name the new symbol <strong>ProcessOverview</strong>.</li>
+    <li>Double-click ProcessOverview to open it for editing.</li>
+    <li>Maximize the Graphic Editor to accommodate both charts you will embed.</li>
+  </ol>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0117_0.png" alt="Graphics panel with Training folder right-clicked showing context menu with Symbol option in New submenu">
+  <div class="caption">Creating a new symbol in the Training toolset (page 117)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0117_1.png" alt="Graphics panel with ProcessOverview symbol created under expanded Training folder">
-  <div class="caption">Graphics panel with ProcessOverview symbol created under expanded Training folder</div>
+  <div class="caption">The new ProcessOverview symbol listed in the Training toolset (page 117)</div>
 </div>
-
-<p>11. Double-click ProcessOverview to open it for editing. ProcessOverview is opened in the Graphic Editor. 12. Maximize the Graphic Editor to accommodate both of the graphics you will embed.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0118.png" alt="ProcessOverview opened in Graphic Editor with empty grid canvas and Properties panel visible">
-  <div class="caption">ProcessOverview opened in Graphic Editor with empty grid canvas and Properties panel visible</div>
+  <img src="../images/page_0118.png" alt="ProcessOverview opened in Graphic Editor with empty grid canvas, Properties panel showing Size=Auto and default settings">
+  <div class="caption">The empty ProcessOverview canvas ready for embedding dashboard graphics (page 118)</div>
 </div>
 
-<p>Now, you will embed graphics from the Situational Awareness Library. From the dashboard tools library, you will embed the SA_StackedColumnChart and SA_BarChart graphics to show consumed materials and produced products. You will use a Toolbox tab workflow to embed the graphic. 13. On the right-side of the Graphic Editor, select the Toolbox tab. The toolsets from the Graphics tab in the IDE appear.</p>
+<!-- ============================================================ -->
+<h2>12.3 Embed the Stacked Column Chart (IngredientsConsumed)</h2>
+<p class="page-ref">Reference: Module 3, Lab 5 (pages 119–127)</p>
+
+<p>You will now embed the <code>SA_StackedColumnChart</code> from the Situational Awareness Library to display consumed materials. This section uses the Toolbox tab workflow for embedding.</p>
+
+<div class="lab">
+  <strong>Steps 13–14: Access the Toolbox</strong><br>
+  <ol start="13">
+    <li>On the right side of the Graphic Editor, select the <strong>Toolbox</strong> tab. The toolsets from the Graphics tab appear.</li>
+    <li>Expand <strong>Situational Awareness Library</strong>, scroll down, and select <strong>Dashboard Tools</strong>. The preview area shows the available graphics.</li>
+  </ol>
+</div>
 
 <div class="screenshot">
-  <img src="../images/page_0119.png" alt="Toolbox tab showing TrainingGalaxy library hierarchy with .NET Controls, Apps, Industrial Graphic Library, and Situational Awareness Library folders">
-  <div class="caption">Toolbox tab showing TrainingGalaxy library hierarchy with .NET Controls, Apps, Industrial Graphic Library, and Situational Awareness Library folders</div>
+  <img src="../images/page_0119.png" alt="Toolbox tab showing TrainingGalaxy library hierarchy with Situational Awareness Library folder">
+  <div class="caption">The Toolbox tab displaying the Galaxy library hierarchy (page 119)</div>
 </div>
-
-<p>14. Expand Situational Awareness Library, scroll down, and then select Dashboard Tools. The preview area at the bottom shows the available graphics.</p>
 
 <div class="screenshot">
   <img src="../images/page_0120.png" alt="Toolbox with Situational Awareness Library expanded and Dashboard Tools selected showing SA_BarChart and SA_BoxChart preview thumbnails">
-  <div class="caption">Toolbox with Situational Awareness Library expanded and Dashboard Tools selected showing SA_BarChart and SA_BoxChart preview thumbnails</div>
+  <div class="caption">Dashboard Tools within the SA Library — preview thumbnails for available chart types (page 120)</div>
 </div>
 
-<p>15. In the preview area, select SA_StackedColumnChart. 16. Drag SA_StackedColumnChart to the canvas.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0121_0.png" alt="Toolbox showing SA_StackedColumnChart variants (blue and red styles) in Dashboard Tools preview area">
-  <div class="caption">Toolbox showing SA_StackedColumnChart variants (blue and red styles) in Dashboard Tools preview area</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0121_1.png" alt="SA_StackedColumnChart template placed on canvas with placeholder chart elements (Chart Heading, axis labels, B1-B10 categories, legend A-D)">
-  <div class="caption">SA_StackedColumnChart template placed on canvas with placeholder chart elements (Chart Heading, axis labels, B1-B10 categories, legend A-D)</div>
-</div>
-
-<p>name, wizard options, custom properties, and strings for the symbol. 17. On the right side of the Graphic Editor, select the Properties tab. 18. In Name, enter IngredientsConsumed. 19. In Wizard Options \ NumberofBars, click the field to view a drop-down list and select Eight. 20. On the canvas, right-click the IngredientsConsumed graphic and select Custom Properties.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0122_0.png" alt="Properties panel with IngredientsConsumed name entered and Wizard Options expanded showing NumberOfBars set to Ten">
-  <div class="caption">Properties panel with IngredientsConsumed name entered and Wizard Options expanded showing NumberOfBars set to Ten</div>
+<div class="lab">
+  <strong>Steps 15–16: Place the Chart</strong><br>
+  <ol start="15">
+    <li>In the preview area, select <strong>SA_StackedColumnChart</strong>.</li>
+    <li>Drag SA_StackedColumnChart to the canvas.</li>
+  </ol>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0122_1.png" alt="Wizard Options panel with NumberOfBars changed from Ten to Eight, ShowTitle, ShowAxisDescription, ShowValueLabel, and ShowLegend all set to True">
-  <div class="caption">Wizard Options panel with NumberOfBars changed from Ten to Eight, ShowTitle, ShowAxisDescription, ShowValueLabel, and ShowLegend all set to True</div>
+  <img src="../images/page_0121_0.png" alt="Toolbox showing SA_StackedColumnChart variants in Dashboard Tools preview area">
+  <div class="caption">Selecting SA_StackedColumnChart from the Dashboard Tools preview (page 121)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0122_2.png" alt="Right-click context menu on chart showing Substitute submenu with Substitute Strings option highlighted">
-  <div class="caption">Right-click context menu on chart showing Substitute submenu with Substitute Strings option highlighted</div>
+  <img src="../images/page_0121_1.png" alt="SA_StackedColumnChart template placed on canvas with placeholder chart elements (Chart Heading, axis labels, legend A-D)">
+  <div class="caption">The SA_StackedColumnChart placed on the canvas with placeholder labels (page 121)</div>
 </div>
 
-<p>list. 21. In Default Value, select 0. 22. To the right of the Default Value field, click the Browse Galaxy button. The Galaxy Browser appears.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0123_0.png" alt="Edit Custom Properties dialog with Bar01A selected, showing default value of 0 and status message about Float value">
-  <div class="caption">Edit Custom Properties dialog with Bar01A selected, showing default value of 0 and status message about Float value</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0123_1.png" alt="Galaxy Browser showing Attribute Browser tab with Agitator_001 selected and its attributes (Cmd, PV, Speed.PV) displayed">
-  <div class="caption">Galaxy Browser showing Attribute Browser tab with Agitator_001 selected and its attributes (Cmd, PV, Speed.PV) displayed</div>
-</div>
-
-<p>23. Click the Show Hierarchical Name button to switch the view. 24. In the Instances list, select Mixer100.Totalizer1, and in the Attributes list, select PV. 25. Click OK. The default value of 0 is replaced with Mixer100.Totalizer1.PV.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0124_0.png" alt="Galaxy Browser with Show Hierarchical Name checkbox visible in Attribute Browser view">
-  <div class="caption">Galaxy Browser with Show Hierarchical Name checkbox visible in Attribute Browser view</div>
+<div class="lab">
+  <strong>Steps 17–20: Configure Name and Wizard Options</strong><br>
+  <ol start="17">
+    <li>Select the <strong>Properties</strong> tab.</li>
+    <li>In <strong>Name</strong>, enter <code>IngredientsConsumed</code>.</li>
+    <li>In <strong>Wizard Options → NumberofBars</strong>, click the field and select <strong>Eight</strong>.</li>
+    <li>On the canvas, right-click the IngredientsConsumed graphic and select <strong>Custom Properties</strong>.</li>
+  </ol>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0124_1.png" alt="Galaxy Browser with Mixer100.Totalizer1 selected in Instances list, PV attribute highlighted showing Float data type">
-  <div class="caption">Galaxy Browser with Mixer100.Totalizer1 selected in Instances list, PV attribute highlighted showing Float data type</div>
+  <img src="../images/page_0122_0.png" alt="Properties panel with IngredientsConsumed name entered and Wizard Options expanded">
+  <div class="caption">Setting the graphic name to IngredientsConsumed and configuring Wizard Options (page 122)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0124_2.png" alt="Edit Custom Properties with Bar01A default value changed from 0 to Mixer100.Totalizer1.PV reference">
-  <div class="caption">Edit Custom Properties with Bar01A default value changed from 0 to Mixer100.Totalizer1.PV reference</div>
+  <img src="../images/page_0122_1.png" alt="Wizard Options panel with NumberOfBars changed from Ten to Eight">
+  <div class="caption">Changing NumberOfBars from Ten to Eight to match our eight mixers (page 122)</div>
 </div>
 
-<p>steps, you will enter the remaining custom properties. A convenient shortcut is to double-click the Default Value field to open the Galaxy Browser. Double-clicking will select the default value 0 and open the Galaxy Browser. 26. Modify other custom properties as follows: Note: Observe the screen shot below the table. Notice only the A and B bars have values. As you enter values for the custom properties list, you will skip the C and D entries. The table below only shows the custom properties to modify. 27. Click OK to close Edit Custom Properties. Name Default Value Bar01B Mixer100.Totalizer2.PV Bar02A Mixer200.Totalizer1.PV Bar02B Mixer200.Totalizer2.PV Bar03A Mixer300.Totalizer1.PV Bar03B Mixer300.Totalizer2.PV Bar04A Mixer400.Totalizer1.PV Bar04B Mixer400.Totalizer2.PV Bar05A Mixer500.Totalizer1.PV Bar05B Mixer500.Totalizer2.PV Bar06A Mixer600.Totalizer1.PV Bar06B Mixer600.Totalizer2.PV Bar07A Mixer700.Totalizer1.PV Bar07B Mixer700.Totalizer2.PV Bar08A Mixer800.Totalizer1.PV Bar08B Mixer800.Totalizer2.PV</p>
-
 <div class="screenshot">
-  <img src="../images/page_0125.png" alt="Edit Custom Properties showing completed property mappings for Bar06A through Bar08B with mixer totalizer references and C/D bars set to 0">
-  <div class="caption">Edit Custom Properties showing completed property mappings for Bar06A through Bar08B with mixer totalizer references and C/D bars set to 0</div>
+  <img src="../images/page_0122_2.png" alt="Right-click context menu on chart showing Custom Properties option highlighted">
+  <div class="caption">Accessing Custom Properties from the right-click context menu (page 122)</div>
 </div>
 
-<p>28. On the canvas, right-click IngredientsConsumed and select Substitute | Substitute Strings to change the static text labels in the graphic. Substitute Strings appears.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0126.png" alt="Context menu on chart with Substitute submenu expanded and Substitute Strings option highlighted">
-  <div class="caption">Context menu on chart with Substitute submenu expanded and Substitute Strings option highlighted</div>
+<div class="lab">
+  <strong>Steps 21–25: Configure Custom Properties</strong><br>
+  <ol start="21">
+    <li>In the Edit Custom Properties dialog, select <strong>Bar01A</strong>. In the Default Value field, select 0.</li>
+    <li>Click the <strong>Browse Galaxy</strong> button (…) next to the Default Value field. The Galaxy Browser appears.</li>
+    <li>Click the <strong>Show Hierarchical Name</strong> button to switch the view.</li>
+    <li>In the Instances list, select <strong>Mixer100.Totalizer1</strong>, and in the Attributes list, select <strong>PV</strong>.</li>
+    <li>Click OK. The default value of 0 is replaced with <code>Mixer100.Totalizer1.PV</code>.</li>
+  </ol>
 </div>
 
-<p>steps, you will enter unique strings that will appear as labels in the graphic. If you enter multiple strings that match, subsequent openings of the Substitute Strings dialog box will consolidate the duplicate entries. This will lead to a situation where you can never edit the individual strings again, and you would need to delete the graphic and lose your wizard options, custom properties, size, position, graphic name, and strings. To avoid this issue, a best practice is to enter unique strings. 29. Substitute the strings as follows: 30. Click OK to close Substitute Strings. Current String New String A Ingr1 B Ingr2 B1 M100 B2 M200 B3 M300 B4 M400 B5 M500 B6 M600 B7 M700 B8 M800 C N/A-C Chart Heading Consumed Materials D N/A-D Horizontal Axis Description Mixers Short Description Consumed materials quantity of current batch Vertical Axis Description Materials Quantity</p>
-
 <div class="screenshot">
-  <img src="../images/page_0127.png" alt="Substitute Strings dialog with 13 string replacements mapping B2-B8 to M200-M800, Chart Heading to Consumed Materials, and axis descriptions">
-  <div class="caption">Substitute Strings dialog with 13 string replacements mapping B2-B8 to M200-M800, Chart Heading to Consumed Materials, and axis descriptions</div>
+  <img src="../images/page_0123_0.png" alt="Edit Custom Properties dialog with Bar01A selected showing default value of 0">
+  <div class="caption">Edit Custom Properties dialog with Bar01A selected (page 123)</div>
 </div>
 
-<p>strings. Next, you will embed a dashboard tools graphic named SA_BarChart on the canvas and configure it to show produced products. You will use a context menu workflow to embed the graphic. 31. In a blank area on the canvas, right-click and select Embed Industrial Graphic.</p>
+<div class="screenshot">
+  <img src="../images/page_0123_1.png" alt="Galaxy Browser showing Attribute Browser tab with Agitator_001 and its attributes">
+  <div class="caption">The Galaxy Browser used to browse and select tag references (page 123)</div>
+</div>
 
 <div class="screenshot">
-  <img src="../images/page_0128_0.png" alt="Updated Consumed Materials stacked column chart with new string labels showing Mixers M100-M800 on X-axis and placeholder data">
-  <div class="caption">Updated Consumed Materials stacked column chart with new string labels showing Mixers M100-M800 on X-axis and placeholder data</div>
+  <img src="../images/page_0124_0.png" alt="Galaxy Browser with Show Hierarchical Name button visible">
+  <div class="caption">Clicking Show Hierarchical Name to display full object paths (page 124)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0124_1.png" alt="Galaxy Browser with Mixer100.Totalizer1 selected and PV attribute highlighted">
+  <div class="caption">Selecting Mixer100.Totalizer1.PV as the tag reference for Bar01A (page 124)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0124_2.png" alt="Edit Custom Properties with Bar01A default value changed to Mixer100.Totalizer1.PV">
+  <div class="caption">Bar01A now references Mixer100.Totalizer1.PV instead of the default 0 (page 124)</div>
+</div>
+
+<div class="tip">
+  <strong>Tip:</strong> As a shortcut, you can double-click the Default Value field to open the Galaxy Browser directly. Double-clicking selects the default value 0 and opens the browser in one step.
+</div>
+
+<div class="lab">
+  <strong>Steps 26–27: Complete Custom Property Mappings</strong><br>
+  Modify the remaining custom properties as follows. Note that only the A and B bars receive values — skip the C and D entries.
+</div>
+
+<table>
+  <thead><tr><th>Property</th><th>Default Value</th></tr></thead>
+  <tbody>
+    <tr><td>Bar01B</td><td>Mixer100.Totalizer2.PV</td></tr>
+    <tr><td>Bar02A</td><td>Mixer200.Totalizer1.PV</td></tr>
+    <tr><td>Bar02B</td><td>Mixer200.Totalizer2.PV</td></tr>
+    <tr><td>Bar03A</td><td>Mixer300.Totalizer1.PV</td></tr>
+    <tr><td>Bar03B</td><td>Mixer300.Totalizer2.PV</td></tr>
+    <tr><td>Bar04A</td><td>Mixer400.Totalizer1.PV</td></tr>
+    <tr><td>Bar04B</td><td>Mixer400.Totalizer2.PV</td></tr>
+    <tr><td>Bar05A</td><td>Mixer500.Totalizer1.PV</td></tr>
+    <tr><td>Bar05B</td><td>Mixer500.Totalizer2.PV</td></tr>
+    <tr><td>Bar06A</td><td>Mixer600.Totalizer1.PV</td></tr>
+    <tr><td>Bar06B</td><td>Mixer600.Totalizer2.PV</td></tr>
+    <tr><td>Bar07A</td><td>Mixer700.Totalizer1.PV</td></tr>
+    <tr><td>Bar07B</td><td>Mixer700.Totalizer2.PV</td></tr>
+    <tr><td>Bar08A</td><td>Mixer800.Totalizer1.PV</td></tr>
+    <tr><td>Bar08B</td><td>Mixer800.Totalizer2.PV</td></tr>
+  </tbody>
+</table>
+
+<div class="screenshot">
+  <img src="../images/page_0125.png" alt="Edit Custom Properties showing completed property mappings with mixer totalizer references and C/D bars set to 0">
+  <div class="caption">Completed custom property mappings — each mixer gets two bars for two ingredients (page 125)</div>
+</div>
+
+<div class="lab">
+  <strong>Steps 28–30: Substitute Strings</strong><br>
+  <ol start="28">
+    <li>On the canvas, right-click IngredientsConsumed and select <strong>Substitute → Substitute Strings</strong>.</li>
+    <li>Substitute the following strings:</li>
+  </ol>
+</div>
+
+<table>
+  <thead><tr><th>Current String</th><th>New String</th></tr></thead>
+  <tbody>
+    <tr><td>A</td><td>Ingr1</td></tr>
+    <tr><td>B</td><td>Ingr2</td></tr>
+    <tr><td>B1–B8</td><td>M100–M800</td></tr>
+    <tr><td>C</td><td>N/A-C</td></tr>
+    <tr><td>Chart Heading</td><td>Consumed Materials</td></tr>
+    <tr><td>D</td><td>N/A-D</td></tr>
+    <tr><td>Horizontal Axis Description</td><td>Mixers</td></tr>
+    <tr><td>Short Description</td><td>Consumed materials quantity of current batch</td></tr>
+    <tr><td>Vertical Axis Description</td><td>Materials Quantity</td></tr>
+  </tbody>
+</table>
+
+<div class="pitfall">
+  <strong>Warning:</strong> Always enter unique replacement strings. If you enter duplicate strings, subsequent openings of the Substitute Strings dialog will consolidate them, and you will be unable to edit individual strings. You would need to delete the graphic and lose all your Wizard Options, Custom Properties, size, position, name, and strings.
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0126.png" alt="Context menu on IngredientsConsumed chart with Substitute submenu expanded and Substitute Strings option highlighted">
+  <div class="caption">Right-clicking the chart to access Substitute Strings (page 126)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0127.png" alt="Substitute Strings dialog with 18 string replacements mapping placeholders to real labels for the Consumed Materials chart">
+  <div class="caption">The Substitute Strings dialog with all 18 string replacements applied (page 127)</div>
+</div>
+
+<!-- ============================================================ -->
+<h2>12.4 Embed the Bar Chart (ProducedProducts)</h2>
+<p class="page-ref">Reference: Module 3, Lab 5 (pages 128–135)</p>
+
+<p>Next, you will embed the <code>SA_BarChart</code> graphic using the context menu workflow, then configure it to display produced products.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0128_0.png" alt="Updated Consumed Materials stacked column chart with new string labels showing Mixers M100-M800 on X-axis">
+  <div class="caption">The updated Consumed Materials chart after string substitution (page 128)</div>
+</div>
+
+<div class="lab">
+  <strong>Steps 31–32: Embed via Galaxy Browser</strong><br>
+  <ol start="31">
+    <li>In a blank area on the canvas, right-click and select <strong>Embed Industrial Graphic</strong>.</li>
+    <li>In the Galaxy Browser, expand <strong>Situational Awareness Library</strong> and select <strong>Dashboard Tools</strong>.</li>
+  </ol>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0128_1.png" alt="Context menu on blank canvas area with Embed Industrial Graphic option highlighted">
-  <div class="caption">Context menu on blank canvas area with Embed Industrial Graphic option highlighted</div>
+  <div class="caption">Using the context menu to embed an Industrial Graphic (page 128)</div>
 </div>
-
-<p>appears. 32. In the Galaxy Browser, expand Situational Awareness Library and select Dashboard Tools.</p>
 
 <div class="screenshot">
   <img src="../images/page_0129.png" alt="Galaxy Browser showing Dashboard Tools library with thumbnails for SA_BarChart, SA_BoxChart, SA_BulletGraph, SA_ColumnChart, SA_PieChart, and SA_StackedColumnChart">
-  <div class="caption">Galaxy Browser showing Dashboard Tools library with thumbnails for SA_BarChart, SA_BoxChart, SA_BulletGraph, SA_ColumnChart, SA_PieChart, and SA_StackedColumnChart</div>
+  <div class="caption">The Galaxy Browser showing all available Dashboard Tools chart types (page 129)</div>
 </div>
 
-<p>33. In the preview area, double-click SA_BarChart to select it and close Galaxy Browser. 34. Below the IngredientsConsumed graphic, click the canvas to embed the SA_BarChart graphic. 35. On the Properties tab, in Name, enter ProducedProducts. 36. In Wizard Options, configure the options as follows: Leave the remaining defaults. NumberofBars: Eight SortOrder: None</p>
-
-<div class="screenshot">
-  <img src="../images/page_0130_0.png" alt="Canvas showing Consumed Materials chart with context menu displaying Custom Properties option">
-  <div class="caption">Canvas showing Consumed Materials chart with context menu displaying Custom Properties option</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0130_1.png" alt="Properties panel showing ProducedProducts name entered and Wizard Options with NumberOfBars set to Eight, ShowBarValues, ShowTitle, ShowValueLabels True, SortOrder None">
-  <div class="caption">Properties panel showing ProducedProducts name entered and Wizard Options with NumberOfBars set to Eight, ShowBarValues, ShowTitle, ShowValueLabels True, SortOrder None</div>
-</div>
-
-<p>37. On the canvas, right-click ProducedProducts and select Custom Properties. Edit Custom Properties appears.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0131.png" alt="Context menu on ProducedProducts chart showing Custom Properties option highlighted">
-  <div class="caption">Context menu on ProducedProducts chart showing Custom Properties option highlighted</div>
-</div>
-
-<p>38. In the Custom Properties list, verify Bar01 is selected, and then in the Default Value field, double-click. The Galaxy Browser appears. 39. On the left, in Instances, scroll down and select Mixer100.Totalizer3, and then on the right, select PV. 40. Click OK to accept the selection in the Galaxy Browser. In Default Value, the --- placeholder is replaced with the new value.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0132_0.png" alt="Galaxy Browser showing Mixer100.Totalizer3 selected in Instances list with PV attribute displayed">
-  <div class="caption">Galaxy Browser showing Mixer100.Totalizer3 selected in Instances list with PV attribute displayed</div>
+<div class="lab">
+  <strong>Steps 33–36: Configure Bar Chart</strong><br>
+  <ol start="33">
+    <li>Double-click <strong>SA_BarChart</strong> to select it and close the Galaxy Browser.</li>
+    <li>Below the IngredientsConsumed graphic, click the canvas to embed the SA_BarChart.</li>
+    <li>On the Properties tab, set the <strong>Name</strong> to <code>ProducedProducts</code>.</li>
+    <li>In Wizard Options, set <strong>NumberOfBars</strong> to <strong>Eight</strong> and <strong>SortOrder</strong> to <strong>None</strong>.</li>
+  </ol>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0132_1.png" alt="Edit Custom Properties for ProducedProducts showing Bar01 set to Mixer100.Totalizer3.PV reference">
-  <div class="caption">Edit Custom Properties for ProducedProducts showing Bar01 set to Mixer100.Totalizer3.PV reference</div>
-</div>
-
-<p>41. In Edit Custom Properties, modify the custom properties as follows: 42. Click OK to close Edit Custom Properties. Name Value Bar02 Mixer200.Totalizer3.PV Bar03 Mixer300.Totalizer3.PV Bar04 Mixer400.Totalizer3.PV Bar05 Mixer500.Totalizer3.PV Bar06 Mixer600.Totalizer3.PV Bar07 Mixer700.Totalizer3.PV Bar08 Mixer800.Totalizer3.PV</p>
-
-<div class="screenshot">
-  <img src="../images/page_0133.png" alt="Edit Custom Properties with all Bar01-Bar08 properties mapped to mixer totalizer PV references (Mixer100-Mixer800.Totalizer3.PV)">
-  <div class="caption">Edit Custom Properties with all Bar01-Bar08 properties mapped to mixer totalizer PV references (Mixer100-Mixer800.Totalizer3.PV)</div>
-</div>
-
-<p>43. Right-click ProducedProducts and select Substitute | Substitute Strings. Substitute Strings appears.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0134.png" alt="Context menu on ProducedProducts chart with Substitute submenu expanded and Substitute Strings highlighted">
-  <div class="caption">Context menu on ProducedProducts chart with Substitute submenu expanded and Substitute Strings highlighted</div>
-</div>
-
-<p>44. Substitute the following strings: Current String New String B1 M100 B2 M200 B3 M300 B4 M400 B5 M500 B6 M600 B7 M700 B8 M800 Chart Heading Produced Products Short Description Produced products for current batch</p>
-
-<div class="screenshot">
-  <img src="../images/page_0135.png" alt="Substitute Strings dialog with 13 string replacements mapping B1-B8 to M100-M800, Chart Heading to Produced Products, and Short Description">
-  <div class="caption">Substitute Strings dialog with 13 string replacements mapping B1-B8 to M100-M800, Chart Heading to Produced Products, and Short Description</div>
-</div>
-
-<p>45. Click OK to close Substitute Strings. The graphic is updated with the new strings. Set Canvas Size to a Fixed Resolution Now, you will use the canvas size to set the bounding box of the graphic. All white space outside the bounding box is cropped at runtime. This feature allows you to determine the exact height and width of the graphic shown on a window in InTouch. 46. Click the canvas to set focus on the canvas. 47. On the Properties tab, in Size, select Fixed.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0136_0.png" alt="Properties panel showing Size set to Fixed with FixedWidth 500 and FixedHeight 500">
-  <div class="caption">Properties panel showing Size set to Fixed with FixedWidth 500 and FixedHeight 500</div>
+  <img src="../images/page_0130_0.png" alt="Canvas showing SA_BarChart embedded below the Consumed Materials chart">
+  <div class="caption">The SA_BarChart embedded below the Consumed Materials chart (page 130)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0136_1.png" alt="ProducedProducts horizontal bar chart with updated string labels showing M100-M800 mixers with placeholder bars">
-  <div class="caption">ProducedProducts horizontal bar chart with updated string labels showing M100-M800 mixers with placeholder bars</div>
+  <img src="../images/page_0130_1.png" alt="Properties panel showing ProducedProducts name and Wizard Options with NumberOfBars set to Eight">
+  <div class="caption">Configuring ProducedProducts Wizard Options with 8 bars and no sorting (page 130)</div>
 </div>
 
-<p>below:</p>
+<div class="lab">
+  <strong>Steps 37–42: Configure Bar Chart Custom Properties</strong><br>
+  <ol start="37">
+    <li>Right-click ProducedProducts and select <strong>Custom Properties</strong>.</li>
+    <li>Select Bar01, double-click the Default Value field to open the Galaxy Browser.</li>
+    <li>Select <strong>Mixer100.Totalizer3</strong> and attribute <strong>PV</strong>.</li>
+    <li>Click OK to accept the selection.</li>
+  </ol>
+  Complete the remaining mappings:
+</div>
+
+<table>
+  <thead><tr><th>Property</th><th>Value</th></tr></thead>
+  <tbody>
+    <tr><td>Bar02</td><td>Mixer200.Totalizer3.PV</td></tr>
+    <tr><td>Bar03</td><td>Mixer300.Totalizer3.PV</td></tr>
+    <tr><td>Bar04</td><td>Mixer400.Totalizer3.PV</td></tr>
+    <tr><td>Bar05</td><td>Mixer500.Totalizer3.PV</td></tr>
+    <tr><td>Bar06</td><td>Mixer600.Totalizer3.PV</td></tr>
+    <tr><td>Bar07</td><td>Mixer700.Totalizer3.PV</td></tr>
+    <tr><td>Bar08</td><td>Mixer800.Totalizer3.PV</td></tr>
+  </tbody>
+</table>
+
+<div class="screenshot">
+  <img src="../images/page_0131.png" alt="Context menu on ProducedProducts chart showing Custom Properties option">
+  <div class="caption">Accessing Custom Properties on the ProducedProducts chart (page 131)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0132_0.png" alt="Galaxy Browser showing Mixer100.Totalizer3 selected with PV attribute">
+  <div class="caption">Selecting Mixer100.Totalizer3.PV for the Bar01 property (page 132)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0132_1.png" alt="Edit Custom Properties for ProducedProducts showing Bar01 set to Mixer100.Totalizer3.PV">
+  <div class="caption">Bar01 now references Mixer100.Totalizer3.PV (page 132)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0133.png" alt="Edit Custom Properties with all Bar01-Bar08 properties mapped to mixer totalizer PV references">
+  <div class="caption">All 8 bars mapped to their respective mixer totalizer PV references (page 133)</div>
+</div>
+
+<div class="lab">
+  <strong>Steps 43–44: Substitute Strings for ProducedProducts</strong><br>
+  <ol start="43">
+    <li>Right-click ProducedProducts and select <strong>Substitute → Substitute Strings</strong>.</li>
+    <li>Substitute the strings as shown:</li>
+  </ol>
+</div>
+
+<table>
+  <thead><tr><th>Current String</th><th>New String</th></tr></thead>
+  <tbody>
+    <tr><td>B1–B8</td><td>M100–M800</td></tr>
+    <tr><td>Chart Heading</td><td>Produced Products</td></tr>
+    <tr><td>Short Description</td><td>Produced products for current batch</td></tr>
+  </tbody>
+</table>
+
+<div class="screenshot">
+  <img src="../images/page_0134.png" alt="Context menu on ProducedProducts chart with Substitute submenu expanded">
+  <div class="caption">Accessing Substitute Strings on the ProducedProducts chart (page 134)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0135.png" alt="Substitute Strings dialog with string replacements mapping B1-B8 to M100-M800">
+  <div class="caption">String substitution for the ProducedProducts chart (page 135)</div>
+</div>
+
+<!-- ============================================================ -->
+<h2>12.5 Set Canvas Size and Save</h2>
+<p class="page-ref">Reference: Module 3, Lab 5 (pages 136–138)</p>
+
+<p>Now you will set the canvas to a fixed size, which determines the exact bounding box of the graphic at runtime. All white space outside the bounding box is cropped.</p>
+
+<div class="lab">
+  <strong>Steps 45–48: Configure Fixed Canvas Size</strong><br>
+  <ol start="45">
+    <li>Click OK to close Substitute Strings.</li>
+    <li>Click the canvas to set focus.</li>
+    <li>On the Properties tab, in <strong>Size</strong>, select <strong>Fixed</strong>.</li>
+    <li>Drag the bottom-right handle of the canvas to include both graphics with some white space around them.</li>
+  </ol>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0136_0.png" alt="Properties panel showing Size set to Fixed with FixedWidth and FixedHeight values">
+  <div class="caption">Setting the canvas to Fixed size for precise runtime dimensions (page 136)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0136_1.png" alt="ProducedProducts horizontal bar chart with updated string labels showing M100-M800 mixers">
+  <div class="caption">The completed ProducedProducts chart with proper mixer labels (page 136)</div>
+</div>
 
 <div class="screenshot">
   <img src="../images/page_0137.png" alt="Final canvas layout showing both Consumed Materials stacked column chart and Produced Products horizontal bar chart arranged vertically">
-  <div class="caption">Final canvas layout showing both Consumed Materials stacked column chart and Produced Products horizontal bar chart arranged vertically</div>
+  <div class="caption">The final canvas layout with both charts arranged vertically (page 137)</div>
 </div>
 
-<p>48. Drag the bottom-right handle of the canvas to include both graphics with some white space around them.</p>
-
 <div class="screenshot">
-  <img src="../images/page_0138.png" alt="Both charts displayed together on canvas showing completed ProcessOverview layout with Consumed Materials and Produced Products">
-  <div class="caption">Both charts displayed together on canvas showing completed ProcessOverview layout with Consumed Materials and Produced Products</div>
+  <img src="../images/page_0138.png" alt="Both charts displayed on canvas with resize handles showing the fixed bounding box">
+  <div class="caption">Resizing the canvas to encompass both charts with appropriate whitespace (page 138)</div>
 </div>
 
-<p>49. On the toolbar at the top, click Save and Close. 50. Check in the graphic. Embed the Symbol in a Window Now, you will embed the ProcessOverview symbol in the OverviewDisplay window you created in a previous lab. 51. In the IDE, on the Templates tab, in the Training\ViewApps toolset, double-click $MixerView to open WindowMaker. WindowMaker opens and displays Select windows to open. 52. In Select windows to open, select the following windows:  AlarmDisplay  ContentDisplay  Logon  Navigation  OverviewDisplay Note: Alternatively, if your application has only the above windows, you can click the Select all button. 53. Click Open. The selected windows open.</p>
+<div class="lab">
+  <strong>Steps 49–50: Save and Check In</strong><br>
+  <ol start="49">
+    <li>On the toolbar, click <strong>Save and Close</strong>.</li>
+    <li>Check in the graphic.</li>
+  </ol>
+</div>
 
 <div class="screenshot">
-  <img src="../images/page_0139_0.png" alt="WindowMaker with ProcessOverview opened in Graphic Editor showing both charts on the canvas">
-  <div class="caption">WindowMaker with ProcessOverview opened in Graphic Editor showing both charts on the canvas</div>
+  <img src="../images/page_0139_0.png" alt="Toolbar showing Save and Close button with ProcessOverview symbol ready for check-in">
+  <div class="caption">Saving and closing the ProcessOverview symbol (page 139)</div>
+</div>
+
+<!-- ============================================================ -->
+<h2>12.6 Embed the Symbol in a Window</h2>
+<p class="page-ref">Reference: Module 3, Lab 5 (pages 139–142)</p>
+
+<p>You will now embed the ProcessOverview symbol into the OverviewDisplay window you created in a previous lab.</p>
+
+<div class="lab">
+  <strong>Steps 51–53: Open WindowMaker</strong><br>
+  <ol start="51">
+    <li>On the Templates tab, in the Training\ViewApps toolset, double-click <strong>$MixerView</strong> to open WindowMaker.</li>
+    <li>In Select windows to open, select <strong>AlarmDisplay</strong>, <strong>ContentDisplay</strong>, <strong>Logon</strong>, <strong>Navigation</strong>, and <strong>OverviewDisplay</strong>.</li>
+    <li>Click Open.</li>
+  </ol>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0139_1.png" alt="Select windows to open dialog showing five window tiles: AlarmDisplay, ContentDisplay, Logon, Navigation, and OverviewDisplay">
-  <div class="caption">Select windows to open dialog showing five window tiles: AlarmDisplay, ContentDisplay, Logon, Navigation, and OverviewDisplay</div>
+  <div class="caption">Selecting the five windows to open in WindowMaker (page 139)</div>
 </div>
 
-<p>54. In Industrial Graphics, expand Training. 55. From Training, drag ProcessOverview to the OverviewDisplay window.</p>
+<div class="lab">
+  <strong>Steps 54–55: Drag Symbol to Window</strong><br>
+  <ol start="54">
+    <li>In Industrial Graphics, expand <strong>Training</strong>.</li>
+    <li>From Training, drag <strong>ProcessOverview</strong> to the OverviewDisplay window.</li>
+  </ol>
+</div>
 
 <div class="screenshot">
   <img src="../images/page_0140_0.png" alt="Industrial Graphics panel with Training folder expanded showing ProcessOverview symbol available for dragging">
-  <div class="caption">Industrial Graphics panel with Training folder expanded showing ProcessOverview symbol available for dragging</div>
+  <div class="caption">The Training toolset expanded in Industrial Graphics showing ProcessOverview (page 140)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0140_1.png" alt="WindowMaker canvas with ProcessOverview symbol placed in OverviewDisplay window, showing Properties panel with OverviewDisplay name">
-  <div class="caption">WindowMaker canvas with ProcessOverview symbol placed in OverviewDisplay window, showing Properties panel with OverviewDisplay name</div>
+  <img src="../images/page_0140_1.png" alt="WindowMaker canvas with ProcessOverview symbol placed in OverviewDisplay window">
+  <div class="caption">ProcessOverview dragged into the OverviewDisplay window (page 140)</div>
 </div>
-
-<p>window.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0141.png" alt="WindowMaker with ProcessOverview embedded in OverviewDisplay showing Consumed Materials chart visible in the layout"Windows" with dropdown/expand buttons">
-  <div class="caption">WindowMaker with ProcessOverview embedded in OverviewDisplay showing Consumed Materials chart visible in the layout</div>
+  <img src="../images/page_0141.png" alt="WindowMaker with ProcessOverview embedded in OverviewDisplay showing Consumed Materials chart in the layout">
+  <div class="caption">ProcessOverview fully embedded in OverviewDisplay with both charts visible (page 141)</div>
 </div>
 
-<p>Finally, you will test the OverviewDisplay window in runtime. 56. Click Runtime. 57. Verify that the graphic displays live data. Note: For any given mixer, you will not see any produced products until a few seconds after the consumed materials are at their highest level. 58. Click Development! to return to WindowMaker. <End of Lab></p>
+<!-- ============================================================ -->
+<h2>12.7 Test in Runtime</h2>
+<p class="page-ref">Reference: Module 3, Lab 5 (pages 142–144)</p>
+
+<p>Finally, you will test the OverviewDisplay window in runtime to verify the charts display live data.</p>
+
+<div class="lab">
+  <strong>Steps 56–58: Runtime Test</strong><br>
+  <ol start="56">
+    <li>Click <strong>Runtime</strong>.</li>
+    <li>Verify that the graphic displays live data. The Consumed Materials chart should show stacked bars for each mixer, and the Produced Products chart should show horizontal bars with production quantities.</li>
+    <li>Click <strong>Development!</strong> to return to WindowMaker.</li>
+  </ol>
+</div>
+
+<div class="tip">
+  <strong>Note:</strong> For any given mixer, you will not see any produced products until a few seconds after the consumed materials reach their highest level — this reflects the real-time batch processing delay.
+</div>
 
 <div class="screenshot">
-  <img src="../images/page_0142.png" alt="Runtime view showing both Consumed Materials stacked column chart and Produced Products horizontal bar chart with live batch production data for mixers M100-M800"Consumed Materials">
-  <div class="caption">Runtime view showing both Consumed Materials stacked column chart and Produced Products horizontal bar chart with live batch production data for mixers M100-M800</div>
+  <img src="../images/page_0142.png" alt="Runtime view showing both Consumed Materials stacked column chart and Produced Products horizontal bar chart with live batch production data for mixers M100-M800">
+  <div class="caption">The completed ProcessOverview in runtime showing live consumed materials and produced products data (page 142)</div>
 </div>
 
-<p>object, you can create symbols within the object and then embed symbols from the Graphics tab into those symbols. Alternatively, you can use the linked symbols feature, whereby you directly link external symbols from the Graphics tab to the automation object. When adding a symbol or linking an external symbol in a template object, the symbol in the template will be propagated to all derived objects. The symbols inherited from the template object cannot be removed. Linked Symbols vs. Added Symbols Linking an external symbol to an automation object creates an association between the object and a symbol on the Graphics tab. The symbol on the Graphics tab can be linked to other automation objects, which are not necessarily part of the derivation hierarchy. Changes to the symbol from the Graphics tab will apply to all automation objects to which it is linked. On the other hand, adding a symbol to an automation object is to create a symbol that is natively hosted by the object. You can edit the symbol within the object, such as when you embed a symbol from the Graphics tab and then customize it for the object. When the symbol in a template object changes, the changes will propagate to its child objects and wherever they are referenced. Deleting automation objects with added symbols will delete those symbols, since the symbols only exist within the automation objects. However, deleting automation objects with liked symbols will not delete the symbols because the symbols still exist on the Graphics tab. Note the following for linked symbols:  Symbols on the Graphics tab can be linked to automation objects  Linked symbols in automation objects can be embedded into other symbols  Changes made to a linked or embedded symbol are propagated to automation objects to which the symbol is linked and to the graphics in which the symbol is embedded  Relative references used in a linked symbol will be resolved through the object to which it is linked. Some limitations of using linked symbols are:  Custom properties in a linked symbol cannot be customized directly  Only symbols from the Graphics tab can be linked to an object Add or Link Symbols in Automation Objects When adding symbols to an automation object, you can create the symbols in the object and then develop the symbol as needed. These symbols become content in the automation object. Alternatively, you can create symbols on the Graphics tab and then link the symbols from the Graphics tab to the object. Linked symbols remain on the Graphics tab but are associated with the automation object as content. This section provides a brief overview of using graphics in automation objects and referencing them.</p>
+<p><em>&lt;End of Lab&gt;</em></p>
 
-<p>Editor, you can add a symbol or link an external symbol to an object from the Content pane on the Attributes tab. Clicking the Add button creates a symbol and clicking the Link Content button opens the Galaxy Browser, allowing you to browse for and select a symbol from the Graphics tab to link. You can select a symbol from the list and click the Edit Content button to edit the symbol in the Graphic Editor. Relative References in Graphics You can use relative references when configuring graphics. Relative References are references that go up the object hierarchy to parent objects. Relative references such as “Me” and “MyArea” are valid reference strings. The following relative references refer to the current object:  Me  MyArea  MyContainer  MyEngine  MyHost  MyPlatform Relative references are resolved in runtime when the graphic is displayed in the running application.</p>
+<!-- ============================================================ -->
+<h2>12.8 Linked Symbols and Relative References (Preview)</h2>
+<p class="page-ref">Reference: Module 3, Section 3 (pages 143–144)</p>
+
+<p>Before moving to the next lesson, it is worth previewing a concept you will use extensively: the relationship between graphics and automation objects. When adding symbols to an automation object, you can either create symbols within the object and embed Graphics tab symbols, or use the <strong>linked symbols</strong> feature to associate external symbols directly.</p>
+
+<p>From the Content pane on the Attributes tab in the Object Editor, the <strong>Add</strong> button creates a new internal symbol, while the <strong>Link Content</strong> button opens the Galaxy Browser to select a symbol from the Graphics tab. You can select a symbol from the list and click <strong>Edit Content</strong> to open it in the Graphic Editor.</p>
+
+<div class="key-concept">
+  <strong>Key Concept — Relative References:</strong> You can use relative references when configuring graphics. These are references that go up the object hierarchy to parent objects. Valid relative references include: <code>Me</code>, <code>MyArea</code>, <code>MyContainer</code>, <code>MyEngine</code>, <code>MyHost</code>, and <code>MyPlatform</code>. They are resolved at runtime when the graphic is displayed.
+</div>
 
 <div class="screenshot">
   <img src="../images/page_0144_0.png" alt="Object Editor Content pane showing empty state with Add and Link Content buttons and instructional text">
-  <div class="caption">Object Editor Content pane showing empty state with Add and Link Content buttons and instructional text</div>
+  <div class="caption">The Object Editor Content pane with Add and Link Content buttons for symbol management (page 144)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0144_1.png" alt="Object Editor Content pane showing MixingProcess_Detailed content item with Edit Content prompt and $Mixer tab">
-  <div class="caption">Object Editor Content pane showing MixingProcess_Detailed content item with Edit Content prompt and $Mixer tab</div>
+  <img src="../images/page_0144_1.png" alt="Object Editor Content pane showing MixingProcess_Detailed content item with Edit Content button">
+  <div class="caption">A linked symbol (MixingProcess_Detailed) displayed in the Content pane with the Edit Content option (page 144)</div>
 </div>
 
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> What are the key concepts covered in this lesson about Lab 5 – Building a Process Overview?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
+  <p><strong>1.</strong> Why is it important to enter unique replacement strings in the Substitute Strings dialog rather than reusing the same string?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">If duplicate strings are entered, the Substitute Strings dialog consolidates them on subsequent openings, making individual strings uneditable. This would require deleting the graphic and losing all Wizard Options, Custom Properties, position, size, name, and string configurations.</p></details>
 
-  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <p><strong>2.</strong> What is the difference between embedding a graphic using the Toolbox tab drag-and-drop method versus the Galaxy Browser method?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">The Toolbox tab method involves finding the symbol in the Toolbox panel and dragging it onto the canvas. The Galaxy Browser method involves right-clicking the canvas and selecting Embed Industrial Graphic, which opens the Galaxy Browser for selection. Both achieve the same result — a linked copy of the original symbol.</p></details>
 
+  <p><strong>3.</strong> Why do the custom properties for the IngredientsConsumed chart use Totalizer1 and Totalizer2 while ProducedProducts uses Totalizer3?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Totalizer1 and Totalizer2 track the consumed ingredient quantities (the inputs), while Totalizer3 tracks the produced product quantity (the output) for each mixer. This separation reflects the actual data model where inputs and outputs are tracked by different totalizer attributes.</p></details>
+
+  <p><strong>4.</strong> What happens at runtime when the canvas Size is set to "Fixed" versus "Auto"?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Fixed uses the FixedWidth and FixedHeight values to define the exact pixel dimensions at runtime, with white space cropped to the bounding box. Auto dynamically sizes the graphic by cropping all white space outside runtime elements.</p></details>
+
+  <p><strong>5.</strong> When you drag ProcessOverview into OverviewDisplay from the Training toolset, why must you select the Instance version rather than the Template version from the Galaxy Browser?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Template versions use Me. relative references that are not resolved at runtime — they only work when displayed through their parent object. Instance versions have the Me. references replaced with actual I/O links to specific mixer objects, so they display live data at runtime.</p></details>
 </div>
 
 <p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>

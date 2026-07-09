@@ -97,158 +97,299 @@
 </details>
 </nav>
 
-<h1>Lesson 40: Lab23 Web Client</h1>
-<p class="page-ref">Module 8 — Web Client | Pages 537–550</p>
+<h1>Lesson 40: Lab 23 — Using the Web Client</h1>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 8 — Web Client, Lab 23 (pages 537–550)</p>
+<p class="page-ref">In this lab, you will enable the Web Client, launch it from WindowMaker, navigate and interact with InTouch graphics in a browser, and acknowledge alarms — all without RDP or IIS.</p>
 
-<p>lab, you will enable the Web Client in Application Manager and use the Web Client fast switch to start Web Client. The Web Client fast switch opens your InTouch frame windows in the default Web browser. You will then navigate and display both InTouch application windows and graphics in the browser. Additionally, you will use the Web Client to search for graphics, zoom and pan, view and acknowledge alarms, and interact with your InTouch application. Objectives Upon completion of this lab, you will be able to:  Enable Web Client in Application Manager  Use the Web Client fast switch to open the Web Client  Pan and zoom a graphic in a web browser using a mouse and keyboard  Navigate and view Application windows using the Web Client  Use Navigation Search  Visualize and acknowledge alarms in Web Client</p>
+<!-- ============================================================ -->
+<h2>40.1 Lab Objectives</h2>
+<p class="page-ref">Reference: Module 8, Lab 23 (page 537)</p>
 
-<div class="screenshot">
-  <img src="../images/page_0537.png" alt="Web-based SCADA/HMI dashboard for the Mixer process running in Chrome browser at localhost/InTouch/. Shows the $MixerView with a navigation bar (Mixers, Line 1, Line 2, Alarm Overview, Historical Alarms, Historian Client Trend), user info (student/Training Student, Access Level 0), an active alarms table with unacknowledged communication-loss and process-value alarms, left-side production metrics (Consumed Materials and ProducedProducts bar charts), and the main right-side Mixer100 Line1 process view with pumps, inlet/outlet valves, mixer vessel, agitator, and real-time Level and Temperature trend graphs.">
-  <div class="caption">Web-based SCADA/HMI dashboard for the Mixer process running in Chrome browser at localhost/InTouch/. Shows the $MixerView with a navigation bar (Mixers, Line 1, Line 2, Alarm Overview, Historical Alarms, Historian Client Trend), user info (student/Training Student, Access Level 0), an active alarms table with unacknowledged communication-loss and process-value alarms, left-side production metrics (Consumed Materials and ProducedProducts bar charts), and the main right-side Mixer100 Line1 process view with pumps, inlet/outlet valves, mixer vessel, agitator, and real-time Level and Temperature trend graphs.</div>
+<p>Upon completion of this lab, you will be able to:</p>
+<ul>
+  <li>Enable Web Client in Application Manager</li>
+  <li>Use the Web Client fast switch to open the Web Client</li>
+  <li>Pan and zoom a graphic in a web browser using a mouse and keyboard</li>
+  <li>Navigate and view Application windows using the Web Client</li>
+  <li>Use Navigation Search to find specific graphics</li>
+  <li>Visualize and acknowledge alarms in Web Client</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>40.2 Disable Galaxy Security</h2>
+<p class="page-ref">Reference: Module 8, Lab 23 (pages 538–539)</p>
+
+<div class="lab">
+  <strong>Lab Step:</strong> Because the Web Client relies on Windows authentication for user access, you must first disable Galaxy security for this lab exercise.
 </div>
 
-<p>First, you will disable security for training purposes. This is because Web Client relies on Windows authentication. You will disable Galaxy security for this lab. 1. Close WindowMaker and check in $MixerView. 2. In the IDE, on the Galaxy menu, select Configure | Security. 3. In Authentication Mode, select None. 4. Click Save. A Galaxy security message appears. 5. Click OK to shut down the IDE.</p>
+<p>Follow these steps to disable security:</p>
+<ol>
+  <li>Close WindowMaker and check in <code>$MixerView</code>.</li>
+  <li>In the IDE, on the Galaxy menu, select <strong>Configure &gt; Security</strong>.</li>
+  <li>In Authentication Mode, select <strong>None</strong>.</li>
+  <li>Click <strong>Save</strong>. A Galaxy security confirmation message appears.</li>
+  <li>Click <strong>OK</strong> to shut down the IDE.</li>
+</ol>
 
 <div class="screenshot">
-  <img src="../images/page_0538.png" alt="Galaxy security confirmation dialog box stating 'Authentication mode of Galaxy security has changed. IDE will shutdown.' with an OK button, indicating the IDE must restart after changing the authentication mode to None for the Web Client lab.">
-  <div class="caption">Galaxy security confirmation dialog box stating 'Authentication mode of Galaxy security has changed. IDE will shutdown.' with an OK button, indicating the IDE must restart after changing the authentication mode to None for the Web Client lab.</div>
+  <img src="../images/page_0538.png" alt="Galaxy security confirmation dialog stating the IDE will shut down after authentication mode change">
+  <div class="caption">Galaxy security confirmation dialog — the IDE must restart after changing the authentication mode to None (page 538)</div>
 </div>
 
-<p>Next, you will enable Web Client. Additionally, because Web Client uses local security groups to manage the list of users that can access it, you must also disable a security feature used in the Mixer graphic. 6. From the Windows Start menu, open Application Manager. AVEVA Application Manager opens.</p>
+<!-- ============================================================ -->
+<h2>40.3 Enable the Web Client</h2>
+<p class="page-ref">Reference: Module 8, Lab 23 (pages 539–541)</p>
+
+<p>With security disabled, you now enable the Web Client through Application Manager. The Web Client uses local Windows security groups to manage user access, so you will also need to disable a security feature used in the Mixer graphic.</p>
+
+<ol start="6">
+  <li>From the Windows Start menu, open <strong>Application Manager</strong>.</li>
+</ol>
 
 <div class="screenshot">
-  <img src="../images/page_0539.png" alt="AVEVA Application Manager main window with the InTouch tab selected, showing the ribbon toolbar (New, Delete, Rename, Properties, Duplicate, WindowMaker, WindowViewer, DBLoad, DBDump, Import, Export, Refresh) and two demo application tiles: 'Demo Application 1280 x 1024' and 'InTouch Introductory Demo 1080p'.">
-  <div class="caption">AVEVA Application Manager main window with the InTouch tab selected, showing the ribbon toolbar (New, Delete, Rename, Properties, Duplicate, WindowMaker, WindowViewer, DBLoad, DBDump, Import, Export, Refresh) and two demo application tiles: 'Demo Application 1280 x 1024' and 'InTouch Introductory Demo 1080p'.</div>
+  <img src="../images/page_0539.png" alt="AVEVA Application Manager main window with InTouch tab selected">
+  <div class="caption">Application Manager main window showing the InTouch tab and ribbon toolbar (page 539)</div>
 </div>
 
-<p>7. Select the Web Client tab. 8. On the toolbar, click Web Client. Notice the small clock on the Web Client icon, which indicates that the Web Client is not started.</p>
+<ol start="7">
+  <li>Select the <strong>Web Client</strong> tab.</li>
+  <li>On the toolbar, click the <strong>Web Client</strong> button. Notice the small clock on the icon — this indicates the Web Server has not started yet.</li>
+</ol>
 
 <div class="screenshot">
-  <img src="../images/page_0540_0.png" alt="AVEVA Application Manager with the Web Client tab active, displaying the Web Client configuration panel: Graphic refresh rate (1000 msec), Alarm refresh rate (1000 msec), checkboxes for Show header, Enable navbar, Allow anonymous access, and Enable workspaces, plus Website name field set to 'InTouch' and Website icon showing the AVEVA logo.">
-  <div class="caption">AVEVA Application Manager with the Web Client tab active, displaying the Web Client configuration panel: Graphic refresh rate (1000 msec), Alarm refresh rate (1000 msec), checkboxes for Show header, Enable navbar, Allow anonymous access, and Enable workspaces, plus Website name field set to 'InTouch' and Website icon showing the AVEVA logo.</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0540_1.png" alt="AVEVA Application Manager Web Client tab with the Web Client button highlighted and a tooltip reading 'Click to start the Web Server for InTouch HMI Web Client', indicating the Web Client has not yet been started (small clock icon visible on the button).">
-  <div class="caption">AVEVA Application Manager Web Client tab with the Web Client button highlighted and a tooltip reading 'Click to start the Web Server for InTouch HMI Web Client', indicating the Web Client has not yet been started (small clock icon visible on the button).</div>
-</div>
-
-<p>moment, the small clock on the Web Client icon disappears, which indicates that Web Client has started. 9. Close the AVEVA Application Manager. 10. Open the System Platform IDE. 11. In the Home menu, on the Recent tab, double-click TrainingGalaxy. The Galaxy opens in the IDE.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0541_0.png" alt="AVEVA System Platform IDE startup screen showing the Home tab with server connection (S01ENG), new project templates (Default Galaxy, Blank Galaxy, InTouch Base, Reactor Demo), and the Recent tab listing the 'TrainingGalaxy' project on server S01ENG.">
-  <div class="caption">AVEVA System Platform IDE startup screen showing the Home tab with server connection (S01ENG), new project templates (Default Galaxy, Blank Galaxy, InTouch Base, Reactor Demo), and the Recent tab listing the 'TrainingGalaxy' project on server S01ENG.</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0541_1.png" alt="AVEVA System Platform IDE with the Industrial Graphics pane open for TrainingGalaxy, showing the folder hierarchy with .NET Controls, Apps, and Industrial Graphic Library subfolders, used for browsing and selecting graphical components.">
-  <div class="caption">AVEVA System Platform IDE with the Industrial Graphics pane open for TrainingGalaxy, showing the folder hierarchy with .NET Controls, Apps, and Industrial Graphic Library subfolders, used for browsing and selecting graphical components.</div>
-</div>
-
-<p>12. In the IDE, on the Templates tab, in the Training\Project toolset, double-click $Mixer to open it for editing. 13. In Content, double-click SwitchedMixingProcess to open it for editing. 14. On the canvas, double-click MixerDropDown to open Edit Animations. 15. In Animations, for Disable, click the drop-down list and select Disabled. 16. Click OK to close Edit Animations. 17. Save and close the graphic. 18. Save and close and check in $Mixer. Next you will prepare InTouch for using Web Client and then open Web Client. 19. On the Templates tab, in the Training\ViewApps toolset, double-click $MixerView to open WindowMaker. 20. Click Open to open the selected windows. 21. Click Runtime. Note: WindowViewer must be running to provide data and animations for Web Client. 22. Click Development! to return to WindowMaker.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0542.png" alt="Edit Animations dialog box in WindowMaker showing the Animations configuration panel where the Disable interaction property is set to 'Disabled' via a dropdown menu, used to disable the MixerDropDown control for Web Client compatibility.">
-  <div class="caption">Edit Animations dialog box in WindowMaker showing the Animations configuration panel where the Disable interaction property is set to 'Disabled' via a dropdown menu, used to disable the MixerDropDown control for Web Client compatibility.</div>
-</div>
-
-<p>23. In WindowMaker, in the top-right corner, click the Web Client fast switch. After a few moments, the default web browser opens, and the application windows appear in Web Client. 24. Maximize the web browser.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0543_0.png" alt="Web Client opened in Chrome browser showing the $MixerView application with alarm summary table, navigation bar with Mixers/Line 1/Line 2 buttons, user info panel, production metrics charts, and the main Mixer100 process view with pump/inlet/outlet components and trend graphs.">
-  <div class="caption">Web Client opened in Chrome browser showing the $MixerView application with alarm summary table, navigation bar with Mixers/Line 1/Line 2 buttons, user info panel, production metrics charts, and the main Mixer100 process view with pump/inlet/outlet components and trend graphs.</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0543_1.png" alt="Web Client showing $MixerView after switching to a different mixer via the dropdown selector, with the ContentDisplay area updated to show the selected mixer's process diagram, pump and valve components, and real-time Level and Temperature trend graphs with alarm thresholds visible.">
-  <div class="caption">Web Client showing $MixerView after switching to a different mixer via the dropdown selector, with the ContentDisplay area updated to show the selected mixer's process diagram, pump and valve components, and real-time Level and Temperature trend graphs with alarm thresholds visible.</div>
-</div>
-
-<p>25. In the ContentDisplay window, switch to a different mixer and verify the components of the selected mixer are displayed. 26. Press and hold the Ctrl key, hover the cursor over the Web Client, and then scroll the mouse wheel up and down to zoom in and out. 27. Release the Ctrl key.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0544_0.png" alt="Web Client zoomed-in view of the Mixer100 Line1 process diagram, showing the pump icons (Pump1_001, Pump2_001), inlet valve icons (Inlet1_001, Inlet2_001) with green indicators, the mixer vessel, and Level and Temperature trend graphs with red dashed alarm threshold lines.">
-  <div class="caption">Web Client zoomed-in view of the Mixer100 Line1 process diagram, showing the pump icons (Pump1_001, Pump2_001), inlet valve icons (Inlet1_001, Inlet2_001) with green indicators, the mixer vessel, and Level and Temperature trend graphs with red dashed alarm threshold lines.</div>
+  <img src="../images/page_0540_0.png" alt="Application Manager Web Client tab with configuration settings">
+  <div class="caption">The Web Client tab showing configuration options: refresh rates, header/navbar toggles, and website name (page 540)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0544_1.png" alt="Web Client zoomed-in and panned view showing the ContentDisplay area with Mixer100 process details, inlet valves and pump components on the left, and Level and Temperature graphs with current readings on the right, demonstrating Ctrl+scroll zoom and middle-click pan functionality.">
-  <div class="caption">Web Client zoomed-in and panned view showing the ContentDisplay area with Mixer100 process details, inlet valves and pump components on the left, and Level and Temperature graphs with current readings on the right, demonstrating Ctrl+scroll zoom and middle-click pan functionality.</div>
+  <img src="../images/page_0540_1.png" alt="Web Client button with clock icon and start tooltip">
+  <div class="caption">The Web Client button with clock icon and tooltip — click to start the Web Server (page 540)</div>
 </div>
 
-<p>step, first you must be zoomed in. 28. In the Web Client, click and hold down the mouse wheel, and then move up, down, left, and right to pan. 29. On the right side of the Web Client header, click the Home button. This will restore the Home view. 30. In the Navigation window, click Alarm Overview and observe the alarms. 31. Close the AlarmAggregationOverview window.</p>
+<p>After a moment, the clock disappears from the icon, indicating the Web Server is running.</p>
+
+<ol start="9">
+  <li>Close the Application Manager.</li>
+  <li>Open the System Platform IDE.</li>
+  <li>In the Home menu, on the Recent tab, double-click <strong>TrainingGalaxy</strong>.</li>
+</ol>
 
 <div class="screenshot">
-  <img src="../images/page_0545_0.png" alt="Browser window showing the top toolbar with the Home button tooltip visible, and a partial analog clock widget below, demonstrating the Web Client Home button location in the right side of the header bar.">
-  <div class="caption">Browser window showing the top toolbar with the Home button tooltip visible, and a partial analog clock widget below, demonstrating the Web Client Home button location in the right side of the header bar.</div>
+  <img src="../images/page_0541_0.png" alt="IDE startup screen showing TrainingGalaxy in the Recent tab">
+  <div class="caption">The IDE Home tab with TrainingGalaxy listed under Recent projects (page 541)</div>
+</div>
+
+<!-- ============================================================ -->
+<h2>40.4 Disable MixerDropDown for Web Client</h2>
+<p class="page-ref">Reference: Module 8, Lab 23 (page 542)</p>
+
+<p>Before launching the Web Client, you need to disable the MixerDropDown combo box in the Mixer template. This is because the Web Client uses local security groups to manage user access, and this control relies on a security feature that must be disabled for browser-based access.</p>
+
+<ol start="12">
+  <li>In the IDE, on the Templates tab, in the Training\Project toolset, double-click <code>$Mixer</code> to open it for editing.</li>
+  <li>In Content, double-click <code>SwitchedMixingProcess</code> to open it for editing.</li>
+  <li>On the canvas, double-click <code>MixerDropDown</code> to open Edit Animations.</li>
+  <li>In Animations, for Disable, click the drop-down list and select <strong>Disabled</strong>.</li>
+  <li>Click <strong>OK</strong> to close Edit Animations.</li>
+  <li>Save and close the graphic.</li>
+  <li>Save, close, and check in <code>$Mixer</code>.</li>
+</ol>
+
+<div class="screenshot">
+  <img src="../images/page_0542.png" alt="Edit Animations dialog with Disable property set to Disabled">
+  <div class="caption">Edit Animations dialog showing the Disable interaction property set to Disabled for Web Client compatibility (page 542)</div>
+</div>
+
+<!-- ============================================================ -->
+<h2>40.5 Launch the Web Client</h2>
+<p class="page-ref">Reference: Module 8, Lab 23 (pages 542–543)</p>
+
+<p>Now you will start WindowViewer to provide live data for the Web Client, then use the Web Client fast switch to open the browser interface.</p>
+
+<ol start="19">
+  <li>On the Templates tab, in the Training\ViewApps toolset, double-click <code>$MixerView</code> to open WindowMaker.</li>
+  <li>Click <strong>Open</strong> to open the selected windows.</li>
+  <li>Click <strong>Runtime</strong> to start WindowViewer.</li>
+</ol>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> WindowViewer must be running to provide data and animations for the Web Client. The Web Client is a browser-based viewer — it does not supply its own data.
+</div>
+
+<ol start="22">
+  <li>Click <strong>Development!</strong> to return to WindowMaker.</li>
+  <li>In WindowMaker, in the top-right corner, click the <strong>Web Client fast switch</strong>.</li>
+</ol>
+
+<p>After a few moments, the default web browser opens, and the application windows appear in the Web Client.</p>
+
+<ol start="24">
+  <li>Maximize the web browser.</li>
+</ol>
+
+<div class="screenshot">
+  <img src="../images/page_0543_0.png" alt="Web Client opened in Chrome showing $MixerView with alarm table and process view">
+  <div class="caption">The Web Client in Chrome showing $MixerView with alarm table, navigation bar, and Mixer100 process view (page 543)</div>
+</div>
+
+<!-- ============================================================ -->
+<h2>40.6 Navigate and Zoom</h2>
+<p class="page-ref">Reference: Module 8, Lab 23 (pages 543–545)</p>
+
+<p>With the Web Client open, you can interact with the application just as you would in WindowViewer. Start by switching between mixers and then practicing the zoom and pan controls.</p>
+
+<ol start="25">
+  <li>In the ContentDisplay window, switch to a different mixer using the dropdown selector and verify the components of the selected mixer are displayed.</li>
+  <li>Press and hold the <strong>Ctrl</strong> key, hover the cursor over the Web Client, and then scroll the mouse wheel up and down to zoom in and out.</li>
+  <li>Release the Ctrl key.</li>
+</ol>
+
+<div class="screenshot">
+  <img src="../images/page_0543_1.png" alt="Web Client showing a different mixer selected via the dropdown">
+  <div class="caption">After switching mixers, the ContentDisplay updates to show the selected mixer's process diagram and trend graphs (page 543)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0545_1.png" alt="Web Client showing the AlarmAggregationOverview popup window with a hierarchical alarm aggregation tree: Production (top level with 24 critical, 16 high, 10 medium alarms), Line1 and Line2 sub-levels, and individual Mixer100-Mixer800 units with color-coded severity counts and Enable mode status.">
-  <div class="caption">Web Client showing the AlarmAggregationOverview popup window with a hierarchical alarm aggregation tree: Production (top level with 24 critical, 16 high, 10 medium alarms), Line1 and Line2 sub-levels, and individual Mixer100-Mixer800 units with color-coded severity counts and Enable mode status.</div>
+  <img src="../images/page_0544_0.png" alt="Zoomed-in view of Mixer100 process diagram with pump and valve details">
+  <div class="caption">Zoomed-in view showing pump icons, inlet valves, mixer vessel, and Level/Temperature trend graphs with alarm thresholds (page 544)</div>
 </div>
 
-<p>32. In the top-left corner, click the Web Client menu. The Web Client menu appears. 33. In the Web Client menu, expand Training and select Dashboard.</p>
+<p>To pan the view, you must first be zoomed in:</p>
+
+<ol start="28">
+  <li>In the Web Client, click and hold down the <strong>middle mouse button</strong> (scroll wheel), then move up, down, left, and right to pan across the graphic.</li>
+  <li>On the right side of the Web Client header, click the <strong>Home</strong> button to restore the Home view.</li>
+</ol>
 
 <div class="screenshot">
-  <img src="../images/page_0546_0.png" alt="Web Client with the hamburger menu (three horizontal lines) at the top-left corner of the browser, showing the $MixerView title, demonstrating access to the Web Client navigation menu.">
-  <div class="caption">Web Client with the hamburger menu (three horizontal lines) at the top-left corner of the browser, showing the $MixerView title, demonstrating access to the Web Client navigation menu.</div>
+  <img src="../images/page_0544_1.png" alt="Zoomed and panned view of the ContentDisplay area">
+  <div class="caption">Zoomed and panned view demonstrating Ctrl+scroll zoom and middle-click pan functionality (page 544)</div>
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0546_1.png" alt="Web Client navigation side menu showing the Training folder expanded with sub-items including Agitator_Detailed, AlarmAggregationOverview, AlarmHistDisplay, AlarmLiveDisplay, CommandPanel, CommandPanelwithSecurity, Dashboard (highlighted/selected), and InactivityMessage.">
-  <div class="caption">Web Client navigation side menu showing the Training folder expanded with sub-items including Agitator_Detailed, AlarmAggregationOverview, AlarmHistDisplay, AlarmLiveDisplay, CommandPanel, CommandPanelwithSecurity, Dashboard (highlighted/selected), and InactivityMessage.</div>
-</div>
+<!-- ============================================================ -->
+<h2>40.7 View Alarm Aggregation</h2>
+<p class="page-ref">Reference: Module 8, Lab 23 (pages 545–546)</p>
 
-<p>Client. 34. In the Web Client menu, in the Search field, enter clock, and then select ClockDigital12.</p>
+<p>The Web Client provides full access to alarm displays, including the hierarchical alarm aggregation view that groups alarms by production line and equipment unit.</p>
 
-<div class="screenshot">
-  <img src="../images/page_0547_0.png" alt="Web Client showing the $MixerView: Dashboard view with a 2x2 grid of four mixer monitoring panels (Mixer200 Line1 and Mixer400 Line1 visible), each displaying real-time Level and Temperature trend graphs, Agitator speed controls with slider, Reset and Trends buttons, and equipment status indicators for pumps, inlets, and outlets.">
-  <div class="caption">Web Client showing the $MixerView: Dashboard view with a 2x2 grid of four mixer monitoring panels (Mixer200 Line1 and Mixer400 Line1 visible), each displaying real-time Level and Temperature trend graphs, Agitator speed controls with slider, Reset and Trends buttons, and equipment status indicators for pumps, inlets, and outlets.</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0547_1.png" alt="Web Client search menu with 'clock' typed in the search field, displaying search results: ClockAnalogWall, ClockDigital12 (highlighted), ClockDigital12Date, ClockDigital24, ClockNautical, ClockSquare, ClockWonderware, and SA_TimerClock.">
-  <div class="caption">Web Client search menu with 'clock' typed in the search field, displaying search results: ClockAnalogWall, ClockDigital12 (highlighted), ClockDigital12Date, ClockDigital24, ClockNautical, ClockSquare, ClockWonderware, and SA_TimerClock.</div>
-</div>
-
-<p>browser. The clock graphics rely on the local computer time. However, for this graphic, the label has not been configured. Most graphics from the library require further configuration to be used in Web Client. In the next steps, you will use Web Client to interact with features of your application. 35. Click Home. 36. In the AlarmDisplay window, bottom-right corner, click Ack All. The Ack Comment: dialog box appears.</p>
+<ol start="30">
+  <li>In the Navigation window, click <strong>Alarm Overview</strong> and observe the alarms.</li>
+  <li>Close the AlarmAggregationOverview window.</li>
+</ol>
 
 <div class="screenshot">
-  <img src="../images/page_0548_0.png" alt="Web Client showing $MixerView: ClockDigital12 filling the entire browser window, displaying a retro-style green seven-segment digital clock showing the current time (03:59:09 PM) with a LABEL placeholder below the digits, demonstrating how library graphics appear in Web Client.">
-  <div class="caption">Web Client showing $MixerView: ClockDigital12 filling the entire browser window, displaying a retro-style green seven-segment digital clock showing the current time (03:59:09 PM) with a LABEL placeholder below the digits, demonstrating how library graphics appear in Web Client.</div>
+  <img src="../images/page_0545_0.png" alt="Home button tooltip in the Web Client header">
+  <div class="caption">The Home button location in the right side of the Web Client header bar (page 545)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0548_1.png" alt="Web Client showing an analog clock widget at the top, an AckDuration alarm duration table with all-zero durations, and an 'Ack All' context menu option displayed on the right-click menu, demonstrating alarm acknowledgment in the Web Client.">
-  <div class="caption">Web Client showing an analog clock widget at the top, an AckDuration alarm duration table with all-zero durations, and an 'Ack All' context menu option displayed on the right-click menu, demonstrating alarm acknowledgment in the Web Client.</div>
+  <img src="../images/page_0545_1.png" alt="AlarmAggregationOverview showing hierarchical alarm tree by production line">
+  <div class="caption">AlarmAggregationOverview with hierarchical tree: Production level, Line1/Line2 sub-levels, and individual Mixer units with severity counts (page 545)</div>
 </div>
 
-<p>37. In Ack Comment, enter ticket issued. 38. Click OK to acknowledge all alarms. The alarms display as acknowledged. <End of Lab></p>
+<!-- ============================================================ -->
+<h2>40.8 Navigate the Web Client Menu and Search</h2>
+<p class="page-ref">Reference: Module 8, Lab 23 (pages 546–547)</p>
+
+<p>The hamburger menu provides access to all folders and symbols in the Web Client root folder. You can also use the search field to quickly locate specific graphics.</p>
+
+<ol start="32">
+  <li>In the top-left corner, click the <strong>Web Client menu</strong> (hamburger icon).</li>
+  <li>In the menu, expand <strong>Training</strong> and select <strong>Dashboard</strong>.</li>
+</ol>
 
 <div class="screenshot">
-  <img src="../images/page_0549_0.png" alt="Ack Comment dialog box with a text input field containing the pre-filled comment 'ticket issued', along with Cancel and OK buttons, used to enter an acknowledgment comment when acknowledging all alarms.">
-  <div class="caption">Ack Comment dialog box with a text input field containing the pre-filled comment 'ticket issued', along with Cancel and OK buttons, used to enter an acknowledgment comment when acknowledging all alarms.</div>
+  <img src="../images/page_0546_0.png" alt="Web Client with hamburger menu visible in top-left corner">
+  <div class="caption">The hamburger menu icon in the top-left corner of the Web Client (page 546)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0549_1.png" alt="Web Client alarm table showing acknowledged (ACK) alarms for agitator speed low (Agitator_005, Agitator_002, Agitator_001) and level sensor alarms (Level_008 HiHi, Level_008 Hi, Level_007 Lo), all with 'ticket issued' comments and ACK state, on node S01ENG for Line1 and Line2.">
-  <div class="caption">Web Client alarm table showing acknowledged (ACK) alarms for agitator speed low (Agitator_005, Agitator_002, Agitator_001) and level sensor alarms (Level_008 HiHi, Level_008 Hi, Level_007 Lo), all with 'ticket issued' comments and ACK state, on node S01ENG for Line1 and Line2.</div>
+  <img src="../images/page_0546_1.png" alt="Navigation side menu showing Training folder with Dashboard selected">
+  <div class="caption">Navigation menu with the Training folder expanded and Dashboard highlighted (page 546)</div>
 </div>
 
+<div class="screenshot">
+  <img src="../images/page_0547_0.png" alt="Dashboard view showing a 2x2 grid of mixer monitoring panels">
+  <div class="caption">The Dashboard view with four mixer monitoring panels, each showing Level/Temperature trends and equipment status (page 547)</div>
+</div>
 
+<p>Now use the search field to find a specific library graphic:</p>
+
+<ol start="34">
+  <li>In the Web Client menu, in the <strong>Search</strong> field, enter <code>clock</code>, and then select <strong>ClockDigital12</strong>.</li>
+</ol>
+
+<div class="screenshot">
+  <img src="../images/page_0547_1.png" alt="Search field showing clock results with ClockDigital12 highlighted">
+  <div class="caption">Search results for "clock" — ClockDigital12 is highlighted for selection (page 547)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0548_0.png" alt="ClockDigital12 filling the browser showing a green seven-segment digital clock">
+  <div class="caption">ClockDigital12 displayed in the browser — note the LABEL placeholder has not been configured (page 548)</div>
+</div>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> Most library graphics require further configuration (such as setting labels or data references) before they display correctly in the Web Client. The clock graphic shows a LABEL placeholder because it has not been configured.
+</div>
+
+<!-- ============================================================ -->
+<h2>40.9 Acknowledge Alarms</h2>
+<p class="page-ref">Reference: Module 8, Lab 23 (pages 548–550)</p>
+
+<p>Finally, you will use the Web Client to acknowledge alarms, demonstrating that the browser-based interface supports interactive alarm management when a ReadWrite license is available.</p>
+
+<ol start="35">
+  <li>Click <strong>Home</strong> to return to the main display.</li>
+  <li>In the AlarmDisplay window, in the bottom-right corner, click <strong>Ack All</strong>. The Ack Comment dialog box appears.</li>
+</ol>
+
+<div class="screenshot">
+  <img src="../images/page_0548_1.png" alt="Ack All context menu option in the Web Client alarm display">
+  <div class="caption">The Ack All option in the alarm display context menu (page 548)</div>
+</div>
+
+<ol start="37">
+  <li>In Ack Comment, enter <code>ticket issued</code>.</li>
+  <li>Click <strong>OK</strong> to acknowledge all alarms. The alarms now display as acknowledged.</li>
+</ol>
+
+<div class="screenshot">
+  <img src="../images/page_0549_0.png" alt="Ack Comment dialog with ticket issued comment entered">
+  <div class="caption">Ack Comment dialog with the comment "ticket issued" entered (page 549)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0549_1.png" alt="Alarm table showing acknowledged alarms with ticket issued comments">
+  <div class="caption">Alarm table showing all alarms acknowledged with the "ticket issued" comment and ACK state (page 549)</div>
+</div>
+
+<div class="lab">
+  <strong>Lab Complete:</strong> You have successfully enabled the Web Client, navigated application graphics in a browser, used pan and zoom, searched for symbols, viewed alarm aggregation, and acknowledged alarms — all through the browser-based Web Client interface.
+</div>
+
+<!-- ============================================================ -->
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> What are the key concepts covered in this lesson about Lab 23 – Using the Web Client?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
+  <p><strong>1.</strong> Why must Galaxy security be disabled before enabling the Web Client in this lab?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">The Web Client relies on Windows authentication and local security groups for user access. Galaxy security conflicts with this authentication model, so it must be set to None for the Web Client to function properly.</p></details>
 
-  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <p><strong>2.</strong> What must be running in WindowViewer before the Web Client can display live data?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">WindowViewer must be running to provide data and animations for the Web Client. The Web Client is a viewer — it does not supply its own data.</p></details>
 
+  <p><strong>3.</strong> What happens if you use ShowGraphic() without the InTouch: prefix in the Web Client?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Without the InTouch: prefix, the Web Client creates a new popup window instead of replacing the current window. The InTouch:WindowName syntax is required for proper replace behavior.</p></details>
+
+  <p><strong>4.</strong> How do you zoom in and pan within the Web Client?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Hold Ctrl and scroll the mouse wheel to zoom. Hold the middle mouse button (scroll wheel) and move the mouse to pan. You must be zoomed in before panning works.</p></details>
+
+  <p><strong>5.</strong> What does the LABEL placeholder on the ClockDigital12 graphic indicate?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">The LABEL placeholder indicates that the graphic has not been fully configured. Most library graphics require additional configuration of labels and data references before they display correctly in the Web Client.</p></details>
 </div>
 
 <p class="source">Module 8 — Web Client. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: End of course</p>
+<p class="source">End of course.</p>
 
 <script>
 

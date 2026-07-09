@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 4: Encryption Requirements</title>
+<title>Lesson 1: Course Introduction</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -13,12 +13,12 @@
   .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
   .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
   .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
-  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%%; margin: 1em 0; }
   th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
   th { background: #f5f5f5; }
   code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
   .screenshot { text-align: center; margin: 1.5em 0; }
-  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot img { max-width: 100%%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
   .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
   .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
   .quiz h3 { margin-top: 0; }
@@ -35,10 +35,9 @@
 <body>
 
 <nav>
-  <a href="L03-Lab1-Creating-Galaxy.html">&larr; Lesson 3: Lab1 Creating Galaxy</a> &nbsp;|&nbsp;
+  <a href="L03-Lab1-Creating-Galaxy.html">&larr; Lesson 3: Lab 1 &ndash; Creating a Galaxy</a> &nbsp;|&nbsp;
   <a href="L05-InTouch-Visualization-Objects.html">Lesson 5: InTouch Visualization Objects &rarr;</a>
 </nav>
-
 <nav style="margin-bottom:1.5em;">
 <details style="background:#f5f5f5;padding:0.8em;border-radius:6px;border:1px solid #ddd;margin-bottom:1.5em;">
 <summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">&#128218; All Lessons</summary>
@@ -47,107 +46,248 @@
 <strong style="color:#2c5f2d;">&#9989; Progress: <span id="progress-text">0 / 40 completed</span></strong>
 </div>
 <strong>Module 1 &#8212; Introduction</strong><br>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction.html">L01: Course Introduction</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" checked onchange="saveProgress()"> <a href="L01-Course-Introduction.html" style="font-weight:bold;">L01: Course Introduction</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-System-Platform-Overview.html">L02: System Platform Overview</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html">L03: Lab 1 – Creating and Deploying a Galaxy</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html">L03: Lab 1 &#8211; Creating and Deploying a Galaxy</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L04" checked onchange="saveProgress()"> <a href="L04-Encryption-Requirements.html" style="font-weight:bold;">L04: Encrypted Communication + System Requirements</a></label>
 <strong>Module 2 &#8212; Getting Started</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-InTouch-Visualization-Objects.html">L05: InTouch Visualization + Automation Objects</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 – Creating a Managed InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 &#8211; Creating a Managed InTouch Application</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-WindowMaker-Development.html">L07: InTouch Development Environment</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 – Building the Application Layout</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 &#8211; Building the Application Layout</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Runtime-Environment.html">L09: Runtime Environment and Application Design</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 – Deploying an InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 &#8211; Deploying an InTouch Application</a></label>
 <strong>Module 3 &#8212; Symbols</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Symbol-Overview-Graphic-Editor.html">L11: Symbol Overview + Graphic Editor</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 – Building a Process Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 &#8211; Building a Process Overview</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Graphics-With-Objects.html">L13: Graphics with Objects</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 – Creating the Mixer Components</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 &#8211; Creating the Mixer Components</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Editor-Tools-Animations.html">L15: Graphic Editor Tools and Animations</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 – Creating the Mixer Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 &#8211; Creating the Mixer Display</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-OwningObject-Lab8-Mixers.html">L17: The OwningObject Property + Lab 8</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Custom-Properties.html">L18: Custom Properties</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 – Creating a Custom Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 &#8211; Creating a Custom Symbol</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Scripts-In-Graphics.html">L20: Scripts in Graphics</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 – Creating a Navigation Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 &#8211; Creating a Navigation Symbol</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Galaxy-Styles.html">L22: Galaxy Styles</a></label>
 <strong>Module 4 &#8212; Widgets</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Widgets-Lab11-Carousel.html">L23: Widgets Overview + Lab 11</a></label>
 <strong>Module 5 &#8212; Alarms and Events Visualization</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-Alarming-Overview-Lab12.html">L24: Alarming Overview + Lab 12</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 – Alarm Aggregation</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 &#8211; Alarm Aggregation</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">L26: Live Alarms Visualization</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 – Current Alarms Display</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 – Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 &#8211; Current Alarms Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 &#8211; Alarm Popup Symbol</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">L29: Historical Alarms + Lab 16</a></label>
 <strong>Module 6 &#8212; Trend Visualization</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">L30: Historization + Real-Time Trending</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 – Adding Trending to Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 &#8211; Adding Trending to Graphics</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Multi-Pens-Trend.html">L32: Multi Pens Trend</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 – Trend Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 &#8211; Trend Popup Symbol</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Historian-Trend-Lab19.html">L34: Historian Client Trend + Lab 19</a></label>
 <strong>Module 7 &#8212; Security</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Security-Overview.html">L35: Security Overview</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 – Security Features in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 &#8211; Security Features in Graphics</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Signed-Writes-Lab21.html">L37: Signed Writes + Lab 21</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Runtime-Customization-Lab22.html">L38: Runtime Customization + Lab 22</a></label>
 <strong>Module 8 &#8212; Web Client</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Web-Client-Overview.html">L39: Web Client Overview</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 – Using the Web Client</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 &#8211; Using the Web Client</a></label>
 </div>
 </details>
 </nav>
 
-<h1>Lesson 4: Encryption Requirements</h1>
-<p class="page-ref">Module 1 — Introduction | Pages 31–40</p>
+<h1>Lesson 4: Encrypted Communication &amp; System Requirements</h1>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 1, Sections 3&ndash;4 (pages 31&ndash;40)</p>
+<p class="page-ref">Understanding encrypted communication between server and client applications, plus the software and hardware requirements for running System Platform.</p>
 
-<p>32. Navigate to C:\Training, select Lab 1 - WatchList, and then click Open. The Mixer100 and ProdPLC1 watch windows appear with some attributes already added. You can resize the watch window if needed to view the attributes. 33. In the Mixer100 and ProdPLC1 watch windows, verify that the quality is Good for every attribute. Note: Notify your instructor if any of your attributes display any other quality status. 34. When you are finished reviewing attribute data, close Object Viewer. <End of Lab></p>
+<!-- ============================================================ -->
+<h2>4.1 Encrypted Communication Overview</h2>
+<p class="page-ref">Reference: Module 1, Section 3 (pages 29&ndash;30)</p>
 
-<div class="screenshot">
-  <img src="../images/page_0031.png" alt="Data Grid (ActiveX control) displaying real-time tag values for Mixer100 and ProdPLC1, including attributes like Level.PV (63.83394), Temperature.PV, Pump status (Stopped), and valve positions (Open/Closed), with quality codes showing C0:Good and timestamps">
-  <div class="caption">Data Grid (ActiveX control) displaying real-time tag values for Mixer100 and ProdPLC1, including attributes like Level.PV (63.83394), Temperature.PV, Pump status (Stopped), and valve positions (Open/Closed), with quality codes showing C0:Good and timestamps</div>
+<p>The end-to-end communication between software applications (server and client) in System Platform can be encrypted and secured to prevent eavesdropping and malicious tampering &mdash; also known as Man-in-the-Middle (MitM) attacks. This is an important security feature for industrial environments where process data must be protected.</p>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> To enable encrypted communication, one node in the network must host the <strong>System Management Server (SMS)</strong>. The SMS generates, manages, and distributes secure digital certificates used for establishing and maintaining encrypted communications between all nodes.
 </div>
 
+<h3>How It Works</h3>
+<ul>
+  <li>One node hosts the SMS, which issues digital certificates to all nodes in the network.</li>
+  <li>All other nodes must be configured to connect to the SMS to become part of the same <strong>community</strong>.</li>
+  <li>Once a node joins the SMS community, the SMS does <em>not</em> need to be available at runtime &mdash; nodes will not need access to the SMS until it is time to renew certificates.</li>
+</ul>
 
-<p>end-to-end communication between software applications (server and client) can be encrypted and secured to prevent eavesdropping and malicious tampering (also known as: Man- in-the-Middle) attacks. To enable encrypted network communication, one of the nodes in the network must be configured to host and run the System Management Server (SMS). The role of the System Management Server is to generate, manage, and distribute secure digital certificates used for establishing and maintaining secure communications. All other nodes need to be configured to connect to the SMS so they all become part of the same community. The SMS does not need to be available at runtime for secure communications to be established. In fact, once joined to the SMS, a node will not need access to the SMS until it is time to renew the certificates. Protocols that Benefit From Encrypted Communication With encrypted communication, all of the following protocols are secured:  SuiteLink  Message Exchange (MX)  iData  iBrowse  HCAL This section describes the encrypted communication for end-to-end communication between server and client software applications.</p>
-
-<p>communication:  Application Server 2017 Update 3 and later  InTouch Operations Management Interface 2017 Update 3 and later  InTouch for System Platform 2017 Update 3 and later  *OI Server  InTouch Web Client in 2017 Update 3 and later  Historian 2017 Update 3 and later  Sentinel System Monitor 1.1 for System Platform 2017 Update 3 and later *Communications from the specific OI Server to any other products listed above can be encrypted. This is generic and applies to all OI Server versions.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0034.png" alt="AVEVA System Platform architecture diagram showing encrypted communication between components including Historian Tier 1 and Tier 2, Application Servers (AOS1, AOS2), Operations Management Interface, InTouch HMI, Communication Drivers, InTouch Web Servers, and System Monitor, connected via MX, SuiteLink, iData, HCAL, and HTTPS protocols"Software that Supports Secured Communication">
-  <div class="caption">AVEVA System Platform architecture diagram showing encrypted communication between components including Historian Tier 1 and Tier 2, Application Servers (AOS1, AOS2), Operations Management Interface, InTouch HMI, Communication Drivers, InTouch Web Servers, and System Monitor, connected via MX, SuiteLink, iData, HCAL, and HTTPS protocols</div>
+<div class="tip">
+  <strong>Tip:</strong> The SMS is only needed during initial setup and certificate renewal. It can be offline during normal operation without affecting encrypted communications.
 </div>
 
-<p>Node-to-Node Communication Node-to-node communication is unsecured under certain scenarios, including the following:  The version of the software installed on one or more nodes is earlier than 2017 Update 3 (Communication Driver version has no impact)  One node points to a System Management Server, but there is no System Management Server configured on the other node  There is no System Management Server configured for both nodes Please note that if one node points to one System Management Server and the other node points to another System Management Server, there will be NO network connection between the nodes.</p>
+<h3>Protocols Secured by Encryption</h3>
+<p>With encrypted communication enabled, all of the following protocols are secured:</p>
 
-<div class="screenshot">
-  <img src="../images/page_0035.png" alt="Network security deployment diagram showing three communities: Community 1 and Community 2 (both in Secured Mode with nodes pointing to SMS1 and SMS2 respectively, all connections green/secure), and Legacy (Unsecured Mode with no SMS configuration, all connections yellow/unsecured), with a legend defining secured, unsecured, and no connection states">
-  <div class="caption">Network security deployment diagram showing three communities: Community 1 and Community 2 (both in Secured Mode with nodes pointing to SMS1 and SMS2 respectively, all connections green/secure), and Legacy (Unsecured Mode with no SMS configuration, all connections yellow/unsecured), with a legend defining secured, unsecured, and no connection states</div>
+<table>
+  <thead><tr><th>Protocol</th><th>Purpose</th></tr></thead>
+  <tbody>
+    <tr><td><strong>SuiteLink</strong></td><td>AVEVA&rsquo;s proprietary data communication protocol</td></tr>
+    <tr><td><strong>Message Exchange (MX)</strong></td><td>Inter-application messaging between System Platform components</td></tr>
+    <tr><td><strong>iData</strong></td><td>Data access protocol for InTouch applications</td></tr>
+    <tr><td><strong>iBrowse</strong></td><td>Browse protocol for tag discovery</td></tr>
+    <tr><td><strong>HCAL</strong></td><td>Historian Client access layer for historized data</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<h2>4.2 Software Supporting Encrypted Communication</h2>
+<p class="page-ref">Reference: Module 1, Section 3 (page 1-30)</p>
+
+<p>The following AVEVA software products support secured communication:</p>
+
+<ul>
+  <li>Application Server 2017 Update 3 and later</li>
+  <li>InTouch Operations Management Interface 2017 Update 3 and later</li>
+  <li>InTouch for System Platform 2017 Update 3 and later</li>
+  <li>OI Server (all versions &mdash; generic encryption support)</li>
+  <li>InTouch Web Client 2017 Update 3 and later</li>
+  <li>Historian 2017 Update 3 and later</li>
+  <li>Sentinel System Monitor 1.1 for System Platform 2017 Update 3 and later</li>
+</ul>
+
+<div class="pitfall">
+  <strong>Important:</strong> Communications from a specific OI Server to any other listed product can be encrypted. This applies generically to all OI Server versions.
 </div>
 
+<!-- ============================================================ -->
+<h2>4.3 Node-to-Node Communication</h2>
+<p class="page-ref">Reference: Module 1, Section 3 (page 1-31)</p>
 
-<p>Platform. Note: Please refer to the readme file that came with your software for more details about hardware and software requirements, compatibility information, key product notes, and additional resources. Or, visit the Knowledge & Support Center at https://softwaresupport.aveva.com. Software Requirements The following table lists supported and preferred software requirements for various nodes in your system: Hardware Requirements The following tables list minimum and recommended hardware requirements.  For server nodes, such as AppEngine host (Application Objects Server), and the System Platform IDE (development environment):  For client nodes, such as nodes that run WindowViewer, an Operations Management Interface application, Historian Client, and remote System Platform IDE: This section describes system requirements for System Platform software and introduces the licensing model. Development (System Platform IDE) Galaxy Repository Automation Object Server Supervisory Client Windows Server Preferred Preferred Preferred Supported Windows Workstation Supported Supported Supported Preferred SQL Server Not required Required Not required Not required .NET Framework Required Required Required Required Level Logical Processors RAM Storage Display (Resolution) Network Speed Small Minimum 4 2 GB 100 GB 1024 x 768 100 Mbps 1-25K I/O per node Recommended 8 4 GB 200 GB 1920 x 1080 1 Gbps Medium Minimum 8 8 GB 200 GB 1024 x 768 1 Gbps 25-50K I/O per node Recommended 16 12 GB 500 GB 1920 x 1080 1 Gbps Large Minimum 16 16 GB 500 GB 1024 x 768 1 Gbps > 50K I/O per node Recommended 32 24 GB 1 TB 1920 x 1080 Dual 1 Gbps Level Logical Processors RAM Storage Display (Resolution) Network Minimum 4 1 GB 100 GB 1024 x 768 100 Mbps Recommended 8 4 GB 200 GB 1920 x 1080 1 Gbps</p>
+<p>Node-to-node communication is <strong>unsecured</strong> under certain scenarios. Understanding these scenarios is critical for ensuring your deployment maintains proper encryption:</p>
 
-<p> For all-in-one nodes with all products on a single node. An all-in-one node includes Application Server, InTouch, Historian, Historian Client, and Licensing components. Licensing The following topics provide general information about System Platform licensing. Note: Please contact your local distributor for details about licensing and pricing. Licensing Models Two licensing models are available:  Perpetual licensing offers permanent licenses with no expiration date. A perpetual license applies to a specific purchased software version.  Flex licensing offers subscription-based licenses that are renewed for a specific term. The license is for credits redeemable to access a wide range of software based on needs at the time. Visit https://sw.aveva.com/flex-subscription for more information on the Flex program. Note: Subscription-based licenses are also available for development consignments (for example, System Integrator consignments). For more information on licensing and licensing requirements, contact your local distributor. Activated Licensing AVEVA software is licensed-enforced using an activated licensing framework with an activation code. Management and activation of licenses are performed with the following components, which are installed as part of the installation of your purchased products:  License Server: Acquires, stores, maintains, and serves licenses. It supports redundancy and failover.  License Manager: Web-based user interface to access and maintain licenses. License activation can be performed online or offline. Activation requires Internet access in both cases. Consult your sales representative for availability of email and phone activation.  Online refers to Internet access on the License Server network.  Offline refers to activate off-site. Refer to the documentation provided with your software product for more information on using the License Server and License Manager. Level Logical Processors RAM Storage Network Small 1K I/O max Minimum 8 8 GB 200 GB 100 Mbps Recommended 12 12 GB 500 GB 1 Gbps Medium 20K I/O max Minimum 12 16 GB 500 GB 1 Gbps Recommended 16 32 GB 1 TB 1 Gbps Large 100K I/O max Minimum 20 32 GB 2 TB 1 Gbps Recommended 24 64 GB 4 TB 1 Gbps</p>
+<ul>
+  <li>Software on one or more nodes is older than 2017 Update 3 (Communication Driver version has no impact)</li>
+  <li>One node points to an SMS, but the other node has no SMS configured</li>
+  <li>Neither node has an SMS configured</li>
+</ul>
 
-<p>2023, user identity authentication and single sign-on via Azure Active Directory (AD) is supported. After setting Galaxy security to use an external identity provider, Azure AD can be used to authenticate users. System Platform users can then use their Microsoft-managed identities to log into the System Platform IDE, Operations Control Management Console, Operations Management Interface ViewApps, and to perform secured and verified writes.</p>
+<div class="pitfall">
+  <strong>Critical Warning:</strong> If one node points to one SMS and another node points to a <em>different</em> SMS, there will be <strong>NO network connection</strong> between those nodes. All nodes in a community must point to the same SMS.
+</div>
 
+<div class="key-concept">
+  <strong>Key Concept:</strong> Nodes that point to the same SMS form a secured community. Nodes without an SMS or with different SMS configurations cannot communicate with each other. Legacy nodes (older software or no SMS) operate in unsecured mode.
+</div>
 
+<!-- ============================================================ -->
+<h2>4.4 Software and Hardware Requirements</h2>
+<p class="page-ref">Reference: Module 1, Section 4 (pages 33&ndash;35)</p>
+
+<p>The following information describes software and hardware requirements for System Platform. Always refer to the readme file that came with your software for the most current details, or visit the Knowledge &amp; Support Center at <code>https://softwaresupport.aveva.com</code>.</p>
+
+<h3>Software Requirements</h3>
+
+<table>
+  <thead><tr><th>Component</th><th>Development (IDE)</th><th>Galaxy Repository</th><th>App Object Server</th><th>Supervisory Client</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Windows Server</strong></td><td>Preferred</td><td>Preferred</td><td>Preferred</td><td>Supported</td></tr>
+    <tr><td><strong>Windows Workstation</strong></td><td>Supported</td><td>Supported</td><td>Supported</td><td>Preferred</td></tr>
+    <tr><td><strong>SQL Server</strong></td><td>Not required</td><td>Required</td><td>Not required</td><td>Not required</td></tr>
+    <tr><td><strong>.NET Framework</strong></td><td>Required</td><td>Required</td><td>Required</td><td>Required</td></tr>
+  </tbody>
+</table>
+
+<h3>Server Node Hardware Requirements</h3>
+<p>For server nodes such as the AppEngine host (Application Objects Server) and the System Platform IDE:</p>
+
+<table>
+  <thead><tr><th>Level</th><th>I/O Range</th><th>CPU (Min)</th><th>RAM (Min)</th><th>Storage (Min)</th><th>CPU (Rec)</th><th>RAM (Rec)</th><th>Storage (Rec)</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Small</strong></td><td>1&ndash;25K</td><td>4</td><td>2 GB</td><td>100 GB</td><td>8</td><td>4 GB</td><td>200 GB</td></tr>
+    <tr><td><strong>Medium</strong></td><td>25&ndash;50K</td><td>8</td><td>8 GB</td><td>200 GB</td><td>16</td><td>12 GB</td><td>500 GB</td></tr>
+    <tr><td><strong>Large</strong></td><td>&gt; 50K</td><td>16</td><td>16 GB</td><td>500 GB</td><td>32</td><td>24 GB</td><td>1 TB</td></tr>
+  </tbody>
+</table>
+
+<h3>Client Node Hardware Requirements</h3>
+<p>For client nodes running WindowViewer, Operations Management Interface, Historian Client, or remote System Platform IDE:</p>
+
+<table>
+  <thead><tr><th>CPU (Min)</th><th>RAM (Min)</th><th>Storage (Min)</th><th>CPU (Rec)</th><th>RAM (Rec)</th><th>Storage (Rec)</th></tr></thead>
+  <tbody>
+    <tr><td>4</td><td>1 GB</td><td>100 GB</td><td>8</td><td>4 GB</td><td>200 GB</td></tr>
+  </tbody>
+</table>
+
+<h3>All-in-One Node Requirements</h3>
+<p>For nodes running all products on a single machine (Application Server + InTouch + Historian + Historian Client + Licensing):</p>
+
+<table>
+  <thead><tr><th>Level</th><th>I/O Range</th><th>CPU (Min)</th><th>RAM (Min)</th><th>Storage (Min)</th><th>CPU (Rec)</th><th>RAM (Rec)</th><th>Storage (Rec)</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Small</strong></td><td>1K max</td><td>8</td><td>8 GB</td><td>200 GB</td><td>12</td><td>12 GB</td><td>500 GB</td></tr>
+    <tr><td><strong>Medium</strong></td><td>20K max</td><td>12</td><td>16 GB</td><td>500 GB</td><td>16</td><td>32 GB</td><td>1 TB</td></tr>
+    <tr><td><strong>Large</strong></td><td>100K max</td><td>20</td><td>32 GB</td><td>2 TB</td><td>24</td><td>64 GB</td><td>4 TB</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<h2>4.5 Licensing</h2>
+<p class="page-ref">Reference: Module 1, Section 4 (pages 34&ndash;35)</p>
+
+<p>AVEVA System Platform uses an activated licensing framework. Contact your local distributor for details about licensing and pricing.</p>
+
+<h3>Licensing Models</h3>
+<ul>
+  <li><strong>Perpetual licensing</strong> &mdash; permanent licenses with no expiration date. Applies to a specific purchased software version.</li>
+  <li><strong>Flex licensing</strong> &mdash; subscription-based licenses renewed for a specific term. Credits are redeemable to access a wide range of software based on current needs. Visit <code>https://sw.aveva.com/flex-subscription</code> for details.</li>
+</ul>
+
+<h3>Activated Licensing Components</h3>
+<ul>
+  <li><strong>License Server</strong> &mdash; acquires, stores, maintains, and serves licenses. Supports redundancy and failover.</li>
+  <li><strong>License Manager</strong> &mdash; web-based user interface to access and maintain licenses.</li>
+</ul>
+
+<p>License activation can be performed online (Internet access on the License Server network) or offline (activate off-site). Both methods require Internet access at some point in the process.</p>
+
+<!-- ============================================================ -->
+<h2>4.6 Azure Active Directory Integration</h2>
+<p class="page-ref">Reference: Module 1, Section 4 (page 1-35)</p>
+
+<p>Starting with System Platform 2023, user identity authentication and single sign-on (SSO) via <strong>Azure Active Directory (AD)</strong> is supported. After configuring Galaxy security to use an external identity provider, Azure AD can authenticate users for:</p>
+
+<ul>
+  <li>System Platform IDE</li>
+  <li>Operations Control Management Console</li>
+  <li>Operations Management Interface ViewApps</li>
+  <li>Secured and verified writes</li>
+</ul>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> Azure AD integration means users can leverage their Microsoft-managed identities to log in across all System Platform tools, eliminating the need for separate credential management and enabling enterprise-grade SSO.
+</div>
+
+<!-- ============================================================ -->
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> What are the key concepts covered in this lesson about Encrypted Communication + System Requirements?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
+  <p><strong>1.</strong> What is the role of the System Management Server (SMS) in encrypted communication?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">The SMS generates, manages, and distributes secure digital certificates used for establishing and maintaining encrypted communications between nodes. All nodes must connect to the same SMS to form a community.</p></details>
 
-  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <p><strong>2.</strong> Why is it safe for the SMS to be offline during normal operation?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Once a node has joined the SMS community and received its certificates, it does not need access to the SMS until certificate renewal. The encrypted communication continues working without the SMS being available.</p></details>
 
+  <p><strong>3.</strong> What happens if two nodes point to different System Management Servers?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">There will be NO network connection between those nodes. All nodes that need to communicate must point to the same SMS to be part of the same community.</p></details>
+
+  <p><strong>4.</strong> What is the minimum RAM requirement for a large server node handling more than 50K I/O points?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">The minimum is 16 GB RAM, with a recommendation of 24 GB. The minimum CPU is 16 logical processors with a recommendation of 32.</p></details>
+
+  <p><strong>5.</strong> What new authentication feature was introduced in System Platform 2023?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Azure Active Directory integration for user identity authentication and single sign-on (SSO). Users can use Microsoft-managed identities to log into the IDE, OMC, OMI ViewApps, and perform secured/verified writes.</p></details>
 </div>
 
-<p class="source">Module 1 — Introduction. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson 5 — InTouch Visualization + Automation Objects</p>
+<p class="source">Module 1 &mdash; Introduction. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: Lesson 5 &mdash; InTouch Visualization + Automation Objects</p>
 
 <script>
-
 function saveProgress() {
   var checks = {};
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
@@ -175,7 +315,6 @@ function updateProgressText() {
   if (el) el.textContent = done + ' / ' + total + ' completed';
 }
 document.addEventListener('DOMContentLoaded', loadProgress);
-
 </script>
 </body>
 </html>

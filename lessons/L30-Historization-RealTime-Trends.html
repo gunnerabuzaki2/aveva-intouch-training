@@ -98,57 +98,121 @@
 </details>
 </nav>
 
-<h1>Lesson 30: Historization RealTime Trends</h1>
-<p class="page-ref">Module 6 — Trend Visualization | Pages 381–386</p>
+<h1>Lesson 30: Historization + Real-Time Trending</h1>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 6, Section 1–2 (pages 381–386)</p>
+<p class="page-ref">This lesson covers the fundamentals of historization in Application Server and introduces the Trend Pen element for real-time trending in HMI graphics.</p>
 
+<!-- ============================================================ -->
+<h2>30.1 Module 6 Objectives</h2>
+<p class="page-ref">Reference: Module 6, Section 1–2 (pages 381–386)</p>
 
-<div class="screenshot">
-  <img src="../images/page_0381.png" alt="Training manual stock photo of a diverse group of four people working at computers in a library or collaborative learning space, with a smiling young Black woman in the foreground at a CRT monitor">
-  <div class="caption">Training manual stock photo of a diverse group of four people working at computers in a library or collaborative learning space, with a smiling young Black woman in the foreground at a CRT monitor</div>
+<p>Module 6 — Trend Visualization — brings together several related topics that enable operators to view process data over time. In this lesson you will learn how Application Server historizes data and how the Trend Pen element provides real-time trending in InTouch graphics. Subsequent lessons build on these concepts with multi-pen trends, trend popups, and Historian Client integration.</p>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> Trend visualization lets operators see where a process value has been, where it is now, and where it is heading — providing the situational awareness needed to make timely operational decisions.
 </div>
 
-<p> Provide a brief overview of historization concepts  Introduce the Trend Pen element and animation configuration  Introduce the SA_Trend_MultiPen and SA_Trend_SinglePen symbols  Provide a brief overview of the Trend control  Introduce the Multi Pens Trend  Provide a brief overview of the Historian Client .NET control</p>
+<!-- ============================================================ -->
+<h2>30.2 Historization Overview</h2>
+<p class="page-ref">Reference: Module 6, Section 1 (pages 383–384)</p>
 
-<p>architecture. Each engine in the Galaxy is configured with the location of the Historian storage node to which its history data is to be sent. This configuration is stored in an attribute within the engine. A single engine sends its history to only one Historian. A single Historian can receive historical data from a single Galaxy only. For each object attribute to be historized, Historian requires a Historian tag to be configured in its database and there is a one-to-one relationship between the two. When an object attribute updates, its host engine pushes the value, time, and quality of the update to Historian, which then stores the value. The AppEngine is configured in the History area of the object. Historian storage attributes can be set here. Historizable Data Types for Attributes Attributes of the following data types support historization:  Float (numerical)  Double (numerical)  Integer (numerical)  Boolean (nonnumerical)  String – Unicode (nonnumerical)  CustomEnum (nonnumerical) maps to Historian Integer  ElapsedTime (numerical) maps to Historian Float, converted to seconds Entire arrays or portions of arrays are not supported. All numerical attributes are sent to the Historian in the engineering units form exposed by the attribute, and Historian does not scale the value. Additionally, the historized object performs all change detection and value deadbanding. This section provides a brief review of how Application Server handles the configuration and logging of historical data.</p>
+<p>Application Server uses a <strong>distributed history architecture</strong> to log process data. Each engine in a Galaxy is configured to send its history data to a single Historian database. In turn, each Historian can receive data from only one Galaxy — making the relationship between the two a strict one-to-one mapping.</p>
 
-<div class="screenshot">
-  <img src="../images/page_0383.png" alt="Screenshot of the AVEVA System Platform AppEngine1 configuration dialog showing the General tab with historian storage settings (Enable storage to historian checked, Historian set to S01ENG), scan period of 500ms, and engine startup type set to Auto">
-  <div class="caption">Screenshot of the AVEVA System Platform AppEngine1 configuration dialog showing the General tab with historian storage settings (Enable storage to historian checked, Historian set to S01ENG), scan period of 500ms, and engine startup type set to Auto</div>
-</div>
+<p>When an object attribute is historized, a corresponding Historian tag is created (also a one-to-one mapping). Every time that attribute updates, the host engine pushes the new value, timestamp, and quality to the Historian for storage. The AppEngine's <strong>History</strong> area is where you enable storage and specify which Historian to use.</p>
 
-
-<p>Real-time trending helps operators monitor process value changes through the use of the trend pen. The trend pen completes the goal of situational awareness for data values in a runtime display. Operators who can see the current data value in context with historical data can project where that value will be in the future and determine if and when an action is appropriate. Trend Pen The Trend Pen element can be added to a graphic to display trending for a configured reference. It is available from the Tools pane in the Graphic Editor. Once you place the Trend Pen control on the canvas, the Edit Animations dialog box appears with options for the Trend Pen animation. Through the animation, you can configure an analog data source, Historian source period type, Y-axis range, and plot type. At runtime, the Trend Pen is immediately plotted from historical data. This is referred to as backfill. Any time the display is refreshed, the backfill method is used to fill the trend. Once the historical data retrieval is complete, the pen starts updating from current data. The Trend Pen does this by scrolling to the left as each live value is plotted. This section introduces the Trend pen and two situational awareness symbols for trending and explains how to configure them.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0385_0.png" alt="Screenshot of the Graphic Editor Tools panel showing available drawing and editing tools for creating industrial graphics in InTouch HMI, including selection, line, shape, text, and transformation tools">
-  <div class="caption">Screenshot of the Graphic Editor Tools panel showing available drawing and editing tools for creating industrial graphics in InTouch HMI, including selection, line, shape, text, and transformation tools</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0385_1.png" alt="Screenshot of the Edit Animations dialog for configuring a Trend Pen element in InTouch HMI, showing reference tag HeatEx100.TT1.PV, Historian source with Auto-Detect, 5-minute moving time period, Y-axis range from PVRangeFullScaleMin to PVRangeFullScaleMax, and Step Line plot type">
-  <div class="caption">Screenshot of the Edit Animations dialog for configuring a Trend Pen element in InTouch HMI, showing reference tag HeatEx100.TT1.PV, Historian source with Auto-Detect, 5-minute moving time period, Y-axis range from PVRangeFullScaleMin to PVRangeFullScaleMax, and Step Line plot type</div>
-</div>
-
-<p>symbols. Both of these symbols rely on the Trend Pen tool. SA_Trend_SinglePen SA_Trend_SinglePen can be used to configure a single pen to display real-time and historical data for a specified reference. Wizard options are available to configure the method for specifying the Historian source, period type, plot type, and more. For example, the SA_Trend_SinglePen can be configured as either:  Tail Trend: A simple floating pen with basic configurations.  Simple Trend: A one-pen trend with an optional grid, timescale, and the ability to display a meter symbol attached with a trend pen Custom properties are available to configure the pen data source, trend period in minutes, and others. Pen elements are configured using the predefined element style Trend_Pen. SA_Trend_MultiPen SA_Trend_MultiPen can be used to configure multiple pens to display historical data for multiple references. Wizard options are available for configuring the number of pens in the trend, methods for specifying the Historian source period type, plot type, the display of a floating tooltip, and more. Custom properties are available to configure the data source, line weight, tagname, and visibility for each pen, the selected pen, trend period in minutes, and others. The symbol supports a maximum of four pens displayed using predefined element styles, which are Trend_PenA, Trend_PenB, Trend_PenC, and Trend_PenD.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0386_0.png" alt="Diagram of a single-pen trend graph showing a stepped line chart with placeholder values for PV, Min, Max, Avg, and Engineering Units (EU), including a magnified inset view and information icon">
-  <div class="caption">Diagram of a single-pen trend graph showing a stepped line chart with placeholder values for PV, Min, Max, Avg, and Engineering Units (EU), including a magnified inset view and information icon</div>
+<div class="key-concept">
+  <strong>Key Concept:</strong> Historization configuration lives in the AppEngine's History settings. Enable "storage to historian," check "Enable Tag Hierarchy," and specify the Historian node name (e.g., SQENG).
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0386_1.png" alt="Screenshot of a multi-pen trend display with four graph panels labeled A through D showing different waveforms (sawtooth, peaked, flat, mirrored sawtooth), a left metrics panel with PV/Max/Min/Avg/EU placeholder values, and a right-side trend bar with stepped line graph">
-  <div class="caption">Screenshot of a multi-pen trend display with four graph panels labeled A through D showing different waveforms (sawtooth, peaked, flat, mirrored sawtooth), a left metrics panel with PV/Max/Min/Avg/EU placeholder values, and a right-side trend bar with stepped line graph</div>
+  <img src="../images/page_0383.png" alt="AppEngine1 configuration dialog with the History section enabled — storage to historian checked, tag hierarchy enabled, historian set to SQENG">
+  <div class="caption">AppEngine1 configuration dialog showing historian storage settings: storage enabled, tag hierarchy enabled, historian node set to SQENG (page 383)</div>
 </div>
+
+<h3>Historizable Data Types</h3>
+<p>Not every attribute type can be historized. The following data types are supported:</p>
+
+<table>
+  <thead><tr><th>Data Type</th><th>Category</th><th>Historian Mapping</th></tr></thead>
+  <tbody>
+    <tr><td>Float</td><td>Numerical</td><td>Historian Float</td></tr>
+    <tr><td>Double</td><td>Numerical</td><td>Historian Float</td></tr>
+    <tr><td>Integer</td><td>Numerical</td><td>Historian Integer</td></tr>
+    <tr><td>Boolean</td><td>Non-numerical</td><td>Historian Integer</td></tr>
+    <tr><td>String – Unicode</td><td>Non-numerical</td><td>Historian String</td></tr>
+    <tr><td>CustomEnum</td><td>Non-numerical</td><td>Historian Integer</td></tr>
+    <tr><td>ElapsedTime</td><td>Numerical</td><td>Historian Float (converted to seconds)</td></tr>
+  </tbody>
+</table>
+
+<div class="pitfall">
+  <strong>Pitfall:</strong> Arrays (whether entire or partial) are <em>not</em> supported for historization. Numerical attributes are sent in their engineering units — Historian does not scale the values. Change detection and value deadbanding are handled by the historized object itself.
+</div>
+
+<!-- ============================================================ -->
+<h2>30.3 Real-Time Trending with the Trend Pen</h2>
+<p class="page-ref">Reference: Module 6, Section 2 (pages 385–386)</p>
+
+<p>Real-time trending helps operators monitor how process values change over time. By seeing the current value alongside historical data, operators can project where a value is headed and decide when intervention is needed. The <strong>Trend Pen</strong> element is the building block for this capability.</p>
+
+<p>You will find the Trend Pen in the <strong>Tools pane</strong> of the Graphic Editor. Once placed on the canvas, the Edit Animations dialog lets you configure the data reference, Historian source, time period, Y-axis range, and plot type. At runtime, the Trend Pen uses <strong>backfill</strong> — it immediately fills with historical data so the operator never sees an empty chart — and then scrolls left as live values arrive.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0385_0.png" alt="Graphic Editor Tools pane with the Trend Pen icon highlighted">
+  <div class="caption">The Trend Pen icon in the Graphic Editor Tools pane — a small line graph with a vertical cursor (page 385)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0385_1.png" alt="Edit Animations dialog for Trend Pen showing reference, historian source, time period, Y-axis range, and plot type settings">
+  <div class="caption">Trend Pen animation configuration: reference tag set, Historian source with Auto-Detect, 5-minute moving period, Step Line plot (page 385)</div>
+</div>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> Backfill ensures the Trend Pen chart is never empty at runtime. Historical data loads immediately, then the chart scrolls left as new live values arrive.
+</div>
+
+<!-- ============================================================ -->
+<h2>30.4 Situational Awareness Trend Symbols</h2>
+<p class="page-ref">Reference: Module 6, Section 2 (pages 386)</p>
+
+<p>The Situational Awareness Library provides two pre-built symbols that wrap the Trend Pen for common use cases: <strong>SA_Trend_SinglePen</strong> and <strong>SA_Trend_MultiPen</strong>.</p>
+
+<h3>SA_Trend_SinglePen</h3>
+<p>This symbol configures a single pen to display real-time and historical data. You can choose from wizard options such as <strong>Tail Trend</strong> (a simple floating pen) or <strong>Simple Trend</strong> (a one-pen trend with optional grid, timescale, and meter). Custom properties let you set the data source, trend period in minutes, and more.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0386_0.png" alt="Single-pen trend display showing a stepped line chart with PV, Max, Min, Avg values and engineering units">
+  <div class="caption">SA_Trend_SinglePen display: a stepped line trend with PV, Max, Min, Avg metrics and a floating tooltip (page 386)</div>
+</div>
+
+<h3>SA_Trend_MultiPen</h3>
+<p>This symbol displays multiple pens (up to four) on a single chart. Each pen can be independently configured for data source, line weight, color, and visibility. The four pens use predefined styles: Trend_PenA through Trend_PenD.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0386_1.png" alt="Multi-pen trend display with four labeled curves (A, B, C, D) and a tabbed pen selector">
+  <div class="caption">SA_Trend_MultiPen display: four trend curves with tabbed pen selection and metrics panel (page 386)</div>
+</div>
+
+<!-- ============================================================ -->
+<h2>30.5 Knowledge Check</h2>
 
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> What are the key concepts covered in this lesson about Historization + Real-Time Trending?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
 
-  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <p><strong>1.</strong> In Application Server's distributed history architecture, what is the relationship between a Galaxy and a Historian?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">A single Historian can receive historical data from only one Galaxy, and a single engine sends its history to only one Historian — a strict one-to-one relationship.</p></details>
 
+  <p><strong>2.</strong> Which data types are <em>not</em> supported for historization in Application Server?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Arrays — whether entire arrays or portions of arrays — are not supported for historization.</p></details>
+
+  <p><strong>3.</strong> What is "backfill" in the context of the Trend Pen element?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Backfill is the process where the Trend Pen immediately loads historical data at runtime so the chart is never empty, then switches to live updates that scroll the chart to the left.</p></details>
+
+  <p><strong>4.</strong> How many pens can the SA_Trend_MultiPen symbol display simultaneously?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">A maximum of four pens, using the predefined styles Trend_PenA through Trend_PenD.</p></details>
+
+  <p><strong>5.</strong> Where is the Trend Pen element located in the Graphic Editor?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">In the Tools pane of the Graphic Editor, represented by a small line-graph icon with a vertical cursor line.</p></details>
 </div>
 
 <p class="source">Module 6 — Trend Visualization. AVEVA InTouch for System Platform 2023 Training.</p>

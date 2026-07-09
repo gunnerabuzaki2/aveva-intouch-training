@@ -98,303 +98,459 @@
 </details>
 </nav>
 
-<h1>Lesson 19: Lab9 Custom Symbol</h1>
-<p class="page-ref">Module 3 — Symbols | Pages 223–248</p>
+<h1>Lesson 19: Lab 9 – Creating a Custom Symbol</h1>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 3 — Symbols (pages 223–248)</p>
+<p class="page-ref">This lab walks you through building a reusable CommandPanel symbol with Open/Close buttons, quality-status indicators, and a speed setpoint entry — then wiring it to agitators, pumps, and valves so operators can control equipment from runtime popup windows.</p>
 
-<p>5. In Default Value, enter Me.Cmd. 6. In Description, enter Command for button. 7. Add another custom property and name it CmdOffMsg. 8. In the Data Type drop-down list, select String. Notice the icon at the top updates to show the String data type. Additionally, the toggle button to the left of the Default Value field is enabled and set to ‘Static Text’ mode. 9. Click the toggle button to switch to Expression or Reference mode. Notice a warning icon appears at the top and the Default Value field is outlined in red. These indicate that a default value must be added.</p>
+<!-- ============================================================ -->
+<h2>19.1 Defining Custom Properties for the Command Panel</h2>
+<p class="page-ref">Reference: Module 3 (pages 223–224)</p>
+
+<p>In the previous lesson you learned how to create and use custom properties on symbols. In this lab, you will put that knowledge into practice by building a complete <strong>CommandPanel</strong> symbol. The symbol needs three custom properties that will drive its buttons and captions at runtime: a Boolean command tag and two String properties for the Open and Close button labels.</p>
+
+<div class="lab">
+  <strong>Lab Steps:</strong> Open the CommandPanel symbol for editing. On the Custom Properties tab, add the following properties:
+</div>
+
+<table>
+  <thead><tr><th>Property Name</th><th>Data Type</th><th>Default Value</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td>Cmd</td><td>Boolean</td><td><code>Me.Cmd</code></td><td>Command for button</td></tr>
+    <tr><td>CmdOffMsg</td><td>String</td><td><code>Me.Cmd.OffMsg</code></td><td>Button caption</td></tr>
+    <tr><td>CmdOnMsg</td><td>String</td><td><code>Me.Cmd.OnMsg</code></td><td>Button caption</td></tr>
+  </tbody>
+</table>
+
+<p>When you switch the String properties to Expression or Reference mode, the Default Value field is treated as a tag reference rather than literal text. This lets each instance of the symbol inherit the correct caption from its owning object.</p>
 
 <div class="screenshot">
   <img src="../images/page_0223_0.png" alt="CommandPanel symbol property editor showing the Cmd Boolean custom property with default value set to Me.Cmd and description 'Command for button'">
-  <div class="caption">CommandPanel symbol property editor showing the Cmd Boolean custom property with default value set to Me.Cmd and description 'Command for button'</div>
+  <div class="caption">The Edit Custom Properties dialog after adding the Cmd Boolean property with its default value and description (page 223)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0223_1.png" alt="Edit Custom Properties dialog showing the CmdOffMsg String property added as property 2 of 2, with empty default value field">
-  <div class="caption">Edit Custom Properties dialog showing the CmdOffMsg String property added as property 2 of 2, with empty default value field</div>
+  <div class="caption">Adding the CmdOffMsg String property — the Default Value field is initially blank (page 223)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0223_2.png" alt="Edit Custom Properties dialog with CmdOffMsg String property selected, showing red-bordered empty default value field indicating a value must be entered">
-  <div class="caption">Edit Custom Properties dialog with CmdOffMsg String property selected, showing red-bordered empty default value field indicating a value must be entered</div>
+  <div class="caption">Switching to Expression or Reference mode reveals a warning icon when no default value is set (page 223)</div>
 </div>
-
-<p>10. In Default Value, enter Me.Cmd.OffMsg. 11. In Description, enter Button caption. 12. Add another custom property and name it CmdOnMsg. 13. In the Data Type drop-down list, select String. 14. In Default Value, switch to Expression or Reference mode and enter Me.Cmd.OnMsg. 15. In Description, enter Button caption. 16. Click OK to close Edit Custom Properties.</p>
 
 <div class="screenshot">
   <img src="../images/page_0224_0.png" alt="CmdOffMsg property configured with default value Me.Cmd.OffMsg in Expression or Reference mode, and description set to 'Button caption'">
-  <div class="caption">CmdOffMsg property configured with default value Me.Cmd.OffMsg in Expression or Reference mode, and description set to 'Button caption'</div>
+  <div class="caption">CmdOffMsg configured with the reference <code>Me.Cmd.OffMsg</code> (page 224)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0224_1.png" alt="Edit Custom Properties showing all three properties: Cmd (Boolean), CmdOffMsg (String), and CmdOnMsg (String) with default value Me.Cmd.OnMsg and description 'Button caption'">
-  <div class="caption">Edit Custom Properties showing all three properties: Cmd (Boolean), CmdOffMsg (String), and CmdOnMsg (String) with default value Me.Cmd.OnMsg and description 'Button caption'</div>
+  <div class="caption">All three custom properties are now defined and ready — click OK to close (page 224)</div>
 </div>
 
-<p>graphic. 17. In Tools, click the Button tool. 18. On the canvas, click and drag diagonally to draw a button. 19. Enter the button text as Open and press Enter. 20. Configure the properties for the button as follows: On the canvas, the button updates to reflect the changes you made to the properties. Your button should look as follows: ElementStyle: Intensity2 Width: 100 Height: 40</p>
+<div class="key-concept">
+  <strong>Key Concept:</strong> Custom properties with Expression or Reference defaults (like <code>Me.Cmd</code>) resolve relative to the object that owns the symbol. This is what makes the CommandPanel truly reusable — each instance automatically references the correct tag.
+</div>
+
+<!-- ============================================================ -->
+<h2>19.2 Adding the Open Button with Animations</h2>
+<p class="page-ref">Reference: Module 3 (pages 225–227)</p>
+
+<p>With the custom properties in place, the next step is to draw the Open button on the canvas and wire it up with three types of animations: a <strong>Pushbutton</strong> interaction that sets the command, a <strong>Value Display</strong> that shows the on-caption, and an <strong>Element Style</strong> animation that highlights the button when the command is active.</p>
+
+<div class="lab">
+  <strong>Lab Steps:</strong>
+</div>
+
+<ol>
+  <li>From the Tools palette, select the Button tool and draw a button on the canvas.</li>
+  <li>Set the button text to <strong>Open</strong>. Configure its properties: <strong>ElementStyle</strong> = Intensity2, <strong>Width</strong> = 100, <strong>Height</strong> = 40.</li>
+  <li>Double-click the button to open Edit Animations and add the three animations described below.</li>
+</ol>
+
+<table>
+  <thead><tr><th>Animation Type</th><th>States</th><th>Reference</th><th>Configuration</th></tr></thead>
+  <tbody>
+    <tr><td>Pushbutton</td><td>Boolean</td><td><code>Cmd</code></td><td>Action = Set</td></tr>
+    <tr><td>Value Display</td><td>String</td><td><code>CmdOnMsg</code></td><td>Shows the Open caption text</td></tr>
+    <tr><td>Element Style</td><td>Boolean</td><td><code>Cmd</code></td><td>True → Intensity4, False → default (unchecked)</td></tr>
+  </tbody>
+</table>
+
+<p>When the operator presses the button, the Pushbutton animation writes 1 to the <code>Cmd</code> tag. The Element Style animation makes the button appear brighter (Intensity4) while the command is active, giving the operator clear visual feedback.</p>
+
+<div class="tip">
+  <strong>Tip:</strong> For the Element Style animation's False/Off state, leave the checkbox unchecked. This tells the button to revert to its default ElementStyle property (Intensity2) rather than applying a different style.
+</div>
 
 <div class="screenshot">
   <img src="../images/page_0225_0.png" alt="InTouch HMI Tools palette with the Button tool highlighted in the top row, ready to create an interactive button on the canvas">
-  <div class="caption">InTouch HMI Tools palette with the Button tool highlighted in the top row, ready to create an interactive button on the canvas</div>
+  <div class="caption">The Button tool in the Tools palette (page 225)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0225_1.png" alt="An 'Open' button placed on the design canvas in selected state with blue resize handles visible around it">
-  <div class="caption">An 'Open' button placed on the design canvas in selected state with blue resize handles visible around it</div>
+  <div class="caption">The Open button placed on the canvas with default styling (page 225)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0225_2.png" alt="Properties panel for Button1 showing Element Style set to Intensity2, Width 100, Height 40, and position coordinates">
-  <div class="caption">Properties panel for Button1 showing Element Style set to Intensity2, Width 100, Height 40, and position coordinates</div>
+  <div class="caption">Button properties — ElementStyle Intensity2, 100 × 40 pixels (page 225)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0225_3.png" alt="An 'Open' button displayed on the design canvas with green text, selected with blue sizing handles and green rotation handle">
-  <div class="caption">An 'Open' button displayed on the design canvas with green text, selected with blue sizing handles and green rotation handle</div>
+  <div class="caption">The Open button after property changes — note the updated appearance (page 225)</div>
 </div>
-
-<p>Next, you will add animations to the button. 21. On the canvas, double-click the button and add a Pushbutton animation. 22. Configure the animation as follows: 23. Add a Value Display animation. 24. Configure the animation as follows: States: Boolean Reference: Cmd Action: Set States: String Expression Or Reference: CmdOnMsg</p>
 
 <div class="screenshot">
   <img src="../images/page_0226_0.png" alt="Edit Animations window with Pushbutton interaction type highlighted and selected for adding button behavior to the object">
-  <div class="caption">Edit Animations window with Pushbutton interaction type highlighted and selected for adding button behavior to the object</div>
+  <div class="caption">Adding a Pushbutton animation from the Interaction column (page 226)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0226_1.png" alt="Pushbutton animation configuration for Button1 with Boolean reference set to Cmd tag and Action set to 'Set' (writes 1 on press)">
-  <div class="caption">Pushbutton animation configuration for Button1 with Boolean reference set to Cmd tag and Action set to 'Set' (writes 1 on press)</div>
+  <div class="caption">Pushbutton configured to set the Cmd tag on press (page 226)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0226_2.png" alt="Value Display animation configuration for Button1 showing String state with Expression or Reference set to CmdOnMsg tag">
-  <div class="caption">Value Display animation configuration for Button1 showing String state with Expression or Reference set to CmdOnMsg tag</div>
+  <div class="caption">Value Display animation showing the CmdOnMsg caption at runtime (page 226)</div>
 </div>
-
-<p>25. Add an Element Style animation. 26. Configure the animation as follows: Note: For this button, False, 0, Off is unchecked. This will use the default element style property of the button. The default is shown on the right side of Edit Animations. 27. Click OK to close Edit Animations. States: Boolean Reference: Cmd Values True, 1, On: Element Style checked (default) Intensity4 selected Values False, 0, Off: Element Style unchecked</p>
 
 <div class="screenshot">
   <img src="../images/page_0227_0.png" alt="Edit Animations window showing both Element Style (Visualization) and Pushbutton (Interaction) animation types highlighted for selection">
-  <div class="caption">Edit Animations window showing both Element Style (Visualization) and Pushbutton (Interaction) animation types highlighted for selection</div>
+  <div class="caption">Both animation types visible in the Edit Animations dialog (page 227)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0227_1.png" alt="Element Style animation for Button1 with Boolean reference Cmd, Intensity4 style for True/On state, and Intensity2 for False/Off state (unchecked)">
-  <div class="caption">Element Style animation for Button1 with Boolean reference Cmd, Intensity4 style for True/On state, and Intensity2 for False/Off state (unchecked)</div>
+  <div class="caption">Element Style animation — Intensity4 when Cmd is True, default style when False (page 227)</div>
 </div>
 
-<p>Next, you will duplicate the button and configure its properties and modify its animations. 28. On the canvas, right-click the button and select Duplicate. 29. Place the duplicate button to the right of the original button. 30. On the Properties tab, modify the Text property to Close.</p>
+<!-- ============================================================ -->
+<h2>19.3 Creating the Close Button by Duplication</h2>
+<p class="page-ref">Reference: Module 3 (pages 228–230)</p>
+
+<p>Rather than building the Close button from scratch, you can save time by duplicating the Open button and modifying its animations. The key trick is using the <code>not</code> operator on the reference to invert the Element Style animation without having to reconfigure it from scratch.</p>
+
+<div class="lab">
+  <strong>Lab Steps:</strong>
+</div>
+
+<ol>
+  <li>Right-click the Open button and select <strong>Duplicate</strong>. Place the copy to the right.</li>
+  <li>Change the duplicate's Text property to <strong>Close</strong>.</li>
+  <li>Double-click the Close button and modify the animations:
+    <ul>
+      <li><strong>Element Style:</strong> Change the reference to <code>not Cmd</code> — this inverts the highlighting so the Close button lights up when the command is off.</li>
+      <li><strong>Value Display:</strong> Change the reference to <code>CmdOffMsg</code>.</li>
+      <li><strong>Pushbutton:</strong> Change the Action from Set to <strong>Reset</strong>.</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> Using <code>not Cmd</code> as a reference is a powerful time-saver. Instead of manually swapping the True/False style values, the <code>not</code> operator inverts the logic, so the same Intensity4-on-True configuration now highlights the button when Cmd is False.
+</div>
 
 <div class="screenshot">
   <img src="../images/page_0228_0.png" alt="Right-click context menu on the Open button showing Duplicate option highlighted, used to create a copy of the button">
-  <div class="caption">Right-click context menu on the Open button showing Duplicate option highlighted, used to create a copy of the button</div>
+  <div class="caption">Right-click the Open button and choose Duplicate (page 228)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0228_1.png" alt="Two identical 'Open' buttons on the design canvas - the original on the left and a newly duplicated copy on the right, with the duplicate selected">
-  <div class="caption">Two identical 'Open' buttons on the design canvas - the original on the left and a newly duplicated copy on the right, with the duplicate selected</div>
+  <div class="caption">The duplicated button sits to the right of the original (page 228)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0228_2.png" alt="Properties panel for Button2 showing Text property changed to 'Close' at position X=170, Y=50 with Intensity2 style">
-  <div class="caption">Properties panel for Button2 showing Text property changed to 'Close' at position X=170, Y=50 with Intensity2 style</div>
+  <div class="caption">Change the duplicate's Text to Close (page 228)</div>
 </div>
-
-<p>canvas. 31. Double-click the Close button to edit the animations. 32. For the Element Style animation, in Expression Or Reference, enter not Cmd. Note: Using not for the reference reverses the element style values used in the animation. This technique saves time when configuring the animation. 33. For the Value Display animation, in Expression Or Reference, enter CmdOffMsg.</p>
 
 <div class="screenshot">
   <img src="../images/page_0229_0.png" alt="Canvas showing 'Open' button on the left and 'Close' button on the right, with the Close button selected and showing rotation handle">
-  <div class="caption">Canvas showing 'Open' button on the left and 'Close' button on the right, with the Close button selected and showing rotation handle</div>
+  <div class="caption">Both buttons now visible on the canvas (page 229)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0229_1.png" alt="Element Style animation for Button2 with Boolean expression 'not Cmd', using Intensity4 style when not Cmd is True (Cmd is Off), and default style when False">
-  <div class="caption">Element Style animation for Button2 with Boolean expression 'not Cmd', using Intensity4 style when not Cmd is True (Cmd is Off), and default style when False</div>
+  <div class="caption">Element Style uses <code>not Cmd</code> to invert the highlighting logic (page 229)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0229_2.png" alt="Value Display animation for Button2 showing String state with Expression or Reference set to CmdOffMsg tag for the close button caption">
-  <div class="caption">Value Display animation for Button2 showing String state with Expression or Reference set to CmdOffMsg tag for the close button caption</div>
+  <div class="caption">Value Display shows the CmdOffMsg caption (page 229)</div>
 </div>
-
-<p>34. For the Pushbutton animation, select Reset. 35. Click OK to close Edit Animations. In the following steps, you will add a status element to the graphic to display quality and status information at runtime. 36. In Tools, click Status.</p>
 
 <div class="screenshot">
   <img src="../images/page_0230_0.png" alt="Pushbutton animation for Button2 configured with Boolean reference Cmd1 and Action set to Reset (writes 0 to reset the command)">
-  <div class="caption">Pushbutton animation for Button2 configured with Boolean reference Cmd1 and Action set to Reset (writes 0 to reset the command)</div>
+  <div class="caption">Pushbutton Action set to Reset — this clears the command when the Close button is pressed (page 230)</div>
 </div>
+
+<!-- ============================================================ -->
+<h2>19.4 Adding a Quality &amp; Status Indicator</h2>
+<p class="page-ref">Reference: Module 3 (pages 230–231)</p>
+
+<p>A quality and status indicator between the two buttons gives operators feedback about the communication state of the underlying tag. The Status tool creates a small element that monitors the selected graphic elements and displays quality icons at runtime.</p>
+
+<div class="lab">
+  <strong>Lab Steps:</strong>
+</div>
+
+<ol>
+  <li>From the Tools palette, select the <strong>Status</strong> tool.</li>
+  <li>Draw a small rectangle between the Open and Close buttons on the canvas. The Edit Animations dialog opens automatically.</li>
+  <li>On the Graphics tab, move both <strong>Button1</strong> and <strong>Button2</strong> to the Selected Graphic Elements list using the &gt;&gt; button.</li>
+  <li>Click OK to close.</li>
+</ol>
+
+<p>At runtime, this indicator will briefly show an hourglass icon whenever the quality state transitions between commands — a useful visual cue that the system is processing the operator's request.</p>
 
 <div class="screenshot">
   <img src="../images/page_0230_1.png" alt="InTouch Tools palette with the Status tool highlighted, used to add a status indicator element between the Open and Close buttons">
-  <div class="caption">InTouch Tools palette with the Status tool highlighted, used to add a status indicator element between the Open and Close buttons</div>
+  <div class="caption">The Status tool in the Tools palette (page 230)</div>
 </div>
-
-<p>37. On the canvas, click and drag a small rectangle between the two buttons as shown below. Edit Animations appears. 38. On the Graphics tab, in the Available Graphic Elements list, select Button1, and then click the >> button to move it to the Selected Graphic Elements list. Button1 moves to the Selected Graphic Elements list. 39. Select Button2 and click the >> button to move it to the Selected Graphic Elements list. 40. Click OK to close Edit Animations.</p>
 
 <div class="screenshot">
   <img src="../images/page_0231_0.png" alt="Status1 element on the canvas between Open and Close buttons, with Edit Animations showing DataStatus configuration with Available Graphic Elements listed">
-  <div class="caption">Status1 element on the canvas between Open and Close buttons, with Edit Animations showing DataStatus configuration with Available Graphic Elements listed</div>
+  <div class="caption">Status element placed between the buttons — Edit Animations opens automatically (page 231)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0231_1.png" alt="DataStatus animation configuration showing Button1 moved to Selected Graphic Elements list with Button2 still in Available list">
-  <div class="caption">DataStatus animation configuration showing Button1 moved to Selected Graphic Elements list with Button2 still in Available list</div>
+  <div class="caption">Button1 moved to Selected — Button2 is next (page 231)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0231_2.png" alt="DataStatus animation configuration with both Button1 and Button2 now in the Selected Graphic Elements list for the status indicator">
-  <div class="caption">DataStatus animation configuration with both Button1 and Button2 now in the Selected Graphic Elements list for the status indicator</div>
+  <div class="caption">Both buttons are now in the Selected list (page 231)</div>
 </div>
 
-<p>Now, you will set the size of the canvas to Fixed and configure the width and height. 41. Click the canvas to set focus on the canvas. 42. Configure the properties as follows: The canvas is now smaller. 43. Save and close and check in the graphic. Size: Fixed FixedWidth: 320 FixedHeight: 230</p>
+<!-- ============================================================ -->
+<h2>19.5 Fixing the Canvas Size and Checking In</h2>
+<p class="page-ref">Reference: Module 3 (page 232)</p>
+
+<p>Before checking in the symbol, you should set the canvas to a fixed size so the CommandPanel always appears at consistent dimensions when embedded in other graphics.</p>
+
+<div class="lab">
+  <strong>Lab Steps:</strong> Click the canvas (to deselect all objects), then set: <strong>Size</strong> = Fixed, <strong>FixedWidth</strong> = 320, <strong>FixedHeight</strong> = 230. Save, close, and check in the graphic.
+</div>
 
 <div class="screenshot">
   <img src="../images/page_0232_0.png" alt="Canvas properties panel showing Size set to Fixed, FixedWidth 320, and FixedHeight 230 for the CommandPanel symbol">
-  <div class="caption">Canvas properties panel showing Size set to Fixed, FixedWidth 320, and FixedHeight 230 for the CommandPanel symbol</div>
+  <div class="caption">Canvas properties — fixed at 320 × 230 pixels (page 232)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0232_1.png" alt="Canvas resized to its fixed dimensions (320x230) showing the Open button, Close button, and status indicator positioned within the smaller canvas">
-  <div class="caption">Canvas resized to its fixed dimensions (320x230) showing the Open button, Close button, and status indicator positioned within the smaller canvas</div>
+  <div class="caption">The CommandPanel symbol after resizing — buttons and status indicator fit within the fixed canvas (page 232)</div>
 </div>
 
-<p>Next, you will duplicate CommandPanel and add a numerical graphic for displaying and changing the speed setpoint of the agitator. 44. On the Graphics tab, in the Training toolset, duplicate CommandPanel. 45. Name the duplicate symbol as CommandPanelwithSetpoint and then open it for editing. 46. On the Toolbox tab, search for numerical. 47. Drag SA_NumericalEntry to the canvas and place it below the buttons.</p>
+<!-- ============================================================ -->
+<h2>19.6 Creating the Speed Setpoint Panel</h2>
+<p class="page-ref">Reference: Module 3 (pages 233–235)</p>
+
+<p>The agitator needs a speed setpoint entry in addition to the Open/Close buttons. Rather than modifying the base CommandPanel, you will duplicate it and add a numerical entry widget from the Situation Awareness library.</p>
+
+<div class="lab">
+  <strong>Lab Steps:</strong>
+</div>
+
+<ol>
+  <li>Duplicate the CommandPanel symbol and name the copy <strong>CommandPanelwithSetpoint</strong>. Open it for editing.</li>
+  <li>From the Toolbox tab, search for "numerical" and drag <strong>SA_NumericalEntry</strong> onto the canvas below the buttons.</li>
+  <li>Configure the wizard options: <strong>LabelType</strong> = CustomPropertyLabel, <strong>EngUnitsType</strong> = CustomPropertyLabel, <strong>Outline</strong> = False.</li>
+  <li>Right-click the numerical entry and select <strong>Substitute &gt; Substitute References</strong>. Use Find &amp; Replace to change all <code>Me.PV</code> references to <code>Me.Speed.SP</code>.</li>
+  <li>Open Custom Properties for the numerical entry and set the <strong>Label</strong> property's Default Value to <code>Me.Speed.SP.Description</code>.</li>
+  <li>Save, close, and check in.</li>
+</ol>
 
 <div class="screenshot">
   <img src="../images/page_0233_0.png" alt="Graphics tab showing the Training folder contents with CommandPanelwithSetpoint highlighted and selected from the symbol library">
-  <div class="caption">Graphics tab showing the Training folder contents with CommandPanelwithSetpoint highlighted and selected from the symbol library</div>
+  <div class="caption">The Training toolset showing the duplicated CommandPanelwithSetpoint (page 233)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0233_1.png" alt="CommandPanelwithSetpoint symbol on the canvas with Open and Close buttons at top, and SA_NumericalEntry widget placed below them for speed setpoint input">
-  <div class="caption">CommandPanelwithSetpoint symbol on the canvas with Open and Close buttons at top, and SA_NumericalEntry widget placed below them for speed setpoint input</div>
+  <div class="caption">SA_NumericalEntry placed below the buttons in the duplicated symbol (page 233)</div>
 </div>
-
-<p>48. Configure wizard options as follows: 49. On the canvas, right-click SA_NumericalEntry1 and select Substitute | Substitute References. Substitute Reference appears. LabelType: CustomPropertyLabel EngUnitsType: CustomPropertyLabel Outline: False</p>
 
 <div class="screenshot">
   <img src="../images/page_0234_0.png" alt="SA_NumericalEntry1 properties panel showing Wizard Options with Type: Input, LabelType: CustomPropertyLabel, EngUnitsType: CustomPropertyLabel, Outline: False">
-  <div class="caption">SA_NumericalEntry1 properties panel showing Wizard Options with Type: Input, LabelType: CustomPropertyLabel, EngUnitsType: CustomPropertyLabel, Outline: False</div>
+  <div class="caption">Wizard options for the numerical entry widget (page 234)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0234_1.png" alt="Right-click context menu on SA_NumericalEntry1 with Substitute submenu expanded showing Substitute References option highlighted for bulk tag replacement">
-  <div class="caption">Right-click context menu on SA_NumericalEntry1 with Substitute submenu expanded showing Substitute References option highlighted for bulk tag replacement</div>
+  <div class="caption">Access Substitute References via the right-click menu (page 234)</div>
 </div>
-
-<p>50. Use Find & Replace to change all Me.PV references to Me.Speed.SP references. Your references should appear as follows: 51. Click OK to close Substitute Reference. 52. On the canvas, right-click SA_NumericalEntry1 and select Custom Properties. 53. In Custom Properties, select the Label property. 54. In Default Value, switch to Expression Or Reference mode and enter Me.Speed.SP.Description. 55. Click OK to close Edit Custom Properties. 56. Save and close and check in the graphic.</p>
 
 <div class="screenshot">
   <img src="../images/page_0235_0.png" alt="Substitute Reference dialog showing Find and Replace of Me.PV with Me.Speed.SP, with 4 replacements made including Me.PV, Me.PV.EngUnits, Me.PV.EngUnitsRangeMax, and Me.PV.EngUnitsRangeMin">
-  <div class="caption">Substitute Reference dialog showing Find and Replace of Me.PV with Me.Speed.SP, with 4 replacements made including Me.PV, Me.PV.EngUnits, Me.PV.EngUnitsRangeMax, and Me.PV.EngUnitsRangeMin</div>
+  <div class="caption">Find and Replace: <code>Me.PV</code> → <code>Me.Speed.SP</code> — all references updated in one step (page 235)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0235_1.png" alt="Custom Properties for SA_NumericalEntry1 showing Label property (3 of 7) configured as String type with default value Me.Speed.SP.Description and Public visibility">
-  <div class="caption">Custom Properties for SA_NumericalEntry1 showing Label property (3 of 7) configured as String type with default value Me.Speed.SP.Description and Public visibility</div>
+  <div class="caption">Label property set to <code>Me.Speed.SP.Description</code> for dynamic labeling (page 235)</div>
 </div>
 
-<p>Now, you will add a Show Symbol interaction animation to the agitator, pumps, and valves. To accomplish this, you will first add this animation to one graphic and then copy and paste it to the others. 57. On the Graphics tab, in the Training toolset, double-click Agitator_Detailed to edit it. 58. On the canvas, select the Agitator graphic, and then on the Properties tab, scroll down to Runtime Behavior and set the TreatAsIcon property to True. Setting TreatAsIcon to True enables interaction animations for an embedded graphic. Enabling this property is required before adding a Show Symbol animation to the Agitator.</p>
+<div class="key-concept">
+  <strong>Key Concept:</strong> The Substitute References feature is a powerful tool for bulk-renaming tag references inside a symbol. Instead of manually editing each animation binding, you perform a single find-and-replace that updates every occurrence.
+</div>
+
+<!-- ============================================================ -->
+<h2>19.7 Wiring the Show Symbol Animation</h2>
+<p class="page-ref">Reference: Module 3 (pages 236–240)</p>
+
+<p>Now comes the critical step: connecting the command panels to the actual equipment graphics so that clicking an agitator, pump, or valve opens the correct popup. This is done with the <strong>Show Symbol</strong> interaction animation, which opens a symbol as a popup window at runtime.</p>
+
+<div class="lab">
+  <strong>Lab Steps:</strong>
+</div>
+
+<ol>
+  <li>Open <strong>Agitator_Detailed</strong> for editing. Select the Agitator graphic and set <strong>TreatAsIcon</strong> = True on the Properties tab. This enables interaction animations on the embedded graphic.</li>
+  <li>Double-click the Agitator graphic and add a <strong>Show Symbol</strong> animation.</li>
+  <li>For the Reference, click Browse Galaxy and select <strong>CommandPanelwithSetpoint</strong> from the Training folder.</li>
+  <li>Configure the animation:
+    <ul>
+      <li><strong>Title:</strong> Uncheck "Use Symbol Name" and switch to Expression mode. Enter <code>OwningObject</code>.</li>
+      <li><strong>Position:</strong> Below / Parent Symbol.</li>
+    </ul>
+  </li>
+  <li>Copy the animation from the Agitator graphic (right-click &gt; Animations &gt; Copy).</li>
+  <li>Open <strong>Pump_Detailed</strong>. Set TreatAsIcon = True on the Pump graphic. Paste the animation. Open it and change the Reference to <strong>CommandPanel</strong> (without the setpoint).</li>
+  <li>Copy the animation from the Pump graphic.</li>
+  <li>Open <strong>Valve_Detailed</strong>. Set TreatAsIcon = True. Paste the animation. Save and check in.</li>
+</ol>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> Setting <code>TreatAsIcon = True</code> is essential — without it, the Show Symbol animation cannot be attached to an embedded graphic. The title uses <code>OwningObject</code> so the popup window displays the equipment name (e.g., "Inlet1_001") rather than the symbol name.
+</div>
 
 <div class="screenshot">
   <img src="../images/page_0236.png" alt="SA_Agitator_Settler object properties showing Runtime Behavior section with TreatAsIcon property set to True, enabling interaction animations on the embedded graphic">
-  <div class="caption">SA_Agitator_Settler object properties showing Runtime Behavior section with TreatAsIcon property set to True, enabling interaction animations on the embedded graphic</div>
+  <div class="caption">TreatAsIcon = True enables interaction animations on embedded graphics (page 236)</div>
 </div>
-
-<p>59. On the canvas, double-click the Agitator graphic and add a Show Symbol animation. Edit Animations appears.</p>
 
 <div class="screenshot">
   <img src="../images/page_0237_0.png" alt="Edit Animations window with Show Symbol interaction type highlighted in the Interaction column, ready to add a popup window animation to the Agitator">
-  <div class="caption">Edit Animations window with Show Symbol interaction type highlighted in the Interaction column, ready to add a popup window animation to the Agitator</div>
+  <div class="caption">Select Show Symbol from the Interaction column (page 237)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0237_1.png" alt="Show Symbol animation configuration for Agitator with empty Reference field, modal window type, title bar enabled, and Use Symbol Name checked - awaiting symbol selection">
-  <div class="caption">Show Symbol animation configuration for Agitator with empty Reference field, modal window type, title bar enabled, and Use Symbol Name checked - awaiting symbol selection</div>
+  <div class="caption">Initial Show Symbol configuration before browsing for the target symbol (page 237)</div>
 </div>
-
-<p>60. To the right of the Reference field, click Browse Galaxy, and then from the Graphic Toolbox, select Training and select CommandPanelwithSetpoint. 61. Click OK to close the Galaxy Browser.</p>
 
 <div class="screenshot">
   <img src="../images/page_0238.png" alt="Galaxy Browser showing TrainingGalaxy project with Training folder contents, and CommandPanelwithSetpoint symbol highlighted and selected for use in the Show Symbol animation">
-  <div class="caption">Galaxy Browser showing TrainingGalaxy project with Training folder contents, and CommandPanelwithSetpoint symbol highlighted and selected for use in the Show Symbol animation</div>
+  <div class="caption">Browse the Galaxy and select CommandPanelwithSetpoint (page 238)</div>
 </div>
-
-<p>62. In Title, uncheck Use Symbol Name for Window Title. 63. Switch to Expression Or Reference mode and enter OwningObject. 64. In the Position drop-down lists, select Below and Parent Symbol. Your configuration will appear as follows: 65. Click OK to close Edit Animations.</p>
 
 <div class="screenshot">
   <img src="../images/page_0239.png" alt="Show Symbol animation for Agitator fully configured: Reference set to CommandPanelwithSetpoint, title using OwningObject, Position set to Below Parent Symbol, modal with close button">
-  <div class="caption">Show Symbol animation for Agitator fully configured: Reference set to CommandPanelwithSetpoint, title using OwningObject, Position set to Below Parent Symbol, modal with close button</div>
+  <div class="caption">Fully configured Show Symbol animation — the popup will appear below the agitator at runtime (page 239)</div>
 </div>
-
-<p>66. On the canvas, right-click the Agitator graphic and select Animations | Copy. 67. Save and close and check in the graphic. Next, you will configure the pumps and valves. 68. On the Graphics tab, double-click Pump_Detailed to edit it. 69. Select the Pump symbol, and on the Properties tab, set the TreatAsIcon property to True. 70. On the canvas, right-click the Pump graphic and select Animations | Paste. 71. On the canvas, double-click the Pump graphic. 72. In Edit Animations, in Reference, enter CommandPanel. 73. Click OK to close Edit Animations. 74. On the canvas, right-click the Pump graphic and select Animations | Copy. 75. Save and close and check in the graphic. 76. On the Graphics tab, double-click Valve_Detailed to edit it. 77. Select the Valve symbol, and on the Properties tab, set the TreatAsIcon property to True 78. On the canvas, right-click the Valve graphic and select Animations | Paste. 79. Save and close and check in the graphic.</p>
 
 <div class="screenshot">
   <img src="../images/page_0240_0.png" alt="Right-click context menu on the Agitator graphic with Animations submenu expanded showing Copy option to copy the animation bindings for reuse">
-  <div class="caption">Right-click context menu on the Agitator graphic with Animations submenu expanded showing Copy option to copy the animation bindings for reuse</div>
+  <div class="caption">Copy the animation to reuse it on pumps and valves (page 240)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0240_1.png" alt="Show Symbol animation configuration for Pump object with Reference set to CommandPanel, creating a popup command panel for the pump">
-  <div class="caption">Show Symbol animation configuration for Pump object with Reference set to CommandPanel, creating a popup command panel for the pump</div>
+  <div class="caption">Pump uses CommandPanel (without setpoint) as its popup reference (page 240)</div>
 </div>
 
-<p>Finally, you will click on a valve, pump, and agitator to use their command panels. 80. In WindowMaker, click Runtime. 81. Click Inlet1_001 to view its command panel. The title for the command panel is Inlet1_001, and the text on the buttons is Open and Close.</p>
+<div class="pitfall">
+  <strong>Common Mistake:</strong> If you forget to set TreatAsIcon = True on the equipment graphic, the Show Symbol animation will appear to be configured correctly but will not work at runtime. Always verify this property before checking in.
+</div>
+
+<!-- ============================================================ -->
+<h2>19.8 Testing the Command Panels in Runtime</h2>
+<p class="page-ref">Reference: Module 3 (pages 241–245)</p>
+
+<p>With all the wiring complete, it is time to switch to WindowViewer and test each command panel. You will click on a valve, pump, and agitator to verify that the correct popup appears with the right buttons and captions.</p>
+
+<div class="lab">
+  <strong>Lab Steps:</strong>
+</div>
+
+<ol>
+  <li>In WindowMaker, click <strong>Runtime</strong> to switch to WindowViewer.</li>
+  <li>Click <strong>Inlet1_001</strong> (a valve) to open its command panel. The title shows "Inlet1_001" and the buttons display "Open" and "Close."</li>
+  <li>Click the lighter button (Intensity2 — the active command) to toggle the valve. Watch the Quality &amp; Status hourglass appear briefly between commands.</li>
+  <li>Click the X at the top of the command panel to close it. <em>You must close the popup before performing other actions in WindowViewer.</em></li>
+  <li>Click <strong>Pump1_001</strong>. Its command panel shows "Start" and "Stop" buttons.</li>
+  <li>Click <strong>Agitator_001</strong>. Its command panel includes Start/Stop buttons plus the Speed setpoint entry.</li>
+  <li>Enter <strong>45</strong> in the Speed setpoint field and press Enter. The agitator should begin running at 45 RPM.</li>
+  <li>Verify the running speed on the main process display, then click Development! to return to WindowMaker.</li>
+</ol>
+
+<div class="tip">
+  <strong>Tip:</strong> To keep the simulator working correctly, make sure the pump and its associated valve are in the same state. For example, if Inlet 1 is Open, Pump 1 should also be Running. When both match, the tank level will change.
+</div>
 
 <div class="screenshot">
   <img src="../images/page_0241.png" alt="Runtime view of Mixer100 in Line1 showing Inlet1_001 command panel popup with Open and Close buttons, plus Pump1_001 indicator and Level_001 bar graph displaying 49.60">
-  <div class="caption">Runtime view of Mixer100 in Line1 showing Inlet1_001 command panel popup with Open and Close buttons, plus Pump1_001 indicator and Level_001 bar graph displaying 49.60</div>
+  <div class="caption">Inlet1_001 command panel at runtime — Open and Close buttons with the Quality &amp; Status indicator (page 241)</div>
 </div>
-
-<p>82. In the command panel, identify the button that appears lighter (element style Intensity2) than the other and click it to command the valve. The following example shows the Open button as lighter than the other. Note: The simulated mixer process used in this course does not link the .Cmd attribute of motors and valves with their .PV attributes. Therefore, the command panel’s buttons do not show the current state of the equipment. Instead, the buttons only reflect the user’s interactions. Once the user issues a command, the data simulator performs an override to the automated process. 83. Click Open and Close to operate and watch the valve transition. 84. Observe the Quality & Status indicator shows an hourglass icon in the command panel briefly between each command.</p>
 
 <div class="screenshot">
   <img src="../images/page_0242_0.png" alt="Inlet1_001 command panel popup at runtime showing Open and Close buttons with standard gray button styling for valve control">
-  <div class="caption">Inlet1_001 command panel popup at runtime showing Open and Close buttons with standard gray button styling for valve control</div>
+  <div class="caption">Valve command panel — the lighter button indicates the active command (page 242)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0242_1.png" alt="Inlet1_001 command panel with Open button appearing lighter (Intensity2 style) indicating it was recently clicked, with yellow hourglass quality indicator showing command in progress">
-  <div class="caption">Inlet1_001 command panel with Open button appearing lighter (Intensity2 style) indicating it was recently clicked, with yellow hourglass quality indicator showing command in progress</div>
+  <div class="caption">After clicking Open — note the hourglass quality indicator showing the command is processing (page 242)</div>
 </div>
-
-<p>85. At the top of the Inlet1_001 command panel, click the X to close it. Note: If you do not click X, you will not be able to perform any other functions in WindowViewer. 86. Click Pump1_001 to view its command panel. The title of the command panel is Pump1_001 and the text on the buttons is Start and Stop. 87. Click Start and Stop to operate the pump and watch the results. Important: To ensure automatic operation of the simulator, click Start or Stop to make the pump’s state the same state as its associated valve. When the pump and valve are in the same state, the level in the tank will move. For example, if Inlet 1 is active, then Pump 1 must also be active. 88. At the top of the command panel, click the X to close it.</p>
 
 <div class="screenshot">
   <img src="../images/page_0243.png" alt="Pump1_001 command panel popup with Start and Stop buttons overlaid on a process graphic showing Pump1_001 connected to Inlet1_001, with Stop button appearing darker (active state)">
-  <div class="caption">Pump1_001 command panel popup with Start and Stop buttons overlaid on a process graphic showing Pump1_001 connected to Inlet1_001, with Stop button appearing darker (active state)</div>
+  <div class="caption">Pump1_001 command panel — Start and Stop buttons (page 243)</div>
 </div>
-
-<p>89. Click Agitator_001 to view its command panel. In addition to the Start and Stop buttons, the Speed setpoint graphic appears on the command panel. 90. In Speed setpoint, click the number and enter 45, and then press Enter. The Status & Quality hourglass icon appears briefly after pressing Enter. 91. At the top of the command panel, click the X to close it.</p>
 
 <div class="screenshot">
   <img src="../images/page_0244_0.png" alt="Agitator_001 command panel popup showing Start and Stop buttons plus Speed setpoint field at 0.00 rpm, with the agitator stopped at 0.00 rpm in the main graphic">
-  <div class="caption">Agitator_001 command panel popup showing Start and Stop buttons plus Speed setpoint field at 0.00 rpm, with the agitator stopped at 0.00 rpm in the main graphic</div>
+  <div class="caption">Agitator command panel with Speed setpoint at 0.00 RPM (page 244)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0244_1.png" alt="Agitator_001 command panel with Speed setpoint changed to 45.00 rpm after operator input, with Start and Stop buttons visible and the agitator beginning to run">
-  <div class="caption">Agitator_001 command panel with Speed setpoint changed to 45.00 rpm after operator input, with Start and Stop buttons visible and the agitator beginning to run</div>
+  <div class="caption">After entering 45 — the agitator begins running at the new setpoint (page 244)</div>
 </div>
-
-<p>92. When the agitator is running, verify the new agitator speed setpoint. 93. Click Development! to return to WindowMaker. <End of Lab></p>
 
 <div class="screenshot">
   <img src="../images/page_0245.png" alt="Mixer monitoring screen showing Agitator_001 running at 45.03 rpm in real time, with Level_001 and Temperature_001 labels visible below the agitator graphic">
-  <div class="caption">Mixer monitoring screen showing Agitator_001 running at 45.03 rpm in real time, with Level_001 and Temperature_001 labels visible below the agitator graphic</div>
+  <div class="caption">Main process display confirming the agitator is running at 45.03 RPM (page 245)</div>
 </div>
 
+<div class="key-concept">
+  <strong>Key Concept:</strong> The simulated mixer process does not link the <code>.Cmd</code> attribute with the <code>.PV</code> attribute. This means the command panel buttons reflect only the operator's interactions — they do not show the actual equipment state. Once a command is issued, the data simulator overrides the automated process.
+</div>
 
-<p>applications. A script is a set of programmatic instructions that directs an InTouch application to perform an action. You write InTouch scripts with the QuickScript language. Using QuickScript, you can write scripts that include conditional branching, code looping, and local variables. Scripts can be classified by when they are run and whether they run independently of other ongoing application processes. Scripts can generally be run in two different ways:  Event-based scripts run once when an event occurs. For example, an event-based script can run after an operator presses a key or a tag value changes.  Time-based scripts run periodically while a condition is fulfilled. For example, a time-based script can run while a window is open or a button is kept pressed. You can configure multiple event-based and time-based scripts to run with the same trigger. For example, you can configure a script to run once when a key is pressed and another script to run periodically every 5 seconds while the same key remains pressed. For condition scripts, you can either run a script synchronously or asynchronously:  When a synchronous script runs, all InTouch animation and tag value updating stops. Then, animation and tag value updating resumes after the script stops.  When an asynchronous script runs, all InTouch animation and tag value updating continues during the period when the script runs. You can write scripts to extend and customize your objects. You can write scripts that run commands and logical operations, based on specified criteria being met. For example, a script starts when a key is pressed, a window is opened, or the value of an attribute changes. Using scripts, you can create a variety of customized and automated system functions. A script adds behavior that runs when the object that contains the script is deployed and the object is either:  On scan in the runtime environment; or  Changes scan or start/shutdown state A script typically runs based on attributes of the object that contains it, but can be started by another script based on changing values of attributes of more than one object. When a script condition is true, the script runs at least once immediately. The maximum length of a script trigger period is 49 days. A script never runs if the trigger period exceeds 49 days. The following characteristics apply to the scripting environment:  Script text has no length limitations.  Selecting a script function from the Script Function Library dialog box adds it and its syntax to the script text where you can edit it.  You can save a script with syntax errors, but the object cannot be deployed until you correct the script syntax errors.  You can validate your scripts before using them. This helps you avoid syntactically correct but semantically incorrect combinations, such as two statements declaring the same variable. Variables can be declared only one time in a single block. This section provides a brief overview of the scripting environment, explains execution types and triggers, and introduces ShowGraphic functions.</p>
-
-<p> You can change the name of a script at any time by renaming it in the Object Editor.  In the runtime environment, a script execution error stops the script’s current execution. Script execution is retried on the next AppEngine scan. You can use the InTouch scripting language, QuickScript, to build more robust applications. There are seven types of scripts and many built-in script functions available. The seven types of scripts are defined by what causes them to run. For example, application scripts run when an application starts, stops, or continues running. Data change scripts run when a certain item of data changes. Window scripts run when a window opens, closes, or remains open. The built-in script functions include mathematical functions, trigonometric functions, string functions, and others. Using these functions saves you time in developing your application. InTouch scripts can include Object Linking and Embedding (OLE) objects and ActiveX controls. You can use conditional statements, loops, and local variables in the scripting language to create complex effects in your application. Before you start scripting, you should understand:  A script is a set of instructions that direct an application to do something.  QuickScript is the InTouch HMI scripting language.  A function is a script that can be called by another script. The InTouch HMI comes with a set of predefined functions for your use.  QuickFunctions are reusable functions written in QuickScript and stored in the QuickFunction library. To create a QuickFunction, you simply create a QuickScript and name it. A QuickFunction can be called by another script or from animation link expressions. Types of Scripts In InTouch, scripts are categorized based on what causes the script to run. For example, you would create a “key script” if you want a script to run when the operator presses a certain key on the keyboard. After you have chosen the script type, you can then further define the criteria, or conditions, that make the script run. For example, you might want the script to run when the key is released, not when the key is pressed. The script types are:  Application scripts, which run either continuously while WindowViewer is running or one time when WindowViewer is started or shut down.  Window scripts, which run periodically when an InTouch window is open or one time when an InTouch window is opened or closed.  Key scripts, which run one time or periodically when a certain key or key combination is pressed or released.  Condition scripts, which run one time or periodically when a certain condition is fulfilled or not fulfilled.  Data change scripts, which run one time when the value of a certain tag or expression changes.  Action scripts, which run one time or periodically when an operator clicks on an InTouch HMI graphic object.  ActiveX event scripts, which run one time when an ActiveX event occurs, such as clicking an ActiveX control.</p>
-
+<!-- ============================================================ -->
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> What are the key concepts covered in this lesson about Lab 9 – Creating a Custom Symbol?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
+  <p><strong>1.</strong> Why must you set TreatAsIcon to True before adding a Show Symbol animation to an embedded graphic?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">TreatAsIcon = True enables interaction animations on an embedded graphic. Without it, the Show Symbol animation will not function at runtime even if it appears to be configured correctly.</p></details>
 
-  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <p><strong>2.</strong> What happens when you use <code>not Cmd</code> as the Element Style reference on the Close button?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">The <code>not</code> operator inverts the Boolean logic, so the Intensity4 style is applied when Cmd is False (Off) rather than True. This makes the Close button highlight when the command is not active, without needing to manually reconfigure the True/False style values.</p></details>
 
+  <p><strong>3.</strong> What is the purpose of the Substitute References feature when configuring the SA_NumericalEntry widget?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Substitute References performs a bulk find-and-replace on all tag references inside a symbol. In this lab, it was used to change all <code>Me.PV</code> references to <code>Me.Speed.SP</code> in a single operation, saving the effort of manually editing each animation binding.</p></details>
+
+  <p><strong>4.</strong> Why does the command panel title use the OwningObject expression instead of the symbol name?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Using OwningObject as the title expression makes the popup window display the equipment name (e.g., "Inlet1_001", "Pump1_001") rather than the generic symbol name "CommandPanel." This gives operators clear context about which piece of equipment they are commanding.</p></details>
+
+  <p><strong>5.</strong> What is the significance of closing the command panel popup by clicking the X before performing other actions in WindowViewer?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">The command panel opens as a modal popup window. If you do not close it by clicking the X, you will not be able to interact with any other elements in WindowViewer — the modal window blocks all other input.</p></details>
 </div>
 
 <p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 29: Historical Alarms Lab16</title>
+<title>Lesson 29: Historical Alarms + Lab 16 – Building a Historical Alarm Display</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -98,171 +98,224 @@
 </details>
 </nav>
 
-<h1>Lesson 29: Historical Alarms Lab16</h1>
-<p class="page-ref">Module 5 — Alarms and Events Visualization | Pages 369–380</p>
+<h1>Lesson 29: Historical Alarms + Lab 16 – Building a Historical Alarm Display</h1>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 5 – Alarms and Events Visualization, Lab 16 (pages 369–380)</p>
+<p class="page-ref">This lesson completes Lab 16 — configuring the Alarm Client to retrieve and display historical alarm data from History Blocks, adding mode-switching buttons, creating runtime filters, and verifying the combined alarm and event view.</p>
 
-<p>5. In Alarm Mode, in the Client Mode drop-down list, select Historical Alarms. 6. In Database Connectivity, verify the Authentication Mode is Windows Integrated, and then in the Server Name field, enter your Historian server name. Note: Your instructor will provide the Historian server name. 7. In the Database Name drop-down list, select History Blocks. A Configuration Warning appears, confirming if you want to change the configuration. Note: This warning informs you that the current configuration, including password, will be deleted if you proceed. For the purposes of this lab, no previous configuration exists. However, in the real world, you may have already been connecting to a Microsoft SQL database and you would lose that configuration if you proceeded with using History Blocks. Ensure you have your authentication information recorded before proceeding. 8. In Configuration Warning, click Yes to continue.</p>
+<!-- ============================================================ -->
+<h2>29.1 Configuring the Alarm Client for History Blocks</h2>
+<p class="page-ref">Reference: Module 5, Lab 16 (pages 369–370)</p>
+
+<p>Continuing from the previous lesson where you created the AlarmHistDisplay symbol and placed the Alarm Client on the canvas, you will now configure it to retrieve historical data from History Blocks.</p>
+
+<ol>
+  <li>In Alarm Mode, set <strong>Client Mode</strong> to <strong>Historical Alarms</strong>.</li>
+  <li>In Database Connectivity, verify <strong>Authentication Mode</strong> is <strong>Windows Integrated</strong>, then enter your Historian server name in the <strong>Server Name</strong> field.</li>
+  <li>In the <strong>Database Name</strong> dropdown, select <strong>History Blocks</strong>.</li>
+</ol>
+
+<div class="pitfall">
+  <strong>Warning:</strong> When you switch from a SQL database (like WWAlmDb) to History Blocks, a Configuration Warning appears telling you the current configuration — including any saved passwords — will be lost. In a production environment, record your authentication details before proceeding. In this lab, no previous configuration exists.
+</div>
+
+<ol start="4">
+  <li>In the Configuration Warning dialog, click <strong>Yes</strong> to continue.</li>
+  <li>Click <strong>Test Connection</strong>. An Info message confirms the connection succeeded.</li>
+  <li>Click OK to close the message.</li>
+  <li>In the Other Settings dialog, set <strong>Time Range</strong> to <strong>15 minutes</strong> from the dropdown list.</li>
+  <li>Ensure <strong>Update to Current Time</strong> is checked.</li>
+  <li>Click OK to close Edit Animations.</li>
+</ol>
 
 <div class="screenshot">
-  <img src="../images/page_0369_0.png" alt="Edit Animations dialog for AlarmClient showing Alarm Mode configuration: Client Mode set to Historical Alarms, Database Connectivity with Windows Integrated authentication, server name S01ENG, database WWAlmDb, and Test Connection button">
-  <div class="caption">Edit Animations dialog for AlarmClient showing Alarm Mode configuration: Client Mode set to Historical Alarms, Database Connectivity with Windows Integrated authentication, server name S01ENG, database WWAlmDb, and Test Connection button</div>
+  <img src="../images/page_0369_0.png" alt="Edit Animations dialog showing Historical Alarms mode with Windows Integrated authentication and server S01ENG">
+  <div class="caption">Configuring the Alarm Client for Historical Alarms with database connectivity to the Historian server (page 369)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0369_1.png" alt="Configuration Warning dialog prompting to confirm changing database from WWAlmDb to History Blocks, with Database Connectivity settings visible in background showing Windows Integrated authentication and server S01ENG">
-  <div class="caption">Configuration Warning dialog prompting to confirm changing database from WWAlmDb to History Blocks, with Database Connectivity settings visible in background showing Windows Integrated authentication and server S01ENG</div>
-</div>
-
-<p>9. Click Test Connection. An Info message appears, indicating that the connection was successful. 10. Click OK to close the message. 11. In Time Range, from the time interval list, click the drop-down arrow and select 15 minutes. 12. Click OK to close Edit Animations.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0370_0.png" alt="Info dialog confirming successful database connection test: 'Connection to History Blocks Data Storage succeeded on server S01ENG'">
-  <div class="caption">Info dialog confirming successful database connection test: 'Connection to History Blocks Data Storage succeeded on server S01ENG'</div>
+  <img src="../images/page_0369_1.png" alt="Configuration Warning dialog asking to confirm changing database from WWAlmDb to History Blocks">
+  <div class="caption">The Configuration Warning dialog — be aware this will clear any existing SQL database configuration (page 369)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0370_1.png" alt="Other Settings dialog for Time Range configuration showing Maximum Records set to 100, time interval dropdown open with 15 minutes selected, and Update to Current Time checkbox enabled">
-  <div class="caption">Other Settings dialog for Time Range configuration showing Maximum Records set to 100, time interval dropdown open with 15 minutes selected, and Update to Current Time checkbox enabled</div>
-</div>
-
-<p>runtime. 13. On the canvas, add a Text element at the top-left, above AlarmClient, and then enter History Alarm Mode:. 14. Configure the properties as follows: 15. To the right of AlarmMode_Txt, add a button and configure it as follows: 16. Resize the button to fit the text. Name: AlarmMode_Txt ElementStyle: Title Name: HistAlarm_Btn ElementStyle: Intensity2 Text: Historical Alarms</p>
-
-<div class="screenshot">
-  <img src="../images/page_0371_0.png" alt="InTouch canvas showing History Alarm Mode label with Historical Alarms dropdown selected and alarm data grid displaying ACK and ACK_RTN alarm states for TestNode/TestTag">
-  <div class="caption">InTouch canvas showing History Alarm Mode label with Historical Alarms dropdown selected and alarm data grid displaying ACK and ACK_RTN alarm states for TestNode/TestTag</div>
+  <img src="../images/page_0370_0.png" alt="Info dialog confirming successful connection to History Blocks Data Storage on server S01ENG">
+  <div class="caption">Successful connection test to History Blocks on the Historian server (page 370)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0371_1.png" alt="Edit Animations dialog showing Pushbutton configuration for HistAlarm_Btn with Analog reference to AlarmClient.ClientMode and Set action with Value1 set to 3">
-  <div class="caption">Edit Animations dialog showing Pushbutton configuration for HistAlarm_Btn with Analog reference to AlarmClient.ClientMode and Set action with Value1 set to 3</div>
+  <img src="../images/page_0370_1.png" alt="Other Settings dialog with Maximum Records 100, Time Range set to 15 minutes, and Update to Current Time checked">
+  <div class="caption">Setting the time range to 15 minutes and enabling auto-update to current time (page 370)</div>
 </div>
 
-<p>17. Double-click HistAlarm_Btn and add animations as follows: Pushbutton Element Style 18. Click OK to close Edit Animations. States: Analog Reference: AlarmClient.ClientMode Action: Set Value1: 3 States: Boolean Expression Or Reference: AlarmClient.ClientMode == 3 True, 1, On: Element Style: checked (default) Intensity4 selected False, 0, Off: Element Style: unchecked</p>
+<!-- ============================================================ -->
+<h2>29.2 Adding Mode-Switching Buttons</h2>
+<p class="page-ref">Reference: Module 5, Lab 16 (pages 371–374)</p>
 
-<div class="screenshot">
-  <img src="../images/page_0372_0.png" alt="Edit Animations dialog showing Pushbutton configuration for HistAlarm_Btn (page 2 of 2): Analog tab with AlarmClient.ClientMode reference, Set action selected, Value1=3">
-  <div class="caption">Edit Animations dialog showing Pushbutton configuration for HistAlarm_Btn (page 2 of 2): Analog tab with AlarmClient.ClientMode reference, Set action selected, Value1=3</div>
-</div>
+<p>To let operators switch between historical modes at runtime, you will create three buttons — Historical Alarms, Historical Events, and Historical Alarms & Events — each with Pushbutton and Element Style animations.</p>
 
-<div class="screenshot">
-  <img src="../images/page_0372_1.png" alt="Edit Animations dialog showing Element Style for HistAlarm_Btn: Boolean expression AlarmClient.ClientMode == 3, with Intensity4 style applied when true and unchecked when false">
-  <div class="caption">Edit Animations dialog showing Element Style for HistAlarm_Btn: Boolean expression AlarmClient.ClientMode == 3, with Intensity4 style applied when true and unchecked when false</div>
-</div>
+<h3>Create the Historical Alarms Button</h3>
+<ol start="10">
+  <li>Add a <strong>Text</strong> element at the top-left of the canvas: "History Alarm Mode:". Set Name to <strong>AlarmMode_Txt</strong>, ElementStyle to <strong>Title</strong>.</li>
+  <li>Add a <strong>Button</strong> to the right of the text. Set Name to <strong>HistAlarm_Btn</strong>, ElementStyle to <strong>Intensity2</strong>, Text to "Historical Alarms".</li>
+  <li>Resize the button to fit the text.</li>
+  <li>Double-click HistAlarm_Btn and add two animations:</li>
+</ol>
 
-<p>19. Duplicate HistAlarm_Btn and configure the duplicate as follows: 20. Place the duplicate to the right of HistAlarm_Btn. 21. Resize the button to fit the text, if necessary. 22. Double-click HistEvent_Btn and modify the animations as follows: Element Style Pushbutton 23. Click OK to close Edit Animations. Name: HistEvent_Btn Text: Historical Events Expression Or Reference: AlarmClient.ClientMode == 4 Value1: 4</p>
+<table>
+  <thead><tr><th>Animation</th><th>Configuration</th></tr></thead>
+  <tbody>
+    <tr><td>Pushbutton</td><td>States: Analog, Reference: <code>AlarmClient.ClientMode</code>, Action: Set, Value1: <strong>3</strong></td></tr>
+    <tr><td>Element Style</td><td>States: Boolean, Expression: <code>AlarmClient.ClientMode == 3</code>, True → Intensity4, False → unchecked</td></tr>
+  </tbody>
+</table>
 
-<div class="screenshot">
-  <img src="../images/page_0373_0.png" alt="InTouch canvas showing two mode buttons - Historical Alarms and Historical Events (selected) - with alarm data grid displaying ACK state for TestTag">
-  <div class="caption">InTouch canvas showing two mode buttons - Historical Alarms and Historical Events (selected) - with alarm data grid displaying ACK state for TestTag</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0373_1.png" alt="Edit Animations dialog showing Element Style for HistEvent_Btn: Boolean expression AlarmClient.ClientMode == 4, with Element Style state configuration">
-  <div class="caption">Edit Animations dialog showing Element Style for HistEvent_Btn: Boolean expression AlarmClient.ClientMode == 4, with Element Style state configuration</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0373_2.png" alt="Edit Animations dialog showing Pushbutton for HistEvent_Btn (page 2 of 2): Analog tab with AlarmClient.ClientMode reference, Set action selected, Value1=4">
-  <div class="caption">Edit Animations dialog showing Pushbutton for HistEvent_Btn (page 2 of 2): Analog tab with AlarmClient.ClientMode reference, Set action selected, Value1=4</div>
-</div>
-
-<p>24. Duplicate HistEvent_Btn. 25. Configure the duplicate as follows: 26. Resize the button to fit the text. 27. Double-click HistAE_Btn and modify the animations as follows: Pushbutton Element Style 28. Click OK to close Edit Animations. Name: HistAE_Btn Text: Historical Alarms & Events Value1: 5 Expression Or Reference: AlarmClient.ClientMode == 5</p>
-
-<div class="screenshot">
-  <img src="../images/page_0374_0.png" alt="InTouch canvas showing three mode buttons: Historical Alarms, Historical Events, and Historical Alarms &amp; Events (selected/highlighted), with alarm data grid displaying ACK state">
-  <div class="caption">InTouch canvas showing three mode buttons: Historical Alarms, Historical Events, and Historical Alarms &amp; Events (selected/highlighted), with alarm data grid displaying ACK state</div>
+<div class="key-concept">
+  <strong>Key Concept:</strong> The Pushbutton animation sets the ClientMode to 3 (Historical Alarms) when clicked. The Element Style animation highlights the button with Intensity4 when ClientMode equals 3, providing visual feedback about which mode is active.
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0374_1.png" alt="Edit Animations dialog showing Element Style for HistAE_Btn: Boolean expression AlarmClient.ClientMode == 5, with Element Style state configuration for visual feedback">
-  <div class="caption">Edit Animations dialog showing Element Style for HistAE_Btn: Boolean expression AlarmClient.ClientMode == 5, with Element Style state configuration for visual feedback</div>
+  <img src="../images/page_0372_0.png" alt="Edit Animations dialog showing Pushbutton configuration for HistAlarm_Btn with Analog reference to AlarmClient.ClientMode and Set action with Value1=3">
+  <div class="caption">Pushbutton animation — clicking this button sets AlarmClient.ClientMode to 3 (Historical Alarms) (page 372)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0374_2.png" alt="Edit Animations dialog showing Pushbutton for HistAE_Btn (page 2 of 2): Analog tab with AlarmClient.ClientMode reference, Set action selected, Value1=5">
-  <div class="caption">Edit Animations dialog showing Pushbutton for HistAE_Btn (page 2 of 2): Analog tab with AlarmClient.ClientMode reference, Set action selected, Value1=5</div>
+  <img src="../images/page_0372_1.png" alt="Edit Animations dialog showing Element Style for HistAlarm_Btn with Boolean expression AlarmClient.ClientMode == 3">
+  <div class="caption">Element Style animation — the button highlights with Intensity4 when the client is in Historical Alarms mode (page 372)</div>
 </div>
 
-<p>29. On the canvas, select the text and buttons, and then from the alignment toolbar, click Align Middle and Make Horizontal Spacing Equal. The text and buttons should appear as follows: 30. On the canvas, expand AlarmClient to the right. 31. Save and close and check in the graphic. Add a Navigation Button for the Historical Alarm Display Now, you will add a Historical Alarms button to the navigation graphic. Clicking the button at runtime will open the AlarmHistDisplay symbol in a popup window. 32. On the Graphics tab, open the SystemNavigation symbol for editing. 33. On the canvas, duplicate Alarm Overview and place the duplicate to the right of the original. 34. Use Substitute Strings to change the duplicate button text to Historical Alarms.</p>
+<h3>Create the Historical Events and Combined Buttons</h3>
+<ol start="15">
+  <li>Duplicate HistAlarm_Btn. Name the duplicate <strong>HistEvent_Btn</strong>, Text: "Historical Events".</li>
+  <li>Modify the animations: Pushbutton Value1 = <strong>4</strong>, Element Style expression: <code>AlarmClient.ClientMode == 4</code>.</li>
+  <li>Duplicate HistEvent_Btn. Name it <strong>HistAE_Btn</strong>, Text: "Historical Alarms & Events".</li>
+  <li>Modify the animations: Pushbutton Value1 = <strong>5</strong>, Element Style expression: <code>AlarmClient.ClientMode == 5</code>.</li>
+</ol>
 
 <div class="screenshot">
-  <img src="../images/page_0375_0.png" alt="WindowMaker canvas with aligned and equally-spaced mode buttons (History Alarm Mode label, Historical Alarms, Historical Events, Historical Alarms &amp; Events) above an alarm data grid showing ACK, ACK_RTN, UNACK, UNACK_RTN states">
-  <div class="caption">WindowMaker canvas with aligned and equally-spaced mode buttons (History Alarm Mode label, Historical Alarms, Historical Events, Historical Alarms &amp; Events) above an alarm data grid showing ACK, ACK_RTN, UNACK, UNACK_RTN states</div>
+  <img src="../images/page_0374_0.png" alt="Three mode buttons: Historical Alarms, Historical Events, and Historical Alarms & Events, with the third button highlighted">
+  <div class="caption">The three mode-switching buttons displayed above the Alarm Client (page 374)</div>
 </div>
 
+<h3>Align and Expand</h3>
+<ol start="19">
+  <li>Select the text and all three buttons, then use the alignment toolbar to click <strong>Align Middle</strong> and <strong>Make Horizontal Spacing Equal</strong>.</li>
+  <li>Expand the AlarmClient to the right to fill the available width.</li>
+  <li>Save and close, then check in the graphic.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0375_1.png" alt="WindowMaker canvas showing Historical Alarms tab selected with full alarm history table displaying multiple alarm states (ACK, ACK_RTN, UNACK, UNACK_RTN) and types (LoLo, Lo, HiHi, Hi) for TestTag at TestNode">
-  <div class="caption">WindowMaker canvas showing Historical Alarms tab selected with full alarm history table displaying multiple alarm states (ACK, ACK_RTN, UNACK, UNACK_RTN) and types (LoLo, Lo, HiHi, Hi) for TestTag at TestNode</div>
+  <img src="../images/page_0375_0.png" alt="Aligned mode buttons with equal horizontal spacing above the expanded alarm data grid">
+  <div class="caption">The aligned buttons and expanded Alarm Client showing the complete historical display layout (page 375)</div>
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0375_2.png" alt="Navigation bar design in WindowMaker showing five buttons: Mixers, Line 1, Line 2, Alarm Overview, and Historical Alarms (selected for editing), with dynamic indicator icons on Line buttons">
-  <div class="caption">Navigation bar design in WindowMaker showing five buttons: Mixers, Line 1, Line 2, Alarm Overview, and Historical Alarms (selected for editing), with dynamic indicator icons on Line buttons</div>
-</div>
+<!-- ============================================================ -->
+<h2>29.3 Adding a Navigation Button</h2>
+<p class="page-ref">Reference: Module 5, Lab 16 (pages 375–376)</p>
 
-<p>35. Configure the custom properties for the Historical Alarms button as follows: 36. Click OK to close Edit Custom Properties. 37. Save and close and check in the graphic. Test in Runtime Finally, you will view historical alarms and events and create a filter in runtime. 38. In WindowMaker, click Runtime. 39. In the Navigation window, click the Historical Alarms button. After a moment, the AlarmHistDisplay window opens with the Historical Alarms button highlighted to show the client mode, and historical alarms are retrieved and appear in the Alarm Client. Note: If necessary, you can resize the window. GraphicName: AlarmHistDisplay WindowModal: false</p>
+<p>You will now add a "Historical Alarms" button to the SystemNavigation graphic so operators can open the historical display from the main navigation bar.</p>
 
-<div class="screenshot">
-  <img src="../images/page_0376_0.png" alt="Custom Properties dialog for Historical Alarms navigation button showing properties: GraphicName=AlarmHistDisplay, WindowModal=false, WindowResizable=true">
-  <div class="caption">Custom Properties dialog for Historical Alarms navigation button showing properties: GraphicName=AlarmHistDisplay, WindowModal=false, WindowResizable=true</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0376_1.png" alt="Runtime view showing main application window with navigation bar (Mixers, Line 1, Line 2, Alarm Overview, Historical Alarms), alarm count indicators (12 red, 8 yellow, 5 cyan), active alarms table, and AlarmHistDisplay popup window showing historical alarms">
-  <div class="caption">Runtime view showing main application window with navigation bar (Mixers, Line 1, Line 2, Alarm Overview, Historical Alarms), alarm count indicators (12 red, 8 yellow, 5 cyan), active alarms table, and AlarmHistDisplay popup window showing historical alarms</div>
-</div>
-
-<p>40. In the AlarmHistDisplay popup window, right-click in the Alarm Client and select Queries and Filters. The Query and Filter Favorites window appears. 41. In Filters, click Add new filter. The Add Query or Filter window appears.</p>
+<ol start="22">
+  <li>Open <strong>SystemNavigation</strong> for editing.</li>
+  <li>Duplicate the Alarm Overview button and place the duplicate to the right.</li>
+  <li>Use Substitute Strings to change the text to "Historical Alarms".</li>
+  <li>Right-click the new button and set Custom Properties: <strong>GraphicName</strong> = <code>AlarmHistDisplay</code>, <strong>WindowModal</strong> = <code>false</code>.</li>
+  <li>Save and close, then check in the graphic.</li>
+</ol>
 
 <div class="screenshot">
-  <img src="../images/page_0377_0.png" alt="AlarmHistDisplay popup window with Historical Alarms tab selected, alarm grid showing temperature HiHi and level LoLo alarms, and right-click context menu with Queries and Filters option highlighted">
-  <div class="caption">AlarmHistDisplay popup window with Historical Alarms tab selected, alarm grid showing temperature HiHi and level LoLo alarms, and right-click context menu with Queries and Filters option highlighted</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0377_1.png" alt="Query and Filter Favorites dialog showing Default query selected in Queries section and empty Filters section with Add new filter option">
-  <div class="caption">Query and Filter Favorites dialog showing Default query selected in Queries section and empty Filters section with Add new filter option</div>
-</div>
-
-<p>42. In Query or Filter Name, enter Line1. 43. Construct a filter, where Group = 'Line1'. 44. Click OK, and then in Filters, check the Line1 filter. The filter is enabled.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0378_0.png" alt="Add Query or Filter dialog with filter named Line1, Group field selected from field list, and query condition Group = 'Line1' constructed in the middle panel">
-  <div class="caption">Add Query or Filter dialog with filter named Line1, Group field selected from field list, and query condition Group = 'Line1' constructed in the middle panel</div>
+  <img src="../images/page_0375_2.png" alt="Navigation bar with five buttons: Mixers, Line 1, Line 2, Alarm Overview, and Historical Alarms">
+  <div class="caption">The navigation bar with the new Historical Alarms button added alongside the existing buttons (page 375)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0378_1.png" alt="Query and Filter Favorites dialog showing Line1 filter created with Group = 'Line1' condition, checkbox enabled, and Default query in Queries section">
-  <div class="caption">Query and Filter Favorites dialog showing Line1 filter created with Group = 'Line1' condition, checkbox enabled, and Default query in Queries section</div>
+  <img src="../images/page_0376_0.png" alt="Custom Properties dialog for Historical Alarms button: GraphicName=AlarmHistDisplay, WindowModal=false">
+  <div class="caption">Custom Properties for the Historical Alarms navigation button (page 376)</div>
 </div>
 
-<p>45. Click OK, and then verify the historical alarm information is for Line1 only. 46. Close AlarmHistDisplay. Now, you will generate some events and view them. 47. In the ContentDisplay window, for the agitator, change the speed setpoint, and then start and stop the agitator. 48. In the Navigation window, click Historical Alarms. 49. In the AlarmHistDisplay window, click Historical Events. The agitator events you generated appear.</p>
+<!-- ============================================================ -->
+<h2>29.4 Testing at Runtime</h2>
+<p class="page-ref">Reference: Module 5, Lab 16 (pages 376–380)</p>
+
+<ol start="27">
+  <li>Click <strong>Runtime</strong>.</li>
+  <li>In the Navigation window, click the <strong>Historical Alarms</strong> button.</li>
+  <li>After a moment, the AlarmHistDisplay window opens with the Historical Alarms button highlighted, and historical alarms appear in the grid.</li>
+</ol>
 
 <div class="screenshot">
-  <img src="../images/page_0379_0.png" alt="AlarmHistDisplay window showing Historical Alarms filtered for Line1 group, displaying mixer level and agitator speed alarms (Hi, Lo, LoLo types) with timestamps and threshold limits, 465 total alarms">
-  <div class="caption">AlarmHistDisplay window showing Historical Alarms filtered for Line1 group, displaying mixer level and agitator speed alarms (Hi, Lo, LoLo types) with timestamps and threshold limits, 465 total alarms</div>
+  <img src="../images/page_0376_1.png" alt="Runtime view showing the AlarmHistDisplay popup with historical alarms loaded from History Blocks">
+  <div class="caption">Historical alarms loaded from History Blocks in the AlarmHistDisplay popup at runtime (page 376)</div>
+</div>
+
+<h3>Creating a Runtime Filter</h3>
+<ol start="30">
+  <li>Right-click in the Alarm Client and select <strong>Queries and Filters</strong>.</li>
+  <li>In Filters, click <strong>Add new filter</strong>.</li>
+  <li>Name it <strong>Line1</strong> and construct the filter: <code>Group = 'Line1'</code>.</li>
+  <li>Click OK, then check the <strong>Line1</strong> filter to enable it.</li>
+  <li>Click OK and verify that only Line1 historical alarms are displayed.</li>
+</ol>
+
+<div class="screenshot">
+  <img src="../images/page_0377_0.png" alt="Right-click context menu on Alarm Client showing Queries and Filters option">
+  <div class="caption">Accessing Queries and Filters from the Alarm Client context menu at runtime (page 377)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0379_1.png" alt="AlarmHistDisplay window showing Historical Events mode with 3 agitator event entries: speed setpoint write success and two command write successes, all from Line1 group on S01PROD node">
-  <div class="caption">AlarmHistDisplay window showing Historical Events mode with 3 agitator event entries: speed setpoint write success and two command write successes, all from Line1 group on S01PROD node</div>
+  <img src="../images/page_0378_0.png" alt="Add Query or Filter dialog with Line1 filter constructed: Group = 'Line1'">
+  <div class="caption">Creating the Line1 filter with the Group = 'Line1' condition (page 378)</div>
 </div>
-
-<p>50. In the AlarmHistDisplay window, click Historical Alarms & Events. The historical display shows a combination of alarms and events. Note: You may need to scroll to the bottom of the list and then click the vertical scroll bar button multiple times to see your events in the Alarm Client. 51. In the AlarmHistDisplay popup window, click Historical Alarms to show only alarms. 52. Close the AlarmHistDisplay popup window. 53. Click Development! to return to WindowMaker. <End of Lab></p>
 
 <div class="screenshot">
-  <img src="../images/page_0380.png" alt="AlarmHistDisplay window showing combined Historical Alarms &amp; Events view with mixed alarm and event records, displaying entries 401-500 of 529 total, including agitator speed, level, and command events for Line1">
-  <div class="caption">AlarmHistDisplay window showing combined Historical Alarms &amp; Events view with mixed alarm and event records, displaying entries 401-500 of 529 total, including agitator speed, level, and command events for Line1</div>
+  <img src="../images/page_0379_0.png" alt="AlarmHistDisplay filtered to show only Line1 historical alarms — mixer level and agitator speed alarms">
+  <div class="caption">Historical alarms filtered to Line1 only, showing mixer level and agitator speed alarm records (page 379)</div>
 </div>
 
+<h3>Generating and Viewing Events</h3>
+<ol start="36">
+  <li>Close AlarmHistDisplay. In the ContentDisplay window, change the agitator speed setpoint and start/stop the agitator to generate user events.</li>
+  <li>Navigate back to Historical Alarms, then click the <strong>Historical Events</strong> button.</li>
+  <li>The agitator events you generated appear in the grid.</li>
+</ol>
+
+<div class="screenshot">
+  <img src="../images/page_0379_1.png" alt="Historical Events mode showing agitator speed setpoint and command write success events from Line1">
+  <div class="caption">Historical Events mode showing the user-generated agitator events from the Line1 group (page 379)</div>
+</div>
+
+<ol start="39">
+  <li>Click <strong>Historical Alarms & Events</strong> to see the combined view showing both alarm records and event records.</li>
+  <li>Switch back to <strong>Historical Alarms</strong> and close the popup window.</li>
+  <li>Click <strong>Development!</strong> to return to WindowMaker.</li>
+</ol>
+
+<div class="screenshot">
+  <img src="../images/page_0380.png" alt="Combined Historical Alarms & Events view showing mixed alarm and event records from Line1">
+  <div class="caption">The combined Historical Alarms & Events view showing both alarm records and event records together (page 380)</div>
+</div>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> The three mode buttons (Historical Alarms, Historical Events, Historical Alarms & Events) switch the Alarm Client's ClientMode property between values 3, 4, and 5 respectively. Each mode queries the same History Blocks database but filters the result set to show only the relevant record types.
+</div>
+
+<!-- ============================================================ -->
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> What are the key concepts covered in this lesson about Historical Alarms + Lab 16?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
 
-  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <p><strong>1.</strong> What happens when you change the Database Name from WWAlmDb to History Blocks in the Alarm Client configuration?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">A Configuration Warning dialog appears, warning that the current configuration (including saved passwords) will be lost. You must click Yes to proceed. In production, record your authentication details before making this change.</p></details>
 
+  <p><strong>2.</strong> What ClientMode values correspond to Historical Alarms, Historical Events, and Historical Alarms & Events?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Historical Alarms = 3, Historical Events = 4, Historical Alarms & Events = 5. These values are set via the Pushbutton animation on each mode button.</p></details>
+
+  <p><strong>3.</strong> How do the Element Style animations on the mode buttons provide visual feedback to the operator?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Each button's Element Style animation uses a Boolean expression (e.g., <code>AlarmClient.ClientMode == 3</code>). When the expression is True (the button's mode is active), the button displays with Intensity4 style. When False, it uses the unchecked style. This highlights the currently active mode.</p></details>
+
+  <p><strong>4.</strong> Why must the Update to Current Time checkbox be enabled when using History Blocks?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">When enabled, the Alarm Client automatically adjusts its time range to always show the most recent data relative to the current time. Without this, the display would show a fixed time window that becomes stale as time passes.</p></details>
+
+  <p><strong>5.</strong> What is the significance of the WindowModal property being set to false for the Historical Alarms navigation button?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Setting WindowModal to false allows the operator to interact with other parts of the application while the Historical Alarms window is open. If it were true (modal), the operator would have to close the popup before doing anything else.</p></details>
 </div>
 
 <p class="source">Module 5 — Alarms and Events Visualization. AVEVA InTouch for System Platform 2023 Training.</p>

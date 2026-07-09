@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 27: Lab14 Current Alarms Display</title>
+<title>Lesson 27: Lab 14 – Current Alarms Display (continued)</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -98,124 +98,237 @@
 </details>
 </nav>
 
-<h1>Lesson 27: Lab14 Current Alarms Display</h1>
-<p class="page-ref">Module 5 — Alarms and Events Visualization | Pages 351–362</p>
+<h1>Lesson 27: Lab 14 – Current Alarms Display (continued)</h1>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 5 – Alarms and Events Visualization, Lab 14 (pages 351–362)</p>
+<p class="page-ref">This lesson continues Lab 14 — acknowledging alarms and using runtime filters — then introduces the concept of context-aware alarm popups for Lab 15, and provides an overview of historical alarm data sources.</p>
 
-<p>27. In the Alarm Client, select a row, and then right-click and select Ack Selected. Ack Comment appears. 28. In Comment, enter ticket issued, and then click OK. The selected alarm no longer appears in the list. 29. In the Alarm Client, right-click and select Ack Others | Ack All. 30. In Comment, enter ticket issued, and then click OK.</p>
+<!-- ============================================================ -->
+<h2>27.1 Acknowledging Alarms at Runtime</h2>
+<p class="page-ref">Reference: Module 5, Lab 14 (pages 351–352)</p>
+
+<p>In the previous lesson, you created the AlarmLiveDisplay symbol and tested it at runtime. Now you will practice acknowledging alarms and using the filter context menu.</p>
+
+<ol>
+  <li>In the Alarm Client, select a row, right-click, and select <strong>Ack Selected</strong>. An Ack Comment dialog appears.</li>
+  <li>In Comment, enter <code>ticket issued</code> and click OK. The acknowledged alarm disappears from the Current Alarms list (since it is no longer in an active alarm state after acknowledgment + return to normal).</li>
+  <li>Right-click in the Alarm Client and select <strong>Ack Others → Ack All</strong>.</li>
+  <li>Enter <code>ticket issued</code> as the comment and click OK.</li>
+</ol>
 
 <div class="screenshot">
-  <img src="../images/page_0351_0.png" alt="Alarm Summary list with Agitator_005.Speed.PV.Lo alarm highlighted and right-click context menu showing Ack Selected, Ack Others, Shelve, Hide, Sort, Queries and Filters, Freeze, Statistics, Requery, and Reset options">
-  <div class="caption">Alarm Summary list with Agitator_005.Speed.PV.Lo alarm highlighted and right-click context menu showing Ack Selected, Ack Others, Shelve, Hide, Sort, Queries and Filters, Freeze, Statistics, Requery, and Reset options</div>
+  <img src="../images/page_0351_0.png" alt="Alarm Client with right-click context menu showing Ack Selected, Ack Others, Shelve, Hide, Sort, Queries and Filters, and other options">
+  <div class="caption">The right-click context menu on an alarm row, showing acknowledgment and other alarm management options (page 351)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0351_1.png" alt="Ack Comment dialog box with Comment text input field, OK button, and Cancel button for operator to enter acknowledgment comment when acknowledging an alarm">
-  <div class="caption">Ack Comment dialog box with Comment text input field, OK button, and Cancel button for operator to enter acknowledgment comment when acknowledging an alarm</div>
+  <img src="../images/page_0351_1.png" alt="Ack Comment dialog with Comment text input field for entering the acknowledgment reason">
+  <div class="caption">The Ack Comment dialog where operators enter a reason for acknowledging the alarm (page 351)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0351_2.png" alt="Alarm Viewer displaying 7 to 12 of 16 alarms with all in ACK (Acknowledged) state, showing Agitator speed Lo alarms for Line1 and Level Hi/HiHi alarms for Line2, filtered by Default query">
-  <div class="caption">Alarm Viewer displaying 7 to 12 of 16 alarms with all in ACK (Acknowledged) state, showing Agitator speed Lo alarms for Line1 and Level Hi/HiHi alarms for Line2, filtered by Default query</div>
+  <img src="../images/page_0351_2.png" alt="Alarm Viewer showing acknowledged alarms — all rows now in ACK state">
+  <div class="caption">After acknowledging all alarms, the Alarm Client displays all alarms in ACK (Acknowledged) state (page 351)</div>
 </div>
 
-<p>Now, you will use the context menu in the Alarm Client to select a filter you created earlier. You will explore more of the context menu items in a later lab, when security is enabled. 31. Right-click the AlarmLiveDisplay graphic and select Queries and Filters. Query and Filter Favorites appears. 32. In Filters, check Line1.</p>
+<!-- ============================================================ -->
+<h2>27.2 Using Runtime Filters</h2>
+<p class="page-ref">Reference: Module 5, Lab 14 (pages 352–353)</p>
+
+<p>The filters you created at design time (Line1, Line2, Production) can be activated at runtime through the context menu. This allows operators to dynamically narrow the alarm view without needing to modify the graphic.</p>
+
+<ol start="5">
+  <li>Right-click the AlarmLiveDisplay graphic and select <strong>Queries and Filters</strong>. The Query and Filter Favorites dialog appears.</li>
+  <li>In Filters, check <strong>Line1</strong> and click OK.</li>
+  <li>Verify that only Line1 alarms are displayed.</li>
+  <li>Try additional filters (Line2, Production) to confirm they work correctly.</li>
+  <li>Click <strong>Development!</strong> to return to WindowMaker.</li>
+</ol>
 
 <div class="screenshot">
-  <img src="../images/page_0352_0.png" alt="Alarm Viewer with right-click context menu open on selected Vator_003.Speed alarm, showing Queries and Filters option highlighted for accessing alarm filter settings">
-  <div class="caption">Alarm Viewer with right-click context menu open on selected Vator_003.Speed alarm, showing Queries and Filters option highlighted for accessing alarm filter settings</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0352_1.png" alt="Query and Filter Favorites dialog showing Queries section with Default query (Node=S01ENG, Provider=Galaxy, Group=Production) and Filters section with Line1 filter (Group=Line1) checked and active">
-  <div class="caption">Query and Filter Favorites dialog showing Queries section with Default query (Node=S01ENG, Provider=Galaxy, Group=Production) and Filters section with Line1 filter (Group=Line1) checked and active</div>
-</div>
-
-<p>33. Click OK and verify the Line1 alarm information. 34. Try additional filters. 35. Click Development! to return to WindowMaker. <End of Lab></p>
-
-<div class="screenshot">
-  <img src="../images/page_0353.png" alt="Alarm Viewer showing Line1 filtered view with UNACK and UNACK_RTN states, displaying Agitator speed Lo alarm and Level HiHi alarm with mixer malfunction condition alarms, filtered to Line1 group">
-  <div class="caption">Alarm Viewer showing Line1 filtered view with UNACK and UNACK_RTN states, displaying Agitator speed Lo alarm and Level HiHi alarm with mixer malfunction condition alarms, filtered to Line1 group</div>
-</div>
-
-
-<p>lab, you will create an alarm display that is tied to the alarms from a specific mixer. You will embed a new alarm display symbol in the object itself and use scripting to build the alarm queries needed for the objects contained in the mixer. You will also add a button in the mixer display to show the alarm popup using Show Symbol animation. This lab assumes that the WinPlatform hosting the alarmed objects is configured as the alarm provider for such objects. Objectives Upon completion of this lab, you will be able to:  Use scripting to dynamically change the Alarm Client’s AlarmQuery property to display context-aware alarms  Use the MyPlatform. relative reference in an expression  Show a symbol using the Me. relative reference</p>
-
-<p>Context-Aware Alarm Display In the following steps, you will create a symbol that includes the Alarm Client. Then you will use scripting to build an alarm query that will be used to dynamically modify the Alarm Client’s AlarmQuery property. Finally, you will add a button to the mixer display to open an alarm popup window using the Show Symbol animation. 1. In the IDE, on the Templates tab, in the Training\Project template toolset, open the $Mixer template for editing. 2. Add a symbol named AlarmPopup, and then open it for editing. 3. In Tools, click Alarm Client and place it on the canvas. 4. On the Properties tab, configure properties as follows: The canvas should look as follows: Name: AlarmClient Width: 800 Height: 400</p>
-
-<div class="screenshot">
-  <img src="../images/page_0356_0.png" alt="AlarmClient object Properties tab showing Name: AlarmClient, ElementStyle: None, X:50, Y:50, Width:800, Height:400 for configuring alarm display component dimensions and position">
-  <div class="caption">AlarmClient object Properties tab showing Name: AlarmClient, ElementStyle: None, X:50, Y:50, Width:800, Height:400 for configuring alarm display component dimensions and position</div>
+  <img src="../images/page_0352_0.png" alt="Right-click context menu on Alarm Client showing the Queries and Filters option">
+  <div class="caption">Accessing the Queries and Filters dialog from the Alarm Client's context menu at runtime (page 352)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0356_1.png" alt="Alarm state monitoring table showing full alarm lifecycle states: ACK, ACK_RTN, UNACK, UNACK_RTN for TestTag on TestNode, with Requery button to refresh alarm data">
-  <div class="caption">Alarm state monitoring table showing full alarm lifecycle states: ACK, ACK_RTN, UNACK, UNACK_RTN for TestTag on TestNode, with Requery button to refresh alarm data</div>
-</div>
-
-<p>5. Right-click the canvas and select Custom Properties. 6. Add a custom property named NodeName and configure it as follows: 7. Click OK to close Edit Custom Properties. 8. Right-click the canvas and select Scripts. 9. In Edit Scripts, click Add Script. Data Type: String Default Value: ‘Expression or Reference’ mode: MyPlatform.NodeName Visibility: Private</p>
-
-<div class="screenshot">
-  <img src="../images/page_0357_0.png" alt="Edit Custom Properties dialog showing NodeName property with String data type, Default Value MyPlatform.NodeName, and Private visibility setting selected">
-  <div class="caption">Edit Custom Properties dialog showing NodeName property with String data type, Default Value MyPlatform.NodeName, and Private visibility setting selected</div>
+  <img src="../images/page_0352_1.png" alt="Query and Filter Favorites dialog showing the Default query and the Line1 filter checkbox enabled">
+  <div class="caption">Activating the Line1 filter at runtime to show only Line1 alarm group alarms (page 352)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0357_1.png" alt="Edit Scripts window with empty Predefined Script, On Show trigger selected, Data Timeout 1000ms, showing script editor ready for creating new symbol initialization logic">
-  <div class="caption">Edit Scripts window with empty Predefined Script, On Show trigger selected, Data Timeout 1000ms, showing script editor ready for creating new symbol initialization logic</div>
+  <img src="../images/page_0353.png" alt="Alarm Viewer filtered to show only Line1 alarms — agitator speed Lo alarm and Level HiHi alarm">
+  <div class="caption">The Alarm Client displaying only Line1-grouped alarms after applying the filter (page 353)</div>
 </div>
 
-<p>10. Name the script UpdateQuery and configure it as follows: : 11. In the script body, enter the following. Note: You may use the script in C:\Training\Lab 15 - Creating an Alarm Popup Symbol. 'Build alarm query prefix. dim prefix as string; prefix = "\\" + NodeName + "\Galaxy!" + Me.Area + "!"; 'Build alarm query. dim almQry as string; almQry = prefix + Me.Tagname + ".* "; almQry = almQry + prefix + Me.Agitator.Tagname + ".* "; almQry = almQry + prefix + Me.Inlet1.Tagname + ".* "; almQry = almQry + prefix + Me.Inlet2.Tagname + ".* "; almQry = almQry + prefix + Me.Outlet.Tagname + ".* "; almQry = almQry + prefix + Me.Temperature.Tagname + ".* "; almQry = almQry + prefix + Me.Level.Tagname + ".* "; 'Update alarm client with alarm query. AlarmClient.AlarmQuery = almQry; 12. Click OK to close Edit Scripts. 13. Save and close the graphic. Expression: NodeName Trigger: DataChange</p>
+<div class="key-concept">
+  <strong>Key Concept:</strong> Filters can be created at design time and reused at runtime, or created at runtime for immediate use. This bidirectional capability makes it easy to adapt alarm views to changing operational needs.
+</div>
+
+<!-- ============================================================ -->
+<h2>27.3 Lab 15 – Creating an Alarm Popup Symbol</h2>
+<p class="page-ref">Reference: Module 5, Lab 15 (pages 355–360)</p>
+
+<div class="lab">
+  <strong>Lab Objectives:</strong>
+  <ul>
+    <li>Use scripting to dynamically change the Alarm Client's AlarmQuery property for context-aware alarms</li>
+    <li>Use the <code>MyPlatform.</code> relative reference in an expression</li>
+    <li>Show a symbol using the <code>Me.</code> relative reference with Show Symbol animation</li>
+  </ul>
+</div>
+
+<p>In this lab, you will create an alarm display symbol embedded within each mixer object. The key innovation is that the alarm query is built dynamically using scripting — so when you view Mixer100's popup, you see only Mixer100's alarms; when you view Mixer200's popup, you see only Mixer200's alarms.</p>
+
+<h3>Create the Context-Aware Alarm Display</h3>
+<ol>
+  <li>In the IDE, on the <strong>Templates</strong> tab, in the <strong>Training\Project</strong> template toolset, open the <strong>$Mixer</strong> template for editing.</li>
+  <li>Add a symbol named <strong>AlarmPopup</strong> and open it for editing.</li>
+  <li>In Tools, click <strong>Alarm Client</strong> and place it on the canvas.</li>
+  <li>On the Properties tab, set Name to <strong>AlarmClient</strong>, Width to <strong>800</strong>, Height to <strong>400</strong>.</li>
+</ol>
 
 <div class="screenshot">
-  <img src="../images/page_0358.png" alt="Edit Scripts window with UpdateQuery named script showing VBScript code that builds alarm query string from NodeName prefix and Me references to child object tagnames, then assigns to AlarmClient.AlarmQuery on DataChange trigger">
-  <div class="caption">Edit Scripts window with UpdateQuery named script showing VBScript code that builds alarm query string from NodeName prefix and Me references to child object tagnames, then assigns to AlarmClient.AlarmQuery on DataChange trigger</div>
+  <img src="../images/page_0356_0.png" alt="AlarmClient properties panel showing Name AlarmClient, Width 800, Height 400">
+  <div class="caption">Configuring the Alarm Client properties for the AlarmPopup symbol (page 356)</div>
 </div>
 
-<p>14. In the Object Editor for the $Mixer template, in Content, double-click MixingProcess_Detailed to open it for editing. 15. On the canvas, draw a button, enter Alarms, and then press Enter. 16. Place the button to the right of the Tank and change its ElementStyle to Intensity2. Leave some space to the right of the Alarms button for placing another button in a later lab. 17. Double-click the Alarms button to open Edit Animations. 18. Add a Show Symbol animation. 19. In Reference, enter Me.AlarmPopup. 20. Click OK to close Edit Animations. 21. Save and close the graphic. 22. Save and close and check in the $Mixer template.</p>
+<h3>Add a Custom Property and Script</h3>
+<ol start="5">
+  <li>Right-click the canvas and select <strong>Custom Properties</strong>.</li>
+  <li>Add a custom property named <strong>NodeName</strong> with Data Type <strong>String</strong>, Default Value in Expression mode: <code>MyPlatform.NodeName</code>, Visibility <strong>Private</strong>.</li>
+  <li>Click OK to close Edit Custom Properties.</li>
+  <li>Right-click the canvas and select <strong>Scripts</strong>.</li>
+  <li>Click <strong>Add Script</strong>. Name it <strong>UpdateQuery</strong>, set Expression to <code>NodeName</code>, Trigger to <code>DataChange</code>.</li>
+</ol>
 
 <div class="screenshot">
-  <img src="../images/page_0359_0.png" alt="Mixer process flow screen in design mode showing feed pumps (SA_Pump_Blower_RotaryValve), valves (SA_Valve_And_Damper), central Mixer unit with Agitator, Level, and Temperature meters, with Alarms button element selected">
-  <div class="caption">Mixer process flow screen in design mode showing feed pumps (SA_Pump_Blower_RotaryValve), valves (SA_Valve_And_Damper), central Mixer unit with Agitator, Level, and Temperature meters, with Alarms button element selected</div>
+  <img src="../images/page_0357_0.png" alt="Edit Custom Properties dialog showing NodeName property with String type, MyPlatform.NodeName expression, and Private visibility">
+  <div class="caption">The NodeName custom property configured with the MyPlatform.NodeName expression reference (page 357)</div>
+</div>
+
+<ol start="10">
+  <li>In the script body, enter the following VBScript:</li>
+</ol>
+
+<div class="tip">
+  <strong>Tip:</strong> This script builds the alarm query dynamically using <code>Me.</code> references. Because the symbol is embedded within each $Mixer instance, <code>Me.Area</code> and <code>Me.Tagname</code> automatically resolve to the correct mixer's area and tagname at runtime.
+</div>
+
+<pre><code>'Build alarm query prefix.
+dim prefix as string;
+prefix = "\\" + NodeName + "\Galaxy!" + Me.Area + "!";
+
+'Build alarm query.
+dim almQry as string;
+almQry = prefix + Me.Tagname + ".* ";
+almQry = almQry + prefix + Me.Agitator.Tagname + ".* ";
+almQry = almQry + prefix + Me.Inlet1.Tagname + ".* ";
+almQry = almQry + prefix + Me.Inlet2.Tagname + ".* ";
+almQry = almQry + prefix + Me.Outlet.Tagname + ".* ";
+almQry = almQry + prefix + Me.Temperature.Tagname + ".* ";
+almQry = almQry + prefix + Me.Level.Tagname + ".* ";
+
+'Update alarm client with alarm query.
+AlarmClient.AlarmQuery = almQry;</code></pre>
+
+<ol start="11">
+  <li>Click OK to close Edit Scripts.</li>
+  <li>Save and close the graphic.</li>
+</ol>
+
+<div class="screenshot">
+  <img src="../images/page_0358.png" alt="Edit Scripts window showing the UpdateQuery VBScript that builds the alarm query string using Me references">
+  <div class="caption">The UpdateQuery script that dynamically constructs an alarm query for each mixer instance (page 358)</div>
+</ol>
+
+<h3>Add the Alarms Button to the Mixer Display</h3>
+<ol start="13">
+  <li>In the Object Editor for the $Mixer template, open <strong>MixingProcess_Detailed</strong> for editing.</li>
+  <li>Draw a button on the canvas, type <strong>Alarms</strong>, and press Enter.</li>
+  <li>Place the button to the right of the Tank and set its <strong>ElementStyle</strong> to <strong>Intensity2</strong>.</li>
+  <li>Double-click the Alarms button to open Edit Animations.</li>
+  <li>Add a <strong>Show Symbol</strong> animation. In Reference, enter <code>Me.AlarmPopup</code>.</li>
+  <li>Click OK to close Edit Animations.</li>
+  <li>Save and close the graphic.</li>
+  <li>Save and close, then check in the $Mixer template.</li>
+</ol>
+
+<div class="screenshot">
+  <img src="../images/page_0359_0.png" alt="Mixer process flow screen in design mode with the Alarms button element placed to the right of the tank">
+  <div class="caption">The Alarms button placed on the mixer display, positioned to the right of the tank (page 359)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0359_1.png" alt="Edit Animations dialog for Alarms_Btn showing Show Symbol animation configured with Reference Me.AlarmPopup, Modal type, Center position on Desktop, and Relative To Symbol sizing">
-  <div class="caption">Edit Animations dialog for Alarms_Btn showing Show Symbol animation configured with Reference Me.AlarmPopup, Modal type, Center position on Desktop, and Relative To Symbol sizing</div>
+  <img src="../images/page_0359_1.png" alt="Edit Animations dialog for the Alarms button showing Show Symbol animation with Reference Me.AlarmPopup">
+  <div class="caption">Show Symbol animation configured to display Me.AlarmPopup when the button is clicked (page 359)</div>
 </div>
 
-<p>Now, you will test if the Alarms button pops up the alarm display. 23. In WindowMaker, click Runtime. 24. In the ContentDisplay window, click the Alarms button to show the alarm display. 25. Verify that the displayed alarm information is only for Mixer100. 26. Close the alarm popup window. 27. Use the Select Mixer drop-down list to select another mixer, and then click the Alarms button. 28. Verify that the displayed alarm information is only for the mixer you selected. 29. Close the alarm popup window. 30. Click Development! to return to WindowMaker. <End of Lab></p>
+<h3>Test at Runtime</h3>
+<ol start="21">
+  <li>Click <strong>Runtime</strong>.</li>
+  <li>In the ContentDisplay window, click the <strong>Alarms</strong> button to show the alarm popup.</li>
+  <li>Verify that the displayed alarms are <em>only</em> for Mixer100.</li>
+  <li>Close the alarm popup.</li>
+  <li>Use the Select Mixer dropdown to select another mixer, then click Alarms again.</li>
+  <li>Verify that the displayed alarms are now only for the selected mixer.</li>
+  <li>Close the alarm popup.</li>
+  <li>Click <strong>Development!</strong> to return to WindowMaker.</li>
+</ol>
 
 <div class="screenshot">
-  <img src="../images/page_0360.png" alt="Runtime alarm popup window Mixer100.AlarmPopup showing 6 alarms for Line1 including Level LoLo, Lo, Hi, HiHi and Mixer malfunction alarms with color-coded severity (red for critical, cyan for selected)">
-  <div class="caption">Runtime alarm popup window Mixer100.AlarmPopup showing 6 alarms for Line1 including Level LoLo, Lo, Hi, HiHi and Mixer malfunction alarms with color-coded severity (red for critical, cyan for selected)</div>
+  <img src="../images/page_0360.png" alt="Runtime alarm popup window showing Mixer100 alarms — level LoLo, Lo, Hi, HiHi, and mixer malfunction alarms">
+  <div class="caption">The alarm popup showing Mixer100-specific alarms — the script dynamically built the query to filter to this mixer only (page 360)</div>
 </div>
 
-<p>database. History blocks are files in a proprietary format that store plant data and alarm and event data. A2ALMDB is a SQL Server database that stores alarm and event data generated by Application Server. Alarm and event data can also be logged with the legacy Alarm DB Logger application, which stores alarms and events in a SQL Server database, which is created with a default name of WWALMDB. To log alarm and event data from Automation objects, you need to enable the host AppEngine with storage to historian and specify a Historian server. Additionally, in the Alarms and events dialog box, you can enable historizing alarms by alarm severity and historizing events by type. Historizing Alarms and Events Using Historian Alarms, Events, and Process Data share the same Historian configuration such as Historian node, Store and Forward path, and so on. Enable storage to historian must be enabled to historize process data and events. Similar to process data, Alarm and Event historization also supports Store and Forward, Application Engine fail-over, and dual Historians. This section explains how to use the Alarm Client control in your InTouch for System Platform application to visualize historical alarms and events.</p>
+<div class="key-concept">
+  <strong>Key Concept:</strong> The <code>Me.</code> relative reference is what makes this popup context-aware. Each mixer instance gets its own AlarmPopup symbol, and the <code>Me.</code> references automatically resolve to the correct mixer's tagname and area at runtime. The <code>MyPlatform.</code> reference resolves to the WinPlatform hosting the mixer.
+</div>
 
-<p>box. To open this dialog box, on the Galaxy menu, click Configure | Alarms and Events Configuration. Checking the Historize check box against each category determines whether or not those categories will be historized. Modifying the Historize option does not require a redeployment. Setting Up the Engine At the Engine level, check the Enable storage to historian and Enable Tag Hierarchy check boxes. Then, in the Historian field, enter the Primary Historian node.</p>
+<!-- ============================================================ -->
+<h2>27.4 Historical Alarm Data Sources (Overview)</h2>
+<p class="page-ref">Reference: Module 5, Section 3 (pages 361–362)</p>
+
+<p>Alarm and event data can be logged using three different mechanisms:</p>
+
+<table>
+  <thead><tr><th>Data Source</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td>History Blocks</td><td>Proprietary format files that store plant data, alarm data, and event data</td></tr>
+    <tr><td>A2ALMDB Database</td><td>SQL Server database storing Application Server alarm and event data</td></tr>
+    <tr><td>Legacy Alarm DB Logger</td><td>Logs data to SQL Server (default database name: WWALMDB)</td></tr>
+  </tbody>
+</table>
+
+<p>To enable historization, you must configure the host AppEngine with storage to historian and specify a Historian server. In the Alarms and Events dialog box (accessed via Galaxy → Configure → Alarms and Events Configuration), you can enable historizing alarms by severity level and events by type. Modifying historize options does not require a redeployment.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0362_0.png" alt="Alarms and Events configuration dialog showing severity levels 1-4 (Critical, High, Medium, Low) with Shelving and Historizing options, alarm mode icons (Inhibited, Silenced, Shelved), and event types (System, Application, User)">
-  <div class="caption">Alarms and Events configuration dialog showing severity levels 1-4 (Critical, High, Medium, Low) with Shelving and Historizing options, alarm mode icons (Inhibited, Silenced, Shelved), and event types (System, Application, User)</div>
+  <img src="../images/page_0362_0.png" alt="Alarms and Events configuration dialog showing severity levels with Historize checkboxes and event types with Historize checkboxes">
+  <div class="caption">The Alarms and Events Configuration dialog where you select which alarm severities and event types to historize (page 362)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0362_1.png" alt="AppEngine1 General tab configuration showing Engine startup type: Auto, Scan period: 500ms, Enable storage to historian checked, Enable Tag Hierarchy checked, Historian: S01ENG">
-  <div class="caption">AppEngine1 General tab configuration showing Engine startup type: Auto, Scan period: 500ms, Enable storage to historian checked, Enable Tag Hierarchy checked, Historian: S01ENG</div>
+  <img src="../images/page_0362_1.png" alt="AppEngine1 General tab showing Enable storage to historian checked, Historian set to S01ENG">
+  <div class="caption">AppEngine configuration with storage to historian enabled and the Historian server specified (page 362)</div>
 </div>
 
+<!-- ============================================================ -->
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> What are the key concepts covered in this lesson about Lab 14 – Current Alarms Display?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
 
-  <p><strong>2.</strong> How does this topic relate to AVEVA System Platform?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <p><strong>1.</strong> What happens when you acknowledge an alarm with the Ack Selected option?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">The Ack Comment dialog appears, allowing you to enter a comment (e.g., "ticket issued"). The alarm transitions from UNACK to ACK state. If the alarm has also returned to normal, it disappears from the Current Alarms view entirely.</p></details>
 
+  <p><strong>2.</strong> Why does the UpdateQuery script in Lab 15 use <code>Me.</code> references instead of hardcoded tagnames?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">Because the AlarmPopup symbol is embedded within each $Mixer template instance, the <code>Me.</code> references automatically resolve to the correct mixer's area, tagname, and child object tagnames at runtime. This makes the popup context-aware — one symbol works for all mixers.</p></details>
+
+  <p><strong>3.</strong> What is the difference between the MyPlatform. and Me. relative references?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer"><code>MyPlatform.</code> references the WinPlatform that hosts the object (used here for NodeName). <code>Me.</code> references the current object instance itself (used for Area, Tagname, and child object references like Me.Agitator.Tagname).</p></details>
+
+  <p><strong>4.</strong> What three data sources can be used to log historical alarm and event data?</p>
+  <details><summary>Click to reveal answer</summary><p class="answer">History Blocks (proprietary format files), A2ALMDB (SQL Server database for Application Server data), and the legacy Alarm DB Logger (SQL Server database, default name WWALMDB).</p></details>
 </div>
 
 <p class="source">Module 5 — Alarms and Events Visualization. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson 28 — Lab 15 – Alarm Popup Symbol</p>
+<p class="source">Next: Lesson 28 — Lab 15 – Alarm Popup Symbol (continued)</p>
 
 <script>
 
