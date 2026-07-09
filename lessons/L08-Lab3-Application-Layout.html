@@ -35,8 +35,7 @@
 <body>
 
 <nav>
-  <a href="<a href="L07-WindowMaker-Development.html">&larr; InTouch Development Environment</a>">&larr; Previous</a> &nbsp;|&nbsp;
-  <a href='L09-Runtime-Environment.html'>Runtime Environment and Application Design &rarr;</a>
+  <a href="L07-WindowMaker-Development.html">&larr; InTouch Development Environment</a> &nbsp;|&nbsp; <a href="L09-Runtime-Environment.html">Runtime Environment and Application Design &rarr;</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -101,143 +100,190 @@
 <h1>Lesson L08: Lab 3 – Building the Application Layout</h1>
 <p class="page-ref">Module 2 — Getting Started | Pages 61–80</p>
 
+<p>Do Not Copy 2-21 AVEVA™ InTouch for System Platform 2023 Introduction In this lab, you will create windows for the Managed InTouch application created in the previous lab. You will create a Navigation window, a Logon window, an AlarmDisplay window, an OverviewDisplay window, and a ContentDisplay window. The steps and screen shots used in this lab are designed for a resolution of 1920 x 1080. Objectives Upon completion of this lab, you will be able to:  Create InTouch windows  Configure InTouch window properties</p>
+
 <div class="screenshot">
-  <img src="../images/page_0061.png" alt="Building the Application Layout (Page 2-21)">
-  <div class="caption">Building the Application Layout (Page 2-21)</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0062_0.png" alt="Navigation Window (Page 2-22)">
-  <div class="caption">Navigation Window (Page 2-22)</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0062_1.png" alt="Navigation Window (Page 2-22)">
-  <div class="caption">Navigation Window (Page 2-22)</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0063.png" alt="Step 2: In Available templates, select Frame window">
-  <div class="caption">Step 2: In Available templates, select Frame window</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0064.png" alt="Header: "Module 2 - Getting Started">
-  <div class="caption">Header: "Module 2 - Getting Started</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0065.png" alt="Step 8: Click Create - Navigation window appears">
-  <div class="caption">Step 8: Click Create - Navigation window appears</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0066.png" alt="Header: "Module 2 - Getting Started">
-  <div class="caption">Header: "Module 2 - Getting Started</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0067.png" alt="Step 16: Scroll right in Canvas to view Logon window">
-  <div class="caption">Step 16: Scroll right in Canvas to view Logon window</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0068.png" alt="Header: "Module 2 - Getting Started">
-  <div class="caption">Header: "Module 2 - Getting Started</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0069.png" alt="Step 24: Click Create - AlarmDisplay window appears">
-  <div class="caption">Step 24: Click Create - AlarmDisplay window appears</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0070.png" alt="Header: "Module 2 - Getting Started">
-  <div class="caption">Header: "Module 2 - Getting Started</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0071_0.png" alt="Lab 3, Page 2-31: Color Dialog Selection">
-  <div class="caption">Lab 3, Page 2-31: Color Dialog Selection</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0071_1.png" alt="Lab 3, Page 2-31: Color Dialog Selection">
-  <div class="caption">Lab 3, Page 2-31: Color Dialog Selection</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0072_0.png" alt="Lab 3, Page 2-32: Window Properties & Creation">
-  <div class="caption">Lab 3, Page 2-32: Window Properties & Creation</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0072_1.png" alt="Lab 3, Page 2-32: Window Properties & Creation">
-  <div class="caption">Lab 3, Page 2-32: Window Properties & Creation</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0073.png" alt="Lab 3, Page 2-33: Creating ContentDisplay Window">
-  <div class="caption">Lab 3, Page 2-33: Creating ContentDisplay Window</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0074_0.png" alt="Lab 3, Page 2-34: Title Bar Configuration">
-  <div class="caption">Lab 3, Page 2-34: Title Bar Configuration</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0074_1.png" alt="Lab 3, Page 2-34: Title Bar Configuration">
-  <div class="caption">Lab 3, Page 2-34: Title Bar Configuration</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0075_0.png" alt="Lab 3, Page 2-35: Embedding a Clock Symbol">
-  <div class="caption">Lab 3, Page 2-35: Embedding a Clock Symbol</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0075_1.png" alt="Lab 3, Page 2-35: Embedding a Clock Symbol">
-  <div class="caption">Lab 3, Page 2-35: Embedding a Clock Symbol</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0075_2.png" alt="Lab 3, Page 2-35: Embedding a Clock Symbol">
-  <div class="caption">Lab 3, Page 2-35: Embedding a Clock Symbol</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0076_0.png" alt="Lab 3, Page 2-36: Clock Placement & Runtime Testing">
-  <div class="caption">Lab 3, Page 2-36: Clock Placement & Runtime Testing</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0076_1.png" alt="Lab 3, Page 2-36: Clock Placement & Runtime Testing">
-  <div class="caption">Lab 3, Page 2-36: Clock Placement & Runtime Testing</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0077_0.png" alt="Lab 3, Page 2-37: Runtime View & Return to Development">
-  <div class="caption">Lab 3, Page 2-37: Runtime View & Return to Development</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0077_1.png" alt="Lab 3, Page 2-37: Runtime View & Return to Development">
-  <div class="caption">Lab 3, Page 2-37: Runtime View & Return to Development</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0078_0.png" alt="Lab 3, Page 2-38: Lock Window Size Configuration">
-  <div class="caption">Lab 3, Page 2-38: Lock Window Size Configuration</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0078_1.png" alt="Lab 3, Page 2-38: Lock Window Size Configuration">
-  <div class="caption">Lab 3, Page 2-38: Lock Window Size Configuration</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0079_0.png" alt="Lab 3, Page 2-39: Restart Notification & Check-in">
-  <div class="caption">Lab 3, Page 2-39: Restart Notification & Check-in</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0079_1.png" alt="Lab 3, Page 2-39: Restart Notification & Check-in">
-  <div class="caption">Lab 3, Page 2-39: Restart Notification & Check-in</div>
+  <img src="../images/page_0061.png" alt="InTouch WindowViewer in development mode showing the empty application layout template with a Navigation panel at top-left, Logon overlay at top-right, an empty OverviewDisplay panel at bottom-left, and a ContentDisplay area at bottom-right — all windows are created but empty.">
+  <div class="caption">InTouch WindowViewer in development mode showing the empty application layout template with a Navigation panel at top-left, Logon overlay at top-right, an empty OverviewDisplay panel at bottom-left, and a ContentDisplay area at bottom-right — all windows are created but empty.</div>
 </div>
 
-<p>Do Not Copy Lab 3 – Building the Application Layout 2-21 AVEVA™ InTouch for System Platform 2023 Lab 3 – Building the Application Layout Introduction In this lab, you will create windows for the Managed InTouch application created in the previous lab. You will create a Navigation window, a Logon window, an AlarmDisplay window, an OverviewDisplay window, and a ContentDisplay window. The steps and screen shots used in this lab are designed for a resolution of 1920 x 1080. Objectives Upon completion of this lab, you will be able to:  Create InTouch windows  Configure InTouch window properties</p>
-<p>Do Not Copy 2-22 Module 2 – Getting Started AVEVA™ Training Create New Windows In the following steps, you will create the windows you will use in your InTouch application. First you will create the Navigation window. In later labs, you will add buttons to this window that will allow operators to navigate to other windows at runtime. 1. In the top-left corner of WindowMaker, click the New (+) button. The New area of the backstage view appears.</p>
-<p>Do Not Copy Lab 3 – Building the Application Layout 2-23 AVEVA™ InTouch for System Platform 2023 2. In Available templates, select Frame window.</p>
-<p>Do Not Copy 2-24 Module 2 – Getting Started AVEVA™ Training 3. In Name, enter Navigation. 4. In Comment, enter Display system navigation graphics. 5. In the Window type drop-down list, select Overlay. 6. Configure the Location and Size as follows: 7. Uncheck the Title bar and Size controls check boxes. The properties should appear as follows: X: 0 Y: 0 Width: 1300 Height: 120</p>
-<p>Do Not Copy Lab 3 – Building the Application Layout 2-25 AVEVA™ InTouch for System Platform 2023 8. Click Create. The backstage view closes and the Navigation window appears. Next, you will create another window and name it Logon. Later in this lab, you will place a clock on it to display the current time. Then, in a later lab, you will add a symbol to this window that will allow users to log in to the application. 9. In the top-left corner of WindowMaker, click the New (+) button. 10. In Available templates, ensure Frame window is selected.</p>
-<p>Do Not Copy 2-26 Module 2 – Getting Started AVEVA™ Training 11. In Name, enter Logon. 12. In Comment, enter Display logon and clock graphics. 13. In the Window type drop-down list, ensure Overlay is selected. 14. Configure the Location and Size as follows: The properties should appear as follows: 15. Click Create. X: 1300 Y: 0 (default) Width: 620 Height: 120 (default)</p>
-<p>Do Not Copy Lab 3 – Building the Application Layout 2-27 AVEVA™ InTouch for System Platform 2023 16. In Canvas, scroll to the right to view the Logon window. 17. In Canvas, scroll back to the left to reset the view.</p>
-<p>Do Not Copy 2-28 Module 2 – Getting Started AVEVA™ Training Next, you will create another window and name it AlarmDisplay. In a later lab, you will add the Alarm Client symbol to this window to display current alarms. 18. In WindowMaker, click the New (+) button. 19. In Available templates, ensure Frame window is selected. 20. In Name, enter AlarmDisplay. 21. In Comment, enter Display live alarms. 22. In the Window type drop-down list, ensure Overlay is selected. 23. Configure the Location and Size as follows: The properties should appear as follows: X: 0 Y: 120 Width: 1920 Height: 200</p>
-<p>Do Not Copy Lab 3 – Building the Application Layout 2-29 AVEVA™ InTouch for System Platform 2023 24. Click Create. The AlarmDisplay window appears.</p>
-<p>Do Not Copy 2-30 Module 2 – Getting Started AVEVA™ Training Next, you will create another window and name it OverviewDisplay. In a later lab, you will add dashboard graphics to this window to display data for the Mixer application. 25. In WindowMaker, click the New (+) button. 26. In Available templates, ensure Frame window is selected. 27. In Name, enter OverviewDisplay. 28. In Comment, enter Display system overview graphics. 29. In the Window type drop-down list, ensure Overlay is selected. 30. Configure the Location and Size as follows: 31. In Window color, click the ellipsis button. X: 0 (default) Y: 320 Width: 420 Height: 680</p>
-<p>Do Not Copy Lab 3 – Building the Application Layout 2-31 AVEVA™ InTouch for System Platform 2023 Color Dialog appears. 32. Select the Web tab and scroll to the bottom of the color list. 33. Select Wheat.</p>
-<p>Do Not Copy 2-32 Module 2 – Getting Started AVEVA™ Training 34. Click OK to close Color Dialog. The properties should appear as follows: 35. Click Create. The OverviewDisplay window appears.</p>
-<p>Do Not Copy Lab 3 – Building the Application Layout 2-33 AVEVA™ InTouch for System Platform 2023 Next, you will create another window and name it ContentDisplay. In a later lab, you will add mixer graphics to this window. 36. In WindowMaker, click the New (+) button. 37. In Available templates, ensure Frame window is selected. 38. In Name, enter ContentDisplay. 39. In Comment, enter Display system graphics. 40. In the Window type drop-down list, select Replace. 41. Configure the Location and Size as follows: 42. In Window color, click the ellipsis button to open Color Dialog. 43. On the Web tab, scroll to the bottom of the color list and select White. 44. Click OK to close Color Dialog. X: 420 Y: 320 (default) Width: 1500 Height: 680 (default)</p>
-<p>Do Not Copy 2-34 Module 2 – Getting Started AVEVA™ Training 45. Check the Title bar check box. The Create button is enabled after checking Title bar. The properties should appear as follows: 46. Click Create. The ContentDisplay window appears.</p>
-<p>Do Not Copy Lab 3 – Building the Application Layout 2-35 AVEVA™ InTouch for System Platform 2023 Embed a Symbol Now, you will embed a clock graphic in the Logon window to display the current time. 47. In Canvas, scroll to the right to show the Logon window. 48. In Industrial Graphics, expand Industrial Graphic Library \ Clocks. 49. From Industrial Graphics, drag ClockAnalogWall to the Logon window.</p>
-<p>Do Not Copy 2-36 Module 2 – Getting Started AVEVA™ Training The clock appears in the Logon window. The graphic is positioned and resized to fit the window. 50. In Canvas, scroll back to the left to reset the view. Test in Runtime Now, you will check to see if everything you configured works as intended in the runtime environment. InTouch uses a program named WindowViewer for its runtime environment. Clicking the Runtime fast switch opens WindowViewer. 51. In the top-right corner, click Runtime to display the windows in the runtime environment. Note: WindowMaker automatically saves any open windows before displaying them in the runtime environment.</p>
-<p>Do Not Copy Lab 3 – Building the Application Layout 2-37 AVEVA™ InTouch for System Platform 2023 After a moment, WindowViewer opens and all five windows appear. The windows are labeled below, so you can identify them. In the upper-right corner, the current time is displayed in the clock. 52. Click Development! to return to WindowMaker. Navigation AlarmDisplay OverviewDisplay Logon ContentDisplay</p>
-<p>Do Not Copy 2-38 Module 2 – Getting Started AVEVA™ Training Lock the Window Size Finally, you will enable Lock window size, to prevent windows from changing their scale when the application is viewed at a different resolution. 53. In WindowMaker, click the New (+) button. 54. Select Configure | WindowMaker. The WindowMaker configuration appears. 55. Check Lock window size. 56. Click Save.</p>
-<p>Do Not Copy Lab 3 – Building the Application Layout 2-39 AVEVA™ InTouch for System Platform 2023 A WindowMaker notification appears, indicating it is necessary to restart WindowMaker. 57. Close WindowMaker. Closing WindowMaker also closes WindowViewer. After a moment, the Check-in dialog box appears. 58. In Comment, enter Created windows and configured Lock Window Size. 59. Click Check-in to check in the $MixerView template. 60. When the check-in progress completes, click Close. <End of Lab></p>
-<p>Do Not Copy 2-40 Module 2 – Getting Started AVEVA™ Training</p>
+<p>Do Not Copy 2-22 AVEVA™ Training Create New Windows In the following steps, you will create the windows you will use in your InTouch application. First you will create the Navigation window. In later labs, you will add buttons to this window that will allow operators to navigate to other windows at runtime. 1. In the top-left corner of WindowMaker, click the New (+) button. The New area of the backstage view appears.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0062_0.png" alt="WindowMaker Home ribbon toolbar showing Clipboard group (Paste, Cut, Copy, Duplicate) and Insert group (Button, Text, Graphics, SmartSymbol, Wizards), with the Windows panel on the left listing Unassigned/Template/Backup folders, and an empty Canvas workspace.">
+  <div class="caption">WindowMaker Home ribbon toolbar showing Clipboard group (Paste, Cut, Copy, Duplicate) and Insert group (Button, Text, Graphics, SmartSymbol, Wizards), with the Windows panel on the left listing Unassigned/Template/Backup folders, and an empty Canvas workspace.</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0062_1.png" alt="WindowMaker New screen displaying Available templates with two options: Native window (white background, basic empty window) and Frame window (light blue background, framed window with controls).">
+  <div class="caption">WindowMaker New screen displaying Available templates with two options: Native window (white background, basic empty window) and Frame window (light blue background, framed window with controls).</div>
+</div>
+
+<p>Do Not Copy 2-23 AVEVA™ InTouch for System Platform 2023 2. In Available templates, select Frame window.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0063.png" alt="WindowMaker New screen with the Frame window template selected (highlighted in light blue), ready to create a new frame window.">
+  <div class="caption">WindowMaker New screen with the Frame window template selected (highlighted in light blue), ready to create a new frame window.</div>
+</div>
+
+<p>Do Not Copy 2-24 AVEVA™ Training 3. In Name, enter Navigation. 4. In Comment, enter Display system navigation graphics. 5. In the Window type drop-down list, select Overlay. 6. Configure the Location and Size as follows: 7. Uncheck the Title bar and Size controls check boxes. The properties should appear as follows: X: 0 Y: 0 Width: 1300 Height: 120</p>
+
+<div class="screenshot">
+  <img src="../images/page_0064.png" alt="Window properties dialog for creating the Navigation window: Name=Navigation, Comment=Display system navigation, Window type=Overlay, Location X:0 Y:0, Size Width:1300 Height:120, Window color=White, Title bar unchecked, Size controls unchecked, with Create button enabled."Module 2 - Getting Started">
+  <div class="caption">Window properties dialog for creating the Navigation window: Name=Navigation, Comment=Display system navigation, Window type=Overlay, Location X:0 Y:0, Size Width:1300 Height:120, Window color=White, Title bar unchecked, Size controls unchecked, with Create button enabled.</div>
+</div>
+
+<p>Do Not Copy 2-25 AVEVA™ InTouch for System Platform 2023 8. Click Create. The backstage view closes and the Navigation window appears. Next, you will create another window and name it Logon. Later in this lab, you will place a clock on it to display the current time. Then, in a later lab, you will add a symbol to this window that will allow users to log in to the application. 9. In the top-left corner of WindowMaker, click the New (+) button. 10. In Available templates, ensure Frame window is selected.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0065.png" alt="WindowMaker showing the Navigation window successfully created — it appears in the Windows panel tree (highlighted under Unassigned) and as a dashed rectangle on the Canvas, with its properties (Overlay, Location 0,0) displayed in the Properties panel.">
+  <div class="caption">WindowMaker showing the Navigation window successfully created — it appears in the Windows panel tree (highlighted under Unassigned) and as a dashed rectangle on the Canvas, with its properties (Overlay, Location 0,0) displayed in the Properties panel.</div>
+</div>
+
+<p>Do Not Copy 2-26 AVEVA™ Training 11. In Name, enter Logon. 12. In Comment, enter Display logon and clock graphics. 13. In the Window type drop-down list, ensure Overlay is selected. 14. Configure the Location and Size as follows: The properties should appear as follows: 15. Click Create. X: 1300 Y: 0 (default) Width: 620 Height: 120 (default)</p>
+
+<div class="screenshot">
+  <img src="../images/page_0066.png" alt="Window properties dialog for creating the Logon window: Name=Logon, Comment=Display logon and clock, Window type=Overlay, Location X:1300 Y:0, Size Width:620 Height:120, Window color=White, Title bar unchecked, Size controls unchecked, with the Width field highlighted for editing."Module 2 - Getting Started">
+  <div class="caption">Window properties dialog for creating the Logon window: Name=Logon, Comment=Display logon and clock, Window type=Overlay, Location X:1300 Y:0, Size Width:620 Height:120, Window color=White, Title bar unchecked, Size controls unchecked, with the Width field highlighted for editing.</div>
+</div>
+
+<p>Do Not Copy 2-27 AVEVA™ InTouch for System Platform 2023 16. In Canvas, scroll to the right to view the Logon window. 17. In Canvas, scroll back to the left to reset the view.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0067.png" alt="WindowMaker showing the Logon window created alongside the Navigation window — both appear in the Windows panel (Navigation and Logon listed), and the Canvas shows the two side-by-side overlay windows.">
+  <div class="caption">WindowMaker showing the Logon window created alongside the Navigation window — both appear in the Windows panel (Navigation and Logon listed), and the Canvas shows the two side-by-side overlay windows.</div>
+</div>
+
+<p>Do Not Copy 2-28 AVEVA™ Training Next, you will create another window and name it AlarmDisplay. In a later lab, you will add the Alarm Client symbol to this window to display current alarms. 18. In WindowMaker, click the New (+) button. 19. In Available templates, ensure Frame window is selected. 20. In Name, enter AlarmDisplay. 21. In Comment, enter Display live alarms. 22. In the Window type drop-down list, ensure Overlay is selected. 23. Configure the Location and Size as follows: The properties should appear as follows: X: 0 Y: 120 Width: 1920 Height: 200</p>
+
+<div class="screenshot">
+  <img src="../images/page_0068.png" alt="Window properties dialog for creating the AlarmDisplay window: Name=AlarmDisplay, Comment=Display live alarms, Window type=Overlay, Location X:0 Y:120, Size Width:1920 Height:200, Window color=White, Title bar unchecked, Size controls unchecked, with Create button ready."Module 2 - Getting Started">
+  <div class="caption">Window properties dialog for creating the AlarmDisplay window: Name=AlarmDisplay, Comment=Display live alarms, Window type=Overlay, Location X:0 Y:120, Size Width:1920 Height:200, Window color=White, Title bar unchecked, Size controls unchecked, with Create button ready.</div>
+</div>
+
+<p>Do Not Copy 2-29 AVEVA™ InTouch for System Platform 2023 24. Click Create. The AlarmDisplay window appears.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0069.png" alt="WindowMaker showing the AlarmDisplay window created and displayed in the Canvas — the three-section split screen (Navigation, Logon, AlarmDisplay) is visible with dashed borders, and AlarmDisplay is highlighted in the Windows panel.">
+  <div class="caption">WindowMaker showing the AlarmDisplay window created and displayed in the Canvas — the three-section split screen (Navigation, Logon, AlarmDisplay) is visible with dashed borders, and AlarmDisplay is highlighted in the Windows panel.</div>
+</div>
+
+<p>Do Not Copy 2-30 AVEVA™ Training Next, you will create another window and name it OverviewDisplay. In a later lab, you will add dashboard graphics to this window to display data for the Mixer application. 25. In WindowMaker, click the New (+) button. 26. In Available templates, ensure Frame window is selected. 27. In Name, enter OverviewDisplay. 28. In Comment, enter Display system overview graphics. 29. In the Window type drop-down list, ensure Overlay is selected. 30. Configure the Location and Size as follows: 31. In Window color, click the ellipsis button. X: 0 (default) Y: 320 Width: 420 Height: 680</p>
+
+<div class="screenshot">
+  <img src="../images/page_0070.png" alt="Window properties dialog for creating the OverviewDisplay window: Name=OverviewDisplay, Comment=Display system overview, Window type=Overlay, Location X:0 Y:320, Size Width:420 Height:680, Window color=White, Title bar unchecked, Size controls unchecked."Module 2 - Getting Started">
+  <div class="caption">Window properties dialog for creating the OverviewDisplay window: Name=OverviewDisplay, Comment=Display system overview, Window type=Overlay, Location X:0 Y:320, Size Width:420 Height:680, Window color=White, Title bar unchecked, Size controls unchecked.</div>
+</div>
+
+<p>Do Not Copy 2-31 AVEVA™ InTouch for System Platform 2023 Color Dialog appears. 32. Select the Web tab and scroll to the bottom of the color list. 33. Select Wheat.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0071_0.png" alt="Color Dialog window with the Professional tab selected, showing a full RGB/HSL color picker with gradient square, hue slider, RGB values all at 255 (white), and the preview box showing white (#FFFFFF).">
+  <div class="caption">Color Dialog window with the Professional tab selected, showing a full RGB/HSL color picker with gradient square, hue slider, RGB values all at 255 (white), and the preview box showing white (#FFFFFF).</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0071_1.png" alt="Color Dialog window with the Web tab selected, showing the list of standard web color names. Wheat color (#F5DEB3) is highlighted/selected in the list, with the preview box showing the Wheat beige color.">
+  <div class="caption">Color Dialog window with the Web tab selected, showing the list of standard web color names. Wheat color (#F5DEB3) is highlighted/selected in the list, with the preview box showing the Wheat beige color.</div>
+</div>
+
+<p>Do Not Copy 2-32 AVEVA™ Training 34. Click OK to close Color Dialog. The properties should appear as follows: 35. Click Create. The OverviewDisplay window appears.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0072_0.png" alt="OverviewDisplay window properties dialog now showing Window color set to Wheat (light beige), with the updated color swatch visible, and the Create button ready to finalize the window.">
+  <div class="caption">OverviewDisplay window properties dialog now showing Window color set to Wheat (light beige), with the updated color swatch visible, and the Create button ready to finalize the window.</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0072_1.png" alt="WindowMaker showing the OverviewDisplay window created — the Canvas now displays four window sections (Navigation, Logon, AlarmDisplay, and OverviewDisplay with its Wheat/tan background color visible in the lower-left area).">
+  <div class="caption">WindowMaker showing the OverviewDisplay window created — the Canvas now displays four window sections (Navigation, Logon, AlarmDisplay, and OverviewDisplay with its Wheat/tan background color visible in the lower-left area).</div>
+</div>
+
+<p>Do Not Copy 2-33 AVEVA™ InTouch for System Platform 2023 Next, you will create another window and name it ContentDisplay. In a later lab, you will add mixer graphics to this window. 36. In WindowMaker, click the New (+) button. 37. In Available templates, ensure Frame window is selected. 38. In Name, enter ContentDisplay. 39. In Comment, enter Display system graphics. 40. In the Window type drop-down list, select Replace. 41. Configure the Location and Size as follows: 42. In Window color, click the ellipsis button to open Color Dialog. 43. On the Web tab, scroll to the bottom of the color list and select White. 44. Click OK to close Color Dialog. X: 420 Y: 320 (default) Width: 1500 Height: 680 (default)</p>
+
+<div class="screenshot">
+  <img src="../images/page_0073.png" alt="Window properties dialog for creating the ContentDisplay window: Name=ContentDisplay, Comment=Display system graphics, Window type=Replace (not Overlay), Location X:420 Y:320, Size Width:1500 Height:680, Window color=White, Title bar checked (enabled), Size controls unchecked.">
+  <div class="caption">Window properties dialog for creating the ContentDisplay window: Name=ContentDisplay, Comment=Display system graphics, Window type=Replace (not Overlay), Location X:420 Y:320, Size Width:1500 Height:680, Window color=White, Title bar checked (enabled), Size controls unchecked.</div>
+</div>
+
+<p>Do Not Copy 2-34 AVEVA™ Training 45. Check the Title bar check box. The Create button is enabled after checking Title bar. The properties should appear as follows: 46. Click Create. The ContentDisplay window appears.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0074_0.png" alt="WindowMaker Windows panel showing all five created windows listed: AlarmDisplay, ContentDisplay (selected), Logon, Navigation, and OverviewDisplay, with the ContentDisplay properties visible in the Properties panel.">
+  <div class="caption">WindowMaker Windows panel showing all five created windows listed: AlarmDisplay, ContentDisplay (selected), Logon, Navigation, and OverviewDisplay, with the ContentDisplay properties visible in the Properties panel.</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0074_1.png" alt="WindowMaker Canvas showing the complete application layout with all five windows: Navigation (top), Logon (top-right with dashed border), AlarmDisplay (middle strip), OverviewDisplay (lower-left with Wheat/tan color), and ContentDisplay (large lower-right area with title bar).">
+  <div class="caption">WindowMaker Canvas showing the complete application layout with all five windows: Navigation (top), Logon (top-right with dashed border), AlarmDisplay (middle strip), OverviewDisplay (lower-left with Wheat/tan color), and ContentDisplay (large lower-right area with title bar).</div>
+</div>
+
+<p>Do Not Copy 2-35 AVEVA™ InTouch for System Platform 2023 Embed a Symbol Now, you will embed a clock graphic in the Logon window to display the current time. 47. In Canvas, scroll to the right to show the Logon window. 48. In Industrial Graphics, expand Industrial Graphic Library \ Clocks. 49. From Industrial Graphics, drag ClockAnalogWall to the Logon window.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0075_0.png" alt="WindowMaker Canvas scrolled to the right showing the Logon window, with the Industrial Graphics library open on the right side showing TrainingGalaxy &gt; Industrial Graphic Library &gt; Clocks folder expanded, ready to drag ClockAnalogWall onto the window.">
+  <div class="caption">WindowMaker Canvas scrolled to the right showing the Logon window, with the Industrial Graphics library open on the right side showing TrainingGalaxy &gt; Industrial Graphic Library &gt; Clocks folder expanded, ready to drag ClockAnalogWall onto the window.</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0075_1.png" alt="Industrial Graphics library panel showing the expanded Clocks folder under Industrial Graphic Library, listing three clock components: ClockAnalogWall (highlighted/selected), ClockDigital12, and ClockDigital12Date.">
+  <div class="caption">Industrial Graphics library panel showing the expanded Clocks folder under Industrial Graphic Library, listing three clock components: ClockAnalogWall (highlighted/selected), ClockDigital12, and ClockDigital12Date.</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0075_2.png" alt="WindowMaker Canvas showing the ClockAnalogWall analog clock widget placed on the Logon window, selected with a dashed border, displaying the current time — the clock has a white face, black bezel, and black numerals with hands at approximately 12:00.">
+  <div class="caption">WindowMaker Canvas showing the ClockAnalogWall analog clock widget placed on the Logon window, selected with a dashed border, displaying the current time — the clock has a white face, black bezel, and black numerals with hands at approximately 12:00.</div>
+</div>
+
+<p>Do Not Copy 2-36 AVEVA™ Training The clock appears in the Logon window. The graphic is positioned and resized to fit the window. 50. In Canvas, scroll back to the left to reset the view. Test in Runtime Now, you will check to see if everything you configured works as intended in the runtime environment. InTouch uses a program named WindowViewer for its runtime environment. Clicking the Runtime fast switch opens WindowViewer. 51. In the top-right corner, click Runtime to display the windows in the runtime environment. Note: WindowMaker automatically saves any open windows before displaying them in the runtime environment.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0076_0.png" alt="InTouch WindowViewer runtime mode showing all five application windows in their configured positions: Navigation (top-left), Logon (top-right with analog clock), AlarmDisplay (middle strip), OverviewDisplay (bottom-left with Wheat background), and ContentDisplay (large bottom-right with title bar).">
+  <div class="caption">InTouch WindowViewer runtime mode showing all five application windows in their configured positions: Navigation (top-left), Logon (top-right with analog clock), AlarmDisplay (middle strip), OverviewDisplay (bottom-left with Wheat background), and ContentDisplay (large bottom-right with title bar).</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0076_1.png" alt="Close-up of the analog clock widget in WindowViewer runtime, showing a round clock with metallic bezel, white face, black Arabic numerals, and hands displaying the current time (approximately 12:00).">
+  <div class="caption">Close-up of the analog clock widget in WindowViewer runtime, showing a round clock with metallic bezel, white face, black Arabic numerals, and hands displaying the current time (approximately 12:00).</div>
+</div>
+
+<p>Do Not Copy 2-37 AVEVA™ InTouch for System Platform 2023 After a moment, WindowViewer opens and all five windows appear. The windows are labeled below, so you can identify them. In the upper-right corner, the current time is displayed in the clock. 52. Click Development! to return to WindowMaker. Navigation AlarmDisplay OverviewDisplay Logon ContentDisplay</p>
+
+<div class="screenshot">
+  <img src="../images/page_0077_0.png" alt="InTouch WindowViewer in runtime mode with the Development! label visible in the top-right corner, showing all five application windows laid out with labels: Navigation, AlarmDisplay, OverviewDisplay, Logon, and ContentDisplay.">
+  <div class="caption">InTouch WindowViewer in runtime mode with the Development! label visible in the top-right corner, showing all five application windows laid out with labels: Navigation, AlarmDisplay, OverviewDisplay, Logon, and ContentDisplay.</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0077_1.png" alt="Close-up of the analog clock in WindowViewer runtime showing approximately 2:11 with a silver metallic bezel, white face with black numerals, black hour/minute hands, and a red second hand.">
+  <div class="caption">Close-up of the analog clock in WindowViewer runtime showing approximately 2:11 with a silver metallic bezel, white face with black numerals, black hour/minute hands, and a red second hand.</div>
+</div>
+
+<p>Do Not Copy 2-38 AVEVA™ Training Lock the Window Size Finally, you will enable Lock window size, to prevent windows from changing their scale when the application is viewed at a different resolution. 53. In WindowMaker, click the New (+) button. 54. Select Configure | WindowMaker. The WindowMaker configuration appears. 55. Check Lock window size. 56. Click Save.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0078_0.png" alt="WindowMaker File &gt; Configure menu showing the WindowMaker configuration page with various checkboxes including Lock window size (currently unchecked), Enable fast switch (checked), Show grid (checked), and other editor settings.">
+  <div class="caption">WindowMaker File &gt; Configure menu showing the WindowMaker configuration page with various checkboxes including Lock window size (currently unchecked), Enable fast switch (checked), Show grid (checked), and other editor settings.</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0078_1.png" alt="WindowMaker Configuration of editing environment dialog with the Lock window size checkbox now checked (blue checkmark), along with Enable fast switch and Show grid also checked, and Save button highlighted.">
+  <div class="caption">WindowMaker Configuration of editing environment dialog with the Lock window size checkbox now checked (blue checkmark), along with Enable fast switch and Show grid also checked, and Save button highlighted.</div>
+</div>
+
+<p>Do Not Copy 2-39 AVEVA™ InTouch for System Platform 2023 A WindowMaker notification appears, indicating it is necessary to restart WindowMaker. 57. Close WindowMaker. Closing WindowMaker also closes WindowViewer. After a moment, the Check-in dialog box appears. 58. In Comment, enter Created windows and configured Lock Window Size. 59. Click Check-in to check in the $MixerView template. 60. When the check-in progress completes, click Close. <End of Lab></p>
+
+<div class="screenshot">
+  <img src="../images/page_0079_0.png" alt="WindowMaker notification dialog box with an information icon, stating: 'WindowMaker configuration successfully updated. It is necessary to restart WindowMaker for the changes to take effect.'">
+  <div class="caption">WindowMaker notification dialog box with an information icon, stating: 'WindowMaker configuration successfully updated. It is necessary to restart WindowMaker for the changes to take effect.'</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0079_1.png" alt="Check-in dialog box for committing changes, with a Comment field containing the text 'Created windows and configured Lock Window Size', an unchecked option to not prompt for comments in the future, and Cancel/Check-in buttons.">
+  <div class="caption">Check-in dialog box for committing changes, with a Comment field containing the text 'Created windows and configured Lock Window Size', an unchecked option to not prompt for comments in the future, and Cancel/Check-in buttons.</div>
+</div>
+
+<p>Do Not Copy 2-40 AVEVA™ Training</p>
 
 <div class="quiz">
   <h3>Knowledge Check</h3>
@@ -261,39 +307,27 @@ function saveProgress() {
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
-  try {
-    localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks));
-  } catch(e) {}
+  try { localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks)); } catch(e) {}
   updateProgressText();
 }
-
 function loadProgress() {
   var data = null;
-  try {
-    data = localStorage.getItem('intouch-lesson-progress');
-  } catch(e) {}
-  if (!data) {
-    updateProgressText();
-    return;
-  }
+  try { data = localStorage.getItem('intouch-lesson-progress'); } catch(e) {}
+  if (!data) { updateProgressText(); return; }
   try {
     var checks = JSON.parse(data);
     document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
-      if (checks[cb.dataset.lesson]) {
-        cb.checked = true;
-      }
+      if (checks[cb.dataset.lesson]) cb.checked = true;
     });
   } catch(e) {}
   updateProgressText();
 }
-
 function updateProgressText() {
   var total = document.querySelectorAll('input[data-lesson]').length;
   var done = document.querySelectorAll('input[data-lesson]:checked').length;
   var el = document.getElementById('progress-text');
   if (el) el.textContent = done + ' / ' + total + ' completed';
 }
-
 document.addEventListener('DOMContentLoaded', loadProgress);
 
 </script>

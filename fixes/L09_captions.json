@@ -1,0 +1,5 @@
+{
+  "page_0081.png": "WindowViewer configuration screen showing the Preferences tab with startup settings (Startup as icon, Enable tag viewer, Minimum access level set to 9999), and inactivity timeout settings (Warning and Timeout both set to 0 seconds)",
+  "page_0084.png": "Application Manager tree view with ViewApps section expanded showing SMixerView object with a right-click context menu offering Deploy, Undeploy, Upload Changes, Assign To, Set as Default, Export, Properties, and other management options",
+  "page_0085.png": "AVEVA Application Manager showing the $MixerView application tile with WindowViewer launch button, resolution labeled as Managed 1920x975, and toolbar buttons for WindowMaker (grayed out for managed apps), WindowViewer, DBLoad, and DBDump"
+}

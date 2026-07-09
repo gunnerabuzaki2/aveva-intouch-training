@@ -1,0 +1,8 @@
+{
+  "page_0527.png": "Training manual stock photo of a diverse group of four people working at computers in a library or collaborative learning space, with a young Black woman smiling in the foreground",
+  "page_0529_0.png": "System architecture diagram showing the InTouch Web Client architecture with Design Time (ArchestrA Graphics, WindowMaker, ArchestrA IDE publishing to Web Server), InTouch Web Server (connecting to browsers and devices, licensing, security), and Run Time (WindowViewer, Application Server providing iData) components and data flows",
+  "page_0529_1.png": "Screenshot of the AVEVA Application Manager File tab with Web Client section showing Web Client button with clock icon (stopped state), disabled Browser button, Refresh button, and tooltip explaining the button starts the Web Server for InTouch HMI Web Client",
+  "page_0530.png": "Screenshot of the Application Manager Web Client tab showing the Web Client button active with tooltip Click to start the Web Server for InTouch HMI Web Client, Browser button, and Refresh button on the File ribbon",
+  "page_0531.png": "Screenshot of the AVEVA IDE showing the Industrial Graphics toolbox panel with TrainingGalaxy assets including .NET Controls, Apps, and Industrial Graphic Library folders, plus Web Client and Runtime toggle buttons in the toolbar",
+  "page_0532.png": "Screenshot of the InTouch Web Client running in a Chrome browser at localhost showing the $MixerView HMI interface with navigation tabs (Mixers, Line 1, Line 2, Alarm Overview, Historical Alarms, Historian Client Trend), a real-time alarm table with unacknowledged alarms, and a detailed process schematic with mixer level and temperature indicators"
+}

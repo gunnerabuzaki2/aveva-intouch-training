@@ -1,0 +1,18 @@
+{
+  "page_0501_0.png": "WindowViewer Preferences tab showing inactivity timeout settings: Warning at 15 seconds and Timeout at 30 seconds, with Save button at bottom",
+  "page_0501_1.png": "WindowMaker notification dialog confirming WindowViewer configuration was successfully updated and must be restarted for changes to take effect",
+  "page_0502_0.png": "WindowMaker canvas with InactivityMessage symbol being edited, showing Message1 text element selected on grid canvas with Tools panel on left",
+  "page_0502_1.png": "WindowMaker canvas with Message2 (Action Message) text box selected, showing animation link icon applied to the element alongside Message1",
+  "page_0503.png": "Edit Scripts window with Predefined Script configured for On Show trigger, containing VBScript code that sets Message1 and Message2 text to display inactivity warning messages",
+  "page_0504.png": "Edit Scripts window showing Named Script named TimeoutMessage with Expression InTouch:$InactivityTimeout, Trigger OnTrue, and script code setting Message1 to Inactivity Timeout and Message2 to You have been logged off",
+  "page_0505_0.png": "WindowMaker toolbar showing alignment dropdown with center-horizontal and center-vertical alignment option highlighted for aligning selected text elements",
+  "page_0505_1.png": "WindowMaker canvas with Align Center tooltip visible on toolbar, showing two selected text elements Inactivity Message and Action Message ready for center alignment",
+  "page_0505_2.png": "Edit Animations context menu showing visualization options (Visibility, Fill Style, Line Style, Text Style, Blink, Element Style, Alarm Border) and interaction options (Disable, User Input, Sliders, Pushbutton, Action Scripts, Show Symbol)",
+  "page_0506.png": "Edit Animations dialog configuring Blink animation with Boolean state expression set to true, Blink When True, Medium speed, Blink Visible with Text Color set to yellow",
+  "page_0507.png": "AVEVA InTouch backstage Configure menu showing options for Security, WindowMaker, WindowViewer, Distributed Name Manager, Historical Logging, and Alarms",
+  "page_0508_0.png": "Window Properties configuration dialog for Inactivity window: Popup type, Location X:560 Y:340, Size 800x400, Window Color Red, Title Bar unchecked, Frame Style Double",
+  "page_0508_1.png": "WindowMaker project explorer showing Inactivity window listed under Windows, with background showing alarm overview display with alarm grid, navigation tabs, and process visualization",
+  "page_0509_0.png": "Runtime view showing red Inactivity Message popup window overlaid on alarm display, with Industrial Graphics project tree showing TrainingGalaxy and InactivityMessage symbol",
+  "page_0509_1.png": "InactivityMessage window with right-click context menu open, showing options including Fit to Symbol, Embed Industrial Graphic, Save Window, Close Window, Delete Window, and Window Scripts",
+  "page_0510.png": "Condition Scripts editor window with empty condition field, Comment field, Condition Type set to On True, and empty script editor area for creating event-driven automation logic"
+}

@@ -35,8 +35,7 @@
 <body>
 
 <nav>
-  <a href="<a href="L05-InTouch-Visualization-Objects.html">&larr; InTouch Visualization + Automation Objects</a>">&larr; Previous</a> &nbsp;|&nbsp;
-  <a href='L07-WindowMaker-Development.html'>InTouch Development Environment &rarr;</a>
+  <a href="L05-InTouch-Visualization-Objects.html">&larr; InTouch Visualization + Automation Objects</a> &nbsp;|&nbsp; <a href="L07-WindowMaker-Development.html">InTouch Development Environment &rarr;</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -101,47 +100,61 @@
 <h1>Lesson L06: Lab 2 – Creating a Managed InTouch Application</h1>
 <p class="page-ref">Module 2 — Getting Started | Pages 47–54</p>
 
+<p>Do Not Copy 2-7 AVEVA™ InTouch for System Platform 2023 Application Introduction In this lab, you will create a Managed InTouch application for your Galaxy using the $InTouchViewApp template object. This application will be used throughout the rest of the labs in this course. Objectives Upon completion of this lab, you will be able to:  Create a Managed InTouch application</p>
+
+<p>Do Not Copy 2-8 AVEVA™ Training Create a New Managed InTouch Application In the following steps, you will create a Managed InTouch application. 1. In the IDE, on the Templates tab, expand TrainingGalaxy, and then the System template toolset. 2. Right-click the $InTouchViewApp template and select New | Derived Template. The new derived template appears in the System toolset. 3. Name the new derived template as $MixerView.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0048.png" alt="Step 1-3 (Page 2-8)">
-  <div class="caption">Step 1-3 (Page 2-8)</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0049_0.png" alt="Steps 4-6 (Page 2-9)">
-  <div class="caption">Steps 4-6 (Page 2-9)</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0049_1.png" alt="Steps 4-6 (Page 2-9)">
-  <div class="caption">Steps 4-6 (Page 2-9)</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0050.png" alt="Step 7: Double-click $MixerView">
-  <div class="caption">Step 7: Double-click $MixerView</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0051.png" alt="Application Type (Page 2-11)">
-  <div class="caption">Application Type (Page 2-11)</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0052_0.png" alt="After few moments, WindowMaker opens showing New window area">
-  <div class="caption">After few moments, WindowMaker opens showing New window area</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0052_1.png" alt="After few moments, WindowMaker opens showing New window area">
-  <div class="caption">After few moments, WindowMaker opens showing New window area</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0053.png" alt="End of Lab">
-  <div class="caption">End of Lab</div>
+  <img src="../images/page_0048.png" alt="Screenshot of the IDE Templates tab showing the TrainingGalaxy project hierarchy with expanded System folder listing templates ($AppEngine, $Area, $InTouchViewApp, etc.), with a right-click context menu on $InTouchViewApp offering New Derived Template and other options">
+  <div class="caption">Screenshot of the IDE Templates tab showing the TrainingGalaxy project hierarchy with expanded System folder listing templates ($AppEngine, $Area, $InTouchViewApp, etc.), with a right-click context menu on $InTouchViewApp offering New Derived Template and other options</div>
 </div>
 
-<p>Do Not Copy Lab 2 – Creating a Managed InTouch Application 2-7 AVEVA™ InTouch for System Platform 2023 Lab 2 – Creating a Managed InTouch Application Introduction In this lab, you will create a Managed InTouch application for your Galaxy using the $InTouchViewApp template object. This application will be used throughout the rest of the labs in this course. Objectives Upon completion of this lab, you will be able to:  Create a Managed InTouch application</p>
-<p>Do Not Copy 2-8 Module 2 – Getting Started AVEVA™ Training Create a New Managed InTouch Application In the following steps, you will create a Managed InTouch application. 1. In the IDE, on the Templates tab, expand TrainingGalaxy, and then the System template toolset. 2. Right-click the $InTouchViewApp template and select New | Derived Template. The new derived template appears in the System toolset. 3. Name the new derived template as $MixerView.</p>
-<p>Do Not Copy Lab 2 – Creating a Managed InTouch Application 2-9 AVEVA™ InTouch for System Platform 2023 Next, you will create a subtoolset for organizing your InTouchViewApp. 4. On the Templates tab, right-click the Training toolset and select New Template Toolset. 5. Name the new toolset as ViewApps. The new ViewApps toolset appears at the bottom of the Templates tab. 6. Drag the $MixerView template to the Training\ViewApps toolset.</p>
-<p>Do Not Copy 2-10 Module 2 – Getting Started AVEVA™ Training 7. Double-click $MixerView. The first part of the InTouchViewApp initialization dialog box appears. 8. Leave the default as Create new InTouch application and click Next.</p>
-<p>Do Not Copy Lab 2 – Creating a Managed InTouch Application 2-11 AVEVA™ InTouch for System Platform 2023 The InTouchViewApp initialization continues. 9. Check the InTouchView application check box. Note: This check box reflects which InTouch product was licensed. In this InTouch for System Platform course, we check this box to have InTouch rely on built-in Application Server features, such as I/O access, alarms, history, and security. Leaving the box unchecked relies on InTouch HMI built-in features, including legacy InTouch AccessNames, InTouch alarms, InTouch historical logging, and InTouch security. 10. In Description, enter: InTouchView application for the InTouch for System Platform course Note: The Custom resolution feature allows the InTouch application designer to set the resolution that will be used on the production node, even when their development resolution may differ. The default Screen resolution takes the current development resolution and uses that as the target resolution on the production node. 11. Click Next.</p>
-<p>Do Not Copy 2-12 Module 2 – Getting Started AVEVA™ Training After a few moments, AVEVA InTouch HMI WindowMaker opens showing the New window area of the backstage view. In the next lab you will use the New window feature to create new windows, but for now, you will exit the backstage view. 12. In the top-left corner of the backstage view, click the left arrow button to move to the main view of WindowMaker.</p>
-<p>Do Not Copy Lab 2 – Creating a Managed InTouch Application 2-13 AVEVA™ InTouch for System Platform 2023 The main view of WindowMaker appears. <End of Lab></p>
-<p>Do Not Copy 2-14 Module 2 – Getting Started AVEVA™ Training</p>
+<p>Do Not Copy 2-9 AVEVA™ InTouch for System Platform 2023 Next, you will create a subtoolset for organizing your InTouchViewApp. 4. On the Templates tab, right-click the Training toolset and select New Template Toolset. 5. Name the new toolset as ViewApps. The new ViewApps toolset appears at the bottom of the Templates tab. 6. Drag the $MixerView template to the Training\ViewApps toolset.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0049_0.png" alt="Screenshot of the Templates pane showing the TrainingGalaxy hierarchy with expanded System folder containing system-level templates and a right-click context menu on the Training folder with New Template Toolset option highlighted">
+  <div class="caption">Screenshot of the Templates pane showing the TrainingGalaxy hierarchy with expanded System folder containing system-level templates and a right-click context menu on the Training folder with New Template Toolset option highlighted</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0049_1.png" alt="Screenshot of the Templates pane showing the TrainingGalaxy hierarchy with expanded System folder and expanded ViewApps subfolder containing the $MixerView template, demonstrating the organized template structure">
+  <div class="caption">Screenshot of the Templates pane showing the TrainingGalaxy hierarchy with expanded System folder and expanded ViewApps subfolder containing the $MixerView template, demonstrating the organized template structure</div>
+</div>
+
+<p>Do Not Copy 2-10 AVEVA™ Training 7. Double-click $MixerView. The first part of the InTouchViewApp initialization dialog box appears. 8. Leave the default as Create new InTouch application and click Next.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0050.png" alt="Screenshot of the InTouchViewApp initialization wizard dialog with Create new InTouch application selected, showing Galaxy overwrite settings with checked options for Industrial graphics, galaxy style library, script function library, client controls, and languages, plus a backup checkbox">
+  <div class="caption">Screenshot of the InTouchViewApp initialization wizard dialog with Create new InTouch application selected, showing Galaxy overwrite settings with checked options for Industrial graphics, galaxy style library, script function library, client controls, and languages, plus a backup checkbox</div>
+</div>
+
+<p>Do Not Copy 2-11 AVEVA™ InTouch for System Platform 2023 The InTouchViewApp initialization continues. 9. Check the InTouchView application check box. Note: This check box reflects which InTouch product was licensed. In this InTouch for System Platform course, we check this box to have InTouch rely on built-in Application Server features, such as I/O access, alarms, history, and security. Leaving the box unchecked relies on InTouch HMI built-in features, including legacy InTouch AccessNames, InTouch alarms, InTouch historical logging, and InTouch security. 10. In Description, enter: InTouchView application for the InTouch for System Platform course Note: The Custom resolution feature allows the InTouch application designer to set the resolution that will be used on the production node, even when their development resolution may differ. The default Screen resolution takes the current development resolution and uses that as the target resolution on the production node. 11. Click Next.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0051.png" alt="Screenshot of the InTouchViewApp initialization wizard second page showing Application name $MixerView, checked InTouchView application checkbox, Description field with InTouchView application for the InTouch for System Platform course, and Custom resolution settings (1920x1080, 16:9 aspect ratio)">
+  <div class="caption">Screenshot of the InTouchViewApp initialization wizard second page showing Application name $MixerView, checked InTouchView application checkbox, Description field with InTouchView application for the InTouch for System Platform course, and Custom resolution settings (1920x1080, 16:9 aspect ratio)</div>
+</div>
+
+<p>Do Not Copy 2-12 AVEVA™ Training After a few moments, AVEVA InTouch HMI WindowMaker opens showing the New window area of the backstage view. In the next lab you will use the New window feature to create new windows, but for now, you will exit the backstage view. 12. In the top-left corner of the backstage view, click the left arrow button to move to the main view of WindowMaker.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0052_0.png" alt="Screenshot of the AVEVA InTouch HMI backstage File view with New option selected, showing Available templates (Native window and Frame window), and a properties panel with default window settings (Name: Window_001, Size: 1920x1037, Window type: Replace, White background)">
+  <div class="caption">Screenshot of the AVEVA InTouch HMI backstage File view with New option selected, showing Available templates (Native window and Frame window), and a properties panel with default window settings (Name: Window_001, Size: 1920x1037, Window type: Replace, White background)</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0052_1.png" alt="Screenshot of the AVEVA InTouch HMI backstage File view with New selected and the Available templates section showing the Native window template tile with its icon on a light purple background">
+  <div class="caption">Screenshot of the AVEVA InTouch HMI backstage File view with New selected and the Available templates section showing the Native window template tile with its icon on a light purple background</div>
+</div>
+
+<p>Do Not Copy 2-13 AVEVA™ InTouch for System Platform 2023 The main view of WindowMaker appears. <End of Lab></p>
+
+<div class="screenshot">
+  <img src="../images/page_0053.png" alt="Screenshot of the AVEVA InTouch HMI main design interface showing an empty canvas workspace, Home ribbon toolbar with Clipboard and Insert tool groups, Windows panel with folder hierarchy, Scripts panel with script types, Industrial Graphics panel with TrainingGalaxy Widgets (aaTrendControl, AlarmClient, TrendClient), and an empty Properties panel">
+  <div class="caption">Screenshot of the AVEVA InTouch HMI main design interface showing an empty canvas workspace, Home ribbon toolbar with Clipboard and Insert tool groups, Windows panel with folder hierarchy, Scripts panel with script types, Industrial Graphics panel with TrainingGalaxy Widgets (aaTrendControl, AlarmClient, TrendClient), and an empty Properties panel</div>
+</div>
+
+<p>Do Not Copy 2-14 AVEVA™ Training</p>
 
 <div class="quiz">
   <h3>Knowledge Check</h3>
@@ -165,39 +178,27 @@ function saveProgress() {
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
-  try {
-    localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks));
-  } catch(e) {}
+  try { localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks)); } catch(e) {}
   updateProgressText();
 }
-
 function loadProgress() {
   var data = null;
-  try {
-    data = localStorage.getItem('intouch-lesson-progress');
-  } catch(e) {}
-  if (!data) {
-    updateProgressText();
-    return;
-  }
+  try { data = localStorage.getItem('intouch-lesson-progress'); } catch(e) {}
+  if (!data) { updateProgressText(); return; }
   try {
     var checks = JSON.parse(data);
     document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
-      if (checks[cb.dataset.lesson]) {
-        cb.checked = true;
-      }
+      if (checks[cb.dataset.lesson]) cb.checked = true;
     });
   } catch(e) {}
   updateProgressText();
 }
-
 function updateProgressText() {
   var total = document.querySelectorAll('input[data-lesson]').length;
   var done = document.querySelectorAll('input[data-lesson]:checked').length;
   var el = document.getElementById('progress-text');
   if (el) el.textContent = done + ' / ' + total + ' completed';
 }
-
 document.addEventListener('DOMContentLoaded', loadProgress);
 
 </script>

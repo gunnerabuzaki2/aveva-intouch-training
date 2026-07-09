@@ -1,0 +1,14 @@
+{
+  "page_0099.png": "Stock photograph of collaborative tech training workspace showing four people at desktop computer workstations in a modern open-plan office environment",
+  "page_0102.png": "Situational Awareness conceptual diagram showing three-level cognitive model: Perception of new information (Cognition), Comprehension of information (Judgment), Projection of impact on goals (Decision Making), leading to Safe Success",
+  "page_0105.png": "Graphic Editor overview showing labeled UI components: (1) Toolbars and Menus, (2) Drawing Canvas with grid, (3) Elements List panel, (4) Element Tools toolbar, (5) Tabbed Area with Properties, Toolbox, and Assets tabs",
+  "page_0106.png": "Elements panel showing hierarchical tree list of objects: SA_Meters1, SA_NumericDataBlock1, Text1, Group2 containing nested Group1 with Polygon1, Rectangle1, Ellipse1, plus Button1, Button2, and Rectangle1",
+  "page_0107.png": "Right-click context menu showing Order submenu with Send To Back highlighted, along with Duplicate, Cut, Copy, Paste, Delete, Lock, Select All, Transform, Industrial Graphic, Grouping, Edit Animations, Substitute, Custom Properties, and Symbol Wizard options",
+  "page_0108.png": "Selected light green rectangle on canvas with eight blue square resize handles at corners and edge midpoints, plus black circular rotation handle at top center",
+  "page_0109_0.png": "Selected yellow filled oval (ellipse) on canvas with eight blue resize handles and rotation handle, demonstrating geometry editing mode for HMI screen design",
+  "page_0109_1.png": "Graphic Editor showing green rectangular object, black vertical line, and light blue rectangular tank/vessel object all selected with connection handles, demonstrating custom HMI graphic creation from basic shapes",
+  "page_0110.png": "Toolbox panel with search term meters entered, showing 3 matching items including SA_Meters (green digital meter) and SA_Meters (black digital meter with red indicator) widget previews for drag-and-drop placement",
+  "page_0111.png": "Edit Custom Properties dialog for Bar01A showing Float data type, Default Value overridden to Mixer100.Totalizer1.PV tag reference, Public visibility selected, with 33 total custom properties listed",
+  "page_0112_0.png": "Substitute Strings dialog showing string replacement table with Level replaced by Temperature, Find What Level, Replace with Temperature, Replace All button, Match Case and Match Whole Word options, confirming 1 string replaced",
+  "page_0112_1.png": "Substitute Reference dialog showing reference replacements: Me.PV to Me.Speed.PV, Me.PV.EngUnits to Me.Speed.PV.EngUnits, Me.SP to Me.Speed.SP, with 4 strings replaced out of 5 found"
+}

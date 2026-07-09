@@ -35,8 +35,7 @@
 <body>
 
 <nav>
-  <a href="<a href="L37-Signed-Writes-Lab21.html">&larr; Signed Writes + Lab 21</a>">&larr; Previous</a> &nbsp;|&nbsp;
-  <a href='L39-Web-Client-Overview.html'>Web Client Overview &rarr;</a>
+  <a href="L37-Signed-Writes-Lab21.html">&larr; Signed Writes + Lab 21</a> &nbsp;|&nbsp; <a href="L39-Web-Client-Overview.html">Web Client Overview &rarr;</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -101,115 +100,152 @@
 <h1>Lesson L38: Runtime Customization + Lab 22</h1>
 <p class="page-ref">Module 7 — Security | Pages 511–526</p>
 
+<p>Do Not Copy 7-73 AVEVA™ InTouch for System Platform 2023 31. In Condition Scripts, configure the script as follows: Note: You may use the applicable portion of the script in C:\Training\Lab 22 - Locking Down Your Application.txt. 32. In the Condition Type drop-down list, select On False. Condition: $InactivityWarning Comment: Opens and closes the Inactivity window Condition Type: On True (default) Body: IF $Operator <> "None" THEN Show "Inactivity"; ENDIF;</p>
+
 <div class="screenshot">
-  <img src="../images/page_0511_0.png" alt="Page 0511">
-  <div class="caption">Page 0511</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0511_1.png" alt="Page 0511">
-  <div class="caption">Page 0511</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0512_0.png" alt="Page 0512">
-  <div class="caption">Page 0512</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0512_1.png" alt="Page 0512">
-  <div class="caption">Page 0512</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0513.png" alt="Page 0513">
-  <div class="caption">Page 0513</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0514_0.png" alt="Page 0514">
-  <div class="caption">Page 0514</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0514_1.png" alt="Page 0514">
-  <div class="caption">Page 0514</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0515.png" alt="Page 0515">
-  <div class="caption">Page 0515</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0516.png" alt="Page 0516">
-  <div class="caption">Page 0516</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0517.png" alt="Page 0517">
-  <div class="caption">Page 0517</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0518.png" alt="Page 0518">
-  <div class="caption">Page 0518</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0519.png" alt="Page 0519">
-  <div class="caption">Page 0519</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0520_0.png" alt="Page 0520">
-  <div class="caption">Page 0520</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0520_1.png" alt="Page 0520">
-  <div class="caption">Page 0520</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0521_0.png" alt="Page 0521">
-  <div class="caption">Page 0521</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0521_1.png" alt="Page 0521">
-  <div class="caption">Page 0521</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0522.png" alt="Page 0522">
-  <div class="caption">Page 0522</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0523_0.png" alt="Page 0523">
-  <div class="caption">Page 0523</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0523_1.png" alt="Page 0523">
-  <div class="caption">Page 0523</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0524.png" alt="Page 0524">
-  <div class="caption">Page 0524</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0525_0.png" alt="Page 0525">
-  <div class="caption">Page 0525</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0525_1.png" alt="Page 0525">
-  <div class="caption">Page 0525</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0526.png" alt="Page 0526">
-  <div class="caption">Page 0526</div>
+  <img src="../images/page_0511_0.png" alt="Condition Scripts editor in AVEVA InTouch showing the $InactivityWarning tag condition set to 'On True'. The script body reads: IF $Operator &lt;&gt; &quot;None&quot; THEN Show &quot;Inactivity&quot;; ENDIF; — This opens the Inactivity warning window when an operator is logged in and inactivity is detected.">
+  <div class="caption">Condition Scripts editor in AVEVA InTouch showing the $InactivityWarning tag condition set to 'On True'. The script body reads: IF $Operator &lt;&gt; &quot;None&quot; THEN Show &quot;Inactivity&quot;; ENDIF; — This opens the Inactivity warning window when an operator is logged in and inactivity is detected.</div>
 </div>
 
-<p>Do Not Copy Lab 22 – Locking Down Your Application 7-73 AVEVA™ InTouch for System Platform 2023 31. In Condition Scripts, configure the script as follows: Note: You may use the applicable portion of the script in C:\Training\Lab 22 - Locking Down Your Application.txt. 32. In the Condition Type drop-down list, select On False. Condition: $InactivityWarning Comment: Opens and closes the Inactivity window Condition Type: On True (default) Body: IF $Operator <> "None" THEN Show "Inactivity"; ENDIF;</p>
-<p>Do Not Copy 7-74 Module 7 – Security AVEVA™ Training 33. In the script body, enter: Hide "Inactivity"; 34. Click OK to close Condition Scripts. Note: Clicking OK validates the syntax of the script and then saves and closes the script editor. In Scripts, expand Condition to see that $InactivityWarning is listed.</p>
-<p>Do Not Copy Lab 22 – Locking Down Your Application 7-75 AVEVA™ InTouch for System Platform 2023 Test in Runtime Now, you will switch to WindowViewer to test the implementation of the inactivity settings in runtime. 35. In WindowMaker, click Runtime. 36. Log on as TUser with a Password of ww. 37. Wait 15 seconds for the Inactivity window to automatically open. A blinking message appears. This reminds users they must interact with the application or they will be logged off. Notice that TUser is still logged in. 38. Click the mouse or press a key on the keyboard. The $InactivityWarning tag, used in the Condition script, is set to 0 with user activity. The On False trigger in the script then hides the Inactivity window.</p>
-<p>Do Not Copy 7-76 Module 7 – Security AVEVA™ Training 39. Wait 30 seconds for the system to log you off automatically. The Inactivity window shows You have been logged off! The Logon window shows the None user and Access Level as 0. 40. Click Development! to return to WindowMaker. 41. Ensure the Inactivity window is closed.</p>
-<p>Do Not Copy Lab 22 – Locking Down Your Application 7-77 AVEVA™ InTouch for System Platform 2023 42. On the File menu, select Configure | WindowViewer. 43. On the Preferences tab, in Warning, enter 0. 44. In Timeout, enter 0. 45. Click Save. 46. Close WindowViewer.</p>
-<p>Do Not Copy 7-78 Module 7 – Security AVEVA™ Training Create a Popup Window to Cover the Menu Bar Now, you will create a popup window that will cover the WindowViewer menu bar, preventing the user from clicking the menu bar options. 47. In WindowMaker, in the backstage, select + New.</p>
-<p>Do Not Copy Lab 22 – Locking Down Your Application 7-79 AVEVA™ InTouch for System Platform 2023 48. In New, with Frame window selected, configure properties for the window as follows: 49. Click Create. Name: MenuBarCover Comment: Prevents clicking the menu options Window Type: Popup (default) X: 0 Y: -20 Width: 1920 Height: 20 Window Color: White (default) Title Bar: unchecked Frame Style: None Size controls: unchecked (default)</p>
-<p>Do Not Copy 7-80 Module 7 – Security AVEVA™ Training Create the $AccessLevel Data Change Script Now, you will create a Data Change script for $AccessLevel to show and hide the Menu Bar Cover window, depending on the Access Level granted to the current logged on user. 50. In Scripts, double-click Data change. Data Change Scripts appears.</p>
-<p>Do Not Copy Lab 22 – Locking Down Your Application 7-81 AVEVA™ InTouch for System Platform 2023 51. Configure the script as follows: Note: You may use the applicable portion of the script in C:\Training\Lab 22 - Locking Down Your Application.txt. 52. Click OK to close Data Change Scripts. 53. In Scripts, expand Data change to see that the $AccessLevel script is listed. Tagname[.field]: $AccessLevel Body: { Menu Access } IF $AccessLevel > 5000 THEN { Allow menu access } Hide "MenuBarCover"; ELSE { Deny menu access } Show "MenuBarCover"; ENDIF;</p>
-<p>Do Not Copy 7-82 Module 7 – Security AVEVA™ Training Update the Home Windows Now, you will update the list of WindowViewer Home Windows to include the MenuBarCover window. 54. On the File menu, select Configure | WindowViewer. 55. On the Startup tab, ensure the following windows are selected:  AlarmDisplay  ContentDisplay  Logon  MenuBarCover  Navigation  OverviewDisplay 56. Click Save. A WindowMaker notification message appears. 57. Exit the backstage.</p>
-<p>Do Not Copy Lab 22 – Locking Down Your Application 7-83 AVEVA™ InTouch for System Platform 2023 Test in Runtime Now, you will switch to WindowViewer to test the implementation of the covered menu bar in runtime. 58. In WindowMaker, click Runtime. The menu bar is covered by the new window. 59. Log in as Operator1 with a Password of ww. The menu bar is still covered since the operators have an Access Level of 1000 and the script requires an Access Level greater than 5000. 60. Log in as Administrator with no password. The menu bar is displayed because the Administrator has an Access Level greater than 5000. 61. In the Logon window, click Logoff. The menu bar, including the Development! fast switch, is covered, to protect it from unauthorized access. 62. Log in again as Administrator, and then in the menu bar, click Development! to return to WindowMaker. Deny Access to the Alt, Esc, and Win Keys The implementation of application lock down configured so far handles mouse interaction. In the following steps, you will handle keyboard interaction. This will be done using the EnableDisableKeys() script function to enable and disable the Alt, Esc, and Win keys, depending on which user is logged in to the application. 63. In Scripts, ensure Data change is expanded, and double-click the $AccessLevel script.</p>
-<p>Do Not Copy 7-84 Module 7 – Security AVEVA™ Training 64. Modify the existing script by adding the EnableDisableKeys () functions as follows: Note: You may use the applicable portion of the script in C:\Training\Lab 22 - Locking Down Your Application.txt. The EnableDisableKeys() script function receives three Boolean parameters to disable the Alt, Esc, and Win keys, in that order: 0 (false) enables the key; 1 (true) disables the key. 65. Click OK to validate, save, and close the Data Change script. Tagname[.field]: $AccessLevel Body: { Menu Access } IF $AccessLevel > 5000 THEN { Allow menu access } Hide "MenuBarCover"; EnableDisableKeys( 0, 0, 0); ELSE { Deny menu access } Show "MenuBarCover"; EnableDisableKeys( 1, 1, 1); ENDIF;</p>
-<p>Do Not Copy Lab 22 – Locking Down Your Application 7-85 AVEVA™ InTouch for System Platform 2023 Next, you will create an Application, On Startup script to ensure that the Alt, Esc, and Win keys are disabled when WindowViewer is started. 66. In Scripts, double-click Application. Application Script appears. 67. In Application Script, in the Condition Type drop-down, select On Startup.</p>
-<p>Do Not Copy 7-86 Module 7 – Security AVEVA™ Training 68. For the body of the script, enter: Note: You may use the applicable portion of the script in C:\Training\Lab 22 - Locking Down Your Application.txt. 69. Click OK to validate, save, and close the script. Test in Runtime Finally, you will switch to WindowViewer to test the implementation of the EnableDisableKeys() script function in runtime. You will test access to the Alt, Esc, and Win Keys. First, you will close WindowViewer to allow the Application On Startup script you just configured to run. Note: In virtual environments, the host computer captures certain key combinations and does not pass these through to the virtual environment. If you are taking this course from a virtual machine, your instructor may provide special shortcuts such as a virtual keyboard to recreate these key combinations. 70. Close WindowViewer. 71. In WindowMaker, open the MenuBarCover window, and then click Runtime. 72. Verify that no user is logged in. Body: { Disable the Alt, Esc, Win keys } EnableDisableKeys( 1, 1, 1);</p>
-<p>Do Not Copy Lab 22 – Locking Down Your Application 7-87 AVEVA™ InTouch for System Platform 2023 First you will test a key combination, Alt+F, which is a shortcut for the File menu in WindowViewer. With access to the File menu, a user can open windows or close them. 73. Press and hold the Alt key and press F. The File menu does not open. Next you will test a key combination, Ctrl+Shift+Esc, which is a shortcut for opening the Windows Task Manager. With access to Task Manager, a user can start applications and close applications. 74. Press and hold Ctrl+Shift+Esc. Task Manager does not open. Now you will test the Win key, which opens the Windows Start menu. 75. Press the Win key. The Start menu does not open. Next you will perform the same key combinations as a logged in user. 76. Log in as Administrator with no password. 77. Press and hold the Alt key and press F. The File menu opens. 78. Press and hold Ctrl+Shift+Esc. Task Manager opens.</p>
-<p>Do Not Copy 7-88 Module 7 – Security AVEVA™ Training 79. Press the Win key. The Start menu opens. 80. Click Development! to return to WindowMaker. <End of Lab></p>
+<div class="screenshot">
+  <img src="../images/page_0511_1.png" alt="Condition Scripts editor with the Condition Type dropdown open, showing trigger options: On True (selected), While True, While False. The $InactivityWarning tag is configured to trigger the script when the inactivity warning becomes active.">
+  <div class="caption">Condition Scripts editor with the Condition Type dropdown open, showing trigger options: On True (selected), While True, While False. The $InactivityWarning tag is configured to trigger the script when the inactivity warning becomes active.</div>
+</div>
+
+<p>Do Not Copy 7-74 AVEVA™ Training 33. In the script body, enter: Hide "Inactivity"; 34. Click OK to close Condition Scripts. Note: Clicking OK validates the syntax of the script and then saves and closes the script editor. In Scripts, expand Condition to see that $InactivityWarning is listed.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0512_0.png" alt="Condition Scripts editor configured for $InactivityWarning with Condition Type set to 'On False'. The script body contains: Hide &quot;Inactivity&quot;; — This hides the Inactivity warning window when the user interacts (clearing the inactivity state).">
+  <div class="caption">Condition Scripts editor configured for $InactivityWarning with Condition Type set to 'On False'. The script body contains: Hide &quot;Inactivity&quot;; — This hides the Inactivity warning window when the user interacts (clearing the inactivity state).</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0512_1.png" alt="WindowMaker Scripts pane showing the hierarchical tree of script categories: Application, Key, Condition (1 script: $InactivityWarning), Data change, QuickFunctions, and ActiveX event. The Condition category is expanded showing the single condition-triggered script.">
+  <div class="caption">WindowMaker Scripts pane showing the hierarchical tree of script categories: Application, Key, Condition (1 script: $InactivityWarning), Data change, QuickFunctions, and ActiveX event. The Condition category is expanded showing the single condition-triggered script.</div>
+</div>
+
+<p>Do Not Copy 7-75 AVEVA™ InTouch for System Platform 2023 Test in Runtime Now, you will switch to WindowViewer to test the implementation of the inactivity settings in runtime. 35. In WindowMaker, click Runtime. 36. Log on as TUser with a Password of ww. 37. Wait 15 seconds for the Inactivity window to automatically open. A blinking message appears. This reminds users they must interact with the application or they will be logged off. Notice that TUser is still logged in. 38. Click the mouse or press a key on the keyboard. The $InactivityWarning tag, used in the Condition script, is set to 0 with user activity. The On False trigger in the script then hides the Inactivity window.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0513.png" alt="InTouch runtime Inactivity Warning screen — a bright red alert window with bold black text 'Inactivity Warning' and yellow instruction text 'Click mouse or use keyboard to prevent system log off'. This appears after 15 seconds of user inactivity.">
+  <div class="caption">InTouch runtime Inactivity Warning screen — a bright red alert window with bold black text 'Inactivity Warning' and yellow instruction text 'Click mouse or use keyboard to prevent system log off'. This appears after 15 seconds of user inactivity.</div>
+</div>
+
+<p>Do Not Copy 7-76 AVEVA™ Training 39. Wait 30 seconds for the system to log you off automatically. The Inactivity window shows You have been logged off! The Logon window shows the None user and Access Level as 0. 40. Click Development! to return to WindowMaker. 41. Ensure the Inactivity window is closed.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0514_0.png" alt="InTouch runtime showing the Inactivity Timeout screen — red background with 'Inactivity Timeout' title and yellow text 'You have been logged off!' indicating the automatic logoff has occurred after the timeout period.">
+  <div class="caption">InTouch runtime showing the Inactivity Timeout screen — red background with 'Inactivity Timeout' title and yellow text 'You have been logged off!' indicating the automatic logoff has occurred after the timeout period.</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0514_1.png" alt="InTouch runtime Logon panel showing User: None, User Full Name: None, Access Level: 0, with Logon and Logoff buttons — confirming the user was logged off after inactivity timeout.">
+  <div class="caption">InTouch runtime Logon panel showing User: None, User Full Name: None, Access Level: 0, with Logon and Logoff buttons — confirming the user was logged off after inactivity timeout.</div>
+</div>
+
+<p>Do Not Copy 7-77 AVEVA™ InTouch for System Platform 2023 42. On the File menu, select Configure | WindowViewer. 43. On the Preferences tab, in Warning, enter 0. 44. In Timeout, enter 0. 45. Click Save. 46. Close WindowViewer.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0515.png" alt="WindowViewer configuration dialog (Preferences tab) showing Inactivity settings: Warning set to 0, Timeout set to 0 (disabling inactivity timeouts for testing), and Minimum access level set to 9999. Also shows Startup as icon and Enable tag viewer checkboxes (both unchecked).">
+  <div class="caption">WindowViewer configuration dialog (Preferences tab) showing Inactivity settings: Warning set to 0, Timeout set to 0 (disabling inactivity timeouts for testing), and Minimum access level set to 9999. Also shows Startup as icon and Enable tag viewer checkboxes (both unchecked).</div>
+</div>
+
+<p>Do Not Copy 7-78 AVEVA™ Training Create a Popup Window to Cover the Menu Bar Now, you will create a popup window that will cover the WindowViewer menu bar, preventing the user from clicking the menu bar options. 47. In WindowMaker, in the backstage, select + New.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0516.png" alt="AVEVA InTouch backstage File menu with the Configure option selected, showing sub-options: Security, WindowMaker, WindowViewer (highlighted), Distributed name manager, Historical logging, and Alarms — navigating to WindowViewer configuration.">
+  <div class="caption">AVEVA InTouch backstage File menu with the Configure option selected, showing sub-options: Security, WindowMaker, WindowViewer (highlighted), Distributed name manager, Historical logging, and Alarms — navigating to WindowViewer configuration.</div>
+</div>
+
+<p>Do Not Copy 7-79 AVEVA™ InTouch for System Platform 2023 48. In New, with Frame window selected, configure properties for the window as follows: 49. Click Create. Name: MenuBarCover Comment: Prevents clicking the menu options Window Type: Popup (default) X: 0 Y: -20 Width: 1920 Height: 20 Window Color: White (default) Title Bar: unchecked Frame Style: None Size controls: unchecked (default)</p>
+
+<div class="screenshot">
+  <img src="../images/page_0517.png" alt="Window Properties dialog for creating a new popup window named 'MenuBarCover' with Comment 'Prevents clicking the menu bar'. Properties: Window type=Popup, X=0, Y=-20, Width=1920, Height=20, Window color=White, Title bar unchecked, Frame style=None — a narrow overlay designed to block the menu bar area.">
+  <div class="caption">Window Properties dialog for creating a new popup window named 'MenuBarCover' with Comment 'Prevents clicking the menu bar'. Properties: Window type=Popup, X=0, Y=-20, Width=1920, Height=20, Window color=White, Title bar unchecked, Frame style=None — a narrow overlay designed to block the menu bar area.</div>
+</div>
+
+<p>Do Not Copy 7-80 AVEVA™ Training Create the $AccessLevel Data Change Script Now, you will create a Data Change script for $AccessLevel to show and hide the Menu Bar Cover window, depending on the Access Level granted to the current logged on user. 50. In Scripts, double-click Data change. Data Change Scripts appears.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0518.png" alt="WindowMaker development environment with the Data Change Scripts dialog open. The Scripts pane shows Data change selected, with the Windows tab listing project windows including AlarmDisplay, Carousel, ContentDisplay, MenuBarCover, Navigation, and OverviewDisplay. The process overview screen is visible in the background.">
+  <div class="caption">WindowMaker development environment with the Data Change Scripts dialog open. The Scripts pane shows Data change selected, with the Windows tab listing project windows including AlarmDisplay, Carousel, ContentDisplay, MenuBarCover, Navigation, and OverviewDisplay. The process overview screen is visible in the background.</div>
+</div>
+
+<p>Do Not Copy 7-81 AVEVA™ InTouch for System Platform 2023 51. Configure the script as follows: Note: You may use the applicable portion of the script in C:\Training\Lab 22 - Locking Down Your Application.txt. 52. Click OK to close Data Change Scripts. 53. In Scripts, expand Data change to see that the $AccessLevel script is listed. Tagname[.field]: $AccessLevel Body: { Menu Access } IF $AccessLevel > 5000 THEN { Allow menu access } Hide "MenuBarCover"; ELSE { Deny menu access } Show "MenuBarCover"; ENDIF;</p>
+
+<div class="screenshot">
+  <img src="../images/page_0519.png" alt="Data Change Scripts editor with Tagname set to $AccessLevel. The script reads: { Menu Access } IF $AccessLevel &gt; 5000 THEN { Allow Menu Access } Hide &quot;MenuBarCover&quot;; ELSE { Deny Menu Access } Show &quot;MenuBarCover&quot;; ENDIF; — Controls menu bar visibility based on user access level.">
+  <div class="caption">Data Change Scripts editor with Tagname set to $AccessLevel. The script reads: { Menu Access } IF $AccessLevel &gt; 5000 THEN { Allow Menu Access } Hide &quot;MenuBarCover&quot;; ELSE { Deny Menu Access } Show &quot;MenuBarCover&quot;; ENDIF; — Controls menu bar visibility based on user access level.</div>
+</div>
+
+<p>Do Not Copy 7-82 AVEVA™ Training Update the Home Windows Now, you will update the list of WindowViewer Home Windows to include the MenuBarCover window. 54. On the File menu, select Configure | WindowViewer. 55. On the Startup tab, ensure the following windows are selected:  AlarmDisplay  ContentDisplay  Logon  MenuBarCover  Navigation  OverviewDisplay 56. Click Save. A WindowMaker notification message appears. 57. Exit the backstage.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0520_0.png" alt="WindowViewer configuration dialog (Startup tab) showing Home Windows thumbnails: AlarmDisplay, Carousel, ContentDisplay, Inactivity, Logon, MenuBarCover, Navigation, and OverviewDisplay — all selected as startup windows for the runtime application.">
+  <div class="caption">WindowViewer configuration dialog (Startup tab) showing Home Windows thumbnails: AlarmDisplay, Carousel, ContentDisplay, Inactivity, Logon, MenuBarCover, Navigation, and OverviewDisplay — all selected as startup windows for the runtime application.</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0520_1.png" alt="WindowMaker confirmation dialog with blue information icon stating 'WindowViewer configuration successfully updated.' — confirming the Home Windows startup configuration was saved.">
+  <div class="caption">WindowMaker confirmation dialog with blue information icon stating 'WindowViewer configuration successfully updated.' — confirming the Home Windows startup configuration was saved.</div>
+</div>
+
+<p>Do Not Copy 7-83 AVEVA™ InTouch for System Platform 2023 Test in Runtime Now, you will switch to WindowViewer to test the implementation of the covered menu bar in runtime. 58. In WindowMaker, click Runtime. The menu bar is covered by the new window. 59. Log in as Operator1 with a Password of ww. The menu bar is still covered since the operators have an Access Level of 1000 and the script requires an Access Level greater than 5000. 60. Log in as Administrator with no password. The menu bar is displayed because the Administrator has an Access Level greater than 5000. 61. In the Logon window, click Logoff. The menu bar, including the Development! fast switch, is covered, to protect it from unauthorized access. 62. Log in again as Administrator, and then in the menu bar, click Development! to return to WindowMaker. Deny Access to the Alt, Esc, and Win Keys The implementation of application lock down configured so far handles mouse interaction. In the following steps, you will handle keyboard interaction. This will be done using the EnableDisableKeys() script function to enable and disable the Alt, Esc, and Win keys, depending on which user is logged in to the application. 63. In Scripts, ensure Data change is expanded, and double-click the $AccessLevel script.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0521_0.png" alt="WindowViewer runtime showing the Mixer View application (TRAININGGALAXY-SMIXERVIEW) with the menu bar covered/hidden. Navigation buttons visible (Mixers, Alarm Overview, Historical Alarms, Historian Client Trend). User panel shows User: None, Access Level: 0 — demonstrating the MenuBarCover is active for non-admin users.">
+  <div class="caption">WindowViewer runtime showing the Mixer View application (TRAININGGALAXY-SMIXERVIEW) with the menu bar covered/hidden. Navigation buttons visible (Mixers, Alarm Overview, Historical Alarms, Historian Client Trend). User panel shows User: None, Access Level: 0 — demonstrating the MenuBarCover is active for non-admin users.</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0521_1.png" alt="WindowViewer runtime showing the same Mixer View application with administrator logged in (Access Level: 9999). The File/Logic/Special menu bar is now visible because the MenuBarCover was hidden. Alarm table shows 6 of 26 Line1 alarms including communication failures, level alarms, and agitator speed alarms.">
+  <div class="caption">WindowViewer runtime showing the same Mixer View application with administrator logged in (Access Level: 9999). The File/Logic/Special menu bar is now visible because the MenuBarCover was hidden. Alarm table shows 6 of 26 Line1 alarms including communication failures, level alarms, and agitator speed alarms.</div>
+</div>
+
+<p>Do Not Copy 7-84 AVEVA™ Training 64. Modify the existing script by adding the EnableDisableKeys () functions as follows: Note: You may use the applicable portion of the script in C:\Training\Lab 22 - Locking Down Your Application.txt. The EnableDisableKeys() script function receives three Boolean parameters to disable the Alt, Esc, and Win keys, in that order: 0 (false) enables the key; 1 (true) disables the key. 65. Click OK to validate, save, and close the Data Change script. Tagname[.field]: $AccessLevel Body: { Menu Access } IF $AccessLevel > 5000 THEN { Allow menu access } Hide "MenuBarCover"; EnableDisableKeys( 0, 0, 0); ELSE { Deny menu access } Show "MenuBarCover"; EnableDisableKeys( 1, 1, 1); ENDIF;</p>
+
+<div class="screenshot">
+  <img src="../images/page_0522.png" alt="Data Change Scripts editor with $AccessLevel tag, showing the updated script with EnableDisableKeys() function: IF $AccessLevel &gt; 5000 THEN Hide &quot;MenuBarCover&quot;; EnableDisableKeys(0,0,0); ELSE Show &quot;MenuBarCover&quot;; EnableDisableKeys(1,1,1); ENDIF; — Disables Alt, Esc, and Win keys for low-access users.">
+  <div class="caption">Data Change Scripts editor with $AccessLevel tag, showing the updated script with EnableDisableKeys() function: IF $AccessLevel &gt; 5000 THEN Hide &quot;MenuBarCover&quot;; EnableDisableKeys(0,0,0); ELSE Show &quot;MenuBarCover&quot;; EnableDisableKeys(1,1,1); ENDIF; — Disables Alt, Esc, and Win keys for low-access users.</div>
+</div>
+
+<p>Do Not Copy 7-85 AVEVA™ InTouch for System Platform 2023 Next, you will create an Application, On Startup script to ensure that the Alt, Esc, and Win keys are disabled when WindowViewer is started. 66. In Scripts, double-click Application. Application Script appears. 67. In Application Script, in the Condition Type drop-down, select On Startup.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0523_0.png" alt="Application Script editor with Condition Type dropdown open showing three options: While Running, On Startup (highlighted/selected), and On Shutdown — selecting the startup trigger for a new application-level script. Scripts used: 0.">
+  <div class="caption">Application Script editor with Condition Type dropdown open showing three options: While Running, On Startup (highlighted/selected), and On Shutdown — selecting the startup trigger for a new application-level script. Scripts used: 0.</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0523_1.png" alt="Application Script editor with Condition Type set to 'On Startup'. The script reads: { Disable the Alt, Esc, Win keys } EnableDisableKeys(1,1,1); — This runs once at application startup to disable keyboard shortcuts for security lockout.">
+  <div class="caption">Application Script editor with Condition Type set to 'On Startup'. The script reads: { Disable the Alt, Esc, Win keys } EnableDisableKeys(1,1,1); — This runs once at application startup to disable keyboard shortcuts for security lockout.</div>
+</div>
+
+<p>Do Not Copy 7-86 AVEVA™ Training 68. For the body of the script, enter: Note: You may use the applicable portion of the script in C:\Training\Lab 22 - Locking Down Your Application.txt. 69. Click OK to validate, save, and close the script. Test in Runtime Finally, you will switch to WindowViewer to test the implementation of the EnableDisableKeys() script function in runtime. You will test access to the Alt, Esc, and Win Keys. First, you will close WindowViewer to allow the Application On Startup script you just configured to run. Note: In virtual environments, the host computer captures certain key combinations and does not pass these through to the virtual environment. If you are taking this course from a virtual machine, your instructor may provide special shortcuts such as a virtual keyboard to recreate these key combinations. 70. Close WindowViewer. 71. In WindowMaker, open the MenuBarCover window, and then click Runtime. 72. Verify that no user is logged in. Body: { Disable the Alt, Esc, Win keys } EnableDisableKeys( 1, 1, 1);</p>
+
+<div class="screenshot">
+  <img src="../images/page_0524.png" alt="WindowViewer File menu open in the runtime application, showing menu options: Open Window..., Close Window..., WindowMaker..., Exit (highlighted), and About WindowViewer... — demonstrating that the File menu is accessible (menu bar not covered) for testing key combinations.">
+  <div class="caption">WindowViewer File menu open in the runtime application, showing menu options: Open Window..., Close Window..., WindowMaker..., Exit (highlighted), and About WindowViewer... — demonstrating that the File menu is accessible (menu bar not covered) for testing key combinations.</div>
+</div>
+
+<p>Do Not Copy 7-87 AVEVA™ InTouch for System Platform 2023 First you will test a key combination, Alt+F, which is a shortcut for the File menu in WindowViewer. With access to the File menu, a user can open windows or close them. 73. Press and hold the Alt key and press F. The File menu does not open. Next you will test a key combination, Ctrl+Shift+Esc, which is a shortcut for opening the Windows Task Manager. With access to Task Manager, a user can start applications and close applications. 74. Press and hold Ctrl+Shift+Esc. Task Manager does not open. Now you will test the Win key, which opens the Windows Start menu. 75. Press the Win key. The Start menu does not open. Next you will perform the same key combinations as a logged in user. 76. Log in as Administrator with no password. 77. Press and hold the Alt key and press F. The File menu opens. 78. Press and hold Ctrl+Shift+Esc. Task Manager opens.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0525_0.png" alt="Windows Task Manager showing three running AVEVA applications: InTouch HMI WindowMaker (32 bit), InTouch HMI WindowViewer (32 bit), and System Platform IDE (32 bit) — confirming all three core development and runtime tools are running simultaneously.">
+  <div class="caption">Windows Task Manager showing three running AVEVA applications: InTouch HMI WindowMaker (32 bit), InTouch HMI WindowViewer (32 bit), and System Platform IDE (32 bit) — confirming all three core development and runtime tools are running simultaneously.</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0525_1.png" alt="Windows 10 Start Menu showing the All Apps list with AVEVA suite installed: AVEVA Documentation, GRAccess Toolkit, Historian, InTouch Access Anywhere, InTouch HMI, System Monitor, and System Platform. Pinned tiles include System Platform IDE, InTouch HMI Web-Client, Application Manager, Trend, and Historian Client Web.">
+  <div class="caption">Windows 10 Start Menu showing the All Apps list with AVEVA suite installed: AVEVA Documentation, GRAccess Toolkit, Historian, InTouch Access Anywhere, InTouch HMI, System Monitor, and System Platform. Pinned tiles include System Platform IDE, InTouch HMI Web-Client, Application Manager, Trend, and Historian Client Web.</div>
+</div>
+
+<p>Do Not Copy 7-88 AVEVA™ Training 79. Press the Win key. The Start menu opens. 80. Click Development! to return to WindowMaker. <End of Lab></p>
+
+<div class="screenshot">
+  <img src="../images/page_0526.png" alt="Final page of Lab 22 — the end of the Runtime Customization lab. Shows the conclusion of testing EnableDisableKeys() function with administrator login, and the End of Lab marker.">
+  <div class="caption">Final page of Lab 22 — the end of the Runtime Customization lab. Shows the conclusion of testing EnableDisableKeys() function with administrator login, and the End of Lab marker.</div>
+</div>
 
 <div class="quiz">
   <h3>Knowledge Check</h3>
@@ -233,39 +269,27 @@ function saveProgress() {
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
-  try {
-    localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks));
-  } catch(e) {}
+  try { localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks)); } catch(e) {}
   updateProgressText();
 }
-
 function loadProgress() {
   var data = null;
-  try {
-    data = localStorage.getItem('intouch-lesson-progress');
-  } catch(e) {}
-  if (!data) {
-    updateProgressText();
-    return;
-  }
+  try { data = localStorage.getItem('intouch-lesson-progress'); } catch(e) {}
+  if (!data) { updateProgressText(); return; }
   try {
     var checks = JSON.parse(data);
     document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
-      if (checks[cb.dataset.lesson]) {
-        cb.checked = true;
-      }
+      if (checks[cb.dataset.lesson]) cb.checked = true;
     });
   } catch(e) {}
   updateProgressText();
 }
-
 function updateProgressText() {
   var total = document.querySelectorAll('input[data-lesson]').length;
   var done = document.querySelectorAll('input[data-lesson]:checked').length;
   var el = document.getElementById('progress-text');
   if (el) el.textContent = done + ' / ' + total + ' completed';
 }
-
 document.addEventListener('DOMContentLoaded', loadProgress);
 
 </script>

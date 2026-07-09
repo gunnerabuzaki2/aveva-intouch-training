@@ -1,0 +1,5 @@
+{
+  "page_0031.png": "Data Grid (ActiveX control) displaying real-time tag values for Mixer100 and ProdPLC1, including attributes like Level.PV (63.83394), Temperature.PV, Pump status (Stopped), and valve positions (Open/Closed), with quality codes showing C0:Good and timestamps",
+  "page_0034.png": "AVEVA System Platform architecture diagram showing encrypted communication between components including Historian Tier 1 and Tier 2, Application Servers (AOS1, AOS2), Operations Management Interface, InTouch HMI, Communication Drivers, InTouch Web Servers, and System Monitor, connected via MX, SuiteLink, iData, HCAL, and HTTPS protocols",
+  "page_0035.png": "Network security deployment diagram showing three communities: Community 1 and Community 2 (both in Secured Mode with nodes pointing to SMS1 and SMS2 respectively, all connections green/secure), and Legacy (Unsecured Mode with no SMS configuration, all connections yellow/unsecured), with a legend defining secured, unsecured, and no connection states"
+}

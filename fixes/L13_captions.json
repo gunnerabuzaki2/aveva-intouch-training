@@ -1,0 +1,6 @@
+{
+  "page_0145.png": "Galaxy Browser showing Level_001 through Level_006 instance objects with a tank level HMI widget preview displaying numeric value, engineering units, and Level_Detail button",
+  "page_0146.png": "Galaxy Browser listing Mixer100 through Mixer800 instances with Mixer100 selected, showing two alternate symbol thumbnails: MixingProcess_Detailed (full P&ID with tank, valves, piping) and SwitchedMixingProcess (simplified mixer view)",
+  "page_0148_0.png": "Graphics pane in the IDE with right-click context menu on the Training toolset folder, showing New submenu with options for Graphic Toolset, Screen Profile, Layout, Symbol, ViewApp Namespace, and External Content",
+  "page_0148_1.png": "Graphics pane showing the Training folder expanded with newly created Level_Detailed and ProcessOverview symbols, both marked with red checkmark icons indicating valid graphic files"
+}

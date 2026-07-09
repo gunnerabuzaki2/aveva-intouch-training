@@ -1,0 +1,5 @@
+{
+  "page_0253.png": "Navigation symbol with three segmented tab buttons labeled Mixers, Line 1, and Line 2, with Line 1 highlighted as the active/selected view and Mixers and Line 2 in inactive state",
+  "page_0254_0.png": "Galaxy Browser showing the Instances list with Mixer100 selected, displaying two alternate symbol thumbnails: MixingProcess_Detailed (detailed P&ID with tank, valves, and piping) and SwitchedMixingProcess (simplified switching control view)",
+  "page_0254_1.png": "Mixer100 process graphic in design mode showing a complete mixer system with central mixer enclosure containing an SA_Agitator_Settler with agitator impeller and two SA_Meters, two inlet feed lines with SA_Pump_Blinder_RotaryValve and SA_Valve_And_Damper assemblies, and an outlet discharge line with valve and damper"
+}

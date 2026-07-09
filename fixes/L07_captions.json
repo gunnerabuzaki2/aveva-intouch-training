@@ -1,0 +1,6 @@
+{
+  "page_0055.png": "Full WindowMaker development environment showing the Home ribbon with Clipboard, Insert, and Alignment groups, left panel with Windows and Scripts tabs, right panel with Industrial Graphics tree under TrainingGalaxy, and an empty design canvas",
+  "page_0056.png": "WindowMaker Home ribbon toolbar expanded showing functional groups: Clipboard (Paste, Cut, Copy, Duplicate), Insert (Button, Text, Graphics, SmartSymbol, Wizards), Alignment (left, center, right, top, middle, bottom), Arrange (Bring to front, Send to back, Rotate), and Spacing (Horizontal, Vertical, Center points)",
+  "page_0057.png": "WindowMaker configuration screen accessed via File > Configure, showing the WindowMaker settings panel with title bar text, supertag template path, and checkboxes for options including Store supertags data, Show tag count, Disable script autocomplete, Lock window size, Enable fast switch, and Show grid",
+  "page_0058.png": "Window Properties dialog for a Navigation window configured as Replace type with dimensions 1300x120 pixels, white background, no title bar, single frame style, close button enabled, and size controls disabled"
+}

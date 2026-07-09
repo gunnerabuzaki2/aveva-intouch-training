@@ -1,0 +1,15 @@
+{
+  "page_0173_0.png": "Graphic Editor canvas showing red rounded rectangle and blue circle connected by dashed blue animation link line between their green connection points, demonstrating connector between graphic elements",
+  "page_0173_1.png": "Graphic Editor with selected red circle object showing blue resize handles and green bounding box, with Graphics Object Palette panel displaying reusable HMI symbol library items",
+  "page_0173_2.png": "Canvas showing red circle with green crosshair interaction point on left, and custom gray equipment graphic with Label text and green interaction hotspot on right, demonstrating basic and complex interactive elements",
+  "page_0174_0.png": "Legacy floating Tools palette toolbar showing 30 drawing and interaction tools organized in rows: selection arrow, lines, shapes, text tools, checkboxes, sliders, buttons, trend charts, and symbol factory",
+  "page_0174_1.png": "Graphic Editor canvas showing SA_Pump_Blower_RotaryValve and SA_Valve_And_Damper industrial symbols connected by dashed blue line with yellow alarm status indicators, demonstrating asset linking",
+  "page_0175_0.png": "Tools palette showing 24 tools in 4 rows including selection arrow, line/polyline, rectangle, ellipse, filled shapes, arc, image import, static text, checkbox, radio button, slider, push button, trend chart, gauge, and tag linker tools",
+  "page_0175_1.png": "Graphic Editor showing SA_Valve_And_Damper label text object selected with white bounding box, with valve/damper graphic below showing green connection nodes and yellow alarm indicator",
+  "page_0176.png": "Edit Animations dialog with empty Animations pane showing prompt to add animations, with popup menu displaying all available animation types: Visibility, Fill Style, Line Style, Text Style, Blink, Element Style, Alarm Border, Value Display, Pushbutton, Show Symbol, and others",
+  "page_0177_0.png": "Edit Animations dialog showing Value Display animation with Name tab selected, configured to display Tag Name from the linked data tag, with Boolean, Analog, String, Time, Truth Table, and Bit State tabs also available",
+  "page_0177_1.png": "Edit Animations dialog showing Element Style animation for Button1 object with Boolean state expression Cmd1, True state set to Intensity4 style, False state set to None, with Pushbutton interaction also enabled",
+  "page_0179.png": "Mixer100 process mimic diagram showing complete mixer system with Agitator_001 (0.00 rpm), Level_001 (54.43 l), Temperature_001 (134.98°C), two inlet feed lines with pumps and valves, and outlet discharge valve",
+  "page_0180_0.png": "Content pane showing empty $Mixer content area with Add button highlighted and tooltip showing Ctrl+= shortcut, prompting user to create or link content",
+  "page_0180_1.png": "Content pane showing MixingProcess_Detailed object selected in list with description Includes symbols from all contained objects, in $Mixer container with unsaved changes indicator"
+}

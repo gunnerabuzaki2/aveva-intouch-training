@@ -1,0 +1,8 @@
+{
+  "page_0381.png": "Training manual stock photo of a diverse group of four people working at computers in a library or collaborative learning space, with a smiling young Black woman in the foreground at a CRT monitor",
+  "page_0383.png": "Screenshot of the AVEVA System Platform AppEngine1 configuration dialog showing the General tab with historian storage settings (Enable storage to historian checked, Historian set to S01ENG), scan period of 500ms, and engine startup type set to Auto",
+  "page_0385_0.png": "Screenshot of the Graphic Editor Tools panel showing available drawing and editing tools for creating industrial graphics in InTouch HMI, including selection, line, shape, text, and transformation tools",
+  "page_0385_1.png": "Screenshot of the Edit Animations dialog for configuring a Trend Pen element in InTouch HMI, showing reference tag HeatEx100.TT1.PV, Historian source with Auto-Detect, 5-minute moving time period, Y-axis range from PVRangeFullScaleMin to PVRangeFullScaleMax, and Step Line plot type",
+  "page_0386_0.png": "Diagram of a single-pen trend graph showing a stepped line chart with placeholder values for PV, Min, Max, Avg, and Engineering Units (EU), including a magnified inset view and information icon",
+  "page_0386_1.png": "Screenshot of a multi-pen trend display with four graph panels labeled A through D showing different waveforms (sawtooth, peaked, flat, mirrored sawtooth), a left metrics panel with PV/Max/Min/Avg/EU placeholder values, and a right-side trend bar with stepped line graph"
+}

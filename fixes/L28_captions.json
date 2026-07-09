@@ -1,0 +1,5 @@
+{
+  "page_0363_0.png": "Object Viewer showing SMixer.Inlet1 object with Attributes tab selected, displaying Cmd, LSClosed, and LSOpen valve attributes, with LSClosed properties panel showing Boolean data type, state alarm configuration with priority 500, and I/O link to hardware device",
+  "page_0363_1.png": "Edit Animations dialog for an AlarmClient element showing Alarm Mode configuration with Client Mode set to Historical Alarms, database connectivity settings using Windows Integrated authentication to server SD1ENG and database WWAlmDb, with a Test Connection button",
+  "page_0368.png": "Alarm Summary Object (Alarm Viewer control) in WindowMaker design mode displaying a tabular alarm list with columns for User, State, Node, Group, and Name, showing four alarm states: ACK, ACK_RTN, UNACK (yellow highlighted), and UNACK_RTN for a test tag"
+}

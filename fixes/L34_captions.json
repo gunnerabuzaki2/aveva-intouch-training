@@ -1,0 +1,10 @@
+{
+  "page_0431.png": "Screenshot of the Edit Custom Properties dialog showing the HistServer custom property configured as String data type with default value S01ENG and Private visibility (hidden when symbol is embedded)",
+  "page_0432_0.png": "Screenshot of the Edit Scripts dialog showing Predefined Scripts with On Show trigger type and VBScript code: Trend.AddServerEx(HistServer,\"\",false) to add a Historian server using integrated security",
+  "page_0432_1.png": "Screenshot of the SystemNavigation symbol editor showing six navigation buttons arranged horizontally on a grid canvas: Mixers, Line 1, Line 2, Alarm Overview, Historical Alarms, and the newly added Historian Client Trend button",
+  "page_0433.png": "Screenshot of the Edit Custom Properties dialog for EmbeddedSymbol5 showing the GraphicName property set to TrendHistDisplay with Public visibility, with other properties listed (GetButtonText, WindowModal, WindowName, WindowResizable)",
+  "page_0434.png": "Screenshot of the TrendHistDisplay window showing the Historian Client Trend with Tag Picker panel (S01ENG server, Level_001.PV tag selected), a trend chart displaying cyclic mixer level data with annotated values (69.87 at 1:21:47 PM, 53.99 at 1:25:17 PM), and time range controls for a 5-minute window",
+  "page_0435.png": "Screenshot of the TrendHistDisplay with multiple Level tags (Level_002.PV through Level_008.PV) selected and displayed as overlapping colored trend lines on the chart, showing comparative mixer level data with annotated values and delta calculations",
+  "page_0436_0.png": "Screenshot of the TrendHistDisplay with a preset time range dropdown menu open showing options from 1 minute to Previous Hour, with multiple mixer level trend lines displayed as colored lines on the chart with time axis from 1:21:49 PM to 1:26:49 PM",
+  "page_0436_1.png": "Screenshot of the TrendHistDisplay in live/replay mode showing real-time mixer level trends with a 1-minute time window (1:43:51 to 1:44:51 PM), live value markers (red at 0.20, blue at 75.60), and Level_005 through Level_008.PV tags in the active tag panel"
+}
