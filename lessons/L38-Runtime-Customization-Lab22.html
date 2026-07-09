@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson L38: Runtime Customization + Lab 22</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="<a href="L37-Signed-Writes-Lab21.html">&larr; Signed Writes + Lab 21</a>">&larr; Previous</a> &nbsp;|&nbsp;
+  <a href='L39-Web-Client-Overview.html'>Web Client Overview &rarr;</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<details style="background:#f5f5f5;padding:0.8em;border-radius:6px;border:1px solid #ddd;margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">&#128218; All Lessons</summary>
+<div style="margin-top:0.8em;line-height:1.8;max-height:70vh;overflow-y:auto;">
+<div style="margin-bottom:0.5em;padding:0.5em;background:#e8f5e9;border-radius:4px;">
+<strong style="color:#2c5f2d;">&#9989; Progress: <span id="progress-text">0 / 40 completed</span></strong>
+</div>
+<strong>Module 1 &#8212; Introduction</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction.html">L01: Course Introduction</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-System-Platform-Overview.html">L02: System Platform Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html">L03: Lab 1 – Creating and Deploying a Galaxy</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Encryption-Requirements.html">L04: Encrypted Communication + System Requirements</a></label>
+<strong>Module 2 &#8212; Getting Started</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-InTouch-Visualization-Objects.html">L05: InTouch Visualization + Automation Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 – Creating a Managed InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-WindowMaker-Development.html">L07: InTouch Development Environment</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 – Building the Application Layout</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Runtime-Environment.html">L09: Runtime Environment and Application Design</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 – Deploying an InTouch Application</a></label>
+<strong>Module 3 &#8212; Symbols</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Symbol-Overview-Graphic-Editor.html">L11: Symbol Overview + Graphic Editor</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 – Building a Process Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Graphics-With-Objects.html">L13: Graphics with Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 – Creating the Mixer Components</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Editor-Tools-Animations.html">L15: Graphic Editor Tools and Animations</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 – Creating the Mixer Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-OwningObject-Lab8-Mixers.html">L17: The OwningObject Property + Lab 8</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Custom-Properties.html">L18: Custom Properties</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 – Creating a Custom Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Scripts-In-Graphics.html">L20: Scripts in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 – Creating a Navigation Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Galaxy-Styles.html">L22: Galaxy Styles</a></label>
+<strong>Module 4 &#8212; Widgets</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Widgets-Lab11-Carousel.html">L23: Widgets Overview + Lab 11</a></label>
+<strong>Module 5 &#8212; Alarms and Events Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-Alarming-Overview-Lab12.html">L24: Alarming Overview + Lab 12</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 – Alarm Aggregation</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">L26: Live Alarms Visualization</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 – Current Alarms Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 – Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">L29: Historical Alarms + Lab 16</a></label>
+<strong>Module 6 &#8212; Trend Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">L30: Historization + Real-Time Trending</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 – Adding Trending to Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Multi-Pens-Trend.html">L32: Multi Pens Trend</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 – Trend Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Historian-Trend-Lab19.html">L34: Historian Client Trend + Lab 19</a></label>
+<strong>Module 7 &#8212; Security</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Security-Overview.html">L35: Security Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 – Security Features in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Signed-Writes-Lab21.html">L37: Signed Writes + Lab 21</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L38" checked onchange="saveProgress()"> <a href="L38-Runtime-Customization-Lab22.html" style="font-weight:bold;">L38: Runtime Customization + Lab 22</a></label>
+<strong>Module 8 &#8212; Web Client</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Web-Client-Overview.html">L39: Web Client Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 – Using the Web Client</a></label>
+</div>
+</details>
+</nav>
+
+<h1>Lesson L38: Runtime Customization + Lab 22</h1>
+<p class="page-ref">Module 7 — Security | Pages 511–526</p>
+
+<div class="screenshot">
+  <img src="../images/page_0511_0.png" alt="Page 0511">
+  <div class="caption">Page 0511</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0511_1.png" alt="Page 0511">
+  <div class="caption">Page 0511</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0512_0.png" alt="Page 0512">
+  <div class="caption">Page 0512</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0512_1.png" alt="Page 0512">
+  <div class="caption">Page 0512</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0513.png" alt="Page 0513">
+  <div class="caption">Page 0513</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0514_0.png" alt="Page 0514">
+  <div class="caption">Page 0514</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0514_1.png" alt="Page 0514">
+  <div class="caption">Page 0514</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0515.png" alt="Page 0515">
+  <div class="caption">Page 0515</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0516.png" alt="Page 0516">
+  <div class="caption">Page 0516</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0517.png" alt="Page 0517">
+  <div class="caption">Page 0517</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0518.png" alt="Page 0518">
+  <div class="caption">Page 0518</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0519.png" alt="Page 0519">
+  <div class="caption">Page 0519</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0520_0.png" alt="Page 0520">
+  <div class="caption">Page 0520</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0520_1.png" alt="Page 0520">
+  <div class="caption">Page 0520</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0521_0.png" alt="Page 0521">
+  <div class="caption">Page 0521</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0521_1.png" alt="Page 0521">
+  <div class="caption">Page 0521</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0522.png" alt="Page 0522">
+  <div class="caption">Page 0522</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0523_0.png" alt="Page 0523">
+  <div class="caption">Page 0523</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0523_1.png" alt="Page 0523">
+  <div class="caption">Page 0523</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0524.png" alt="Page 0524">
+  <div class="caption">Page 0524</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0525_0.png" alt="Page 0525">
+  <div class="caption">Page 0525</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0525_1.png" alt="Page 0525">
+  <div class="caption">Page 0525</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0526.png" alt="Page 0526">
+  <div class="caption">Page 0526</div>
+</div>
+
+<p>Do Not Copy Lab 22 – Locking Down Your Application 7-73 AVEVA™ InTouch for System Platform 2023 31. In Condition Scripts, configure the script as follows: Note: You may use the applicable portion of the script in C:\Training\Lab 22 - Locking Down Your Application.txt. 32. In the Condition Type drop-down list, select On False. Condition: $InactivityWarning Comment: Opens and closes the Inactivity window Condition Type: On True (default) Body: IF $Operator <> "None" THEN Show "Inactivity"; ENDIF;</p>
+<p>Do Not Copy 7-74 Module 7 – Security AVEVA™ Training 33. In the script body, enter: Hide "Inactivity"; 34. Click OK to close Condition Scripts. Note: Clicking OK validates the syntax of the script and then saves and closes the script editor. In Scripts, expand Condition to see that $InactivityWarning is listed.</p>
+<p>Do Not Copy Lab 22 – Locking Down Your Application 7-75 AVEVA™ InTouch for System Platform 2023 Test in Runtime Now, you will switch to WindowViewer to test the implementation of the inactivity settings in runtime. 35. In WindowMaker, click Runtime. 36. Log on as TUser with a Password of ww. 37. Wait 15 seconds for the Inactivity window to automatically open. A blinking message appears. This reminds users they must interact with the application or they will be logged off. Notice that TUser is still logged in. 38. Click the mouse or press a key on the keyboard. The $InactivityWarning tag, used in the Condition script, is set to 0 with user activity. The On False trigger in the script then hides the Inactivity window.</p>
+<p>Do Not Copy 7-76 Module 7 – Security AVEVA™ Training 39. Wait 30 seconds for the system to log you off automatically. The Inactivity window shows You have been logged off! The Logon window shows the None user and Access Level as 0. 40. Click Development! to return to WindowMaker. 41. Ensure the Inactivity window is closed.</p>
+<p>Do Not Copy Lab 22 – Locking Down Your Application 7-77 AVEVA™ InTouch for System Platform 2023 42. On the File menu, select Configure | WindowViewer. 43. On the Preferences tab, in Warning, enter 0. 44. In Timeout, enter 0. 45. Click Save. 46. Close WindowViewer.</p>
+<p>Do Not Copy 7-78 Module 7 – Security AVEVA™ Training Create a Popup Window to Cover the Menu Bar Now, you will create a popup window that will cover the WindowViewer menu bar, preventing the user from clicking the menu bar options. 47. In WindowMaker, in the backstage, select + New.</p>
+<p>Do Not Copy Lab 22 – Locking Down Your Application 7-79 AVEVA™ InTouch for System Platform 2023 48. In New, with Frame window selected, configure properties for the window as follows: 49. Click Create. Name: MenuBarCover Comment: Prevents clicking the menu options Window Type: Popup (default) X: 0 Y: -20 Width: 1920 Height: 20 Window Color: White (default) Title Bar: unchecked Frame Style: None Size controls: unchecked (default)</p>
+<p>Do Not Copy 7-80 Module 7 – Security AVEVA™ Training Create the $AccessLevel Data Change Script Now, you will create a Data Change script for $AccessLevel to show and hide the Menu Bar Cover window, depending on the Access Level granted to the current logged on user. 50. In Scripts, double-click Data change. Data Change Scripts appears.</p>
+<p>Do Not Copy Lab 22 – Locking Down Your Application 7-81 AVEVA™ InTouch for System Platform 2023 51. Configure the script as follows: Note: You may use the applicable portion of the script in C:\Training\Lab 22 - Locking Down Your Application.txt. 52. Click OK to close Data Change Scripts. 53. In Scripts, expand Data change to see that the $AccessLevel script is listed. Tagname[.field]: $AccessLevel Body: { Menu Access } IF $AccessLevel > 5000 THEN { Allow menu access } Hide "MenuBarCover"; ELSE { Deny menu access } Show "MenuBarCover"; ENDIF;</p>
+<p>Do Not Copy 7-82 Module 7 – Security AVEVA™ Training Update the Home Windows Now, you will update the list of WindowViewer Home Windows to include the MenuBarCover window. 54. On the File menu, select Configure | WindowViewer. 55. On the Startup tab, ensure the following windows are selected:  AlarmDisplay  ContentDisplay  Logon  MenuBarCover  Navigation  OverviewDisplay 56. Click Save. A WindowMaker notification message appears. 57. Exit the backstage.</p>
+<p>Do Not Copy Lab 22 – Locking Down Your Application 7-83 AVEVA™ InTouch for System Platform 2023 Test in Runtime Now, you will switch to WindowViewer to test the implementation of the covered menu bar in runtime. 58. In WindowMaker, click Runtime. The menu bar is covered by the new window. 59. Log in as Operator1 with a Password of ww. The menu bar is still covered since the operators have an Access Level of 1000 and the script requires an Access Level greater than 5000. 60. Log in as Administrator with no password. The menu bar is displayed because the Administrator has an Access Level greater than 5000. 61. In the Logon window, click Logoff. The menu bar, including the Development! fast switch, is covered, to protect it from unauthorized access. 62. Log in again as Administrator, and then in the menu bar, click Development! to return to WindowMaker. Deny Access to the Alt, Esc, and Win Keys The implementation of application lock down configured so far handles mouse interaction. In the following steps, you will handle keyboard interaction. This will be done using the EnableDisableKeys() script function to enable and disable the Alt, Esc, and Win keys, depending on which user is logged in to the application. 63. In Scripts, ensure Data change is expanded, and double-click the $AccessLevel script.</p>
+<p>Do Not Copy 7-84 Module 7 – Security AVEVA™ Training 64. Modify the existing script by adding the EnableDisableKeys () functions as follows: Note: You may use the applicable portion of the script in C:\Training\Lab 22 - Locking Down Your Application.txt. The EnableDisableKeys() script function receives three Boolean parameters to disable the Alt, Esc, and Win keys, in that order: 0 (false) enables the key; 1 (true) disables the key. 65. Click OK to validate, save, and close the Data Change script. Tagname[.field]: $AccessLevel Body: { Menu Access } IF $AccessLevel > 5000 THEN { Allow menu access } Hide "MenuBarCover"; EnableDisableKeys( 0, 0, 0); ELSE { Deny menu access } Show "MenuBarCover"; EnableDisableKeys( 1, 1, 1); ENDIF;</p>
+<p>Do Not Copy Lab 22 – Locking Down Your Application 7-85 AVEVA™ InTouch for System Platform 2023 Next, you will create an Application, On Startup script to ensure that the Alt, Esc, and Win keys are disabled when WindowViewer is started. 66. In Scripts, double-click Application. Application Script appears. 67. In Application Script, in the Condition Type drop-down, select On Startup.</p>
+<p>Do Not Copy 7-86 Module 7 – Security AVEVA™ Training 68. For the body of the script, enter: Note: You may use the applicable portion of the script in C:\Training\Lab 22 - Locking Down Your Application.txt. 69. Click OK to validate, save, and close the script. Test in Runtime Finally, you will switch to WindowViewer to test the implementation of the EnableDisableKeys() script function in runtime. You will test access to the Alt, Esc, and Win Keys. First, you will close WindowViewer to allow the Application On Startup script you just configured to run. Note: In virtual environments, the host computer captures certain key combinations and does not pass these through to the virtual environment. If you are taking this course from a virtual machine, your instructor may provide special shortcuts such as a virtual keyboard to recreate these key combinations. 70. Close WindowViewer. 71. In WindowMaker, open the MenuBarCover window, and then click Runtime. 72. Verify that no user is logged in. Body: { Disable the Alt, Esc, Win keys } EnableDisableKeys( 1, 1, 1);</p>
+<p>Do Not Copy Lab 22 – Locking Down Your Application 7-87 AVEVA™ InTouch for System Platform 2023 First you will test a key combination, Alt+F, which is a shortcut for the File menu in WindowViewer. With access to the File menu, a user can open windows or close them. 73. Press and hold the Alt key and press F. The File menu does not open. Next you will test a key combination, Ctrl+Shift+Esc, which is a shortcut for opening the Windows Task Manager. With access to Task Manager, a user can start applications and close applications. 74. Press and hold Ctrl+Shift+Esc. Task Manager does not open. Now you will test the Win key, which opens the Windows Start menu. 75. Press the Win key. The Start menu does not open. Next you will perform the same key combinations as a logged in user. 76. Log in as Administrator with no password. 77. Press and hold the Alt key and press F. The File menu opens. 78. Press and hold Ctrl+Shift+Esc. Task Manager opens.</p>
+<p>Do Not Copy 7-88 Module 7 – Security AVEVA™ Training 79. Press the Win key. The Start menu opens. 80. Click Development! to return to WindowMaker. <End of Lab></p>
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Runtime Customization + Lab 22?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
+</div>
+
+<p class="source">Module 7 — Security. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: Lesson L39 — Web Client Overview</p>
+
+<script>
+
+function saveProgress() {
+  var checks = {};
+  document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+    checks[cb.dataset.lesson] = cb.checked;
+  });
+  try {
+    localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks));
+  } catch(e) {}
+  updateProgressText();
+}
+
+function loadProgress() {
+  var data = null;
+  try {
+    data = localStorage.getItem('intouch-lesson-progress');
+  } catch(e) {}
+  if (!data) {
+    updateProgressText();
+    return;
+  }
+  try {
+    var checks = JSON.parse(data);
+    document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+      if (checks[cb.dataset.lesson]) {
+        cb.checked = true;
+      }
+    });
+  } catch(e) {}
+  updateProgressText();
+}
+
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').length;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' completed';
+}
+
+document.addEventListener('DOMContentLoaded', loadProgress);
+
+</script>
+</body>
+</html>

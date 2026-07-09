@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson L10: Lab 4 – Deploying an InTouch Application</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="<a href="L09-Runtime-Environment.html">&larr; Runtime Environment and Application Design</a>">&larr; Previous</a> &nbsp;|&nbsp;
+  <a href='L11-Symbol-Overview-Graphic-Editor.html'>Symbol Overview + Graphic Editor &rarr;</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<details style="background:#f5f5f5;padding:0.8em;border-radius:6px;border:1px solid #ddd;margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">&#128218; All Lessons</summary>
+<div style="margin-top:0.8em;line-height:1.8;max-height:70vh;overflow-y:auto;">
+<div style="margin-bottom:0.5em;padding:0.5em;background:#e8f5e9;border-radius:4px;">
+<strong style="color:#2c5f2d;">&#9989; Progress: <span id="progress-text">0 / 40 completed</span></strong>
+</div>
+<strong>Module 1 &#8212; Introduction</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction.html">L01: Course Introduction</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-System-Platform-Overview.html">L02: System Platform Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html">L03: Lab 1 – Creating and Deploying a Galaxy</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Encryption-Requirements.html">L04: Encrypted Communication + System Requirements</a></label>
+<strong>Module 2 &#8212; Getting Started</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-InTouch-Visualization-Objects.html">L05: InTouch Visualization + Automation Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 – Creating a Managed InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-WindowMaker-Development.html">L07: InTouch Development Environment</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 – Building the Application Layout</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Runtime-Environment.html">L09: Runtime Environment and Application Design</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" checked onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html" style="font-weight:bold;">L10: Lab 4 – Deploying an InTouch Application</a></label>
+<strong>Module 3 &#8212; Symbols</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Symbol-Overview-Graphic-Editor.html">L11: Symbol Overview + Graphic Editor</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 – Building a Process Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Graphics-With-Objects.html">L13: Graphics with Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 – Creating the Mixer Components</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Editor-Tools-Animations.html">L15: Graphic Editor Tools and Animations</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 – Creating the Mixer Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-OwningObject-Lab8-Mixers.html">L17: The OwningObject Property + Lab 8</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Custom-Properties.html">L18: Custom Properties</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 – Creating a Custom Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Scripts-In-Graphics.html">L20: Scripts in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 – Creating a Navigation Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Galaxy-Styles.html">L22: Galaxy Styles</a></label>
+<strong>Module 4 &#8212; Widgets</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Widgets-Lab11-Carousel.html">L23: Widgets Overview + Lab 11</a></label>
+<strong>Module 5 &#8212; Alarms and Events Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-Alarming-Overview-Lab12.html">L24: Alarming Overview + Lab 12</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 – Alarm Aggregation</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">L26: Live Alarms Visualization</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 – Current Alarms Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 – Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">L29: Historical Alarms + Lab 16</a></label>
+<strong>Module 6 &#8212; Trend Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">L30: Historization + Real-Time Trending</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 – Adding Trending to Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Multi-Pens-Trend.html">L32: Multi Pens Trend</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 – Trend Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Historian-Trend-Lab19.html">L34: Historian Client Trend + Lab 19</a></label>
+<strong>Module 7 &#8212; Security</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Security-Overview.html">L35: Security Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 – Security Features in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Signed-Writes-Lab21.html">L37: Signed Writes + Lab 21</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Runtime-Customization-Lab22.html">L38: Runtime Customization + Lab 22</a></label>
+<strong>Module 8 &#8212; Web Client</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Web-Client-Overview.html">L39: Web Client Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 – Using the Web Client</a></label>
+</div>
+</details>
+</nav>
+
+<h1>Lesson L10: Lab 4 – Deploying an InTouch Application</h1>
+<p class="page-ref">Module 2 — Getting Started | Pages 87–98</p>
+
+<div class="screenshot">
+  <img src="../images/page_0088_0.png" alt="Module 2, Page 2-48: Creating Derived ViewEngine Template">
+  <div class="caption">Module 2, Page 2-48: Creating Derived ViewEngine Template</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0088_1.png" alt="Module 2, Page 2-48: Creating Derived ViewEngine Template">
+  <div class="caption">Module 2, Page 2-48: Creating Derived ViewEngine Template</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0089_0.png" alt="Lab 4, Page 2-49: Drag $gViewEngine & Create Instance">
+  <div class="caption">Lab 4, Page 2-49: Drag $gViewEngine & Create Instance</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0089_1.png" alt="Lab 4, Page 2-49: Drag $gViewEngine & Create Instance">
+  <div class="caption">Lab 4, Page 2-49: Drag $gViewEngine & Create Instance</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0090_0.png" alt="Module 2, Page 2-50: Rename & Assign ViewEngine">
+  <div class="caption">Module 2, Page 2-50: Rename & Assign ViewEngine</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0090_1.png" alt="Module 2, Page 2-50: Rename & Assign ViewEngine">
+  <div class="caption">Module 2, Page 2-50: Rename & Assign ViewEngine</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0091_0.png" alt="Lab 4, Page 2-51: Create InTouch App Instance">
+  <div class="caption">Lab 4, Page 2-51: Create InTouch App Instance</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0091_1.png" alt="Lab 4, Page 2-51: Create InTouch App Instance">
+  <div class="caption">Lab 4, Page 2-51: Create InTouch App Instance</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0092_0.png" alt="Module 2, Page 2-52: Assign to Sys & Configure Home Windows">
+  <div class="caption">Module 2, Page 2-52: Assign to Sys & Configure Home Windows</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0092_1.png" alt="Module 2, Page 2-52: Assign to Sys & Configure Home Windows">
+  <div class="caption">Module 2, Page 2-52: Assign to Sys & Configure Home Windows</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0093_0.png" alt="Lab 4, Page 2-53: WindowViewer Settings & Home Windows">
+  <div class="caption">Lab 4, Page 2-53: WindowViewer Settings & Home Windows</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0093_1.png" alt="Lab 4, Page 2-53: WindowViewer Settings & Home Windows">
+  <div class="caption">Lab 4, Page 2-53: WindowViewer Settings & Home Windows</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0094_0.png" alt="Module 2, Page 2-54: Select Home Windows">
+  <div class="caption">Module 2, Page 2-54: Select Home Windows</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0094_1.png" alt="Module 2, Page 2-54: Select Home Windows">
+  <div class="caption">Module 2, Page 2-54: Select Home Windows</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0095_0.png" alt="Lab 4, Page 2-55: Exit & Deploy">
+  <div class="caption">Lab 4, Page 2-55: Exit & Deploy</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0095_1.png" alt="Lab 4, Page 2-55: Exit & Deploy">
+  <div class="caption">Lab 4, Page 2-55: Exit & Deploy</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0096_0.png" alt="Module 2, Page 2-56: Deploy Dialog & Progress">
+  <div class="caption">Module 2, Page 2-56: Deploy Dialog & Progress</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0096_1.png" alt="Module 2, Page 2-56: Deploy Dialog & Progress">
+  <div class="caption">Module 2, Page 2-56: Deploy Dialog & Progress</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0097_0.png" alt="Lab 4, Page 2-57: Deployment Sync & Application Manager">
+  <div class="caption">Lab 4, Page 2-57: Deployment Sync & Application Manager</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0097_1.png" alt="Lab 4, Page 2-57: Deployment Sync & Application Manager">
+  <div class="caption">Lab 4, Page 2-57: Deployment Sync & Application Manager</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0098_0.png" alt="Module 2, Page 2-58: Launch in Runtime & End of Lab">
+  <div class="caption">Module 2, Page 2-58: Launch in Runtime & End of Lab</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0098_1.png" alt="Module 2, Page 2-58: Launch in Runtime & End of Lab">
+  <div class="caption">Module 2, Page 2-58: Launch in Runtime & End of Lab</div>
+</div>
+
+<p>Do Not Copy Lab 4 – Deploying an InTouch Application 2-47 AVEVA™ InTouch for System Platform 2023 Lab 4 – Deploying an InTouch Application Introduction In this lab, you will deploy a Managed InTouch application, and then view the application in runtime. Objectives Upon completion of this lab, you will be able to:  Create and configure a ViewEngine  Select Home windows for InTouch application start up  Deploy a Managed InTouch application  Open a deployed InTouch application in runtime</p>
+<p>Do Not Copy 2-48 Module 2 – Getting Started AVEVA™ Training Create a ViewEngine First, you will create an instance of the $ViewEngine template. 1. In the IDE, on the Templates tab, in the System template toolset, right-click the $ViewEngine template and select New | Derived Template. 2. Name the derived template as $gViewEngine.</p>
+<p>Do Not Copy Lab 4 – Deploying an InTouch Application 2-49 AVEVA™ InTouch for System Platform 2023 3. Drag $gViewEngine to the Training\Global template toolset. 4. In the Global template toolset, right-click $gViewEngine and select New | Instance. In the Deployment view, a new instance is created with the default name of gViewEngine_001.</p>
+<p>Do Not Copy 2-50 Module 2 – Getting Started AVEVA™ Training 5. In the Deployment view, name gViewEngine_001 as ViewEngine1. 6. Assign ViewEngine1 to PROD_Platform1.</p>
+<p>Do Not Copy Lab 4 – Deploying an InTouch Application 2-51 AVEVA™ InTouch for System Platform 2023 Create an Instance of the InTouch Application Now, you will create a new instance of the $MixerView template. 7. On the Templates tab, in the Training\ViewApps template toolset, create an instance of the $MixerView template. In the Deployment view, a new instance is created with the default name of MixerView_001. 8. Leave the default name, and then assign MixerView_001 to ViewEngine1.</p>
+<p>Do Not Copy 2-52 Module 2 – Getting Started AVEVA™ Training 9. In the Model view, assign MixerView_001 and ViewEngine1 to the Sys area. Configure WindowViewer Home Windows Now, you will configure WindowViewer settings to set the home windows. At runtime, the home windows will open automatically on startup in WindowViewer. 10. On the Templates tab, in the Training\ViewApps toolset, double-click $MixerView to open WindowMaker. WindowMaker opens and displays Select windows to open. You will not open any windows at this time.</p>
+<p>Do Not Copy Lab 4 – Deploying an InTouch Application 2-53 AVEVA™ InTouch for System Platform 2023 11. On the backstage menu, select Configure | WindowViewer. The WindowViewer settings appear. 12. In WindowViewer settings, select the Startup tab. Home windows appears.</p>
+<p>Do Not Copy 2-54 Module 2 – Getting Started AVEVA™ Training 13. In Home windows, select the following windows:  AlarmDisplay  ContentDisplay  Logon  Navigation  OverviewDisplay 14. Click Save. A WindowMaker notification message appears, indicating WindowViewer configuration successfully updated.</p>
+<p>Do Not Copy Lab 4 – Deploying an InTouch Application 2-55 AVEVA™ InTouch for System Platform 2023 15. On the backstage menu, select Exit to close WindowMaker and then check in $MixerView. Deploy the Managed InTouch Application Now, you will deploy ViewEngine1 and MixerView_001 to the production node. 16. In the IDE, in the Deployment view, right-click ViewEngine1 and select Deploy.</p>
+<p>Do Not Copy 2-56 Module 2 – Getting Started AVEVA™ Training The Deploy dialog box appears. 17. Leave all default settings and click Deploy. The Deploying Objects dialog box shows progress of the deployment process. 18. When the progress shows Deploy complete, click Close.</p>
+<p>Do Not Copy Lab 4 – Deploying an InTouch Application 2-57 AVEVA™ InTouch for System Platform 2023 As soon as the deployment completes, the icon for the MixerView instance displays an orange synchronization icon, which indicates the final synchronization of the application on the production node. Once this process completes, the icon changes to fully deployed. View the Deployed Application in WindowViewer Finally, you will navigate to the production node and open the deployed $MixerView application in runtime. 19. Switch to the production node. Note: Your instructor will provide the name of your production node. 20. From the Windows Start menu, open Application Manager. The AVEVA Application Manager opens.</p>
+<p>Do Not Copy 2-58 Module 2 – Getting Started AVEVA™ Training 21. On the InTouch tab, in the $MixerView tile, click the WindowViewer button to open the application in runtime. The Application Manager closes and after a few moments, InTouch WindowViewer opens and the $MixerView application displays in runtime. Notice the home windows are opened and the animated clock appears in the Logon window. 22. Leave the application running on the production node and switch back to the engineering node. <End of Lab></p>
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Lab 4 – Deploying an InTouch Application?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
+</div>
+
+<p class="source">Module 2 — Getting Started. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: Lesson L11 — Symbol Overview + Graphic Editor</p>
+
+<script>
+
+function saveProgress() {
+  var checks = {};
+  document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+    checks[cb.dataset.lesson] = cb.checked;
+  });
+  try {
+    localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks));
+  } catch(e) {}
+  updateProgressText();
+}
+
+function loadProgress() {
+  var data = null;
+  try {
+    data = localStorage.getItem('intouch-lesson-progress');
+  } catch(e) {}
+  if (!data) {
+    updateProgressText();
+    return;
+  }
+  try {
+    var checks = JSON.parse(data);
+    document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+      if (checks[cb.dataset.lesson]) {
+        cb.checked = true;
+      }
+    });
+  } catch(e) {}
+  updateProgressText();
+}
+
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').length;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' completed';
+}
+
+document.addEventListener('DOMContentLoaded', loadProgress);
+
+</script>
+</body>
+</html>

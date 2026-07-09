@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson L05: InTouch Visualization + Automation Objects</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="<a href="L04-Encryption-Requirements.html">&larr; Encrypted Communication + System Requirements</a>">&larr; Previous</a> &nbsp;|&nbsp;
+  <a href='L06-Lab2-Managed-InTouch-App.html'>Lab 2 – Creating a Managed InTouch Application &rarr;</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<details style="background:#f5f5f5;padding:0.8em;border-radius:6px;border:1px solid #ddd;margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">&#128218; All Lessons</summary>
+<div style="margin-top:0.8em;line-height:1.8;max-height:70vh;overflow-y:auto;">
+<div style="margin-bottom:0.5em;padding:0.5em;background:#e8f5e9;border-radius:4px;">
+<strong style="color:#2c5f2d;">&#9989; Progress: <span id="progress-text">0 / 40 completed</span></strong>
+</div>
+<strong>Module 1 &#8212; Introduction</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction.html">L01: Course Introduction</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-System-Platform-Overview.html">L02: System Platform Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html">L03: Lab 1 – Creating and Deploying a Galaxy</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Encryption-Requirements.html">L04: Encrypted Communication + System Requirements</a></label>
+<strong>Module 2 &#8212; Getting Started</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L05" checked onchange="saveProgress()"> <a href="L05-InTouch-Visualization-Objects.html" style="font-weight:bold;">L05: InTouch Visualization + Automation Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 – Creating a Managed InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-WindowMaker-Development.html">L07: InTouch Development Environment</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 – Building the Application Layout</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Runtime-Environment.html">L09: Runtime Environment and Application Design</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 – Deploying an InTouch Application</a></label>
+<strong>Module 3 &#8212; Symbols</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Symbol-Overview-Graphic-Editor.html">L11: Symbol Overview + Graphic Editor</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 – Building a Process Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Graphics-With-Objects.html">L13: Graphics with Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 – Creating the Mixer Components</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Editor-Tools-Animations.html">L15: Graphic Editor Tools and Animations</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 – Creating the Mixer Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-OwningObject-Lab8-Mixers.html">L17: The OwningObject Property + Lab 8</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Custom-Properties.html">L18: Custom Properties</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 – Creating a Custom Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Scripts-In-Graphics.html">L20: Scripts in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 – Creating a Navigation Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Galaxy-Styles.html">L22: Galaxy Styles</a></label>
+<strong>Module 4 &#8212; Widgets</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Widgets-Lab11-Carousel.html">L23: Widgets Overview + Lab 11</a></label>
+<strong>Module 5 &#8212; Alarms and Events Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-Alarming-Overview-Lab12.html">L24: Alarming Overview + Lab 12</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 – Alarm Aggregation</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">L26: Live Alarms Visualization</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 – Current Alarms Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 – Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">L29: Historical Alarms + Lab 16</a></label>
+<strong>Module 6 &#8212; Trend Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">L30: Historization + Real-Time Trending</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 – Adding Trending to Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Multi-Pens-Trend.html">L32: Multi Pens Trend</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 – Trend Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Historian-Trend-Lab19.html">L34: Historian Client Trend + Lab 19</a></label>
+<strong>Module 7 &#8212; Security</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Security-Overview.html">L35: Security Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 – Security Features in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Signed-Writes-Lab21.html">L37: Signed Writes + Lab 21</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Runtime-Customization-Lab22.html">L38: Runtime Customization + Lab 22</a></label>
+<strong>Module 8 &#8212; Web Client</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Web-Client-Overview.html">L39: Web Client Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 – Using the Web Client</a></label>
+</div>
+</details>
+</nav>
+
+<h1>Lesson L05: InTouch Visualization + Automation Objects</h1>
+<p class="page-ref">Module 2 — Getting Started | Pages 41–46</p>
+
+<div class="screenshot">
+  <img src="../images/page_0041.png" alt="Getting Started Cover Page (Page 2-1)">
+  <div class="caption">Getting Started Cover Page (Page 2-1)</div>
+</div>
+
+<p>Do Not Copy Module 2 – Getting Started Section 1 – Introduction to InTouch Visualization 2-3 Section 2 – InTouch Automation Objects 2-5 Lab 2 – Creating a Managed InTouch Application 2-7 Section 3 – Introduction to the InTouch Development Environment 2-15 Lab 3 – Building the Application Layout 2-21 Section 4 – Runtime Environment and Application Design 2-41 Lab 4 – Deploying an InTouch Application 2-47</p>
+<p>Do Not Copy 2-2 Module 2 – Getting Started AVEVA™ Training Module Objectives  Describe visualization concepts  Introduce the InTouchViewApp object  Introduce the ViewEngine object  Provide a brief overview of the features of the WindowMaker environment and its settings  Describe InTouch windows  Provide a brief overview of the InTouch WindowViewer and its settings</p>
+<p>Do Not Copy Section 1 – Introduction to InTouch Visualization 2-3 AVEVA™ InTouch for System Platform 2023 Section 1 – Introduction to InTouch Visualization Introduction Application Server provides tools for developing interactive and animated graphical displays. The behavior of these displays, including animations and visual representations, can be associated with properties of processes and equipment through real-time data provided by System Platform. System Platform visualization clients provide multiple user interface capabilities, including keyboard, mouse, tablet, and touch-screen inputs, as well as multi-screen outputs. Visualization Clients System Platform clients for visualization are InTouch for System Platform and Operations Management Interface. Both run the operator interface and display data from objects defined in an Application Server Galaxy. They can coexist in the same System Platform solution and share data and graphics.  AVEVA™ InTouch for System Platform provides traditional development tools for creating displays and corresponding navigation. It is not included with AVEVA System Platform Enterprise.  AVEVA™ Operations Management Interface leverages both HMI and SCADA systems to deliver a convergence platform for both Operational Technology (OT) and Information Technology (IT). It provides a visualization engine for rich, modern user experiences across platforms. What is InTouch for System Platform? InTouch for System Platform is configured and licensed to be used as a visualization client in conjunction with System Platform, displaying data from objects defined in an Application Server Galaxy. What is a Managed InTouch Application? A Managed InTouch application is one that is created from within the System Platform IDE, and deployed as an object in the Application Server application. Creating a managed application allows use of symbols. A Managed InTouch application exhibits the same kind of behavior as other objects in the IDE, such as the ability to check out and check in, but opens in an external development environment called WindowMaker. InTouch Components InTouch consists of three main components:  WindowMaker is the InTouch development environment, where object-oriented graphics are used to create animated, click-sensitive display windows. Graphics are embedded in InTouch windows.  WindowViewer is the runtime environment used to display the graphic windows created in WindowMaker.  Application Manager organizes the applications that are created. This section introduces visualization concepts and describes InTouch for System Platform as one of the visualization clients of Application Server. It also introduces AVEVA Connect for graphics.</p>
+<p>Do Not Copy 2-4 Module 2 – Getting Started AVEVA™ Training Visualization Content Several types of content that can be used to build visualization client applications. Industrial Graphics Industrial graphics allow you to create customized graphical representations of processes and integrate other visualization tools into your application. They can be embedded or associated with automation objects in Application Server, so that alarms, history, logic, graphics, and so on can all be defined with the same automation object. This allows greater flexibility of application development, including:  Object reuse: Objects can be derived from templates and preconfigured to work within the environment in which they are embedded to reference applicable object attributes.  Centralized development: Application development can be centralized, including graphical representations of equipment. Industrial graphics are also referred to as symbols in Application Server. Client Controls Client controls provide functionality contained in .NET controls that you can use in symbols. External .NET controls can be imported into a Galaxy and used in symbols by embedding them. Symbols with embedded .NET controls are supported by InTouch for System Platform. Widget Controls Application Server includes widget controls, which are HTML5 widget controls. AVEVA Connect for Graphics AVEVA Connect provides a cloud-based repository that lets you share graphics between locations, Galaxies, and nodes. You can sign in to AVEVA Connect within the System Platform IDE to add AVEVA Connect to the Graphics tab, which provides a centralized storage and access point for reusable industrial graphics. Graphics in AVEVA Connect are stored in stores, which can be global, tenant, or user specific. Multiple drives can be configured within each store, and each drive can be configured with different access levels for different users. An AVEVA Connect account is required to manage graphics in the cloud. AVEVA Connect users can have read-only or read/write access, depending on the access granted by their administrator. Read-only users can view graphics in the cloud, but cannot upload or download graphics. Multiple users can access the graphics in the same drive, but only one user at a time can edit or save a graphic to the drive.</p>
+<p>Do Not Copy Section 2 – InTouch Automation Objects 2-5 AVEVA™ InTouch for System Platform 2023 Section 2 – InTouch Automation Objects InTouchViewApp Object The InTouchViewApp object represents an InTouch application in the Application Server environment. The InTouchViewApp object manages the check-in, check-out, and deployment of an InTouch application. The InTouchViewApp object includes the capabilities of the Application Server InTouchProxy object, so that InTouch tags can be referenced by Application Server Message Exchange clients as InTouchViewApp attributes. The InTouchViewApp object is used to incorporate InTouch applications into an overall system defined by a Application Server Galaxy. The Application Server system manages:  Check-in and check-out for multiple users  Security restrictions on who can deploy the InTouch application and when the InTouch application can be deployed  Backup and restore  Deployment and undeployment The InTouchViewApp object allows application objects running on a ViewEngine object to access InTouch tags as if they were Application Server attributes of the InTouchViewApp object itself. The tags are browsed through the standard Application Server attribute browser. InTouchViewApp Object Rules Some key aspects of an InTouchViewApp object include:  InTouchViewApp instances cannot be created from the InTouchViewApp base template.  Only one level of the InTouchViewApp template can be derived from the base InTouchViewApp template.  An instance of the InTouchViewApp cannot be derived from an existing instance of the InTouchViewApp.  InTouchViewApp objects cannot host other objects.  Only ViewEngine objects can host and deploy InTouchViewApp objects.  In the Model view, an InTouchViewApp object can be assigned to an Area Object, if the InTouchViewApp object’s alarms should to belong to that area.  Undeployment of an InTouchViewApp object is not permitted, if it is currently loaded on a target node.  When the file copying process at the end of an InTouchViewApp object deployment is still underway, the only allowable operation is to undeploy the object; this will cancel the deployment and remove any partially copied files. Existing InTouch Applications When creating an InTouchViewApp object to handle an existing InTouch application, the InTouch application files are transferred to a file repository directory. The original InTouch application files are not modified or deleted. Do not access files in the file repository directly or make assumptions about the file repository structure. This section introduces the InTouchViewApp and ViewEngine automation objects.</p>
+<p>Do Not Copy 2-6 Module 2 – Getting Started AVEVA™ Training When making changes to the InTouchViewApp InTouch application using WindowMaker launched from the IDE, the original InTouch application is not changed. Once the InTouchViewApp object is created, deleting the original InTouch application does not affect the InTouchViewApp object’s application. If an InTouchViewApp object that represents an existing InTouch application is deleted, the application files are removed from the file repository directory, but the existing application is not affected. New InTouch Applications When creating an InTouchViewApp object for a new InTouch application, WindowMaker is started by the IDE. ViewEngine Object A ViewEngine object is a simplified version of an AppEngine object. A ViewEngine object hosts InTouchViewApp objects, as well as ViewApp objects. The ViewEngine object supports common engine features, such as deployment, undeployment, startup, and shutdown. The ViewEngine does not support redundancy. One ViewEngine object can handle several InTouchViewApp objects. However, only one InTouch application per node can run at a time. The ViewEngine object:  Is assigned to and deployed to a WinPlatform object  Hosts and executes InTouchViewApp objects; the scan rate of the ViewEngine object determines the scan rate of all its hosted InTouchViewApp objects  Contains the logic to set up and initialize InTouchViewApp objects when they are initially deployed and started, so that they can communicate with other objects within the Galaxy  Does not need to be running in order for WindowViewer to execute its scripts or access process data  Can host Application Server scripts and UDAs; these continue to run when WindowViewer is shut down  Provides a set of configuration and runtime attributes  Contains its own set of runtime diagnostic attributes that can be monitored, alarmed, and historized  Can include the Historian as part of the ViewEngine object configuration; all InTouchViewApp objects that the ViewEngine object hosts use this historian  Does not support redundancy Historization and alarm options of the ViewEngine object may not need to be used. Because a ViewEngine object only hosts InTouchViewApp objects, InTouchViewApp objects only serve as a proxy for InTouch tags. As such, when referencing tags as InTouchViewApp attributes, a shorter ScanPeriod on the ViewEngine object can minimize the latency of tag value updates.</p>
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about InTouch Visualization + Automation Objects?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
+</div>
+
+<p class="source">Module 2 — Getting Started. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: Lesson L06 — Lab 2 – Creating a Managed InTouch Application</p>
+
+<script>
+
+function saveProgress() {
+  var checks = {};
+  document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+    checks[cb.dataset.lesson] = cb.checked;
+  });
+  try {
+    localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks));
+  } catch(e) {}
+  updateProgressText();
+}
+
+function loadProgress() {
+  var data = null;
+  try {
+    data = localStorage.getItem('intouch-lesson-progress');
+  } catch(e) {}
+  if (!data) {
+    updateProgressText();
+    return;
+  }
+  try {
+    var checks = JSON.parse(data);
+    document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+      if (checks[cb.dataset.lesson]) {
+        cb.checked = true;
+      }
+    });
+  } catch(e) {}
+  updateProgressText();
+}
+
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').length;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' completed';
+}
+
+document.addEventListener('DOMContentLoaded', loadProgress);
+
+</script>
+</body>
+</html>

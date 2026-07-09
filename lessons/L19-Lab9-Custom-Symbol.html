@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson L19: Lab 9 – Creating a Custom Symbol</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="<a href="L18-Custom-Properties.html">&larr; Custom Properties</a>">&larr; Previous</a> &nbsp;|&nbsp;
+  <a href='L20-Scripts-In-Graphics.html'>Scripts in Graphics &rarr;</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<details style="background:#f5f5f5;padding:0.8em;border-radius:6px;border:1px solid #ddd;margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">&#128218; All Lessons</summary>
+<div style="margin-top:0.8em;line-height:1.8;max-height:70vh;overflow-y:auto;">
+<div style="margin-bottom:0.5em;padding:0.5em;background:#e8f5e9;border-radius:4px;">
+<strong style="color:#2c5f2d;">&#9989; Progress: <span id="progress-text">0 / 40 completed</span></strong>
+</div>
+<strong>Module 1 &#8212; Introduction</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction.html">L01: Course Introduction</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-System-Platform-Overview.html">L02: System Platform Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html">L03: Lab 1 – Creating and Deploying a Galaxy</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Encryption-Requirements.html">L04: Encrypted Communication + System Requirements</a></label>
+<strong>Module 2 &#8212; Getting Started</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-InTouch-Visualization-Objects.html">L05: InTouch Visualization + Automation Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 – Creating a Managed InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-WindowMaker-Development.html">L07: InTouch Development Environment</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 – Building the Application Layout</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Runtime-Environment.html">L09: Runtime Environment and Application Design</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 – Deploying an InTouch Application</a></label>
+<strong>Module 3 &#8212; Symbols</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Symbol-Overview-Graphic-Editor.html">L11: Symbol Overview + Graphic Editor</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 – Building a Process Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Graphics-With-Objects.html">L13: Graphics with Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 – Creating the Mixer Components</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Editor-Tools-Animations.html">L15: Graphic Editor Tools and Animations</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 – Creating the Mixer Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-OwningObject-Lab8-Mixers.html">L17: The OwningObject Property + Lab 8</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Custom-Properties.html">L18: Custom Properties</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" checked onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html" style="font-weight:bold;">L19: Lab 9 – Creating a Custom Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Scripts-In-Graphics.html">L20: Scripts in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 – Creating a Navigation Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Galaxy-Styles.html">L22: Galaxy Styles</a></label>
+<strong>Module 4 &#8212; Widgets</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Widgets-Lab11-Carousel.html">L23: Widgets Overview + Lab 11</a></label>
+<strong>Module 5 &#8212; Alarms and Events Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-Alarming-Overview-Lab12.html">L24: Alarming Overview + Lab 12</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 – Alarm Aggregation</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">L26: Live Alarms Visualization</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 – Current Alarms Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 – Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">L29: Historical Alarms + Lab 16</a></label>
+<strong>Module 6 &#8212; Trend Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">L30: Historization + Real-Time Trending</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 – Adding Trending to Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Multi-Pens-Trend.html">L32: Multi Pens Trend</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 – Trend Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Historian-Trend-Lab19.html">L34: Historian Client Trend + Lab 19</a></label>
+<strong>Module 7 &#8212; Security</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Security-Overview.html">L35: Security Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 – Security Features in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Signed-Writes-Lab21.html">L37: Signed Writes + Lab 21</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Runtime-Customization-Lab22.html">L38: Runtime Customization + Lab 22</a></label>
+<strong>Module 8 &#8212; Web Client</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Web-Client-Overview.html">L39: Web Client Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 – Using the Web Client</a></label>
+</div>
+</details>
+</nav>
+
+<h1>Lesson L19: Lab 9 – Creating a Custom Symbol</h1>
+<p class="page-ref">Module 3 — Symbols | Pages 223–248</p>
+
+<div class="screenshot">
+  <img src="../images/page_0223_0.png" alt="Page 0223">
+  <div class="caption">Page 0223</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0223_1.png" alt="Page 0223">
+  <div class="caption">Page 0223</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0223_2.png" alt="Page 0223">
+  <div class="caption">Page 0223</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0224_0.png" alt="Page 0224">
+  <div class="caption">Page 0224</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0224_1.png" alt="Page 0224">
+  <div class="caption">Page 0224</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0225_0.png" alt="Page 0225">
+  <div class="caption">Page 0225</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0225_1.png" alt="Page 0225">
+  <div class="caption">Page 0225</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0225_2.png" alt="Page 0225">
+  <div class="caption">Page 0225</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0225_3.png" alt="Page 0225">
+  <div class="caption">Page 0225</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0226_0.png" alt="Page 0226">
+  <div class="caption">Page 0226</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0226_1.png" alt="Page 0226">
+  <div class="caption">Page 0226</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0226_2.png" alt="Page 0226">
+  <div class="caption">Page 0226</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0227_0.png" alt="Page 0227">
+  <div class="caption">Page 0227</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0227_1.png" alt="Page 0227">
+  <div class="caption">Page 0227</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0228_0.png" alt="Page 0228">
+  <div class="caption">Page 0228</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0228_1.png" alt="Page 0228">
+  <div class="caption">Page 0228</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0228_2.png" alt="Page 0228">
+  <div class="caption">Page 0228</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0229_0.png" alt="Page 0229">
+  <div class="caption">Page 0229</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0229_1.png" alt="Page 0229">
+  <div class="caption">Page 0229</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0229_2.png" alt="Page 0229">
+  <div class="caption">Page 0229</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0230_0.png" alt="Page 0230">
+  <div class="caption">Page 0230</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0230_1.png" alt="Page 0230">
+  <div class="caption">Page 0230</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0231_0.png" alt="Page 0231">
+  <div class="caption">Page 0231</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0231_1.png" alt="Page 0231">
+  <div class="caption">Page 0231</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0231_2.png" alt="Page 0231">
+  <div class="caption">Page 0231</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0232_0.png" alt="Page 0232">
+  <div class="caption">Page 0232</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0232_1.png" alt="Page 0232">
+  <div class="caption">Page 0232</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0233_0.png" alt="Page 0233">
+  <div class="caption">Page 0233</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0233_1.png" alt="Page 0233">
+  <div class="caption">Page 0233</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0234_0.png" alt="Page 0234">
+  <div class="caption">Page 0234</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0234_1.png" alt="Page 0234">
+  <div class="caption">Page 0234</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0235_0.png" alt="Page 0235">
+  <div class="caption">Page 0235</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0235_1.png" alt="Page 0235">
+  <div class="caption">Page 0235</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0236.png" alt="Page 0236">
+  <div class="caption">Page 0236</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0237_0.png" alt="Page 0237">
+  <div class="caption">Page 0237</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0237_1.png" alt="Page 0237">
+  <div class="caption">Page 0237</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0238.png" alt="Page 0238">
+  <div class="caption">Page 0238</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0239.png" alt="Page 0239">
+  <div class="caption">Page 0239</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0240_0.png" alt="Page 0240">
+  <div class="caption">Page 0240</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0240_1.png" alt="Page 0240">
+  <div class="caption">Page 0240</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0241.png" alt="Page 0241">
+  <div class="caption">Page 0241</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0242_0.png" alt="Page 0242">
+  <div class="caption">Page 0242</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0242_1.png" alt="Page 0242">
+  <div class="caption">Page 0242</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0243.png" alt="Page 0243">
+  <div class="caption">Page 0243</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0244_0.png" alt="Page 0244">
+  <div class="caption">Page 0244</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0244_1.png" alt="Page 0244">
+  <div class="caption">Page 0244</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0245.png" alt="Page 0245">
+  <div class="caption">Page 0245</div>
+</div>
+
+<p>Do Not Copy Lab 9 – Creating a Custom Symbol 3-125 AVEVA™ InTouch for System Platform 2023 5. In Default Value, enter Me.Cmd. 6. In Description, enter Command for button. 7. Add another custom property and name it CmdOffMsg. 8. In the Data Type drop-down list, select String. Notice the icon at the top updates to show the String data type. Additionally, the toggle button to the left of the Default Value field is enabled and set to ‘Static Text’ mode. 9. Click the toggle button to switch to Expression or Reference mode. Notice a warning icon appears at the top and the Default Value field is outlined in red. These indicate that a default value must be added.</p>
+<p>Do Not Copy 3-126 Module 3 – Symbols AVEVA™ Training 10. In Default Value, enter Me.Cmd.OffMsg. 11. In Description, enter Button caption. 12. Add another custom property and name it CmdOnMsg. 13. In the Data Type drop-down list, select String. 14. In Default Value, switch to Expression or Reference mode and enter Me.Cmd.OnMsg. 15. In Description, enter Button caption. 16. Click OK to close Edit Custom Properties.</p>
+<p>Do Not Copy Lab 9 – Creating a Custom Symbol 3-127 AVEVA™ InTouch for System Platform 2023 You will now add a button to the graphic. 17. In Tools, click the Button tool. 18. On the canvas, click and drag diagonally to draw a button. 19. Enter the button text as Open and press Enter. 20. Configure the properties for the button as follows: On the canvas, the button updates to reflect the changes you made to the properties. Your button should look as follows: ElementStyle: Intensity2 Width: 100 Height: 40</p>
+<p>Do Not Copy 3-128 Module 3 – Symbols AVEVA™ Training Next, you will add animations to the button. 21. On the canvas, double-click the button and add a Pushbutton animation. 22. Configure the animation as follows: 23. Add a Value Display animation. 24. Configure the animation as follows: States: Boolean Reference: Cmd Action: Set States: String Expression Or Reference: CmdOnMsg</p>
+<p>Do Not Copy Lab 9 – Creating a Custom Symbol 3-129 AVEVA™ InTouch for System Platform 2023 25. Add an Element Style animation. 26. Configure the animation as follows: Note: For this button, False, 0, Off is unchecked. This will use the default element style property of the button. The default is shown on the right side of Edit Animations. 27. Click OK to close Edit Animations. States: Boolean Reference: Cmd Values True, 1, On: Element Style checked (default) Intensity4 selected Values False, 0, Off: Element Style unchecked</p>
+<p>Do Not Copy 3-130 Module 3 – Symbols AVEVA™ Training Next, you will duplicate the button and configure its properties and modify its animations. 28. On the canvas, right-click the button and select Duplicate. 29. Place the duplicate button to the right of the original button. 30. On the Properties tab, modify the Text property to Close.</p>
+<p>Do Not Copy Lab 9 – Creating a Custom Symbol 3-131 AVEVA™ InTouch for System Platform 2023 The button text is updated on the canvas. 31. Double-click the Close button to edit the animations. 32. For the Element Style animation, in Expression Or Reference, enter not Cmd. Note: Using not for the reference reverses the element style values used in the animation. This technique saves time when configuring the animation. 33. For the Value Display animation, in Expression Or Reference, enter CmdOffMsg.</p>
+<p>Do Not Copy 3-132 Module 3 – Symbols AVEVA™ Training 34. For the Pushbutton animation, select Reset. 35. Click OK to close Edit Animations. In the following steps, you will add a status element to the graphic to display quality and status information at runtime. 36. In Tools, click Status.</p>
+<p>Do Not Copy Lab 9 – Creating a Custom Symbol 3-133 AVEVA™ InTouch for System Platform 2023 37. On the canvas, click and drag a small rectangle between the two buttons as shown below. Edit Animations appears. 38. On the Graphics tab, in the Available Graphic Elements list, select Button1, and then click the >> button to move it to the Selected Graphic Elements list. Button1 moves to the Selected Graphic Elements list. 39. Select Button2 and click the >> button to move it to the Selected Graphic Elements list. 40. Click OK to close Edit Animations.</p>
+<p>Do Not Copy 3-134 Module 3 – Symbols AVEVA™ Training Now, you will set the size of the canvas to Fixed and configure the width and height. 41. Click the canvas to set focus on the canvas. 42. Configure the properties as follows: The canvas is now smaller. 43. Save and close and check in the graphic. Size: Fixed FixedWidth: 320 FixedHeight: 230</p>
+<p>Do Not Copy Lab 9 – Creating a Custom Symbol 3-135 AVEVA™ InTouch for System Platform 2023 Create a Speed Setpoint Command Panel Next, you will duplicate CommandPanel and add a numerical graphic for displaying and changing the speed setpoint of the agitator. 44. On the Graphics tab, in the Training toolset, duplicate CommandPanel. 45. Name the duplicate symbol as CommandPanelwithSetpoint and then open it for editing. 46. On the Toolbox tab, search for numerical. 47. Drag SA_NumericalEntry to the canvas and place it below the buttons.</p>
+<p>Do Not Copy 3-136 Module 3 – Symbols AVEVA™ Training 48. Configure wizard options as follows: 49. On the canvas, right-click SA_NumericalEntry1 and select Substitute | Substitute References. Substitute Reference appears. LabelType: CustomPropertyLabel EngUnitsType: CustomPropertyLabel Outline: False</p>
+<p>Do Not Copy Lab 9 – Creating a Custom Symbol 3-137 AVEVA™ InTouch for System Platform 2023 50. Use Find & Replace to change all Me.PV references to Me.Speed.SP references. Your references should appear as follows: 51. Click OK to close Substitute Reference. 52. On the canvas, right-click SA_NumericalEntry1 and select Custom Properties. 53. In Custom Properties, select the Label property. 54. In Default Value, switch to Expression Or Reference mode and enter Me.Speed.SP.Description. 55. Click OK to close Edit Custom Properties. 56. Save and close and check in the graphic.</p>
+<p>Do Not Copy 3-138 Module 3 – Symbols AVEVA™ Training Configure Graphics to Show Command Panels Now, you will add a Show Symbol interaction animation to the agitator, pumps, and valves. To accomplish this, you will first add this animation to one graphic and then copy and paste it to the others. 57. On the Graphics tab, in the Training toolset, double-click Agitator_Detailed to edit it. 58. On the canvas, select the Agitator graphic, and then on the Properties tab, scroll down to Runtime Behavior and set the TreatAsIcon property to True. Setting TreatAsIcon to True enables interaction animations for an embedded graphic. Enabling this property is required before adding a Show Symbol animation to the Agitator.</p>
+<p>Do Not Copy Lab 9 – Creating a Custom Symbol 3-139 AVEVA™ InTouch for System Platform 2023 59. On the canvas, double-click the Agitator graphic and add a Show Symbol animation. Edit Animations appears.</p>
+<p>Do Not Copy 3-140 Module 3 – Symbols AVEVA™ Training 60. To the right of the Reference field, click Browse Galaxy, and then from the Graphic Toolbox, select Training and select CommandPanelwithSetpoint. 61. Click OK to close the Galaxy Browser.</p>
+<p>Do Not Copy Lab 9 – Creating a Custom Symbol 3-141 AVEVA™ InTouch for System Platform 2023 62. In Title, uncheck Use Symbol Name for Window Title. 63. Switch to Expression Or Reference mode and enter OwningObject. 64. In the Position drop-down lists, select Below and Parent Symbol. Your configuration will appear as follows: 65. Click OK to close Edit Animations.</p>
+<p>Do Not Copy 3-142 Module 3 – Symbols AVEVA™ Training 66. On the canvas, right-click the Agitator graphic and select Animations | Copy. 67. Save and close and check in the graphic. Next, you will configure the pumps and valves. 68. On the Graphics tab, double-click Pump_Detailed to edit it. 69. Select the Pump symbol, and on the Properties tab, set the TreatAsIcon property to True. 70. On the canvas, right-click the Pump graphic and select Animations | Paste. 71. On the canvas, double-click the Pump graphic. 72. In Edit Animations, in Reference, enter CommandPanel. 73. Click OK to close Edit Animations. 74. On the canvas, right-click the Pump graphic and select Animations | Copy. 75. Save and close and check in the graphic. 76. On the Graphics tab, double-click Valve_Detailed to edit it. 77. Select the Valve symbol, and on the Properties tab, set the TreatAsIcon property to True 78. On the canvas, right-click the Valve graphic and select Animations | Paste. 79. Save and close and check in the graphic.</p>
+<p>Do Not Copy Lab 9 – Creating a Custom Symbol 3-143 AVEVA™ InTouch for System Platform 2023 Test in Runtime Finally, you will click on a valve, pump, and agitator to use their command panels. 80. In WindowMaker, click Runtime. 81. Click Inlet1_001 to view its command panel. The title for the command panel is Inlet1_001, and the text on the buttons is Open and Close.</p>
+<p>Do Not Copy 3-144 Module 3 – Symbols AVEVA™ Training 82. In the command panel, identify the button that appears lighter (element style Intensity2) than the other and click it to command the valve. The following example shows the Open button as lighter than the other. Note: The simulated mixer process used in this course does not link the .Cmd attribute of motors and valves with their .PV attributes. Therefore, the command panel’s buttons do not show the current state of the equipment. Instead, the buttons only reflect the user’s interactions. Once the user issues a command, the data simulator performs an override to the automated process. 83. Click Open and Close to operate and watch the valve transition. 84. Observe the Quality & Status indicator shows an hourglass icon in the command panel briefly between each command.</p>
+<p>Do Not Copy Lab 9 – Creating a Custom Symbol 3-145 AVEVA™ InTouch for System Platform 2023 85. At the top of the Inlet1_001 command panel, click the X to close it. Note: If you do not click X, you will not be able to perform any other functions in WindowViewer. 86. Click Pump1_001 to view its command panel. The title of the command panel is Pump1_001 and the text on the buttons is Start and Stop. 87. Click Start and Stop to operate the pump and watch the results. Important: To ensure automatic operation of the simulator, click Start or Stop to make the pump’s state the same state as its associated valve. When the pump and valve are in the same state, the level in the tank will move. For example, if Inlet 1 is active, then Pump 1 must also be active. 88. At the top of the command panel, click the X to close it.</p>
+<p>Do Not Copy 3-146 Module 3 – Symbols AVEVA™ Training 89. Click Agitator_001 to view its command panel. In addition to the Start and Stop buttons, the Speed setpoint graphic appears on the command panel. 90. In Speed setpoint, click the number and enter 45, and then press Enter. The Status & Quality hourglass icon appears briefly after pressing Enter. 91. At the top of the command panel, click the X to close it.</p>
+<p>Do Not Copy Lab 9 – Creating a Custom Symbol 3-147 AVEVA™ InTouch for System Platform 2023 92. When the agitator is running, verify the new agitator speed setpoint. 93. Click Development! to return to WindowMaker. <End of Lab></p>
+<p>Do Not Copy 3-148 Module 3 – Symbols AVEVA™ Training</p>
+<p>Do Not Copy Section 7 – Scripts in Graphics 3-149 AVEVA™ InTouch for System Platform 2023 Section 7 – Scripts in Graphics Overview of the Scripting Environment You can write scripts to monitor and manage aspects of your InTouch applications. A script is a set of programmatic instructions that directs an InTouch application to perform an action. You write InTouch scripts with the QuickScript language. Using QuickScript, you can write scripts that include conditional branching, code looping, and local variables. Scripts can be classified by when they are run and whether they run independently of other ongoing application processes. Scripts can generally be run in two different ways:  Event-based scripts run once when an event occurs. For example, an event-based script can run after an operator presses a key or a tag value changes.  Time-based scripts run periodically while a condition is fulfilled. For example, a time-based script can run while a window is open or a button is kept pressed. You can configure multiple event-based and time-based scripts to run with the same trigger. For example, you can configure a script to run once when a key is pressed and another script to run periodically every 5 seconds while the same key remains pressed. For condition scripts, you can either run a script synchronously or asynchronously:  When a synchronous script runs, all InTouch animation and tag value updating stops. Then, animation and tag value updating resumes after the script stops.  When an asynchronous script runs, all InTouch animation and tag value updating continues during the period when the script runs. You can write scripts to extend and customize your objects. You can write scripts that run commands and logical operations, based on specified criteria being met. For example, a script starts when a key is pressed, a window is opened, or the value of an attribute changes. Using scripts, you can create a variety of customized and automated system functions. A script adds behavior that runs when the object that contains the script is deployed and the object is either:  On scan in the runtime environment; or  Changes scan or start/shutdown state A script typically runs based on attributes of the object that contains it, but can be started by another script based on changing values of attributes of more than one object. When a script condition is true, the script runs at least once immediately. The maximum length of a script trigger period is 49 days. A script never runs if the trigger period exceeds 49 days. The following characteristics apply to the scripting environment:  Script text has no length limitations.  Selecting a script function from the Script Function Library dialog box adds it and its syntax to the script text where you can edit it.  You can save a script with syntax errors, but the object cannot be deployed until you correct the script syntax errors.  You can validate your scripts before using them. This helps you avoid syntactically correct but semantically incorrect combinations, such as two statements declaring the same variable. Variables can be declared only one time in a single block. This section provides a brief overview of the scripting environment, explains execution types and triggers, and introduces ShowGraphic functions.</p>
+<p>Do Not Copy 3-150 Module 3 – Symbols AVEVA™ Training  You can change the name of a script at any time by renaming it in the Object Editor.  In the runtime environment, a script execution error stops the script’s current execution. Script execution is retried on the next AppEngine scan. You can use the InTouch scripting language, QuickScript, to build more robust applications. There are seven types of scripts and many built-in script functions available. The seven types of scripts are defined by what causes them to run. For example, application scripts run when an application starts, stops, or continues running. Data change scripts run when a certain item of data changes. Window scripts run when a window opens, closes, or remains open. The built-in script functions include mathematical functions, trigonometric functions, string functions, and others. Using these functions saves you time in developing your application. InTouch scripts can include Object Linking and Embedding (OLE) objects and ActiveX controls. You can use conditional statements, loops, and local variables in the scripting language to create complex effects in your application. Before you start scripting, you should understand:  A script is a set of instructions that direct an application to do something.  QuickScript is the InTouch HMI scripting language.  A function is a script that can be called by another script. The InTouch HMI comes with a set of predefined functions for your use.  QuickFunctions are reusable functions written in QuickScript and stored in the QuickFunction library. To create a QuickFunction, you simply create a QuickScript and name it. A QuickFunction can be called by another script or from animation link expressions. Types of Scripts In InTouch, scripts are categorized based on what causes the script to run. For example, you would create a “key script” if you want a script to run when the operator presses a certain key on the keyboard. After you have chosen the script type, you can then further define the criteria, or conditions, that make the script run. For example, you might want the script to run when the key is released, not when the key is pressed. The script types are:  Application scripts, which run either continuously while WindowViewer is running or one time when WindowViewer is started or shut down.  Window scripts, which run periodically when an InTouch window is open or one time when an InTouch window is opened or closed.  Key scripts, which run one time or periodically when a certain key or key combination is pressed or released.  Condition scripts, which run one time or periodically when a certain condition is fulfilled or not fulfilled.  Data change scripts, which run one time when the value of a certain tag or expression changes.  Action scripts, which run one time or periodically when an operator clicks on an InTouch HMI graphic object.  ActiveX event scripts, which run one time when an ActiveX event occurs, such as clicking an ActiveX control.</p>
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Lab 9 – Creating a Custom Symbol?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
+</div>
+
+<p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: Lesson L20 — Scripts in Graphics</p>
+
+<script>
+
+function saveProgress() {
+  var checks = {};
+  document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+    checks[cb.dataset.lesson] = cb.checked;
+  });
+  try {
+    localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks));
+  } catch(e) {}
+  updateProgressText();
+}
+
+function loadProgress() {
+  var data = null;
+  try {
+    data = localStorage.getItem('intouch-lesson-progress');
+  } catch(e) {}
+  if (!data) {
+    updateProgressText();
+    return;
+  }
+  try {
+    var checks = JSON.parse(data);
+    document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+      if (checks[cb.dataset.lesson]) {
+        cb.checked = true;
+      }
+    });
+  } catch(e) {}
+  updateProgressText();
+}
+
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').length;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' completed';
+}
+
+document.addEventListener('DOMContentLoaded', loadProgress);
+
+</script>
+</body>
+</html>

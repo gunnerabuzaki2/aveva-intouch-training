@@ -1,0 +1,379 @@
+{
+  "title": "AVEVA InTouch for System Platform 2023 Training",
+  "total_lessons": 41,
+  "total_images": 763,
+  "source_pdf": "/mnt/d/Manuals/AVEVA/InTouchForSystemPlatform.pdf",
+  "complete_md": "/home/eng_zaki/.hermes/skills/software-development/aveva-intouch/references/aveva_intouch_complete.md",
+  "images_dir": "images",
+  "lessons_dir": "lessons",
+  "modules": [
+    {
+      "module": 1,
+      "title": "Introduction",
+      "lessons": [
+        {
+          "id": "L01",
+          "title": "Course Introduction",
+          "filename": "L01-Course-Introduction.html",
+          "page_start": 1,
+          "page_end": 6,
+          "sections": ["Section 1 – Course Introduction"]
+        },
+        {
+          "id": "L02",
+          "title": "System Platform Overview",
+          "filename": "L02-System-Platform-Overview.html",
+          "page_start": 7,
+          "page_end": 10,
+          "sections": ["Section 2 – System Platform Overview"]
+        },
+        {
+          "id": "L03",
+          "title": "Lab 1 – Creating and Deploying a Galaxy",
+          "filename": "L03-Lab1-Creating-Galaxy.html",
+          "page_start": 11,
+          "page_end": 30,
+          "sections": ["Lab 1 – Creating and Deploying a Galaxy"]
+        },
+        {
+          "id": "L04",
+          "title": "Encrypted Communication + System Requirements",
+          "filename": "L04-Encryption-Requirements.html",
+          "page_start": 31,
+          "page_end": 40,
+          "sections": ["Section 3 – Encrypted Communication", "Section 4 – System Requirements and Licensing"]
+        }
+      ]
+    },
+    {
+      "module": 2,
+      "title": "Getting Started",
+      "lessons": [
+        {
+          "id": "L05",
+          "title": "InTouch Visualization + Automation Objects",
+          "filename": "L05-InTouch-Visualization-Objects.html",
+          "page_start": 41,
+          "page_end": 46,
+          "sections": ["Section 1 – Introduction to InTouch Visualization", "Section 2 – InTouch Automation Objects"]
+        },
+        {
+          "id": "L06",
+          "title": "Lab 2 – Creating a Managed InTouch Application",
+          "filename": "L06-Lab2-Managed-InTouch-App.html",
+          "page_start": 47,
+          "page_end": 54,
+          "sections": ["Lab 2 – Creating a Managed InTouch Application"]
+        },
+        {
+          "id": "L07",
+          "title": "InTouch Development Environment",
+          "filename": "L07-WindowMaker-Development.html",
+          "page_start": 55,
+          "page_end": 60,
+          "sections": ["Section 3 – Introduction to the InTouch Development Environment"]
+        },
+        {
+          "id": "L08",
+          "title": "Lab 3 – Building the Application Layout",
+          "filename": "L08-Lab3-Application-Layout.html",
+          "page_start": 61,
+          "page_end": 80,
+          "sections": ["Lab 3 – Building the Application Layout"]
+        },
+        {
+          "id": "L09",
+          "title": "Runtime Environment and Application Design",
+          "filename": "L09-Runtime-Environment.html",
+          "page_start": 81,
+          "page_end": 86,
+          "sections": ["Section 4 – Runtime Environment and Application Design"]
+        },
+        {
+          "id": "L10",
+          "title": "Lab 4 – Deploying an InTouch Application",
+          "filename": "L10-Lab4-Deploy-InTouch-App.html",
+          "page_start": 87,
+          "page_end": 98,
+          "sections": ["Lab 4 – Deploying an InTouch Application"]
+        }
+      ]
+    },
+    {
+      "module": 3,
+      "title": "Symbols",
+      "lessons": [
+        {
+          "id": "L11",
+          "title": "Symbol Overview + Graphic Editor",
+          "filename": "L11-Symbol-Overview-Graphic-Editor.html",
+          "page_start": 99,
+          "page_end": 112,
+          "sections": ["Section 1 – Symbol Overview", "Section 2 – Graphic Editor"]
+        },
+        {
+          "id": "L12",
+          "title": "Lab 5 – Building a Process Overview",
+          "filename": "L12-Lab5-Process-Overview.html",
+          "page_start": 113,
+          "page_end": 144,
+          "sections": ["Lab 5 – Building a Process Overview"]
+        },
+        {
+          "id": "L13",
+          "title": "Graphics with Objects",
+          "filename": "L13-Graphics-With-Objects.html",
+          "page_start": 145,
+          "page_end": 148,
+          "sections": ["Section 3 – Graphics with Objects"]
+        },
+        {
+          "id": "L14",
+          "title": "Lab 6 – Creating the Mixer Components",
+          "filename": "L14-Lab6-Mixer-Components.html",
+          "page_start": 149,
+          "page_end": 172,
+          "sections": ["Lab 6 – Creating the Mixer Components"]
+        },
+        {
+          "id": "L15",
+          "title": "Graphic Editor Tools and Animations",
+          "filename": "L15-Editor-Tools-Animations.html",
+          "page_start": 173,
+          "page_end": 180,
+          "sections": ["Section 4 – Graphic Editor Tools and Animations"]
+        },
+        {
+          "id": "L16",
+          "title": "Lab 7 – Creating the Mixer Display",
+          "filename": "L16-Lab7-Mixer-Display.html",
+          "page_start": 181,
+          "page_end": 204,
+          "sections": ["Lab 7 – Creating the Mixer Display"]
+        },
+        {
+          "id": "L17",
+          "title": "The OwningObject Property + Lab 8",
+          "filename": "L17-OwningObject-Lab8-Mixers.html",
+          "page_start": 205,
+          "page_end": 216,
+          "sections": ["Section 5 – The OwningObject Property", "Lab 8 – Switching Between Mixers"]
+        },
+        {
+          "id": "L18",
+          "title": "Custom Properties",
+          "filename": "L18-Custom-Properties.html",
+          "page_start": 217,
+          "page_end": 222,
+          "sections": ["Section 6 – Custom Properties"]
+        },
+        {
+          "id": "L19",
+          "title": "Lab 9 – Creating a Custom Symbol",
+          "filename": "L19-Lab9-Custom-Symbol.html",
+          "page_start": 223,
+          "page_end": 248,
+          "sections": ["Lab 9 – Creating a Custom Symbol"]
+        },
+        {
+          "id": "L20",
+          "title": "Scripts in Graphics",
+          "filename": "L20-Scripts-In-Graphics.html",
+          "page_start": 249,
+          "page_end": 254,
+          "sections": ["Section 7 – Scripts in Graphics"]
+        },
+        {
+          "id": "L21",
+          "title": "Lab 10 – Creating a Navigation Symbol",
+          "filename": "L21-Lab10-Navigation-Symbol.html",
+          "page_start": 255,
+          "page_end": 276,
+          "sections": ["Lab 10 – Creating a Navigation Symbol"]
+        },
+        {
+          "id": "L22",
+          "title": "Galaxy Styles",
+          "filename": "L22-Galaxy-Styles.html",
+          "page_start": 277,
+          "page_end": 280,
+          "sections": ["Section 8 – Galaxy Styles"]
+        }
+      ]
+    },
+    {
+      "module": 4,
+      "title": "Widgets",
+      "lessons": [
+        {
+          "id": "L23",
+          "title": "Widgets Overview + Lab 11",
+          "filename": "L23-Widgets-Lab11-Carousel.html",
+          "page_start": 281,
+          "page_end": 292,
+          "sections": ["Section 1 – Widgets Overview", "Lab 11 – Creating a Carousel Dashboard"]
+        }
+      ]
+    },
+    {
+      "module": 5,
+      "title": "Alarms and Events Visualization",
+      "lessons": [
+        {
+          "id": "L24",
+          "title": "Alarming Overview + Lab 12",
+          "filename": "L24-Alarming-Overview-Lab12.html",
+          "page_start": 293,
+          "page_end": 320,
+          "sections": ["Section 1 – Alarming Overview", "Lab 12 – Adding Alarm Notifications to Graphics"]
+        },
+        {
+          "id": "L25",
+          "title": "Lab 13 – Alarm Aggregation",
+          "filename": "L25-Lab13-Alarm-Aggregation.html",
+          "page_start": 321,
+          "page_end": 340,
+          "sections": ["Lab 13 – Building an Alarm Aggregation Overview"]
+        },
+        {
+          "id": "L26",
+          "title": "Live Alarms Visualization",
+          "filename": "L26-Live-Alarms-Visualization.html",
+          "page_start": 341,
+          "page_end": 350,
+          "sections": ["Section 2 – Live Alarms Visualization"]
+        },
+        {
+          "id": "L27",
+          "title": "Lab 14 – Current Alarms Display",
+          "filename": "L27-Lab14-Current-Alarms-Display.html",
+          "page_start": 351,
+          "page_end": 362,
+          "sections": ["Lab 14 – Building a Current Alarms Display"]
+        },
+        {
+          "id": "L28",
+          "title": "Lab 15 – Alarm Popup Symbol",
+          "filename": "L28-Lab15-Alarm-Popup.html",
+          "page_start": 363,
+          "page_end": 368,
+          "sections": ["Lab 15 – Creating an Alarm Popup Symbol"]
+        },
+        {
+          "id": "L29",
+          "title": "Historical Alarms + Lab 16",
+          "filename": "L29-Historical-Alarms-Lab16.html",
+          "page_start": 369,
+          "page_end": 380,
+          "sections": ["Section 3 – Historical Alarms and Events Visualization", "Lab 16 – Building a Historical Alarm Display"]
+        }
+      ]
+    },
+    {
+      "module": 6,
+      "title": "Trend Visualization",
+      "lessons": [
+        {
+          "id": "L30",
+          "title": "Historization + Real-Time Trending",
+          "filename": "L30-Historization-RealTime-Trends.html",
+          "page_start": 381,
+          "page_end": 386,
+          "sections": ["Section 1 – Historization Overview", "Section 2 – Real-Time Trending"]
+        },
+        {
+          "id": "L31",
+          "title": "Lab 17 – Adding Trending to Graphics",
+          "filename": "L31-Lab17-Adding-Trending.html",
+          "page_start": 387,
+          "page_end": 400,
+          "sections": ["Lab 17 – Adding Trending to Graphics"]
+        },
+        {
+          "id": "L32",
+          "title": "Multi Pens Trend",
+          "filename": "L32-Multi-Pens-Trend.html",
+          "page_start": 401,
+          "page_end": 422,
+          "sections": ["Section 3 – Multi Pens Trend"]
+        },
+        {
+          "id": "L33",
+          "title": "Lab 18 – Trend Popup Symbol",
+          "filename": "L33-Lab18-Trend-Popup.html",
+          "page_start": 423,
+          "page_end": 430,
+          "sections": ["Lab 18 – Creating a Trend Popup Symbol"]
+        },
+        {
+          "id": "L34",
+          "title": "Historian Client Trend + Lab 19",
+          "filename": "L34-Historian-Trend-Lab19.html",
+          "page_start": 431,
+          "page_end": 438,
+          "sections": ["Section 4 – Historian Client Trend Control", "Lab 19 – Building a Historian Client Trend Display"]
+        }
+      ]
+    },
+    {
+      "module": 7,
+      "title": "Security",
+      "lessons": [
+        {
+          "id": "L35",
+          "title": "Security Overview",
+          "filename": "L35-Security-Overview.html",
+          "page_start": 439,
+          "page_end": 472,
+          "sections": ["Section 1 – Security Overview"]
+        },
+        {
+          "id": "L36",
+          "title": "Lab 20 – Security Features in Graphics",
+          "filename": "L36-Lab20-Security-Features.html",
+          "page_start": 473,
+          "page_end": 500,
+          "sections": ["Lab 20 – Using Security Features in Graphics"]
+        },
+        {
+          "id": "L37",
+          "title": "Signed Writes + Lab 21",
+          "filename": "L37-Signed-Writes-Lab21.html",
+          "page_start": 501,
+          "page_end": 510,
+          "sections": ["Section 2 – Signed Writes", "Lab 21 – Signing Writes from InTouch"]
+        },
+        {
+          "id": "L38",
+          "title": "Runtime Customization + Lab 22",
+          "filename": "L38-Runtime-Customization-Lab22.html",
+          "page_start": 511,
+          "page_end": 526,
+          "sections": ["Section 3 – Customization of the Runtime Environment", "Lab 22 – Locking Down Your Application"]
+        }
+      ]
+    },
+    {
+      "module": 8,
+      "title": "Web Client",
+      "lessons": [
+        {
+          "id": "L39",
+          "title": "Web Client Overview",
+          "filename": "L39-Web-Client-Overview.html",
+          "page_start": 527,
+          "page_end": 536,
+          "sections": ["Section 1 – Web Client Overview"]
+        },
+        {
+          "id": "L40",
+          "title": "Lab 23 – Using the Web Client",
+          "filename": "L40-Lab23-Web-Client.html",
+          "page_start": 537,
+          "page_end": 550,
+          "sections": ["Lab 23 – Using the Web Client"]
+        }
+      ]
+    }
+  ]
+}

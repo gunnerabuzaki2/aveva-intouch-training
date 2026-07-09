@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson L15: Graphic Editor Tools and Animations</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="<a href="L14-Lab6-Mixer-Components.html">&larr; Lab 6 – Creating the Mixer Components</a>">&larr; Previous</a> &nbsp;|&nbsp;
+  <a href='L16-Lab7-Mixer-Display.html'>Lab 7 – Creating the Mixer Display &rarr;</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<details style="background:#f5f5f5;padding:0.8em;border-radius:6px;border:1px solid #ddd;margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">&#128218; All Lessons</summary>
+<div style="margin-top:0.8em;line-height:1.8;max-height:70vh;overflow-y:auto;">
+<div style="margin-bottom:0.5em;padding:0.5em;background:#e8f5e9;border-radius:4px;">
+<strong style="color:#2c5f2d;">&#9989; Progress: <span id="progress-text">0 / 40 completed</span></strong>
+</div>
+<strong>Module 1 &#8212; Introduction</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction.html">L01: Course Introduction</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-System-Platform-Overview.html">L02: System Platform Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html">L03: Lab 1 – Creating and Deploying a Galaxy</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Encryption-Requirements.html">L04: Encrypted Communication + System Requirements</a></label>
+<strong>Module 2 &#8212; Getting Started</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-InTouch-Visualization-Objects.html">L05: InTouch Visualization + Automation Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 – Creating a Managed InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-WindowMaker-Development.html">L07: InTouch Development Environment</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 – Building the Application Layout</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Runtime-Environment.html">L09: Runtime Environment and Application Design</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 – Deploying an InTouch Application</a></label>
+<strong>Module 3 &#8212; Symbols</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Symbol-Overview-Graphic-Editor.html">L11: Symbol Overview + Graphic Editor</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 – Building a Process Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Graphics-With-Objects.html">L13: Graphics with Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 – Creating the Mixer Components</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L15" checked onchange="saveProgress()"> <a href="L15-Editor-Tools-Animations.html" style="font-weight:bold;">L15: Graphic Editor Tools and Animations</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 – Creating the Mixer Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-OwningObject-Lab8-Mixers.html">L17: The OwningObject Property + Lab 8</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Custom-Properties.html">L18: Custom Properties</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 – Creating a Custom Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Scripts-In-Graphics.html">L20: Scripts in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 – Creating a Navigation Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Galaxy-Styles.html">L22: Galaxy Styles</a></label>
+<strong>Module 4 &#8212; Widgets</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Widgets-Lab11-Carousel.html">L23: Widgets Overview + Lab 11</a></label>
+<strong>Module 5 &#8212; Alarms and Events Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-Alarming-Overview-Lab12.html">L24: Alarming Overview + Lab 12</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 – Alarm Aggregation</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">L26: Live Alarms Visualization</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 – Current Alarms Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 – Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">L29: Historical Alarms + Lab 16</a></label>
+<strong>Module 6 &#8212; Trend Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">L30: Historization + Real-Time Trending</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 – Adding Trending to Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Multi-Pens-Trend.html">L32: Multi Pens Trend</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 – Trend Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Historian-Trend-Lab19.html">L34: Historian Client Trend + Lab 19</a></label>
+<strong>Module 7 &#8212; Security</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Security-Overview.html">L35: Security Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 – Security Features in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Signed-Writes-Lab21.html">L37: Signed Writes + Lab 21</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Runtime-Customization-Lab22.html">L38: Runtime Customization + Lab 22</a></label>
+<strong>Module 8 &#8212; Web Client</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Web-Client-Overview.html">L39: Web Client Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 – Using the Web Client</a></label>
+</div>
+</details>
+</nav>
+
+<h1>Lesson L15: Graphic Editor Tools and Animations</h1>
+<p class="page-ref">Module 3 — Symbols | Pages 173–180</p>
+
+<div class="screenshot">
+  <img src="../images/page_0173_0.png" alt="Page 0173">
+  <div class="caption">Page 0173</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0173_1.png" alt="Page 0173">
+  <div class="caption">Page 0173</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0173_2.png" alt="Page 0173">
+  <div class="caption">Page 0173</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0174_0.png" alt="Page 0174">
+  <div class="caption">Page 0174</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0174_1.png" alt="Page 0174">
+  <div class="caption">Page 0174</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0175_0.png" alt="Page 0175">
+  <div class="caption">Page 0175</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0175_1.png" alt="Page 0175">
+  <div class="caption">Page 0175</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0176.png" alt="Page 0176">
+  <div class="caption">Page 0176</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0177_0.png" alt="Page 0177">
+  <div class="caption">Page 0177</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0177_1.png" alt="Page 0177">
+  <div class="caption">Page 0177</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0179.png" alt="Page 0179">
+  <div class="caption">Page 0179</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0180_0.png" alt="Page 0180">
+  <div class="caption">Page 0180</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0180_1.png" alt="Page 0180">
+  <div class="caption">Page 0180</div>
+</div>
+
+<p>Do Not Copy Section 4 – Graphic Editor Tools and Animations 3-75 AVEVA™ InTouch for System Platform 2023 Connectors and Connection Points A connector is a line drawn between graphic elements. It starts at a connection point on one graphic element and ends at a connection point on another element. Connectors are particularly useful for complex graphics like flow diagrams, industrial piping, or electrical wiring diagrams that incorporate many lines between graphic elements. Connectors change length or orientation in response to changes to the connected graphic elements during design or runtime. Graphic elements can be moved, resized, or rotated and still maintain the connector between elements. Connection points are the locations on a graphic element to attach a connector. A default set of connection points appear on the bounding rectangle around a graphic element or an embedded graphic. You can also add custom connection points to graphic elements or embedded graphics if you want to place a connector at a different position than on a bounding rectangle.</p>
+<p>Do Not Copy 3-76 Module 3 – Symbols AVEVA™ Training Draw a Connector You can use the Connector tool to draw a connector between graphic elements. To draw a single connector between two elements, move your mouse over the first element and click a connection point. Then press and hold your left mouse button, drag the mouse to the second graphic element, and release the mouse when you are over the selected connection point. The connector appears as a line between the two elements. If you want to draw multiple connectors, you can double-click the Connector tool. Double-clicking a tool saves time by not requiring you to reselect the tool when using it to draw multiple elements of the same type on the canvas one after the other. Clicking another tool or pressing the Esc key will cancel the operation.</p>
+<p>Do Not Copy Section 4 – Graphic Editor Tools and Animations 3-77 AVEVA™ InTouch for System Platform 2023 Add a Connection Point You can use the Connection Point tool to place additional connection points on a graphic element. To add a single connection point, move your mouse to a location on a graphic element where you want to place a new connection point and click once. The new connection point appears as a green rectangle at the location you selected. Connection points can be added within the bounding rectangle of the hosting element of the embedded graphic. If you want to add multiple connection points, you can double-click the Connect tool. Double- clicking a tool saves time by not requiring you to reselect the tool when using it to draw multiple elements of the same type on the canvas one after the other. Clicking another tool or pressing the Esc key will cancel the operation.</p>
+<p>Do Not Copy 3-78 Module 3 – Symbols AVEVA™ Training Animations Animations can be used to change the appearance of graphic elements and allow users to interact with the view application at runtime. Some animations can be driven by data from automation objects, element properties, and other data sources. You configure animations with the Edit Animations dialog box You can use:  Visualization animations such as Visibility, Fill Style, Line Style, Text Style, Element Style, and more.  Interaction animations such as Disable, User Input, Slider Horizontal, Slider Vertical, Pushbutton, Action Scripts, and more. Elements in your graphic can have one or more animations. You can disable and enable individual animations. You can also cut, copy, and paste animations between elements. Only animations supported by the target element are pasted. You can also substitute references and strings in animations. Not all animations are available for all element types. Some animations do not make logical sense, such as line style with a text element. You cannot select or copy these invalid combinations.</p>
+<p>Do Not Copy Section 4 – Graphic Editor Tools and Animations 3-79 AVEVA™ InTouch for System Platform 2023 Value Display Animations For text elements, you can add Value Display animations to specify values at runtime. You can configure it to show:  A Boolean value as a Message  An Analog value  A string value  A time or date value  The tag name, hierarchical name or contained name of the hosting object  A value based on Truth Table conditions  A value based on Bit State conditions Disable Animation You can enable or disable animations for an element. When you disable an animation, its configuration is not lost. You can see each animation independently from each other. You can also disable animations from the Animation Summary pane in the bottom-right corner of the Graphic Editor. Element Style Animation You can use Element Style animations to apply element styles to an element or group of elements.  Boolean: Applies element styles based on a binary True, 1, On or False, 0, Off condition.  Truth Table: Applies element styles based on a set of evaluated values or expressions.  Bit State: Applies element styles based on bit state conditions.</p>
+<p>Do Not Copy 3-80 Module 3 – Symbols AVEVA™ Training Containment Relationships Application objects can be included in a containment relationship. When working in a containment relationship, symbols in each object can be embedded in other objects within the same containment by using relative references. In this way, the relative references within the embedded symbols will be resolved without further configuration. For example, if a contained object includes a symbol that is configured using relative references (such as Me.PV), the symbol can be embedded in a symbol of the container object. At the template level of containment, if the container template needs to include symbols from its contain templates, then you must add a symbol in the container template and embed the symbols from the contained templates through relative referencing. Element Styles Element Styles define a set of visual properties that determine the appearance of text, lines, graphic outlines, and interior fills shown in Industrial Graphics. They provide a means for developers to establish consistent visual standards in their applications. When applied to a graphic, the Element Style sets preconfigured visual property values that take precedence over the graphic’s native visual properties. The ElementStyle property on the Properties tab provides a list of element styles that can be applied to graphics. For more information of Element Styles, refer to Section 8, “Galaxy Styles.”</p>
+<p>Do Not Copy Lab 7 – Creating the Mixer Display 3-81 AVEVA™ InTouch for System Platform 2023 Lab 7 – Creating the Mixer Display Introduction In this lab, you will embed graphics in a containment relationship to create a composite view of the agitator, level, pumps, temperature, and valves in the Mixer application. You will add a symbol to the $Mixer template that will combine the contained graphics organized to represent the entire mixing process. To this symbol, you will also add text elements, animations, connection points, connectors, and apply element styles. Objectives Upon completion of this lab, you will be able to:  Add a symbol in an automation object  Embed graphics from relative references  Configure and embed graphics within a containment relationship  Add Text elements and configure Value Display animations  Apply element styles to elements  Use connectors and connection points  Change element display order  Replace a graphic in a frame window</p>
+<p>Do Not Copy 3-82 Module 3 – Symbols AVEVA™ Training Create the Mixer Symbol First, you will create a MixingProcess_Detailed symbol in the $Mixer template. This symbol will contain the graphics you created in the previous lab for the agitator, level, pumps, temperature, and valves. 1. In the IDE, on the Templates tab, in the Training\Project template toolset, double-click the $Mixer template to open it for editing. 2. In Content, click the Add button. 3. In Name, enter MixingProcess_Detailed. 4. In Description, enter Includes symbols from all contained objects.</p>
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Graphic Editor Tools and Animations?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
+</div>
+
+<p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: Lesson L16 — Lab 7 – Creating the Mixer Display</p>
+
+<script>
+
+function saveProgress() {
+  var checks = {};
+  document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+    checks[cb.dataset.lesson] = cb.checked;
+  });
+  try {
+    localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks));
+  } catch(e) {}
+  updateProgressText();
+}
+
+function loadProgress() {
+  var data = null;
+  try {
+    data = localStorage.getItem('intouch-lesson-progress');
+  } catch(e) {}
+  if (!data) {
+    updateProgressText();
+    return;
+  }
+  try {
+    var checks = JSON.parse(data);
+    document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+      if (checks[cb.dataset.lesson]) {
+        cb.checked = true;
+      }
+    });
+  } catch(e) {}
+  updateProgressText();
+}
+
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').length;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' completed';
+}
+
+document.addEventListener('DOMContentLoaded', loadProgress);
+
+</script>
+</body>
+</html>

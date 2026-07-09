@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson L39: Web Client Overview</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="<a href="L38-Runtime-Customization-Lab22.html">&larr; Runtime Customization + Lab 22</a>">&larr; Previous</a> &nbsp;|&nbsp;
+  <a href='L40-Lab23-Web-Client.html'>Lab 23 – Using the Web Client &rarr;</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<details style="background:#f5f5f5;padding:0.8em;border-radius:6px;border:1px solid #ddd;margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">&#128218; All Lessons</summary>
+<div style="margin-top:0.8em;line-height:1.8;max-height:70vh;overflow-y:auto;">
+<div style="margin-bottom:0.5em;padding:0.5em;background:#e8f5e9;border-radius:4px;">
+<strong style="color:#2c5f2d;">&#9989; Progress: <span id="progress-text">0 / 40 completed</span></strong>
+</div>
+<strong>Module 1 &#8212; Introduction</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction.html">L01: Course Introduction</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-System-Platform-Overview.html">L02: System Platform Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html">L03: Lab 1 – Creating and Deploying a Galaxy</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Encryption-Requirements.html">L04: Encrypted Communication + System Requirements</a></label>
+<strong>Module 2 &#8212; Getting Started</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-InTouch-Visualization-Objects.html">L05: InTouch Visualization + Automation Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 – Creating a Managed InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-WindowMaker-Development.html">L07: InTouch Development Environment</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 – Building the Application Layout</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Runtime-Environment.html">L09: Runtime Environment and Application Design</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 – Deploying an InTouch Application</a></label>
+<strong>Module 3 &#8212; Symbols</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Symbol-Overview-Graphic-Editor.html">L11: Symbol Overview + Graphic Editor</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 – Building a Process Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Graphics-With-Objects.html">L13: Graphics with Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 – Creating the Mixer Components</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Editor-Tools-Animations.html">L15: Graphic Editor Tools and Animations</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 – Creating the Mixer Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-OwningObject-Lab8-Mixers.html">L17: The OwningObject Property + Lab 8</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Custom-Properties.html">L18: Custom Properties</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 – Creating a Custom Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Scripts-In-Graphics.html">L20: Scripts in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 – Creating a Navigation Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Galaxy-Styles.html">L22: Galaxy Styles</a></label>
+<strong>Module 4 &#8212; Widgets</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Widgets-Lab11-Carousel.html">L23: Widgets Overview + Lab 11</a></label>
+<strong>Module 5 &#8212; Alarms and Events Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-Alarming-Overview-Lab12.html">L24: Alarming Overview + Lab 12</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 – Alarm Aggregation</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">L26: Live Alarms Visualization</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 – Current Alarms Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 – Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">L29: Historical Alarms + Lab 16</a></label>
+<strong>Module 6 &#8212; Trend Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">L30: Historization + Real-Time Trending</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 – Adding Trending to Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Multi-Pens-Trend.html">L32: Multi Pens Trend</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 – Trend Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Historian-Trend-Lab19.html">L34: Historian Client Trend + Lab 19</a></label>
+<strong>Module 7 &#8212; Security</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Security-Overview.html">L35: Security Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 – Security Features in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Signed-Writes-Lab21.html">L37: Signed Writes + Lab 21</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Runtime-Customization-Lab22.html">L38: Runtime Customization + Lab 22</a></label>
+<strong>Module 8 &#8212; Web Client</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L39" checked onchange="saveProgress()"> <a href="L39-Web-Client-Overview.html" style="font-weight:bold;">L39: Web Client Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 – Using the Web Client</a></label>
+</div>
+</details>
+</nav>
+
+<h1>Lesson L39: Web Client Overview</h1>
+<p class="page-ref">Module 8 — Web Client | Pages 527–536</p>
+
+<div class="screenshot">
+  <img src="../images/page_0527.png" alt="Page 0527">
+  <div class="caption">Page 0527</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0529_0.png" alt="Page 0529">
+  <div class="caption">Page 0529</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0529_1.png" alt="Page 0529">
+  <div class="caption">Page 0529</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0530.png" alt="Page 0530">
+  <div class="caption">Page 0530</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0531.png" alt="Page 0531">
+  <div class="caption">Page 0531</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0532.png" alt="Page 0532">
+  <div class="caption">Page 0532</div>
+</div>
+
+<p>Do Not Copy Module 8 – Web Client Section 1 – Web Client Overview 8-3 Lab 23 – Using the Web Client 8-11</p>
+<p>Do Not Copy 8-2 Module 8 – Web Client AVEVA™ Training Module Objectives  Describe the Web Client features and dependencies  Explain how to enable the Web Client  Explain how to navigate graphics in the Web Client  Explain the use of the Web Client fast switch</p>
+<p>Do Not Copy Section 1 – Web Client Overview 8-3 AVEVA™ InTouch for System Platform 2023 Section 1 – Web Client Overview Overview The InTouch Web Client feature (Web Client) allows you to view specific Industrial graphics used within an InTouch for System Platform application on any HTML5-supported web browser. A built- in web server enables web browsers access to application graphics, from any Microsoft Windows client or server operating system without the use of Remote Desktop Protocol (RDP) or Internet Information Services (IIS) for Microsoft Windows Server. You can view application Industrial graphics in a web browser for Managed applications only. Enable Web Client By default, the Web Client is disabled to secure systems where no decision has been made to enable a web server on the installation machine. You must have administrative privileges to enable or disable the Web Client feature. The Web Client is enabled from the AVEVA Application Manager, on the Web Client tab. When the Web Client is not started, the Web Client icon shows a small clock. To start the Web Client, click the Web Client icon. This section describes the Web Client features and dependencies.</p>
+<p>Do Not Copy 8-4 Module 8 – Web Client AVEVA™ Training Once the Web Client starts, the small clock no longer appears on the Web Client icon. Configure InTouch Application Graphics for Viewing in a Web Browser You can use the Industrial Graphic Toolbox in WindowMaker to configure the folder containing application graphics that will be displayed in the web browser Only graphics stored in the folder set as the Web Client root folder are displayed in the web browser. A single symbol within the Web Client Root Folder may be configured by enabling Set Web Client Home Symbol. The home symbol will be automatically selected and displayed when the InTouch Web Client is accessed using a browser. Additionally, the Web Client interface provides a home button which may be used to display the home symbol. The home symbol is marked in the Industrial Graphic Toolbox with a home icon.</p>
+<p>Do Not Copy Section 1 – Web Client Overview 8-5 AVEVA™ InTouch for System Platform 2023 Web Client Fast Switch When using the Web Client with InTouch for System Platform, WindowViewer must be running to provide data for the Web Client. Initially, the Web Client fast switch in WindowMaker may be disabled if the InTouch application path is not set to the current application path. This can occur after importing and starting a restored InTouch application or after switching InTouch applications. For InTouch, starting WindowViewer with the Runtime fast switch will do the following:  Set the application path to the current application and builds the application's Web folder  Enables the Web Client fast switch in WindowMaker (if disabled)  Starts WindowViewer which provides data for Web Client animations</p>
+<p>Do Not Copy 8-6 Module 8 – Web Client AVEVA™ Training Web Client Page The InTouch Web Client page provides various options to inform and organize the user experience using icons on the page. The following table describes these options. Element Description 1 The InTouch application name appears on the title bar, along with a hamburger button. You can click the hamburger button to view the folder navigation display. All folders and symbols under the selected Web Client root folder appear in the list. 2 The Home, Share, Notifications, Full Screen, and Profile icons appear on the title bar. You can click Notifications to view messages related to connection and licensing issues. 3 The canvas area displays the graphic selected from the navigation overlay. The graphic will be scaled to fit the browser viewport size, while maintaining the aspect ratio. The navigation and notifications overlays do not consume any space on the canvas or affect the size of the graphic.</p>
+<p>Do Not Copy Section 1 – Web Client Overview 8-7 AVEVA™ InTouch for System Platform 2023 Pan and Zoom Support InTouch Web Client supports the Pan and Zoom gestures for all supported browsers and devices. The pan and zoom capabilities are similar to Frame Window support on WindowViewer. When a graphic in the web browser is zoomed in from a non-mobile device, the zoom percentage is displayed in the lower left corner of the horizontal scrollbar. The zoom percentage is limited up to 500%. Behavior of the Web Client Home Button Standalone applications can be viewed on the web client. Standalone application windows must be converted to Industrial Graphics before they can be viewed on the Web Client. For InTouch applications, in WindowMaker you can use the Home Windows tab to set up windows that will appear by default in WindowViewer. Similarly, you can set a graphic to be the default symbol that appears on the web client when it is launched. These settings will impact, which window or graphic appears on the web client by default when it is launched. For an InTouch application; there are two possibilities:  If Home Windows are configured, even if the user has configured Home Symbols, on all occasions, only the Home Windows are displayed by default. Clicking the Home icon will display the Home Windows.  If Home Windows are not configured and the Home Symbol is configured, by default the home symbol will be displayed. If no Home windows and no Home symbol are configured then, by default, no symbol or Home windows are displayed. Clicking on the Home symbol will not display any graphic or window. Symbol Changes Reflected Automatically Graphic-related changes are made using the Graphic Editor, and those changes are automatically refreshed in the browser. However, changes in Quality and Status Style, Element Style, and Formatting Styles (for InTouch) are propagated only after making the following graphic changes or re-launching WindowViewer:  Content of symbol is updated and saved  Symbol is created, imported, or deleted  Symbol is moved to different toolset folder  Root folder or home symbol assignment is updated Displaying Individual Symbols Via URL To display an individual symbol in a browser you may use the following syntax: http://<hostname>/InTouchWeb/api/symbol/<graphicname> or http://<IPAddress>/InTouchWeb/api/symbol/<graphicname> For example, http://production/InTouchWeb/api/symbol/tankfarm, might be used to display a mixer symbol that represents a production vessel in a tank farm. Known Limitations A number of features common to InTouch for System Platform applications are not yet supported by the Web Client. For example, no ActiveX or .NET controls, such as the Alarm Client, are</p>
+<p>Do Not Copy 8-8 Module 8 – Web Client AVEVA™ Training supported at this time. For a detailed list and description of known limitations with Web Client consult the PDF file entitled Viewing InTouch Application Graphics in a Web Browser. Licensing for InTouch Application Graphics in a Browser Without a license installed, Web Client permits a single session use. This will usually allow you to connect a single browser to the InTouch Web Server, even permitting more than one tab to be opened, which is considered part of the same session. Without a license, a second browser would not be able to access the Web Server. For full unrestricted use of Web Client, you need a valid Web Server license to login and view application graphics from a web browser. The Web Server provides two types of licenses:  The Web Server Unlimited Read-Only license will allow you to connect to unlimited sessions for viewing application graphics in a web browser  The Web Server Unlimited ReadWrite license will allow you to connect to unlimited sessions for viewing and interacting with application graphics in a web browser Acquiring a License After the Web Server starts up, it will first Authenticate the user and then determine the user’s Authorization. During authentication, the web server will validate if the user is part of either the "aaInTouchUsers" or the "aaInTouchRWUsers" to be authenticated to use the Web Client. Both the user groups will be created during installation. The login user at the time of Web Client installation will be automatically added to both user groups. Additional users can be added later. After adding the new user to the group, the new user must log off and then re-login for the change to take effective. Next, the web server determines authorization for Read-Only or ReadWrite capability. First, the web server will attempt to acquire the ReadWrite license. If a ReadWrite license is not available, then it will attempt to acquire the Read-Only license. If a ReadOnly license is not available, then the web client will operate in a Single Session Mode. Authorization for Read-Only and ReadWrite Modes The Web Client supports two types of authorization modes: ReadWrite and Read-Only. In the ReadWrite mode, the user can:  Write to external references such as Application Server attributes or InTouch tags  Acknowledge alarms with details of the operator You can access the Write and Alarm Ack capability if both the following conditions are met:  The Web Server has acquired the Unlimited ReadWrite license  The user logged in to Web Client session is part of the aaInTouchRWUsers user group If ReadWrite mode is not available, then the Web Server attempts the Read-Only mode. The user can access the Read-Only mode only if:  The Web Server has acquired the Unlimited ReadWrite license, but the user logged in does not belong to the Web Client aaInTouchRWUsers user group, or  The Web Server has acquired the Unlimited ReadOnly license, or  The Web Server does not acquire any license and this web client session is the first client session In the Read-Only mode, the client session cannot write to external references or acknowledge alarms.</p>
+<p>Do Not Copy Section 1 – Web Client Overview 8-9 AVEVA™ InTouch for System Platform 2023 Single Session Mode If the Web Server does not acquire any license at startup, it will operate in the Single Web Session mode, which is assigned on a first come first serve basis.  If a valid license is unavailable and the first session license has been acquired, the Web Client will notify the user that no licenses are available  The Web Server allows sessions a grace period if the Web Server has acquired an unlimited license, but subsequently loses the license Web Client Application Windows Web Client will convert all Frame Windows in your application and make them available from the hamburger menu. Additionally, when you open Web Client, if Home windows are configured and the Home windows are Frame Windows, your Home windows will be displayed. Any application navigation configured, such as buttons to show windows or scripting using ShowGraphic(), ShowHome, or Show script functions, these will behave normally as if they were in WindowViewer. For example, Replace window functionality behaves normally in Web Client by closing any window the Replace window touches. When using this with ShowGraphic(), the identity property using InTouch:WindowName syntax, will properly identify the XY and width and height of the window for replace purposes. However, if the identity property does not used the InTouch: syntax, which causes it to create a brand new popup window in the Web Client, this window will act like a regular popup window by displaying on top of the other windows.</p>
+<p>Do Not Copy 8-10 Module 8 – Web Client AVEVA™ Training</p>
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Web Client Overview?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
+</div>
+
+<p class="source">Module 8 — Web Client. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: Lesson L40 — Lab 23 – Using the Web Client</p>
+
+<script>
+
+function saveProgress() {
+  var checks = {};
+  document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+    checks[cb.dataset.lesson] = cb.checked;
+  });
+  try {
+    localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks));
+  } catch(e) {}
+  updateProgressText();
+}
+
+function loadProgress() {
+  var data = null;
+  try {
+    data = localStorage.getItem('intouch-lesson-progress');
+  } catch(e) {}
+  if (!data) {
+    updateProgressText();
+    return;
+  }
+  try {
+    var checks = JSON.parse(data);
+    document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+      if (checks[cb.dataset.lesson]) {
+        cb.checked = true;
+      }
+    });
+  } catch(e) {}
+  updateProgressText();
+}
+
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').length;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' completed';
+}
+
+document.addEventListener('DOMContentLoaded', loadProgress);
+
+</script>
+</body>
+</html>

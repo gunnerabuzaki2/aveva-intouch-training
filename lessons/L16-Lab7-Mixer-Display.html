@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson L16: Lab 7 – Creating the Mixer Display</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="<a href="L15-Editor-Tools-Animations.html">&larr; Graphic Editor Tools and Animations</a>">&larr; Previous</a> &nbsp;|&nbsp;
+  <a href='L17-OwningObject-Lab8-Mixers.html'>The OwningObject Property + Lab 8 &rarr;</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<details style="background:#f5f5f5;padding:0.8em;border-radius:6px;border:1px solid #ddd;margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">&#128218; All Lessons</summary>
+<div style="margin-top:0.8em;line-height:1.8;max-height:70vh;overflow-y:auto;">
+<div style="margin-bottom:0.5em;padding:0.5em;background:#e8f5e9;border-radius:4px;">
+<strong style="color:#2c5f2d;">&#9989; Progress: <span id="progress-text">0 / 40 completed</span></strong>
+</div>
+<strong>Module 1 &#8212; Introduction</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction.html">L01: Course Introduction</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-System-Platform-Overview.html">L02: System Platform Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html">L03: Lab 1 – Creating and Deploying a Galaxy</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Encryption-Requirements.html">L04: Encrypted Communication + System Requirements</a></label>
+<strong>Module 2 &#8212; Getting Started</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-InTouch-Visualization-Objects.html">L05: InTouch Visualization + Automation Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 – Creating a Managed InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-WindowMaker-Development.html">L07: InTouch Development Environment</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 – Building the Application Layout</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Runtime-Environment.html">L09: Runtime Environment and Application Design</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 – Deploying an InTouch Application</a></label>
+<strong>Module 3 &#8212; Symbols</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Symbol-Overview-Graphic-Editor.html">L11: Symbol Overview + Graphic Editor</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 – Building a Process Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Graphics-With-Objects.html">L13: Graphics with Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 – Creating the Mixer Components</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Editor-Tools-Animations.html">L15: Graphic Editor Tools and Animations</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" checked onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html" style="font-weight:bold;">L16: Lab 7 – Creating the Mixer Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-OwningObject-Lab8-Mixers.html">L17: The OwningObject Property + Lab 8</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Custom-Properties.html">L18: Custom Properties</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 – Creating a Custom Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Scripts-In-Graphics.html">L20: Scripts in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 – Creating a Navigation Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Galaxy-Styles.html">L22: Galaxy Styles</a></label>
+<strong>Module 4 &#8212; Widgets</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Widgets-Lab11-Carousel.html">L23: Widgets Overview + Lab 11</a></label>
+<strong>Module 5 &#8212; Alarms and Events Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-Alarming-Overview-Lab12.html">L24: Alarming Overview + Lab 12</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 – Alarm Aggregation</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">L26: Live Alarms Visualization</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 – Current Alarms Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 – Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">L29: Historical Alarms + Lab 16</a></label>
+<strong>Module 6 &#8212; Trend Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">L30: Historization + Real-Time Trending</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 – Adding Trending to Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Multi-Pens-Trend.html">L32: Multi Pens Trend</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 – Trend Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Historian-Trend-Lab19.html">L34: Historian Client Trend + Lab 19</a></label>
+<strong>Module 7 &#8212; Security</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Security-Overview.html">L35: Security Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 – Security Features in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Signed-Writes-Lab21.html">L37: Signed Writes + Lab 21</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Runtime-Customization-Lab22.html">L38: Runtime Customization + Lab 22</a></label>
+<strong>Module 8 &#8212; Web Client</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Web-Client-Overview.html">L39: Web Client Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 – Using the Web Client</a></label>
+</div>
+</details>
+</nav>
+
+<h1>Lesson L16: Lab 7 – Creating the Mixer Display</h1>
+<p class="page-ref">Module 3 — Symbols | Pages 181–204</p>
+
+<div class="screenshot">
+  <img src="../images/page_0181_0.png" alt="Creating the Mixer Display 3-83">
+  <div class="caption">Creating the Mixer Display 3-83</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0181_1.png" alt="Creating the Mixer Display 3-83">
+  <div class="caption">Creating the Mixer Display 3-83</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0182_0.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0182_1.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0183.png" alt="Creating the Mixer Display 3-85">
+  <div class="caption">Creating the Mixer Display 3-85</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0184_0.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0184_1.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0185_0.png" alt="Creating the Mixer Display 3-87">
+  <div class="caption">Creating the Mixer Display 3-87</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0185_1.png" alt="Creating the Mixer Display 3-87">
+  <div class="caption">Creating the Mixer Display 3-87</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0186_0.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0186_1.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0187_0.png" alt="Creating the Mixer Display 3-89">
+  <div class="caption">Creating the Mixer Display 3-89</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0187_1.png" alt="Creating the Mixer Display 3-89">
+  <div class="caption">Creating the Mixer Display 3-89</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0188_0.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0188_1.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0188_2.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0189_0.png" alt="Creating the Mixer Display 3-91">
+  <div class="caption">Creating the Mixer Display 3-91</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0189_1.png" alt="Creating the Mixer Display 3-91">
+  <div class="caption">Creating the Mixer Display 3-91</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0189_2.png" alt="Creating the Mixer Display 3-91">
+  <div class="caption">Creating the Mixer Display 3-91</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0190_0.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0190_1.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0191_0.png" alt="Creating the Mixer Display 3-93">
+  <div class="caption">Creating the Mixer Display 3-93</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0191_1.png" alt="Creating the Mixer Display 3-93">
+  <div class="caption">Creating the Mixer Display 3-93</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0192_0.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0192_1.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0193.png" alt="Creating the Mixer Display 3-95">
+  <div class="caption">Creating the Mixer Display 3-95</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0194_0.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0194_1.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0195_0.png" alt="Creating the Mixer Display 3-97">
+  <div class="caption">Creating the Mixer Display 3-97</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0195_1.png" alt="Creating the Mixer Display 3-97">
+  <div class="caption">Creating the Mixer Display 3-97</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0196_0.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0196_1.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0196_2.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0197_0.png" alt="Creating the Mixer Display 3-99">
+  <div class="caption">Creating the Mixer Display 3-99</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0197_1.png" alt="Creating the Mixer Display 3-99">
+  <div class="caption">Creating the Mixer Display 3-99</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0197_2.png" alt="Creating the Mixer Display 3-99">
+  <div class="caption">Creating the Mixer Display 3-99</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0198_0.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0198_1.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0198_2.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0199.png" alt="Creating the Mixer Display 3-101">
+  <div class="caption">Creating the Mixer Display 3-101</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0200_0.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0200_1.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0201_0.png" alt="Creating the Mixer Display 3-103">
+  <div class="caption">Creating the Mixer Display 3-103</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0201_1.png" alt="Creating the Mixer Display 3-103">
+  <div class="caption">Creating the Mixer Display 3-103</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0203.png" alt="The OwningObject Property">
+  <div class="caption">The OwningObject Property</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0204_0.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0204_1.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+
+<p>Do Not Copy Lab 7 – Creating the Mixer Display 3-83 AVEVA™ InTouch for System Platform 2023 5. In Content, click the Edit Content button to open the Graphic Editor. Note: You can also double-click MixingProcess_Detailed in the Content pane to open the Graphic Editor. You will now embed symbols from contained objects through relative references. 6. Right-click the canvas and select Embed Industrial Graphic. 7. In the Galaxy Browser, click the Relative References button, and then embed Me.Pump1\Pump_Detailed.</p>
+<p>Do Not Copy 3-84 Module 3 – Symbols AVEVA™ Training 8. Place the graphic on the canvas as shown below: Leave space at the top-left of the canvas for text that you will add later in this lab. 9. Use the Galaxy Browser to embed Me.Pump2\Pump_Detailed on the canvas below the first pump as shown below:</p>
+<p>Do Not Copy Lab 7 – Creating the Mixer Display 3-85 AVEVA™ InTouch for System Platform 2023 10. Embed the following symbols on the canvas, using the screen shot below as a guide. Relative Reference Symbol Name Me.Inlet1 Valve_Detailed Me.Inlet2 Valve_Detailed Me.Outlet Valve_Detailed Me.Agitator Agitator_Detailed Me.Level Level_Detailed Me.Temperature Temperature_Detailed</p>
+<p>Do Not Copy 3-86 Module 3 – Symbols AVEVA™ Training 11. On the Toolbox tab, search for sa_tank, and then drag SA_Tank_Vessel to the canvas. 12. Move and resize SA_Tank_Vessel on the canvas to cover the Agitator, Level, and Temperature graphics.</p>
+<p>Do Not Copy Lab 7 – Creating the Mixer Display 3-87 AVEVA™ InTouch for System Platform 2023 13. On the Properties tab, configure SA_Tank_Vessel as follows: 14. Right-click Tank and select Substitute | Substitute Strings. 15. Change Label to Mixer. 16. Click OK to close Substitute Strings. The label changes to Mixer. Name: Tank QualityStatusIndicator: False</p>
+<p>Do Not Copy 3-88 Module 3 – Symbols AVEVA™ Training 17. With Tank selected, right-click and select Order | Send To Back. The order of the elements is updated and displayed in Elements.</p>
+<p>Do Not Copy Lab 7 – Creating the Mixer Display 3-89 AVEVA™ InTouch for System Platform 2023 Add Connection Points and Draw Connectors Between Graphics Next, you will add connection points to the Tank, and then draw connectors between the graphics to represent piping. You will use the Connection Point element and the Connector element from the Tools pane. 18. On the toolbar at the top, click the Canvas Zoom drop-down list, and select Fit. 19. Click Snap to Grid to turn off the snap to grid feature. 20. In Tools, double-click Connection Point. The cursor changes to a cross hair cursor. Note: Double-clicking a tool saves time by not requiring you to reselect the tool when using it to draw multiple elements of the same type on the canvas one after the other. Clicking another tool or pressing the Esc key will cancel the operation.</p>
+<p>Do Not Copy 3-90 Module 3 – Symbols AVEVA™ Training 21. Move the cursor to the left-side border of the tank and align the cursor with the built-in connection point on the right side of the Inlet1 graphic. The tank border turns green when the connection point cursor hovers over it. 22. Click to place the Connection Point element on the border of the tank. 23. Add a second Connection Point element to the left side border of the tank, aligned with the built-in connection point on the right side of the Inlet2 graphic.</p>
+<p>Do Not Copy Lab 7 – Creating the Mixer Display 3-91 AVEVA™ InTouch for System Platform 2023 The second connection point is added to the left-side border of the tank. Next, you will add connectors. 24. In Tools, double-click Connector. 25. Hover over the bottom-center of the Tank until the connection point appears, then click and drag the connector to the connection point on the left side of the Outlet valve.</p>
+<p>Do Not Copy 3-92 Module 3 – Symbols AVEVA™ Training 26. Hover over the connection point on the right side of Pump1, and then drag the connector to the connection point on the left side of Valve1. 27. Create a connector between Valve1 and the adjacent connection point on the Tank.</p>
+<p>Do Not Copy Lab 7 – Creating the Mixer Display 3-93 AVEVA™ InTouch for System Platform 2023 28. Add connectors between Pump2, Inlet2, and Tank as shown below: 29. In Tools, click Pointer. Note: Clicking the Pointer cancels the connector drawing operation.</p>
+<p>Do Not Copy 3-94 Module 3 – Symbols AVEVA™ Training 30. In Elements, press the Ctrl key and select the following elements:  Connector5  Connector4  Connector3  Connector2 31. On the Properties tab, in the ConnectionType drop-down list, select Straight. The bends in the selected connectors are removed. However, the valves and pumps may not be aligned. You will do this next.</p>
+<p>Do Not Copy Lab 7 – Creating the Mixer Display 3-95 AVEVA™ InTouch for System Platform 2023 32. On the canvas, select Pump1, press and hold the Shift key down, and then select Pump2 to add it to the selection. Both pumps are now selected. 33. With both pumps selected, use the up or down arrow keys on the keyboard to straighten the connectors between pumps and valves. If necessary, make other adjustments to the valves to ensure all the connectors are straight.</p>
+<p>Do Not Copy 3-96 Module 3 – Symbols AVEVA™ Training Add Text to Display Object Name and Area Name Now, you will add text elements to display the mixer name and area information. Then you will apply Element Styles and Value Display animations to these text elements. 34. In Tools, click Text. 35. Click at the top-left of the canvas. 36. Type Object Name and press Enter, and then type Area Name.</p>
+<p>Do Not Copy Lab 7 – Creating the Mixer Display 3-97 AVEVA™ InTouch for System Platform 2023 37. Click the canvas to cancel creating more text elements. The text elements should look similar to the following: 38. Select the Object Name text, and on the Properties tab, name the element ObjectName. 39. On the Properties tab, in the ElementStyle drop-down search field, enter title and select Title.</p>
+<p>Do Not Copy 3-98 Module 3 – Symbols AVEVA™ Training 40. On the canvas, select the Area Name text and configure properties as follows: 41. Move the Area Name text down a little. In the following steps, you will add animations to your text. 42. On the canvas, double-click ObjectName. Edit Animations appears. 43. Click the Add Animation button. Name: AreaName ElementStyle: Heading</p>
+<p>Do Not Copy Lab 7 – Creating the Mixer Display 3-99 AVEVA™ InTouch for System Platform 2023 44. Select the Value Display animation. 45. Configure the animation as follows: 46. Click OK to close Edit Animations. The text element is updated. States: Name Name to be displayed: Tag Name (default)</p>
+<p>Do Not Copy 3-100 Module 3 – Symbols AVEVA™ Training 47. On the canvas, double-click AreaName. 48. Add a Value Display animation. 49. In States, click String. 50. In Expression Or Reference, in the String field, enter Me.Area. 51. Click OK to close Edit Animations. 52. On the toolbar at the top, click Snap to Grid to enable the feature. 53. On the toolbar at the top, click Zoom to Normal. The elements on the canvas are resized.</p>
+<p>Do Not Copy Lab 7 – Creating the Mixer Display 3-101 AVEVA™ InTouch for System Platform 2023 54. Click the canvas to set focus on the canvas. 55. On the Properties tab, change the Size property to Fixed. 56. Adjust the canvas size to fit all elements, leaving some white space around the edges. 57. Save and close the MixingProcess_Detailed graphic. 58. Save and close the $Mixer object and check it in.</p>
+<p>Do Not Copy 3-102 Module 3 – Symbols AVEVA™ Training Replace Level Graphic with MixingProcess Graphic in ContentDisplay Window In the following steps, you will replace the Level_Detailed graphic in the ContentDisplay window with the MixingProcess_Detailed graphic you just created. 59. Switch to WindowMaker. 60. Right-click the ContentDisplay window and select Embed Industrial Graphic. 61. In the Galaxy Browser, click the Instances button, and then select Mixer100\MixingProcess_Detailed. 62. Click OK. A WindowMaker message appears, prompting you to confirm the replacement. This is because frame windows can only host one embedded symbol.</p>
+<p>Do Not Copy Lab 7 – Creating the Mixer Display 3-103 AVEVA™ InTouch for System Platform 2023 63. Click Yes to replace Level_001.Level_Detailed. The graphic is replaced. Test in Runtime Finally, you will view the MixingProcess_Detailed graphic in runtime. 64. Click Runtime. The MixingProcess_Detailed graphic appears in the ContentDisplay window.</p>
+<p>65. Click Development! to return to WindowMaker. <End of Lab></p>
+<p>Do Not Copy 3-104 Module 3 – Symbols AVEVA™ Training</p>
+<p>Do Not Copy Section 5 – The OwningObject Property 3-105 AVEVA™ InTouch for System Platform 2023 Section 5 – The OwningObject Property OwningObject Property OwningObject is a runtime property used to dynamically change the references within a graphic from one instance to another. It can be used as the object reference to replace all “Me.” references in expressions and scripts. The object name can be set using the tagname or the hierarchical name of an automation object. Windows Common Controls You can add the following Windows common controls to your graphic:  Radio button group  Check box  Edit box  Combo box  Calendar control  DateTime picker  List box You can place these Windows common controls as you would any other element by selecting them from the Tools pane. You click on the canvas to position a common control and, with exception of the calendar control, drag the rectangle to set the control. After placing the control on the canvas, you can configure:  Background color and text color (with exception of the DateTime Picker control).  Other control-specific properties  Control-specific animations This section introduces the OwningObject property and Windows common controls.</p>
+<p>Do Not Copy 3-106 Module 3 – Symbols AVEVA™ Training Combo Box Control and Combo Box Animation Combo Box controls allow users to select from a foldable list. You can configure a Combo Box element with a Combo Box animation. The Combo Box animation is only used by the Combo Box element. Combo Box types include:  Simple: At runtime, users can type a value or select one using up and down arrow buttons.  DropDown: At runtime, users can type a value or select one from the list  DropDownList: At runtime, users can only select a value from the list. They cannot type one. You can use the Static Values and Captions list to define values for the drop-down list. You can also use properties that are specific to the Combo Box control in scripting. At runtime, you can access the script to view and modify the items in the Combo Box Control. Some Combo Box-specific properties available at runtime include:  Count: Returns the number of items in a Combo Box control  NewIndex: Returns the index of the last item added to the Combo Box list These properties are available when you browse for a Combo Box control in your HMI's attribute/ tag browser.</p>
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Lab 7 – Creating the Mixer Display?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
+</div>
+
+<p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: Lesson L17 — The OwningObject Property + Lab 8</p>
+
+<script>
+
+function saveProgress() {
+  var checks = {};
+  document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+    checks[cb.dataset.lesson] = cb.checked;
+  });
+  try {
+    localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks));
+  } catch(e) {}
+  updateProgressText();
+}
+
+function loadProgress() {
+  var data = null;
+  try {
+    data = localStorage.getItem('intouch-lesson-progress');
+  } catch(e) {}
+  if (!data) {
+    updateProgressText();
+    return;
+  }
+  try {
+    var checks = JSON.parse(data);
+    document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+      if (checks[cb.dataset.lesson]) {
+        cb.checked = true;
+      }
+    });
+  } catch(e) {}
+  updateProgressText();
+}
+
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').length;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' completed';
+}
+
+document.addEventListener('DOMContentLoaded', loadProgress);
+
+</script>
+</body>
+</html>

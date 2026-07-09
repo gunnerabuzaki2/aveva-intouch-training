@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson L12: Lab 5 – Building a Process Overview</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="<a href="L11-Symbol-Overview-Graphic-Editor.html">&larr; Symbol Overview + Graphic Editor</a>">&larr; Previous</a> &nbsp;|&nbsp;
+  <a href='L13-Graphics-With-Objects.html'>Graphics with Objects &rarr;</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<details style="background:#f5f5f5;padding:0.8em;border-radius:6px;border:1px solid #ddd;margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">&#128218; All Lessons</summary>
+<div style="margin-top:0.8em;line-height:1.8;max-height:70vh;overflow-y:auto;">
+<div style="margin-bottom:0.5em;padding:0.5em;background:#e8f5e9;border-radius:4px;">
+<strong style="color:#2c5f2d;">&#9989; Progress: <span id="progress-text">0 / 40 completed</span></strong>
+</div>
+<strong>Module 1 &#8212; Introduction</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction.html">L01: Course Introduction</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-System-Platform-Overview.html">L02: System Platform Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html">L03: Lab 1 – Creating and Deploying a Galaxy</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Encryption-Requirements.html">L04: Encrypted Communication + System Requirements</a></label>
+<strong>Module 2 &#8212; Getting Started</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-InTouch-Visualization-Objects.html">L05: InTouch Visualization + Automation Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 – Creating a Managed InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-WindowMaker-Development.html">L07: InTouch Development Environment</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 – Building the Application Layout</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Runtime-Environment.html">L09: Runtime Environment and Application Design</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 – Deploying an InTouch Application</a></label>
+<strong>Module 3 &#8212; Symbols</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Symbol-Overview-Graphic-Editor.html">L11: Symbol Overview + Graphic Editor</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" checked onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html" style="font-weight:bold;">L12: Lab 5 – Building a Process Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Graphics-With-Objects.html">L13: Graphics with Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 – Creating the Mixer Components</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Editor-Tools-Animations.html">L15: Graphic Editor Tools and Animations</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 – Creating the Mixer Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-OwningObject-Lab8-Mixers.html">L17: The OwningObject Property + Lab 8</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Custom-Properties.html">L18: Custom Properties</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 – Creating a Custom Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Scripts-In-Graphics.html">L20: Scripts in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 – Creating a Navigation Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Galaxy-Styles.html">L22: Galaxy Styles</a></label>
+<strong>Module 4 &#8212; Widgets</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Widgets-Lab11-Carousel.html">L23: Widgets Overview + Lab 11</a></label>
+<strong>Module 5 &#8212; Alarms and Events Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-Alarming-Overview-Lab12.html">L24: Alarming Overview + Lab 12</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 – Alarm Aggregation</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">L26: Live Alarms Visualization</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 – Current Alarms Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 – Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">L29: Historical Alarms + Lab 16</a></label>
+<strong>Module 6 &#8212; Trend Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">L30: Historization + Real-Time Trending</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 – Adding Trending to Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Multi-Pens-Trend.html">L32: Multi Pens Trend</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 – Trend Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Historian-Trend-Lab19.html">L34: Historian Client Trend + Lab 19</a></label>
+<strong>Module 7 &#8212; Security</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Security-Overview.html">L35: Security Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 – Security Features in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Signed-Writes-Lab21.html">L37: Signed Writes + Lab 21</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Runtime-Customization-Lab22.html">L38: Runtime Customization + Lab 22</a></label>
+<strong>Module 8 &#8212; Web Client</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Web-Client-Overview.html">L39: Web Client Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 – Using the Web Client</a></label>
+</div>
+</details>
+</nav>
+
+<h1>Lesson L12: Lab 5 – Building a Process Overview</h1>
+<p class="page-ref">Module 3 — Symbols | Pages 113–144</p>
+
+<div class="screenshot">
+  <img src="../images/page_0113.png" alt="Lab 5, Page 3-15: Building a Process Overview Introduction">
+  <div class="caption">Lab 5, Page 3-15: Building a Process Overview Introduction</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0114_0.png" alt="Module 3, Page 3-16: Create Graphic Toolsets">
+  <div class="caption">Module 3, Page 3-16: Create Graphic Toolsets</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0114_1.png" alt="Module 3, Page 3-16: Create Graphic Toolsets">
+  <div class="caption">Module 3, Page 3-16: Create Graphic Toolsets</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0114_2.png" alt="Module 3, Page 3-16: Create Graphic Toolsets">
+  <div class="caption">Module 3, Page 3-16: Create Graphic Toolsets</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0115.png" alt="Lab 5, Page 3-17: Drag Apps to Toolset">
+  <div class="caption">Lab 5, Page 3-17: Drag Apps to Toolset</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0116_0.png" alt="Module 3, Page 3-18: Organize .NET Controls & Create Training Toolset">
+  <div class="caption">Module 3, Page 3-18: Organize .NET Controls & Create Training Toolset</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0116_1.png" alt="Module 3, Page 3-18: Organize .NET Controls & Create Training Toolset">
+  <div class="caption">Module 3, Page 3-18: Organize .NET Controls & Create Training Toolset</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0117_0.png" alt="Lab 5, Page 3-19: Create ProcessOverview Symbol">
+  <div class="caption">Lab 5, Page 3-19: Create ProcessOverview Symbol</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0117_1.png" alt="Lab 5, Page 3-19: Create ProcessOverview Symbol">
+  <div class="caption">Lab 5, Page 3-19: Create ProcessOverview Symbol</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0118.png" alt="Module 3, Page 3-20: Open ProcessOverview in Graphic Editor">
+  <div class="caption">Module 3, Page 3-20: Open ProcessOverview in Graphic Editor</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0119.png" alt="Lab 5, Page 3-21: Embed and Configure Graphics from Library">
+  <div class="caption">Lab 5, Page 3-21: Embed and Configure Graphics from Library</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0120.png" alt="Module 3, Page 3-22: SA Library Dashboard Tools">
+  <div class="caption">Module 3, Page 3-22: SA Library Dashboard Tools</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0121_0.png" alt="Lab 5, Page 3-23: Drag Stacked Column Chart to Canvas">
+  <div class="caption">Lab 5, Page 3-23: Drag Stacked Column Chart to Canvas</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0121_1.png" alt="Lab 5, Page 3-23: Drag Stacked Column Chart to Canvas">
+  <div class="caption">Lab 5, Page 3-23: Drag Stacked Column Chart to Canvas</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0122_0.png" alt="Module 3, Page 3-24: Configure Chart Name & Wizard Options">
+  <div class="caption">Module 3, Page 3-24: Configure Chart Name & Wizard Options</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0122_1.png" alt="Module 3, Page 3-24: Configure Chart Name & Wizard Options">
+  <div class="caption">Module 3, Page 3-24: Configure Chart Name & Wizard Options</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0122_2.png" alt="Module 3, Page 3-24: Configure Chart Name & Wizard Options">
+  <div class="caption">Module 3, Page 3-24: Configure Chart Name & Wizard Options</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0123_0.png" alt="Lab 5, Page 3-25: Edit Custom Properties & Galaxy Browser">
+  <div class="caption">Lab 5, Page 3-25: Edit Custom Properties & Galaxy Browser</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0123_1.png" alt="Lab 5, Page 3-25: Edit Custom Properties & Galaxy Browser">
+  <div class="caption">Lab 5, Page 3-25: Edit Custom Properties & Galaxy Browser</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0124_0.png" alt="Module 3, Page 3-26: Hierarchical Names & Tag References">
+  <div class="caption">Module 3, Page 3-26: Hierarchical Names & Tag References</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0124_1.png" alt="Module 3, Page 3-26: Hierarchical Names & Tag References">
+  <div class="caption">Module 3, Page 3-26: Hierarchical Names & Tag References</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0124_2.png" alt="Module 3, Page 3-26: Hierarchical Names & Tag References">
+  <div class="caption">Module 3, Page 3-26: Hierarchical Names & Tag References</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0125.png" alt="Lab 5, Page 3-27: Property Mapping Table & Batch Configuration">
+  <div class="caption">Lab 5, Page 3-27: Property Mapping Table & Batch Configuration</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0126.png" alt="Module 3, Page 3-28: Substitute Strings for Labels">
+  <div class="caption">Module 3, Page 3-28: Substitute Strings for Labels</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0127.png" alt="Lab 5, Page 3-29: String Substitution Dialog">
+  <div class="caption">Lab 5, Page 3-29: String Substitution Dialog</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0128_0.png" alt="Module 3, Page 3-30: Updated Chart & Embed Industrial Graphic">
+  <div class="caption">Module 3, Page 3-30: Updated Chart & Embed Industrial Graphic</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0128_1.png" alt="Module 3, Page 3-30: Updated Chart & Embed Industrial Graphic">
+  <div class="caption">Module 3, Page 3-30: Updated Chart & Embed Industrial Graphic</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0129.png" alt="Lab 5, Page 3-31: Galaxy Browser Dashboard Tools">
+  <div class="caption">Lab 5, Page 3-31: Galaxy Browser Dashboard Tools</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0130_0.png" alt="Module 3, Page 3-32: Embed SA_BarChart & Configure">
+  <div class="caption">Module 3, Page 3-32: Embed SA_BarChart & Configure</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0130_1.png" alt="Module 3, Page 3-32: Embed SA_BarChart & Configure">
+  <div class="caption">Module 3, Page 3-32: Embed SA_BarChart & Configure</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0131.png" alt="Lab 5, Page 3-33: ProducedProducts Custom Properties">
+  <div class="caption">Lab 5, Page 3-33: ProducedProducts Custom Properties</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0132_0.png" alt="Module 3, Page 3-34: Galaxy Browser for ProducedProducts">
+  <div class="caption">Module 3, Page 3-34: Galaxy Browser for ProducedProducts</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0132_1.png" alt="Module 3, Page 3-34: Galaxy Browser for ProducedProducts">
+  <div class="caption">Module 3, Page 3-34: Galaxy Browser for ProducedProducts</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0133.png" alt="Lab 5, Page 3-35: ProducedProducts Property Mappings">
+  <div class="caption">Lab 5, Page 3-35: ProducedProducts Property Mappings</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0134.png" alt="Module 3, Page 3-36: Substitute Strings for ProducedProducts">
+  <div class="caption">Module 3, Page 3-36: Substitute Strings for ProducedProducts</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0135.png" alt="Lab 5, Page 3-37: ProducedProducts String Substitution">
+  <div class="caption">Lab 5, Page 3-37: ProducedProducts String Substitution</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0136_0.png" alt="Module 3, Page 3-38: Updated Chart & Fixed Canvas Size">
+  <div class="caption">Module 3, Page 3-38: Updated Chart & Fixed Canvas Size</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0136_1.png" alt="Module 3, Page 3-38: Updated Chart & Fixed Canvas Size">
+  <div class="caption">Module 3, Page 3-38: Updated Chart & Fixed Canvas Size</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0137.png" alt="Lab 5, Page 3-39: Final Canvas Layout">
+  <div class="caption">Lab 5, Page 3-39: Final Canvas Layout</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0138.png" alt="Module 3, Page 3-40: Resize Canvas">
+  <div class="caption">Module 3, Page 3-40: Resize Canvas</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0139_0.png" alt="Lab 5, Page 3-41: Save, Check-in & Embed Symbol">
+  <div class="caption">Lab 5, Page 3-41: Save, Check-in & Embed Symbol</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0139_1.png" alt="Lab 5, Page 3-41: Save, Check-in & Embed Symbol">
+  <div class="caption">Lab 5, Page 3-41: Save, Check-in & Embed Symbol</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0140_0.png" alt="Module 3, Page 3-42: Drag ProcessOverview to Canvas">
+  <div class="caption">Module 3, Page 3-42: Drag ProcessOverview to Canvas</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0140_1.png" alt="Module 3, Page 3-42: Drag ProcessOverview to Canvas">
+  <div class="caption">Module 3, Page 3-42: Drag ProcessOverview to Canvas</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0141.png" alt="Top Panel: "Windows" with dropdown/expand buttons">
+  <div class="caption">Top Panel: "Windows" with dropdown/expand buttons</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0142.png" alt="Title: "Consumed Materials">
+  <div class="caption">Title: "Consumed Materials</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0144_0.png" alt="Content pane on Attributes tab in Object Editor">
+  <div class="caption">Content pane on Attributes tab in Object Editor</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0144_1.png" alt="Content pane on Attributes tab in Object Editor">
+  <div class="caption">Content pane on Attributes tab in Object Editor</div>
+</div>
+
+<p>Do Not Copy Lab 5 – Building a Process Overview 3-15 AVEVA™ InTouch for System Platform 2023 Lab 5 – Building a Process Overview Introduction In this lab, you will create graphic toolsets on the Graphics tab for organizing some out-of-the-box items, as well as a toolset for organizing the graphic items created in this course. You will use the Graphic Editor to create a new symbol on the Graphics tab. You will embed the SA_StackedColumnChart and SA_BarChart graphics from the Situational Awareness dashboard tools library in your symbol. This combination of dashboard graphics will represent consumed materials and produced products for eight mixers in your plant. Objectives Upon completion of this lab, you will be able to:  Create a Graphics toolset  Create a symbol to edit in the Graphic Editor  Embed a graphic using the Graphic Editor Toolbox tab  Embed a graphic from the Galaxy Browser using the Embed Industrial Graphic menu  Create a process overview using Situational Awareness Library  Configure Wizard Options  Configure Custom Properties  Configure strings and references  Configure the canvas to a fixed size</p>
+<p>Do Not Copy 3-16 Module 3 – Symbols AVEVA™ Training Create Graphic Toolsets First, you will organize some out-of-the-box items into toolsets. Then, you will create a toolset for organizing the graphic items you will create in this course. 1. In the IDE, on the Graphics tab, right-click TrainingGalaxy and select New | Graphic Toolset. 2. Name the new toolset as Apps. 3. Right-click TrainingGalaxy and select New | Graphic Toolset. 4. Name the new toolset as .NET Controls.</p>
+<p>Do Not Copy Lab 5 – Building a Process Overview 3-17 AVEVA™ InTouch for System Platform 2023 5. Select the following apps and drag them to the Apps toolset:  AlarmApp  ContentPresenterApp  DocViewerApp  GraphicRepeaterApp  HamburgerApp  HistoricalTrendApp  ImageViewerApp  InSightApp  MapApp  NavigationApp  PDFViewerApp  SpreadsheetViewerApp  TitleBarApp  WWWebAppControls</p>
+<p>Do Not Copy 3-18 Module 3 – Symbols AVEVA™ Training 6. Select the following client controls and drag them to the .NET Controls toolset:  aaTrendControl  AlarmClient  TrendClient 7. Collapse the Apps and .NET Controls toolsets. 8. Right-click TrainingGalaxy and create another toolset named Training.</p>
+<p>Do Not Copy Lab 5 – Building a Process Overview 3-19 AVEVA™ InTouch for System Platform 2023 Create a Process Overview Symbol Next, you will create a ProcessOverview symbol on the Graphics tab. You will embed two Situational Awareness graphics in the symbol. 9. Right-click the Training toolset and select New | Symbol. 10. Name the new symbol as ProcessOverview.</p>
+<p>Do Not Copy 3-20 Module 3 – Symbols AVEVA™ Training 11. Double-click ProcessOverview to open it for editing. ProcessOverview is opened in the Graphic Editor. 12. Maximize the Graphic Editor to accommodate both of the graphics you will embed.</p>
+<p>Do Not Copy Lab 5 – Building a Process Overview 3-21 AVEVA™ InTouch for System Platform 2023 Embed and Configure Graphics from the Library Now, you will embed graphics from the Situational Awareness Library. From the dashboard tools library, you will embed the SA_StackedColumnChart and SA_BarChart graphics to show consumed materials and produced products. You will use a Toolbox tab workflow to embed the graphic. 13. On the right-side of the Graphic Editor, select the Toolbox tab. The toolsets from the Graphics tab in the IDE appear.</p>
+<p>Do Not Copy 3-22 Module 3 – Symbols AVEVA™ Training 14. Expand Situational Awareness Library, scroll down, and then select Dashboard Tools. The preview area at the bottom shows the available graphics.</p>
+<p>Do Not Copy Lab 5 – Building a Process Overview 3-23 AVEVA™ InTouch for System Platform 2023 15. In the preview area, select SA_StackedColumnChart. 16. Drag SA_StackedColumnChart to the canvas.</p>
+<p>Do Not Copy 3-24 Module 3 – Symbols AVEVA™ Training You will now configure the name, wizard options, custom properties, and strings for the symbol. 17. On the right side of the Graphic Editor, select the Properties tab. 18. In Name, enter IngredientsConsumed. 19. In Wizard Options \ NumberofBars, click the field to view a drop-down list and select Eight. 20. On the canvas, right-click the IngredientsConsumed graphic and select Custom Properties.</p>
+<p>Do Not Copy Lab 5 – Building a Process Overview 3-25 AVEVA™ InTouch for System Platform 2023 Edit Custom Properties appears with Bar01A selected in the Custom Properties list. 21. In Default Value, select 0. 22. To the right of the Default Value field, click the Browse Galaxy button. The Galaxy Browser appears.</p>
+<p>Do Not Copy 3-26 Module 3 – Symbols AVEVA™ Training 23. Click the Show Hierarchical Name button to switch the view. 24. In the Instances list, select Mixer100.Totalizer1, and in the Attributes list, select PV. 25. Click OK. The default value of 0 is replaced with Mixer100.Totalizer1.PV.</p>
+<p>Do Not Copy Lab 5 – Building a Process Overview 3-27 AVEVA™ InTouch for System Platform 2023 In the next steps, you will enter the remaining custom properties. A convenient shortcut is to double-click the Default Value field to open the Galaxy Browser. Double-clicking will select the default value 0 and open the Galaxy Browser. 26. Modify other custom properties as follows: Note: Observe the screen shot below the table. Notice only the A and B bars have values. As you enter values for the custom properties list, you will skip the C and D entries. The table below only shows the custom properties to modify. 27. Click OK to close Edit Custom Properties. Name Default Value Bar01B Mixer100.Totalizer2.PV Bar02A Mixer200.Totalizer1.PV Bar02B Mixer200.Totalizer2.PV Bar03A Mixer300.Totalizer1.PV Bar03B Mixer300.Totalizer2.PV Bar04A Mixer400.Totalizer1.PV Bar04B Mixer400.Totalizer2.PV Bar05A Mixer500.Totalizer1.PV Bar05B Mixer500.Totalizer2.PV Bar06A Mixer600.Totalizer1.PV Bar06B Mixer600.Totalizer2.PV Bar07A Mixer700.Totalizer1.PV Bar07B Mixer700.Totalizer2.PV Bar08A Mixer800.Totalizer1.PV Bar08B Mixer800.Totalizer2.PV</p>
+<p>Do Not Copy 3-28 Module 3 – Symbols AVEVA™ Training 28. On the canvas, right-click IngredientsConsumed and select Substitute | Substitute Strings to change the static text labels in the graphic. Substitute Strings appears.</p>
+<p>Do Not Copy Lab 5 – Building a Process Overview 3-29 AVEVA™ InTouch for System Platform 2023 In the following steps, you will enter unique strings that will appear as labels in the graphic. If you enter multiple strings that match, subsequent openings of the Substitute Strings dialog box will consolidate the duplicate entries. This will lead to a situation where you can never edit the individual strings again, and you would need to delete the graphic and lose your wizard options, custom properties, size, position, graphic name, and strings. To avoid this issue, a best practice is to enter unique strings. 29. Substitute the strings as follows: 30. Click OK to close Substitute Strings. Current String New String A Ingr1 B Ingr2 B1 M100 B2 M200 B3 M300 B4 M400 B5 M500 B6 M600 B7 M700 B8 M800 C N/A-C Chart Heading Consumed Materials D N/A-D Horizontal Axis Description Mixers Short Description Consumed materials quantity of current batch Vertical Axis Description Materials Quantity</p>
+<p>Do Not Copy 3-30 Module 3 – Symbols AVEVA™ Training The graphic is updated with the new strings. Next, you will embed a dashboard tools graphic named SA_BarChart on the canvas and configure it to show produced products. You will use a context menu workflow to embed the graphic. 31. In a blank area on the canvas, right-click and select Embed Industrial Graphic.</p>
+<p>Do Not Copy Lab 5 – Building a Process Overview 3-31 AVEVA™ InTouch for System Platform 2023 The Galaxy Browser appears. 32. In the Galaxy Browser, expand Situational Awareness Library and select Dashboard Tools.</p>
+<p>Do Not Copy 3-32 Module 3 – Symbols AVEVA™ Training 33. In the preview area, double-click SA_BarChart to select it and close Galaxy Browser. 34. Below the IngredientsConsumed graphic, click the canvas to embed the SA_BarChart graphic. 35. On the Properties tab, in Name, enter ProducedProducts. 36. In Wizard Options, configure the options as follows: Leave the remaining defaults. NumberofBars: Eight SortOrder: None</p>
+<p>Do Not Copy Lab 5 – Building a Process Overview 3-33 AVEVA™ InTouch for System Platform 2023 37. On the canvas, right-click ProducedProducts and select Custom Properties. Edit Custom Properties appears.</p>
+<p>Do Not Copy 3-34 Module 3 – Symbols AVEVA™ Training 38. In the Custom Properties list, verify Bar01 is selected, and then in the Default Value field, double-click. The Galaxy Browser appears. 39. On the left, in Instances, scroll down and select Mixer100.Totalizer3, and then on the right, select PV. 40. Click OK to accept the selection in the Galaxy Browser. In Default Value, the --- placeholder is replaced with the new value.</p>
+<p>Do Not Copy Lab 5 – Building a Process Overview 3-35 AVEVA™ InTouch for System Platform 2023 41. In Edit Custom Properties, modify the custom properties as follows: 42. Click OK to close Edit Custom Properties. Name Value Bar02 Mixer200.Totalizer3.PV Bar03 Mixer300.Totalizer3.PV Bar04 Mixer400.Totalizer3.PV Bar05 Mixer500.Totalizer3.PV Bar06 Mixer600.Totalizer3.PV Bar07 Mixer700.Totalizer3.PV Bar08 Mixer800.Totalizer3.PV</p>
+<p>Do Not Copy 3-36 Module 3 – Symbols AVEVA™ Training 43. Right-click ProducedProducts and select Substitute | Substitute Strings. Substitute Strings appears.</p>
+<p>Do Not Copy Lab 5 – Building a Process Overview 3-37 AVEVA™ InTouch for System Platform 2023 44. Substitute the following strings: Current String New String B1 M100 B2 M200 B3 M300 B4 M400 B5 M500 B6 M600 B7 M700 B8 M800 Chart Heading Produced Products Short Description Produced products for current batch</p>
+<p>Do Not Copy 3-38 Module 3 – Symbols AVEVA™ Training 45. Click OK to close Substitute Strings. The graphic is updated with the new strings. Set Canvas Size to a Fixed Resolution Now, you will use the canvas size to set the bounding box of the graphic. All white space outside the bounding box is cropped at runtime. This feature allows you to determine the exact height and width of the graphic shown on a window in InTouch. 46. Click the canvas to set focus on the canvas. 47. On the Properties tab, in Size, select Fixed.</p>
+<p>Do Not Copy Lab 5 – Building a Process Overview 3-39 AVEVA™ InTouch for System Platform 2023 Your canvas will look as shown below:</p>
+<p>Do Not Copy 3-40 Module 3 – Symbols AVEVA™ Training 48. Drag the bottom-right handle of the canvas to include both graphics with some white space around them.</p>
+<p>Do Not Copy Lab 5 – Building a Process Overview 3-41 AVEVA™ InTouch for System Platform 2023 49. On the toolbar at the top, click Save and Close. 50. Check in the graphic. Embed the Symbol in a Window Now, you will embed the ProcessOverview symbol in the OverviewDisplay window you created in a previous lab. 51. In the IDE, on the Templates tab, in the Training\ViewApps toolset, double-click $MixerView to open WindowMaker. WindowMaker opens and displays Select windows to open. 52. In Select windows to open, select the following windows:  AlarmDisplay  ContentDisplay  Logon  Navigation  OverviewDisplay Note: Alternatively, if your application has only the above windows, you can click the Select all button. 53. Click Open. The selected windows open.</p>
+<p>Do Not Copy 3-42 Module 3 – Symbols AVEVA™ Training 54. In Industrial Graphics, expand Training. 55. From Training, drag ProcessOverview to the OverviewDisplay window.</p>
+<p>Do Not Copy Lab 5 – Building a Process Overview 3-43 AVEVA™ InTouch for System Platform 2023 ProcessOverview appears in the OverviewDisplay window.</p>
+<p>Do Not Copy 3-44 Module 3 – Symbols AVEVA™ Training Test in Runtime Finally, you will test the OverviewDisplay window in runtime. 56. Click Runtime. 57. Verify that the graphic displays live data. Note: For any given mixer, you will not see any produced products until a few seconds after the consumed materials are at their highest level. 58. Click Development! to return to WindowMaker. <End of Lab></p>
+<p>Do Not Copy Section 3 – Graphics with Objects 3-45 AVEVA™ InTouch for System Platform 2023 Section 3 – Graphics with Objects Introduction When adding symbols into an automation object, you can create symbols within the object and then embed symbols from the Graphics tab into those symbols. Alternatively, you can use the linked symbols feature, whereby you directly link external symbols from the Graphics tab to the automation object. When adding a symbol or linking an external symbol in a template object, the symbol in the template will be propagated to all derived objects. The symbols inherited from the template object cannot be removed. Linked Symbols vs. Added Symbols Linking an external symbol to an automation object creates an association between the object and a symbol on the Graphics tab. The symbol on the Graphics tab can be linked to other automation objects, which are not necessarily part of the derivation hierarchy. Changes to the symbol from the Graphics tab will apply to all automation objects to which it is linked. On the other hand, adding a symbol to an automation object is to create a symbol that is natively hosted by the object. You can edit the symbol within the object, such as when you embed a symbol from the Graphics tab and then customize it for the object. When the symbol in a template object changes, the changes will propagate to its child objects and wherever they are referenced. Deleting automation objects with added symbols will delete those symbols, since the symbols only exist within the automation objects. However, deleting automation objects with liked symbols will not delete the symbols because the symbols still exist on the Graphics tab. Note the following for linked symbols:  Symbols on the Graphics tab can be linked to automation objects  Linked symbols in automation objects can be embedded into other symbols  Changes made to a linked or embedded symbol are propagated to automation objects to which the symbol is linked and to the graphics in which the symbol is embedded  Relative references used in a linked symbol will be resolved through the object to which it is linked. Some limitations of using linked symbols are:  Custom properties in a linked symbol cannot be customized directly  Only symbols from the Graphics tab can be linked to an object Add or Link Symbols in Automation Objects When adding symbols to an automation object, you can create the symbols in the object and then develop the symbol as needed. These symbols become content in the automation object. Alternatively, you can create symbols on the Graphics tab and then link the symbols from the Graphics tab to the object. Linked symbols remain on the Graphics tab but are associated with the automation object as content. This section provides a brief overview of using graphics in automation objects and referencing them.</p>
+<p>Do Not Copy 3-46 Module 3 – Symbols AVEVA™ Training When editing an object in the Object Editor, you can add a symbol or link an external symbol to an object from the Content pane on the Attributes tab. Clicking the Add button creates a symbol and clicking the Link Content button opens the Galaxy Browser, allowing you to browse for and select a symbol from the Graphics tab to link. You can select a symbol from the list and click the Edit Content button to edit the symbol in the Graphic Editor. Relative References in Graphics You can use relative references when configuring graphics. Relative References are references that go up the object hierarchy to parent objects. Relative references such as “Me” and “MyArea” are valid reference strings. The following relative references refer to the current object:  Me  MyArea  MyContainer  MyEngine  MyHost  MyPlatform Relative references are resolved in runtime when the graphic is displayed in the running application.</p>
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Lab 5 – Building a Process Overview?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
+</div>
+
+<p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: Lesson L13 — Graphics with Objects</p>
+
+<script>
+
+function saveProgress() {
+  var checks = {};
+  document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+    checks[cb.dataset.lesson] = cb.checked;
+  });
+  try {
+    localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks));
+  } catch(e) {}
+  updateProgressText();
+}
+
+function loadProgress() {
+  var data = null;
+  try {
+    data = localStorage.getItem('intouch-lesson-progress');
+  } catch(e) {}
+  if (!data) {
+    updateProgressText();
+    return;
+  }
+  try {
+    var checks = JSON.parse(data);
+    document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+      if (checks[cb.dataset.lesson]) {
+        cb.checked = true;
+      }
+    });
+  } catch(e) {}
+  updateProgressText();
+}
+
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').length;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' completed';
+}
+
+document.addEventListener('DOMContentLoaded', loadProgress);
+
+</script>
+</body>
+</html>

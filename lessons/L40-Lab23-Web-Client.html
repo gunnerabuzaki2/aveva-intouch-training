@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson L40: Lab 23 – Using the Web Client</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="<a href="L39-Web-Client-Overview.html">&larr; Web Client Overview</a>">&larr; Previous</a> &nbsp;|&nbsp;
+  End &rarr;
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<details style="background:#f5f5f5;padding:0.8em;border-radius:6px;border:1px solid #ddd;margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">&#128218; All Lessons</summary>
+<div style="margin-top:0.8em;line-height:1.8;max-height:70vh;overflow-y:auto;">
+<div style="margin-bottom:0.5em;padding:0.5em;background:#e8f5e9;border-radius:4px;">
+<strong style="color:#2c5f2d;">&#9989; Progress: <span id="progress-text">0 / 40 completed</span></strong>
+</div>
+<strong>Module 1 &#8212; Introduction</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction.html">L01: Course Introduction</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-System-Platform-Overview.html">L02: System Platform Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html">L03: Lab 1 – Creating and Deploying a Galaxy</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Encryption-Requirements.html">L04: Encrypted Communication + System Requirements</a></label>
+<strong>Module 2 &#8212; Getting Started</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-InTouch-Visualization-Objects.html">L05: InTouch Visualization + Automation Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 – Creating a Managed InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-WindowMaker-Development.html">L07: InTouch Development Environment</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 – Building the Application Layout</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Runtime-Environment.html">L09: Runtime Environment and Application Design</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 – Deploying an InTouch Application</a></label>
+<strong>Module 3 &#8212; Symbols</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Symbol-Overview-Graphic-Editor.html">L11: Symbol Overview + Graphic Editor</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 – Building a Process Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Graphics-With-Objects.html">L13: Graphics with Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 – Creating the Mixer Components</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Editor-Tools-Animations.html">L15: Graphic Editor Tools and Animations</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 – Creating the Mixer Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-OwningObject-Lab8-Mixers.html">L17: The OwningObject Property + Lab 8</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Custom-Properties.html">L18: Custom Properties</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 – Creating a Custom Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Scripts-In-Graphics.html">L20: Scripts in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 – Creating a Navigation Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Galaxy-Styles.html">L22: Galaxy Styles</a></label>
+<strong>Module 4 &#8212; Widgets</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Widgets-Lab11-Carousel.html">L23: Widgets Overview + Lab 11</a></label>
+<strong>Module 5 &#8212; Alarms and Events Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-Alarming-Overview-Lab12.html">L24: Alarming Overview + Lab 12</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 – Alarm Aggregation</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">L26: Live Alarms Visualization</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 – Current Alarms Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 – Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">L29: Historical Alarms + Lab 16</a></label>
+<strong>Module 6 &#8212; Trend Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">L30: Historization + Real-Time Trending</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 – Adding Trending to Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Multi-Pens-Trend.html">L32: Multi Pens Trend</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 – Trend Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Historian-Trend-Lab19.html">L34: Historian Client Trend + Lab 19</a></label>
+<strong>Module 7 &#8212; Security</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Security-Overview.html">L35: Security Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 – Security Features in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Signed-Writes-Lab21.html">L37: Signed Writes + Lab 21</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Runtime-Customization-Lab22.html">L38: Runtime Customization + Lab 22</a></label>
+<strong>Module 8 &#8212; Web Client</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Web-Client-Overview.html">L39: Web Client Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" checked onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html" style="font-weight:bold;">L40: Lab 23 – Using the Web Client</a></label>
+</div>
+</details>
+</nav>
+
+<h1>Lesson L40: Lab 23 – Using the Web Client</h1>
+<p class="page-ref">Module 8 — Web Client | Pages 537–550</p>
+
+<div class="screenshot">
+  <img src="../images/page_0537.png" alt="Page 0537">
+  <div class="caption">Page 0537</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0538.png" alt="Page 0538">
+  <div class="caption">Page 0538</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0539.png" alt="Page 0539">
+  <div class="caption">Page 0539</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0540_0.png" alt="Page 0540">
+  <div class="caption">Page 0540</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0540_1.png" alt="Page 0540">
+  <div class="caption">Page 0540</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0541_0.png" alt="Page 0541">
+  <div class="caption">Page 0541</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0541_1.png" alt="Page 0541">
+  <div class="caption">Page 0541</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0542.png" alt="Page 0542">
+  <div class="caption">Page 0542</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0543_0.png" alt="Page 0543">
+  <div class="caption">Page 0543</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0543_1.png" alt="Page 0543">
+  <div class="caption">Page 0543</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0544_0.png" alt="Page 0544">
+  <div class="caption">Page 0544</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0544_1.png" alt="Page 0544">
+  <div class="caption">Page 0544</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0545_0.png" alt="Page 0545">
+  <div class="caption">Page 0545</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0545_1.png" alt="Page 0545">
+  <div class="caption">Page 0545</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0546_0.png" alt="Page 0546">
+  <div class="caption">Page 0546</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0546_1.png" alt="Page 0546">
+  <div class="caption">Page 0546</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0547_0.png" alt="Page 0547">
+  <div class="caption">Page 0547</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0547_1.png" alt="Page 0547">
+  <div class="caption">Page 0547</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0548_0.png" alt="Page 0548">
+  <div class="caption">Page 0548</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0548_1.png" alt="Page 0548">
+  <div class="caption">Page 0548</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0549_0.png" alt="Page 0549">
+  <div class="caption">Page 0549</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0549_1.png" alt="Page 0549">
+  <div class="caption">Page 0549</div>
+</div>
+
+<p>Do Not Copy Lab 23 – Using the Web Client 8-11 AVEVA™ InTouch for System Platform 2023 Lab 23 – Using the Web Client Introduction In this lab, you will enable the Web Client in Application Manager and use the Web Client fast switch to start Web Client. The Web Client fast switch opens your InTouch frame windows in the default Web browser. You will then navigate and display both InTouch application windows and graphics in the browser. Additionally, you will use the Web Client to search for graphics, zoom and pan, view and acknowledge alarms, and interact with your InTouch application. Objectives Upon completion of this lab, you will be able to:  Enable Web Client in Application Manager  Use the Web Client fast switch to open the Web Client  Pan and zoom a graphic in a web browser using a mouse and keyboard  Navigate and view Application windows using the Web Client  Use Navigation Search  Visualize and acknowledge alarms in Web Client</p>
+<p>Do Not Copy 8-12 Module 8 – Web Client AVEVA™ Training Disable Security First, you will disable security for training purposes. This is because Web Client relies on Windows authentication. You will disable Galaxy security for this lab. 1. Close WindowMaker and check in $MixerView. 2. In the IDE, on the Galaxy menu, select Configure | Security. 3. In Authentication Mode, select None. 4. Click Save. A Galaxy security message appears. 5. Click OK to shut down the IDE.</p>
+<p>Do Not Copy Lab 23 – Using the Web Client 8-13 AVEVA™ InTouch for System Platform 2023 Enable Web Client Next, you will enable Web Client. Additionally, because Web Client uses local security groups to manage the list of users that can access it, you must also disable a security feature used in the Mixer graphic. 6. From the Windows Start menu, open Application Manager. AVEVA Application Manager opens.</p>
+<p>Do Not Copy 8-14 Module 8 – Web Client AVEVA™ Training 7. Select the Web Client tab. 8. On the toolbar, click Web Client. Notice the small clock on the Web Client icon, which indicates that the Web Client is not started.</p>
+<p>Do Not Copy Lab 23 – Using the Web Client 8-15 AVEVA™ InTouch for System Platform 2023 After a moment, the small clock on the Web Client icon disappears, which indicates that Web Client has started. 9. Close the AVEVA Application Manager. 10. Open the System Platform IDE. 11. In the Home menu, on the Recent tab, double-click TrainingGalaxy. The Galaxy opens in the IDE.</p>
+<p>Do Not Copy 8-16 Module 8 – Web Client AVEVA™ Training 12. In the IDE, on the Templates tab, in the Training\Project toolset, double-click $Mixer to open it for editing. 13. In Content, double-click SwitchedMixingProcess to open it for editing. 14. On the canvas, double-click MixerDropDown to open Edit Animations. 15. In Animations, for Disable, click the drop-down list and select Disabled. 16. Click OK to close Edit Animations. 17. Save and close the graphic. 18. Save and close and check in $Mixer. Next you will prepare InTouch for using Web Client and then open Web Client. 19. On the Templates tab, in the Training\ViewApps toolset, double-click $MixerView to open WindowMaker. 20. Click Open to open the selected windows. 21. Click Runtime. Note: WindowViewer must be running to provide data and animations for Web Client. 22. Click Development! to return to WindowMaker.</p>
+<p>Do Not Copy Lab 23 – Using the Web Client 8-17 AVEVA™ InTouch for System Platform 2023 23. In WindowMaker, in the top-right corner, click the Web Client fast switch. After a few moments, the default web browser opens, and the application windows appear in Web Client. 24. Maximize the web browser.</p>
+<p>Do Not Copy 8-18 Module 8 – Web Client AVEVA™ Training 25. In the ContentDisplay window, switch to a different mixer and verify the components of the selected mixer are displayed. 26. Press and hold the Ctrl key, hover the cursor over the Web Client, and then scroll the mouse wheel up and down to zoom in and out. 27. Release the Ctrl key.</p>
+<p>Do Not Copy Lab 23 – Using the Web Client 8-19 AVEVA™ InTouch for System Platform 2023 For the next step, first you must be zoomed in. 28. In the Web Client, click and hold down the mouse wheel, and then move up, down, left, and right to pan. 29. On the right side of the Web Client header, click the Home button. This will restore the Home view. 30. In the Navigation window, click Alarm Overview and observe the alarms. 31. Close the AlarmAggregationOverview window.</p>
+<p>Do Not Copy 8-20 Module 8 – Web Client AVEVA™ Training 32. In the top-left corner, click the Web Client menu. The Web Client menu appears. 33. In the Web Client menu, expand Training and select Dashboard.</p>
+<p>Do Not Copy Lab 23 – Using the Web Client 8-21 AVEVA™ InTouch for System Platform 2023 The Dashboard symbol appears in the Web Client. 34. In the Web Client menu, in the Search field, enter clock, and then select ClockDigital12.</p>
+<p>Do Not Copy 8-22 Module 8 – Web Client AVEVA™ Training The clock fills the web browser. The clock graphics rely on the local computer time. However, for this graphic, the label has not been configured. Most graphics from the library require further configuration to be used in Web Client. In the next steps, you will use Web Client to interact with features of your application. 35. Click Home. 36. In the AlarmDisplay window, bottom-right corner, click Ack All. The Ack Comment: dialog box appears.</p>
+<p>Do Not Copy Lab 23 – Using the Web Client 8-23 AVEVA™ InTouch for System Platform 2023 37. In Ack Comment, enter ticket issued. 38. Click OK to acknowledge all alarms. The alarms display as acknowledged. <End of Lab></p>
+<p>Do Not Copy 8-24 Module 8 – Web Client AVEVA™ Training</p>
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Lab 23 – Using the Web Client?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
+</div>
+
+<p class="source">Module 8 — Web Client. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: End of course</p>
+
+<script>
+
+function saveProgress() {
+  var checks = {};
+  document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+    checks[cb.dataset.lesson] = cb.checked;
+  });
+  try {
+    localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks));
+  } catch(e) {}
+  updateProgressText();
+}
+
+function loadProgress() {
+  var data = null;
+  try {
+    data = localStorage.getItem('intouch-lesson-progress');
+  } catch(e) {}
+  if (!data) {
+    updateProgressText();
+    return;
+  }
+  try {
+    var checks = JSON.parse(data);
+    document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+      if (checks[cb.dataset.lesson]) {
+        cb.checked = true;
+      }
+    });
+  } catch(e) {}
+  updateProgressText();
+}
+
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').length;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' completed';
+}
+
+document.addEventListener('DOMContentLoaded', loadProgress);
+
+</script>
+</body>
+</html>

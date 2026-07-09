@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson L36: Lab 20 – Security Features in Graphics</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="<a href="L35-Security-Overview.html">&larr; Security Overview</a>">&larr; Previous</a> &nbsp;|&nbsp;
+  <a href='L37-Signed-Writes-Lab21.html'>Signed Writes + Lab 21 &rarr;</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<details style="background:#f5f5f5;padding:0.8em;border-radius:6px;border:1px solid #ddd;margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">&#128218; All Lessons</summary>
+<div style="margin-top:0.8em;line-height:1.8;max-height:70vh;overflow-y:auto;">
+<div style="margin-bottom:0.5em;padding:0.5em;background:#e8f5e9;border-radius:4px;">
+<strong style="color:#2c5f2d;">&#9989; Progress: <span id="progress-text">0 / 40 completed</span></strong>
+</div>
+<strong>Module 1 &#8212; Introduction</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction.html">L01: Course Introduction</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-System-Platform-Overview.html">L02: System Platform Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html">L03: Lab 1 – Creating and Deploying a Galaxy</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Encryption-Requirements.html">L04: Encrypted Communication + System Requirements</a></label>
+<strong>Module 2 &#8212; Getting Started</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-InTouch-Visualization-Objects.html">L05: InTouch Visualization + Automation Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 – Creating a Managed InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-WindowMaker-Development.html">L07: InTouch Development Environment</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 – Building the Application Layout</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Runtime-Environment.html">L09: Runtime Environment and Application Design</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 – Deploying an InTouch Application</a></label>
+<strong>Module 3 &#8212; Symbols</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Symbol-Overview-Graphic-Editor.html">L11: Symbol Overview + Graphic Editor</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 – Building a Process Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Graphics-With-Objects.html">L13: Graphics with Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 – Creating the Mixer Components</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Editor-Tools-Animations.html">L15: Graphic Editor Tools and Animations</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 – Creating the Mixer Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-OwningObject-Lab8-Mixers.html">L17: The OwningObject Property + Lab 8</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Custom-Properties.html">L18: Custom Properties</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 – Creating a Custom Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Scripts-In-Graphics.html">L20: Scripts in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 – Creating a Navigation Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Galaxy-Styles.html">L22: Galaxy Styles</a></label>
+<strong>Module 4 &#8212; Widgets</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Widgets-Lab11-Carousel.html">L23: Widgets Overview + Lab 11</a></label>
+<strong>Module 5 &#8212; Alarms and Events Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-Alarming-Overview-Lab12.html">L24: Alarming Overview + Lab 12</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 – Alarm Aggregation</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">L26: Live Alarms Visualization</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 – Current Alarms Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 – Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">L29: Historical Alarms + Lab 16</a></label>
+<strong>Module 6 &#8212; Trend Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">L30: Historization + Real-Time Trending</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 – Adding Trending to Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Multi-Pens-Trend.html">L32: Multi Pens Trend</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 – Trend Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Historian-Trend-Lab19.html">L34: Historian Client Trend + Lab 19</a></label>
+<strong>Module 7 &#8212; Security</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Security-Overview.html">L35: Security Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" checked onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html" style="font-weight:bold;">L36: Lab 20 – Security Features in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Signed-Writes-Lab21.html">L37: Signed Writes + Lab 21</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Runtime-Customization-Lab22.html">L38: Runtime Customization + Lab 22</a></label>
+<strong>Module 8 &#8212; Web Client</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Web-Client-Overview.html">L39: Web Client Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 – Using the Web Client</a></label>
+</div>
+</details>
+</nav>
+
+<h1>Lesson L36: Lab 20 – Security Features in Graphics</h1>
+<p class="page-ref">Module 7 — Security | Pages 473–500</p>
+
+<div class="screenshot">
+  <img src="../images/page_0473.png" alt="Security (page 7-35) - Section 2 – Signed Writes">
+  <div class="caption">Security (page 7-35) - Section 2 – Signed Writes</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0475.png" alt="Security (page 7-37) - COPY watermark - Section 2 – Signed Writes">
+  <div class="caption">Security (page 7-37) - COPY watermark - Section 2 – Signed Writes</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0477.png" alt="Signing Writes from InTouch (page 7-39) - DOCUMENT watermark">
+  <div class="caption">Signing Writes from InTouch (page 7-39) - DOCUMENT watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0478.png" alt="Security (page 7-40)">
+  <div class="caption">Security (page 7-40)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0479_0.png" alt="Signing Writes from InTouch (page 7-41)">
+  <div class="caption">Signing Writes from InTouch (page 7-41)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0479_1.png" alt="Signing Writes from InTouch (page 7-41)">
+  <div class="caption">Signing Writes from InTouch (page 7-41)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0480_0.png" alt="Security (page 7-42)">
+  <div class="caption">Security (page 7-42)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0480_1.png" alt="Security (page 7-42)">
+  <div class="caption">Security (page 7-42)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0481.png" alt="Signing Writes from InTouch (page 7-43) - "Do Not Copy" watermark">
+  <div class="caption">Signing Writes from InTouch (page 7-43) - "Do Not Copy" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0482.png" alt="Security (page 7-44) - "DO NOT COPY" watermark">
+  <div class="caption">Security (page 7-44) - "DO NOT COPY" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0483_0.png" alt="Signing Writes from InTouch (page 7-45)">
+  <div class="caption">Signing Writes from InTouch (page 7-45)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0483_1.png" alt="Signing Writes from InTouch (page 7-45)">
+  <div class="caption">Signing Writes from InTouch (page 7-45)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0484_0.png" alt="Security (page 7-46)">
+  <div class="caption">Security (page 7-46)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0484_1.png" alt="Security (page 7-46)">
+  <div class="caption">Security (page 7-46)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0484_2.png" alt="Security (page 7-46)">
+  <div class="caption">Security (page 7-46)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0484_3.png" alt="Security (page 7-46)">
+  <div class="caption">Security (page 7-46)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0485_0.png" alt="Signing Writes from InTouch (page 7-47) - "Draft Copy" watermark">
+  <div class="caption">Signing Writes from InTouch (page 7-47) - "Draft Copy" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0485_1.png" alt="Signing Writes from InTouch (page 7-47) - "Draft Copy" watermark">
+  <div class="caption">Signing Writes from InTouch (page 7-47) - "Draft Copy" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0486.png" alt="Security (page 7-48) - "DO NOT COPY" watermark">
+  <div class="caption">Security (page 7-48) - "DO NOT COPY" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0487_0.png" alt="Signing Writes from InTouch (page 7-49)">
+  <div class="caption">Signing Writes from InTouch (page 7-49)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0487_1.png" alt="Signing Writes from InTouch (page 7-49)">
+  <div class="caption">Signing Writes from InTouch (page 7-49)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0488_0.png" alt="Security (page 7-50)">
+  <div class="caption">Security (page 7-50)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0488_1.png" alt="Security (page 7-50)">
+  <div class="caption">Security (page 7-50)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0489.png" alt="Signing Writes from InTouch (page 7-51)">
+  <div class="caption">Signing Writes from InTouch (page 7-51)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0490.png" alt="Security (page 7-52)">
+  <div class="caption">Security (page 7-52)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0491.png" alt="Signing Writes from InTouch (page 7-53) - "Do Not Copy" watermark">
+  <div class="caption">Signing Writes from InTouch (page 7-53) - "Do Not Copy" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0492_0.png" alt="Security (page 7-54) - "Do Not Copy" watermark">
+  <div class="caption">Security (page 7-54) - "Do Not Copy" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0492_1.png" alt="Security (page 7-54) - "Do Not Copy" watermark">
+  <div class="caption">Security (page 7-54) - "Do Not Copy" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0493_0.png" alt="Signing Writes from InTouch (page 7-55) - "Draft Copy" watermark">
+  <div class="caption">Signing Writes from InTouch (page 7-55) - "Draft Copy" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0493_1.png" alt="Signing Writes from InTouch (page 7-55) - "Draft Copy" watermark">
+  <div class="caption">Signing Writes from InTouch (page 7-55) - "Draft Copy" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0494_0.png" alt="Security (page 7-56)">
+  <div class="caption">Security (page 7-56)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0494_1.png" alt="Security (page 7-56)">
+  <div class="caption">Security (page 7-56)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0495_0.png" alt="Signing Writes from InTouch (page 7-57)">
+  <div class="caption">Signing Writes from InTouch (page 7-57)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0495_1.png" alt="Signing Writes from InTouch (page 7-57)">
+  <div class="caption">Signing Writes from InTouch (page 7-57)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0496.png" alt="Security (page 7-58) - "Do Not Copy" watermark">
+  <div class="caption">Security (page 7-58) - "Do Not Copy" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0497.png" alt="Security (page 7-59) - Section 3 – Customization of the Runtime Environment">
+  <div class="caption">Security (page 7-59) - Section 3 – Customization of the Runtime Environment</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0499_0.png" alt="Locking Down Your Application (page 7-61)">
+  <div class="caption">Locking Down Your Application (page 7-61)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0499_1.png" alt="Locking Down Your Application (page 7-61)">
+  <div class="caption">Locking Down Your Application (page 7-61)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0500.png" alt="Security (page 7-62) - "DO NOT COPY" watermark">
+  <div class="caption">Security (page 7-62) - "DO NOT COPY" watermark</div>
+</div>
+
+<p>Do Not Copy Section 2 – Signed Writes 7-35 AVEVA™ InTouch for System Platform 2023 Section 2 – Signed Writes Assigning Users to Roles After creating users and roles, you can assign users to roles. On the Users page, all users in the Galaxy and the roles they are assigned are listed. By default, the new user is associated with the Default role, but not the Administrator role. Users can be assigned to more than one role. Note: All users are automatically assigned to the Default role in addition to any newly created roles that are assigned to them. The best way to manage permissions is to limit the permissions of the Default role to those permissions people should have. Then, add users to other roles with permissions for other parts of Application Server. The Administrator user can log on any authentication mode, except when security is disabled. When logged on as Administrator on the Galaxy Repository node, change the password of any Galaxy user without providing the old password:  In Galaxy authentication mode, edit the User Name in the Change Password dialog box.  In OS-based authentication modes, the User Name of the OS user is shown; user information cannot be edited. This section provides a brief overview of the Secured Write and Verified Write security classifications, the Can Verify Writes Operational permission, and the Secured Write and Verified Write dialog boxes.</p>
+<p>Do Not Copy 7-36 Module 7 – Security AVEVA™ Training About OS Group-Based Security If the OS Group-based Authentication Mode is used, understand the Windows operating system, particularly its user permissions, groups, and security features. OS Group-based security uses these Windows features. When using local OS Groups as Roles, each node within the Galaxy must have the same OS Users, Groups, and user-group mappings to get the same level of access to the user at each node. Connecting to a Remote Node for the First Time A newly-added user working on a computer with no access to the Galaxy Repository node cannot write to an attribute on a remote node, if that user has never logged on to the remote node. This is true, even if the user is given sufficient runtime operational permissions to do writes. To enable remote writing capabilities, log on to the remote node at least one time. Using InTouch Access Levels Security The Roles page includes the Access Level column. The Access Level is an InTouch function. In InTouch, access levels are a schema for prioritizing runtime functions. In the security model, it only maps to InTouch values and has no prioritizing characteristics. The maximum value is 9999 and the minimum is 0 (zero). If a user is assigned more than one role with different access levels, the higher access value is passed to InTouch. Using Secured and Verified Writes Assign Secured Write or Verified Write security classification to a configurable attribute. These security classifications require authentication to perform runtime writes to the configured attribute. With authentication, users can write to such attributes by:  Any assignment in a script that sets the value of the attribute, such as A=B; where A references an attribute that is configured for Secured Write or Verified Write security classification  Any action on an animation graphic that alters the value of an attribute that has Secured Write or Verified Write security classification, such as a user input, a slider, an up/down button on a counter, or any other such actions  A script that uses the SignedWrite() function Operators can write to attributes configured with Secured Write or Verified Write security classification, even if another user is logged on. This does not affect the session of the logged on user. To do this:  The operator must have the Can Modify ''Operate'' Attributes Operational permission to perform the Verified Write.  The verifier must have the Can Verify Writes Operational permission to confirm the Verified Write. Note: The Secured and Verified Write features work only when security is enabled on both the Galaxy and InTouch applications and do not work if either Galaxy or InTouch security is set to None.</p>
+<p>Do Not Copy Section 2 – Signed Writes 7-37 AVEVA™ InTouch for System Platform 2023 Secured Write or Verified Write Dialog Boxes and Script Functions At runtime, the Secured Write or Verified Write dialog boxes appear when the operator attempts to write to an attribute configured with Secured Write or Verified Write. The dialogs enable configurable user input that can be used to provide information about the Secured or Verified Write. Create a symbol and associate it with an attribute configured with Secured or Verified Write. Add the script function to the symbol. The source to be written is passed as a parameter to the function. Use the SignedWrite() script function to configure these inputs. The script function can only be used for attributes configured with Secured Write or Verified Write and symbol scripts, not for application object scripts. Reason Description The reason description is specific to an attribute. It explains the purpose of the attribute and the impact of changing it. If a reason description is not configured, the reason description area is blank. It is possible to use a script to directly assign a value to an attribute that requires Secured or Verified Write. When the script is ran, the Secured or Verified Write dialog box appears and the reason description area displays a Field Attribute description, if there is one. If the attribute is not a Field Attribute or does not have a description, then the reason description area displays the description of the ApplicationObject to which the attribute belongs. Predefined Comment List The predefined Comment list enables the operator to comment on changing the attribute by selecting from a predefined list of comments.</p>
+<p>Do Not Copy 7-38 Module 7 – Security AVEVA™ Training Editable Comment Box Enables the operator to enter a comment in the Comment field. Note: The reason message and Comment field and list are displayed in the Secured Write or Verified Write dialog box, only in InTouch WindowViewer and not in Object Viewer. About Secured and Verified Writes Logged Information Following a Secured or Verified Write, a security Event is written to the event log that includes the following information:  The signee name  Verifier name, if any  Type of write: Secured Write or Verified Write  Comment, if any entered by user  Reason Description, if any provided  Field Attribute description, if any, or the Short Description of the ApplicationObject, if no Field Attribute description exists</p>
+<p>Do Not Copy Lab 21 – Signing Writes from InTouch 7-39 AVEVA™ InTouch for System Platform 2023 Lab 21 – Signing Writes from InTouch Introduction In this lab, you will test the InTouch Secured Write and Verified Write functions when writing to attributes configured with Secured Write and Verified Write security classifications. To be able to test this functionality, you will modify the mixer valves with security classifications. You will also create new security Roles and Users to represent the operator and supervisor accounts that will access the system. Objectives Upon completion of this lab, you will be able to:  Use the Secured Write and Verified Write functions in InTouch  Enable the Operate and Can Verify Write permissions</p>
+<p>Do Not Copy 7-40 Module 7 – Security AVEVA™ Training Create and Configure Roles and Users First, you will configure additional roles and users that will be used to test both secured and verified writes. 1. Close WindowMaker and check in the $MixerView template. Note: Remember that security configuration requires that all objects are checked in. The Find tool is useful for this task. 2. In the IDE, on the Galaxy menu, select Configure | Security. 3. On the Roles tab, in Define security roles, select the Default role. 4. In Operational permissions, uncheck Default and then expand it. 5. Under Alarms, check Can Acknowledge Alarms.</p>
+<p>Do Not Copy Lab 21 – Signing Writes from InTouch 7-41 AVEVA™ InTouch for System Platform 2023 6. Click Add new Role (+). 7. Name the new role Operators with an Access level of 1000. 8. In Operational permissions, expand Default, and then check Can Modify “Operate” Attributes.</p>
+<p>Do Not Copy 7-42 Module 7 – Security AVEVA™ Training 9. Add a new role named Supervisors with an Access level of 5000. 10. In Operational permissions, expand Default, and then under Alarms, check the following:  Can Shelve Alarms  Can Modify Alarm Modes  Can Modify Plant States 11. Scroll down to the bottom and check Can Verify Writes. 12. On the Users tab, add a new user named Operator1 with a Full name of Operator One. 13. In the Role list, check Operators to associate the Operators role with Operator1.</p>
+<p>Do Not Copy Lab 21 – Signing Writes from InTouch 7-43 AVEVA™ InTouch for System Platform 2023 14. Click Change Password. 15. In both New Password and Confirm New Password, enter ww. 16. Click Save to close Change Password.</p>
+<p>Do Not Copy 7-44 Module 7 – Security AVEVA™ Training 17. Add another user named Operator2 and configure it as follows: Full name: Operator Two Role: Operators Password: ww</p>
+<p>Do Not Copy Lab 21 – Signing Writes from InTouch 7-45 AVEVA™ InTouch for System Platform 2023 18. Add another user named Supervisor1 and configure it as follows: 19. Click Save and exit the backstage. Configure Attributes with Signed Write Security Classifications Next, you will configure agitator objects with attributes with signed write security classifications. 20. On the Templates tab, in the Training \ Project toolset, double-click $Mixer.Agitator to open it for editing. 21. In Attributes, ensure the Cmd attribute is selected. 22. In the right pane, in Initial value, click the Security Classification icon, and then select SecuredWrite. Full name: Supervisor One Role: Supervisors Password: ww</p>
+<p>Do Not Copy 7-46 Module 7 – Security AVEVA™ Training 23. In Initial value, click the Lock icon to lock it. This will propagate the security classification change to the instances when you deploy. 24. In Attributes, select the Speed.SP attribute. 25. In Initial value, click the Security Classification icon, and then select VerifiedWrite. 26. In Initial value, click the Lock icon to lock it. 27. Save and close the $Mixer.Agitator template, and check it in. 28. Open $Mixer.Agitator again. 29. In Attributes, ensure the Cmd attribute is selected. 30. In Initial value, click the Lock icon to unlock it. This will allow the attribute values to be changed at runtime.</p>
+<p>Do Not Copy Lab 21 – Signing Writes from InTouch 7-47 AVEVA™ InTouch for System Platform 2023 31. In Attributes, select Speed.SP. 32. In Initial value, click the Lock icon to unlock it. 33. Save and close the $Mixer.Agitator template, and check it in. Redeploy the Agitator Objects Now, you will redeploy the updated agitator instances. 34. In the Derivation view, expand $UserDefined\$Motor\$Agitator\$Mixer.Agitator. The agitator instances indicate that changes are pending deployment.</p>
+<p>Do Not Copy 7-48 Module 7 – Security AVEVA™ Training 35. In the Derivation view, select Agitator_001, press and hold Shift, and then select Agitator_008. All eight Agitator instances are selected. 36. Right-click the selection and select Deploy. 37. Keep the default settings and click Deploy. When the deployment is complete, Deploying Objects indicates eight Agitator objects are deployed. 38. Click Close.</p>
+<p>Do Not Copy Lab 21 – Signing Writes from InTouch 7-49 AVEVA™ InTouch for System Platform 2023 Test in Runtime Finally, you will test writing to attributes of the agitator instances as different users. 39. On the Templates tab, in Training\ViewApps, double-click $MixerView to open WindowMaker. 40. Click Open to open the selected windows. 41. Click Runtime. WindowViewer opens with no user logged in. 42. In the Navigation window, click Alarm Overview. 43. In AlarmAggregationOverview, in the Production alarm panel, click the up-arrow to the right of the Mode label. A command panel with a drop-down appears. 44. Click the down-arrow and select Disable.</p>
+<p>Do Not Copy 7-50 Module 7 – Security AVEVA™ Training The Apply button appears. 45. Click Apply. Because no user is currently logged in, alarms are not disabled. Disabling alarms requires the Can Modify Alarm Modes permission. Next you will log in as a user with this permission. 46. Close AlarmAggregationOverview.</p>
+<p>Do Not Copy Lab 21 – Signing Writes from InTouch 7-51 AVEVA™ InTouch for System Platform 2023 47. In the Logon window, click Logon. 48. In User name, enter Supervisor1 with a Password of ww, and then click OK. Supervisor One is logged in. This user has permission to modify alarm modes. 49. In the Navigation window, click Alarm Overview. 50. In AlarmAggregationOverview, in the Production alarm panel, click the up-arrow to the right of the Mode label. 51. Click the down-arrow and select Disable. 52. Click Apply. Alarms are disabled.</p>
+<p>Do Not Copy 7-52 Module 7 – Security AVEVA™ Training 53. Use the Production alarm panel to enable alarms. Alarms are enabled. 54. Close AlarmAggregationOverview.</p>
+<p>Do Not Copy Lab 21 – Signing Writes from InTouch 7-53 AVEVA™ InTouch for System Platform 2023 Next, you will use secured write. 55. In the ContentDisplay window, click Agitator_001. The command panel appears.</p>
+<p>Do Not Copy 7-54 Module 7 – Security AVEVA™ Training 56. On the command panel, click Start. Secured Write appears. Notice that the current logged in user, supervisor1, appears in Username. 57. In Comment, enter Attempt to start the motor. 58. In Password, enter ww. 59. Click OK.</p>
+<p>Do Not Copy Lab 21 – Signing Writes from InTouch 7-55 AVEVA™ InTouch for System Platform 2023 The Quality & Status indicator shows the write operation failed. Supervisor One does not have the Operate permission. Next you will log on as a user with the Operate permission. 60. Close the Agitator_001 command panel. 61. Log on as Operator1 with a password of ww. 62. Click Agitator_001 and attempt to start the motor. 63. In Secured Write, for Comment, enter Start motor, for Password, enter ww, and then click OK. The motor starts. Operator One has the Operate permission. 64. Close the Agitator_001 command panel. Next, you will use verified write. 65. Click Agitator_001. 66. In the command panel, click the value to the right of Speed setpoint, enter 25, and press Enter. Verified Write appears.</p>
+<p>Do Not Copy 7-56 Module 7 – Security AVEVA™ Training 67. In Comment, enter Adjust rpm. 68. In Operator, for Username, enter Operator1, for Password, enter ww, and then click OK. 69. In Verifier, for Username, enter Operator2, for Password, enter ww, and then click OK. The Quality & Status indicator shows the write operation failed. Operator Two does not have the Can Verify Write permission. Next you will try again using Supervisor One as the verifier.</p>
+<p>Do Not Copy Lab 21 – Signing Writes from InTouch 7-57 AVEVA™ InTouch for System Platform 2023 70. In the command panel, click the value to the right of Speed setpoint, enter 25, and press Enter. Verified Write appears. 71. In Comment, enter Adjust rpm. 72. In Operator, for Username, enter Operator1, for Password, enter ww, and then click OK. 73. In Verifier, for Username, enter Supervisor1, for Password, enter ww, and then click OK. The Quality & Status indicator shows the write operation succeeded. The Speed setpoint is updated to 25 rpm. This is because Supervisor One has the Can Verify Write permission. 74. Close the command panel.</p>
+<p>Do Not Copy 7-58 Module 7 – Security AVEVA™ Training Next, you will use the Alarm Client to verify events were generated for both successful and unsuccessful verified writes. 75. In the Navigation window, click Historical Alarms. 76. In AlarmHistDisplay, click Historical Events. Events are listed. The Alarm Client shows Verified Write access denied and Verified Write success messages. In the example below, column widths were adjusted to highlight important information. You may need to scroll to the right to view the Operator column. 77. Close AlarmHistDisplay. 78. Click Development! to return to WindowMaker. <End of Lab></p>
+<p>Do Not Copy Section 3 – Customization of the Runtime Environment 7-59 AVEVA™ InTouch for System Platform 2023 Section 3 – Customization of the Runtime Environment InTouch WindowViewer Timeouts You can configure WindowViewer to automatically log off an inactive operator from an InTouch application. An operator must log on again, after being logged off for inactivity. Setting an automatic inactivity log off period prevents unauthorized access to the InTouch application, when operators leave their workstations unattended. A timer measures the period the operator has not interacted with the running InTouch application. The timer resets each time the operator uses a mouse or any other input device to enter data. The timer is not reset by moving the mouse. A click is required to reset the timer. Setting Home Windows Home windows create the initial user experience at runtime. When WindowViewer starts, the Home windows are displayed. This behavior only occurs when WindowViewer is started from its icon, such as from the Windows Start menu. When clicking the Runtime fast switch in WindowMaker, the Home windows are not displayed in WindowViewer. In WindowViewer runtime settings, you can select the Home windows on the Startup tab. Without Home windows enabled, when WindowViewer starts from its icon, it presents a list of all available windows. If an unauthorized user has access to a list of all windows, they can open windows that may contain vital areas of the plant and potentially shut down processes, stop and start equipment, and change setpoints. It is therefore critical in any security implementation to set the Home windows of WindowViewer to prevent this list of windows from appearing. Home windows should never include windows that give access to critical areas of the plant or intellectual property of the organization. It is a best practice to select windows that unauthorized This section explains how to customize the runtime environment to more fully secure and protect the application. It also describes how to configure the InTouch runtime environment for inactivity and introduces the EnableDisableKeys() script function.</p>
+<p>Do Not Copy 7-60 Module 7 – Security AVEVA™ Training users can view without exposing important information. Once an authorized user logs in, access can be granted to more vital areas. Locking System Keys You can restrict operator access to standard Windows functions by disabling system keys on the computer running an InTouch application. For example, you can prevent an operator from using the CTRL + ALT + DEL key combination to show the Task Manager dialog box. Disabling system keys prevents operators from switching from the InTouch to another Windows applications. WindowViewer supports two methods for disabling keyboard keys. The first method is by using a set of options on the Window tab when configuring WindowViewer settings. In Miscellaneous, there are check boxes for Disable ALT key, Disable ESC key, and Disable WIN key. These options can be enabled by first disabling the check box Enable fast switch. When these disablements are used, their effect is permanent at runtime. A static approach does not allow dynamic behavior associated with which user is logged on. It permanently disables these keys for all users at runtime. For example, an administrator would not be able to use the WIN key to open the Start menu if it has been disabled using the Disable WIN key filter. The second method uses the EnableDisableKeys() script function to enable and disable the ALT, ESC, and WIN keys. A script can be written to monitor the access level of the current user and include the EnableDisableKeys() with different settings for different users. This second method using a script is dynamic, unlike the first method, which is permanent. A scripting approach can adapt use of keys for users with different responsibilities in the plant. Function Definition The order of the keys in the function is as follows: EnableDisableKeys(AltKey,EscKey,WinKey); When using this function in a script, you would replace AltKey, EscKey, and WinKey with a 1 or 0 for each, where 0 enables the key and 1 disables it. For example: To enable all three keys: EnableDisableKeys(0,0,0) To disable all three keys: EnableDisableKeys(1,1,1); To disable only the WIN key: EnableDisableKeys(0,0,1);</p>
+<p>Do Not Copy Lab 22 – Locking Down Your Application 7-61 AVEVA™ InTouch for System Platform 2023 Lab 22 – Locking Down Your Application Introduction In this lab you will configure automatic logoff and secure your application from unauthorized access. When no user is logged into the application, you will hide sensitive information from unauthorized users and restrict access to the application using scripts. You will create two popup windows, one to display a message when inactivity occurs and another to hide the WindowViewer menu bar. Finally, you will create a script to prevent the use of special access keys, including the Alt, Esc, and Win keys. Objectives Upon completion of this lab, you will be able to:  Use InTouch WindowViewer inactivity warning and timeout settings  Use negative dimensions in a window to hide the InTouch WindowViewer menu bar  Use the EnableDisableKeys() script function  Create an InTouch DataChange script  Create an InTouch Condition script  Use the Blink animation</p>
+<p>Do Not Copy 7-62 Module 7 – Security AVEVA™ Training Configure Automatic Log Off First, you will use the inactivity warning and inactivity timeout settings to automatically log off the current user after a period of inactivity. 1. In WindowMaker, on the File menu, select Configure | WindowViewer.</p>
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Lab 20 – Security Features in Graphics?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
+</div>
+
+<p class="source">Module 7 — Security. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: Lesson L37 — Signed Writes + Lab 21</p>
+
+<script>
+
+function saveProgress() {
+  var checks = {};
+  document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+    checks[cb.dataset.lesson] = cb.checked;
+  });
+  try {
+    localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks));
+  } catch(e) {}
+  updateProgressText();
+}
+
+function loadProgress() {
+  var data = null;
+  try {
+    data = localStorage.getItem('intouch-lesson-progress');
+  } catch(e) {}
+  if (!data) {
+    updateProgressText();
+    return;
+  }
+  try {
+    var checks = JSON.parse(data);
+    document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+      if (checks[cb.dataset.lesson]) {
+        cb.checked = true;
+      }
+    });
+  } catch(e) {}
+  updateProgressText();
+}
+
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').length;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' completed';
+}
+
+document.addEventListener('DOMContentLoaded', loadProgress);
+
+</script>
+</body>
+</html>

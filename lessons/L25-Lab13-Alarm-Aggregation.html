@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson L25: Lab 13 – Alarm Aggregation</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="<a href="L24-Alarming-Overview-Lab12.html">&larr; Alarming Overview + Lab 12</a>">&larr; Previous</a> &nbsp;|&nbsp;
+  <a href='L26-Live-Alarms-Visualization.html'>Live Alarms Visualization &rarr;</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<details style="background:#f5f5f5;padding:0.8em;border-radius:6px;border:1px solid #ddd;margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">&#128218; All Lessons</summary>
+<div style="margin-top:0.8em;line-height:1.8;max-height:70vh;overflow-y:auto;">
+<div style="margin-bottom:0.5em;padding:0.5em;background:#e8f5e9;border-radius:4px;">
+<strong style="color:#2c5f2d;">&#9989; Progress: <span id="progress-text">0 / 40 completed</span></strong>
+</div>
+<strong>Module 1 &#8212; Introduction</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction.html">L01: Course Introduction</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-System-Platform-Overview.html">L02: System Platform Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html">L03: Lab 1 – Creating and Deploying a Galaxy</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Encryption-Requirements.html">L04: Encrypted Communication + System Requirements</a></label>
+<strong>Module 2 &#8212; Getting Started</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-InTouch-Visualization-Objects.html">L05: InTouch Visualization + Automation Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 – Creating a Managed InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-WindowMaker-Development.html">L07: InTouch Development Environment</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 – Building the Application Layout</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Runtime-Environment.html">L09: Runtime Environment and Application Design</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 – Deploying an InTouch Application</a></label>
+<strong>Module 3 &#8212; Symbols</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Symbol-Overview-Graphic-Editor.html">L11: Symbol Overview + Graphic Editor</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 – Building a Process Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Graphics-With-Objects.html">L13: Graphics with Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 – Creating the Mixer Components</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Editor-Tools-Animations.html">L15: Graphic Editor Tools and Animations</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 – Creating the Mixer Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-OwningObject-Lab8-Mixers.html">L17: The OwningObject Property + Lab 8</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Custom-Properties.html">L18: Custom Properties</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 – Creating a Custom Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Scripts-In-Graphics.html">L20: Scripts in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 – Creating a Navigation Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Galaxy-Styles.html">L22: Galaxy Styles</a></label>
+<strong>Module 4 &#8212; Widgets</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Widgets-Lab11-Carousel.html">L23: Widgets Overview + Lab 11</a></label>
+<strong>Module 5 &#8212; Alarms and Events Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-Alarming-Overview-Lab12.html">L24: Alarming Overview + Lab 12</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" checked onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html" style="font-weight:bold;">L25: Lab 13 – Alarm Aggregation</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">L26: Live Alarms Visualization</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 – Current Alarms Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 – Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">L29: Historical Alarms + Lab 16</a></label>
+<strong>Module 6 &#8212; Trend Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">L30: Historization + Real-Time Trending</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 – Adding Trending to Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Multi-Pens-Trend.html">L32: Multi Pens Trend</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 – Trend Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Historian-Trend-Lab19.html">L34: Historian Client Trend + Lab 19</a></label>
+<strong>Module 7 &#8212; Security</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Security-Overview.html">L35: Security Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 – Security Features in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Signed-Writes-Lab21.html">L37: Signed Writes + Lab 21</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Runtime-Customization-Lab22.html">L38: Runtime Customization + Lab 22</a></label>
+<strong>Module 8 &#8212; Web Client</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Web-Client-Overview.html">L39: Web Client Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 – Using the Web Client</a></label>
+</div>
+</details>
+</nav>
+
+<h1>Lesson L25: Lab 13 – Alarm Aggregation</h1>
+<p class="page-ref">Module 5 — Alarms and Events Visualization | Pages 321–340</p>
+
+<div class="screenshot">
+  <img src="../images/page_0321.png" alt="Building an Alarm Aggregation Overview (page 5-29)">
+  <div class="caption">Building an Alarm Aggregation Overview (page 5-29)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0322.png" alt="Alarms and Events Visualization (page 5-30)">
+  <div class="caption">Alarms and Events Visualization (page 5-30)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0323_0.png" alt="Building an Alarm Aggregation Overview (page 5-31)">
+  <div class="caption">Building an Alarm Aggregation Overview (page 5-31)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0323_1.png" alt="Building an Alarm Aggregation Overview (page 5-31)">
+  <div class="caption">Building an Alarm Aggregation Overview (page 5-31)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0324_0.png" alt="Alarms and Events Visualization (page 5-32)">
+  <div class="caption">Alarms and Events Visualization (page 5-32)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0324_1.png" alt="Alarms and Events Visualization (page 5-32)">
+  <div class="caption">Alarms and Events Visualization (page 5-32)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0324_2.png" alt="Alarms and Events Visualization (page 5-32)">
+  <div class="caption">Alarms and Events Visualization (page 5-32)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0325_0.png" alt="Building an Alarm Aggregation Overview (page 5-33)">
+  <div class="caption">Building an Alarm Aggregation Overview (page 5-33)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0325_1.png" alt="Building an Alarm Aggregation Overview (page 5-33)">
+  <div class="caption">Building an Alarm Aggregation Overview (page 5-33)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0326_0.png" alt="Alarms and Events Visualization (page 5-34)">
+  <div class="caption">Alarms and Events Visualization (page 5-34)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0326_1.png" alt="Alarms and Events Visualization (page 5-34)">
+  <div class="caption">Alarms and Events Visualization (page 5-34)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0327_0.png" alt="Building an Alarm Aggregation Overview (page 5-35)">
+  <div class="caption">Building an Alarm Aggregation Overview (page 5-35)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0327_1.png" alt="Building an Alarm Aggregation Overview (page 5-35)">
+  <div class="caption">Building an Alarm Aggregation Overview (page 5-35)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0327_2.png" alt="Building an Alarm Aggregation Overview (page 5-35)">
+  <div class="caption">Building an Alarm Aggregation Overview (page 5-35)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0328.png" alt="Alarms and Events Visualization (page 5-36)">
+  <div class="caption">Alarms and Events Visualization (page 5-36)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0329.png" alt="Building an Alarm Aggregation Overview (page 5-37)">
+  <div class="caption">Building an Alarm Aggregation Overview (page 5-37)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0330.png" alt="Alarms and Events Visualization (page 5-38)">
+  <div class="caption">Alarms and Events Visualization (page 5-38)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0331.png" alt="Page 0331">
+  <div class="caption">Page 0331</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0332.png" alt="Page 0332">
+  <div class="caption">Page 0332</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0334_0.png" alt="Page 0334">
+  <div class="caption">Page 0334</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0334_1.png" alt="Page 0334">
+  <div class="caption">Page 0334</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0335.png" alt="Page 0335">
+  <div class="caption">Page 0335</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0336_0.png" alt="Page 0336">
+  <div class="caption">Page 0336</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0336_1.png" alt="Page 0336">
+  <div class="caption">Page 0336</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0337.png" alt="Page 0337">
+  <div class="caption">Page 0337</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0338.png" alt="Page 0338">
+  <div class="caption">Page 0338</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0339.png" alt="Page 0339">
+  <div class="caption">Page 0339</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0340.png" alt="Page 0340">
+  <div class="caption">Page 0340</div>
+</div>
+
+<p>Do Not Copy Lab 13 – Building an Alarm Aggregation Overview 5-29 AVEVA™ InTouch for System Platform 2023 In the following steps, you will reposition the graphics on the canvas and enable a fixed canvas size. 28. On a blank area of the canvas, right-click and select Select All. 29. Move the selected elements to the left side of the canvas.</p>
+<p>Do Not Copy 5-30 Module 5 – Alarms and Events Visualization AVEVA™ Training 30. Click the canvas to deselect all elements and show canvas properties. 31. On the Properties tab, set Size to Fixed. The canvas displays selection handles for resizing. 32. Resize the canvas to fit the graphics, ensuring white space on all sides as shown below: 33. Save and close and check in the graphic.</p>
+<p>Do Not Copy Lab 13 – Building an Alarm Aggregation Overview 5-31 AVEVA™ InTouch for System Platform 2023 Add a Navigation Button for the Alarm Aggregation Overview Now, you will duplicate a navigation button and modify it to display the AlarmAggregationOverview graphic in a popup window. 34. On the Graphics tab, duplicate NavigationButton, name the duplicate as NavigationButton2, and then open it for editing. 35. Right-click the canvas and select Custom Properties. 36. Change the WindowModal and WindowResizable custom properties to True. 37. Click OK to close Edit Custom Properties. 38. Double-click the button to open Edit Animations. 39. In Animations, endure Element Style is selected, and then click Remove Animation.</p>
+<p>Do Not Copy 5-32 Module 5 – Alarms and Events Visualization AVEVA™ Training An Animation Editor message appears. 40. Click Yes to confirm the removal of the animation. 41. Remove the Disable animation. In Animations, only the Action Scripts animation remains. 42. Click OK to close Edit Animations. 43. Save and close and check in the graphic. Add a Navigation Button for the Alarm Aggregation Overview Now, you will add an Alarm Aggregation Overview button to the navigation graphic. The button will open a popup window displaying the graphic you created in earlier steps. 44. On the Graphics tab, in the Training toolset, open SystemNavigation for editing. 45. On the Toolbox tab, search for button2, and then drag NavigationButton2 to the right of the Line 2 button on the canvas. 46. Change the text on the button to Alarm Overview.</p>
+<p>Do Not Copy Lab 13 – Building an Alarm Aggregation Overview 5-33 AVEVA™ InTouch for System Platform 2023 47. Right-click the Alarm Overview button and select Custom Properties. 48. For GraphicName, in Default Value, enter AlarmAggregationOverview. Leaving the WindowName custom property blank will make the graphic appear in a popup window. 49. Click OK to close Edit Custom Properties. Enhance the Navigation Buttons Now, you will enhance two of the SystemNavigation buttons by adding the alarm severity indicators. 50. From Instances, embed Line1\AlarmSeverityLabels and place it at the top and center of the Line 1 button. 51. Adjust the size of the graphic to fit the width of the button. 52. From Instances, embed Line2\AlarmSeverityLabels and place it at the top and center of the Line2 button. 53. Adjust the size of the graphic to fit the width of the button. 54. Save and close and check in the graphic.</p>
+<p>Do Not Copy 5-34 Module 5 – Alarms and Events Visualization AVEVA™ Training Test in Runtime Finally, you will test the results in runtime. 55. In WindowMaker, click Runtime. 56. In the Navigation window, on the Line 1 and Line 2 buttons, notice that alarm counts for each severity appear. 57. Click the Alarm Overview button to open the AlarmAggregationOverview popup window.</p>
+<p>Do Not Copy Lab 13 – Building an Alarm Aggregation Overview 5-35 AVEVA™ InTouch for System Platform 2023 58. Behind the popup window, attempt to click the Mixers button in the Navigation window. There is no response to this action because the window is modal and must be closed before you can do anything else. 59. In AlarmAggregationOverview, in the Production alarm panel, to the right of the Mode label, click the up-arrow Command Panel button. A command panel with a drop-down appears in the Production alarm panel. 60. Click the down-arrow and select Disable. The Apply button appears. 61. Click Apply.</p>
+<p>Do Not Copy 5-36 Module 5 – Alarms and Events Visualization AVEVA™ Training 62. Observe all alarm panels in the popup window indicate Disable. Disabling alarms for the Production area also disables alarms for all child objects.</p>
+<p>Do Not Copy Lab 13 – Building an Alarm Aggregation Overview 5-37 AVEVA™ InTouch for System Platform 2023 63. In the Production alarm panel, to the right of the Mode label, click the up-arrow. 64. Click the down-arrow and select Enable. 65. Click Apply. 66. Observe all alarm panels in the popup window are enabled. 67. Close the AlarmAggregationOverview window. 68. Click Development! to return to WindowMaker. <End of Lab></p>
+<p>Do Not Copy 5-38 Module 5 – Alarms and Events Visualization AVEVA™ Training [Optional Steps] Add Additional Mixer Alarm Panels The following optional steps complete the AlarmAggregationOverview graphic by adding additional mixer alarm panels to the Line2 area. 69. In the IDE, on the Graphics tab, in the Training toolset, double-click AlarmAggregationOverview to open it for editing. 70. On the canvas, select all four mixer alarm panels and duplicate them. 71. Place the duplicates in the empty area below the Line2 alarm panel as shown below. Note: If necessary, click the canvas and resize it so all panels fit on the canvas as shown.</p>
+<p>Do Not Copy Lab 13 – Building an Alarm Aggregation Overview 5-39 AVEVA™ InTouch for System Platform 2023 72. Change the instance name for each duplicate by right-clicking and selecting Industrial Graphic | Select Alternate Instance as follows: 73. In Tools, double-click Connector and draw connectors between the Line2 alarm panel and the four duplicate mixer alarm panels as shown below. 74. Save and close and check in the graphic. Current Alternate Instance Mixer100 Mixer500 Mixer200 Mixer600 Mixer300 Mixer700 Mixer400 Mixer800</p>
+<p>Do Not Copy 5-40 Module 5 – Alarms and Events Visualization AVEVA™ Training 75. Test in runtime. 76. When you are finished testing, click Development! to return to WindowMaker. <End of Optional Steps></p>
+<p>Do Not Copy Section 2 – Live Alarms Visualization 5-41 AVEVA™ InTouch for System Platform 2023 Section 2 – Live Alarms Visualization Introduction The Alarm Client control is a graphic element that can be used in symbols to show current and historical alarms and events. The Alarm Client control replaces the Alarm Viewer control and Alarm DB View control in the InTouch HMI and extends alarm visualization to the graphics environment. The Alarm Client control is delivered as part of the Graphic Editor and can be used in symbols to show current and historical alarms and events in a grid. In the Graphic Editor, Tools pane, select the Alarm Client control and place it directly onto the canvas. Customize the Alarm Client control by adding further graphics, interactions, and scripts. Deploy a Managed InTouch application containing Alarm Client controls to a remote node to visualize and interact with alarms at runtime with InTouch WindowViewer. This control has properties, methods, and events that can be modified, while an application is running. Once the control format has been designed, a user can make the following adjustments to manipulate the data they are viewing in runtime, such as:  Refreshing the Alarm Client control grid to show the most current alarms  Using the status bar to view various information about the alarm records  Acknowledging, hiding, filtering, or sorting alarms  Freezing the Alarm Client control grid  Switching between client modes  Switching between languages This section explains how to use the Alarm Client control in your InTouch for System Platform application to visualize live alarms.</p>
+<p>Do Not Copy 5-42 Module 5 – Alarms and Events Visualization AVEVA™ Training The Alarm Client Control supports five different client modes, which can be grouped depending on their data source. Alarm Client Control supports the InTouch Database (WWALMDB), the ArchestrA Database (A2ALMDB), and the Historian History Blocks. The Alarm Client Control allows users to view and acknowledge all locally and remotely generated alarms. Embedding the Alarm Client Control To embed the Alarm Client control, open the Graphic Editor. In the Tools pane, select the Alarm Client tool. Then click the canvas to place the object. You can resize the control and double-click it to access the configuration options. Configuration Options Alarm Mode Set the Alarm Client Control to show either:  Current alarms  Recent alarms and events Use the ClientMode integer property in scripting to switch the Alarm Client control to show current alarms or recent alarms and events at runtime. Comments can be configured for alarms that are</p>
+<p>Do Not Copy Section 2 – Live Alarms Visualization 5-43 AVEVA™ InTouch for System Platform 2023 acknowledged at runtime. Use the AckComment.UseDefault Boolean property and AckComment.DefaultValue String property in scripting to create a default acknowledgment comment at runtime. In the Client Mode drop-down list, select which alarms to display:  Current Alarms  Recent Alarms and Events  Historical Alarms  Historical Events  Historical Alarms and Events The alarm query is configured in the Alarm Query field. To create a new line in the Alarm Query field, press Ctrl + Enter. For more information on the valid syntax, see Alarm Queries in the Alarm Control Guide. If a default acknowledgment comment is needed, check the Use Default Ack Comment check box and enter a comment in the text box.</p>
+<p>Do Not Copy 5-44 Module 5 – Alarms and Events Visualization AVEVA™ Training Colors Different types of alarm records can be displayed in different colors so that the operator can more easily identify certain types of alarms. The Alarm Client control can be configured with priority breakpoints to show alarm records within the resulting priority ranges in different colors. The control background color, the grid color, and the heading colors can also be customized. Column Details Column headers can be renamed, resized, and reordered in the Alarm Client control. All changes made in the Column Details list are shown in the grid preview. Use the grid preview to resize columns or change their order with the pointer.</p>
+<p>Do Not Copy Section 2 – Live Alarms Visualization 5-45 AVEVA™ InTouch for System Platform 2023 Queries and Filters Current and historical alarms can be filtered by using Queries and Filters. A query filter is a collection of filter criteria in a logical construct. For example, alarms can be filtered by defining a query filter that only shows alarms with priorities larger than 500 and smaller than 750. Filter queries can be reused from historical alarms for current alarms, and vice versa. Filter queries can also be reused and defined at design-time for runtime, and vice versa. Note: Queries and Filters for current alarms and recent alarms and events require at least a Provider and a Group as filter criteria. These must use the equals sign. Ensure the TimeSelector.StartDate and TimeSelector.EndDate properties do not limit the query when using TimeLCT, TimeOAT, or TimeLCTOAT as filter criteria for historical alarm modes, otherwise the Alarm Client control may not return all alarm and event records. Set the TimeSelector.StartDate property earlier than any time filtering requirement and the TimeSelector.EndDate later than any time filtering requirement.</p>
+<p>Do Not Copy 5-46 Module 5 – Alarms and Events Visualization AVEVA™ Training Time Settings Set the time zone in which the client shows the alarm and event records. By default, the time zone is set to the client computer’s current time zone at design-time. Use the TimeZone.TimeZone, Time.Type, and Time.Format properties in scripting to set the time zone, time type, and time format at runtime. Set the time format of the alarm and event records. Select between the following:  Time Format: Same as the Alarm Client control  .NET Time Format: Defined by Microsoft .NET Framework time format conventions</p>
+<p>Do Not Copy Section 2 – Live Alarms Visualization 5-47 AVEVA™ InTouch for System Platform 2023 Run-Time Behavior The behavior and appearance of the Alarm Client control can be configured at runtime, for example:  Showing and Hiding parts of the Alarm Client control  Specifying if the Alarm Client control queries the alarm database, when it starts up  Scrolling to new alarms  Hiding warnings, errors, and messages  Restricting operator access to parts of the Alarm Client control  Specifying Alarm Client control freeze behavior  Customizing the no records message  Customizing the runtime shortcut menu</p>
+<p>Do Not Copy 5-48 Module 5 – Alarms and Events Visualization AVEVA™ Training Data Binding Data Binding binds the properties of an embedded client control to attributes or element references. This enables attributes and element references source and consume data for the client control properties. The Data Binding table contains the following information:  Name: Name of the client control property  Type: The .NET data type of the property  Value: The default value of the client control property  Direction: Indicates if the property is read/write or just read-only</p>
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Lab 13 – Alarm Aggregation?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
+</div>
+
+<p class="source">Module 5 — Alarms and Events Visualization. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: Lesson L26 — Live Alarms Visualization</p>
+
+<script>
+
+function saveProgress() {
+  var checks = {};
+  document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+    checks[cb.dataset.lesson] = cb.checked;
+  });
+  try {
+    localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks));
+  } catch(e) {}
+  updateProgressText();
+}
+
+function loadProgress() {
+  var data = null;
+  try {
+    data = localStorage.getItem('intouch-lesson-progress');
+  } catch(e) {}
+  if (!data) {
+    updateProgressText();
+    return;
+  }
+  try {
+    var checks = JSON.parse(data);
+    document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+      if (checks[cb.dataset.lesson]) {
+        cb.checked = true;
+      }
+    });
+  } catch(e) {}
+  updateProgressText();
+}
+
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').length;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' completed';
+}
+
+document.addEventListener('DOMContentLoaded', loadProgress);
+
+</script>
+</body>
+</html>

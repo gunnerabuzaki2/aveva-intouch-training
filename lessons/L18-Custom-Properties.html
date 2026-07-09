@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson L18: Custom Properties</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="<a href="L17-OwningObject-Lab8-Mixers.html">&larr; The OwningObject Property + Lab 8</a>">&larr; Previous</a> &nbsp;|&nbsp;
+  <a href='L19-Lab9-Custom-Symbol.html'>Lab 9 – Creating a Custom Symbol &rarr;</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<details style="background:#f5f5f5;padding:0.8em;border-radius:6px;border:1px solid #ddd;margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">&#128218; All Lessons</summary>
+<div style="margin-top:0.8em;line-height:1.8;max-height:70vh;overflow-y:auto;">
+<div style="margin-bottom:0.5em;padding:0.5em;background:#e8f5e9;border-radius:4px;">
+<strong style="color:#2c5f2d;">&#9989; Progress: <span id="progress-text">0 / 40 completed</span></strong>
+</div>
+<strong>Module 1 &#8212; Introduction</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction.html">L01: Course Introduction</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-System-Platform-Overview.html">L02: System Platform Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html">L03: Lab 1 – Creating and Deploying a Galaxy</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Encryption-Requirements.html">L04: Encrypted Communication + System Requirements</a></label>
+<strong>Module 2 &#8212; Getting Started</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-InTouch-Visualization-Objects.html">L05: InTouch Visualization + Automation Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 – Creating a Managed InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-WindowMaker-Development.html">L07: InTouch Development Environment</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 – Building the Application Layout</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Runtime-Environment.html">L09: Runtime Environment and Application Design</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 – Deploying an InTouch Application</a></label>
+<strong>Module 3 &#8212; Symbols</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Symbol-Overview-Graphic-Editor.html">L11: Symbol Overview + Graphic Editor</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 – Building a Process Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Graphics-With-Objects.html">L13: Graphics with Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 – Creating the Mixer Components</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Editor-Tools-Animations.html">L15: Graphic Editor Tools and Animations</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 – Creating the Mixer Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-OwningObject-Lab8-Mixers.html">L17: The OwningObject Property + Lab 8</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L18" checked onchange="saveProgress()"> <a href="L18-Custom-Properties.html" style="font-weight:bold;">L18: Custom Properties</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 – Creating a Custom Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Scripts-In-Graphics.html">L20: Scripts in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 – Creating a Navigation Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Galaxy-Styles.html">L22: Galaxy Styles</a></label>
+<strong>Module 4 &#8212; Widgets</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Widgets-Lab11-Carousel.html">L23: Widgets Overview + Lab 11</a></label>
+<strong>Module 5 &#8212; Alarms and Events Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-Alarming-Overview-Lab12.html">L24: Alarming Overview + Lab 12</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 – Alarm Aggregation</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">L26: Live Alarms Visualization</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 – Current Alarms Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 – Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">L29: Historical Alarms + Lab 16</a></label>
+<strong>Module 6 &#8212; Trend Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">L30: Historization + Real-Time Trending</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 – Adding Trending to Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Multi-Pens-Trend.html">L32: Multi Pens Trend</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 – Trend Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Historian-Trend-Lab19.html">L34: Historian Client Trend + Lab 19</a></label>
+<strong>Module 7 &#8212; Security</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Security-Overview.html">L35: Security Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 – Security Features in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Signed-Writes-Lab21.html">L37: Signed Writes + Lab 21</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Runtime-Customization-Lab22.html">L38: Runtime Customization + Lab 22</a></label>
+<strong>Module 8 &#8212; Web Client</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Web-Client-Overview.html">L39: Web Client Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 – Using the Web Client</a></label>
+</div>
+</details>
+</nav>
+
+<h1>Lesson L18: Custom Properties</h1>
+<p class="page-ref">Module 3 — Symbols | Pages 217–222</p>
+
+<div class="screenshot">
+  <img src="../images/page_0217_0.png" alt="Custom Properties 3-119">
+  <div class="caption">Custom Properties 3-119</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0217_1.png" alt="Custom Properties 3-119">
+  <div class="caption">Custom Properties 3-119</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0217_2.png" alt="Custom Properties 3-119">
+  <div class="caption">Custom Properties 3-119</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0217_3.png" alt="Custom Properties 3-119">
+  <div class="caption">Custom Properties 3-119</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0217_4.png" alt="Custom Properties 3-119">
+  <div class="caption">Custom Properties 3-119</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0217_5.png" alt="Custom Properties 3-119">
+  <div class="caption">Custom Properties 3-119</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0217_6.png" alt="Custom Properties 3-119">
+  <div class="caption">Custom Properties 3-119</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0217_7.png" alt="Custom Properties 3-119">
+  <div class="caption">Custom Properties 3-119</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0217_8.png" alt="Custom Properties 3-119">
+  <div class="caption">Custom Properties 3-119</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0217_9.png" alt="Custom Properties 3-119">
+  <div class="caption">Custom Properties 3-119</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0218_0.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0218_1.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0218_2.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0219.png" alt="Custom Properties 3-121">
+  <div class="caption">Custom Properties 3-121</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0220.png" alt="Symbols">
+  <div class="caption">Symbols</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0221.png" alt="Page 0221">
+  <div class="caption">Page 0221</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0222_0.png" alt="Page 0222">
+  <div class="caption">Page 0222</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0222_1.png" alt="Page 0222">
+  <div class="caption">Page 0222</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0222_2.png" alt="Page 0222">
+  <div class="caption">Page 0222</div>
+</div>
+
+<p>Do Not Copy Section 6 – Custom Properties 3-119 AVEVA™ InTouch for System Platform 2023 Data Type The data type for the custom property can be Boolean, Double, ElapsedTime, Float, Integer, String, Time, or HistorySummary. An icon for the selected data type appears at the top of the dialog box. Default Value The Default Value is the initial default value for the custom property. It can be a literal value, reference, or expression. You can click the ellipsis button to browse for a reference using the Galaxy Browser. If the selected data type is String, Time, or ElapsedTime, click the button to the left of the Default Value field to indicate whether the default value is a static value or a reference to a value.  Static Text: The default value is a static value. This mode treats the Default Value field as text.  Expression or Reference: The default value is an expression or a reference. This mode treats the Default Value field as a lookup list or evaluation of a mathematical expression or a logic expression. Visibility The Visibility setting determines whether the custom property is visible to be configured when the symbol is embedded. Any property marked as Private is not visible in an embedded symbol. This can be used to hide configurations that you do not want designers to modify. Data Type Icon Boolean Double Elapsed Time Float Integer String Time History Summary</p>
+<p>Do Not Copy 3-120 Module 3 – Symbols AVEVA™ Training Description The Description provides a brief note about the custom property. For symbols from a built-in library, the description contains helpful tips on how to use the custom property. Button Tool You can use the Button tool to add buttons to your graphics. To draw a button, select the Button tool from the Tools pane, click the canvas, drag the shape of the button, and release the mouse. Text on the button appears in edit mode and you can type a label for the button and press Enter. You can also use the Text property to specify the label for the button, as well as size properties and others from the Properties tab. You can apply animations, such as Pushbutton, Value Display, Element Style, and others to configure the button. Pushbutton Animation You can configure an element with a Pushbutton animation to change Boolean, analog, or string references.</p>
+<p>Do Not Copy Section 6 – Custom Properties 3-121 AVEVA™ InTouch for System Platform 2023 Show Symbol and Hide Symbol Animations You can configure an element with a Show Symbol animation, which shows a specified graphic as a pop-up window when the element is clicked at runtime. The animation pops-up the specified graphic independent of any InTouch window at a specified position when a user clicks the element at runtime.  You can configure options such as:  Which graphic appears in the new window  If the window has a title bar, and if so if it has a caption  If the window is modal or modeless  If the window has a close button  If the window can be resized  The initial position of the window  The size of the window  A shortcut key for showing the graphic To specify the graphic, you can enter the name in the Reference field or browse for the graphic with the Galaxy Browser. You can configure an element with a Hide Symbol animation. The Hide Symbol animation lets you close:  The current graphic  A graphic that is shown by a specified element.  You can also configure a shortcut key for closing the graphic.</p>
+<p>Do Not Copy 3-122 Module 3 – Symbols AVEVA™ Training TreatAsIcon Property Setting TreatAsIcon to True enables interaction animations for an embedded graphic. If TreatAsIcon is False, the animations defined in the graphic take precedence.</p>
+<p>Do Not Copy Lab 9 – Creating a Custom Symbol 3-123 AVEVA™ InTouch for System Platform 2023 Lab 9 – Creating a Custom Symbol Introduction In this lab, you will create custom symbols to be used as command panels for opening and closing valves, starting and stopping pumps and agitators, and changing the speed setpoint for an agitator. In the command panel graphic, you will create and configure custom properties that will be used in animations. You will add button elements and configure them with Pushbutton and Element Style animations. Finally, in the Agitator_Detailed, Pump_Detailed, and Valve_Detailed graphics, you will add Show Symbol animations to show their respective command panels at runtime. Objectives Upon completion of this lab, you will be able to:  Create and configure custom properties in a graphic  Use the Button tool  Use Pushbutton animations  Use Element Style animations  Use Show Symbol animations  Add the Quality & Status element to a custom graphic  Configure the TreatAsIcon property of embedded graphics</p>
+<p>Do Not Copy 3-124 Module 3 – Symbols AVEVA™ Training Create a Command Panel Symbol First, you will create a CommandPanel graphic with buttons that can be used at runtime to operate valves and pumps. 1. In the IDE, on the Graphics tab, in the Training toolset, create a new symbol named CommandPanel and open it for editing. Now you will add custom properties to the graphic. 2. Right-click the canvas to set focus on the canvas, and then select Custom Properties. Edit Custom Properties appears. 3. Click the Add custom property button. 4. Name the new custom property as Cmd and press Enter.</p>
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Custom Properties?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
+</div>
+
+<p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: Lesson L19 — Lab 9 – Creating a Custom Symbol</p>
+
+<script>
+
+function saveProgress() {
+  var checks = {};
+  document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+    checks[cb.dataset.lesson] = cb.checked;
+  });
+  try {
+    localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks));
+  } catch(e) {}
+  updateProgressText();
+}
+
+function loadProgress() {
+  var data = null;
+  try {
+    data = localStorage.getItem('intouch-lesson-progress');
+  } catch(e) {}
+  if (!data) {
+    updateProgressText();
+    return;
+  }
+  try {
+    var checks = JSON.parse(data);
+    document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+      if (checks[cb.dataset.lesson]) {
+        cb.checked = true;
+      }
+    });
+  } catch(e) {}
+  updateProgressText();
+}
+
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').length;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' completed';
+}
+
+document.addEventListener('DOMContentLoaded', loadProgress);
+
+</script>
+</body>
+</html>

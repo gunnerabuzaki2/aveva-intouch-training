@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson L35: Security Overview</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="<a href="L34-Historian-Trend-Lab19.html">&larr; Historian Client Trend + Lab 19</a>">&larr; Previous</a> &nbsp;|&nbsp;
+  <a href='L36-Lab20-Security-Features.html'>Lab 20 – Security Features in Graphics &rarr;</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<details style="background:#f5f5f5;padding:0.8em;border-radius:6px;border:1px solid #ddd;margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">&#128218; All Lessons</summary>
+<div style="margin-top:0.8em;line-height:1.8;max-height:70vh;overflow-y:auto;">
+<div style="margin-bottom:0.5em;padding:0.5em;background:#e8f5e9;border-radius:4px;">
+<strong style="color:#2c5f2d;">&#9989; Progress: <span id="progress-text">0 / 40 completed</span></strong>
+</div>
+<strong>Module 1 &#8212; Introduction</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction.html">L01: Course Introduction</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-System-Platform-Overview.html">L02: System Platform Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html">L03: Lab 1 – Creating and Deploying a Galaxy</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Encryption-Requirements.html">L04: Encrypted Communication + System Requirements</a></label>
+<strong>Module 2 &#8212; Getting Started</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-InTouch-Visualization-Objects.html">L05: InTouch Visualization + Automation Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 – Creating a Managed InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-WindowMaker-Development.html">L07: InTouch Development Environment</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 – Building the Application Layout</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Runtime-Environment.html">L09: Runtime Environment and Application Design</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 – Deploying an InTouch Application</a></label>
+<strong>Module 3 &#8212; Symbols</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Symbol-Overview-Graphic-Editor.html">L11: Symbol Overview + Graphic Editor</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 – Building a Process Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Graphics-With-Objects.html">L13: Graphics with Objects</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 – Creating the Mixer Components</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Editor-Tools-Animations.html">L15: Graphic Editor Tools and Animations</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 – Creating the Mixer Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-OwningObject-Lab8-Mixers.html">L17: The OwningObject Property + Lab 8</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Custom-Properties.html">L18: Custom Properties</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 – Creating a Custom Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Scripts-In-Graphics.html">L20: Scripts in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 – Creating a Navigation Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Galaxy-Styles.html">L22: Galaxy Styles</a></label>
+<strong>Module 4 &#8212; Widgets</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Widgets-Lab11-Carousel.html">L23: Widgets Overview + Lab 11</a></label>
+<strong>Module 5 &#8212; Alarms and Events Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-Alarming-Overview-Lab12.html">L24: Alarming Overview + Lab 12</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 – Alarm Aggregation</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">L26: Live Alarms Visualization</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 – Current Alarms Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 – Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">L29: Historical Alarms + Lab 16</a></label>
+<strong>Module 6 &#8212; Trend Visualization</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">L30: Historization + Real-Time Trending</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 – Adding Trending to Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Multi-Pens-Trend.html">L32: Multi Pens Trend</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 – Trend Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Historian-Trend-Lab19.html">L34: Historian Client Trend + Lab 19</a></label>
+<strong>Module 7 &#8212; Security</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L35" checked onchange="saveProgress()"> <a href="L35-Security-Overview.html" style="font-weight:bold;">L35: Security Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 – Security Features in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Signed-Writes-Lab21.html">L37: Signed Writes + Lab 21</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Runtime-Customization-Lab22.html">L38: Runtime Customization + Lab 22</a></label>
+<strong>Module 8 &#8212; Web Client</strong><br>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Web-Client-Overview.html">L39: Web Client Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 – Using the Web Client</a></label>
+</div>
+</details>
+</nav>
+
+<h1>Lesson L35: Security Overview</h1>
+<p class="page-ref">Module 7 — Security | Pages 439–472</p>
+
+<div class="screenshot">
+  <img src="../images/page_0439.png" alt="Page 0439">
+  <div class="caption">Page 0439</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0443.png" alt="Page 0443">
+  <div class="caption">Page 0443</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0444_0.png" alt="Page 0444">
+  <div class="caption">Page 0444</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0444_1.png" alt="Page 0444">
+  <div class="caption">Page 0444</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0444_2.png" alt="Page 0444">
+  <div class="caption">Page 0444</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0444_3.png" alt="Page 0444">
+  <div class="caption">Page 0444</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0444_4.png" alt="Page 0444">
+  <div class="caption">Page 0444</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0444_5.png" alt="Page 0444">
+  <div class="caption">Page 0444</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0444_6.png" alt="Page 0444">
+  <div class="caption">Page 0444</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0447.png" alt="Page 0447">
+  <div class="caption">Page 0447</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0448.png" alt="Page 0448">
+  <div class="caption">Page 0448</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0449_0.png" alt="Page 0449">
+  <div class="caption">Page 0449</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0449_1.png" alt="Page 0449">
+  <div class="caption">Page 0449</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0450_0.png" alt="Page 0450">
+  <div class="caption">Page 0450</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0450_1.png" alt="Page 0450">
+  <div class="caption">Page 0450</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0450_2.png" alt="Page 0450">
+  <div class="caption">Page 0450</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0451_0.png" alt="Using Security Features in Graphics (page 7-13)">
+  <div class="caption">Using Security Features in Graphics (page 7-13)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0451_1.png" alt="Using Security Features in Graphics (page 7-13)">
+  <div class="caption">Using Security Features in Graphics (page 7-13)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0451_2.png" alt="Using Security Features in Graphics (page 7-13)">
+  <div class="caption">Using Security Features in Graphics (page 7-13)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0452_0.png" alt="Security (page 7-14)">
+  <div class="caption">Security (page 7-14)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0452_1.png" alt="Security (page 7-14)">
+  <div class="caption">Security (page 7-14)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0453_0.png" alt="Using Security Features in Graphics (page 7-15) - Draft Copy">
+  <div class="caption">Using Security Features in Graphics (page 7-15) - Draft Copy</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0453_1.png" alt="Using Security Features in Graphics (page 7-15) - Draft Copy">
+  <div class="caption">Using Security Features in Graphics (page 7-15) - Draft Copy</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0454_0.png" alt="Security (page 7-16)">
+  <div class="caption">Security (page 7-16)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0454_1.png" alt="Security (page 7-16)">
+  <div class="caption">Security (page 7-16)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0455_0.png" alt="Using Security Features in Graphics (page 7-17) - Demo Copy">
+  <div class="caption">Using Security Features in Graphics (page 7-17) - Demo Copy</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0455_1.png" alt="Using Security Features in Graphics (page 7-17) - Demo Copy">
+  <div class="caption">Using Security Features in Graphics (page 7-17) - Demo Copy</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0456_0.png" alt="Security (page 7-18) - Configure Security Settings in the Mixer Display">
+  <div class="caption">Security (page 7-18) - Configure Security Settings in the Mixer Display</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0456_1.png" alt="Security (page 7-18) - Configure Security Settings in the Mixer Display">
+  <div class="caption">Security (page 7-18) - Configure Security Settings in the Mixer Display</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0457.png" alt="Using Security Features in Graphics (page 7-19) - Doc watermark">
+  <div class="caption">Using Security Features in Graphics (page 7-19) - Doc watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0458_0.png" alt="Security (page 7-20)">
+  <div class="caption">Security (page 7-20)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0458_1.png" alt="Security (page 7-20)">
+  <div class="caption">Security (page 7-20)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0459.png" alt="Using Security Features in Graphics (page 7-21) - "Do Not" watermark">
+  <div class="caption">Using Security Features in Graphics (page 7-21) - "Do Not" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0460.png" alt="Security (page 7-22) - "Do Not Copy" watermark">
+  <div class="caption">Security (page 7-22) - "Do Not Copy" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0461_0.png" alt="Using Security Features in Graphics (page 7-23)">
+  <div class="caption">Using Security Features in Graphics (page 7-23)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0461_1.png" alt="Using Security Features in Graphics (page 7-23)">
+  <div class="caption">Using Security Features in Graphics (page 7-23)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0462_0.png" alt="Security (page 7-24)">
+  <div class="caption">Security (page 7-24)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0462_1.png" alt="Security (page 7-24)">
+  <div class="caption">Security (page 7-24)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0463_0.png" alt="Using Security Features in Graphics (page 7-25) - COPY watermark">
+  <div class="caption">Using Security Features in Graphics (page 7-25) - COPY watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0463_1.png" alt="Using Security Features in Graphics (page 7-25) - COPY watermark">
+  <div class="caption">Using Security Features in Graphics (page 7-25) - COPY watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0463_2.png" alt="Using Security Features in Graphics (page 7-25) - COPY watermark">
+  <div class="caption">Using Security Features in Graphics (page 7-25) - COPY watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0464_0.png" alt="Security (page 7-26) - "DO NOT COPY" watermark">
+  <div class="caption">Security (page 7-26) - "DO NOT COPY" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0464_1.png" alt="Security (page 7-26) - "DO NOT COPY" watermark">
+  <div class="caption">Security (page 7-26) - "DO NOT COPY" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0465_0.png" alt="Using Security Features in Graphics (page 7-27)">
+  <div class="caption">Using Security Features in Graphics (page 7-27)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0465_1.png" alt="Using Security Features in Graphics (page 7-27)">
+  <div class="caption">Using Security Features in Graphics (page 7-27)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0466_0.png" alt="Security (page 7-28) - "DO NOT COPY" watermark">
+  <div class="caption">Security (page 7-28) - "DO NOT COPY" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0466_1.png" alt="Security (page 7-28) - "DO NOT COPY" watermark">
+  <div class="caption">Security (page 7-28) - "DO NOT COPY" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0467_0.png" alt="Using Security Features in Graphics (page 7-29)">
+  <div class="caption">Using Security Features in Graphics (page 7-29)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0467_1.png" alt="Using Security Features in Graphics (page 7-29)">
+  <div class="caption">Using Security Features in Graphics (page 7-29)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0468_0.png" alt="Security (page 7-30)">
+  <div class="caption">Security (page 7-30)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0468_1.png" alt="Security (page 7-30)">
+  <div class="caption">Security (page 7-30)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0469_0.png" alt="Using Security Features in Graphics (page 7-31)">
+  <div class="caption">Using Security Features in Graphics (page 7-31)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0469_1.png" alt="Using Security Features in Graphics (page 7-31)">
+  <div class="caption">Using Security Features in Graphics (page 7-31)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0469_2.png" alt="Using Security Features in Graphics (page 7-31)">
+  <div class="caption">Using Security Features in Graphics (page 7-31)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0470_0.png" alt="Security (page 7-32)">
+  <div class="caption">Security (page 7-32)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0470_1.png" alt="Security (page 7-32)">
+  <div class="caption">Security (page 7-32)</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0471_0.png" alt="Using Security Features in Graphics (page 7-33) - "Do Not Copy" watermark">
+  <div class="caption">Using Security Features in Graphics (page 7-33) - "Do Not Copy" watermark</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0471_1.png" alt="Using Security Features in Graphics (page 7-33) - "Do Not Copy" watermark">
+  <div class="caption">Using Security Features in Graphics (page 7-33) - "Do Not Copy" watermark</div>
+</div>
+
+<p>Do Not Copy Module 7 – Security Section 1 – Security Overview 7-3 Lab 20 – Using Security Features in Graphics 7-9 Section 2 – Signed Writes 7-35 Lab 21 – Signing Writes from InTouch 7-39 Section 3 – Customization of the Runtime Environment 7-59 Lab 22 – Locking Down Your Application 7-61</p>
+<p>Do Not Copy 7-2 Module 7 – Security AVEVA™ Training Module Objectives  Review configuring Application Security  Describe Authentication Modes, General permissions, and Operational permissions  Provide a brief overview of Secured and Verified Write Security classifications  Customize the runtime environment for better security  Configure the InTouch runtime environment for inactivity functionality  Introduce the EnableDisableKeys() script function</p>
+<p>Do Not Copy Section 1 – Security Overview 7-3 AVEVA™ InTouch for System Platform 2023 Section 1 – Security Overview Introduction The security system is a global function that applies to every object in the Galaxy database. It is a relationship-based security system between users and the objects and functions of the Galaxy. Security is designed to allow system administrators easily define users and assign the operations they are allowed to perform. The security permissions are defined in terms of the operations the users can perform using Automation objects. Configuring Security Before the security editor for a Galaxy is opened, ensure that:  No other user is connected to the Galaxy  All objects in the Galaxy are checked in  The user profile has configuration permissions to change Framework Configuration/Modify Security Model, if security is previously configured If the security editor is opened before these conditions are met, a warning message appears and access is denied. Do not configure security settings of the IDE while a Managed InTouch application is open for editing in WindowMaker. Other users who try to open the Galaxy while security is being configured are denied access to the Galaxy. Only change the System Administrator username or password using the Change Network Account Utility. The administrator account information is cached, and the engines may need to be redeployed after the account is changed, so that the engines run using the current information. Key Points Security is based on security roles (configuration, system administration, and runtime permissions) and security groups, which determine the runtime permissions for a particular security role on an object-level basis. When configuring a node to use security, the InTouch HMI uses methods and dialog boxes from Application Server for log on and log off operations. Users are configured in the System Platform IDE. Security includes advanced security mechanisms that also affect InTouch, such as:  Secured Write: Writing data to a Galaxy attribute from InTouch that requires operators with the right permission to reenter their passwords to complete the writeback  Verified Write: Writing data to a Galaxy attribute from InTouch that requires operators with the right permission to reenter their passwords and also authorization from a second operator with the right permission to complete the writeback For more information, see the InTouch HMI Application Management and Extension Guide. This section provides an overview of security in Application Server, including authentication modes, permissions, roles, and users. It also describes security classifications for attributes, the security audit trail, InTouch security tags, and script functions.</p>
+<p>Do Not Copy 7-4 Module 7 – Security AVEVA™ Training Authentication Modes You can select from following authentication modes to assign security:  Galaxy: Uses local Galaxy configuration to authenticate users. All security for the Galaxy is specified and contained at the specific Galaxy level. When the user logs on, security credentials are checked and access to areas and activities is granted at the Galaxy level.  OS User based: Uses the user authentication system of the operating system on an individual user level. All security for the Galaxy is specified and contained in the operating system (OS) on a user level basis. When the user logs on, security credentials are checked and access to areas and activities are granted at the OS user level.  OS Group based: Uses the user authentication system of the operating system on a group basis. All security for the Galaxy is specified and contained in the user-to-roles mapping created in the OS to assign security. When a user logs on, security credentials are checked and verified at the OS group level. OS groups are mapped to security roles in the Galaxy to allow access to areas and activities in the Galaxy.  Authentication providers: Uses the AVEVA Identity Manager (AIM) to create a unified security management infrastructure across your local System Platform nodes and Azure VMs by leveraging operating system security and Azure Active Directory (AD). Refer to your System Platform documentation for more information about the AVEVA Identity Manager and configuring Azure AD as an identity provider.</p>
+<p>Do Not Copy Section 1 – Security Overview 7-5 AVEVA™ InTouch for System Platform 2023 General and Operational Permissions You can create and manage user roles that apply to processes of the organization and work-based authorities. Two roles are defined by default: Administrator and Default. You can specify General and Operational Permissions for each role:  General permissions relate to application configuration and administration tasks.  Operational permissions relate to the security groups listed on the Security groups page. By default, the Administrator and Default roles have all permissions. All users belong to the Default role and this relationship cannot be changed. Therefore, it is highly recommended that you remove all permissions from the Default role. Note: The General permissions for the role of Administrator cannot be modified. The following Operational permissions can be associated with a role:  Can Modify ''Operate'' Attributes: Allows users with operational permissions to do certain normal day-to-day tasks like changing setpoint, output, and control mode for a PID object, or commanding a Discrete Device object.  Can Modify ''Tune'' Attributes: Allows users to tune the attribute in the runtime environment; examples of tuning are attributes that adjust alarm setpoints and PID sensitivity.  Can Modify ''Configure'' Attributes: Allows users to configure the value of an attribute, which requires that the user first put the object Off scan; writing to these attributes is considered a significant configuration change, for example, a PLC register that defines a Discrete Device input.  Can Acknowledge Alarms: Allows users to manually acknowledge an alarm in the runtime environment.</p>
+<p>Do Not Copy 7-6 Module 7 – Security AVEVA™ Training  Can Verify Writes: Allows users to provide an authentication signature for attributes configured with Verified Writes security classification; only users with this permission can verify a task performed by users with the Can Modify ''Operate'' Attributes permission.  Can Shelve Alarms: Allows users to manually shelve and unshelve alarms.  Can Modify Alarm Modes: Allows users to modify the mode of an alarm.  Can Modify Plant States: Allows users to modify plant states, for state-based alarming. Important: For Galaxies that have security enabled, and are migrated to Application Server, the Can Modify Operate Attributes Operational permission setting will be copied to the Can Verify Writes attribute. Starting with Application Server, Galaxies have the Can Verify Writes Operational permission setting disabled by default. Setting Object Security Operators interact with objects through the individual attributes of those objects. Each attribute on the Object Editor can be modified by operators at runtime and can have an associated security control, which is used to modify its runtime security classification. If the security classification of an attribute is configurable, click the security control to select one of the following possible states: If the security of an attribute is shown in gray, its security classification is locked in its parent object and cannot be changed or it requires the enabling of a group attribute. Security Icon Description FreeAccess Change this value without restriction, even if there are no defined permissions on the object. Anyone can write to these attributes to perform safety or time critical tasks that can be hampered by an untimely logon request. For example, halting a failing process. Operate Work with Operate permissions to do certain normal day-to-day tasks. These include writing to attributes like Setpoint or Command for a Discrete Device object. This level of security requires Operate permission for the security group for the object. SecuredWrite Requires authentication using user name and password each time the attribute is written to. This security state also requires Operate permissions for the object. VerifiedWrite Requires Operate permissions to log on again and a second, different user to also log on as the verifier before writing to the attribute. The verifier needs to have Can Verify Writes permission for the object. Tune Allows end users with Tune Operational permissions to tune the attribute in the runtime environment. Examples of tuning are attributes that adjust alarm setpoints and PID sensitivity. Configure Allows end users with Configure Operational permissions to configure the value of the attribute. Requires that the user first put the object Off scan. Writing to these attributes is considered a significant configuration change. For example, a PLC register that defines a Discrete Device input. ViewOnly Only allows users to read the value of the attribute in the runtime environment. This attribute is never written to at runtime, regardless of the user's permissions.</p>
+<p>Do Not Copy Section 1 – Security Overview 7-7 AVEVA™ InTouch for System Platform 2023 Group Locking/Security The lock and security controls associated with option groups set those conditions for all options in the group. The group control typically reflects the setting for all options in the group. But, if at least one option in the group has a lock or security control that is different from the other options, the group control shows an indeterminate icon. In addition to the undefined controls, the group controls for locking and security are the same as those for individual options. Configuring Security for Symbols You can set security permissions so that at design time, the user cannot:  Import or export symbols  Create, modify, or delete symbols on the Graphics tab  Create, modify, or delete symbols in any AutomationObject template  Create, modify, or delete symbols in any AutomationObject instance  Create, modify, or delete View Applications, such as the InTouch View Applications  Deploy or undeploy View Applications, such as InTouch View Applications  Edit the configuration of the Quality and Status Display Security Audit Trail Auditing is a primary function of any security system. Use a set of security system tags to identify the users who logged on to an InTouch application, the domain from which the user logged on, and when the attempt was made. System Tags in InTouch Related to Security The following system tags are available to deal with security. Tagname Type Valid Values Access $AccessLevel System Integer 0-9999 Read Only $ChangePassword System Discrete 1 or 0 Read Write $InactivityTimeout System Discrete 1 or 0 Read Only $InactivityWarning System Discrete 1 or 0 Read Only $Operator System Message 16-characters max Read Only $OperatorName System Message 131-characters max Read Only $OperatorEntered System Message 16-characters max Write Only $PasswordEntered System Message 16-characters max Write Only $VerifiedUserName System Message 16-characters max Read Only</p>
+<p>Do Not Copy 7-8 Module 7 – Security AVEVA™ Training InTouch Script Functions Related to Security The following InTouch functions are available to work with security from an InTouch script:  Logoff  AttemptInvisibleLogon  ChangePassword  InvisibleVerifyCredentials  LogonCurrentUser  PostLogonDialog Logoff() Function Logs off the currently logged on user and sets the current user status to the default None operator. This script function is also available in scripting. AttemptInvisibleLogon() Function The AttemptInvisibleLogon() function can be used in a script to log on a user to InTouch using the supplied credentials. The user is not required to enter a password or user ID. If the logon attempt succeeds, then True is returned and the $OperatorName, $AccessLevel, and $Operator system tags are updated accordingly. If the log on attempt fails, then FALSE is returned and the user currently logged on (if any) continues to be the current user. The Domain argument must be an empty string. If the security mode is using operating system- based security, the UserId argument should contain the fully qualified user name with domain name or computer name. ChangePassword() Function Shows the Change Password dialog box, allowing the operator logged on to the system to change his or her password. InvisibleVerifyCredentials() Function The InvisibleVerifyCredentials() function can be used in a synchronous QuickScript to verify the credentials of the given user without logging the user on to the InTouch HMI. If the supplied combination of user, password, and domain are valid, then the corresponding access level associated with the user is returned as an integer. Otherwise, -1 is returned. This function does not change the currently logged on user. The Domain argument must be an empty string. If the security mode is using operating system-based security, the UserId argument should contain the fully qualified user name with domain name or computer name. LogonCurrentUser() Function Logs on to InTouch with the user account that is currently logged on to the Windows operating system. Use this function only for operating system-based security. Returns -1 and does not change the values assigned to $Operator, $OperatorName and $AccessLevel, if the logon fails. PostLogonDialog() Function Shows the InTouch Logon dialog box and returns True. This script function is also available in scripting.</p>
+<p>Do Not Copy Lab 20 – Using Security Features in Graphics 7-9 AVEVA™ InTouch for System Platform 2023 Lab 20 – Using Security Features in Graphics Introduction In this lab, you will create a custom logon display using built-in script functions for security. Additionally, you will enable security for your Galaxy and configure users, passwords, roles, and access levels. Then you will add and configure Visibility and Disable animations containing the InTouch:$AccessLevel tag to protect your application from unauthorized access. Finally, you will use the logon display to authenticate users in runtime and test the impact of security on your InTouch application. Objectives Upon completion of this lab, you will be able to:  Create a symbol to authenticate users at runtime and display the currently logged on user and their access level  Add Visibility and Disable animations using access levels to prevent unauthorized access  Create scripts using PostLogonDialog() and Logoff() security functions</p>
+<p>Do Not Copy 7-10 Module 7 – Security AVEVA™ Training Set Up Security for the Galaxy First, you will configure security. To do this, you will set the authentication mode, add a role, set its access level, add a user, and associate the user to the role. 1. Close WindowMaker and check in the $MixerView template. Note: To configure security, all objects in the Galaxy must be checked in. To do this, use the Find button on the Home ribbon in the IDE. There, you can enable Only checked-out objects and search in both templates and instances. For all objects found, right-click and select check-in. 2. In the IDE, on the Galaxy menu, select Configure | Security. The Security area appears.</p>
+<p>Do Not Copy Lab 20 – Using Security Features in Graphics 7-11 AVEVA™ InTouch for System Platform 2023 3. In Security, on the Authentication mode tab, select Galaxy. 4. On the Roles tab, click Add new Role.</p>
+<p>Do Not Copy 7-12 Module 7 – Security AVEVA™ Training 5. Name the new role Training. 6. In Access level, double-click and enter 1000. 7. On the Users tab, for the Administrator user, double-click in Full name and enter System Administrator.</p>
+<p>Do Not Copy Lab 20 – Using Security Features in Graphics 7-13 AVEVA™ InTouch for System Platform 2023 8. Click Add new User. 9. Name the new user TUser. 10. In Full name, double-click and enter Training User.</p>
+<p>Do Not Copy 7-14 Module 7 – Security AVEVA™ Training 11. In the Role list, check Training to associate the Training role with TUser. 12. Click Change Password.</p>
+<p>Do Not Copy Lab 20 – Using Security Features in Graphics 7-15 AVEVA™ InTouch for System Platform 2023 The Change password dialog box appears. 13. In New password, enter ww. 14. In Confirm new password, enter ww. 15. Click Save to close Change password.</p>
+<p>Do Not Copy 7-16 Module 7 – Security AVEVA™ Training 16. Click Save to close Security. Sign in to TrainingGalaxy appears. 17. In User name, enter administrator. 18. Click Next.</p>
+<p>Do Not Copy Lab 20 – Using Security Features in Graphics 7-17 AVEVA™ InTouch for System Platform 2023 19. Click Sign in. The administrator account has no password. After a moment, the IDE closes and then reopens. 20. In the IDE, on the top-right of the title bar, click the profile icon. Notice that administrator is shown as the logged-in user. Note: Alternatively, you can verify the logged-in user from the backstage. You can do this by selecting Galaxy | User | Galaxy User, and notice that administrator is shown as the logged- in user.</p>
+<p>Do Not Copy 7-18 Module 7 – Security AVEVA™ Training Configure Security Settings in the Mixer Display Next, you will secure interactive elements of your application from unauthorized access. You will do this by configuring Disable and Visibility animations with expressions linked to InTouch:$AccessLevel. 21. In the IDE, on the Templates tab, in the Training\Project template toolset, open $Mixer for editing. 22. In Content, open SwitchedMixingProcess for editing. 23. On the canvas, double-click Select Mixer. 24. Add a Visibility animation. 25. In States, click Boolean. 26. In Reference, enter InTouch:$AccessLevel >= 1000. 27. In Visible When Expression is, verify the True, 1, On setting is selected.</p>
+<p>Do Not Copy Lab 20 – Using Security Features in Graphics 7-19 AVEVA™ InTouch for System Platform 2023 28. Click OK to close Edit Animations. 29. On the canvas, double-click MixerDropDown. 30. Add a Disable animation. 31. In States, click Boolean. 32. In Expression, enter InTouch:$AccessLevel >= 1000. 33. In Disable When Expression is, select False, 0, off. 34. Click OK to close Edit Animations. 35. Save and close the graphic.</p>
+<p>Do Not Copy 7-20 Module 7 – Security AVEVA™ Training 36. Save and close the $Mixer template. Because you changed users and reopened the IDE in an earlier step, the check-in warning for automation objects must be re-acknowledged. 37. Click Check-in and complete the check-in process. Protect Equipment Controls from Unauthorized Access Now, you will continue securing your application by adding Disable animations to the commands and setpoint of the valve, pump, and agitator. 38. On the Graphics tab, in the Training toolset, open Valve_Detailed for editing. 39. On the canvas, double-click Valve and add a Disable animation.</p>
+<p>Do Not Copy Lab 20 – Using Security Features in Graphics 7-21 AVEVA™ InTouch for System Platform 2023 40. Configure the animation as follows: 41. Click OK to close Edit Animations. 42. Right-click Valve and select Animations | Copy. 43. Save and close and check in the graphic. States: Boolean Reference: InTouch:$AccessLevel == 0 Disabled When Expression is: True, 1, On (default)</p>
+<p>Do Not Copy 7-22 Module 7 – Security AVEVA™ Training 44. On the Graphics tab, open Pump_Detailed for editing. 45. On the canvas, right-click Pump and select Animations | Paste. A message appears, indicating the Pump already has a Show Symbol animation. Paste will only add animations, it will not replace animations. Because the Pump already has a Show Symbol animation, only the Disable animation will be pasted to the graphic. 46. Click OK to acknowledge the message. 47. Save and close and check in the graphic. 48. On the Graphics tab, open Agitator_Detailed for editing. 49. On the canvas, right-click Agitator and select Animations | Paste. 50. Click OK to acknowledge the message. 51. Save and close and check in the graphic.</p>
+<p>Do Not Copy Lab 20 – Using Security Features in Graphics 7-23 AVEVA™ InTouch for System Platform 2023 Create a Login Symbol Now, you will create a symbol that users will use to log in and log out during runtime. 52. On the Graphics tab, in the Training toolset, create a symbol named SecurityDisplay, and then open it for editing. 53. On the canvas, add a Text element and enter User:. Note: Leave room to the left of the text element for some buttons that will be configured later in this lab. 54. Configure the text element as follows: 55. On the canvas, duplicate User: and place the duplicate below the original. 56. Change the text of the duplicate to User Full Name:. 57. On the canvas, duplicate User Full Name: and place the duplicate below the original. 58. Change the text of the duplicate to Access Level:. 59. Use alignment tools to position the text elements as follows: ElementStyle: Label Alignment: MiddleRight</p>
+<p>Do Not Copy 7-24 Module 7 – Security AVEVA™ Training 60. To the right of each label, add a related Text Box and configure as follows: 61. Align the Text Box elements as shown below: 62. Select all three Text Box elements and configure them as follows: Elements Width Height User: 300 40 User Full Name: 300 40 Access Level: 300 40 ElementStyle: Actual_Value Alignment: MiddleLeft</p>
+<p>Do Not Copy Lab 20 – Using Security Features in Graphics 7-25 AVEVA™ InTouch for System Platform 2023 63. For the Text Box to the right of User:, add a Value Display animation and configure it as follows: 64. For the Text Box to the right of User Full Name:, add a Value Display animation and configure it as follows: 65. For the Text Box to the right of Access Level:, add a Value Display animation and configure it as follows: States: String Reference: InTouch:$Operator States: String Reference: InTouch:$OperatorName States: Analog Reference: InTouch:$AccessLevel</p>
+<p>Do Not Copy 7-26 Module 7 – Security AVEVA™ Training 66. To the left of User: draw a button, and for the text enter Logon. 67. For Logon, change the Element Style to Intensity2. 68. Double-click Logon and add an Action Scripts animation. 69. In the script body, enter: PostLogonDialog();</p>
+<p>Do Not Copy Lab 20 – Using Security Features in Graphics 7-27 AVEVA™ InTouch for System Platform 2023 70. Add an Element Style animation and configure it as follows: 71. Click OK to close Edit Animations. 72. Duplicate Logon and place the duplicate below the original. 73. For the duplicate, change the text to Logoff. States: Boolean Expression Or Reference: InTouch:$AccessLevel <> 0 True, 1, On: Element Style: checked (default) Intensity4 selected False, 0, Off: Element Style: unchecked</p>
+<p>Do Not Copy 7-28 Module 7 – Security AVEVA™ Training 74. Double-click Logoff and modify the animations as follows: Element Style Action Scripts 75. Click OK to close Edit Animations. States: Boolean (default) Expression Or Reference: InTouch:$AccessLevel == 0 True, 1, On: Element Style: checked (default) Intensity4 (default) False, 0, Off: Element Style: unchecked (default) Script body: Logoff();</p>
+<p>Do Not Copy Lab 20 – Using Security Features in Graphics 7-29 AVEVA™ InTouch for System Platform 2023 76. On the Toolbox tab, search for analogwall and embed ClockAnalogWall on the canvas. 77. On the canvas, position the clock to the right of the text boxes, ensuring that the clock does not overlap the text boxes. The example below shows all elements selected on the canvas and shows that the clock does not overlap the text boxes. 78. Save and close and check in the graphic. Embed SecurityDisplay on a Window Now, you will replace the original graphic in the Logon window with the SecurityDisplay symbol. 79. In the IDE, on the Templates tab, in the Training\ViewApps template toolset, double-click $MixerView to open WindowMaker. 80. In WindowMaker, click Open to open the selected windows. 81. Scroll to the right to show the Logon window.</p>
+<p>Do Not Copy 7-30 Module 7 – Security AVEVA™ Training 82. In Industrial Graphics, expand Training and drag SecurityDisplay to the Logon window. A message appears. 83. Click Yes to replace the existing symbol. The Logon window is updated. 84. In Canvas, scroll back to the left. Test in Runtime Finally, you will test security at runtime. 85. Click Runtime. In the Logon window, User shows None, which means that no user is logged in.</p>
+<p>Do Not Copy Lab 20 – Using Security Features in Graphics 7-31 AVEVA™ InTouch for System Platform 2023 86. In the ContentDisplay window, notice the Select Mixer text is invisible and the drop-down list is disabled and cannot be clicked. 87. Click the valves, pumps, and agitator to verify their command panels are disabled. 88. In the Logon window, click Logon. Login to ArchestrA - Galaxy based appears. 89. In User name, enter TUser. 90. In Password, enter ww. 91. Click OK to log in. Notice that Training User is logged on. The Logon window shows the Logon button highlighted to indicate a valid user is logged in. Additionally, the text boxes show user information, including an Access Level of 1000.</p>
+<p>Do Not Copy 7-32 Module 7 – Security AVEVA™ Training In the ContentDisplay window, the Select Mixer text is visible and the drop-down list is enabled. 92. Click the valves, pumps, and the agitator to verify their command panels are enabled, closing each command panel when done.</p>
+<p>Do Not Copy Lab 20 – Using Security Features in Graphics 7-33 AVEVA™ InTouch for System Platform 2023 93. In the Logon window, click Logon. 94. In User name, enter administrator. The administrator user has no password. 95. Click OK. Notice that System Administrator is logged in and has an Access Level of 9999. 96. Verify the Administrator user has access to all the same features of the application as Training User. 97. Click Logoff. 98. Verify that no one is logged in and the secured features are unavailable. 99. Click Development! to return to WindowMaker. <End of Lab></p>
+<p>Do Not Copy 7-34 Module 7 – Security AVEVA™ Training</p>
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Security Overview?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
+</div>
+
+<p class="source">Module 7 — Security. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: Lesson L36 — Lab 20 – Security Features in Graphics</p>
+
+<script>
+
+function saveProgress() {
+  var checks = {};
+  document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+    checks[cb.dataset.lesson] = cb.checked;
+  });
+  try {
+    localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks));
+  } catch(e) {}
+  updateProgressText();
+}
+
+function loadProgress() {
+  var data = null;
+  try {
+    data = localStorage.getItem('intouch-lesson-progress');
+  } catch(e) {}
+  if (!data) {
+    updateProgressText();
+    return;
+  }
+  try {
+    var checks = JSON.parse(data);
+    document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
+      if (checks[cb.dataset.lesson]) {
+        cb.checked = true;
+      }
+    });
+  } catch(e) {}
+  updateProgressText();
+}
+
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').length;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' completed';
+}
+
+document.addEventListener('DOMContentLoaded', loadProgress);
+
+</script>
+</body>
+</html>
