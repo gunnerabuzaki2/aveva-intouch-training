@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 20: Scripts In Graphics</title>
+<title>Lesson L20: Scripts in Graphics</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -35,8 +35,7 @@
 <body>
 
 <nav>
-  <a href="L19-Lab9-Custom-Symbol.html">&larr; Lesson 19: Lab9 Custom Symbol</a> &nbsp;|&nbsp;
-  <a href="L21-Lab10-Navigation-Symbol.html">Lesson 21: Lab10 Navigation Symbol &rarr;</a>
+  <a href="L19-Lab9-Custom-Symbol.html">&larr; Lab 9 – Creating a Custom Symbol</a> &nbsp;|&nbsp; <a href="L21-Lab10-Navigation-Symbol.html">Lab 10 – Creating a Navigation Symbol &rarr;</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -98,188 +97,50 @@
 </details>
 </nav>
 
-<h1>Lesson 20: Scripts in Graphics</h1>
-<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 3 — Symbols, Section 7 (pages 249–254)</p>
-<p class="page-ref">This lesson explains how scripts work within InTouch graphics, covering execution types, triggers, the ShowGraphic() function, and how to associate scripts with symbols. It also introduces Lab 10 — Creating a Navigation Symbol.</p>
+<h1>Lesson L20: Scripts in Graphics</h1>
+<p class="page-ref">Module 3 — Symbols | Pages 249–254</p>
 
-<!-- ============================================================ -->
-<h2>20.1 Associating Scripts with Graphics</h2>
-<p class="page-ref">Reference: Module 3, Section 7 (pages 249–250)</p>
+<p>Do Not Copy 3-151 AVEVA™ InTouch for System Platform 2023 Associating Scripts with Graphics You can associate scripts with the symbols placed in your InTouch applications. You can use scripts to animate your graphics or modify their elements, while an InTouch application is running. After selecting a graphic embedded in an InTouch window, you select the expression or reference whose value triggers the script to run. You use the Graphic Editor to select the trigger that runs the script. Key points include:  A symbol script can be either predefined or named. A predefined script runs based on the status of the symbol in the running application. A named script runs when an expression or references associated with the script changes state.  Predefined scripts are similar to InTouch window scripts. Based upon how you configure the script trigger, a predefined symbol script can run:  Once, after the symbol opens or is shown  Periodically, while the symbol appears in the running application  Once, after the symbol closes or is hidden  Based upon how you configured the script, a named symbol script can run, when the trigger values or expressions are true, false, or transitioning between true and false states. Also, a named symbol script can run, when data associated with the trigger expression changes value or its quality state changes value. Execution Types and Triggers The existence and execution order of scripts associated with an object are inherently locked at each stage of development in the template, derived template, and instance. For example, a set of scripts associated with a template are treated as an ordered block in the Configure Execution Order dialog box when configuring execution order in a next-generation derived template. New scripts in the derived template can be ran in any order before and after the template’s block of scripts. The derived template’s execution order is treated as a block in any downstream derived templates or instances. Scripts cannot trigger any faster than the scan period of the AppEngine the script is associated with or faster than the scan period of the AppEngine that hosts the object that the script is associated with. Scripts run in one of two modes:  Synchronous scripting mode is the default for running scripts in the runtime environment. This mode runs scripts in order while an object is running on scan.  Asynchronous scripting mode is a group of scripts running on the same, lower priority execution thread. These scripts only support Execute triggering and run independently from each other. Set the maximum number of independent threads in the AppEngine configuration editor. To use either scripting mode, you must select Execute as the Execution Type in the Scripts area on the Scripts tab. Execution Type triggers include: Startup, On Scan, Execute, Off Scan, and Shutdown.</p>
 
-<p>In the previous labs you used animation links to connect symbols to tag values. Scripts take this further: they let you write programmatic instructions that run when specific events occur or conditions change. A script associated with a graphic can animate the graphic, modify its elements, or perform complex logic while the application is running.</p>
+<p>Do Not Copy 3-152 AVEVA™ Training ShowGraphic() Function Associating all Galaxy graphics with an InTouchViewApp template enables deployed and published InTouch applications to run show graphic requests made of any graphic in the Galaxy without having to embed them in the application. The ShowGraphic() function uses the graphic as a parameter. Associating all Galaxy graphics ensures that:  The graphic is deployed and available at runtime, whether or not it is referenced by an InTouchViewApp  Template symbols referenced by the ShowGraphic() function are deployed and available at runtime Note: The term graphic includes any symbol or client control present in the Graphic Toolbox, and any symbols owned or inherited by templates and instances. About the Show/Hide Graphic Functions The Show/Hide Graphic script functions allow you to write graphic scripts to display a symbol as a popup window and close the popup window. The Show/Hide Graphic script functions are in addition to the Show/Hide Symbol animation feature, which allows you to display a symbol as a popup window through symbol animation. The Show/Hide Symbol animation feature remains unchanged. You can use Show/Hide Symbol animation and the Show/Hide Graphic script functions together Like the Show/Hide Symbol animation feature, you can control the properties of the symbol through the Show Graphic script function. You can configure the script to specify:  Which symbol will appear as the popup window  Whether the window will have a title bar  The initial position of the popup window  Whether the window can be resized  Whether the window will be modal or modeless  The relative position of the popup window  Passing the OwningObject to the symbol to display  Values of the custom properties of the symbol Configuring the Show/Hide Graphic Script Functions When configuring this feature, include a script that contains the ShowGraphic script function to display a symbol as a popup window at runtime. You can also include a script that contains the HideGraphic script function. The HideGraphic script function allows the closing of any symbol displayed through the ShowGraphic script function. Important: The ShowGraphic script function can be used in the action script of a symbol, named script, and predefined script. Although the system allows the inclusion of it in a server script, such as Start Up, On Scan, Off Scan, Shut Down, and Execute, the function cannot be ran at runtime.</p>
 
-<p>To associate a script with a graphic, you select the graphic in the Graphic Editor and then choose the expression or reference whose changes will trigger the script. There are two categories of symbol scripts:</p>
+<p>Do Not Copy 3-153 AVEVA™ InTouch for System Platform 2023 The HideGraphic script function can be called from any graphic that is being used in the InTouch application. ShowGraphic() Syntax Use the ShowGraphic() to display a graphic within a popup window. Dim graphicInfo as aaGraphic.GraphicInfo; graphicInfo.Identity = "<Identity>"; graphicInfo.GraphicName = "<SymbolName>"; ShowGraphic( graphicInfo ); HideGraphic() Syntax Use the HideGraphic() script function to close any displayed graphic given its Identity. HideGraphic(string identity); The ShowGraphic() and HideGraphic() script functions are available in managed or published InTouch applications only. Scripting the OwningObject The OwningObject in a ShowGraphic script function resolves only relative references. Any absolute reference is not affected by the OwningObject. The OwningObject is independent of the graphic definition. The relative reference is resolved by the object that hosts the script. For example, where GraphicName = me.S1 or Obj1.S1, and OwningObject = Obj2, the OwningObject resolves only the relative reference in the symbol S1. An OwningObject can be a concatenation of constant strings and reference strings. It can be browsed to by using the Display Automation Object Browser, or by entering the name of the OwningObject. Example graphicInfo.OwningObject = "Mixer_001"; Runtime Behavior of the Show/Hide Graphic Functions The Show/Hide Graphic script functions exhibit the following behavior:  The graphic, configured with the ShowGraphic script function, behaves like a ShowSymbol animation popup window, rather than an InTouch popup window.  You can configure a symbol with both the ShowSymbol animation and ShowGraphic together. If you run both at runtime, two popup windows open, displaying the same or different symbols. The two popup windows are independent of each other.  You can open and close the graphic from across symbols and across InTouch windows. You can manage the graphic across the entire InTouch application.  Unlike ShowSymbol animation, there is no parent/child relationship between the window that opened the graphic and the graphic opened by the ShowGraphic() script function.  You cannot use the Close Window dialog box of InTouch WindowViewer to close the popup windows displayed by the ShowGraphic script function.</p>
 
-<table>
-  <thead><tr><th>Script Type</th><th>Behavior</th><th>Example Triggers</th></tr></thead>
-  <tbody>
-    <tr><td><strong>Predefined</strong></td><td>Runs based on the symbol's lifecycle status</td><td>On Show, While Showing, On Hide</td></tr>
-    <tr><td><strong>Named</strong></td><td>Runs when an expression or reference changes state</td><td>DataChange on a tag value, true/false transitions</td></tr>
-  </tbody>
-</table>
+<p>Do Not Copy 3-154 AVEVA™ Training  Any graphic displayed by the ShowGraphic script function or ShowSymbol animation always remains in front of InTouch windows, except InTouch popup windows. Even if you click an InTouch window, the window remains behind these graphics.  Enabling in-memory graphics caching in WindowViewer memory properties will keep ShowGraphic and ShowSymbol animation popup symbols cached in memory. The system tracks the order in which graphics are closed in order to determine their age. If a user- defined in-memory limit is exceeded, the system automatically removes the oldest popup symbols in the in-memory graphics cache, except those defined in high-priority windows. If you display a symbol with the ShowGraphic script function or with ShowSymbol animation, WindowViewer will perform a memory health check. Behavior of ShowGraphic Windows with the Same Identity ShowGraphic popup windows attempting to open a popup window with the same Identity exhibit the following behavior with the predefined scripts OnHide, OnShow, and WhileShowing:  A ShowGraphic script function within an OnShow script will be blocked, if a ShowGraphic popup window with the same Identity is already displayed.  A ShowGraphic script function within an WhileShowing script will be blocked, if a ShowGraphic popup window with the same Identity is already displayed.  A ShowGraphic script function within an OnHide script will be blocked, if a ShowGraphic popup window with the same Identity is already displayed. No error or warning messages will appear in the logger, when script execution is blocked as described. With the Graphic cache memory option enabled, calling ShowGraphic popup windows with the same identity name, if the symbol is modal to the modal symbol behind it, calling the ShowGraphic script function cannot change this symbol to be modeless to the current modal symbol. Closing a Symbol You can close a symbol, displayed using the ShowGraphic script function, by running the HideGraphic or HideSelf script functions, clicking the Close Window button of the graphic popup window, if configured, or by closing WindowViewer. You cannot close the graphic by closing the InTouch window or the symbol that opened the graphic. Windows opened by the ShowGraphic script function or ShowSymbol animation are loaded dynamically and are not exposed at runtime. You cannot close these windows using the WindowViewer Close Window dialog box.</p>
 
-<div class="key-concept">
-  <strong>Key Concept:</strong> Predefined scripts are analogous to window scripts — they respond to the symbol's visibility state. Named scripts are more flexible: they fire whenever their trigger expression changes, including transitions between true and false, or changes in data quality.
-</div>
-
-<!-- ============================================================ -->
-<h2>20.2 Execution Types and Triggers</h2>
-<p class="page-ref">Reference: Module 3, Section 7 (pages 249–250)</p>
-
-<p>Scripts execute in one of two modes: <strong>synchronous</strong> or <strong>asynchronous</strong>. In synchronous mode (the default), animation and tag value updating pauses while the script runs, then resumes afterward. In asynchronous mode, animation continues during script execution — but asynchronous scripts only support the Execute trigger type.</p>
-
-<p>The available execution type triggers are:</p>
-
-<table>
-  <thead><tr><th>Trigger</th><th>When It Fires</th></tr></thead>
-  <tbody>
-    <tr><td><strong>Startup</strong></td><td>Once when the object enters scan</td></tr>
-    <tr><td><strong>On Scan</strong></td><td>Each AppEngine scan cycle while the object is on scan</td></tr>
-    <tr><td><strong>Execute</strong></td><td>On demand (used for asynchronous scripts)</td></tr>
-    <tr><td><strong>Off Scan</strong></td><td>Once when the object leaves scan</td></tr>
-    <tr><td><strong>Shutdown</strong></td><td>Once when the object shuts down</td></tr>
-  </tbody>
-</table>
-
-<p>An important constraint: scripts cannot trigger faster than the AppEngine scan period. If your script is associated with an AppEngine that scans every 500 ms, the script cannot run more frequently than that. Also, the execution order of scripts is locked at each stage of the template hierarchy — a derived template inherits its parent's script block as an ordered unit.</p>
-
-<div class="key-concept">
-  <strong>Key Concept:</strong> Script text has no length limit. You can save a script with syntax errors, but the object cannot be deployed until all errors are corrected. Use the built-in validation features to catch issues before deployment.
-</div>
-
-<!-- ============================================================ -->
-<h2>20.3 The ShowGraphic() Function</h2>
-<p class="page-ref">Reference: Module 3, Section 7 (pages 250–252)</p>
-
-<p>The <strong>ShowGraphic()</strong> function is one of the most powerful scripting tools in InTouch. It allows you to display any Galaxy symbol as a popup window from within a script, without having to embed the symbol in the application first. When all Galaxy graphics are associated with an InTouchViewApp template, the deployed application can handle ShowGraphic requests for any symbol in the Galaxy.</p>
-
-<p>The basic syntax is:</p>
-
-<pre><code>Dim graphicInfo as aaGraphic.GraphicInfo;
-graphicInfo.Identity = "&lt;Identity&gt;";
-graphicInfo.GraphicName = "&lt;SymbolName&gt;";
-ShowGraphic( graphicInfo );</code></pre>
-
-<p>To close a graphic displayed by ShowGraphic, use:</p>
-
-<pre><code>HideGraphic(string identity);</code></pre>
-
-<p>You can configure many properties of the popup window through the GraphicInfo object, including:</p>
-
-<ul>
-  <li>Whether the window has a title bar (<code>HasTitleBar</code>)</li>
-  <li>Whether it can be resized (<code>Resizable</code>)</li>
-  <li>Whether it is modal or modeless (<code>WindowType</code>)</li>
-  <li>Its position and size on screen</li>
-  <li>The OwningObject to pass for relative tag resolution</li>
-  <li>Custom property values for the target symbol</li>
-</ul>
-
-<div class="pitfall">
-  <strong>Important:</strong> ShowGraphic can be used in action scripts, named scripts, and predefined scripts. However, although the system allows placing it in server scripts (Startup, On Scan, Off Scan, Shutdown, Execute), the function cannot actually run at runtime from those contexts.
-</div>
-
-<!-- ============================================================ -->
-<h2>20.4 Runtime Behavior and Identity Management</h2>
-<p class="page-ref">Reference: Module 3, Section 7 (pages 251–252)</p>
-
-<p>Graphics displayed by ShowGraphic behave like ShowSymbol animation popups — they float on top of all InTouch windows (except other InTouch popup windows). There is no parent/child relationship between the window that opened the graphic and the graphic itself. This means you can manage the popup from anywhere in the application.</p>
-
-<p>Some key runtime behaviors to understand:</p>
-
-<ul>
-  <li><strong>Same Identity:</strong> If you try to open a ShowGraphic popup with the same Identity as one that is already displayed, the request is silently blocked — no error or warning is logged.</li>
-  <li><strong>Closing:</strong> You can close a ShowGraphic popup by calling HideGraphic or HideSelf, clicking the Close Window button (if configured), or closing WindowViewer. You cannot close it by closing the InTouch window that opened it.</li>
-  <li><strong>Caching:</strong> Enabling in-memory graphics caching in WindowViewer keeps ShowGraphic popups cached. The system tracks popup age and removes the oldest when the user-defined memory limit is exceeded.</li>
-  <li><strong>Modal behavior:</strong> If a graphic is modal, calling ShowGraphic again with the same identity cannot change it to modeless.</li>
-</ul>
-
-<div class="key-concept">
-  <strong>Key Concept:</strong> The OwningObject in a ShowGraphic script resolves only relative references — it does not affect absolute references. The relative reference is resolved by the object that hosts the script, not by the graphic definition.
-</div>
-
-<!-- ============================================================ -->
-<h2>20.5 Types of Scripts</h2>
-<p class="page-ref">Reference: Module 3, Section 7 (pages 248, 252)</p>
-
-<p>InTouch provides seven categories of scripts, each defined by what causes it to run:</p>
-
-<table>
-  <thead><tr><th>Script Type</th><th>Runs When</th></tr></thead>
-  <tbody>
-    <tr><td><strong>Application</strong></td><td>WindowViewer starts, stops, or while running</td></tr>
-    <tr><td><strong>Window</strong></td><td>A window opens, closes, or remains open</td></tr>
-    <tr><td><strong>Key</strong></td><td>A key or key combination is pressed or released</td></tr>
-    <tr><td><strong>Condition</strong></td><td>A condition becomes true, false, or transitions</td></tr>
-    <tr><td><strong>Data Change</strong></td><td>A tag value or expression changes</td></tr>
-    <tr><td><strong>Action</strong></td><td>An operator clicks on a graphic object</td></tr>
-    <tr><td><strong>ActiveX Event</strong></td><td>An ActiveX event occurs (e.g., clicking a control)</td></tr>
-  </tbody>
-</table>
-
-<p>QuickScript, the InTouch scripting language, supports conditional branching, loops, local variables, and a rich library of built-in functions (mathematical, trigonometric, string manipulation, and more). You can also use OLE objects and ActiveX controls within scripts for extended functionality.</p>
-
-<div class="key-concept">
-  <strong>Key Concept:</strong> A <strong>QuickFunction</strong> is a reusable function written in QuickScript and stored in the QuickFunction library. Once created, it can be called from any script or from animation link expressions, promoting code reuse across your application.
-</div>
-
-<!-- ============================================================ -->
-<h2>20.6 Introduction to Lab 10 — Creating a Navigation Symbol</h2>
-<p class="page-ref">Reference: Module 3 (pages 253–254)</p>
-
-<p>In Lab 10, you will put the scripting concepts from this lesson into practice by building a navigation system that lets operators switch between different views of the mixer process. The lab covers:</p>
-
-<div class="lab">
-  <strong>Lab Objectives:</strong>
-  <ul>
-    <li>Create a reusable navigation button with action scripts</li>
-    <li>Write predefined and named scripts for graphics</li>
-    <li>Add Action Script animations to graphic objects</li>
-    <li>Use the ShowGraphic() script function to display popup windows</li>
-    <li>Use the Select Alternate Instance feature to show different mixer instances</li>
-    <li>Apply alignment tools to arrange graphics precisely</li>
-  </ul>
-</div>
-
-<p>You will create two approaches for displaying mixer graphics: one that embeds the graphics directly, and another that uses scripting with ShowGraphic() to dynamically display them as borderless popup windows. The scripted approach is more flexible and demonstrates the power of the scripting environment.</p>
+<p>Do Not Copy 3-155 AVEVA™ InTouch for System Platform 2023 Introduction In this lab, you will create a navigation symbol that will provide buttons you can click to display different windows in runtime. You will add animations using action scripts and use the ShowGraphic() script function to show specific windows and graphics. Script files for labs in this course may be found in the C:\Training folder on your student machine. You may copy and paste from these files when directed. Objectives Upon completion of this lab, you will be able to:  Create a reusable button  Create predefined and named scripts for graphics  Add an Action Script animation to a graphic  Use the ShowGraphic() script function  Use the Select Alternate Instance feature  Use alignment tools</p>
 
 <div class="screenshot">
-  <img src="../images/page_0254_0.png" alt="Galaxy Browser showing the Instances list with Mixer100 selected, displaying two alternate symbol thumbnails: MixingProcess_Detailed and SwitchedMixingProcess">
-  <div class="caption">The Galaxy Browser showing available mixer instances — you will use Select Alternate Instance to swap between Mixer100, Mixer200, and others (page 254)</div>
+  <img src="../images/page_0253.png" alt="Navigation symbol with three segmented tab buttons labeled Mixers, Line 1, and Line 2, with Line 1 highlighted as the active/selected view and Mixers and Line 2 in inactive state">
+  <div class="caption">Navigation symbol with three segmented tab buttons labeled Mixers, Line 1, and Line 2, with Line 1 highlighted as the active/selected view and Mixers and Line 2 in inactive state</div>
+</div>
+
+<p>Do Not Copy 3-156 AVEVA™ Training Create a Production Area Mixer Display First, you will create two symbols, each using a different method to display the mixers in the Production area. In the first symbol, you will embed graphics to show mixers. In the second symbol, you will use scripting to show mixers. 1. In the IDE, on the Graphics tab, in the Training toolset, create a new symbol named Line1_MixingProcess, and then open it for editing. 2. On the canvas, right-click and select Embed Industrial Graphic, and then from Instances embed Mixer100\MixingProcess_Detailed. 3. Place it in the top-left corner of the canvas.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0254_0.png" alt="Galaxy Browser showing the Instances list with Mixer100 selected, displaying two alternate symbol thumbnails: MixingProcess_Detailed (detailed P&amp;ID with tank, valves, and piping) and SwitchedMixingProcess (simplified switching control view)">
+  <div class="caption">Galaxy Browser showing the Instances list with Mixer100 selected, displaying two alternate symbol thumbnails: MixingProcess_Detailed (detailed P&amp;ID with tank, valves, and piping) and SwitchedMixingProcess (simplified switching control view)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0254_1.png" alt="Mixer100 process graphic in design mode showing a complete mixer system with agitator, meters, inlet feed lines, and outlet discharge">
-  <div class="caption">Mixer100 MixingProcess_Detailed — the graphic you will embed and then use with the ShowGraphic() function (page 254)</div>
+  <img src="../images/page_0254_1.png" alt="Mixer100 process graphic in design mode showing a complete mixer system with central mixer enclosure containing an SA_Agitator_Settler with agitator impeller and two SA_Meters, two inlet feed lines with SA_Pump_Blinder_RotaryValve and SA_Valve_And_Damper assemblies, and an outlet discharge line with valve and damper">
+  <div class="caption">Mixer100 process graphic in design mode showing a complete mixer system with central mixer enclosure containing an SA_Agitator_Settler with agitator impeller and two SA_Meters, two inlet feed lines with SA_Pump_Blinder_RotaryValve and SA_Valve_And_Damper assemblies, and an outlet discharge line with valve and damper</div>
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0253.png" alt="Navigation symbol with three segmented tab buttons labeled Mixers, Line 1, and Line 2">
-  <div class="caption">The navigation symbol you will build — three buttons that switch between different mixer views at runtime (page 253)</div>
-</div>
-
-<div class="tip">
-  <strong>Tip:</strong> Script files for the labs are available in the <code>C:\Training</code> folder on your student machine. You can copy and paste from these files when the lab instructions say so, rather than typing all the code manually.
-</div>
-
-<!-- ============================================================ -->
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> What is the difference between a predefined script and a named script on a graphic symbol?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">A predefined script runs based on the symbol's lifecycle status (On Show, While Showing, On Hide). A named script runs when an expression or reference associated with it changes state, such as a tag value changing or a boolean transitioning between true and false.</p></details>
-
-  <p><strong>2.</strong> Why can't scripts trigger faster than the AppEngine scan period?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Scripts execute within the AppEngine's scan cycle. The AppEngine can only evaluate and execute scripts during its scan, so a script cannot run more frequently than the scan interval that governs it.</p></details>
-
-  <p><strong>3.</strong> What happens if you call ShowGraphic() with an Identity that already has a displayed popup?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">The ShowGraphic request is silently blocked. No error or warning message appears in the logger. The existing popup remains displayed unchanged.</p></details>
-
-  <p><strong>4.</strong> Can the ShowGraphic() function be used in a Startup server script?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">While the system allows you to place ShowGraphic() in a Startup script without reporting an error, the function cannot actually execute at runtime from server scripts like Startup, On Scan, Off Scan, Shutdown, or Execute.</p></details>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Scripts in Graphics?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
 </div>
 
 <p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson 21 — Lab 10 – Creating a Navigation Symbol</p>
+<p class="source">Next: Lesson L21 — Lab 10 – Creating a Navigation Symbol</p>
 
 <script>
 
@@ -288,12 +149,12 @@ function saveProgress() {
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
-  try { localStorage.setItem('aveva-lesson-progress', JSON.stringify(checks)); } catch(e) {}
+  try { localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks)); } catch(e) {}
   updateProgressText();
 }
 function loadProgress() {
   var data = null;
-  try { data = localStorage.getItem('aveva-lesson-progress'); } catch(e) {}
+  try { data = localStorage.getItem('intouch-lesson-progress'); } catch(e) {}
   if (!data) { updateProgressText(); return; }
   try {
     var checks = JSON.parse(data);

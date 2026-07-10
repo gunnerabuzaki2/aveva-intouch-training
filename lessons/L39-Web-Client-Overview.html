@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 39: Web Client Overview</title>
+<title>Lesson L39: Web Client Overview</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -35,8 +35,7 @@
 <body>
 
 <nav>
-  <a href="L38-Runtime-Customization-Lab22.html">&larr; Lesson 38: Runtime Customization Lab22</a> &nbsp;|&nbsp;
-  <a href="L40-Lab23-Web-Client.html">Lesson 40: Lab23 Web Client &rarr;</a>
+  <a href="L38-Runtime-Customization-Lab22.html">&larr; Runtime Customization + Lab 22</a> &nbsp;|&nbsp; <a href="L40-Lab23-Web-Client.html">Lab 23 – Using the Web Client &rarr;</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -98,220 +97,73 @@
 </details>
 </nav>
 
-<h1>Lesson 39: Web Client Overview</h1>
-<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 8 — Web Client, Section 1 (pages 527–536)</p>
-<p class="page-ref">This lesson introduces the InTouch Web Client, covering its architecture, configuration, navigation, licensing model, and known limitations.</p>
+<h1>Lesson L39: Web Client Overview</h1>
+<p class="page-ref">Module 8 — Web Client | Pages 527–536</p>
 
-<!-- ============================================================ -->
-<h2>39.1 Module Objectives</h2>
-<p class="page-ref">Reference: Module 8, Section 1 (page 528)</p>
+<p>Do Not Copy 8-3 8-11</p>
 
-<p>This lesson covers the following topics:</p>
-<ul>
-  <li>Describe the Web Client features and dependencies</li>
-  <li>Explain how to enable the Web Client</li>
-  <li>Explain how to navigate graphics in the Web Client</li>
-  <li>Explain the use of the Web Client fast switch</li>
-</ul>
+<div class="screenshot">
+  <img src="../images/page_0527.png" alt="Training manual stock photo of a diverse group of four people working at computers in a library or collaborative learning space, with a young Black woman smiling in the foreground">
+  <div class="caption">Training manual stock photo of a diverse group of four people working at computers in a library or collaborative learning space, with a young Black woman smiling in the foreground</div>
+</div>
 
-<!-- ============================================================ -->
-<h2>39.2 What Is the Web Client?</h2>
-<p class="page-ref">Reference: Module 8, Section 1 (pages 529–530)</p>
+<p>Do Not Copy 8-2 AVEVA™ Training Module Objectives  Describe the Web Client features and dependencies  Explain how to enable the Web Client  Explain how to navigate graphics in the Web Client  Explain the use of the Web Client fast switch</p>
 
-<p>The InTouch Web Client allows you to view Industrial Graphics from a managed InTouch for System Platform application in any HTML5-capable web browser. A built-in web server handles the delivery of application graphics to browsers on any Microsoft Windows client or server operating system — no Remote Desktop Protocol (RDP) or Internet Information Services (IIS) is required. Only Managed applications can be served through the Web Client.</p>
+<p>Do Not Copy 8-3 AVEVA™ InTouch for System Platform 2023 Overview The InTouch Web Client feature (Web Client) allows you to view specific Industrial graphics used within an InTouch for System Platform application on any HTML5-supported web browser. A built- in web server enables web browsers access to application graphics, from any Microsoft Windows client or server operating system without the use of Remote Desktop Protocol (RDP) or Internet Information Services (IIS) for Microsoft Windows Server. You can view application Industrial graphics in a web browser for Managed applications only. Enable Web Client By default, the Web Client is disabled to secure systems where no decision has been made to enable a web server on the installation machine. You must have administrative privileges to enable or disable the Web Client feature. The Web Client is enabled from the AVEVA Application Manager, on the Web Client tab. When the Web Client is not started, the Web Client icon shows a small clock. To start the Web Client, click the Web Client icon. This section describes the Web Client features and dependencies.</p>
 
-<div class="key-concept">
-  <strong>Key Concept:</strong> The Web Client is a built-in web server that streams InTouch Industrial Graphics to HTML5 browsers, eliminating the need for RDP or IIS.
+<div class="screenshot">
+  <img src="../images/page_0529_0.png" alt="System architecture diagram showing the InTouch Web Client architecture with Design Time (ArchestrA Graphics, WindowMaker, ArchestrA IDE publishing to Web Server), InTouch Web Server (connecting to browsers and devices, licensing, security), and Run Time (WindowViewer, Application Server providing iData) components and data flows">
+  <div class="caption">System architecture diagram showing the InTouch Web Client architecture with Design Time (ArchestrA Graphics, WindowMaker, ArchestrA IDE publishing to Web Server), InTouch Web Server (connecting to browsers and devices, licensing, security), and Run Time (WindowViewer, Application Server providing iData) components and data flows</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0529_0.png" alt="System architecture diagram showing the InTouch Web Client architecture with Design Time, InTouch Web Server, and Run Time components">
-  <div class="caption">Web Client architecture showing Design Time (WindowMaker, IDE publishing to Web Server), the InTouch Web Server (licensing, security, browser connections), and Run Time (WindowViewer, Application Server providing iData) (page 529)</div>
+  <img src="../images/page_0529_1.png" alt="Screenshot of the AVEVA Application Manager File tab with Web Client section showing Web Client button with clock icon (stopped state), disabled Browser button, Refresh button, and tooltip explaining the button starts the Web Server for InTouch HMI Web Client">
+  <div class="caption">Screenshot of the AVEVA Application Manager File tab with Web Client section showing Web Client button with clock icon (stopped state), disabled Browser button, Refresh button, and tooltip explaining the button starts the Web Server for InTouch HMI Web Client</div>
 </div>
 
-<!-- ============================================================ -->
-<h2>39.3 Enabling the Web Client</h2>
-<p class="page-ref">Reference: Module 8, Section 1 (pages 529–530)</p>
-
-<p>By default, the Web Client is disabled to protect systems where no decision has been made to expose a web server. You must have administrative privileges to enable or disable the feature. The Web Client is enabled from the AVEVA Application Manager on the Web Client tab. When the Web Client is not started, its toolbar icon displays a small clock overlay. Clicking the icon starts the Web Server, and the clock disappears once the server is running.</p>
+<p>Do Not Copy 8-4 AVEVA™ Training Once the Web Client starts, the small clock no longer appears on the Web Client icon. Configure InTouch Application Graphics for Viewing in a Web Browser You can use the Industrial Graphic Toolbox in WindowMaker to configure the folder containing application graphics that will be displayed in the web browser Only graphics stored in the folder set as the Web Client root folder are displayed in the web browser. A single symbol within the Web Client Root Folder may be configured by enabling Set Web Client Home Symbol. The home symbol will be automatically selected and displayed when the InTouch Web Client is accessed using a browser. Additionally, the Web Client interface provides a home button which may be used to display the home symbol. The home symbol is marked in the Industrial Graphic Toolbox with a home icon.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0529_1.png" alt="AVEVA Application Manager showing Web Client button with clock icon in stopped state">
-  <div class="caption">Application Manager with the Web Client button showing a clock icon, indicating the Web Server has not yet been started (page 529)</div>
+  <img src="../images/page_0530.png" alt="Screenshot of the Application Manager Web Client tab showing the Web Client button active with tooltip Click to start the Web Server for InTouch HMI Web Client, Browser button, and Refresh button on the File ribbon">
+  <div class="caption">Screenshot of the Application Manager Web Client tab showing the Web Client button active with tooltip Click to start the Web Server for InTouch HMI Web Client, Browser button, and Refresh button on the File ribbon</div>
 </div>
 
-<div class="tip">
-  <strong>Tip:</strong> Always start the Web Client from Application Manager after your InTouch application is deployed. The clock icon is a quick visual indicator of whether the server is running.
-</div>
-
-<!-- ============================================================ -->
-<h2>39.4 Configuring Graphics for Web Viewing</h2>
-<p class="page-ref">Reference: Module 8, Section 1 (page 530)</p>
-
-<p>To control which graphics are accessible through the Web Client, you configure a root folder in the Industrial Graphic Toolbox within WindowMaker. Only graphics stored in the folder set as the Web Client root folder will appear in the browser. Within that root folder, you can designate a single symbol as the Home Symbol by enabling the <em>Set Web Client Home Symbol</em> option. This symbol is automatically displayed when a user opens the Web Client, and the interface provides a Home button to return to it at any time.</p>
-
-<div class="key-concept">
-  <strong>Key Concept:</strong> Only Industrial Graphics placed in the designated Web Client root folder are visible in the browser. A single Home Symbol can be set as the default display.
-</div>
-
-<!-- ============================================================ -->
-<h2>39.5 The Web Client Fast Switch</h2>
-<p class="page-ref">Reference: Module 8, Section 1 (page 531)</p>
-
-<p>When using the Web Client with InTouch for System Platform, WindowViewer must be running to supply live data to the Web Client. The Web Client fast switch in WindowMaker provides a convenient toggle to open the Web Client directly in your default browser. Initially, this fast switch may be disabled if the InTouch application path does not match the current application — for example, after importing a restored application or switching between applications.</p>
-
-<p>Starting WindowViewer with the Runtime fast switch accomplishes three things:</p>
-<ul>
-  <li>Sets the application path to the current application and builds the application's Web folder</li>
-  <li>Enables the Web Client fast switch in WindowMaker (if it was disabled)</li>
-  <li>Starts WindowViewer, which provides the live data needed for Web Client animations</li>
-</ul>
+<p>Do Not Copy 8-5 AVEVA™ InTouch for System Platform 2023 Web Client Fast Switch When using the Web Client with InTouch for System Platform, WindowViewer must be running to provide data for the Web Client. Initially, the Web Client fast switch in WindowMaker may be disabled if the InTouch application path is not set to the current application path. This can occur after importing and starting a restored InTouch application or after switching InTouch applications. For InTouch, starting WindowViewer with the Runtime fast switch will do the following:  Set the application path to the current application and builds the application's Web folder  Enables the Web Client fast switch in WindowMaker (if disabled)  Starts WindowViewer which provides data for Web Client animations</p>
 
 <div class="screenshot">
-  <img src="../images/page_0531.png" alt="AVEVA IDE showing the Industrial Graphics toolbox with Web Client and Runtime toggle buttons">
-  <div class="caption">The IDE toolbar showing the Web Client and Runtime toggle buttons alongside the Industrial Graphics toolbox (page 531)</div>
+  <img src="../images/page_0531.png" alt="Screenshot of the AVEVA IDE showing the Industrial Graphics toolbox panel with TrainingGalaxy assets including .NET Controls, Apps, and Industrial Graphic Library folders, plus Web Client and Runtime toggle buttons in the toolbar">
+  <div class="caption">Screenshot of the AVEVA IDE showing the Industrial Graphics toolbox panel with TrainingGalaxy assets including .NET Controls, Apps, and Industrial Graphic Library folders, plus Web Client and Runtime toggle buttons in the toolbar</div>
 </div>
 
-<!-- ============================================================ -->
-<h2>39.6 Web Client Page Elements</h2>
-<p class="page-ref">Reference: Module 8, Section 1 (pages 532–533)</p>
-
-<p>The Web Client page is organized into several distinct areas that control navigation, display, and user interaction. The following table summarizes each element:</p>
-
-<table>
-  <thead><tr><th>Element</th><th>Description</th></tr></thead>
-  <tbody>
-    <tr><td><strong>1 — Title Bar</strong></td><td>Displays the InTouch application name and a hamburger button. Clicking the hamburger button opens the folder navigation overlay, listing all folders and symbols under the Web Client root folder.</td></tr>
-    <tr><td><strong>2 — Action Icons</strong></td><td>Home, Share, Notifications, Full Screen, and Profile icons appear on the title bar. Click Notifications to view messages related to connection and licensing issues.</td></tr>
-    <tr><td><strong>3 — Canvas Area</strong></td><td>Displays the selected graphic from the navigation overlay. The graphic scales to fit the browser viewport while maintaining its aspect ratio. Navigation and notification overlays do not consume canvas space.</td></tr>
-  </tbody>
-</table>
+<p>Do Not Copy 8-6 AVEVA™ Training Web Client Page The InTouch Web Client page provides various options to inform and organize the user experience using icons on the page. The following table describes these options. Element Description 1 The InTouch application name appears on the title bar, along with a hamburger button. You can click the hamburger button to view the folder navigation display. All folders and symbols under the selected Web Client root folder appear in the list. 2 The Home, Share, Notifications, Full Screen, and Profile icons appear on the title bar. You can click Notifications to view messages related to connection and licensing issues. 3 The canvas area displays the graphic selected from the navigation overlay. The graphic will be scaled to fit the browser viewport size, while maintaining the aspect ratio. The navigation and notifications overlays do not consume any space on the canvas or affect the size of the graphic.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0532.png" alt="InTouch Web Client running in Chrome showing the $MixerView HMI interface with navigation tabs and alarm table">
-  <div class="caption">The Web Client running in a browser, showing the $MixerView HMI interface with navigation tabs, alarm table, and process schematic (page 532)</div>
+  <img src="../images/page_0532.png" alt="Screenshot of the InTouch Web Client running in a Chrome browser at localhost showing the $MixerView HMI interface with navigation tabs (Mixers, Line 1, Line 2, Alarm Overview, Historical Alarms, Historian Client Trend), a real-time alarm table with unacknowledged alarms, and a detailed process schematic with mixer level and temperature indicators">
+  <div class="caption">Screenshot of the InTouch Web Client running in a Chrome browser at localhost showing the $MixerView HMI interface with navigation tabs (Mixers, Line 1, Line 2, Alarm Overview, Historical Alarms, Historian Client Trend), a real-time alarm table with unacknowledged alarms, and a detailed process schematic with mixer level and temperature indicators</div>
 </div>
 
-<!-- ============================================================ -->
-<h2>39.7 Pan and Zoom Support</h2>
-<p class="page-ref">Reference: Module 8, Section 1 (page 533)</p>
+<p>Do Not Copy 8-7 AVEVA™ InTouch for System Platform 2023 Pan and Zoom Support InTouch Web Client supports the Pan and Zoom gestures for all supported browsers and devices. The pan and zoom capabilities are similar to Frame Window support on WindowViewer. When a graphic in the web browser is zoomed in from a non-mobile device, the zoom percentage is displayed in the lower left corner of the horizontal scrollbar. The zoom percentage is limited up to 500%. Behavior of the Web Client Home Button Standalone applications can be viewed on the web client. Standalone application windows must be converted to Industrial Graphics before they can be viewed on the Web Client. For InTouch applications, in WindowMaker you can use the Home Windows tab to set up windows that will appear by default in WindowViewer. Similarly, you can set a graphic to be the default symbol that appears on the web client when it is launched. These settings will impact, which window or graphic appears on the web client by default when it is launched. For an InTouch application; there are two possibilities:  If Home Windows are configured, even if the user has configured Home Symbols, on all occasions, only the Home Windows are displayed by default. Clicking the Home icon will display the Home Windows.  If Home Windows are not configured and the Home Symbol is configured, by default the home symbol will be displayed. If no Home windows and no Home symbol are configured then, by default, no symbol or Home windows are displayed. Clicking on the Home symbol will not display any graphic or window. Symbol Changes Reflected Automatically Graphic-related changes are made using the Graphic Editor, and those changes are automatically refreshed in the browser. However, changes in Quality and Status Style, Element Style, and Formatting Styles (for InTouch) are propagated only after making the following graphic changes or re-launching WindowViewer:  Content of symbol is updated and saved  Symbol is created, imported, or deleted  Symbol is moved to different toolset folder  Root folder or home symbol assignment is updated Displaying Individual Symbols Via URL To display an individual symbol in a browser you may use the following syntax: http://<hostname>/InTouchWeb/api/symbol/<graphicname> or http://<IPAddress>/InTouchWeb/api/symbol/<graphicname> For example, http://production/InTouchWeb/api/symbol/tankfarm, might be used to display a mixer symbol that represents a production vessel in a tank farm. Known Limitations A number of features common to InTouch for System Platform applications are not yet supported by the Web Client. For example, no ActiveX or .NET controls, such as the Alarm Client, are</p>
 
-<p>The Web Client supports pan and zoom gestures on all supported browsers and devices, providing behavior similar to Frame Window support in WindowViewer. When zooming from a non-mobile device, the current zoom percentage is displayed in the lower-left corner of the horizontal scrollbar. Zoom is limited to a maximum of 500%.</p>
+<p>Do Not Copy 8-8 AVEVA™ Training supported at this time. For a detailed list and description of known limitations with Web Client consult the PDF file entitled Viewing InTouch Application Graphics in a Web Browser. Licensing for InTouch Application Graphics in a Browser Without a license installed, Web Client permits a single session use. This will usually allow you to connect a single browser to the InTouch Web Server, even permitting more than one tab to be opened, which is considered part of the same session. Without a license, a second browser would not be able to access the Web Server. For full unrestricted use of Web Client, you need a valid Web Server license to login and view application graphics from a web browser. The Web Server provides two types of licenses:  The Web Server Unlimited Read-Only license will allow you to connect to unlimited sessions for viewing application graphics in a web browser  The Web Server Unlimited ReadWrite license will allow you to connect to unlimited sessions for viewing and interacting with application graphics in a web browser Acquiring a License After the Web Server starts up, it will first Authenticate the user and then determine the user’s Authorization. During authentication, the web server will validate if the user is part of either the "aaInTouchUsers" or the "aaInTouchRWUsers" to be authenticated to use the Web Client. Both the user groups will be created during installation. The login user at the time of Web Client installation will be automatically added to both user groups. Additional users can be added later. After adding the new user to the group, the new user must log off and then re-login for the change to take effective. Next, the web server determines authorization for Read-Only or ReadWrite capability. First, the web server will attempt to acquire the ReadWrite license. If a ReadWrite license is not available, then it will attempt to acquire the Read-Only license. If a ReadOnly license is not available, then the web client will operate in a Single Session Mode. Authorization for Read-Only and ReadWrite Modes The Web Client supports two types of authorization modes: ReadWrite and Read-Only. In the ReadWrite mode, the user can:  Write to external references such as Application Server attributes or InTouch tags  Acknowledge alarms with details of the operator You can access the Write and Alarm Ack capability if both the following conditions are met:  The Web Server has acquired the Unlimited ReadWrite license  The user logged in to Web Client session is part of the aaInTouchRWUsers user group If ReadWrite mode is not available, then the Web Server attempts the Read-Only mode. The user can access the Read-Only mode only if:  The Web Server has acquired the Unlimited ReadWrite license, but the user logged in does not belong to the Web Client aaInTouchRWUsers user group, or  The Web Server has acquired the Unlimited ReadOnly license, or  The Web Server does not acquire any license and this web client session is the first client session In the Read-Only mode, the client session cannot write to external references or acknowledge alarms.</p>
 
-<div class="key-concept">
-  <strong>Key Concept:</strong> Pan and zoom in the Web Client mirror the Frame Window experience in WindowViewer. Hold Ctrl and scroll to zoom; hold the middle mouse button to pan.
-</div>
+<p>Do Not Copy 8-9 AVEVA™ InTouch for System Platform 2023 Single Session Mode If the Web Server does not acquire any license at startup, it will operate in the Single Web Session mode, which is assigned on a first come first serve basis.  If a valid license is unavailable and the first session license has been acquired, the Web Client will notify the user that no licenses are available  The Web Server allows sessions a grace period if the Web Server has acquired an unlimited license, but subsequently loses the license Web Client Application Windows Web Client will convert all Frame Windows in your application and make them available from the hamburger menu. Additionally, when you open Web Client, if Home windows are configured and the Home windows are Frame Windows, your Home windows will be displayed. Any application navigation configured, such as buttons to show windows or scripting using ShowGraphic(), ShowHome, or Show script functions, these will behave normally as if they were in WindowViewer. For example, Replace window functionality behaves normally in Web Client by closing any window the Replace window touches. When using this with ShowGraphic(), the identity property using InTouch:WindowName syntax, will properly identify the XY and width and height of the window for replace purposes. However, if the identity property does not used the InTouch: syntax, which causes it to create a brand new popup window in the Web Client, this window will act like a regular popup window by displaying on top of the other windows.</p>
 
-<!-- ============================================================ -->
-<h2>39.8 Home Button Behavior</h2>
-<p class="page-ref">Reference: Module 8, Section 1 (page 533)</p>
+<p>Do Not Copy 8-10 AVEVA™ Training</p>
 
-<p>Standalone application windows can be viewed in the Web Client, but they must first be converted to Industrial Graphics. For InTouch applications, you can use the Home Windows tab in WindowMaker to set which windows appear by default in WindowViewer. Similarly, you can designate a graphic as the default symbol for the Web Client.</p>
-
-<p>The Home button behavior depends on which configuration is in place:</p>
-<ul>
-  <li><strong>Home Windows configured:</strong> Even if a Home Symbol is also configured, only the Home Windows are displayed by default. Clicking the Home icon shows the Home Windows.</li>
-  <li><strong>Home Symbol configured (no Home Windows):</strong> The home symbol displays by default when the Web Client launches.</li>
-  <li><strong>Neither configured:</strong> No graphic or window appears by default, and clicking the Home button has no effect.</li>
-</ul>
-
-<!-- ============================================================ -->
-<h2>39.9 Automatic Symbol Refresh and URL Access</h2>
-<p class="page-ref">Reference: Module 8, Section 1 (pages 533–534)</p>
-
-<p>Changes made to graphics through the Graphic Editor are automatically refreshed in the browser. However, changes to Quality and Status Styles, Element Styles, and Formatting Styles (for InTouch) are only propagated after specific graphic operations occur, such as updating and saving symbol content, creating or deleting a symbol, moving a symbol to a different toolset folder, or updating the root folder or home symbol assignment. Re-launching WindowViewer also forces these style changes to propagate.</p>
-
-<p>To display an individual symbol directly via URL, you can use the following syntax:</p>
-<p><code>http://&lt;hostname&gt;/InTouchWeb/api/symbol/&lt;graphicname&gt;</code></p>
-<p>For example, <code>http://production/InTouchWeb/api/symbol/tankfarm</code> would display a mixer symbol representing a production vessel in a tank farm.</p>
-
-<div class="tip">
-  <strong>Tip:</strong> Direct URL access is useful for embedding specific process graphics in third-party dashboards or custom portals without navigating through the full Web Client interface.
-</div>
-
-<!-- ============================================================ -->
-<h2>39.10 Known Limitations</h2>
-<p class="page-ref">Reference: Module 8, Section 1 (page 534)</p>
-
-<p>A number of features common to InTouch for System Platform applications are not yet supported by the Web Client. Notably, no ActiveX or .NET controls — such as the Alarm Client — are supported at this time. For a detailed list and description of known limitations, consult the PDF file entitled <em>Viewing InTouch Application Graphics in a Web Browser</em>.</p>
-
-<div class="pitfall">
-  <strong>Warning:</strong> ActiveX and .NET controls (including Alarm Client) are not supported in the Web Client. Plan your application accordingly if browser-based viewing is a requirement.
-</div>
-
-<!-- ============================================================ -->
-<h2>39.11 Licensing</h2>
-<p class="page-ref">Reference: Module 8, Section 1 (pages 534–535)</p>
-
-<p>Without a license installed, the Web Client operates in Single Session Mode — a single browser can connect to the Web Server (multiple tabs within that browser count as one session), but a second browser cannot access the server. For full unrestricted use, you need a valid Web Server license.</p>
-
-<p>The Web Server provides two license types:</p>
-<table>
-  <thead><tr><th>License Type</th><th>Capability</th></tr></thead>
-  <tbody>
-    <tr><td>Unlimited Read-Only</td><td>Unlimited sessions for <em>viewing</em> application graphics in a browser</td></tr>
-    <tr><td>Unlimited ReadWrite</td><td>Unlimited sessions for <em>viewing and interacting</em> with application graphics in a browser</td></tr>
-  </tbody>
-</table>
-
-<div class="key-concept">
-  <strong>Key Concept:</strong> A ReadWrite license is required to write values or acknowledge alarms from the browser. Read-Only licenses only allow viewing.
-</div>
-
-<!-- ============================================================ -->
-<h2>39.12 Authentication and Authorization</h2>
-<p class="page-ref">Reference: Module 8, Section 1 (pages 534–535)</p>
-
-<p>After the Web Server starts, it first authenticates the user and then determines authorization. During authentication, the server validates whether the user belongs to the <code>aaInTouchUsers</code> or <code>aaInTouchRWUsers</code> security groups — both are created during installation. The login user at the time of Web Client installation is automatically added to both groups. Additional users can be added later, but they must log off and re-login for the change to take effect.</p>
-
-<p>The server then attempts to acquire the ReadWrite license first. If that is unavailable, it tries the Read-Only license. If neither license is available, the Web Client falls back to Single Session Mode.</p>
-
-<table>
-  <thead><tr><th>Mode</th><th>Requirements</th><th>Capabilities</th></tr></thead>
-  <tbody>
-    <tr><td>ReadWrite</td><td>ReadWrite license acquired <em>and</em> user in <code>aaInTouchRWUsers</code></td><td>Write to attributes, acknowledge alarms with operator details</td></tr>
-    <tr><td>Read-Only</td><td>ReadWrite license with user not in RW group, <em>or</em> Read-Only license, <em>or</em> first session in Single Session Mode</td><td>View only — no writes or alarm acknowledgments</td></tr>
-    <tr><td>Single Session</td><td>No license acquired at startup</td><td>One browser session only, Read-Only</td></tr>
-  </tbody>
-</table>
-
-<div class="pitfall">
-  <strong>Warning:</strong> If a Web Server loses its license after startup, sessions are given a grace period. However, if the license is not restored, new sessions will be denied.
-</div>
-
-<!-- ============================================================ -->
-<h2>39.13 Web Client Application Windows</h2>
-<p class="page-ref">Reference: Module 8, Section 1 (page 535)</p>
-
-<p>The Web Client converts all Frame Windows in your application and makes them available from the hamburger menu. If Home Windows are configured and they are Frame Windows, they display when the Web Client is launched. Any navigation configured in your application — such as buttons to show windows or scripting using <code>ShowGraphic()</code>, <code>ShowHome</code>, or <code>Show</code> script functions — behaves normally, just as it would in WindowViewer.</p>
-
-<p>Replace window functionality also works as expected, closing any window the Replace window touches. When using <code>ShowGraphic()</code>, the identity property must use the <code>InTouch:WindowName</code> syntax to properly identify the XY position and dimensions of the window for replacement purposes. If the identity property does not use the <code>InTouch:</code> prefix, a brand new popup window is created in the Web Client that floats on top of other windows instead of replacing them.</p>
-
-<div class="pitfall">
-  <strong>Warning:</strong> When using ShowGraphic() in the Web Client, always use the <code>InTouch:WindowName</code> syntax for the identity property. Without the <code>InTouch:</code> prefix, the graphic opens as a separate popup rather than replacing the current window.
-</div>
-
-<!-- ============================================================ -->
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> What is the primary advantage of the Web Client over using RDP or IIS to view InTouch graphics?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">The Web Client uses a built-in web server, so no RDP or IIS configuration is needed. Graphics are served directly to any HTML5 browser on any Windows OS.</p></details>
-
-  <p><strong>2.</strong> What does the small clock icon on the Web Client button in Application Manager indicate, and what happens when you click it?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">The clock icon indicates the Web Server is not started. Clicking the button starts the Web Server, and the clock disappears once the server is running.</p></details>
-
-  <p><strong>3.</strong> What is the difference between the aaInTouchUsers and aaInTouchRWUsers security groups?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">aaInTouchUsers grants Read-Only access to the Web Client. aaInTouchRWUsers grants ReadWrite access, allowing users to write to attributes and acknowledge alarms.</p></details>
-
-  <p><strong>4.</strong> Why must the ShowGraphic() identity property use the InTouch:WindowName syntax?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Without the InTouch: prefix, the Web Client creates a new popup window instead of replacing the current window. The InTouch: syntax allows proper XY positioning and size identification for replace behavior.</p></details>
-
-  <p><strong>5.</strong> What happens when the Web Server starts with no license available?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">The Web Server enters Single Session Mode, allowing only one browser session with Read-Only access. A second browser connection will be denied.</p></details>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Web Client Overview?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
 </div>
 
 <p class="source">Module 8 — Web Client. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson 40 — Lab 23 – Using the Web Client</p>
+<p class="source">Next: Lesson L40 — Lab 23 – Using the Web Client</p>
 
 <script>
 
@@ -320,12 +172,12 @@ function saveProgress() {
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
-  try { localStorage.setItem('aveva-lesson-progress', JSON.stringify(checks)); } catch(e) {}
+  try { localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks)); } catch(e) {}
   updateProgressText();
 }
 function loadProgress() {
   var data = null;
-  try { data = localStorage.getItem('aveva-lesson-progress'); } catch(e) {}
+  try { data = localStorage.getItem('intouch-lesson-progress'); } catch(e) {}
   if (!data) { updateProgressText(); return; }
   try {
     var checks = JSON.parse(data);

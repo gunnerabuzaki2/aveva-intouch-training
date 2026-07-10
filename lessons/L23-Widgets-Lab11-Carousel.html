@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 23: Widgets Overview + Lab 11 – Carousel Dashboard</title>
+<title>Lesson L23: Widgets Overview + Lab 11</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -35,8 +35,7 @@
 <body>
 
 <nav>
-  <a href="L22-Galaxy-Styles.html">&larr; Lesson 22: Galaxy Styles</a> &nbsp;|&nbsp;
-  <a href="L24-Alarming-Overview-Lab12.html">Lesson 24: Alarming Overview Lab12 &rarr;</a>
+  <a href="L22-Galaxy-Styles.html">&larr; Galaxy Styles</a> &nbsp;|&nbsp; <a href="L24-Alarming-Overview-Lab12.html">Alarming Overview + Lab 12 &rarr;</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -98,223 +97,102 @@
 </details>
 </nav>
 
-<h1>Lesson 23: Widgets Overview + Lab 11 – Creating a Carousel Dashboard</h1>
-<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 4 – Widgets (pages 281–292)</p>
-<p class="page-ref">This lesson introduces HTML5 widgets in InTouch and walks you through building a Carousel dashboard that cycles through process graphics automatically at runtime.</p>
+<h1>Lesson L23: Widgets Overview + Lab 11</h1>
+<p class="page-ref">Module 4 — Widgets | Pages 281–292</p>
 
-<!-- ============================================================ -->
-<h2>23.1 What Are HTML5 Widgets?</h2>
-<p class="page-ref">Reference: Module 4, Section 1 – Widgets Overview (pages 283–284)</p>
-
-<p>Widgets are small, self-contained code blocks built on standard web technologies — HTML5, CSS, and JavaScript — that extend InTouch's functionality without altering any of its core features. Think of them as miniature web applications that InTouch can host, both at design time in the Graphic Editor and at runtime in WindowViewer.</p>
-
-<p>The power of this approach is that InTouch acts as a container for these widgets. Operators see a consistent user interface with predictable placement, regardless of the widget's internal complexity. Common use cases include embedding social media feeds, weather displays, RSS readers, podcasts, or custom plant-floor dashboards on large monitors throughout a facility.</p>
-
-<div class="key-concept">
-  <strong>Key Concept:</strong> Widgets are imported into InTouch from the IDE using <code>Galaxy → Import → Visualization → Web Widgets</code>. The file format is a Custom Widget Package (.cwp), which bundles HTML5, CSS, and JavaScript into a single portable package.
-</div>
-
-<h3>Default Widgets</h3>
-<p>InTouch ships with six default widgets, available under the <strong>Widgets</strong> folder on the <strong>Graphics</strong> tab:</p>
-
-<table>
-  <thead><tr><th>Widget</th><th>Purpose</th></tr></thead>
-  <tbody>
-    <tr><td>Carousel</td><td>Cycles through multiple Industrial Graphics automatically or via user navigation</td></tr>
-    <tr><td>Datagrid</td><td>Displays tabular data in a grid format</td></tr>
-    <tr><td>MapApp</td><td>Embeds map-based visualizations</td></tr>
-    <tr><td>QRCode_Scanner</td><td>Scans QR codes from a camera input</td></tr>
-    <tr><td>Teamwork</td><td>Collaboration and communication widget</td></tr>
-    <tr><td>Web_Browser</td><td>Embeds a web browser within the HMI</td></tr>
-  </tbody>
-</table>
-
-<p>After importing a widget, it becomes available in WindowViewer and its behavior can be controlled through design-time properties in the Graphic Editor.</p>
-
-<!-- ============================================================ -->
-<h2>23.2 The Carousel Widget</h2>
-<p class="page-ref">Reference: Module 4, Section 1 (page 284)</p>
-
-<p>The Carousel widget is the most commonly used default widget. It allows you to cycle through a sequence of Industrial Graphics like a slideshow, without requiring any user input. Operators can also manually navigate forward and backward through the carousel. This makes it ideal for displaying dashboards, alerts, or alarm summaries on large plant-floor monitors where a single screen cannot show everything.</p>
-
-<h3>Carousel Properties</h3>
-<p>In addition to standard graphic properties, the Carousel exposes a set of widget-specific properties under <strong>Widget Properties</strong> in the Graphic Editor:</p>
-
-<table>
-  <thead><tr><th>Property</th><th>Description</th><th>Default</th></tr></thead>
-  <tbody>
-    <tr><td>Autoplay</td><td>When True, the carousel starts cycling automatically on load. When False, the user must click to start.</td><td>True</td></tr>
-    <tr><td>BackgroundColor</td><td>The background color of the widget area.</td><td>#FFFFFF</td></tr>
-    <tr><td>GraphicNames</td><td>A comma-separated list of Industrial Graphics to display in the carousel.</td><td>(empty)</td></tr>
-    <tr><td>Interval</td><td>Time delay in milliseconds between automatic transitions.</td><td>5000</td></tr>
-    <tr><td>Keyboard</td><td>When True, the carousel responds to keyboard arrow inputs for navigation.</td><td>True</td></tr>
-    <tr><td>Loop</td><td>When True, the carousel cycles continuously. When False, it stops after one pass.</td><td>True</td></tr>
-    <tr><td>Pause</td><td>When True, the carousel pauses when the mouse hovers over it or during a touch event. Cycling resumes when the pointer moves away.</td><td>True</td></tr>
-  </tbody>
-</table>
-
-<div class="key-concept">
-  <strong>Key Concept:</strong> The <code>GraphicNames</code> property is the most critical setting — it determines which Industrial Graphics the carousel displays at runtime. Each name must match an existing graphic in your Galaxy.
-</div>
-
-<!-- ============================================================ -->
-<h2>23.3 Lab 11 – Creating a Carousel Dashboard</h2>
-<p class="page-ref">Reference: Module 4, Lab 11 (pages 285–292)</p>
-
-<div class="lab">
-  <strong>Lab Objectives:</strong>
-  <ul>
-    <li>Use widgets within InTouch graphics</li>
-    <li>Display multiple Industrial Graphics in the Carousel widget</li>
-    <li>Test carousel behavior at runtime (autoplay, pause, manual navigation)</li>
-  </ul>
-</div>
-
-<h3>Step 1: Create the Dashboard Symbol</h3>
-<p>First, you will create a Dashboard symbol and embed the Carousel widget into it.</p>
-
-<ol>
-  <li>In the IDE, on the <strong>Graphics</strong> tab, in the <strong>Training</strong> toolset, create a new symbol named <strong>Dashboard</strong> and open it for editing.</li>
-  <li>From the <strong>Toolbox</strong> tab, drag the <code>Widgets\Carousel</code> component onto the canvas.</li>
-</ol>
+<p>Do Not Copy 4-3 4-5</p>
 
 <div class="screenshot">
-  <img src="../images/page_0286.png" alt="IDE Graphic Editor showing the Carousel widget placed on the design canvas, with the Widgets toolbox panel on the right listing available widgets: Carousel, Datagrid, Map_App, QRCode_Scanner, Teamwork, and Web_Browser">
-  <div class="caption">The Carousel widget placed on the Dashboard symbol canvas, with the Widgets folder visible in the Toolbox panel (page 286)</div>
+  <img src="../images/page_0281.png" alt="Training manual stock photo of a diverse group of four people working at computers in a library or collaborative learning space, with a young Black woman smiling in the foreground at a CRT monitor">
+  <div class="caption">Training manual stock photo of a diverse group of four people working at computers in a library or collaborative learning space, with a young Black woman smiling in the foreground at a CRT monitor</div>
 </div>
 
-<h3>Step 2: Configure Carousel Properties</h3>
-<p>Now you will tell the carousel which graphics to display and how to behave.</p>
+<p>Do Not Copy 4-2 AVEVA™ Training Module Objectives  Describe InTouch for System Platform support for HTML5 Widgets  Use the Carousel widget</p>
 
-<ol start="3">
-  <li>In Properties, scroll down to locate the <strong>Widget Properties</strong> section.</li>
-  <li>In <strong>GraphicNames</strong>, enter: <code>Line1_MixingProcess,ClockAnalogWall</code></li>
-</ol>
+<p>Do Not Copy 4-3 AVEVA™ InTouch for System Platform 2023 Introduction Widgets are small components that can extend the functionality of InTouch. HTML5 Widgets are a self-contained code block based on website design that can be imported into InTouch without changing any of its features. The power of this has been added to InTouch which now acts as a container for HTML5 Widgets both in design time and runtime. Widgets are most frequently used to provide on-screen user interface elements that ingrate with other platforms and data sources. A widget can be run in WindowViewer with consistent placement and user interface. For example, social media, weather, RSS or podcast widgets. By default, the following widgets are available under the Widgets folder in the Graphics tab:  Carousel  Datagrid  MapApp  QRCode_Scanner  Teamwork  Web_Browser Importing HTML5 Widgets For use in InTouch for System Platform, a web widget is imported from the IDE using Galaxy | Import | Visualization | Web Widgets. The file format is Custom Widget Package (.cwp), which includes HTML5, CSS, and Javascript files. After the widget has been imported, it can be viewed on WindowViewer. Additionally, design time properties determine the behavior or the widget at runtime. This section describes using HTML5 widgets in your InTouch for System Platform application and introduces the Carousel widget.</p>
 
-<div class="tip">
-  <strong>Tip:</strong> The graphic names you enter here must exactly match the names of existing Industrial Graphics in your Galaxy. The carousel will display these graphics in the order you specify, separated by commas.
-</div>
+<p>Do Not Copy 4-4 AVEVA™ Training Carousel Widget A carousel widget allows you to cycle through Industrial Graphics like a carousel without any user input. It also supports user selection of the previous or next step in the carousel. For examples, this widget can be used to display dashboards, alerts or alarm information on large monitors on the plant floor. Carousel Properties In addition to the standard graphics properties, you can also configure properties specific to the widget, under Widget Properties in the Graphic Editor. Name Description Autoplay If the Autoplay property is set to true, the carousel widget will automatically start on load. If it is set to false, the user must select the next item to start the carousel. The default value is True. BackgroundColor The background color for the widget. GraphicNames A comma separated list of Industrial Graphics the carousel will display in runtime. Interval The amount of time delay (in milliseconds) between automatically cycling an item. Keyboard If the Keyboard property is set to true, the carousel will respond to keyboard inputs. The default value is True. Loop If the Loop property is set to true, the carousel will cycle through the graphics continuously, else it will stop after a single cycle. The default value is True. Pause If the Pause property is set to true, the carousel will pause the cycling of the graphics, when it detects the mouse hovering or a touch down event. The graphics will resume cycling when the mouse is moved away. The default value is True.</p>
 
-<p>The remaining properties — Autoplay (True), BackgroundColor (#FFFFFF), Interval (5000 ms), Keyboard (True), Loop (True), and Pause (True) — are left at their default values for this lab.</p>
+<p>Do Not Copy 4-5 AVEVA™ InTouch for System Platform 2023 Introduction In this lab, you will create a dashboard symbol and embed and configure the Carousel widget. Then you will display this dashboard at runtime. Objectives Upon completion of this lab, you will be able to:  Use widgets  Display graphics in the Carousel widget</p>
+
+<p>Do Not Copy 4-6 AVEVA™ Training Create the Dashboard Symbol First, you will create a Dashboard symbol and embed and configure the carousel widget. 1. In the IDE, on the Graphics tab, in the Training toolset, create a new symbol named Dashboard, and then open it for editing. 2. From the Toolbox tab, embed Widgets\Carousel.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0287_0.png" alt="Properties panel for Carousel1 widget showing position, size, fill style, text style, runtime behavior settings, and Widget Properties section">
-  <div class="caption">The Properties panel for the Carousel widget, showing standard graphic properties and the Widget Properties section at the bottom (page 287)</div>
+  <img src="../images/page_0286.png" alt="Screenshot of the InTouch HMI Graphic Editor with a Carousel widget placed on the design canvas and the Widgets toolbox panel on the right showing available widgets: Carousel, Datagrid, Map_App, QRCode_Scanner, Teamwork, and Web_Browser under the TrainingGalaxy project">
+  <div class="caption">Screenshot of the InTouch HMI Graphic Editor with a Carousel widget placed on the design canvas and the Widgets toolbox panel on the right showing available widgets: Carousel, Datagrid, Map_App, QRCode_Scanner, Teamwork, and Web_Browser under the TrainingGalaxy project</div>
+</div>
+
+<p>Do Not Copy 4-7 AVEVA™ InTouch for System Platform 2023 3. In Properties, scroll down to locate the Widget Properties. 4. In GraphicNames, enter: Line1_MixingProcess,ClockAnalogWall The graphic names listed here will display in the widget at runtime. 5. Save and close and check in the graphic.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0287_0.png" alt="Screenshot of the Properties panel for Carousel1 widget showing position (X:1290, Y:270), size (100x100), fill style (white), text style (Arial 12pt), runtime behavior settings (Enabled, Visible, TabStop), and Widget Properties section with AutoPlay, BackgroundColor, GraphicNames, Interval, Keyboard, Loop, and Pause">
+  <div class="caption">Screenshot of the Properties panel for Carousel1 widget showing position (X:1290, Y:270), size (100x100), fill style (white), text style (Arial 12pt), runtime behavior settings (Enabled, Visible, TabStop), and Widget Properties section with AutoPlay, BackgroundColor, GraphicNames, Interval, Keyboard, Loop, and Pause</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0287_1.png" alt="Widget Properties panel with GraphicNames set to Line1_MixingProcess,ClockAnalogWall, and other properties: Autoplay True, BackgroundColor #FFFFFF, Interval 5000, Keyboard True, Loop True, Pause True">
-  <div class="caption">The GraphicNames property configured with the two process graphics to cycle through at runtime (page 287)</div>
+  <img src="../images/page_0287_1.png" alt="Screenshot of the Widget Properties panel for the Carousel widget with GraphicNames property highlighted and set to Line1_MixingProcess,ClockAnalogWall, showing Autoplay: True, BackgroundColor: #FFFFFF, Interval: 5000, Keyboard: True, Loop: True, Pause: True">
+  <div class="caption">Screenshot of the Widget Properties panel for the Carousel widget with GraphicNames property highlighted and set to Line1_MixingProcess,ClockAnalogWall, showing Autoplay: True, BackgroundColor: #FFFFFF, Interval: 5000, Keyboard: True, Loop: True, Pause: True</div>
 </div>
 
-<ol start="5">
-  <li>Save and close, then check in the graphic.</li>
-</ol>
-
-<h3>Step 3: Create a New Window</h3>
-<p>Next, you will create a window in WindowMaker to host the carousel.</p>
-
-<ol start="6">
-  <li>In WindowMaker, click the <strong>New (+)</strong> button.</li>
-  <li>Ensure <strong>Frame window</strong> is selected.</li>
-  <li>Configure the window properties as follows and click <strong>Create</strong>:</li>
-</ol>
-
-<table>
-  <thead><tr><th>Property</th><th>Value</th></tr></thead>
-  <tbody>
-    <tr><td>Name</td><td>Carousel</td></tr>
-    <tr><td>Comment</td><td>Display System Graphics</td></tr>
-    <tr><td>Window type</td><td>Replace</td></tr>
-    <tr><td>Location</td><td>X: 420, Y: 320</td></tr>
-    <tr><td>Size</td><td>Width: 1500, Height: 680</td></tr>
-    <tr><td>Window color</td><td>White</td></tr>
-    <tr><td>Title bar</td><td>Unchecked</td></tr>
-    <tr><td>Frame style</td><td>Single</td></tr>
-  </tbody>
-</table>
+<p>Do Not Copy 4-8 AVEVA™ Training Create a New Window Next, you will create a new window to contain the carousel widget. 6. In WindowMaker, click the New (+) button. 7. In New, ensure Frame window is selected. 8. Configure window properties as follows: 9. Click Create. Name: Carousel Comment: Display System Graphics Title bar: Unchecked</p>
 
 <div class="screenshot">
-  <img src="../images/page_0288_0.png" alt="WindowMaker Home toolbar with Clipboard and Insert groups, and the Windows panel showing project window hierarchy">
-  <div class="caption">The WindowMaker toolbar and Windows panel for creating a new window (page 288)</div>
+  <img src="../images/page_0288_0.png" alt="Screenshot of the Home ribbon toolbar in the InTouch HMI editor showing Clipboard group (Paste, Cut, Copy, Duplicate) and Insert group (Button, Text, Graphics), with the Windows panel showing the project window hierarchy on the left">
+  <div class="caption">Screenshot of the Home ribbon toolbar in the InTouch HMI editor showing Clipboard group (Paste, Cut, Copy, Duplicate) and Insert group (Button, Text, Graphics), with the Windows panel showing the project window hierarchy on the left</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0288_1.png" alt="Window Properties panel for the Carousel window: Name Carousel, Comment Display System Graphics, Window type Replace, Size 1500x680, Title bar disabled">
-  <div class="caption">Window Properties configured for the Carousel window with the title bar disabled (page 288)</div>
+  <img src="../images/page_0288_1.png" alt="Screenshot of the Window Properties panel for a window named Carousel with Comment set to Display System Graphics, Window type: Replace, Location X:420 Y:320, Size 1500x680, White background color, Title bar disabled, Frame style: Single">
+  <div class="caption">Screenshot of the Window Properties panel for a window named Carousel with Comment set to Display System Graphics, Window type: Replace, Location X:420 Y:320, Size 1500x680, White background color, Title bar disabled, Frame style: Single</div>
 </div>
 
-<h3>Step 4: Embed the Dashboard Symbol</h3>
-<p>Now you will place the Dashboard symbol inside the Carousel window.</p>
-
-<ol start="10">
-  <li>In the Carousel window, embed the <strong>Dashboard</strong> symbol from the Industrial Graphics library.</li>
-  <li>In Properties, uncheck <strong>Maintain aspect ratio</strong>. This allows the carousel to stretch and fill the entire window.</li>
-</ol>
+<p>Do Not Copy 4-9 AVEVA™ InTouch for System Platform 2023 Now, you will embed the Dashboard symbol in the Carousel window. 10. In the Carousel window, embed the Dashboard symbol. 11. In Properties, uncheck Maintain aspect ratio.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0289_0.png" alt="Industrial Graphics panel with Dashboard symbol highlighted, being dragged into the Carousel window canvas">
-  <div class="caption">Embedding the Dashboard symbol into the Carousel window using drag-and-drop from the Industrial Graphics library (page 289)</div>
+  <img src="../images/page_0289_0.png" alt="Screenshot of the Industrial Graphics editor showing the Dashboard symbol being edited with a Carousel widget area, the Industrial Graphics library panel listing available symbols (Agitator_Detailed, Dashboard, Level_Detailed, Line1_MixingProcess, etc.), and Properties panel showing Dashboard graphic with Maintain aspect ratio checked">
+  <div class="caption">Screenshot of the Industrial Graphics editor showing the Dashboard symbol being edited with a Carousel widget area, the Industrial Graphics library panel listing available symbols (Agitator_Detailed, Dashboard, Level_Detailed, Line1_MixingProcess, etc.), and Properties panel showing Dashboard graphic with Maintain aspect ratio checked</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0289_1.png" alt="Carousel widget Properties showing GraphicName Dashboard, Maintain aspect ratio unchecked, Show zoom control Auto, Interaction mode PanZoom">
-  <div class="caption">Properties for the embedded Dashboard graphic — Maintain aspect ratio is unchecked to allow full-window display (page 289)</div>
+  <img src="../images/page_0289_1.png" alt="Screenshot of the Carousel widget design view with an empty white canvas area showing Widget and Carousel labels, Properties panel on the right showing GraphicName: Dashboard, Maintain aspect ratio unchecked, Show zoom control: Auto, Interaction mode: PanZoom, and description text for Maintain aspect ratio setting">
+  <div class="caption">Screenshot of the Carousel widget design view with an empty white canvas area showing Widget and Carousel labels, Properties panel on the right showing GraphicName: Dashboard, Maintain aspect ratio unchecked, Show zoom control: Auto, Interaction mode: PanZoom, and description text for Maintain aspect ratio setting</div>
 </div>
 
-<h3>Step 5: Test at Runtime</h3>
-<p>Finally, you will verify that the carousel works correctly in WindowViewer.</p>
-
-<ol start="12">
-  <li>Click <strong>Runtime</strong>. After a few moments, the carousel begins automatically cycling through the configured graphics.</li>
-  <li>When the mixer graphic appears, hover your mouse over the carousel to pause automatic scrolling.</li>
-  <li>Move your cursor to the left or right edge of the carousel until a pointing-hand cursor appears, then click to advance manually.</li>
-  <li>Click <strong>Development!</strong> to return to WindowMaker.</li>
-</ol>
+<p>Do Not Copy 4-10 AVEVA™ Training Test in Runtime Finally, you will test the new window in WindowViewer. 12. Click Runtime. After a few moments, the carousel will automatically scroll to display your graphics. 13. Wait until the carousel shows the mixer graphics, then hover your mouse over the carousel to pause automatic scrolling with the mixer graphic showing. 14. Move your cursor to the left or right side of the carousel until the cursor changes to a pointing hand, and then click to advance the carousel. 15. Click Development! to return to WindowMaker.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0290.png" alt="Runtime view showing the Carousel widget cycling between industrial mixer process graphics (Mixer200 and Mixer400) and an analog wall clock graphic">
-  <div class="caption">The Carousel in runtime, automatically cycling between the mixer process overview and the analog clock graphic (page 290)</div>
+  <img src="../images/page_0290.png" alt="Composite screenshot showing on the left an industrial process monitoring HMI with two mixer units (Mixer200 Line 1 and Mixer400 Line 1) displaying level and temperature readings with pump/inlet/outlet components, and on the right a close-up of an analog wall clock showing approximately 9:40">
+  <div class="caption">Composite screenshot showing on the left an industrial process monitoring HMI with two mixer units (Mixer200 Line 1 and Mixer400 Line 1) displaying level and temperature readings with pump/inlet/outlet components, and on the right a close-up of an analog wall clock showing approximately 9:40</div>
 </div>
 
-<div class="key-concept">
-  <strong>Key Concept:</strong> The Carousel pauses on mouse hover (the Pause property is True by default), giving operators time to examine a specific graphic. They can then use left/right navigation to move through the carousel manually.
-</div>
-
-<ol start="16">
-  <li>In Windows, right-click <strong>Carousel</strong> and select <strong>Close</strong>.</li>
-  <li>In Windows, double-click <strong>ContentDisplay</strong> to open it.</li>
-</ol>
+<p>Do Not Copy 4-11 AVEVA™ InTouch for System Platform 2023 16. In Windows, right-click Carousel and select Close. 17. In Windows, double-click ContentDisplay to open it. <End of Lab></p>
 
 <div class="screenshot">
-  <img src="../images/page_0291_0.png" alt="Windows panel with right-click context menu on Carousel showing Close, Save, Save as, Delete, and other options">
-  <div class="caption">Closing the Carousel window via the right-click context menu in the Windows panel (page 291)</div>
+  <img src="../images/page_0291_0.png" alt="Screenshot of the Windows panel in the InTouch HMI IDE with a right-click context menu on the Carousel window showing options: Close, Save, Save as, Delete, Window Scripts, Update thumbnail, Convert to Industrial Graphics, and Properties">
+  <div class="caption">Screenshot of the Windows panel in the InTouch HMI IDE with a right-click context menu on the Carousel window showing options: Close, Save, Save as, Delete, Window Scripts, Update thumbnail, Convert to Industrial Graphics, and Properties</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0291_1.png" alt="Windows panel with ContentDisplay selected, showing the main canvas with Mixers header and Consumed Materials panel">
-  <div class="caption">Returning to the ContentDisplay window to continue working on the main application layout (page 291)</div>
+  <img src="../images/page_0291_1.png" alt="Screenshot of the Windows panel with ContentDisplay window selected, showing the canvas workspace with a Mixers header at the top and a Consumed Materials panel at the bottom displaying consumed materials quantity of current batch">
+  <div class="caption">Screenshot of the Windows panel with ContentDisplay window selected, showing the canvas workspace with a Mixers header at the top and a Consumed Materials panel at the bottom displaying consumed materials quantity of current batch</div>
 </div>
 
-<!-- ============================================================ -->
+<p>Do Not Copy 4-12 AVEVA™ Training</p>
+
 <div class="quiz">
   <h3>Knowledge Check</h3>
-
-  <p><strong>1.</strong> What file format is used to import HTML5 widgets into InTouch, and where do you find the import command?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Widgets are imported using the Custom Widget Package (.cwp) format. The import command is found at <code>Galaxy → Import → Visualization → Web Widgets</code> in the IDE.</p></details>
-
-  <p><strong>2.</strong> What happens when the Carousel widget's <code>Pause</code> property is set to True and an operator hovers their mouse over the widget?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">The carousel automatically pauses its cycling when it detects a mouse hover or touch event, allowing the operator to examine the current graphic. Cycling resumes when the mouse moves away.</p></details>
-
-  <p><strong>3.</strong> Why must you uncheck <strong>Maintain aspect ratio</strong> when embedding the Dashboard symbol into the Carousel window?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Unchecking Maintain aspect ratio allows the embedded Dashboard graphic to stretch and fill the entire Carousel window, rather than being constrained to its original proportions. This ensures the carousel displays full-screen.</p></details>
-
-  <p><strong>4.</strong> What determines the order in which graphics appear in the Carousel, and how do you configure it?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">The order is determined by the comma-separated list you enter in the <code>GraphicNames</code> widget property. The first graphic in the list appears first, and the carousel cycles through them in sequence.</p></details>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Widgets Overview + Lab 11?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
 </div>
 
 <p class="source">Module 4 — Widgets. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson 24 — Alarming Overview + Lab 12</p>
+<p class="source">Next: Lesson L24 — Alarming Overview + Lab 12</p>
 
 <script>
 
@@ -323,12 +201,12 @@ function saveProgress() {
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
-  try { localStorage.setItem('aveva-lesson-progress', JSON.stringify(checks)); } catch(e) {}
+  try { localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks)); } catch(e) {}
   updateProgressText();
 }
 function loadProgress() {
   var data = null;
-  try { data = localStorage.getItem('aveva-lesson-progress'); } catch(e) {}
+  try { data = localStorage.getItem('intouch-lesson-progress'); } catch(e) {}
   if (!data) { updateProgressText(); return; }
   try {
     var checks = JSON.parse(data);

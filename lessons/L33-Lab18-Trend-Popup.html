@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 33: Lab18 Trend Popup</title>
+<title>Lesson L33: Lab 18 – Trend Popup Symbol</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -35,8 +35,7 @@
 <body>
 
 <nav>
-  <a href="L32-Multi-Pens-Trend.html">&larr; Lesson 32: Multi Pens Trend</a> &nbsp;|&nbsp;
-  <a href="L34-Historian-Trend-Lab19.html">Lesson 34: Historian Trend Lab19 &rarr;</a>
+  <a href="L32-Multi-Pens-Trend.html">&larr; Multi Pens Trend</a> &nbsp;|&nbsp; <a href="L34-Historian-Trend-Lab19.html">Historian Client Trend + Lab 19 &rarr;</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -98,165 +97,79 @@
 </details>
 </nav>
 
-<h1>Lesson 33: Lab 18 – Trend Popup Symbol</h1>
-<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 6, Lab 18 (pages 403–422) and Section 4 (pages 421–430)</p>
-<p class="page-ref">In this lab you will build a Multi Pens Trend popup for the mixer, configure three pens (Temperature, Level, Agitator), and add a pen at runtime. The lesson also introduces the Historian Client .NET controls used for advanced trending.</p>
+<h1>Lesson L33: Lab 18 – Trend Popup Symbol</h1>
+<p class="page-ref">Module 6 — Trend Visualization | Pages 423–430</p>
 
-<!-- ============================================================ -->
-<h2>33.1 Lab 18 Overview</h2>
-<p class="page-ref">Reference: Module 6, Lab 18 (pages 403–404)</p>
-
-<div class="lab">
-  <strong>Lab Objective:</strong> Create a Multi Pens Trend display with Level, Temperature, and Agitator references, configure Historian as the data source, and add a pen at runtime.
-</div>
-
-<p>In this lab you will build a TrendPopup symbol that operators can open from the mixing process graphic. The popup will display three process values simultaneously on a single chart, with Historian providing backfill data so the chart is never empty.</p>
+<p>Do Not Copy 6-43 AVEVA™ InTouch for System Platform 2023 aaHistClientQuery Control The aaHistClientQuery control runs the Historian Client Query program (or a functional subset) from within the InTouch HMI software or a .NET container like Visual Basic .NET or Internet Explorer. Query is a client application that retrieves data from a Historian database or any SQL Server database and returns the results in a table format. If querying the Historian database, choose from a number of predefined query types and easily select the options for each type, eliminating the need to know SQL syntax. Custom queries can also be written, if the SQL syntax and the schema of the database are known.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0403.png" alt="Runtime TrendPopup showing three-pen trend with Temperature, Level, and Agitator data">
-  <div class="caption">The completed TrendPopup at runtime — three pens plotting Temperature, Level, and Agitator on a 5-minute window (page 403)</div>
+  <img src="../images/page_0423.png" alt="Screenshot of the aaHistClientQuery control showing a Historian Client Query interface with Tag Picker panel (LOCALHOST server with TT_001.PV selected), time range selection (October 12, 2007), and historical data results grid with 100 rows of temperature readings">
+  <div class="caption">Screenshot of the aaHistClientQuery control showing a Historian Client Query interface with Tag Picker panel (LOCALHOST server with TT_001.PV selected), time range selection (October 12, 2007), and historical data results grid with 100 rows of temperature readings</div>
 </div>
 
-<!-- ============================================================ -->
-<h2>33.2 Configure the Trend Display</h2>
-<p class="page-ref">Reference: Module 6, Lab 18 (pages 404–409)</p>
-
-<p>Open the <code>$Mixer</code> template and create a new symbol named <strong>TrendPopup</strong>. Place a <strong>Multi Pens Trend</strong> control from the Tools menu onto the canvas. The Edit Animations dialog opens with the Trend Pens tab active.</p>
-
-<p>Configure the first pen for Temperature with these settings:</p>
-
-<table>
-  <thead><tr><th>Property</th><th>Value</th></tr></thead>
-  <tbody>
-    <tr><td>Pen Name</td><td>Temperature</td></tr>
-    <tr><td>Reference</td><td>Me.Temperature.PV</td></tr>
-    <tr><td>Min</td><td>Me.Temperature.PV.EngUnitsMin</td></tr>
-    <tr><td>Max</td><td>Me.Temperature.PV.EngUnitsMax</td></tr>
-    <tr><td>Units</td><td>Me.Temperature.PV.EngUnits</td></tr>
-    <tr><td>Color</td><td>Blue</td></tr>
-    <tr><td>Plot</td><td>Line</td></tr>
-  </tbody>
-</table>
+<p>Do Not Copy 6-44 AVEVA™ Training aaHistClientTagPicker Control The aaHistClientTagPicker control displays the hierarchy of objects in the Historian database (for example, tags, InTouch nodes, events, and so on) in a hierarchical format. Unlike the other Historian Client controls, the aaHistClientTagPicker control does not provide a user interface to select and connect to a Historian. A programmatic interface needs to be added to allow this functionality. The following code can be used in a script to allow a user to log on to the Historian located in the localhost: aaTagPicker1.Servers.Add( "localhost" );</p>
 
 <div class="screenshot">
-  <img src="../images/page_0404_1.png" alt="Trend Pens tab with Temperature pen configured — blue color, Me.Temperature.PV reference">
-  <div class="caption">Temperature pen configured with blue color and Me.Temperature.PV reference (page 404)</div>
+  <img src="../images/page_0424.png" alt="Screenshot of the aaHistClientTagPicker control showing a Tag Picker dialog with LOCALHOST server tree (Public Groups, Private Groups), tag list with columns for Tag Name (Agitator_001.PV through LIT_002.PV), Description, and I/O Address, plus filter tabs for All, Analog, Discrete, String, and Event">
+  <div class="caption">Screenshot of the aaHistClientTagPicker control showing a Tag Picker dialog with LOCALHOST server tree (Public Groups, Private Groups), tag list with columns for Tag Name (Agitator_001.PV through LIT_002.PV), Description, and I/O Address, plus filter tabs for All, Analog, Discrete, String, and Event</div>
 </div>
 
-<p>Add a second pen for Level with bright green color and <code>Me.Level.PV</code> as the reference. Then click <strong>Add a row</strong> to create a third pen for Agitator with <code>Me.Agitator.PV</code>, Min 0, Max 1, and the default Step Line plot type.</p>
+<p>Do Not Copy 6-45 AVEVA™ InTouch for System Platform 2023 aaHistClientTimeRangePicker Control The aaHistClientTimeRangePicker control allows date and time parameters to be selected.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0407.png" alt="Level pen configured with green color and Me.Level.PV reference">
-  <div class="caption">Level pen: bright green, Me.Level.PV reference, Line plot (page 407)</div>
+  <img src="../images/page_0425_0.png" alt="Screenshot of the aaHistClientTimeRangePicker control showing start and end date-time fields (October 12, 2007) with a calendar popup for October 2007 highlighting the 12th, and a time offset field showing 00:00:00">
+  <div class="caption">Screenshot of the aaHistClientTimeRangePicker control showing start and end date-time fields (October 12, 2007) with a calendar popup for October 2007 highlighting the 12th, and a time offset field showing 00:00:00</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0409.png" alt="Agitator pen configured with auto color, Me.Agitator.PV reference, Min 0, Max 1">
-  <div class="caption">Agitator pen: automatic color, Me.Agitator.PV, 0–1 range, Step Line plot (page 409)</div>
+  <img src="../images/page_0425_1.png" alt="Screenshot of the aaHistClientTimeRangePicker control showing a dropdown menu with preset time duration options (1 minute through 4 hours) with 30 minutes currently highlighted, and start/end timestamp fields showing a 5-minute span">
+  <div class="caption">Screenshot of the aaHistClientTimeRangePicker control showing a dropdown menu with preset time duration options (1 minute through 4 hours) with 30 minutes currently highlighted, and start/end timestamp fields showing a 5-minute span</div>
 </div>
 
-<!-- ============================================================ -->
-<h2>33.3 Options and Trends Button</h2>
-<p class="page-ref">Reference: Module 6, Lab 18 (pages 410–412)</p>
-
-<p>Verify the Options tab settings: Source is set to Historian with Auto Detect enabled. This ensures backfill at runtime. Click OK, save the graphic, then open <strong>MixingProcess_Detailed</strong>.</p>
-
-<p>Duplicate the Alarms button, place it to the right, and rename it <strong>Trends_Btn</strong> with text "Trends". Configure a Show Symbol animation pointing to <code>Me.TrendPopup</code>. Save, close, and check in the $Mixer template.</p>
+<p>Do Not Copy 6-46 AVEVA™ Training aaHistClientActiveDataGrid Control The aaHistClientActiveDataGrid control can run any SQL query from any Historian or Microsoft SQL Server database and return the results in a grid. Note: The aaHistClientActiveDataGrid control does not support data definition or data manipulation queries. Unlike the other Historian Client controls, the aaHistClientActiveDataGrid control does not provide a user interface to select and connect to a SQL Server or specify the query that will feed data to the grid. A programmatic interface needs to be added to allow this functionality. The following code can be used in a script to connect to the local Historian as aaUser and query history data for the SysTimeSec tag: aaTagPicker1.Servers.Add( "localhost" ); aaHistClientActiveDataGrid1.ServerName = "localhost"; aaHistClientActiveDataGrid1.UserName = "aaUser"; aaHistClientActiveDataGrid1.Password = "pwUser"; aaHistClientActiveDataGrid1.DatabaseName = "Runtime"; aaHistClientActiveDataGrid1.SQLString = "SELECT * FROM History WHERE Tagname = 'SysTimeSec'"; aaHistClientActiveDataGrid1.Connected = 1;</p>
 
 <div class="screenshot">
-  <img src="../images/page_0411_0.png" alt="Default Trend Source showing Historian with Auto Detect checked">
-  <div class="caption">Source set to Historian with Auto Detect — enables backfill at runtime (page 411)</div>
+  <img src="../images/page_0426.png" alt="Screenshot of the aaHistClientActiveDataGrid control showing a historical data grid with SysTimeSec tag entries, columns for DateTime, TagName, Value, and vValue, displaying a per-second counter that rolls over from 59 to 0 at minute boundaries">
+  <div class="caption">Screenshot of the aaHistClientActiveDataGrid control showing a historical data grid with SysTimeSec tag entries, columns for DateTime, TagName, Value, and vValue, displaying a per-second counter that rolls over from 59 to 0 at minute boundaries</div>
 </div>
+
+<p>Do Not Copy 6-47 AVEVA™ InTouch for System Platform 2023 aaHistClientSingleValueEntry Control Use the aaHistClientSingleValueEntry control to manually add a tag value to the Historian database.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0412_0.png" alt="Show Symbol animation for Trends button pointing to Me.TrendPopup">
-  <div class="caption">Trends button configured with Show Symbol animation: Me.TrendPopup (page 412)</div>
+  <img src="../images/page_0427.png" alt="Screenshot of the aaHistClientSingleValueEntry control showing a Select tag dialog with LOCALHOST server highlighted, tag list showing Agitator speed and Inlet tags with Tag Name, Description, and I/O Address columns, and filter/search options at the bottom">
+  <div class="caption">Screenshot of the aaHistClientSingleValueEntry control showing a Select tag dialog with LOCALHOST server highlighted, tag list showing Agitator speed and Inlet tags with Tag Name, Description, and I/O Address columns, and filter/search options at the bottom</div>
 </div>
 
-<!-- ============================================================ -->
-<h2>33.4 Runtime Test and Adding Pens</h2>
-<p class="page-ref">Reference: Module 6, Lab 18 (pages 413–415)</p>
+<p>Do Not Copy 6-48 AVEVA™ Training</p>
 
-<p>Switch to Runtime and click the Trends button. The popup should display three pens with live values. Use Pause to freeze the chart, hover to see tooltips, and Resume to continue. Right-click the legend and select <strong>Add</strong> to add a fourth pen at runtime — enter Inlet1 with reference <code>Me.Inlet1.LSOpen</code> and Max Range of 1.</p>
+<p>Do Not Copy 6-49 AVEVA™ InTouch for System Platform 2023 Display Introduction In this lab, you will create a symbol and embed the Historian Client Trend. This trend will be used to display and compare levels from different mixers. Additionally, you will add navigation to open this trend and view alarm highlights for the levels at runtime. Objectives Upon completion of this lab, you will be able to:  Embed the Historian Client Trend .NET control in a symbol  Use the AddServerEx() script function to initialize the Historian Client Trend  Use the Historian Client Trend Tag Picker to add tags to the trend at runtime</p>
 
 <div class="screenshot">
-  <img src="../images/page_0413_0.png" alt="Runtime TrendPopup with tooltip showing live values for three pens">
-  <div class="caption">Runtime tooltip showing Temperature, Level, and Agitator values at a specific time point (page 413)</div>
+  <img src="../images/page_0429.png" alt="Screenshot of the aaTrendControl embedded in InTouch HMI showing a historical trend display with Tag Picker panel (S01ENG server, Level_001.PV through Level_008.PV tags), time range controls for a 5-minute window, and a trend chart with annotated data points">
+  <div class="caption">Screenshot of the aaTrendControl embedded in InTouch HMI showing a historical trend display with Tag Picker panel (S01ENG server, Level_001.PV through Level_008.PV tags), time range controls for a 5-minute window, and a trend chart with annotated data points</div>
 </div>
+
+<p>Do Not Copy 6-50 AVEVA™ Training Create a Historian Client Trend Display First, you will create a symbol and embed a Historian Client Trend .NET control. 1. In the IDE, on the Graphics tab, in the Training toolset, create a symbol named TrendHistDisplay, and then open it for editing. 2. On the Toolbox tab, search for aatrend and then drag aaTrendControl to the canvas. 3. Name the graphic Trend. 4. Right-click the canvas and select Custom Properties.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0414_1.png" alt="Runtime TrendPopup with four pens after adding Inlet1">
-  <div class="caption">Four pens at runtime after adding Inlet1 — Temperature, Level, Agitator, and Inlet1 (page 414)</div>
+  <img src="../images/page_0430.png" alt="Screenshot of the InTouch HMI Graphic Editor showing an empty aaTrendControl component placed on the canvas with Tag Picker panel (empty Servers and Tags sections), time range controls, and the Toolbox search panel showing aaTrendControl as the matching component">
+  <div class="caption">Screenshot of the InTouch HMI Graphic Editor showing an empty aaTrendControl component placed on the canvas with Tag Picker panel (empty Servers and Tags sections), time range controls, and the Toolbox search panel showing aaTrendControl as the matching component</div>
 </div>
-
-<!-- ============================================================ -->
-<h2>33.5 Disabling In-Memory Caching</h2>
-<p class="page-ref">Reference: Module 6, Lab 18 (pages 416–419)</p>
-
-<div class="pitfall">
-  <strong>Pitfall:</strong> When switching between mixers at runtime, the TrendPopup may not update its references. This is caused by WindowViewer's default in-memory caching of Industrial Graphics. You must disable this setting for the popup to refresh correctly.
-</div>
-
-<p>To fix this: go to File &gt; Configure &gt; WindowViewer, select the <strong>Memory</strong> tab, and uncheck <strong>"Cache Industrial Graphics not embedded in InTouch windows."</strong> Save, close WindowViewer, and restart Runtime. Now switching mixers will update the popup correctly.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0418_0.png" alt="WindowViewer Memory settings with in-memory caching checkbox">
-  <div class="caption">Uncheck "Cache Industrial Graphics not embedded in InTouch windows" to fix the caching issue (page 418)</div>
-</div>
-
-<!-- ============================================================ -->
-<h2>33.6 Historian Client Controls Overview</h2>
-<p class="page-ref">Reference: Module 6, Section 4 (pages 421–428)</p>
-
-<p>Historian Client provides several .NET controls that can be imported into the Galaxy and embedded into symbols. These controls are purchased and licensed separately. They fall into two categories:</p>
-
-<ul>
-  <li><strong>Application controls</strong> — run as near-standalone applications with minimal scripting:
-    <ul>
-      <li><strong>aaHistClientTrend</strong> — plots tags on a graphical trend with panning, zooming, and scaling</li>
-      <li><strong>aaHistClientQuery</strong> — retrieves data in tabular format using predefined or custom SQL queries</li>
-    </ul>
-  </li>
-  <li><strong>Building block controls</strong> — provide specific functionality requiring scripting:
-    <ul>
-      <li><strong>aaHistClientTagPicker</strong> — displays the Historian tag hierarchy</li>
-      <li><strong>aaHistClientTimeRangePicker</strong> — lets users select date/time ranges</li>
-      <li><strong>aaHistClientActiveDataGrid</strong> — runs SQL queries and returns results in a grid</li>
-      <li><strong>aaHistClientSingleValueEntry</strong> — manually adds tag values to the Historian</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="key-concept">
-  <strong>Key Concept:</strong> Application-level controls (Trend, Query) work with minimal scripting. Building block controls (TagPicker, TimeRangePicker, ActiveDataGrid, SingleValueEntry) require additional scripting to function.
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0422.png" alt="aaHistClientTrend control showing a historical trend with tag picker and time range controls">
-  <div class="caption">aaHistClientTrend control: a full-featured trend display with tag picker, time range selector, and multi-tag plotting (page 422)</div>
-</div>
-
-<!-- ============================================================ -->
-<h2>33.7 Knowledge Check</h2>
 
 <div class="quiz">
   <h3>Knowledge Check</h3>
-
-  <p><strong>1.</strong> What are the two categories of Historian Client .NET controls, and how do they differ?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Application controls (Trend, Query) run as near-standalone applications with minimal scripting. Building block controls (TagPicker, TimeRangePicker, ActiveDataGrid, SingleValueEntry) provide specific functionality and require scripting to work.</p></details>
-
-  <p><strong>2.</strong> Why must you disable "Cache Industrial Graphics not embedded in InTouch windows" in WindowViewer settings?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Because the default caching causes the last state of an Industrial Graphic to persist when reopened. This means the TrendPopup won't update its references when switching between different mixers at runtime.</p></details>
-
-  <p><strong>3.</strong> How do you add a pen to the Multi Pens Trend at runtime?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Right-click the legend area and select Add. A new row appears in the legend where you can enter the Pen Name, Reference, and Max Range. The pen immediately appears on the chart.</p></details>
-
-  <p><strong>4.</strong> What script function is used to connect the aaHistClientTrend to a Historian server?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">The AddServerEx() method, called with the server name, username, password, and a boolean for integrated security — for example: Trend.AddServerEx(HistServer,"","",false).</p></details>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Lab 18 – Trend Popup Symbol?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
 </div>
 
 <p class="source">Module 6 — Trend Visualization. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson 34 — Historian Client Trend + Lab 19</p>
+<p class="source">Next: Lesson L34 — Historian Client Trend + Lab 19</p>
 
 <script>
 
@@ -265,12 +178,12 @@ function saveProgress() {
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
-  try { localStorage.setItem('aveva-lesson-progress', JSON.stringify(checks)); } catch(e) {}
+  try { localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks)); } catch(e) {}
   updateProgressText();
 }
 function loadProgress() {
   var data = null;
-  try { data = localStorage.getItem('aveva-lesson-progress'); } catch(e) {}
+  try { data = localStorage.getItem('intouch-lesson-progress'); } catch(e) {}
   if (!data) { updateProgressText(); return; }
   try {
     var checks = JSON.parse(data);

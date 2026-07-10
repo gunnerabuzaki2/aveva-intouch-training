@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 34: Historian Trend Lab19</title>
+<title>Lesson L34: Historian Client Trend + Lab 19</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -35,8 +35,7 @@
 <body>
 
 <nav>
-  <a href="L33-Lab18-Trend-Popup.html">&larr; Lesson 33: Lab18 Trend Popup</a> &nbsp;|&nbsp;
-  <a href="L35-Security-Overview.html">Lesson 35: Security Overview &rarr;</a>
+  <a href="L33-Lab18-Trend-Popup.html">&larr; Lab 18 – Trend Popup Symbol</a> &nbsp;|&nbsp; <a href="L35-Security-Overview.html">Security Overview &rarr;</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -98,128 +97,79 @@
 </details>
 </nav>
 
-<h1>Lesson 34: Historian Client Trend + Lab 19</h1>
-<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 6, Lab 19 (pages 429–438)</p>
-<p class="page-ref">In this lab you will embed the Historian Client Trend .NET control into a symbol, initialize it with a script, and use the Tag Picker to compare level data from multiple mixers at runtime.</p>
+<h1>Lesson L34: Historian Client Trend + Lab 19</h1>
+<p class="page-ref">Module 6 — Trend Visualization | Pages 431–438</p>
 
-<!-- ============================================================ -->
-<h2>34.1 Lab 19 Overview</h2>
-<p class="page-ref">Reference: Module 6, Lab 19 (pages 429–430)</p>
-
-<div class="lab">
-  <strong>Lab Objective:</strong> Embed the Historian Client Trend .NET control in a symbol, use the AddServerEx() script function to initialize it, and use the Tag Picker to add tags at runtime.
-</div>
-
-<p>The Historian Client Trend (aaTrendControl) is a powerful .NET control that queries tags from a Historian database and plots them on a graphical display. Unlike the built-in Multi Pens Trend, this control supports features like panning, zooming, XY scatter plots, and alarm limit highlighting — making it ideal for comparing data across multiple assets.</p>
+<p>Do Not Copy 6-51 AVEVA™ InTouch for System Platform 2023 5. Add a custom property named HistServer and configure it as follows: Note: Your instructor will provide the Historian node name. 6. Click OK to close Edit Custom Properties. Data Type: String Default Value: <HistorianNodeName> Visibility: Private</p>
 
 <div class="screenshot">
-  <img src="../images/page_0429.png" alt="aaTrendControl showing a historical trend with multiple level tags and alarm highlights">
-  <div class="caption">The completed Historian Client Trend display — multiple mixer levels plotted with alarm limit highlighting (page 429)</div>
+  <img src="../images/page_0431.png" alt="Screenshot of the Edit Custom Properties dialog showing the HistServer custom property configured as String data type with default value S01ENG and Private visibility (hidden when symbol is embedded)">
+  <div class="caption">Screenshot of the Edit Custom Properties dialog showing the HistServer custom property configured as String data type with default value S01ENG and Private visibility (hidden when symbol is embedded)</div>
 </div>
 
-<!-- ============================================================ -->
-<h2>34.2 Create the TrendHistDisplay Symbol</h2>
-<p class="page-ref">Reference: Module 6, Lab 19 (pages 430–431)</p>
-
-<p>On the Graphics tab in the Training toolset, create a symbol named <strong>TrendHistDisplay</strong>. From the Toolbox, search for <em>aatrend</em> and drag <strong>aaTrendControl</strong> onto the canvas. Name the embedded graphic <strong>Trend</strong>.</p>
-
-<p>Right-click the canvas and select Custom Properties. Add a custom property named <strong>HistServer</strong> with the following configuration:</p>
-
-<table>
-  <thead><tr><th>Property</th><th>Value</th></tr></thead>
-  <tbody>
-    <tr><td>Data Type</td><td>String</td></tr>
-    <tr><td>Default Value</td><td>&lt;HistorianNodeName&gt; (your instructor will provide this)</td></tr>
-    <tr><td>Visibility</td><td>Private</td></tr>
-  </tbody>
-</table>
-
-<div class="key-concept">
-  <strong>Key Concept:</strong> The HistServer custom property stores the Historian node name as a private string. This makes it easy to update the server address without editing scripts — just change the property value.
-</div>
-
-<!-- ============================================================ -->
-<h2>34.3 Add the Initialization Script</h2>
-<p class="page-ref">Reference: Module 6, Lab 19 (pages 432–433)</p>
-
-<p>Right-click the canvas and select Scripts. In the Predefined Scripts section, verify the trigger type is set to <strong>On Show</strong>. Enter the following script:</p>
-
-<pre><code>'Add a server using integrated security.
-Trend.AddServerEx(HistServer,"","",false);</code></pre>
-
-<p>This script runs every time the symbol is displayed, connecting the Trend control to the Historian server using Windows integrated security. Click OK, save, and check in the graphic.</p>
+<p>Do Not Copy 6-52 AVEVA™ Training 7. Right-click the canvas and select Scripts. 8. In Predefined Scripts, in the Trigger type drop-down list, verify On Show is selected. 9. In the script body, enter the following: Note: You may use the applicable script in C:\Training\Lab19 - Building a Historian Client Trend Display.txt. 'Add a server using integrated security. Trend.AddServerEx(HistServer,"","",false); 10. Click OK to close Edit Scripts. 11. Save and close and check in the graphic. Add a Navigation Button for Displaying TrendHistDisplay Next, you will add a button to the SystemNavigation symbol to display the TrendHistDisplay graphic. 12. On the Graphics tab, open SystemNavigation for editing. 13. On the canvas, duplicate the Historical Alarms button and place the duplicate to the right of the original. 14. Use Substitute Strings to change the button text to Historian Client Trend.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0432_0.png" alt="Edit Scripts dialog with On Show trigger and AddServerEx script">
-  <div class="caption">On Show script: Trend.AddServerEx connects to the Historian using integrated security (page 432)</div>
-</div>
-
-<!-- ============================================================ -->
-<h2>34.4 Add a Navigation Button</h2>
-<p class="page-ref">Reference: Module 6, Lab 19 (pages 432–433)</p>
-
-<p>Open <strong>SystemNavigation</strong> for editing. Duplicate the Historical Alarms button, place it to the right, and use Substitute Strings to change the text to "Historian Client Trend". Open the duplicate's Custom Properties and set the <strong>GraphicName</strong> default value to <code>TrendHistDisplay</code>. Save and check in.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0432_1.png" alt="SystemNavigation with the new Historian Client Trend button added">
-  <div class="caption">SystemNavigation updated with the Historian Client Trend navigation button (page 432)</div>
-</div>
-
-<!-- ============================================================ -->
-<h2>34.5 Test in Runtime</h2>
-<p class="page-ref">Reference: Module 6, Lab 19 (pages 434–437)</p>
-
-<p>Switch to Runtime and click the Historian Client Trend navigation button. After a moment the trend display appears. In the Tags panel, select <strong>Level_001.PV</strong> and drag it to the chart. The chart displays the level data with alarm limit highlighting — orange for HiHi and LoLo, yellow for Hi and Lo.</p>
-
-<p>Now add additional tags to compare mixer performance. Select and drag the following tags to the chart (hold Ctrl or Shift to select multiple):</p>
-
-<ul>
-  <li>Level_002.PV through Level_008.PV</li>
-</ul>
-
-<p>The overlapping trend lines reveal the time differences for filling and draining each tank, including any latency in the process. You can drag additional tags, change the time range using the drop-down list (e.g., 1 minute), and toggle live/replay mode to see the chart scroll continuously.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0434.png" alt="TrendHistDisplay with Level_001.PV showing alarm limit highlights">
-  <div class="caption">Single tag trend: Level_001.PV with orange HiHi/LoLo and yellow Hi/Lo alarm highlights (page 434)</div>
+  <img src="../images/page_0432_0.png" alt="Screenshot of the Edit Scripts dialog showing Predefined Scripts with On Show trigger type and VBScript code: Trend.AddServerEx(HistServer,&quot;&quot;,false) to add a Historian server using integrated security">
+  <div class="caption">Screenshot of the Edit Scripts dialog showing Predefined Scripts with On Show trigger type and VBScript code: Trend.AddServerEx(HistServer,&quot;&quot;,false) to add a Historian server using integrated security</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0435.png" alt="TrendHistDisplay with multiple Level tags showing comparative mixer data">
-  <div class="caption">Multi-tag comparison: Level_002 through Level_008 overlapping trend lines reveal timing differences between mixers (page 435)</div>
+  <img src="../images/page_0432_1.png" alt="Screenshot of the SystemNavigation symbol editor showing six navigation buttons arranged horizontally on a grid canvas: Mixers, Line 1, Line 2, Alarm Overview, Historical Alarms, and the newly added Historian Client Trend button">
+  <div class="caption">Screenshot of the SystemNavigation symbol editor showing six navigation buttons arranged horizontally on a grid canvas: Mixers, Line 1, Line 2, Alarm Overview, Historical Alarms, and the newly added Historian Client Trend button</div>
+</div>
+
+<p>Do Not Copy 6-53 AVEVA™ InTouch for System Platform 2023 15. For the new button, open Edit Custom Properties and change the GraphicName default value to TrendHistDisplay. 16. Click OK to close Edit Custom Properties. 17. Save and close and check in the graphic.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0433.png" alt="Screenshot of the Edit Custom Properties dialog for EmbeddedSymbol5 showing the GraphicName property set to TrendHistDisplay with Public visibility, with other properties listed (GetButtonText, WindowModal, WindowName, WindowResizable)">
+  <div class="caption">Screenshot of the Edit Custom Properties dialog for EmbeddedSymbol5 showing the GraphicName property set to TrendHistDisplay with Public visibility, with other properties listed (GetButtonText, WindowModal, WindowName, WindowResizable)</div>
+</div>
+
+<p>Do Not Copy 6-54 AVEVA™ Training Test in Runtime Now, you will view the Historian Client Trend in runtime. 18. In WindowMaker, click Runtime. 19. In the Navigation window, click Historian Client Trend. After a moment, the trend appears. 20. In Tags, select Level_001.PV and drag it to the chart. The chart displays Level with alarm limits highlighted where orange represents HiHi and LoLo, and yellow represents Hi and Lo.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0434.png" alt="Screenshot of the TrendHistDisplay window showing the Historian Client Trend with Tag Picker panel (S01ENG server, Level_001.PV tag selected), a trend chart displaying cyclic mixer level data with annotated values (69.87 at 1:21:47 PM, 53.99 at 1:25:17 PM), and time range controls for a 5-minute window">
+  <div class="caption">Screenshot of the TrendHistDisplay window showing the Historian Client Trend with Tag Picker panel (S01ENG server, Level_001.PV tag selected), a trend chart displaying cyclic mixer level data with annotated values (69.87 at 1:21:47 PM, 53.99 at 1:25:17 PM), and time range controls for a 5-minute window</div>
+</div>
+
+<p>Do Not Copy 6-55 AVEVA™ InTouch for System Platform 2023 Now, you will add additional tags. 21. In Tags, select the following tags and drag them to the chart. Note: To select multiple tags at once, you can press and hold Ctrl or Shift.  Level_002.PV  Level_003.PV  Level_004.PV  Level_005.PV  Level_006.PV  Level_007.PV  Level_008.PV The comparative display of the overlapping mixer levels demonstrates the time difference for filling and draining each tank, including latency.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0435.png" alt="Screenshot of the TrendHistDisplay with multiple Level tags (Level_002.PV through Level_008.PV) selected and displayed as overlapping colored trend lines on the chart, showing comparative mixer level data with annotated values and delta calculations">
+  <div class="caption">Screenshot of the TrendHistDisplay with multiple Level tags (Level_002.PV through Level_008.PV) selected and displayed as overlapping colored trend lines on the chart, showing comparative mixer level data with annotated values and delta calculations</div>
+</div>
+
+<p>Do Not Copy 6-56 AVEVA™ Training 22. Drag other tags to the trend chart and observe the trends. 23. Above the chart, in the middle drop-down list, select 1 minute. 24. Click Enable or disable live or replay mode. The chart begins scrolling continuously.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0436_0.png" alt="Screenshot of the TrendHistDisplay with a preset time range dropdown menu open showing options from 1 minute to Previous Hour, with multiple mixer level trend lines displayed as colored lines on the chart with time axis from 1:21:49 PM to 1:26:49 PM">
+  <div class="caption">Screenshot of the TrendHistDisplay with a preset time range dropdown menu open showing options from 1 minute to Previous Hour, with multiple mixer level trend lines displayed as colored lines on the chart with time axis from 1:21:49 PM to 1:26:49 PM</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0436_0.png" alt="TrendHistDisplay with time range dropdown showing preset options">
-  <div class="caption">Time range selector with preset options from 1 minute to Previous Hour (page 436)</div>
+  <img src="../images/page_0436_1.png" alt="Screenshot of the TrendHistDisplay in live/replay mode showing real-time mixer level trends with a 1-minute time window (1:43:51 to 1:44:51 PM), live value markers (red at 0.20, blue at 75.60), and Level_005 through Level_008.PV tags in the active tag panel">
+  <div class="caption">Screenshot of the TrendHistDisplay in live/replay mode showing real-time mixer level trends with a 1-minute time window (1:43:51 to 1:44:51 PM), live value markers (red at 0.20, blue at 75.60), and Level_005 through Level_008.PV tags in the active tag panel</div>
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0436_1.png" alt="TrendHistDisplay in live/replay mode with real-time scrolling">
-  <div class="caption">Live mode: the chart scrolls continuously, showing real-time mixer level data (page 436)</div>
-</div>
+<p>Do Not Copy 6-57 AVEVA™ InTouch for System Platform 2023 25. Close the TrendHistDisplay window. 26. Click Development! to return to WindowMaker. <End of Lab></p>
 
-<!-- ============================================================ -->
-<h2>34.6 Knowledge Check</h2>
+<p>Do Not Copy 6-58 AVEVA™ Training</p>
 
 <div class="quiz">
   <h3>Knowledge Check</h3>
-
-  <p><strong>1.</strong> What script function initializes the aaTrendControl's connection to a Historian server, and what trigger type should be used?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Trend.AddServerEx(HistServer,"","",false) with an On Show trigger. This runs the connection script every time the symbol is displayed at runtime.</p></details>
-
-  <p><strong>2.</strong> Why is the HistServer custom property set to Private visibility?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Private visibility means the property is hidden when the symbol is embedded in other graphics. Only the internal script needs to access the server name — operators don't need to see or change it.</p></details>
-
-  <p><strong>3.</strong> What colors does the Historian Client Trend use to highlight alarm limits, and which alarms do they represent?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Orange represents HiHi and LoLo alarm limits. Yellow represents Hi and Lo alarm limits. These highlights appear directly on the trend chart background.</p></details>
-
-  <p><strong>4.</strong> How do you add multiple tags to the Historian Client Trend chart at runtime?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">In the Tags panel, select multiple tags by holding Ctrl or Shift, then drag them to the chart. The overlapping trend lines allow direct comparison of multiple assets.</p></details>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Historian Client Trend + Lab 19?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
 </div>
 
 <p class="source">Module 6 — Trend Visualization. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson 35 — Security Overview</p>
+<p class="source">Next: Lesson L35 — Security Overview</p>
 
 <script>
 
@@ -228,12 +178,12 @@ function saveProgress() {
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
-  try { localStorage.setItem('aveva-lesson-progress', JSON.stringify(checks)); } catch(e) {}
+  try { localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks)); } catch(e) {}
   updateProgressText();
 }
 function loadProgress() {
   var data = null;
-  try { data = localStorage.getItem('aveva-lesson-progress'); } catch(e) {}
+  try { data = localStorage.getItem('intouch-lesson-progress'); } catch(e) {}
   if (!data) { updateProgressText(); return; }
   try {
     var checks = JSON.parse(data);

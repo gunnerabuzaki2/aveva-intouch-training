@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 6: Lab2 Managed InTouch App</title>
+<title>Lesson L06: Lab 2 – Creating a Managed InTouch Application</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -35,8 +35,7 @@
 <body>
 
 <nav>
-  <a href="L05-InTouch-Visualization-Objects.html">&larr; Lesson 5: InTouch Visualization Objects</a> &nbsp;|&nbsp;
-  <a href="L07-WindowMaker-Development.html">Lesson 7: WindowMaker Development &rarr;</a>
+  <a href="L05-InTouch-Visualization-Objects.html">&larr; InTouch Visualization + Automation Objects</a> &nbsp;|&nbsp; <a href="L07-WindowMaker-Development.html">InTouch Development Environment &rarr;</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -98,137 +97,79 @@
 </details>
 </nav>
 
-<h1>Lesson 6: Lab 2 – Creating a Managed InTouch Application</h1>
-<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 2, Lab 2 (pages 47–54)</p>
-<p class="page-ref">In this lab, you will create a Managed InTouch application for your Galaxy using the $InTouchViewApp template. This application will be used throughout the rest of the labs in this course.</p>
+<h1>Lesson L06: Lab 2 – Creating a Managed InTouch Application</h1>
+<p class="page-ref">Module 2 — Getting Started | Pages 47–54</p>
 
-<div class="lab">
-  <strong>Lab Objective:</strong> Create a Managed InTouch application by deriving from the $InTouchViewApp base template, organizing it in a custom toolset, and initializing it with the correct settings.
-</div>
+<p>Do Not Copy 2-7 AVEVA™ InTouch for System Platform 2023 Application Introduction In this lab, you will create a Managed InTouch application for your Galaxy using the $InTouchViewApp template object. This application will be used throughout the rest of the labs in this course. Objectives Upon completion of this lab, you will be able to:  Create a Managed InTouch application</p>
 
-<!-- ============================================================ -->
-<h2>6.1 Create a Derived InTouchViewApp Template</h2>
-<p class="page-ref">Reference: Module 2, Lab 2 (pages 48–49)</p>
-
-<p>In the System Platform IDE, the <code>$InTouchViewApp</code> base template lives under the System toolset. Because InTouchViewApp instances cannot be created directly from the base template, you must first derive a project-specific template from it. This derived template will define the settings and characteristics of your InTouch application.</p>
-
-<p>Follow these steps to create the derived template:</p>
-
-<ol>
-  <li>In the IDE, on the <strong>Templates</strong> tab, expand <strong>TrainingGalaxy</strong>, and then expand the <strong>System</strong> template toolset.</li>
-  <li>Right-click the <code>$InTouchViewApp</code> template and select <strong>New &gt; Derived Template</strong>.</li>
-  <li>Name the new derived template <code>$MixerView</code>.</li>
-</ol>
+<p>Do Not Copy 2-8 AVEVA™ Training Create a New Managed InTouch Application In the following steps, you will create a Managed InTouch application. 1. In the IDE, on the Templates tab, expand TrainingGalaxy, and then the System template toolset. 2. Right-click the $InTouchViewApp template and select New | Derived Template. The new derived template appears in the System toolset. 3. Name the new derived template as $MixerView.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0048.png" alt="IDE Templates tab showing TrainingGalaxy with expanded System folder listing $InTouchViewApp, with a right-click context menu offering New Derived Template">
-  <div class="caption">The IDE Templates tab showing the System toolset with $InTouchViewApp selected. The right-click context menu offers New &gt; Derived Template (page 48)</div>
+  <img src="../images/page_0048.png" alt="Screenshot of the IDE Templates tab showing the TrainingGalaxy project hierarchy with expanded System folder listing templates ($AppEngine, $Area, $InTouchViewApp, etc.), with a right-click context menu on $InTouchViewApp offering New Derived Template and other options">
+  <div class="caption">Screenshot of the IDE Templates tab showing the TrainingGalaxy project hierarchy with expanded System folder listing templates ($AppEngine, $Area, $InTouchViewApp, etc.), with a right-click context menu on $InTouchViewApp offering New Derived Template and other options</div>
 </div>
 
-<h2>6.2 Organize Templates with a Subtoolset</h2>
-<p class="page-ref">Reference: Module 2, Lab 2 (pages 49)</p>
-
-<p>To keep your project organized, create a dedicated subtoolset under Training for all InTouchViewApp templates. This makes it easy to find and manage your visualization templates as the project grows.</p>
-
-<ol start="4">
-  <li>On the Templates tab, right-click the <strong>Training</strong> toolset and select <strong>New Template Toolset</strong>.</li>
-  <li>Name the new toolset <strong>ViewApps</strong>.</li>
-  <li>Drag the <code>$MixerView</code> template into the <strong>Training\ViewApps</strong> toolset.</li>
-</ol>
+<p>Do Not Copy 2-9 AVEVA™ InTouch for System Platform 2023 Next, you will create a subtoolset for organizing your InTouchViewApp. 4. On the Templates tab, right-click the Training toolset and select New Template Toolset. 5. Name the new toolset as ViewApps. The new ViewApps toolset appears at the bottom of the Templates tab. 6. Drag the $MixerView template to the Training\ViewApps toolset.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0049_0.png" alt="Templates pane with right-click context menu on the Training folder showing New Template Toolset option">
-  <div class="caption">Right-click the Training folder and select New Template Toolset to create the ViewApps subtoolset (page 49)</div>
+  <img src="../images/page_0049_0.png" alt="Screenshot of the Templates pane showing the TrainingGalaxy hierarchy with expanded System folder containing system-level templates and a right-click context menu on the Training folder with New Template Toolset option highlighted">
+  <div class="caption">Screenshot of the Templates pane showing the TrainingGalaxy hierarchy with expanded System folder containing system-level templates and a right-click context menu on the Training folder with New Template Toolset option highlighted</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0049_1.png" alt="Templates pane showing the organized structure with Training > ViewApps containing the $MixerView template">
-  <div class="caption">After organizing: the $MixerView template now resides under Training &gt; ViewApps (page 49)</div>
+  <img src="../images/page_0049_1.png" alt="Screenshot of the Templates pane showing the TrainingGalaxy hierarchy with expanded System folder and expanded ViewApps subfolder containing the $MixerView template, demonstrating the organized template structure">
+  <div class="caption">Screenshot of the Templates pane showing the TrainingGalaxy hierarchy with expanded System folder and expanded ViewApps subfolder containing the $MixerView template, demonstrating the organized template structure</div>
 </div>
 
-<h2>6.3 Initialize the InTouchViewApp</h2>
-<p class="page-ref">Reference: Module 2, Lab 2 (pages 50–51)</p>
-
-<p>Double-clicking the $MixerView template opens the <strong>InTouchViewApp initialization wizard</strong>. This wizard walks you through the options for creating a new InTouch application or importing an existing one.</p>
-
-<ol start="7">
-  <li>Double-click <code>$MixerView</code> to launch the initialization wizard.</li>
-  <li>Leave the default selection as <strong>Create new InTouch application</strong> and click <strong>Next</strong>.</li>
-</ol>
+<p>Do Not Copy 2-10 AVEVA™ Training 7. Double-click $MixerView. The first part of the InTouchViewApp initialization dialog box appears. 8. Leave the default as Create new InTouch application and click Next.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0050.png" alt="InTouchViewApp initialization wizard showing Create new InTouch application selected, with overwrite options for Galaxy content and a backup checkbox">
-  <div class="caption">The InTouchViewApp initialization wizard — Step 1: Select "Create new InTouch application" and click Next (page 50)</div>
+  <img src="../images/page_0050.png" alt="Screenshot of the InTouchViewApp initialization wizard dialog with Create new InTouch application selected, showing Galaxy overwrite settings with checked options for Industrial graphics, galaxy style library, script function library, client controls, and languages, plus a backup checkbox">
+  <div class="caption">Screenshot of the InTouchViewApp initialization wizard dialog with Create new InTouch application selected, showing Galaxy overwrite settings with checked options for Industrial graphics, galaxy style library, script function library, client controls, and languages, plus a backup checkbox</div>
 </div>
 
-<p>The wizard continues with application-specific settings:</p>
+<p>Do Not Copy 2-11 AVEVA™ InTouch for System Platform 2023 The InTouchViewApp initialization continues. 9. Check the InTouchView application check box. Note: This check box reflects which InTouch product was licensed. In this InTouch for System Platform course, we check this box to have InTouch rely on built-in Application Server features, such as I/O access, alarms, history, and security. Leaving the box unchecked relies on InTouch HMI built-in features, including legacy InTouch AccessNames, InTouch alarms, InTouch historical logging, and InTouch security. 10. In Description, enter: InTouchView application for the InTouch for System Platform course Note: The Custom resolution feature allows the InTouch application designer to set the resolution that will be used on the production node, even when their development resolution may differ. The default Screen resolution takes the current development resolution and uses that as the target resolution on the production node. 11. Click Next.</p>
 
-<ol start="9">
-  <li>Check the <strong>InTouchView application</strong> checkbox. This tells InTouch to rely on built-in Application Server features (I/O access, alarms, history, and security) rather than legacy InTouch HMI features.</li>
-  <li>In the <strong>Description</strong> field, enter: <em>InTouchView application for the InTouch for System Platform course</em></li>
-  <li>Click <strong>Next</strong>.</li>
-</ol>
-
-<div class="key-concept">
-  <strong>Key Concept:</strong> The "InTouchView application" checkbox determines which product features are used. When checked, InTouch uses Application Server's built-in I/O, alarms, history, and security. When unchecked, it falls back on legacy InTouch HMI features (AccessNames, InTouch alarms, etc.).
+<div class="screenshot">
+  <img src="../images/page_0051.png" alt="Screenshot of the InTouchViewApp initialization wizard second page showing Application name $MixerView, checked InTouchView application checkbox, Description field with InTouchView application for the InTouch for System Platform course, and Custom resolution settings (1920x1080, 16:9 aspect ratio)">
+  <div class="caption">Screenshot of the InTouchViewApp initialization wizard second page showing Application name $MixerView, checked InTouchView application checkbox, Description field with InTouchView application for the InTouch for System Platform course, and Custom resolution settings (1920x1080, 16:9 aspect ratio)</div>
 </div>
 
-<div class="tip">
-  <strong>Tip:</strong> The Custom resolution feature allows you to set a production resolution different from your development resolution. The default "Screen resolution" uses your current development resolution as the production target.
+<p>Do Not Copy 2-12 AVEVA™ Training After a few moments, AVEVA InTouch HMI WindowMaker opens showing the New window area of the backstage view. In the next lab you will use the New window feature to create new windows, but for now, you will exit the backstage view. 12. In the top-left corner of the backstage view, click the left arrow button to move to the main view of WindowMaker.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0052_0.png" alt="Screenshot of the AVEVA InTouch HMI backstage File view with New option selected, showing Available templates (Native window and Frame window), and a properties panel with default window settings (Name: Window_001, Size: 1920x1037, Window type: Replace, White background)">
+  <div class="caption">Screenshot of the AVEVA InTouch HMI backstage File view with New option selected, showing Available templates (Native window and Frame window), and a properties panel with default window settings (Name: Window_001, Size: 1920x1037, Window type: Replace, White background)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0051.png" alt="InTouchViewApp initialization wizard second page with InTouchView application checkbox checked, description entered, and Custom resolution set to 1920x1080">
-  <div class="caption">Configure the application type (InTouchView checked), enter a description, and click Next (page 51)</div>
+  <img src="../images/page_0052_1.png" alt="Screenshot of the AVEVA InTouch HMI backstage File view with New selected and the Available templates section showing the Native window template tile with its icon on a light purple background">
+  <div class="caption">Screenshot of the AVEVA InTouch HMI backstage File view with New selected and the Available templates section showing the Native window template tile with its icon on a light purple background</div>
 </div>
 
-<h2>6.4 WindowMaker Opens</h2>
-<p class="page-ref">Reference: Module 2, Lab 2 (pages 52–53)</p>
-
-<p>After a few moments, AVEVA InTouch HMI WindowMaker opens, displaying the backstage <strong>New</strong> window area. This is where you can create new windows for your application — but for now, you will exit the backstage view.</p>
-
-<ol start="12">
-  <li>In the top-left corner of the backstage view, click the <strong>left arrow button</strong> to move to the main WindowMaker view.</li>
-</ol>
+<p>Do Not Copy 2-13 AVEVA™ InTouch for System Platform 2023 The main view of WindowMaker appears. <End of Lab></p>
 
 <div class="screenshot">
-  <img src="../images/page_0052_0.png" alt="AVEVA InTouch HMI backstage view with New option selected, showing Available templates (Native window, Frame window) and window properties panel">
-  <div class="caption">WindowMaker backstage view after initialization — click the back arrow to exit (page 52)</div>
+  <img src="../images/page_0053.png" alt="Screenshot of the AVEVA InTouch HMI main design interface showing an empty canvas workspace, Home ribbon toolbar with Clipboard and Insert tool groups, Windows panel with folder hierarchy, Scripts panel with script types, Industrial Graphics panel with TrainingGalaxy Widgets (aaTrendControl, AlarmClient, TrendClient), and an empty Properties panel">
+  <div class="caption">Screenshot of the AVEVA InTouch HMI main design interface showing an empty canvas workspace, Home ribbon toolbar with Clipboard and Insert tool groups, Windows panel with folder hierarchy, Scripts panel with script types, Industrial Graphics panel with TrainingGalaxy Widgets (aaTrendControl, AlarmClient, TrendClient), and an empty Properties panel</div>
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0052_1.png" alt="AVEVA InTouch HMI backstage with Available templates showing Native window template tile">
-  <div class="caption">The Available templates section in the backstage view (page 52)</div>
-</div>
+<p>Do Not Copy 2-14 AVEVA™ Training</p>
 
-<p>The main WindowMaker interface appears with all its panels — Windows, Scripts, Industrial Graphics, and Properties. Your Managed InTouch application is now created and ready for window development in the next lab.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0053.png" alt="AVEVA InTouch HMI main design interface showing empty canvas, Home ribbon, Windows panel, Scripts panel, Industrial Graphics panel with TrainingGalaxy widgets, and Properties panel">
-  <div class="caption">The WindowMaker main interface — the Managed InTouch application is now created and ready for development (page 53)</div>
-</div>
-
-<div class="key-concept">
-  <strong>Key Concept:</strong> Opening an InTouchViewApp object from the IDE automatically launches WindowMaker. There is no separate object editor — WindowMaker is the development environment for InTouch applications.
-</div>
-
-<!-- ============================================================ -->
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> Why can't you create an InTouchViewApp instance directly from the $InTouchViewApp base template?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">InTouchViewApp instances cannot be created from the base template. You must first derive a template from $InTouchViewApp, then create instances from that derived template. This enforces a consistent template hierarchy.</p></details>
-
-  <p><strong>2.</strong> What does the "InTouchView application" checkbox do in the initialization wizard?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">When checked, it tells InTouch to use Application Server's built-in features for I/O access, alarms, history, and security. When unchecked, it falls back on legacy InTouch HMI features like AccessNames, InTouch alarms, and InTouch security.</p></details>
-
-  <p><strong>3.</strong> What is the purpose of creating a ViewApps subtoolset under the Training toolset?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Creating a dedicated ViewApps subtoolset provides organizational structure for all InTouchViewApp templates, making them easy to find and manage as the project grows.</p></details>
-
-  <p><strong>4.</strong> What happens when you double-click an InTouchViewApp template in the IDE?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">It launches the InTouchViewApp initialization wizard, which guides you through creating a new InTouch application or importing an existing one. There is no separate object editor — WindowMaker is the editor.</p></details>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Lab 2 – Creating a Managed InTouch Application?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
 </div>
 
 <p class="source">Module 2 — Getting Started. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: Lesson L07 — InTouch Development Environment</p>
 
 <script>
 
@@ -237,12 +178,12 @@ function saveProgress() {
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
-  try { localStorage.setItem('aveva-lesson-progress', JSON.stringify(checks)); } catch(e) {}
+  try { localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks)); } catch(e) {}
   updateProgressText();
 }
 function loadProgress() {
   var data = null;
-  try { data = localStorage.getItem('aveva-lesson-progress'); } catch(e) {}
+  try { data = localStorage.getItem('intouch-lesson-progress'); } catch(e) {}
   if (!data) { updateProgressText(); return; }
   try {
     var checks = JSON.parse(data);

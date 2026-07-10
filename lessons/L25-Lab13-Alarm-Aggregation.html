@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 25: Lab 13 – Building an Alarm Aggregation Overview</title>
+<title>Lesson L25: Lab 13 – Alarm Aggregation</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -35,8 +35,7 @@
 <body>
 
 <nav>
-  <a href="L24-Alarming-Overview-Lab12.html">&larr; Lesson 24: Alarming Overview Lab12</a> &nbsp;|&nbsp;
-  <a href="L26-Live-Alarms-Visualization.html">Lesson 26: Live Alarms Visualization &rarr;</a>
+  <a href="L24-Alarming-Overview-Lab12.html">&larr; Alarming Overview + Lab 12</a> &nbsp;|&nbsp; <a href="L26-Live-Alarms-Visualization.html">Live Alarms Visualization &rarr;</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -98,207 +97,203 @@
 </details>
 </nav>
 
-<h1>Lesson 25: Lab 13 – Building an Alarm Aggregation Overview</h1>
-<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 5 – Alarms and Events Visualization, Lab 13 (pages 321–340)</p>
-<p class="page-ref">In this lab, you will build an overview graphic that displays alarm aggregation for the Production area using SA_AlarmSeverity symbols. You will also add alarm severity indicators to navigation buttons and learn how to control alarm modes from the aggregation panel.</p>
+<h1>Lesson L25: Lab 13 – Alarm Aggregation</h1>
+<p class="page-ref">Module 5 — Alarms and Events Visualization | Pages 321–340</p>
 
-<!-- ============================================================ -->
-<h2>25.1 Lab Overview</h2>
-
-<div class="lab">
-  <strong>Lab Objectives:</strong>
-  <ul>
-    <li>Use the SA_AlarmSeverity symbol to display alarm information and change alarm modes</li>
-    <li>Add alarm aggregation information to navigation buttons</li>
-    <li>Build a hierarchical alarm aggregation topology (Production → Lines → Mixers)</li>
-  </ul>
-</div>
-
-<p>In the previous lesson, you created AlarmSeverityLabels and AlarmSeverityPanel symbols in the $gArea and $Mixer templates. In this lab, you will use those symbols to build a complete alarm aggregation overview that shows a hierarchy of alarm severity counts across the entire plant.</p>
-
-<!-- ============================================================ -->
-<h2>25.2 Repositioning and Resizing the Canvas</h2>
-<p class="page-ref">Reference: Module 5, Lab 13 (pages 321–322)</p>
-
-<p>First, you will clean up the alarm aggregation canvas by repositioning all elements and setting a fixed canvas size.</p>
-
-<ol>
-  <li>On a blank area of the canvas, right-click and select <strong>Select All</strong>.</li>
-  <li>Move the selected elements to the left side of the canvas.</li>
-  <li>Click the canvas to deselect all elements and show canvas properties.</li>
-  <li>On the Properties tab, set <strong>Size</strong> to <strong>Fixed</strong>. The canvas now displays selection handles for resizing.</li>
-  <li>Resize the canvas to fit the graphics, ensuring white space on all sides.</li>
-  <li>Save and close, then check in the graphic.</li>
-</ol>
+<p>Do Not Copy 5-29 AVEVA™ InTouch for System Platform 2023 In the following steps, you will reposition the graphics on the canvas and enable a fixed canvas size. 28. On a blank area of the canvas, right-click and select Select All. 29. Move the selected elements to the left side of the canvas.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0321.png" alt="IDE canvas showing the completed alarm aggregation hierarchy with SA_AlarmSeverity panels connected by connector lines, with the Elements panel listing all components">
-  <div class="caption">The alarm aggregation hierarchy with all SA_AlarmSeverity panels connected by lines, shown in the Elements panel (page 321)</div>
+  <img src="../images/page_0321.png" alt="AVEVA InTouch WindowMaker canvas showing the completed Alarm Aggregation hierarchy with SA_AlarmSeverity panels connected by connector lines. The Elements panel lists Production_AlarmSeverityPanel1, Line1/Line2_AlarmSeverityPanel1, Mixer100-400_AlarmSeverityPanel1, and Connector1-6. The top-level Production panel shows Critical/High/Medium severity indicators with placeholder counts, Mode: Inhibit, Active and UnAcked fields, and control buttons.">
+  <div class="caption">AVEVA InTouch WindowMaker canvas showing the completed Alarm Aggregation hierarchy with SA_AlarmSeverity panels connected by connector lines. The Elements panel lists Production_AlarmSeverityPanel1, Line1/Line2_AlarmSeverityPanel1, Mixer100-400_AlarmSeverityPanel1, and Connector1-6. The top-level Production panel shows Critical/High/Medium severity indicators with placeholder counts, Mode: Inhibit, Active and UnAcked fields, and control buttons.</div>
+</div>
+
+<p>Do Not Copy 5-30 AVEVA™ Training 30. Click the canvas to deselect all elements and show canvas properties. 31. On the Properties tab, set Size to Fixed. The canvas displays selection handles for resizing. 32. Resize the canvas to fit the graphics, ensuring white space on all sides as shown below: 33. Save and close and check in the graphic.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0322.png" alt="AVEVA InTouch WindowMaker canvas showing the alarm aggregation layout resized to fit, with a 4-tier hierarchical tree of SA_AlarmSeverity widgets. The canvas has been set to Fixed size and resized to show all panels with white space on all sides. Each widget displays severity indicators (Critical red diamond, High yellow square, Medium cyan triangle), control buttons, Mode: Inhibit, Active/UnAcked placeholder fields.">
+  <div class="caption">AVEVA InTouch WindowMaker canvas showing the alarm aggregation layout resized to fit, with a 4-tier hierarchical tree of SA_AlarmSeverity widgets. The canvas has been set to Fixed size and resized to show all panels with white space on all sides. Each widget displays severity indicators (Critical red diamond, High yellow square, Medium cyan triangle), control buttons, Mode: Inhibit, Active/UnAcked placeholder fields.</div>
+</div>
+
+<p>Do Not Copy 5-31 AVEVA™ InTouch for System Platform 2023 Add a Navigation Button for the Alarm Aggregation Overview Now, you will duplicate a navigation button and modify it to display the AlarmAggregationOverview graphic in a popup window. 34. On the Graphics tab, duplicate NavigationButton, name the duplicate as NavigationButton2, and then open it for editing. 35. Right-click the canvas and select Custom Properties. 36. Change the WindowModal and WindowResizable custom properties to True. 37. Click OK to close Edit Custom Properties. 38. Double-click the button to open Edit Animations. 39. In Animations, endure Element Style is selected, and then click Remove Animation.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0323_0.png" alt="Edit Custom Properties dialog for NavigationButton2 symbol, showing the Custom Properties list with GetButtonText, GraphicName, WindowModal (set to True), WindowName, and WindowResizable (selected, set to True). The status area confirms WindowResizable is a constant Boolean value of 'true'. The right panel shows WindowResizable editing with Data Type: Boolean, Default Value: True, and Visibility set to Public.">
+  <div class="caption">Edit Custom Properties dialog for NavigationButton2 symbol, showing the Custom Properties list with GetButtonText, GraphicName, WindowModal (set to True), WindowName, and WindowResizable (selected, set to True). The status area confirms WindowResizable is a constant Boolean value of 'true'. The right panel shows WindowResizable editing with Data Type: Boolean, Default Value: True, and Visibility set to Public.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0322.png" alt="Canvas resized to fixed size with all alarm aggregation panels fitting neatly within the bounds with white space on all sides">
-  <div class="caption">Canvas resized to fixed size, fitting all aggregation panels with appropriate white space (page 322)</div>
+  <img src="../images/page_0323_1.png" alt="Edit Animations dialog for NavigationButton2, showing the Animations list with Element Style (selected under Visualization), Disable, and Action Scripts (both under Interaction, marked Enabled). The right panel shows Element Style configuration (page 1 of 3) with a Boolean expression reference 'GetButtonTe...' (truncated GetButtonText) that controls the element style state.">
+  <div class="caption">Edit Animations dialog for NavigationButton2, showing the Animations list with Element Style (selected under Visualization), Disable, and Action Scripts (both under Interaction, marked Enabled). The right panel shows Element Style configuration (page 1 of 3) with a Boolean expression reference 'GetButtonTe...' (truncated GetButtonText) that controls the element style state.</div>
 </div>
 
-<!-- ============================================================ -->
-<h2>25.3 Adding a Navigation Button for Alarm Overview</h2>
-<p class="page-ref">Reference: Module 5, Lab 13 (pages 323–325)</p>
-
-<p>Next, you will create a navigation button that opens the AlarmAggregationOverview graphic in a popup window.</p>
-
-<ol start="7">
-  <li>On the <strong>Graphics</strong> tab, duplicate <strong>NavigationButton</strong>, name the duplicate <strong>NavigationButton2</strong>, and open it for editing.</li>
-  <li>Right-click the canvas and select <strong>Custom Properties</strong>.</li>
-  <li>Change the <strong>WindowModal</strong> and <strong>WindowResizable</strong> custom properties to <strong>True</strong>.</li>
-  <li>Click OK to close Edit Custom Properties.</li>
-  <li>Double-click the button to open Edit Animations.</li>
-  <li>In Animations, ensure <strong>Element Style</strong> is selected, then click <strong>Remove Animation</strong>. Confirm with <strong>Yes</strong>.</li>
-  <li>Remove the <strong>Disable</strong> animation as well. Only <strong>Action Scripts</strong> should remain.</li>
-  <li>Click OK to close Edit Animations.</li>
-  <li>Save and close, then check in the graphic.</li>
-</ol>
+<p>Do Not Copy 5-32 AVEVA™ Training An Animation Editor message appears. 40. Click Yes to confirm the removal of the animation. 41. Remove the Disable animation. In Animations, only the Action Scripts animation remains. 42. Click OK to close Edit Animations. 43. Save and close and check in the graphic. Add a Navigation Button for the Alarm Aggregation Overview Now, you will add an Alarm Aggregation Overview button to the navigation graphic. The button will open a popup window displaying the graphic you created in earlier steps. 44. On the Graphics tab, in the Training toolset, open SystemNavigation for editing. 45. On the Toolbox tab, search for button2, and then drag NavigationButton2 to the right of the Line 2 button on the canvas. 46. Change the text on the button to Alarm Overview.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0323_0.png" alt="Edit Custom Properties dialog for NavigationButton2 showing WindowModal and WindowResizable set to True">
-  <div class="caption">Configuring NavigationButton2 with WindowModal and WindowResizable set to True (page 323)</div>
+  <img src="../images/page_0324_0.png" alt="Animation Editor confirmation dialog asking 'Are you sure you want to remove the Element Style animation?' with Yes and No buttons. This appears after clicking the Remove Animation button in the Edit Animations dialog for the NavigationButton2 symbol.">
+  <div class="caption">Animation Editor confirmation dialog asking 'Are you sure you want to remove the Element Style animation?' with Yes and No buttons. This appears after clicking the Remove Animation button in the Edit Animations dialog for the NavigationButton2 symbol.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0323_1.png" alt="Edit Animations dialog showing Element Style selected with a red arrow pointing to the Remove Animation button">
-  <div class="caption">Removing the Element Style animation from NavigationButton2 using the minus button (page 323)</div>
-</div>
-
-<h3>Add the Button to SystemNavigation</h3>
-<ol start="16">
-  <li>Open <strong>SystemNavigation</strong> for editing.</li>
-  <li>On the Toolbox tab, search for "button2" and drag <strong>NavigationButton2</strong> to the right of the Line 2 button.</li>
-  <li>Change the button text to <strong>Alarm Overview</strong>.</li>
-  <li>Right-click the Alarm Overview button and select <strong>Custom Properties</strong>.</li>
-  <li>For <strong>GraphicName</strong>, enter <code>AlarmAggregationOverview</code> in Default Value. Leave <strong>WindowName</strong> blank — this makes the graphic appear in a popup window.</li>
-  <li>Click OK to close Edit Custom Properties.</li>
-</ol>
-
-<div class="screenshot">
-  <img src="../images/page_0324_2.png" alt="SystemNavigation canvas with four buttons: Mixers, Line 1, Line 2, and the newly added Alarm Overview button">
-  <div class="caption">The Alarm Overview button added to the SystemNavigation bar alongside the existing navigation buttons (page 324)</div>
-</div>
-
-<!-- ============================================================ -->
-<h2>25.4 Enhancing Navigation Buttons with Alarm Severity</h2>
-<p class="page-ref">Reference: Module 5, Lab 13 (page 325)</p>
-
-<p>To give operators an at-a-glance view of alarm counts on the navigation buttons, you will embed AlarmSeverityLabels into the Line 1 and Line 2 buttons.</p>
-
-<ol start="22">
-  <li>From <strong>Instances</strong>, embed <code>Line1\AlarmSeverityLabels</code> at the top and center of the <strong>Line 1</strong> button. Adjust the size to fit the button width.</li>
-  <li>Similarly, embed <code>Line2\AlarmSeverityLabels</code> at the top and center of the <strong>Line 2</strong> button.</li>
-  <li>Save and close, then check in the graphic.</li>
-</ol>
-
-<div class="screenshot">
-  <img src="../images/page_0325_1.png" alt="SystemNavigation with enhanced buttons — Line 1 and Line 2 now display alarm severity indicator labels at their tops">
-  <div class="caption">Enhanced navigation buttons showing embedded alarm severity indicators for Line 1 and Line 2 (page 325)</div>
-</div>
-
-<!-- ============================================================ -->
-<h2>25.5 Testing at Runtime</h2>
-<p class="page-ref">Reference: Module 5, Lab 13 (pages 326–329)</p>
-
-<ol start="25">
-  <li>Click <strong>Runtime</strong>.</li>
-  <li>In the Navigation window, observe that the Line 1 and Line 2 buttons now display alarm counts for each severity level (Critical, High, Medium).</li>
-  <li>Click the <strong>Alarm Overview</strong> button to open the AlarmAggregationOverview popup window.</li>
-</ol>
-
-<div class="screenshot">
-  <img src="../images/page_0326_0.png" alt="Runtime navigation bar showing alarm counts on Line 1 and Line 2 buttons — 12 critical, 8 high, 5 medium on each">
-  <div class="caption">Runtime navigation bar showing live alarm severity counts on the Line 1 and Line 2 buttons (page 326)</div>
+  <img src="../images/page_0324_1.png" alt="Edit Animations dialog for NavigationButton2 after removing the Element Style animation, showing only Action Scripts remaining under the Interaction category (marked Enabled). The Disable animation has also been removed, leaving only Action Scripts as the sole animation configuration.">
+  <div class="caption">Edit Animations dialog for NavigationButton2 after removing the Element Style animation, showing only Action Scripts remaining under the Interaction category (marked Enabled). The Disable animation has also been removed, leaving only Action Scripts as the sole animation configuration.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0326_1.png" alt="AlarmAggregationOverview popup showing the complete hierarchical tree with Production, Line1, Line2, and individual mixer alarm counts rolling up from children to parents">
-  <div class="caption">The AlarmAggregationOverview popup showing the complete hierarchical alarm topology with rolled-up severity counts (page 326)</div>
+  <img src="../images/page_0324_2.png" alt="AVEVA InTouch WindowMaker canvas showing the SystemNavigation graphic with four navigation buttons arranged horizontally: Mixers, Line 1, Line 2, and Alarm Overview. The Alarm Overview button is the newly added NavigationButton2 placed to the right of the Line 2 button.">
+  <div class="caption">AVEVA InTouch WindowMaker canvas showing the SystemNavigation graphic with four navigation buttons arranged horizontally: Mixers, Line 1, Line 2, and Alarm Overview. The Alarm Overview button is the newly added NavigationButton2 placed to the right of the Line 2 button.</div>
 </div>
 
-<div class="key-concept">
-  <strong>Key Concept:</strong> Alarm counts roll up from children to parents — for example, Line1 Critical 12 + Line2 Critical 12 = Production Critical 24. This hierarchical aggregation allows operators to quickly identify which area has the most severe alarm conditions.
-</div>
-
-<h3>Controlling Alarm Modes from the Aggregation Panel</h3>
-<ol start="28">
-  <li>Behind the popup window, try clicking the Mixers button — it will not respond because the window is <strong>modal</strong> and must be closed first.</li>
-  <li>In the Production alarm panel, click the up-arrow <strong>Command Panel</strong> button next to the Mode label.</li>
-  <li>Select <strong>Disable</strong> from the dropdown, then click <strong>Apply</strong>.</li>
-</ol>
+<p>Do Not Copy 5-33 AVEVA™ InTouch for System Platform 2023 47. Right-click the Alarm Overview button and select Custom Properties. 48. For GraphicName, in Default Value, enter AlarmAggregationOverview. Leaving the WindowName custom property blank will make the graphic appear in a popup window. 49. Click OK to close Edit Custom Properties. Enhance the Navigation Buttons Now, you will enhance two of the SystemNavigation buttons by adding the alarm severity indicators. 50. From Instances, embed Line1\AlarmSeverityLabels and place it at the top and center of the Line 1 button. 51. Adjust the size of the graphic to fit the width of the button. 52. From Instances, embed Line2\AlarmSeverityLabels and place it at the top and center of the Line2 button. 53. Adjust the size of the graphic to fit the width of the button. 54. Save and close and check in the graphic.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0327_0.png" alt="Production alarm panel with Command Panel tooltip visible, showing severity counts and the mode control area">
-  <div class="caption">The Production alarm panel showing the Command Panel control for changing alarm modes (page 327)</div>
+  <img src="../images/page_0325_0.png" alt="Edit Custom Properties dialog for NavigationButton21 (renamed from NavigationButton2), showing GraphicName property (page 2 of 5) set to the string value 'AlarmAggregationOverview'. The status confirms the property is overridden with a constant String value. WindowModal and WindowResizable are both set to True, and WindowName is left blank to make the graphic appear in a popup window.">
+  <div class="caption">Edit Custom Properties dialog for NavigationButton21 (renamed from NavigationButton2), showing GraphicName property (page 2 of 5) set to the string value 'AlarmAggregationOverview'. The status confirms the property is overridden with a constant String value. WindowModal and WindowResizable are both set to True, and WindowName is left blank to make the graphic appear in a popup window.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0327_1.png" alt="Mode dropdown expanded showing Enable, Disable, Silence, and Inhibit options">
-  <div class="caption">The mode dropdown showing all available options: Enable, Disable, Silence, and Inhibit (page 327)</div>
+  <img src="../images/page_0325_1.png" alt="AVEVA InTouch WindowMaker canvas showing the SystemNavigation graphic with enhanced navigation buttons. Line 1 button now displays alarm severity indicator labels (## diamond and square counts) at the top. Line 2 button is currently selected (blue selection handles visible) with similar alarm severity indicators being positioned. Mixers and Alarm Overview buttons are on either side.">
+  <div class="caption">AVEVA InTouch WindowMaker canvas showing the SystemNavigation graphic with enhanced navigation buttons. Line 1 button now displays alarm severity indicator labels (## diamond and square counts) at the top. Line 2 button is currently selected (blue selection handles visible) with similar alarm severity indicators being positioned. Mixers and Alarm Overview buttons are on either side.</div>
 </div>
 
-<ol start="31">
-  <li>Observe that <strong>all</strong> alarm panels in the popup window now indicate <strong>Disable</strong>. Disabling alarms for the Production area automatically disables alarms for all child objects — this is the inheritance behavior of alarm aggregation.</li>
-</ol>
+<p>Do Not Copy 5-34 AVEVA™ Training Test in Runtime Finally, you will test the results in runtime. 55. In WindowMaker, click Runtime. 56. In the Navigation window, on the Line 1 and Line 2 buttons, notice that alarm counts for each severity appear. 57. Click the Alarm Overview button to open the AlarmAggregationOverview popup window.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0328.png" alt="AlarmAggregationOverview with all nodes showing Mode: Disable — demonstrating hierarchical alarm mode inheritance from Production to all children">
-  <div class="caption">All alarm panels show Disable mode — changing the parent Production area's mode cascades to all child objects (page 328)</div>
+  <img src="../images/page_0326_0.png" alt="AVEVA InTouch WindowViewer runtime view showing the navigation bar with five tiles: Mixers (no alarms), Line 1 (12 Critical red diamond, 8 Medium yellow square, 5 Low cyan triangle), Line 2 (same alarm counts), and Alarm Overview (navigation tile). This demonstrates the alarm severity counts displayed on the navigation buttons at runtime.">
+  <div class="caption">AVEVA InTouch WindowViewer runtime view showing the navigation bar with five tiles: Mixers (no alarms), Line 1 (12 Critical red diamond, 8 Medium yellow square, 5 Low cyan triangle), Line 2 (same alarm counts), and Alarm Overview (navigation tile). This demonstrates the alarm severity counts displayed on the navigation buttons at runtime.</div>
 </div>
 
-<div class="pitfall">
-  <strong>Warning:</strong> Disabling alarms at a parent area level will disable alarms for <em>all</em> objects in the hierarchy beneath it. Only use this feature when you intend to suppress alarms for an entire production area.
+<div class="screenshot">
+  <img src="../images/page_0326_1.png" alt="AVEVA InTouch runtime popup window titled 'AlarmAggregationOverview' showing the complete hierarchical alarm aggregation tree with Production at root, Line1 and Line2 as children, and Mixer100-400 under Line1. All nodes show alarm counts by severity (Critical/High/Medium), Mode: Enable, Active and UnAcked counts. The data rolls up from children to parents (e.g., Line1 Critical 12 + Line2 Critical 12 = Production Critical 24).">
+  <div class="caption">AVEVA InTouch runtime popup window titled 'AlarmAggregationOverview' showing the complete hierarchical alarm aggregation tree with Production at root, Line1 and Line2 as children, and Mixer100-400 under Line1. All nodes show alarm counts by severity (Critical/High/Medium), Mode: Enable, Active and UnAcked counts. The data rolls up from children to parents (e.g., Line1 Critical 12 + Line2 Critical 12 = Production Critical 24).</div>
 </div>
 
-<ol start="32">
-  <li>In the Production alarm panel, click the up-arrow next to Mode, select <strong>Enable</strong>, and click <strong>Apply</strong>.</li>
-  <li>Observe that all alarm panels are now re-enabled.</li>
-  <li>Close the AlarmAggregationOverview window.</li>
-  <li>Click <strong>Development!</strong> to return to WindowMaker.</li>
-</ol>
+<p>Do Not Copy 5-35 AVEVA™ InTouch for System Platform 2023 58. Behind the popup window, attempt to click the Mixers button in the Navigation window. There is no response to this action because the window is modal and must be closed before you can do anything else. 59. In AlarmAggregationOverview, in the Production alarm panel, to the right of the Mode label, click the up-arrow Command Panel button. A command panel with a drop-down appears in the Production alarm panel. 60. Click the down-arrow and select Disable. The Apply button appears. 61. Click Apply.</p>
 
-<!-- ============================================================ -->
-<h2>25.6 Optional: Extending the Alarm Overview</h2>
-<p class="page-ref">Reference: Module 5, Lab 13 (pages 330–332)</p>
+<div class="screenshot">
+  <img src="../images/page_0327_0.png" alt="Zoomed view of the Production alarm aggregation panel in the AlarmAggregationOverview popup, with a red annotation marker '1'. The panel shows Critical: 24 (red diamond), High: 16 (yellow square), Medium: 10 (cyan triangle), Mode: Enable, Active: 19, UnAcked: 50. A 'Command Panel' tooltip is visible indicating the dropdown control area for changing the mode.">
+  <div class="caption">Zoomed view of the Production alarm aggregation panel in the AlarmAggregationOverview popup, with a red annotation marker '1'. The panel shows Critical: 24 (red diamond), High: 16 (yellow square), Medium: 10 (cyan triangle), Mode: Enable, Active: 19, UnAcked: 50. A 'Command Panel' tooltip is visible indicating the dropdown control area for changing the mode.</div>
+</div>
 
-<p>The optional steps extend the AlarmAggregationOverview by duplicating the mixer alarm panels for the Line2 area. This involves selecting all four mixer panels, duplicating them, placing the duplicates below Line2, and changing each duplicate's instance name using Industrial Graphic → Select Alternate Instance.</p>
+<div class="screenshot">
+  <img src="../images/page_0327_1.png" alt="Production alarm aggregation panel with the Mode dropdown menu expanded, showing four options: Enable, Disable (currently highlighted/selected in blue), Silence, and Inhibit. The panel shows alarm counts and the expanded control menu for changing the operational mode of the Production alarm group.">
+  <div class="caption">Production alarm aggregation panel with the Mode dropdown menu expanded, showing four options: Enable, Disable (currently highlighted/selected in blue), Silence, and Inhibit. The panel shows alarm counts and the expanded control menu for changing the operational mode of the Production alarm group.</div>
+</div>
 
-<table>
-  <thead><tr><th>Current Instance</th><th>Alternate Instance</th></tr></thead>
-  <tbody>
-    <tr><td>Mixer100</td><td>Mixer500</td></tr>
-    <tr><td>Mixer200</td><td>Mixer600</td></tr>
-    <tr><td>Mixer300</td><td>Mixer700</td></tr>
-    <tr><td>Mixer400</td><td>Mixer800</td></tr>
-  </tbody>
-</table>
+<div class="screenshot">
+  <img src="../images/page_0327_2.png" alt="Production alarm aggregation panel after selecting Disable from the dropdown, showing the dropdown now displays 'Disabl' (truncated Disable) with a checkmark Apply button and X cancel button visible. The Mode field below still shows 'En' (Enabled) waiting for the Apply action to take effect. Active: 19 and UnAcked: 50 are displayed.">
+  <div class="caption">Production alarm aggregation panel after selecting Disable from the dropdown, showing the dropdown now displays 'Disabl' (truncated Disable) with a checkmark Apply button and X cancel button visible. The Mode field below still shows 'En' (Enabled) waiting for the Apply action to take effect. Active: 19 and UnAcked: 50 are displayed.</div>
+</div>
 
-<p>After adding connectors between Line2 and the new mixer panels, the complete hierarchy shows eight mixers across two production lines, all rolling up alarm counts to the Production root.</p>
+<p>Do Not Copy 5-36 AVEVA™ Training 62. Observe all alarm panels in the popup window indicate Disable. Disabling alarms for the Production area also disables alarms for all child objects.</p>
 
-<!-- ============================================================ -->
+<div class="screenshot">
+  <img src="../images/page_0328.png" alt="AlarmAggregationOverview popup window showing all alarm aggregation nodes (Production, Line1, Line2, Mixer100-400) with Mode: Disable displayed on every node. Each node shows a gray box with an 'X' status circle and 'Mode: ▲ Disable' text, demonstrating that disabling alarms for the Production area also disables alarms for all child objects.">
+  <div class="caption">AlarmAggregationOverview popup window showing all alarm aggregation nodes (Production, Line1, Line2, Mixer100-400) with Mode: Disable displayed on every node. Each node shows a gray box with an 'X' status circle and 'Mode: ▲ Disable' text, demonstrating that disabling alarms for the Production area also disables alarms for all child objects.</div>
+</div>
+
+<p>Do Not Copy 5-37 AVEVA™ InTouch for System Platform 2023 63. In the Production alarm panel, to the right of the Mode label, click the up-arrow. 64. Click the down-arrow and select Enable. 65. Click Apply. 66. Observe all alarm panels in the popup window are enabled. 67. Close the AlarmAggregationOverview window. 68. Click Development! to return to WindowMaker. <End of Lab></p>
+
+<div class="screenshot">
+  <img src="../images/page_0329.png" alt="Production alarm aggregation panel in 'Enable' mode after re-enabling, showing the checkmark (Apply) button highlighted. The Mode dropdown shows 'Enable' with the commit checkmark button emphasized, demonstrating the step to re-enable the Production alarm group.">
+  <div class="caption">Production alarm aggregation panel in 'Enable' mode after re-enabling, showing the checkmark (Apply) button highlighted. The Mode dropdown shows 'Enable' with the commit checkmark button emphasized, demonstrating the step to re-enable the Production alarm group.</div>
+</div>
+
+<p>Do Not Copy 5-38 AVEVA™ Training [Optional Steps] Add Additional Mixer Alarm Panels The following optional steps complete the AlarmAggregationOverview graphic by adding additional mixer alarm panels to the Line2 area. 69. In the IDE, on the Graphics tab, in the Training toolset, double-click AlarmAggregationOverview to open it for editing. 70. On the canvas, select all four mixer alarm panels and duplicate them. 71. Place the duplicates in the empty area below the Line2 alarm panel as shown below. Note: If necessary, click the canvas and resize it so all panels fit on the canvas as shown.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0330.png" alt="AVEVA InTouch WindowMaker canvas showing the completed alarm aggregation layout with all nodes in a 4-tier hierarchy. The design includes SA_AlarmSeverity panels connected by lines, with some nodes showing blue selection handles for the duplicate mixer panels being positioned in the empty area below Line2.">
+  <div class="caption">AVEVA InTouch WindowMaker canvas showing the completed alarm aggregation layout with all nodes in a 4-tier hierarchy. The design includes SA_AlarmSeverity panels connected by lines, with some nodes showing blue selection handles for the duplicate mixer panels being positioned in the empty area below Line2.</div>
+</div>
+
+<p>Do Not Copy 5-39 AVEVA™ InTouch for System Platform 2023 72. Change the instance name for each duplicate by right-clicking and selecting Industrial Graphic | Select Alternate Instance as follows: 73. In Tools, double-click Connector and draw connectors between the Line2 alarm panel and the four duplicate mixer alarm panels as shown below. 74. Save and close and check in the graphic. Current Alternate Instance Mixer100 Mixer500 Mixer200 Mixer600 Mixer300 Mixer700 Mixer400 Mixer800</p>
+
+<div class="screenshot">
+  <img src="../images/page_0331.png" alt="AVEVA InTouch WindowMaker canvas showing the expanded alarm aggregation hierarchy with 8 mixer panels (Mixer100-Mixer800) arranged under Line1 and Line2. The Tools palette is visible showing available drawing and connector tools. Connector lines link the Line2 alarm panel to the four duplicate mixer alarm panels (Mixer500-800).">
+  <div class="caption">AVEVA InTouch WindowMaker canvas showing the expanded alarm aggregation hierarchy with 8 mixer panels (Mixer100-Mixer800) arranged under Line1 and Line2. The Tools palette is visible showing available drawing and connector tools. Connector lines link the Line2 alarm panel to the four duplicate mixer alarm panels (Mixer500-800).</div>
+</div>
+
+<p>Do Not Copy 5-40 AVEVA™ Training 75. Test in runtime. 76. When you are finished testing, click Development! to return to WindowMaker. <End of Optional Steps></p>
+
+<div class="screenshot">
+  <img src="../images/page_0332.png" alt="AVEVA InTouch runtime view showing the complete AlarmAggregationOverview with all 8 mixers (Mixer100-Mixer800) under their respective lines, with alarm severity counts by priority. The Production node shows rolled-up totals (Critical: 24, High: 16, Medium: 10), Line1 and Line2 show intermediate counts, and each mixer shows individual alarm counts. Color-coded borders indicate highest priority in each branch.">
+  <div class="caption">AVEVA InTouch runtime view showing the complete AlarmAggregationOverview with all 8 mixers (Mixer100-Mixer800) under their respective lines, with alarm severity counts by priority. The Production node shows rolled-up totals (Critical: 24, High: 16, Medium: 10), Line1 and Line2 show intermediate counts, and each mixer shows individual alarm counts. Color-coded borders indicate highest priority in each branch.</div>
+</div>
+
+<p>Do Not Copy 5-41 AVEVA™ InTouch for System Platform 2023 Introduction The Alarm Client control is a graphic element that can be used in symbols to show current and historical alarms and events. The Alarm Client control replaces the Alarm Viewer control and Alarm DB View control in the InTouch HMI and extends alarm visualization to the graphics environment. The Alarm Client control is delivered as part of the Graphic Editor and can be used in symbols to show current and historical alarms and events in a grid. In the Graphic Editor, Tools pane, select the Alarm Client control and place it directly onto the canvas. Customize the Alarm Client control by adding further graphics, interactions, and scripts. Deploy a Managed InTouch application containing Alarm Client controls to a remote node to visualize and interact with alarms at runtime with InTouch WindowViewer. This control has properties, methods, and events that can be modified, while an application is running. Once the control format has been designed, a user can make the following adjustments to manipulate the data they are viewing in runtime, such as:  Refreshing the Alarm Client control grid to show the most current alarms  Using the status bar to view various information about the alarm records  Acknowledging, hiding, filtering, or sorting alarms  Freezing the Alarm Client control grid  Switching between client modes  Switching between languages This section explains how to use the Alarm Client control in your InTouch for System Platform application to visualize live alarms.</p>
+
+<p>Do Not Copy 5-42 AVEVA™ Training The Alarm Client Control supports five different client modes, which can be grouped depending on their data source. Alarm Client Control supports the InTouch Database (WWALMDB), the ArchestrA Database (A2ALMDB), and the Historian History Blocks. The Alarm Client Control allows users to view and acknowledge all locally and remotely generated alarms. Embedding the Alarm Client Control To embed the Alarm Client control, open the Graphic Editor. In the Tools pane, select the Alarm Client tool. Then click the canvas to place the object. You can resize the control and double-click it to access the configuration options. Configuration Options Alarm Mode Set the Alarm Client Control to show either:  Current alarms  Recent alarms and events Use the ClientMode integer property in scripting to switch the Alarm Client control to show current alarms or recent alarms and events at runtime. Comments can be configured for alarms that are</p>
+
+<div class="screenshot">
+  <img src="../images/page_0334_0.png" alt="AVEVA InTouch Edit Animations dialog for the AlarmClient control, showing the Alarm Mode configuration (page 1 of 8). The left panel lists all required configuration categories: Alarm Mode, Colors, Column Details, Queries and Filters, Time Settings, Run-Time Behavior, Data Binding, and Event. The right panel shows Client Mode set to 'Current Alarms' and Alarm Query set to '\\S01ENG\Galaxy\Production'.">
+  <div class="caption">AVEVA InTouch Edit Animations dialog for the AlarmClient control, showing the Alarm Mode configuration (page 1 of 8). The left panel lists all required configuration categories: Alarm Mode, Colors, Column Details, Queries and Filters, Time Settings, Run-Time Behavior, Data Binding, and Event. The right panel shows Client Mode set to 'Current Alarms' and Alarm Query set to '\\S01ENG\Galaxy\Production'.</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0334_1.png" alt="AVEVA InTools Alarm Client control configuration showing a data table widget with columns User1, State, Node, Group, and Name. The table displays four rows demonstrating different alarm states: ACK (blue highlight), ACK_RTN, UNACK (yellow highlight), and UNACK_RTN. The widget is selected in the design canvas with blue selection handles visible.">
+  <div class="caption">AVEVA InTools Alarm Client control configuration showing a data table widget with columns User1, State, Node, Group, and Name. The table displays four rows demonstrating different alarm states: ACK (blue highlight), ACK_RTN, UNACK (yellow highlight), and UNACK_RTN. The widget is selected in the design canvas with blue selection handles visible.</div>
+</div>
+
+<p>Do Not Copy 5-43 AVEVA™ InTouch for System Platform 2023 acknowledged at runtime. Use the AckComment.UseDefault Boolean property and AckComment.DefaultValue String property in scripting to create a default acknowledgment comment at runtime. In the Client Mode drop-down list, select which alarms to display:  Current Alarms  Recent Alarms and Events  Historical Alarms  Historical Events  Historical Alarms and Events The alarm query is configured in the Alarm Query field. To create a new line in the Alarm Query field, press Ctrl + Enter. For more information on the valid syntax, see Alarm Queries in the Alarm Control Guide. If a default acknowledgment comment is needed, check the Use Default Ack Comment check box and enter a comment in the text box.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0335.png" alt="AVEVA InTouch Edit Animations dialog for AlarmClient1 showing the Colors configuration (page 2 of 8). The left panel shows color settings for Event, Alarm RTN, Heading, Shelve, Grid, and Window with text/background color selectors. The right panel shows the priority-based color mapping table with Ack/Unack states across four priority ranges (1-249, 250-499, 500-749, 750-999) with distinct background colors. Flash UnackAlarms checkbox is available at the top.">
+  <div class="caption">AVEVA InTouch Edit Animations dialog for AlarmClient1 showing the Colors configuration (page 2 of 8). The left panel shows color settings for Event, Alarm RTN, Heading, Shelve, Grid, and Window with text/background color selectors. The right panel shows the priority-based color mapping table with Ack/Unack states across four priority ranges (1-249, 250-499, 500-749, 750-999) with distinct background colors. Flash UnackAlarms checkbox is available at the top.</div>
+</div>
+
+<p>Do Not Copy 5-44 AVEVA™ Training Colors Different types of alarm records can be displayed in different colors so that the operator can more easily identify certain types of alarms. The Alarm Client control can be configured with priority breakpoints to show alarm records within the resulting priority ranges in different colors. The control background color, the grid color, and the heading colors can also be customized. Column Details Column headers can be renamed, resized, and reordered in the Alarm Client control. All changes made in the Column Details list are shown in the grid preview. Use the grid preview to resize columns or change their order with the pointer.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0336_0.png" alt="AVEVA InTouch Edit Animations dialog for AlarmClient1 showing the Column Details configuration (page 3 of 8). The left table lists display columns (User1, State, Node, Group, Name, AlarmComment, Type, TimeLCT, Limit, CurrentValue) with enable checkboxes, display names, widths, and original names. The right panel shows sorting criteria with First Sort set to TimeLCT (Last Change Time) in Ascending order. A preview bar shows column header order.">
+  <div class="caption">AVEVA InTouch Edit Animations dialog for AlarmClient1 showing the Column Details configuration (page 3 of 8). The left table lists display columns (User1, State, Node, Group, Name, AlarmComment, Type, TimeLCT, Limit, CurrentValue) with enable checkboxes, display names, widths, and original names. The right panel shows sorting criteria with First Sort set to TimeLCT (Last Change Time) in Ascending order. A preview bar shows column header order.</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0336_1.png" alt="AVEVA InTouch Edit Animations dialog for AlarmClient showing the Queries and Filters configuration (page 4 of 8). The Queries section shows a Default query with the filter expression '(Node = \'S01ENG\' AND Provider = \'Galaxy\' AND Group = \'Production\')' targeting production alarms from the S01ENG node. The Filters section below is empty with no additional filters configured.">
+  <div class="caption">AVEVA InTouch Edit Animations dialog for AlarmClient showing the Queries and Filters configuration (page 4 of 8). The Queries section shows a Default query with the filter expression '(Node = \'S01ENG\' AND Provider = \'Galaxy\' AND Group = \'Production\')' targeting production alarms from the S01ENG node. The Filters section below is empty with no additional filters configured.</div>
+</div>
+
+<p>Do Not Copy 5-45 AVEVA™ InTouch for System Platform 2023 Queries and Filters Current and historical alarms can be filtered by using Queries and Filters. A query filter is a collection of filter criteria in a logical construct. For example, alarms can be filtered by defining a query filter that only shows alarms with priorities larger than 500 and smaller than 750. Filter queries can be reused from historical alarms for current alarms, and vice versa. Filter queries can also be reused and defined at design-time for runtime, and vice versa. Note: Queries and Filters for current alarms and recent alarms and events require at least a Provider and a Group as filter criteria. These must use the equals sign. Ensure the TimeSelector.StartDate and TimeSelector.EndDate properties do not limit the query when using TimeLCT, TimeOAT, or TimeLCTOAT as filter criteria for historical alarm modes, otherwise the Alarm Client control may not return all alarm and event records. Set the TimeSelector.StartDate property earlier than any time filtering requirement and the TimeSelector.EndDate later than any time filtering requirement.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0337.png" alt="AVEVA InTouch Edit Animations dialog for AlarmClient1 showing the Time Settings configuration (page 5 of 8). The panel includes Time Zone set to 'Client Time Zone (UTC-08:00) Pacific Time (US &amp; Canada)', a Use .NET Time Format checkbox (checked), format string 'M/d/yyyy h:mm:ss tt', date/time preview lists showing various format examples, and a .NET format token reference guide (MM, MMM, MMMM, dd, yyyy, yy, HH, hh, mm, ss, fff, tt).">
+  <div class="caption">AVEVA InTouch Edit Animations dialog for AlarmClient1 showing the Time Settings configuration (page 5 of 8). The panel includes Time Zone set to 'Client Time Zone (UTC-08:00) Pacific Time (US &amp; Canada)', a Use .NET Time Format checkbox (checked), format string 'M/d/yyyy h:mm:ss tt', date/time preview lists showing various format examples, and a .NET format token reference guide (MM, MMM, MMMM, dd, yyyy, yy, HH, hh, mm, ss, fff, tt).</div>
+</div>
+
+<p>Do Not Copy 5-46 AVEVA™ Training Time Settings Set the time zone in which the client shows the alarm and event records. By default, the time zone is set to the client computer’s current time zone at design-time. Use the TimeZone.TimeZone, Time.Type, and Time.Format properties in scripting to set the time zone, time type, and time format at runtime. Set the time format of the alarm and event records. Select between the following:  Time Format: Same as the Alarm Client control  .NET Time Format: Defined by Microsoft .NET Framework time format conventions</p>
+
+<div class="screenshot">
+  <img src="../images/page_0338.png" alt="AVEVA InTouch Edit Animations dialog for AlarmClient1 showing the Run-Time Behavior configuration (page 6 of 8). Left panel has checkboxes for Show Heading, Show Grid, Show Status Bar, Query on Startup (all checked), Auto Scroll to New Alarms (unchecked), Hide Errors and Warnings (unchecked), Allow Column Resizing (checked), and others. Right panel shows the Show Context Menu options with all batch alarm operations enabled: Ack Selected/Others, Shelve/Unshelve Selected/Others, Hide Selected/Others, Ack All/Visible/Selected Groups/Tags/Priorities, Sort, Freeze, Statistics, Requery, and Reset.">
+  <div class="caption">AVEVA InTouch Edit Animations dialog for AlarmClient1 showing the Run-Time Behavior configuration (page 6 of 8). Left panel has checkboxes for Show Heading, Show Grid, Show Status Bar, Query on Startup (all checked), Auto Scroll to New Alarms (unchecked), Hide Errors and Warnings (unchecked), Allow Column Resizing (checked), and others. Right panel shows the Show Context Menu options with all batch alarm operations enabled: Ack Selected/Others, Shelve/Unshelve Selected/Others, Hide Selected/Others, Ack All/Visible/Selected Groups/Tags/Priorities, Sort, Freeze, Statistics, Requery, and Reset.</div>
+</div>
+
+<p>Do Not Copy 5-47 AVEVA™ InTouch for System Platform 2023 Run-Time Behavior The behavior and appearance of the Alarm Client control can be configured at runtime, for example:  Showing and Hiding parts of the Alarm Client control  Specifying if the Alarm Client control queries the alarm database, when it starts up  Scrolling to new alarms  Hiding warnings, errors, and messages  Restricting operator access to parts of the Alarm Client control  Specifying Alarm Client control freeze behavior  Customizing the no records message  Customizing the runtime shortcut menu</p>
+
+<div class="screenshot">
+  <img src="../images/page_0339.png" alt="AVEVA InTouch Edit Animations dialog for AlarmClient1 showing the Data Binding configuration (page 7 of 8). The table lists AlarmProvider properties with their .NET data types (ApartmentState, CultureInfo, CalendarAlgorithm, Boolean, DateTime, Int32, Int64, DayOfWeek, DateTimeKind), empty Value and Reference fields for linking to external data, and green direction arrows indicating read-only data flow from the alarm provider to the control. A 'Show all properties' checkbox is available at the bottom.">
+  <div class="caption">AVEVA InTouch Edit Animations dialog for AlarmClient1 showing the Data Binding configuration (page 7 of 8). The table lists AlarmProvider properties with their .NET data types (ApartmentState, CultureInfo, CalendarAlgorithm, Boolean, DateTime, Int32, Int64, DayOfWeek, DateTimeKind), empty Value and Reference fields for linking to external data, and green direction arrows indicating read-only data flow from the alarm provider to the control. A 'Show all properties' checkbox is available at the bottom.</div>
+</div>
+
+<p>Do Not Copy 5-48 AVEVA™ Training Data Binding Data Binding binds the properties of an embedded client control to attributes or element references. This enables attributes and element references source and consume data for the client control properties. The Data Binding table contains the following information:  Name: Name of the client control property  Type: The .NET data type of the property  Value: The default value of the client control property  Direction: Indicates if the property is read/write or just read-only</p>
+
+<div class="screenshot">
+  <img src="../images/page_0340.png" alt="AVEVA InTouch Edit Animations dialog for AlarmClient1 showing the Event configuration (page 8 of 8), the final step in the Alarm Client control setup. This tab configures event handling and callback properties for the alarm client, completing the 8-step configuration workflow for the Alarm Client control used in alarm aggregation visualization.">
+  <div class="caption">AVEVA InTouch Edit Animations dialog for AlarmClient1 showing the Event configuration (page 8 of 8), the final step in the Alarm Client control setup. This tab configures event handling and callback properties for the alarm client, completing the 8-step configuration workflow for the Alarm Client control used in alarm aggregation visualization.</div>
+</div>
+
 <div class="quiz">
   <h3>Knowledge Check</h3>
-
-  <p><strong>1.</strong> Why must the WindowName custom property be left blank on the Alarm Overview navigation button?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Leaving WindowName blank causes the graphic specified in GraphicName to appear in a popup window rather than replacing the current window. This is how popup windows are created in InTouch navigation.</p></details>
-
-  <p><strong>2.</strong> What happens when you disable alarms at the Production area level in the aggregation panel?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Disabling alarms at the Production level automatically disables alarms for all child objects in the hierarchy (Line1, Line2, and all individual mixers). This is the hierarchical inheritance behavior of alarm aggregation.</p></details>
-
-  <p><strong>3.</strong> What two animations must you remove from NavigationButton2 before using it as the Alarm Overview button?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">You must remove the Element Style animation and the Disable animation, leaving only the Action Scripts animation. This ensures the button simply opens the popup window without additional visual state changes.</p></details>
-
-  <p><strong>4.</strong> How are alarm severity counts aggregated in the hierarchical overview?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Counts roll up from children to parents — for example, Line1's Critical count plus Line2's Critical count equals the Production-level Critical count. This allows operators to see at a glance where the most severe alarms are concentrated.</p></details>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Lab 13 – Alarm Aggregation?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
 </div>
 
 <p class="source">Module 5 — Alarms and Events Visualization. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson 26 — Live Alarms Visualization</p>
+<p class="source">Next: Lesson L26 — Live Alarms Visualization</p>
 
 <script>
 
@@ -307,12 +302,12 @@ function saveProgress() {
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
-  try { localStorage.setItem('aveva-lesson-progress', JSON.stringify(checks)); } catch(e) {}
+  try { localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks)); } catch(e) {}
   updateProgressText();
 }
 function loadProgress() {
   var data = null;
-  try { data = localStorage.getItem('aveva-lesson-progress'); } catch(e) {}
+  try { data = localStorage.getItem('intouch-lesson-progress'); } catch(e) {}
   if (!data) { updateProgressText(); return; }
   try {
     var checks = JSON.parse(data);

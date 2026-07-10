@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 37: Signed Writes Lab21</title>
+<title>Lesson L37: Signed Writes + Lab 21</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -35,8 +35,7 @@
 <body>
 
 <nav>
-  <a href="L36-Lab20-Security-Features.html">&larr; Lesson 36: Lab20 Security Features</a> &nbsp;|&nbsp;
-  <a href="L38-Runtime-Customization-Lab22.html">Lesson 38: Runtime Customization Lab22 &rarr;</a>
+  <a href="L36-Lab20-Security-Features.html">&larr; Lab 20 – Security Features in Graphics</a> &nbsp;|&nbsp; <a href="L38-Runtime-Customization-Lab22.html">Runtime Customization + Lab 22 &rarr;</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -98,201 +97,123 @@
 </details>
 </nav>
 
-<h1>Lesson 37: Lab 22 – Locking Down Your Application</h1>
-<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 7, Lab 22 (pages 501–510)</p>
-<p class="page-ref">Continuing Lab 22 — configuring inactivity timeouts, creating the InactivityMessage symbol with blinking animations, building the Inactivity warning window, and writing condition scripts to automate window display based on inactivity state.</p>
+<h1>Lesson L37: Signed Writes + Lab 21</h1>
+<p class="page-ref">Module 7 — Security | Pages 501–510</p>
 
-<hr>
-
-<!-- ============================================================ -->
-<h2>37.1 Configuring Inactivity Timeouts</h2>
-<p class="page-ref">Reference: Module 7, Lab 22 (pages 501)</p>
-
-<div class="lab">
-  <strong>Lab 22 — Part 1:</strong> The first task is to configure WindowViewer's inactivity settings so that the system automatically warns users and then logs them off after a period of inactivity.
-</div>
-
-<p>In WindowMaker, go to <strong>File &gt; Configure &gt; WindowViewer</strong>. On the <strong>Preferences</strong> tab, find the <strong>Inactivity in secs</strong> section. Set <strong>Warning</strong> to <strong>15</strong> seconds and <strong>Timeout</strong> to <strong>30</strong> seconds. Click <strong>Save</strong>. A notification confirms the configuration was updated — you will need to restart WindowViewer for the changes to take effect. Close WindowViewer.</p>
+<p>Do Not Copy 7-63 AVEVA™ InTouch for System Platform 2023 2. On the Preferences tab, in Inactivity in secs, Warning, enter 15. 3. In Timeout, enter 30. 4. Click Save. A WindowMaker notification appears. You will now close WindowViewer. The changes will take effect the next time you start WindowViewer, later in this lab. 5. Close WindowViewer.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0501_0.png" alt="WindowViewer Preferences tab showing inactivity settings: Warning 15 seconds, Timeout 30 seconds">
-  <div class="caption">Inactivity settings — Warning at 15 seconds, Timeout at 30 seconds (page 501)</div>
+  <img src="../images/page_0501_0.png" alt="WindowViewer Preferences tab showing inactivity timeout settings: Warning at 15 seconds and Timeout at 30 seconds, with Save button at bottom">
+  <div class="caption">WindowViewer Preferences tab showing inactivity timeout settings: Warning at 15 seconds and Timeout at 30 seconds, with Save button at bottom</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0501_1.png" alt="WindowMaker notification confirming configuration update and restart requirement">
-  <div class="caption">The confirmation dialog — WindowViewer must be restarted for changes to take effect (page 501)</div>
+  <img src="../images/page_0501_1.png" alt="WindowMaker notification dialog confirming WindowViewer configuration was successfully updated and must be restarted for changes to take effect">
+  <div class="caption">WindowMaker notification dialog confirming WindowViewer configuration was successfully updated and must be restarted for changes to take effect</div>
 </div>
 
-<div class="key-concept">
-  <strong>Key Concept:</strong> The inactivity timer resets whenever the operator uses the mouse (a click, not just movement) or keyboard. Simply moving the mouse does not reset the timer — this prevents operators from avoiding logoff by jiggling the mouse.
-</div>
-
-<!-- ============================================================ -->
-<h2>37.2 Creating the InactivityMessage Symbol</h2>
-<p class="page-ref">Reference: Module 7, Lab 22 (pages 502–506)</p>
-
-<p>Next, you will create a symbol that displays a blinking warning message when the inactivity period is triggered, and changes its text when the timeout occurs.</p>
-
-<p><strong>Steps 6–10.</strong> Create a new symbol named <strong>InactivityMessage</strong> and open it for editing. Add a Text element with the text "Inactivity Message" and name it <strong>Message1</strong>. Below it, add a Text Box element with the text "Action Message" and name it <strong>Message2</strong>. Right-click the canvas and select <strong>Scripts</strong>.</p>
+<p>Do Not Copy 7-64 AVEVA™ Training Create an InActivity Message Symbol Next, you will create a symbol to display a blinking message that an inactivity warning has been triggered, as well as the inactivity timeout period has expired. 6. In the IDE, on the Graphics tab, in the Training toolset, create a symbol named InactivityMessage and open it for editing. 7. On the canvas, add a Text element and enter Inactivity Message. 8. Name the element Message1. 9. On the canvas, add a Text Box element under Message1 and enter Action Message. 10. Name the element Message2. 11. Right-click the canvas and select Scripts.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0502_0.png" alt="WindowMaker canvas with InactivityMessage symbol showing Message1 text element">
-  <div class="caption">Message1 text element placed on the canvas (page 502)</div>
+  <img src="../images/page_0502_0.png" alt="WindowMaker canvas with InactivityMessage symbol being edited, showing Message1 text element selected on grid canvas with Tools panel on left">
+  <div class="caption">WindowMaker canvas with InactivityMessage symbol being edited, showing Message1 text element selected on grid canvas with Tools panel on left</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0502_1.png" alt="Canvas with Message2 (Action Message) text box added below Message1">
-  <div class="caption">Message2 text box added below Message1 — both elements on the canvas (page 502)</div>
+  <img src="../images/page_0502_1.png" alt="WindowMaker canvas with Message2 (Action Message) text box selected, showing animation link icon applied to the element alongside Message1">
+  <div class="caption">WindowMaker canvas with Message2 (Action Message) text box selected, showing animation link icon applied to the element alongside Message1</div>
 </div>
 
-<h3>Configure Predefined Scripts</h3>
-
-<p><strong>Step 12.</strong> In the Edit Scripts dialog, configure a <strong>Predefined Script</strong> with the <strong>On Show</strong> trigger. This script changes the displayed text when the inactivity warning period expires:</p>
-
-<pre><code>'Change displayed text when the inactivity warning period expires.
-Message1.Text = "Inactivity Warning";
-Message2.Text = "Click mouse or use keyboard to prevent system log off";</code></pre>
+<p>Do Not Copy 7-65 AVEVA™ InTouch for System Platform 2023 12. Configure Predefined Scripts as follows: Note: You may use the applicable portion of the script in C:\Training\Lab 22 - Locking Down Your Application.txt. Trigger: On Show (default) Body: 'Change displayed text when the inactivity warning period expires. Message1.Text = "Inactivity Warning"; Message2.Text = "Click mouse or use keyboard to prevent system log off";</p>
 
 <div class="screenshot">
-  <img src="../images/page_0503.png" alt="Edit Scripts window with Predefined Script for On Show trigger and inactivity warning text">
-  <div class="caption">The Predefined Script — On Show trigger changes text to the inactivity warning (page 503)</div>
+  <img src="../images/page_0503.png" alt="Edit Scripts window with Predefined Script configured for On Show trigger, containing VBScript code that sets Message1 and Message2 text to display inactivity warning messages">
+  <div class="caption">Edit Scripts window with Predefined Script configured for On Show trigger, containing VBScript code that sets Message1 and Message2 text to display inactivity warning messages</div>
 </div>
 
-<h3>Configure Named Script for Timeout</h3>
-
-<p><strong>Steps 13–14.</strong> Add a <strong>Named Script</strong> called <strong>TimeoutMessage</strong> with expression <code>InTouch:$InactivityTimeout</code> and trigger <strong>OnTrue</strong>. This script runs when the timeout period expires:</p>
-
-<pre><code>'Change displayed text when the inactivity timeout period expires.
-Message1.Text = "Inactivity Timeout";
-Message2.Text = "You have been logged off!";</code></pre>
+<p>Do Not Copy 7-66 AVEVA™ Training 13. Add a Named Script and configure it as follows: Note: You may use the applicable portion of the script in C:\Training\Lab 22 - Locking Down Your Application.txt. 14. Click OK to close Edit Scripts. Name: TimeoutMessage Expression: InTouch:$InactivityTimeout Trigger: OnTrue Body: 'Change displayed text when the inactivity timeout period expires. Message1.Text = "Inactivity Timeout"; Message2.Text = "You have been logged off!";</p>
 
 <div class="screenshot">
-  <img src="../images/page_0504.png" alt="Edit Scripts window showing Named Script TimeoutMessage with InTouch:$InactivityTimeout expression">
-  <div class="caption">The TimeoutMessage named script — triggered when $InactivityTimeout becomes true (page 504)</div>
+  <img src="../images/page_0504.png" alt="Edit Scripts window showing Named Script named TimeoutMessage with Expression InTouch:$InactivityTimeout, Trigger OnTrue, and script code setting Message1 to Inactivity Timeout and Message2 to You have been logged off">
+  <div class="caption">Edit Scripts window showing Named Script named TimeoutMessage with Expression InTouch:$InactivityTimeout, Trigger OnTrue, and script code setting Message1 to Inactivity Timeout and Message2 to You have been logged off</div>
 </div>
 
-<h3>Style and Animate the Symbol</h3>
-
-<p><strong>Steps 15–19.</strong> Select both text elements and use the toolbar to align them. Configure the Element Style as <strong>Title</strong> and center-align both elements. Double-click the Action Message text box (Message2) and add a <strong>Blink</strong> animation.</p>
+<p>Do Not Copy 7-67 AVEVA™ InTouch for System Platform 2023 You will now change the style of the text elements, add animations, and arrange the symbol for cosmetic purposes only. 15. Select both elements, and use the toolbar to align text to the Centers. 16. With both elements still selected, configure the Element Style as Title. 17. Use Align Center on the toolbar to center align both elements. The elements should now look similar to the following: 18. On the canvas, double-click the Action Message text box. 19. Add a Blink animation.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0505_0.png" alt="WindowMaker toolbar with alignment options for selected text elements">
-  <div class="caption">Aligning text elements using the toolbar (page 505)</div>
+  <img src="../images/page_0505_0.png" alt="WindowMaker toolbar showing alignment dropdown with center-horizontal and center-vertical alignment option highlighted for aligning selected text elements">
+  <div class="caption">WindowMaker toolbar showing alignment dropdown with center-horizontal and center-vertical alignment option highlighted for aligning selected text elements</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0505_1.png" alt="Canvas with Align Center tooltip and selected text elements">
-  <div class="caption">Center alignment applied to both text elements (page 505)</div>
+  <img src="../images/page_0505_1.png" alt="WindowMaker canvas with Align Center tooltip visible on toolbar, showing two selected text elements Inactivity Message and Action Message ready for center alignment">
+  <div class="caption">WindowMaker canvas with Align Center tooltip visible on toolbar, showing two selected text elements Inactivity Message and Action Message ready for center alignment</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0505_2.png" alt="Edit Animations context menu with Blink option highlighted">
-  <div class="caption">Adding a Blink animation from the visualization options (page 505)</div>
+  <img src="../images/page_0505_2.png" alt="Edit Animations context menu showing visualization options (Visibility, Fill Style, Line Style, Text Style, Blink, Element Style, Alarm Border) and interaction options (Disable, User Input, Sliders, Pushbutton, Action Scripts, Show Symbol)">
+  <div class="caption">Edit Animations context menu showing visualization options (Visibility, Fill Style, Line Style, Text Style, Blink, Element Style, Alarm Border) and interaction options (Disable, User Input, Sliders, Pushbutton, Action Scripts, Show Symbol)</div>
 </div>
 
-<p><strong>Steps 20–22.</strong> Configure the Blink animation with Boolean state, expression <code>true</code>, Blink When True, Medium speed, and Text Color set to <strong>yellow</strong>. Click OK and save/check in the graphic.</p>
+<p>Do Not Copy 7-68 AVEVA™ Training 20. In the Blink animation, in States, select Boolean and then configure it as follows: 21. Click OK to close Edit Animations. 22. Save and close and check in the graphic. Expression Or Reference/ Boolean: true Blink When Expression Is: True, 1, On selected (default) Blink Speed: Medium selected Blink Attributes: Blink Visible With These Attributes selected (default) Text Color: checked (default) and in drop-down, select yellow Line Color: unchecked Fill Color: unchecked</p>
 
 <div class="screenshot">
-  <img src="../images/page_0506.png" alt="Blink animation configuration with Boolean expression, medium speed, yellow text color">
-  <div class="caption">Blink animation — text will blink in yellow when the warning is active (page 506)</div>
+  <img src="../images/page_0506.png" alt="Edit Animations dialog configuring Blink animation with Boolean state expression set to true, Blink When True, Medium speed, Blink Visible with Text Color set to yellow">
+  <div class="caption">Edit Animations dialog configuring Blink animation with Boolean state expression set to true, Blink When True, Medium speed, Blink Visible with Text Color set to yellow</div>
 </div>
 
-<!-- ============================================================ -->
-<h2>37.3 Creating the Inactivity Window</h2>
-<p class="page-ref">Reference: Module 7, Lab 22 (pages 507–509)</p>
-
-<p>Now you will create a popup window to host the InactivityMessage symbol.</p>
-
-<p><strong>Step 23.</strong> In WindowMaker, go to the backstage and click <strong>+ New</strong>.</p>
+<p>Do Not Copy 7-69 AVEVA™ InTouch for System Platform 2023 Create the Inactivity Window Now, you will create and configure a window in WindowMaker to host the InactivityMessage symbol you just created. 23. In WindowMaker, in the backstage, click + New.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0507.png" alt="WindowMaker backstage with + New option highlighted">
-  <div class="caption">Creating a new window from the backstage (page 507)</div>
+  <img src="../images/page_0507.png" alt="AVEVA InTouch backstage Configure menu showing options for Security, WindowMaker, WindowViewer, Distributed Name Manager, Historical Logging, and Alarms">
+  <div class="caption">AVEVA InTouch backstage Configure menu showing options for Security, WindowMaker, WindowViewer, Distributed Name Manager, Historical Logging, and Alarms</div>
 </div>
 
-<p><strong>Steps 24–26.</strong> With Frame window selected, configure the window properties:</p>
+<p>Do Not Copy 7-70 AVEVA™ Training 24. In New, ensure Frame window is selected. 25. Configure properties for the window as follows: The dimensions will place the window at the center on a monitor with a resolution of 1920x1080. 26. Click Create. Name: Inactivity Comment: Inactivity warning and timeout messages Window Type: Popup X: 560 Y: 340 Width: 800 Height: 400 Window Color: Red Title Bar: unchecked Frame Style: Double</p>
 
-<table>
-  <thead>
-    <tr><th>Property</th><th>Value</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Name</td><td>Inactivity</td></tr>
-    <tr><td>Comment</td><td>Inactivity warning and timeout messages</td></tr>
-    <tr><td>Window Type</td><td>Popup</td></tr>
-    <tr><td>X</td><td>560</td></tr>
-    <tr><td>Y</td><td>340</td></tr>
-    <tr><td>Width</td><td>800</td></tr>
-    <tr><td>Height</td><td>400</td></tr>
-    <tr><td>Window Color</td><td>Red</td></tr>
-    <tr><td>Title Bar</td><td>Unchecked</td></tr>
-    <tr><td>Frame Style</td><td>Double</td></tr>
-  </tbody>
-</table>
-
-<div class="tip">
-  <strong>Tip:</strong> The dimensions X:560, Y:340, Width:800, Height:400 will center the window on a monitor with 1920×1080 resolution.
+<div class="screenshot">
+  <img src="../images/page_0508_0.png" alt="Window Properties configuration dialog for Inactivity window: Popup type, Location X:560 Y:340, Size 800x400, Window Color Red, Title Bar unchecked, Frame Style Double">
+  <div class="caption">Window Properties configuration dialog for Inactivity window: Popup type, Location X:560 Y:340, Size 800x400, Window Color Red, Title Bar unchecked, Frame Style Double</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0508_0.png" alt="Window Properties dialog for Inactivity window — Popup type, red color, centered dimensions">
-  <div class="caption">The Inactivity window properties — a red popup window centered on screen (page 508)</div>
+  <img src="../images/page_0508_1.png" alt="WindowMaker project explorer showing Inactivity window listed under Windows, with background showing alarm overview display with alarm grid, navigation tabs, and process visualization">
+  <div class="caption">WindowMaker project explorer showing Inactivity window listed under Windows, with background showing alarm overview display with alarm grid, navigation tabs, and process visualization</div>
+</div>
+
+<p>Do Not Copy 7-71 AVEVA™ InTouch for System Platform 2023 27. In Industrial Graphics, ensure Training is expanded, and then drag InactivityMessage to the Inactivity window. 28. In the Inactivity window, right-click and select Close Window. A WindowMaker message appears. 29. Click Yes to save the window. After a few moments, the window closes.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0509_0.png" alt="Runtime view showing red Inactivity Message popup window overlaid on alarm display, with Industrial Graphics project tree showing TrainingGalaxy and InactivityMessage symbol">
+  <div class="caption">Runtime view showing red Inactivity Message popup window overlaid on alarm display, with Industrial Graphics project tree showing TrainingGalaxy and InactivityMessage symbol</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0508_1.png" alt="WindowMaker project explorer showing Inactivity window listed under Windows">
-  <div class="caption">The Inactivity window now appears in the Windows list (page 508)</div>
+  <img src="../images/page_0509_1.png" alt="InactivityMessage window with right-click context menu open, showing options including Fit to Symbol, Embed Industrial Graphic, Save Window, Close Window, Delete Window, and Window Scripts">
+  <div class="caption">InactivityMessage window with right-click context menu open, showing options including Fit to Symbol, Embed Industrial Graphic, Save Window, Close Window, Delete Window, and Window Scripts</div>
 </div>
 
-<p><strong>Steps 27–29.</strong> From Industrial Graphics, expand Training and drag <strong>InactivityMessage</strong> to the Inactivity window. Right-click the window and select Close Window. Click Yes to save.</p>
+<p>Do Not Copy 7-72 AVEVA™ Training Create Inactivity Trigger Scripts Now, you will create two InTouch scripts. The first script will open the Inactivity window, when the inactivity warning is triggered. The second script will close the Inactivity window, when the inactivity warning is cleared. 30. In the Scripts pane on the left, double-click Condition to open the Condition Scripts editor.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0509_0.png" alt="Runtime view with red Inactivity popup overlaid on alarm display">
-  <div class="caption">The InactivityMessage symbol placed in the red Inactivity window (page 509)</div>
+  <img src="../images/page_0510.png" alt="Condition Scripts editor window with empty condition field, Comment field, Condition Type set to On True, and empty script editor area for creating event-driven automation logic">
+  <div class="caption">Condition Scripts editor window with empty condition field, Comment field, Condition Type set to On True, and empty script editor area for creating event-driven automation logic</div>
 </div>
-
-<div class="screenshot">
-  <img src="../images/page_0509_1.png" alt="Right-click context menu with Close Window option highlighted">
-  <div class="caption">Closing and saving the Inactivity window (page 509)</div>
-</div>
-
-<!-- ============================================================ -->
-<h2>37.4 Creating Inactivity Trigger Scripts</h2>
-<p class="page-ref">Reference: Module 7, Lab 22 (page 510)</p>
-
-<p>Now you will create two InTouch <strong>Condition scripts</strong>. The first script opens the Inactivity window when the inactivity warning triggers. The second script closes it when the warning clears.</p>
-
-<p><strong>Step 30.</strong> In the Scripts pane, double-click <strong>Condition</strong> to open the Condition Scripts editor.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0510.png" alt="Condition Scripts editor with empty fields ready for configuration">
-  <div class="caption">The Condition Scripts editor — ready for the $InactivityWarning trigger (page 510)</div>
-</div>
-
-<div class="key-concept">
-  <strong>Key Concept:</strong> Condition scripts in InTouch monitor a tag's state and execute when the condition becomes true or false. By using <code>$InactivityWarning</code> as the condition, you can show or hide the warning window automatically based on the system's inactivity detection.
-</div>
-
-<p>The first condition script will use <code>$InactivityWarning</code> with trigger <strong>On True</strong> to show the Inactivity window when the warning activates. The second will use the same tag with trigger <strong>On False</strong> to hide it when the user interacts with the application. The full script configuration will be completed in Lesson 38.</p>
-
-<!-- ============================================================ -->
 
 <div class="quiz">
   <h3>Knowledge Check</h3>
-
-  <p><strong>1.</strong> What is the difference between the Predefined Script (On Show) and the Named Script (TimeoutMessage) in the InactivityMessage symbol?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">The Predefined Script uses the On Show trigger — it runs when the symbol becomes visible, changing the text to "Inactivity Warning." The Named Script (TimeoutMessage) monitors the $InactivityTimeout tag and triggers OnTrue — it runs when the timeout period expires, changing the text to "Inactivity Timeout" and "You have been logged off!"</p></details>
-
-  <p><strong>2.</strong> Why must WindowViewer be restarted after changing the inactivity timeout settings?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">The inactivity settings are loaded when WindowViewer starts. Changes made in the configuration dialog are saved to the configuration file, but the running WindowViewer instance continues using the old values. A restart is required to load the new settings into memory.</p></details>
-
-  <p><strong>3.</strong> What does the Blink animation's yellow Text Color achieve in the InactivityMessage symbol?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">The yellow blinking text draws the operator's attention to the inactivity warning message. Since the Inactivity window has a red background, the yellow text provides high contrast and makes the warning message stand out, alerting the operator that they need to interact with the application to prevent automatic logoff.</p></details>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Signed Writes + Lab 21?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
 </div>
 
 <p class="source">Module 7 — Security. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson 38 — Runtime Customization + Lab 22</p>
+<p class="source">Next: Lesson L38 — Runtime Customization + Lab 22</p>
 
 <script>
 
@@ -301,12 +222,12 @@ function saveProgress() {
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
-  try { localStorage.setItem('aveva-lesson-progress', JSON.stringify(checks)); } catch(e) {}
+  try { localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks)); } catch(e) {}
   updateProgressText();
 }
 function loadProgress() {
   var data = null;
-  try { data = localStorage.getItem('aveva-lesson-progress'); } catch(e) {}
+  try { data = localStorage.getItem('intouch-lesson-progress'); } catch(e) {}
   if (!data) { updateProgressText(); return; }
   try {
     var checks = JSON.parse(data);

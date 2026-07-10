@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 14: Lab6 Mixer Components</title>
+<title>Lesson L14: Lab 6 – Creating the Mixer Components</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -35,8 +35,7 @@
 <body>
 
 <nav>
-  <a href="L13-Graphics-With-Objects.html">&larr; Lesson 13: Graphics With Objects</a> &nbsp;|&nbsp;
-  <a href="L15-Editor-Tools-Animations.html">Lesson 15: Editor Tools Animations &rarr;</a>
+  <a href="L13-Graphics-With-Objects.html">&larr; Graphics with Objects</a> &nbsp;|&nbsp; <a href="L15-Editor-Tools-Animations.html">Graphic Editor Tools and Animations &rarr;</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -98,528 +97,301 @@
 </details>
 </nav>
 
-<h1>Lesson 14: Lab 6 – Creating the Mixer Components</h1>
-<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 3 (pages 149–172)</p>
-<p class="page-ref">In this lab you will create graphics for each piece of mixing equipment — level meters, temperature meters, valves, agitators, and pumps — using Situational Awareness symbols with relative references. You will then link these symbols to their template objects and test them in runtime.</p>
+<h1>Lesson L14: Lab 6 – Creating the Mixer Components</h1>
+<p class="page-ref">Module 3 — Symbols | Pages 149–172</p>
 
-<div class="key-concept">
-  <strong>Lab Objectives:</strong> Upon completion, you will be able to link symbols to template objects, duplicate symbols, search for graphics in the Toolbox, configure graphics with relative references (Me.), and use Substitute References to modify embedded references.
-</div>
+<p>Do Not Copy 3-51 AVEVA™ InTouch for System Platform 2023 4. On the right side of the Graphic Editor, select the Toolbox tab, and then in the Search field, enter meters. 5. In the preview area, select SA_Meters.</p>
 
-<!-- ============================================================ -->
-<h2>14.1 Create the Level Graphic</h2>
-<p class="page-ref">Reference: Module 3, Lab 6 (pages 148–151)</p>
-
-<p>First, you will create a Level_Detailed symbol and embed the SA_Meters graphic, configuring it to display mixer level.</p>
-
-<div class="lab">
-  <strong>Steps 1–6: Create and Place the Level Meter</strong><br>
-  <ol>
-    <li>In the IDE, on the Graphics tab, right-click the <strong>Training</strong> toolset and select <strong>New → Symbol</strong>.</li>
-    <li>Name the new symbol <strong>Level_Detailed</strong>.</li>
-    <li>Double-click Level_Detailed to open it for editing.</li>
-    <li>On the right side of the Graphic Editor, select the <strong>Toolbox</strong> tab, and in the Search field, enter <code>meters</code>.</li>
-    <li>In the preview area, select <strong>SA_Meters</strong>.</li>
-    <li>Drag SA_Meters to the canvas.</li>
-  </ol>
+<div class="screenshot">
+  <img src="../images/page_0149_0.png" alt="Toolbox panel with 'meters' search showing 3 matching results including DigitalMeter and SA_Meters assets from Situational Awareness Library">
+  <div class="caption">Toolbox panel with 'meters' search showing 3 matching results including DigitalMeter and SA_Meters assets from Situational Awareness Library</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0148_0.png" alt="Graphics pane in the IDE with right-click context menu on the Training toolset showing New submenu with Symbol option">
-  <div class="caption">Creating a new symbol in the Training toolset (page 148)</div>
+  <img src="../images/page_0149_1.png" alt="SA_Meters digital meter objects placed on the grid canvas showing SP, CV, AUTO labels, numeric displays, LED indicators, and vertical bar graphs">
+  <div class="caption">SA_Meters digital meter objects placed on the grid canvas showing SP, CV, AUTO labels, numeric displays, LED indicators, and vertical bar graphs</div>
+</div>
+
+<p>Do Not Copy 3-52 AVEVA™ Training 6. Drag SA_Meters to the canvas. The graphic appears on the canvas.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0150_0.png" alt="SA_Meters asset placed on the design canvas with empty Label placeholder, ##.## numeric value placeholder, and EU engineering units">
+  <div class="caption">SA_Meters asset placed on the design canvas with empty Label placeholder, ##.## numeric value placeholder, and EU engineering units</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0148_1.png" alt="Graphics pane showing the Training folder with newly created Level_Detailed and ProcessOverview symbols">
-  <div class="caption">Level_Detailed symbol now appears alongside ProcessOverview in the Training toolset (page 148)</div>
+  <img src="../images/page_0150_1.png" alt="SA_Meters element selected on canvas with blue selection handles showing Label, ##.## value, EU placeholder, and yellow connection icon linked to a process variable">
+  <div class="caption">SA_Meters element selected on canvas with blue selection handles showing Label, ##.## value, EU placeholder, and yellow connection icon linked to a process variable</div>
+</div>
+
+<p>Do Not Copy 3-53 AVEVA™ InTouch for System Platform 2023 7. Select the Properties tab, and in Name, enter LevelMeter. 8. In Wizard Options, configure the following options: Note: As you modify the wizard options, observe the changes to the graphic on the canvas. The graphic is updated based on the properties selected. 9. Click Save and Close and check in the graphic. Type: Level LabelType: ObjectTagname EngUnitsType: CustomPropertyLabel</p>
+
+<div class="screenshot">
+  <img src="../images/page_0151_0.png" alt="Properties panel showing LevelMeter object with Graphic Name: LevelMeter and Wizard Options Type: Flow, Orientation: Vertical">
+  <div class="caption">Properties panel showing LevelMeter object with Graphic Name: LevelMeter and Wizard Options Type: Flow, Orientation: Vertical</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0149_0.png" alt="Toolbox panel with meters search showing 3 matching results including DigitalMeter and SA_Meters assets">
-  <div class="caption">Searching for "meters" in the Toolbox reveals the SA_Meters component (page 149)</div>
+  <img src="../images/page_0151_1.png" alt="Properties panel for LevelMeter with Wizard Options: Type: Level, LabelType: ObjectTagname, EngUnits: True, EngUnitsType: CustomPropertyLabel, QualityStatus: True, SymbolMod: Basic">
+  <div class="caption">Properties panel for LevelMeter with Wizard Options: Type: Level, LabelType: ObjectTagname, EngUnits: True, EngUnitsType: CustomPropertyLabel, QualityStatus: True, SymbolMod: Basic</div>
+</div>
+
+<p>Do Not Copy 3-54 AVEVA™ Training Create the Temperature Symbol Next, you will duplicate the Level_Detailed symbol to create the Temperature_Detailed symbol that will be used to display the temperature in the mixer. 10. In the IDE, on the Graphics tab, right-click Level_Detailed and select Duplicate. 11. Name the duplicate as Temperature_Detailed. 12. Double-click Temperature_Detailed to edit it.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0152_0.png" alt="IDE project explorer with Graphics tab expanded showing Training folder containing Level_Detailed, ProcessOverview, and Temperature_Detailed (highlighted/selected)">
+  <div class="caption">IDE project explorer with Graphics tab expanded showing Training folder containing Level_Detailed, ProcessOverview, and Temperature_Detailed (highlighted/selected)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0149_1.png" alt="SA_Meters selected in Toolbox preview area with breadcrumb showing Situational Awareness Library > Meters">
-  <div class="caption">Selecting SA_Meters from the Meters toolset in the SA Library (page 149)</div>
+  <img src="../images/page_0152_1.png" alt="Temperature_Detailed vertical temperature bar gauge on canvas with SA_Meters label, yellow value indicator marker, ##.## numeric placeholder, and EU units placeholder">
+  <div class="caption">Temperature_Detailed vertical temperature bar gauge on canvas with SA_Meters label, yellow value indicator marker, ##.## numeric placeholder, and EU units placeholder</div>
+</div>
+
+<p>Do Not Copy 3-55 AVEVA™ InTouch for System Platform 2023 13. Select the LevelMeter symbol on the canvas. 14. On the Properties tab, rename LevelMeter as TemperatureMeter. 15. In Wizard Options, change the Type to Temperature. The graphic is updated on the canvas. 16. Save and close and check in the graphic. Create the Valve Symbol Now, you will create and configure a Valve_Detailed symbol to show the mixer valves. 17. On the Graphics tab, right-click the Training toolset and select New | Symbol. 18. Name the symbol as Valve_Detailed and open it for editing. 19. Select the Toolbox tab. 20. In the Search field, enter valve_a.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0153_0.png" alt="Toolbox panel with 'valve_a' search showing 1 matching result: SA_Valve_And_Damper asset with valve graphic preview">
+  <div class="caption">Toolbox panel with 'valve_a' search showing 1 matching result: SA_Valve_And_Damper asset with valve graphic preview</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0150_0.png" alt="SA_Meters dragged to canvas showing empty Label placeholder and ##.## numeric value placeholder">
-  <div class="caption">SA_Meters placed on the canvas with placeholder label and value fields (page 150)</div>
+  <img src="../images/page_0153_1.png" alt="SA_Valve_And_Damper valve component placed on canvas showing Label placeholder, yellow actuator section, and gray/green valve body with blue selection handles">
+  <div class="caption">SA_Valve_And_Damper valve component placed on canvas showing Label placeholder, yellow actuator section, and gray/green valve body with blue selection handles</div>
+</div>
+
+<p>Do Not Copy 3-56 AVEVA™ Training 21. Drag SA_Valve_And_Damper to the canvas. 22. Name the graphic as Valve. 23. Configure wizard options as follows: DiscreteCmdType: CmdOpenAndClose Actuator: Control LimitSwitches: Dual LabelType: ObjectTagname SymbolMode: Advanced DirectionOfTravelIndicator: True</p>
+
+<div class="screenshot">
+  <img src="../images/page_0154_0.png" alt="Valve component on canvas with Label, green actuator section, and selection handles; Toolbox showing valve_a search results with SA_Valve_And_Damper">
+  <div class="caption">Valve component on canvas with Label, green actuator section, and selection handles; Toolbox showing valve_a search results with SA_Valve_And_Damper</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0150_1.png" alt="SA_Meters element selected on canvas with blue selection handles showing Label, ##.## value, and EU placeholder">
-  <div class="caption">SA_Meters element selected and ready for configuration (page 150)</div>
+  <img src="../images/page_0154_1.png" alt="Properties panel for Valve object with Wizard Options: Orientation: Horizontal, Body: Discrete, DiscreteCmnd: CmdOpenAndClose, Actuator: Control, LimitSwitch: Dual, LabelType: ObjectTagname, SymbolMod: Advanced, DirectionOfTravelIndicator: True">
+  <div class="caption">Properties panel for Valve object with Wizard Options: Orientation: Horizontal, Body: Discrete, DiscreteCmnd: CmdOpenAndClose, Actuator: Control, LimitSwitch: Dual, LabelType: ObjectTagname, SymbolMod: Advanced, DirectionOfTravelIndicator: True</div>
 </div>
 
-<div class="lab">
-  <strong>Steps 7–9: Configure the Level Meter</strong><br>
-  <ol start="7">
-    <li>Select the Properties tab, and in <strong>Name</strong>, enter <code>LevelMeter</code>.</li>
-    <li>In Wizard Options, configure: <strong>Type</strong> = Level, <strong>LabelType</strong> = ObjectTagname, <strong>EngUnitsType</strong> = CustomPropertyLabel.</li>
-    <li>Click <strong>Save and Close</strong> and check in the graphic.</li>
-  </ol>
+<p>Do Not Copy 3-57 AVEVA™ InTouch for System Platform 2023 24. On the canvas, right-click Valve and select Custom Properties. 25. Configure custom properties as follows: Note: Use of relative references allows this graphic to be added once to the template object and then reused in multiple instances. At runtime, the keyword Me in each of the instances derived from the template will replace Me with the name of the instance. Additionally, use of the keyword not reverses the Boolean value of .Cmd to support both valve states. 26. Click OK to close Edit Custom Properties. 27. Save and close and check in the graphic. Create the Agitator Symbol Now, you will create and configure an Agitator_Detailed symbol to show the mixer agitator. 28. On the Graphics tab, right-click the Training toolset and select New | Symbol. 29. Rename the symbol Agitator_Detailed and open it for editing. 30. On the Toolbox tab, search for agitator. CmdClose: not Me.Cmd CmdOpen: Me.Cmd</p>
+
+<div class="screenshot">
+  <img src="../images/page_0155.png" alt="Edit Custom Properties dialog for Valve showing 5 properties: CmdClose: not Me.Cmd, CmdOpen: Me.Cmd, LabelVisible: True, LimitSwitchClosed: Me.LSClosed, LimitSwitchOpen: Me.LSOpen">
+  <div class="caption">Edit Custom Properties dialog for Valve showing 5 properties: CmdClose: not Me.Cmd, CmdOpen: Me.Cmd, LabelVisible: True, LimitSwitchClosed: Me.LSClosed, LimitSwitchOpen: Me.LSOpen</div>
 </div>
 
-<div class="tip">
-  <strong>Tip:</strong> As you modify the Wizard Options, observe the changes on the canvas — the graphic updates in real time based on the properties you select.
+<p>Do Not Copy 3-58 AVEVA™ Training 31. Drag SA_Agitator_Settler to the canvas. 32. Name the graphic as Agitator, and then configure the following wizard options: LabelType: ObjectTagname PVNumericDisplay: True EngUnits: True EngUnitsType: CustomPropertyLabel SymbolMode: Advanced EquipmentStatusIndicator: True SetPoint: True</p>
+
+<div class="screenshot">
+  <img src="../images/page_0156_0.png" alt="Assets panel with 'agitator' search showing 4 matching results; SA_Agitator_Settler placed on canvas with Label and yellow lock icon, surrounded by blue selection handles">
+  <div class="caption">Assets panel with 'agitator' search showing 4 matching results; SA_Agitator_Settler placed on canvas with Label and yellow lock icon, surrounded by blue selection handles</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0151_0.png" alt="Properties panel showing LevelMeter with Wizard Options Type set to Level">
-  <div class="caption">Configuring LevelMeter properties with Type set to Level (page 151)</div>
+  <img src="../images/page_0156_1.png" alt="Properties panel for Agitator object with Wizard Options: Type: Agitator, LabelType: ObjectTagname, PVNumeric: True, EngUnits: True, EngUnitsType: CustomPropertyLabel, SymbolMod: Advanced, SetPoint: True">
+  <div class="caption">Properties panel for Agitator object with Wizard Options: Type: Agitator, LabelType: ObjectTagname, PVNumeric: True, EngUnits: True, EngUnitsType: CustomPropertyLabel, SymbolMod: Advanced, SetPoint: True</div>
+</div>
+
+<p>Do Not Copy 3-59 AVEVA™ InTouch for System Platform 2023 33. On the canvas, right-click Agitator and select Substitute | Substitute References. Substitute Reference appears. 34. In the New column, rename Me.SP to Me.Speed.SP. 35. Click Find & Replace. Substitute Reference expands to show Find & Replace options.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0157_0.png" alt="Right-click context menu on SA_Agitator_Settler graphic showing Substitute submenu expanded with Substitute References option ready for tag remapping">
+  <div class="caption">Right-click context menu on SA_Agitator_Settler graphic showing Substitute submenu expanded with Substitute References option ready for tag remapping</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0151_1.png" alt="Properties panel for LevelMeter with Wizard Options: Type Level, LabelType ObjectTagname, EngUnits True, EngUnitsType CustomPropertyLabel">
-  <div class="caption">Complete Wizard Options configuration for the Level meter (page 151)</div>
-</div>
-
-<!-- ============================================================ -->
-<h2>14.2 Create the Temperature Symbol</h2>
-<p class="page-ref">Reference: Module 3, Lab 6 (pages 152–153)</p>
-
-<p>Rather than creating the temperature meter from scratch, you will duplicate the Level_Detailed symbol and reconfigure it. This demonstrates the efficiency of the duplicate-and-modify workflow.</p>
-
-<div class="lab">
-  <strong>Steps 10–16: Duplicate and Reconfigure</strong><br>
-  <ol start="10">
-    <li>In the IDE, on the Graphics tab, right-click <strong>Level_Detailed</strong> and select <strong>Duplicate</strong>.</li>
-    <li>Name the duplicate <strong>Temperature_Detailed</strong>.</li>
-    <li>Double-click Temperature_Detailed to edit it.</li>
-    <li>Select the LevelMeter symbol on the canvas.</li>
-    <li>On the Properties tab, rename it to <code>TemperatureMeter</code>.</li>
-    <li>In Wizard Options, change the <strong>Type</strong> to <strong>Temperature</strong>. The graphic updates on the canvas.</li>
-    <li>Save and close and check in the graphic.</li>
-  </ol>
+  <img src="../images/page_0157_1.png" alt="Substitute Reference dialog showing Old/New tag pairs with Me.SP remapped to Me.Speed.SP in row 5, other rows showing identity substitutions for Me.PV and Me.PV.EngUnits">
+  <div class="caption">Substitute Reference dialog showing Old/New tag pairs with Me.SP remapped to Me.Speed.SP in row 5, other rows showing identity substitutions for Me.PV and Me.PV.EngUnits</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0152_0.png" alt="IDE project explorer showing Training folder with Level_Detailed, ProcessOverview, and Temperature_Detailed">
-  <div class="caption">The Training toolset now contains Level_Detailed, ProcessOverview, and Temperature_Detailed (page 152)</div>
+  <img src="../images/page_0157_2.png" alt="Find &amp; Replace dialog within Substitute Reference showing Find What and Replace with fields, Match Case and Match Whole Word Only options, and OK/Cancel buttons">
+  <div class="caption">Find &amp; Replace dialog within Substitute Reference showing Find What and Replace with fields, Match Case and Match Whole Word Only options, and OK/Cancel buttons</div>
+</div>
+
+<p>Do Not Copy 3-60 AVEVA™ Training 36. In Find What?, enter Me.PV. 37. In Replace with, enter Me.Speed.PV. 38. Click Replace All. The status bar indicates 4 String(s) replaced and references in the New column appear as follows: 39. Click OK to close Substitute Reference.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0158_0.png" alt="Find &amp; Replace dialog with Find What: Me.PV and Replace with: Me.Speed.PV, status showing String 5 of 5, ready to replace all 4 occurrences">
+  <div class="caption">Find &amp; Replace dialog with Find What: Me.PV and Replace with: Me.Speed.PV, status showing String 5 of 5, ready to replace all 4 occurrences</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0152_1.png" alt="Temperature_Detailed meter on canvas with SA_Meters label and numeric placeholder">
-  <div class="caption">Temperature_Detailed showing the meter configured for temperature display (page 152)</div>
+  <img src="../images/page_0158_1.png" alt="Substitute Reference dialog showing completed substitutions: Me.PV to Me.Speed.PV, Me.PV.EngUnits to Me.Speed.PV.EngUnits, Me.PV.EngUnitsRangeMax to Me.Speed.PV.EngUnitsRangeMax, Me.PV.EngUnitsRangeMin to Me.Speed.PV.EngUnitsRangeMin, Me.SP to Me.Speed.SP; status: 4 String(s) replaced">
+  <div class="caption">Substitute Reference dialog showing completed substitutions: Me.PV to Me.Speed.PV, Me.PV.EngUnits to Me.Speed.PV.EngUnits, Me.PV.EngUnitsRangeMax to Me.Speed.PV.EngUnitsRangeMax, Me.PV.EngUnitsRangeMin to Me.Speed.PV.EngUnitsRangeMin, Me.SP to Me.Speed.SP; status: 4 String(s) replaced</div>
 </div>
 
-<!-- ============================================================ -->
-<h2>14.3 Create the Valve Symbol</h2>
-<p class="page-ref">Reference: Module 3, Lab 6 (pages 153–155)</p>
+<p>Do Not Copy 3-61 AVEVA™ InTouch for System Platform 2023 40. On the canvas, right-click the Agitator and select Custom Properties. 41. Configure custom properties as follows: 42. Click OK to close Edit Custom Properties. 43. Save and close and check in the graphic. Create the Pump Symbol Now, you will create and configure a Pump_Detailed symbol to show the mixer pumps. 44. On the Graphics tab, right-click the Training toolset and select New | Symbol. 45. Name the symbol as Pump_Detailed and open it for editing. EquipState: Me.PV EquipStateActive: Me.PV EquipStatePassive: not Me.PV</p>
 
-<p>Now you will create a Valve_Detailed symbol to represent the mixer valves, using the SA_Valve_And_Damper graphic from the Situational Awareness Library.</p>
+<div class="screenshot">
+  <img src="../images/page_0159.png" alt="Edit Custom Properties dialog for Agitator showing 12 properties including EngUnits: Me.Speed.PV.EngUnits, EquipState: Me.PV, EquipStateActive: Me.PV, EquipStatePassive: not Me.PV, PV: Me.Speed.PV, SP: Me.Speed.SP">
+  <div class="caption">Edit Custom Properties dialog for Agitator showing 12 properties including EngUnits: Me.Speed.PV.EngUnits, EquipState: Me.PV, EquipStateActive: Me.PV, EquipStatePassive: not Me.PV, PV: Me.Speed.PV, SP: Me.Speed.SP</div>
+</div>
 
-<div class="lab">
-  <strong>Steps 17–23: Create and Configure Valve</strong><br>
-  <ol start="17">
-    <li>On the Graphics tab, right-click the Training toolset and select <strong>New → Symbol</strong>.</li>
-    <li>Name the symbol <strong>Valve_Detailed</strong> and open it for editing.</li>
-    <li>Select the Toolbox tab.</li>
-    <li>In the Search field, enter <code>valve_a</code>.</li>
-    <li>Drag <strong>SA_Valve_And_Damper</strong> to the canvas.</li>
-    <li>Name the graphic <code>Valve</code>.</li>
-    <li>Configure Wizard Options: DiscreteCmdType = CmdOpenAndClose, Actuator = Control, LimitSwitches = Dual, LabelType = ObjectTagname, SymbolMode = Advanced, DirectionOfTravelIndicator = True.</li>
-  </ol>
+<p>Do Not Copy 3-62 AVEVA™ Training 46. On the Toolbox tab, search for sa_pump, and then drag SA_Pump_Blower_RotaryValve to the canvas. 47. Name the graphic as Pump, and then configure the following wizard option: 48. Configure the following custom property: 49. Save and close and check in the graphic. LabelType: ObjectTagname EquipState: Me.PV</p>
+
+<div class="screenshot">
+  <img src="../images/page_0160_0.png" alt="Toolbox panel with 'sa_pump' search showing 3 matching results including ISA_Pump1, ISA_Pump2, and SA_Pump_Blower_RotaryValve selected and placed on canvas">
+  <div class="caption">Toolbox panel with 'sa_pump' search showing 3 matching results including ISA_Pump1, ISA_Pump2, and SA_Pump_Blower_RotaryValve selected and placed on canvas</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0153_0.png" alt="Toolbox panel with valve_a search showing SA_Valve_And_Damper result">
-  <div class="caption">Searching for "valve_a" reveals the SA_Valve_And_Damper component (page 153)</div>
+  <img src="../images/page_0160_1.png" alt="SA_Pump_Blower_RotaryValve pump graphic placed on canvas with yellow/black pump icon and Pump1 label, blue selection handles visible">
+  <div class="caption">SA_Pump_Blower_RotaryValve pump graphic placed on canvas with yellow/black pump icon and Pump1 label, blue selection handles visible</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0153_1.png" alt="SA_Valve_And_Damper placed on canvas with Label placeholder and valve body">
-  <div class="caption">SA_Valve_And_Damper placed on the canvas, ready for configuration (page 153)</div>
+  <img src="../images/page_0160_2.png" alt="Properties panel for Pump object with Wizard Options: Type: Pump, Orientation: Right, MotorType: Fixed, LabelType: ObjectTagname, QualityStat: True, Connection: True, SymbolMod: Basic">
+  <div class="caption">Properties panel for Pump object with Wizard Options: Type: Pump, Orientation: Right, MotorType: Fixed, LabelType: ObjectTagname, QualityStat: True, Connection: True, SymbolMod: Basic</div>
+</div>
+
+<p>Do Not Copy 3-63 AVEVA™ InTouch for System Platform 2023 Associate Symbols with Templates Now, you will link the symbols you just created to their associated templates. 50. On the Templates tab, in the Training\Project toolset, double-click $Agitator to edit it. The Object Editor appears.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0161_0.png" alt="Custom Properties panel for Pump showing 2 properties: EquipState: Me.PV and LabelVisible: True">
+  <div class="caption">Custom Properties panel for Pump showing 2 properties: EquipState: Me.PV and LabelVisible: True</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0154_0.png" alt="Valve component on canvas with green actuator section and selection handles">
-  <div class="caption">The valve graphic with green actuator section visible (page 154)</div>
+  <img src="../images/page_0161_1.png" alt="Templates pane in IDE showing Project folder with standard system object templates: $Agitator, $HeatExchanger, $Level, $Meter, $Mixer, $Motor, $Pump, $Temperature, $Totalizer, $Valve">
+  <div class="caption">Templates pane in IDE showing Project folder with standard system object templates: $Agitator, $HeatExchanger, $Level, $Meter, $Mixer, $Motor, $Pump, $Temperature, $Totalizer, $Valve</div>
+</div>
+
+<p>Do Not Copy 3-64 AVEVA™ Training 51. On the Attributes tab, click the Configure Wizard Options button to hide the Object Wizard. The Attributes tab expands to show only Attributes and Content. 52. In the Content pane, click the Link Content button.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0162_0.png" alt="Object Editor for $Agitator template showing Attributes tab with inherited Cmd [$Motor], PV [$Motor], Speed.PV, Speed.SP attributes; Content panel empty prompting to link content">
+  <div class="caption">Object Editor for $Agitator template showing Attributes tab with inherited Cmd [$Motor], PV [$Motor], Speed.PV, Speed.SP attributes; Content panel empty prompting to link content</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0154_1.png" alt="Properties panel for Valve with Wizard Options showing DiscreteCmdType, Actuator, LimitSwitches, and SymbolMode">
-  <div class="caption">Valve Wizard Options configured for open/close command type with dual limit switches (page 154)</div>
-</div>
-
-<div class="lab">
-  <strong>Steps 24–27: Configure Valve Custom Properties</strong><br>
-  <ol start="24">
-    <li>Right-click Valve and select <strong>Custom Properties</strong>.</li>
-    <li>Configure custom properties as follows:</li>
-  </ol>
-</div>
-
-<table>
-  <thead><tr><th>Property</th><th>Value</th></tr></thead>
-  <tbody>
-    <tr><td>CmdClose</td><td><code>not Me.Cmd</code></td></tr>
-    <tr><td>CmdOpen</td><td><code>Me.Cmd</code></td></tr>
-  </tbody>
-</table>
-
-<div class="key-concept">
-  <strong>Key Concept:</strong> Using relative references like <code>Me.Cmd</code> allows this graphic to be added once to the template object and reused across all derived instances. At runtime, <code>Me</code> resolves to the actual instance name. The <code>not</code> keyword inverts the Boolean value to support both valve states (open and closed).
+  <img src="../images/page_0162_1.png" alt="Object Editor for $Agitator showing Attributes tab with Cmd [$Motor] selected, displaying Command attribute properties including Boolean data type, User writeable, I/O links, and Write to: &lt;IODevice&gt;.$Agitator.Cmd">
+  <div class="caption">Object Editor for $Agitator showing Attributes tab with Cmd [$Motor] selected, displaying Command attribute properties including Boolean data type, User writeable, I/O links, and Write to: &lt;IODevice&gt;.$Agitator.Cmd</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0155.png" alt="Edit Custom Properties dialog for Valve showing CmdClose: not Me.Cmd and CmdOpen: Me.Cmd">
-  <div class="caption">Valve custom properties using relative references for open/close commands (page 155)</div>
+  <img src="../images/page_0162_2.png" alt="Object Information pane showing $Motor attribute with Cmd command linked to [$Motor] tag, inherited attributes checkbox checked, Configure Wizard Options button available">
+  <div class="caption">Object Information pane showing $Motor attribute with Cmd command linked to [$Motor] tag, inherited attributes checkbox checked, Configure Wizard Options button available</div>
 </div>
 
-<!-- ============================================================ -->
-<h2>14.4 Create the Agitator Symbol</h2>
-<p class="page-ref">Reference: Module 3, Lab 6 (pages 155–159)</p>
+<p>Do Not Copy 3-65 AVEVA™ InTouch for System Platform 2023 The Galaxy Browser appears. 53. Select the Training toolset and then select Agitator_Detailed. 54. Click OK to close the Galaxy Browser. Agitator_Detailed appears in the Content pane. 55. Save and close the $Agitator object.</p>
 
-<p>The agitator symbol requires additional configuration because its SA_Agitator_Settler graphic uses default references (Me.PV, Me.SP) that need to be remapped to the actual speed attributes (Me.Speed.PV, Me.Speed.SP).</p>
-
-<div class="lab">
-  <strong>Steps 28–32: Create and Configure Agitator</strong><br>
-  <ol start="28">
-    <li>On the Graphics tab, right-click the Training toolset and select <strong>New → Symbol</strong>.</li>
-    <li>Rename the symbol <strong>Agitator_Detailed</strong> and open it for editing.</li>
-    <li>On the Toolbox tab, search for <code>agitator</code>.</li>
-    <li>Drag <strong>SA_Agitator_Settler</strong> to the canvas.</li>
-    <li>Name the graphic <code>Agitator</code> and configure Wizard Options: LabelType = ObjectTagname, PVNumericDisplay = True, EngUnits = True, EngUnitsType = CustomPropertyLabel, SymbolMode = Advanced, EquipmentStatusIndicator = True, SetPoint = True.</li>
-  </ol>
+<div class="screenshot">
+  <img src="../images/page_0163_0.png" alt="Galaxy Browser showing TrainingGalaxy with Training folder selected, displaying 6 symbols: Agitator_Detailed (selected), Level_Detailed, ProcessOverview, Pump_Detailed, Temperature_Detailed, Valve_Detailed">
+  <div class="caption">Galaxy Browser showing TrainingGalaxy with Training folder selected, displaying 6 symbols: Agitator_Detailed (selected), Level_Detailed, ProcessOverview, Pump_Detailed, Temperature_Detailed, Valve_Detailed</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0156_0.png" alt="Assets panel with agitator search results and SA_Agitator_Settler placed on canvas">
-  <div class="caption">SA_Agitator_Settler placed on the canvas after searching for "agitator" (page 156)</div>
+  <img src="../images/page_0163_1.png" alt="Object Editor for $Agitator with Attributes tab active showing Cmd [$Motor], PV [$Motor], Speed.PV, Speed.SP; Content section now shows Agitator_Detailed linked with preview thumbnail">
+  <div class="caption">Object Editor for $Agitator with Attributes tab active showing Cmd [$Motor], PV [$Motor], Speed.PV, Speed.SP; Content section now shows Agitator_Detailed linked with preview thumbnail</div>
+</div>
+
+<p>Do Not Copy 3-66 AVEVA™ Training Check-in appears, with a warning that indicates the changes to the object will be propagated to derived objects. Note: In a real-world development environment, before accepting the check in, the warning tells you that you need to notify any developers working on derivations that will be impacted by this check in. The best way to proceed is to cancel the check in. When you cancel the check in, the object remains checked out and your changes are not lost. Then, using the Derivation view, you can identify objects in the hierarchy that must be checked in before you can proceed. For the purposes of this lab, where only one developer is involved, you will check in the object. 56. Click Check-in and complete the check-in process.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0164.png" alt="Check-in confirmation dialog warning that changes will propagate to 10 derived objects, with Comment field and Do not prompt checkbox, Cancel and Check-in buttons">
+  <div class="caption">Check-in confirmation dialog warning that changes will propagate to 10 derived objects, with Comment field and Do not prompt checkbox, Cancel and Check-in buttons</div>
+</div>
+
+<p>Do Not Copy 3-67 AVEVA™ InTouch for System Platform 2023 57. On the Templates tab, in the Training\Project toolset, double-click $Level to open it for editing. 58. In Content, click the Link Content button. 59. In the Galaxy Browser, in the Training toolset, double-click Level_Detailed to link it to the $Level object. 60. Save and close and check in $Level. Now you will add the remaining symbols to their template objects. 61. Link the following symbols to their respective templates: Template Symbol $Pump Pump_Detailed $Temperature Temperature_Detailed $Valve Valve_Detailed</p>
+
+<div class="screenshot">
+  <img src="../images/page_0165.png" alt="Three side-by-side Object Editor panels showing SPump (Pump_Detailed linked), STemperature (Temperature_Detailed linked), and SValve (Valve_Detailed linked) with inherited attributes">
+  <div class="caption">Three side-by-side Object Editor panels showing SPump (Pump_Detailed linked), STemperature (Temperature_Detailed linked), and SValve (Valve_Detailed linked) with inherited attributes</div>
+</div>
+
+<p>Do Not Copy 3-68 AVEVA™ Training Test in Runtime Finally, you will test the functionality of one of the symbols you created in runtime. 62. Switch to WindowMaker. 63. In the ContentDisplay window, right-click and select Embed Industrial Graphic. The Galaxy Browser opens showing the template versions of the graphics configured with Me. references. These graphics will not work at runtime.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0166_0.png" alt="WindowMaker ContentDisplay window with Consumed Materials bar chart and right-click context menu showing Embed Industrial Graphic option highlighted">
+  <div class="caption">WindowMaker ContentDisplay window with Consumed Materials bar chart and right-click context menu showing Embed Industrial Graphic option highlighted</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0156_1.png" alt="Properties panel for Agitator with Wizard Options showing Type Agitator, PVNumeric True, EngUnits True">
-  <div class="caption">Agitator Wizard Options configured for numeric display and equipment status indicator (page 156)</div>
+  <img src="../images/page_0166_1.png" alt="Galaxy Browser showing Training folder with 6 symbols: Agitator_Detailed, Level_Detailed, ProcessOverview, Pump_Detailed, Temperature_Detailed, Valve_Detailed">
+  <div class="caption">Galaxy Browser showing Training folder with 6 symbols: Agitator_Detailed, Level_Detailed, ProcessOverview, Pump_Detailed, Temperature_Detailed, Valve_Detailed</div>
 </div>
 
-<div class="lab">
-  <strong>Steps 33–39: Substitute References</strong><br>
-  The default references in the agitator graphic need to be remapped. You will use Substitute References to change Me.SP to Me.Speed.SP and Me.PV to Me.Speed.PV.
-  <ol start="33">
-    <li>Right-click Agitator and select <strong>Substitute → Substitute References</strong>.</li>
-    <li>In the New column, rename <code>Me.SP</code> to <code>Me.Speed.SP</code>.</li>
-    <li>Click <strong>Find &amp; Replace</strong> to expand the options.</li>
-    <li>In Find What, enter <code>Me.PV</code>.</li>
-    <li>In Replace with, enter <code>Me.Speed.PV</code>.</li>
-    <li>Click <strong>Replace All</strong>. The status bar indicates 4 strings replaced.</li>
-    <li>Click OK to close Substitute Reference.</li>
-  </ol>
+<p>Do Not Copy 3-69 AVEVA™ InTouch for System Platform 2023 In the following steps, you will select a graphic from the instance where the Me. references are replaced by actual I/O links. 64. In the Galaxy Browser, click the Instances button to change the view. 65. In Instances, scroll down and select Level_001. 66. On the right, in the Level_001 graphic list, double-click Level_Detailed. The instance graphic is embedded in the window.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0167_0.png" alt="Galaxy Browser showing Instances tab with Level_001 selected from list of 80 objects, preview showing Level_Detailed faceplate with vertical bar gauge, ## ## value, and EU units">
+  <div class="caption">Galaxy Browser showing Instances tab with Level_001 selected from list of 80 objects, preview showing Level_Detailed faceplate with vertical bar gauge, ## ## value, and EU units</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0157_0.png" alt="Right-click context menu on Agitator graphic with Substitute submenu expanded">
-  <div class="caption">Accessing Substitute References from the context menu (page 157)</div>
+  <img src="../images/page_0167_1.png" alt="WindowMaker ContentDisplay window showing Level_001 embedded level gauge with vertical bar, numeric value 23.27, and left sidebar with Consumed Materials and Produced Products charts">
+  <div class="caption">WindowMaker ContentDisplay window showing Level_001 embedded level gauge with vertical bar, numeric value 23.27, and left sidebar with Consumed Materials and Produced Products charts</div>
+</div>
+
+<p>Do Not Copy 3-70 AVEVA™ Training 67. Click Runtime. 68. Verify the graphic displays live data. The lowercase l below the value display indicates the engineering units for liters. 69. Click the ContentDisplay window to set focus to it. 70. On your keyboard, press and hold the Ctrl key, and then with your mouse, scroll the mouse wheel forward and backward to zoom the graphic in and out. When zoomed in, the zoom control bar appears at the bottom of the window. Note: Alternatively, you can make the zoom and pan control bar always visible at runtime. This is done by setting the Show zoom control property to Visible in WindowMaker. The Show zoom control property appears in the properties list after you click inside the frame window.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0168_0.png" alt="ContentDisplay window showing zoomed level gauge reading 73.28 with vertical gray bar and zoom control bar at bottom showing 225% zoom level">
+  <div class="caption">ContentDisplay window showing zoomed level gauge reading 73.28 with vertical gray bar and zoom control bar at bottom showing 225% zoom level</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0157_1.png" alt="Substitute Reference dialog showing Me.SP remapped to Me.Speed.SP">
-  <div class="caption">Renaming Me.SP to Me.Speed.SP in the Substitute Reference dialog (page 157)</div>
+  <img src="../images/page_0168_1.png" alt="Zoom control bar showing zoom in, zoom out, fit to window, pan (active), zoom level set to 300, and normal/fit buttons for navigating zoomed HMI display">
+  <div class="caption">Zoom control bar showing zoom in, zoom out, fit to window, pan (active), zoom level set to 300, and normal/fit buttons for navigating zoomed HMI display</div>
+</div>
+
+<p>Do Not Copy 3-71 AVEVA™ InTouch for System Platform 2023 71. In the zoom control bar, in the drop-down list, select 300. The zoom percent is set to 300. 72. In the zoom control bar, click the Pan button. Pan mode is enabled and the cursor becomes a hand cursor. 73. In the ContentDisplay window, click and hold the mouse and move left, right, up, and down to pan the graphic. Note: Alternatively, you can pan by clicking and holding down the mouse wheel and moving the mouse. 74. In the zoom control bar, click the Normal button. The view is restored to 100 percent and the zoom control bar is hidden. 75. Click Development! to return to WindowMaker. <End of Lab></p>
+
+<div class="screenshot">
+  <img src="../images/page_0169_0.png" alt="Zoom control toolbar showing zoom in, zoom out, fit to window, pan hand tool active, and zoom level set to 300%">
+  <div class="caption">Zoom control toolbar showing zoom in, zoom out, fit to window, pan hand tool active, and zoom level set to 300%</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0157_2.png" alt="Find & Replace dialog within Substitute Reference showing Find What and Replace with fields">
-  <div class="caption">The Find &amp; Replace dialog for bulk reference substitution (page 157)</div>
+  <img src="../images/page_0169_1.png" alt="Zoom control toolbar showing zoom in, zoom out, pan/move tool active with blue border, marquee selection, and zoom level at 150%">
+  <div class="caption">Zoom control toolbar showing zoom in, zoom out, pan/move tool active with blue border, marquee selection, and zoom level at 150%</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0158_0.png" alt="Find & Replace dialog with Find What Me.PV and Replace with Me.Speed.PV">
-  <div class="caption">Finding all Me.PV references to replace with Me.Speed.PV (page 158)</div>
+  <img src="../images/page_0169_2.png" alt="ContentDisplay runtime window showing Level_001 with vertical level gauge bar, numeric readout 2.47, and level tag label">
+  <div class="caption">ContentDisplay runtime window showing Level_001 with vertical level gauge bar, numeric readout 2.47, and level tag label</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0158_1.png" alt="Substitute Reference dialog showing completed substitutions with all 4 strings replaced">
-  <div class="caption">All references successfully remapped — 4 of 5 strings replaced (page 158)</div>
+  <img src="../images/page_0169_3.png" alt="Tools palette showing 15 core drawing tools in 3 rows: pick tool, line, marker, rectangle, rounded rectangle (row 1); freehand, arc, semi-circle, polygon, image import (row 2); rotated rectangle, rotated square, irregular polygon, text, symbol library (row 3)">
+  <div class="caption">Tools palette showing 15 core drawing tools in 3 rows: pick tool, line, marker, rectangle, rounded rectangle (row 1); freehand, arc, semi-circle, polygon, image import (row 2); rotated rectangle, rotated square, irregular polygon, text, symbol library (row 3)</div>
 </div>
 
-<div class="lab">
-  <strong>Steps 40–43: Configure Agitator Custom Properties</strong><br>
-  <ol start="40">
-    <li>Right-click the Agitator and select <strong>Custom Properties</strong>.</li>
-    <li>Configure custom properties as follows:</li>
-  </ol>
-</div>
+<p>Do Not Copy 3-72 AVEVA™ Training</p>
 
-<table>
-  <thead><tr><th>Property</th><th>Value</th></tr></thead>
-  <tbody>
-    <tr><td>EquipState</td><td><code>Me.PV</code></td></tr>
-    <tr><td>EquipStateActive</td><td><code>Me.PV</code></td></tr>
-    <tr><td>EquipStatePassive</td><td><code>not Me.PV</code></td></tr>
-  </tbody>
-</table>
+<p>Do Not Copy 3-73 AVEVA™ InTouch for System Platform 2023 Introduction You can use features of the Graphic Editor and its environment to create custom graphics from basic graphic elements. Graphic elements are basic shapes and controls you can use to create a graphic to your specifications. You can then embed them in another graphic or HMI system window and use them at runtime. You can also use animations to change the appearance of graphic elements at runtime. Animations can be driven by data that comes from attribute values and expressions, as well as element properties. Tools Pane Tools for drawing elements on the canvas are provided in the Graphic Editor Tools pane. The Tools pane includes:  Tools for drawing basic objects, such as lines, rectangles, polygons, and arcs  A pointer tool for selecting and moving elements on the canvas  Windows common controls, such as combo boxes, radio button groups, calendar controls, and others  A Status tool for showing quality and status of selected attributes Rectangle, Rounded Rectangle, Ellipses, and Line Tools You can draw rectangles, rounded rectangles, ellipses, and lines on the canvas. This section provides an overview of graphic tools available in the Graphic Editor, as well as visualization and interaction animations. It also reviews containment relationships between automation objects.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0159.png" alt="Edit Custom Properties dialog for Agitator showing equipment state properties using Me.PV references">
-  <div class="caption">Agitator custom properties for equipment state display using relative references (page 159)</div>
-</div>
-
-<!-- ============================================================ -->
-<h2>14.5 Create the Pump Symbol</h2>
-<p class="page-ref">Reference: Module 3, Lab 6 (pages 159–160)</p>
-
-<p>Finally, you will create the Pump_Detailed symbol using the SA_Pump_Blower_RotaryValve graphic.</p>
-
-<div class="lab">
-  <strong>Steps 44–49: Create and Configure Pump</strong><br>
-  <ol start="44">
-    <li>On the Graphics tab, right-click the Training toolset and select <strong>New → Symbol</strong>.</li>
-    <li>Name the symbol <strong>Pump_Detailed</strong> and open it for editing.</li>
-    <li>On the Toolbox tab, search for <code>sa_pump</code>, then drag <strong>SA_Pump_Blower_RotaryValve</strong> to the canvas.</li>
-    <li>Name the graphic <code>Pump</code>, set Wizard Option <strong>LabelType</strong> = ObjectTagname.</li>
-    <li>Set Custom Property: <strong>EquipState</strong> = <code>Me.PV</code>.</li>
-    <li>Save and close and check in the graphic.</li>
-  </ol>
+  <img src="../images/page_0171_0.png" alt="Tools palette showing drawing tools in 3-row grid including selection pointer, line, crosshair, rectangle, rounded rectangle, ellipse, freehand, polyline/polygon, bezier curve, image import, single-line text, pattern fill, checkbox, text alignment, animated wave, arrow, delete, symbol factory, and trend graph tools">
+  <div class="caption">Tools palette showing drawing tools in 3-row grid including selection pointer, line, crosshair, rectangle, rounded rectangle, ellipse, freehand, polyline/polygon, bezier curve, image import, single-line text, pattern fill, checkbox, text alignment, animated wave, arrow, delete, symbol factory, and trend graph tools</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0160_0.png" alt="Toolbox panel with sa_pump search showing SA_Pump_Blower_RotaryValve selected">
-  <div class="caption">Searching for "sa_pump" and selecting the pump component (page 160)</div>
+  <img src="../images/page_0171_1.png" alt="Tools palette showing selection pointer active with line, polyline, rectangle, rounded rectangle, oval, polygon, arc, corner arc, curved leader, image import, reshape, small text, large text, and dynamic data text tools in two rows">
+  <div class="caption">Tools palette showing selection pointer active with line, polyline, rectangle, rounded rectangle, oval, polygon, arc, corner arc, curved leader, image import, reshape, small text, large text, and dynamic data text tools in two rows</div>
 </div>
+
+<p>Do Not Copy 3-74 AVEVA™ Training Polyline, Polygon, Curve, and Closed Curve Tools You can draw polylines, polygons, curves, and closed curves on the canvas. If a closed element is being drawn, the element automatically closes when done drawing. 2-Point Arc, 2-Point Pie, and 2-Point Chord Tools You can draw 2-point arcs, 2-point pies, and 2-point chords on the canvas. If a closed element is being drawn, the element automatically closes when done drawing. 3-Point Arc, 3-Point Pie, and 3-Point Chord Tools You can draw 3-point arcs, 3-point pies, and 3-point chords on the canvas. If a closed element is being drawn, the element automatically closes when done drawing. Text Tools You can place text and text boxes on the canvas. A Text element has no border and no background fill, and the text does not wrap. A Text Box element can have a border and background fill, and can be configured to wrap text.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0160_1.png" alt="SA_Pump_Blower_RotaryValve pump graphic placed on canvas with yellow/black pump icon">
-  <div class="caption">The pump graphic placed on the canvas with selection handles (page 160)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0160_2.png" alt="Properties panel for Pump object with Wizard Options showing Type Pump, MotorType Fixed, LabelType ObjectTagname">
-  <div class="caption">Pump Wizard Options configured for fixed motor type with object tagname label (page 160)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0161_0.png" alt="Custom Properties panel for Pump showing EquipState: Me.PV and LabelVisible: True">
-  <div class="caption">Pump custom properties using relative reference for equipment state (page 161)</div>
-</div>
-
-<!-- ============================================================ -->
-<h2>14.6 Associate Symbols with Templates</h2>
-<p class="page-ref">Reference: Module 3, Lab 6 (pages 161–165)</p>
-
-<p>Now you will link each symbol you created to its corresponding template object using the Link Content feature in the Object Editor.</p>
-
-<div class="lab">
-  <strong>Steps 50–55: Link Agitator_Detailed to $Agitator</strong><br>
-  <ol start="50">
-    <li>On the Templates tab, in the Training\Project toolset, double-click <strong>$Agitator</strong> to edit it. The Object Editor appears.</li>
-    <li>On the Attributes tab, click the <strong>Configure Wizard Options</strong> button to hide the Object Wizard. The tab expands to show Attributes and Content.</li>
-    <li>In the Content pane, click the <strong>Link Content</strong> button.</li>
-    <li>In the Galaxy Browser, select the Training toolset and then select <strong>Agitator_Detailed</strong>.</li>
-    <li>Click OK. Agitator_Detailed appears in the Content pane.</li>
-    <li>Save and close the $Agitator object.</li>
-  </ol>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0161_1.png" alt="Templates pane showing Project folder with standard object templates including $Agitator, $Level, $Pump, $Temperature, $Valve">
-  <div class="caption">The Templates pane showing the Project toolset with all equipment templates (page 161)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0162_0.png" alt="Object Editor for $Agitator showing Attributes tab and empty Content panel with Link Content button">
-  <div class="caption">The $Agitator Object Editor with the Content pane ready for linking (page 162)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0162_1.png" alt="Object Editor showing Attributes tab with Cmd and PV attributes linked to $Motor tag">
-  <div class="caption">The $Agitator attributes tab showing inherited motor command and process variable attributes (page 162)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0162_2.png" alt="Object Information pane showing $Motor attribute with inherited attributes checkbox checked">
-  <div class="caption">Object information showing inherited $Motor attributes for the agitator (page 162)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0163_0.png" alt="Galaxy Browser showing Training toolset with 6 symbols: Agitator_Detailed, Level_Detailed, ProcessOverview, Pump_Detailed, Temperature_Detailed, Valve_Detailed">
-  <div class="caption">The Galaxy Browser showing all six symbols available for linking (page 163)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0163_1.png" alt="Object Editor for $Agitator with Agitator_Detailed now linked in Content section">
-  <div class="caption">Agitator_Detailed successfully linked to $Agitator as content (page 163)</div>
-</div>
-
-<div class="pitfall">
-  <strong>Important:</strong> When you check in the template object, a warning appears indicating that changes will propagate to all derived objects. In a real-world environment, you should cancel the check-in and notify other developers before proceeding. For this lab, we proceed since only one developer is working.
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0164.png" alt="Check-in confirmation dialog warning that changes will propagate to derived objects">
-  <div class="caption">The check-in warning about changes propagating to derived objects (page 164)</div>
-</div>
-
-<div class="lab">
-  <strong>Steps 57–61: Link Remaining Symbols</strong><br>
-  <ol start="57">
-    <li>On the Templates tab, double-click <strong>$Level</strong> to edit it.</li>
-    <li>In Content, click <strong>Link Content</strong>.</li>
-    <li>In the Galaxy Browser, double-click <strong>Level_Detailed</strong> to link it.</li>
-    <li>Save, close, and check in $Level.</li>
-  </ol>
-  Now link the remaining symbols to their templates:
-</div>
-
-<table>
-  <thead><tr><th>Template</th><th>Symbol</th></tr></thead>
-  <tbody>
-    <tr><td>$Pump</td><td>Pump_Detailed</td></tr>
-    <tr><td>$Temperature</td><td>Temperature_Detailed</td></tr>
-    <tr><td>$Valve</td><td>Valve_Detailed</td></tr>
-  </tbody>
-</table>
-
-<div class="screenshot">
-  <img src="../images/page_0165.png" alt="Three Object Editor panels showing $Pump, $Temperature, and $Valve with their linked symbols">
-  <div class="caption">The $Pump, $Temperature, and $Valve templates with their linked symbols (page 165)</div>
-</div>
-
-<!-- ============================================================ -->
-<h2>14.7 Test in Runtime</h2>
-<p class="page-ref">Reference: Module 3, Lab 6 (pages 166–169)</p>
-
-<p>Finally, you will test the functionality of the level meter symbol in runtime by embedding an instance version in WindowMaker.</p>
-
-<div class="lab">
-  <strong>Steps 62–66: Embed Instance Graphic</strong><br>
-  <ol start="62">
-    <li>Switch to <strong>WindowMaker</strong>.</li>
-    <li>In the ContentDisplay window, right-click and select <strong>Embed Industrial Graphic</strong>.</li>
-  </ol>
-  The Galaxy Browser opens showing the template versions — these use Me. references and will not work at runtime. You need to select an instance version instead.
-  <ol start="64">
-    <li>In the Galaxy Browser, click the <strong>Instances</strong> button to change the view.</li>
-    <li>Scroll down and select <strong>Level_001</strong>.</li>
-    <li>On the right, double-click <strong>Level_Detailed</strong>. The instance graphic is embedded.</li>
-  </ol>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0166_0.png" alt="WindowMaker ContentDisplay window with right-click context menu showing Embed Industrial Graphic option">
-  <div class="caption">Accessing Embed Industrial Graphic from the ContentDisplay context menu (page 166)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0166_1.png" alt="Galaxy Browser showing Training folder with all 6 symbols">
-  <div class="caption">The Galaxy Browser showing Training symbols — these are template versions that won't work at runtime (page 166)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0167_0.png" alt="Galaxy Browser showing Instances tab with Level_001 selected and Level_Detailed preview">
-  <div class="caption">Switching to Instances view and selecting Level_001 for a working runtime graphic (page 167)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0167_1.png" alt="WindowMaker ContentDisplay window showing Level_001 embedded level gauge with live numeric value">
-  <div class="caption">The Level_001 instance graphic embedded in ContentDisplay with live data visible (page 167)</div>
-</div>
-
-<div class="lab">
-  <strong>Steps 67–75: Runtime Verification and Zoom</strong><br>
-  <ol start="67">
-    <li>Click <strong>Runtime</strong>.</li>
-    <li>Verify the graphic displays live data. The lowercase "l" below the value indicates liters.</li>
-    <li>Click the ContentDisplay window to set focus.</li>
-    <li>Hold <strong>Ctrl</strong> and scroll the mouse wheel to zoom in and out. The zoom control bar appears at the bottom.</li>
-    <li>In the zoom control bar, select <strong>300</strong> from the drop-down list.</li>
-    <li>Click the <strong>Pan</strong> button. Pan mode is enabled.</li>
-    <li>Click and drag to pan the graphic left, right, up, and down.</li>
-    <li>Click the <strong>Normal</strong> button to restore 100% view and hide the zoom bar.</li>
-    <li>Click <strong>Development!</strong> to return to WindowMaker.</li>
-  </ol>
-</div>
-
-<div class="tip">
-  <strong>Note:</strong> You can make the zoom and pan control bar always visible at runtime by setting the <strong>Show zoom control</strong> property to <strong>Visible</strong> in WindowMaker.
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0168_0.png" alt="ContentDisplay window showing zoomed level gauge reading 73.28 with zoom control bar at bottom">
-  <div class="caption">The level gauge zoomed to 225% showing live data and the zoom control bar (page 168)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0168_1.png" alt="Zoom control bar showing zoom level 300, pan mode active, and normal/fit buttons">
-  <div class="caption">The zoom control bar with pan mode enabled at 300% zoom level (page 168)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0169_0.png" alt="Zoom control toolbar showing zoom in, zoom out, fit, pan tool, and zoom level at 300%">
-  <div class="caption">The zoom control toolbar with pan tool active (page 169)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0169_1.png" alt="Zoom control toolbar showing pan/move tool active with blue border">
-  <div class="caption">Pan mode active — click and drag to navigate the zoomed view (page 169)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0169_2.png" alt="ContentDisplay runtime window showing Level_001 with vertical level gauge bar and numeric readout">
-  <div class="caption">The Level_001 meter displaying live process data in runtime (page 169)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0169_3.png" alt="Tools palette showing 15 core drawing tools in 3 rows">
-  <div class="caption">The Graphic Editor tools palette available for custom graphic creation (page 169)</div>
-</div>
-
-<p><em>&lt;End of Lab&gt;</em></p>
-
-<!-- ============================================================ -->
-<h2>14.8 Introduction to Graphic Editor Tools</h2>
-<p class="page-ref">Reference: Module 3, Section 4 (pages 171–172)</p>
-
-<p>The Graphic Editor provides a comprehensive set of tools for drawing and configuring graphic elements on the canvas. These tools are organized in the Tools pane and include options for drawing basic shapes, creating complex paths, adding text, and embedding images.</p>
-
-<p>The Tools pane includes tools for drawing basic objects such as lines, rectangles, polygons, and arcs; a pointer tool for selecting and moving elements; Windows common controls like combo boxes and radio button groups; and a Status tool for showing quality and status of selected attributes.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0171_0.png" alt="Tools palette showing drawing tools including selection pointer, line, rectangle, rounded rectangle, ellipse, freehand, polyline, curve, image import, text, and symbol factory tools">
-  <div class="caption">The Graphic Editor tools palette with drawing, shape, and control tools (page 171)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0171_1.png" alt="Tools palette showing selection pointer active with line, polyline, rectangle, rounded rectangle, oval, polygon, arc, and text tools">
-  <div class="caption">Extended tools palette showing selection pointer and shape creation tools (page 171)</div>
-</div>
-
-<p>Key drawing tools include:</p>
-<ul>
-  <li><strong>Rectangle, Rounded Rectangle, Ellipses, and Line Tools</strong> — Draw basic geometric shapes on the canvas.</li>
-  <li><strong>Polyline, Polygon, Curve, and Closed Curve Tools</strong> — Draw complex paths. Closed elements automatically close when finished.</li>
-  <li><strong>2-Point and 3-Point Arc, Pie, and Chord Tools</strong> — Create arc segments and pie shapes for curved geometry.</li>
-  <li><strong>Text Tools</strong> — Place text (no border, no wrap) or text boxes (with border, fill, and optional word wrap) on the canvas.</li>
-</ul>
-
-<div class="screenshot">
-  <img src="../images/page_0172.png" alt="Tools palette showing the full set of drawing and editing tools available in the Graphic Editor">
-  <div class="caption">The complete Graphic Editor tools palette (page 172)</div>
+  <img src="../images/page_0172.png" alt="Tools palette showing 15 core drawing tools in 3 rows: pick tool, line, marker, rectangle, rounded rectangle (row 1); freehand, arc, semi-circle, polygon, image import (row 2); rotated rectangle, rotated square, irregular polygon, text, symbol library (row 3)">
+  <div class="caption">Tools palette showing 15 core drawing tools in 3 rows: pick tool, line, marker, rectangle, rounded rectangle (row 1); freehand, arc, semi-circle, polygon, image import (row 2); rotated rectangle, rotated square, irregular polygon, text, symbol library (row 3)</div>
 </div>
 
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> Why do you use the Instances view rather than the Templates view in the Galaxy Browser when embedding a graphic for runtime testing?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Template versions use Me. relative references that are only resolved when displayed through their parent object. Instance versions have these references replaced with actual I/O links to specific objects, so they display live data at runtime.</p></details>
-
-  <p><strong>2.</strong> In the Substitute References step for the agitator, why was Me.PV replaced with Me.Speed.PV rather than Me.PV?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">The agitator's process variable is specifically the speed attribute (Speed.PV), not the top-level PV. The default SA_Agitator_Settler graphic uses Me.PV, but the $Agitator object stores its speed data in Me.Speed.PV, so the references must be remapped.</p></details>
-
-  <p><strong>3.</strong> What does the "not" keyword do in the custom property CmdClose: not Me.Cmd for the valve?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">The "not" keyword inverts the Boolean value of Me.Cmd. Since Me.Cmd is true when the valve is open, not Me.Cmd is true when the valve is closed, allowing the graphic to correctly display both open and closed states.</p></details>
-
-  <p><strong>4.</strong> Why is the Duplicate workflow used for the Temperature_Detailed symbol instead of creating it from scratch?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Duplicating Level_Detailed preserves all the Wizard Options, canvas size, positioning, and embedded SA_Meters configuration. Only the name and Type property need to change, making it much faster than recreating everything from scratch.</p></details>
-
-  <p><strong>5.</strong> What happens when you check in a template object that has linked content, and there are derived objects?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">A warning appears indicating that changes will propagate to all derived objects. In a multi-developer environment, you should cancel the check-in, notify affected developers, and ensure their changes are checked in first before proceeding.</p></details>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Lab 6 – Creating the Mixer Components?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
 </div>
 
 <p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson 15 — Graphic Editor Tools and Animations</p>
+<p class="source">Next: Lesson L15 — Graphic Editor Tools and Animations</p>
 
 <script>
 
@@ -628,12 +400,12 @@ function saveProgress() {
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
-  try { localStorage.setItem('aveva-lesson-progress', JSON.stringify(checks)); } catch(e) {}
+  try { localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks)); } catch(e) {}
   updateProgressText();
 }
 function loadProgress() {
   var data = null;
-  try { data = localStorage.getItem('aveva-lesson-progress'); } catch(e) {}
+  try { data = localStorage.getItem('intouch-lesson-progress'); } catch(e) {}
   if (!data) { updateProgressText(); return; }
   try {
     var checks = JSON.parse(data);

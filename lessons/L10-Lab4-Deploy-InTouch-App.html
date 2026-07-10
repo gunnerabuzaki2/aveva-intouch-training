@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 10: Lab4 Deploy InTouch App</title>
+<title>Lesson L10: Lab 4 – Deploying an InTouch Application</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -35,8 +35,7 @@
 <body>
 
 <nav>
-  <a href="L09-Runtime-Environment.html">&larr; Lesson 9: Runtime Environment</a> &nbsp;|&nbsp;
-  <a href="L11-Symbol-Overview-Graphic-Editor.html">Lesson 11: Symbol Overview + Graphic Editor &rarr;</a>
+  <a href="L09-Runtime-Environment.html">&larr; Runtime Environment and Application Design</a> &nbsp;|&nbsp; <a href="L11-Symbol-Overview-Graphic-Editor.html">Symbol Overview + Graphic Editor &rarr;</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -98,262 +97,157 @@
 </details>
 </nav>
 
-<h1>Lesson 10: Lab 4 – Deploying an InTouch Application</h1>
-<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 2, Lab 4 (pages 87–98)</p>
-<p class="page-ref">In this lab, you will deploy a Managed InTouch application by creating and configuring a ViewEngine, selecting startup windows, deploying to a production node, and launching in runtime.</p>
+<h1>Lesson L10: Lab 4 – Deploying an InTouch Application</h1>
+<p class="page-ref">Module 2 — Getting Started | Pages 87–98</p>
 
-<div class="lab">
-  <strong>Lab Objectives:</strong>
-  <ul style="margin:0.5em 0;">
-    <li>Create and configure a ViewEngine</li>
-    <li>Select home windows for InTouch application startup</li>
-    <li>Deploy a Managed InTouch application</li>
-    <li>Open a deployed InTouch application in runtime</li>
-  </ul>
-</div>
+<p>Do Not Copy 2-47 AVEVA™ InTouch for System Platform 2023 Introduction In this lab, you will deploy a Managed InTouch application, and then view the application in runtime. Objectives Upon completion of this lab, you will be able to:  Create and configure a ViewEngine  Select Home windows for InTouch application start up  Deploy a Managed InTouch application  Open a deployed InTouch application in runtime</p>
 
-<!-- ============================================================ -->
-<h2>10.1 Create a ViewEngine</h2>
-<p class="page-ref">Reference: Module 2, Lab 4 (pages 88–90)</p>
-
-<p>The ViewEngine is the object that hosts and executes InTouch applications. You need to create one before you can deploy and run your Managed InTouch application. First, derive a project-specific template from the base <code>$ViewEngine</code> template.</p>
-
-<ol>
-  <li>In the IDE, on the Templates tab, expand <strong>TrainingGalaxy &gt; System</strong>. Right-click the <code>$ViewEngine</code> template and select <strong>New &gt; Derived Template</strong>.</li>
-  <li>Name the derived template <code>$gViewEngine</code>.</li>
-</ol>
+<p>Do Not Copy 2-48 AVEVA™ Training Create a ViewEngine First, you will create an instance of the $ViewEngine template. 1. In the IDE, on the Templates tab, in the System template toolset, right-click the $ViewEngine template and select New | Derived Template. 2. Name the derived template as $gViewEngine.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0088_0.png" alt="IDE Templates tab with $ViewEngine selected in the System folder and right-click context menu showing New Derived Template">
-  <div class="caption">Right-click $ViewEngine in the System toolset and select New &gt; Derived Template (page 88)</div>
+  <img src="../images/page_0088_0.png" alt="System Platform IDE Templates tree with right-click context menu on $ViewEngine showing New submenu with Derived Template option">
+  <div class="caption">System Platform IDE Templates tree with right-click context menu on $ViewEngine showing New submenu with Derived Template option</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0088_1.png" alt="Templates pane showing the newly created $gViewEngine derived template in the System folder">
-  <div class="caption">The $gViewEngine derived template now appears under the System toolset (page 88)</div>
+  <img src="../images/page_0088_1.png" alt="Templates tree showing the newly created $gViewEngine derived template listed under the System folder, highlighted in blue">
+  <div class="caption">Templates tree showing the newly created $gViewEngine derived template listed under the System folder, highlighted in blue</div>
 </div>
 
-<ol start="3">
-  <li>Drag <code>$gViewEngine</code> to the <strong>Training\Global</strong> template toolset.</li>
-  <li>Right-click <code>$gViewEngine</code> in the Global toolset and select <strong>New &gt; Instance</strong>. A new instance named <code>gViewEngine_001</code> is created in the Deployment view.</li>
-</ol>
+<p>Do Not Copy 2-49 AVEVA™ InTouch for System Platform 2023 3. Drag $gViewEngine to the Training\Global template toolset. 4. In the Global template toolset, right-click $gViewEngine and select New | Instance. In the Deployment view, a new instance is created with the default name of gViewEngine_001.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0089_0.png" alt="Templates pane showing $gViewEngine dragged to the Training > Global toolset">
-  <div class="caption">Drag $gViewEngine to the Training &gt; Global toolset for organization (page 89)</div>
+  <img src="../images/page_0089_0.png" alt="Templates tree expanded to show Training folder contents, with right-click context menu on $gViewEngine showing New &gt; Instance option">
+  <div class="caption">Templates tree expanded to show Training folder contents, with right-click context menu on $gViewEngine showing New &gt; Instance option</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0089_1.png" alt="Right-click context menu on $gViewEngine showing New > Instance option to create a new ViewEngine instance">
-  <div class="caption">Create an instance of $gViewEngine — this creates gViewEngine_001 in the Deployment view (page 89)</div>
+  <img src="../images/page_0089_1.png" alt="Deployment view showing the newly created gViewEngine_001 instance under Unassigned Host, alongside GRPlatform and AppEngine1 under PROD_Platform1">
+  <div class="caption">Deployment view showing the newly created gViewEngine_001 instance under Unassigned Host, alongside GRPlatform and AppEngine1 under PROD_Platform1</div>
 </div>
 
-<ol start="5">
-  <li>In the Deployment view, rename <code>gViewEngine_001</code> to <code>ViewEngine1</code>.</li>
-  <li>Drag ViewEngine1 to assign it to <strong>PROD_Platform1</strong>.</li>
-</ol>
+<p>Do Not Copy 2-50 AVEVA™ Training 5. In the Deployment view, name gViewEngine_001 as ViewEngine1. 6. Assign ViewEngine1 to PROD_Platform1.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0090_0.png" alt="Deployment view showing ViewEngine1 under Unassigned Host, renamed from gViewEngine_001">
-  <div class="caption">Rename the instance to ViewEngine1 in the Deployment view (page 90)</div>
+  <img src="../images/page_0090_0.png" alt="Deployment view showing ViewEngine1 renamed and GRPlatform with AppEngine1 and all deployed objects under PROD_Platform1">
+  <div class="caption">Deployment view showing ViewEngine1 renamed and GRPlatform with AppEngine1 and all deployed objects under PROD_Platform1</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0090_1.png" alt="Deployment view showing ViewEngine1 now assigned under PROD_Platform1 alongside other production objects">
-  <div class="caption">ViewEngine1 is now assigned to PROD_Platform1 in the deployment hierarchy (page 90)</div>
-</ol>
-
-<div class="key-concept">
-  <strong>Key Concept:</strong> The ViewEngine must be assigned to a WinPlatform object (like PROD_Platform1) before it can host and execute InTouchViewApp objects. The ViewEngine's scan rate determines the scan rate of all hosted InTouchViewApp objects.
+  <img src="../images/page_0090_1.png" alt="Deployment tree with ViewEngine1 expanded under PROD_Platform1 showing all deployed objects including Line1, Packaging, Plant, ProdPLC1, and Sys">
+  <div class="caption">Deployment tree with ViewEngine1 expanded under PROD_Platform1 showing all deployed objects including Line1, Packaging, Plant, ProdPLC1, and Sys</div>
 </div>
 
-<!-- ============================================================ -->
-<h2>10.2 Create an InTouch Application Instance</h2>
-<p class="page-ref">Reference: Module 2, Lab 4 (pages 91)</p>
-
-<p>Now create an instance of your $MixerView template and assign it to the ViewEngine you just created.</p>
-
-<ol start="7">
-  <li>On the Templates tab, in the <strong>Training\ViewApps</strong> toolset, right-click <code>$MixerView</code> and select <strong>New &gt; Instance</strong>. A new instance named <code>MixerView_001</code> is created.</li>
-  <li>Leave the default name and assign MixerView_001 to <strong>ViewEngine1</strong> in the Deployment view.</li>
-</ol>
+<p>Do Not Copy 2-51 AVEVA™ InTouch for System Platform 2023 Create an Instance of the InTouch Application Now, you will create a new instance of the $MixerView template. 7. On the Templates tab, in the Training\ViewApps template toolset, create an instance of the $MixerView template. In the Deployment view, a new instance is created with the default name of MixerView_001. 8. Leave the default name, and then assign MixerView_001 to ViewEngine1.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0091_0.png" alt="Templates view showing $MixerView with right-click context menu offering New > Instance">
-  <div class="caption">Create an instance of $MixerView from the Training &gt; ViewApps toolset (page 91)</div>
+  <img src="../images/page_0091_0.png" alt="Right-click context menu on $MixerView template in the Training ViewApps folder showing options including New &gt; Instance and Derived Template">
+  <div class="caption">Right-click context menu on $MixerView template in the Training ViewApps folder showing options including New &gt; Instance and Derived Template</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0091_1.png" alt="Before/after Deployment panels showing MixerView_001 moved from Unassigned Host to under ViewEngine1">
-  <div class="caption">Assign MixerView_001 to ViewEngine1 — drag from Unassigned Host to ViewEngine1 in the deployment tree (page 91)</div>
+  <img src="../images/page_0091_1.png" alt="Side-by-side deployment views showing MixerView_001 moved from Unassigned Host to ViewEngine1 under PROD_Platform1 (before and after)">
+  <div class="caption">Side-by-side deployment views showing MixerView_001 moved from Unassigned Host to ViewEngine1 under PROD_Platform1 (before and after)</div>
 </div>
 
-<!-- ============================================================ -->
-<h2>10.3 Assign to Area and Configure Home Windows</h2>
-<p class="page-ref">Reference: Module 2, Lab 4 (pages 92–94)</p>
-
-<p>Assign the objects to the appropriate area in the Galaxy Model view, then configure which windows open automatically when the application starts in WindowViewer.</p>
-
-<ol start="9">
-  <li>In the Model view, assign MixerView_001 and ViewEngine1 to the <strong>Sys</strong> area.</li>
-</ol>
+<p>Do Not Copy 2-52 AVEVA™ Training 9. In the Model view, assign MixerView_001 and ViewEngine1 to the Sys area. Configure WindowViewer Home Windows Now, you will configure WindowViewer settings to set the home windows. At runtime, the home windows will open automatically on startup in WindowViewer. 10. On the Templates tab, in the Training\ViewApps toolset, double-click $MixerView to open WindowMaker. WindowMaker opens and displays Select windows to open. You will not open any windows at this time.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0092_0.png" alt="Model view showing MixerView_001 and ViewEngine1 under Unassigned Area before assignment">
-  <div class="caption">Before assignment — MixerView_001 and ViewEngine1 appear under Unassigned Area (page 92)</div>
+  <img src="../images/page_0092_0.png" alt="Model view showing MixerView_001 and ViewEngine1 under Unassigned Area, before assignment to the Sys area">
+  <div class="caption">Model view showing MixerView_001 and ViewEngine1 under Unassigned Area, before assignment to the Sys area</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0092_1.png" alt="Model view showing MixerView_001 and ViewEngine1 now assigned to the Sys area">
-  <div class="caption">After assignment — both objects are now under the Sys area in the Model view (page 92)</div>
+  <img src="../images/page_0092_1.png" alt="InTouch WindowMaker Open dialog displaying available windows as thumbnails: AlarmDisplay, ContentDisplay, Logon, Navigation, and OverviewDisplay">
+  <div class="caption">InTouch WindowMaker Open dialog displaying available windows as thumbnails: AlarmDisplay, ContentDisplay, Logon, Navigation, and OverviewDisplay</div>
 </div>
 
-<ol start="10">
-  <li>On the Templates tab, double-click <code>$MixerView</code> to open WindowMaker. You will not open any windows at this time — exit the backstage view.</li>
-</ol>
+<p>Do Not Copy 2-53 AVEVA™ InTouch for System Platform 2023 11. On the backstage menu, select Configure | WindowViewer. The WindowViewer settings appear. 12. In WindowViewer settings, select the Startup tab. Home windows appears.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0093_0.png" alt="WindowMaker backstage Open view showing Select windows to open with thumbnails of all five windows">
-  <div class="caption">WindowMaker opens to the backstage — you will not open any windows at this time (page 92)</div>
-</div>
-
-<ol start="11">
-  <li>On the backstage menu, select <strong>Configure &gt; WindowViewer</strong>.</li>
-  <li>In WindowViewer settings, select the <strong>Startup</strong> tab.</li>
-</ol>
-
-<div class="screenshot">
-  <img src="../images/page_0093_1.png" alt="WindowViewer configuration showing the Preferences tab and the Startup tab highlighted">
-  <div class="caption">Navigate to WindowViewer configuration and select the Startup tab (page 93)</div>
-</div>
-
-<ol start="13">
-  <li>In the Home windows section, select all five windows: <strong>AlarmDisplay</strong>, <strong>ContentDisplay</strong>, <strong>Logon</strong>, <strong>Navigation</strong>, and <strong>OverviewDisplay</strong>.</li>
-  <li>Click <strong>Save</strong>. A notification confirms the configuration was updated successfully.</li>
-</ol>
-
-<div class="screenshot">
-  <img src="../images/page_0094_0.png" alt="WindowViewer Startup tab showing all five windows selected as home windows with Save button highlighted">
-  <div class="caption">Select all five windows as home windows in the Startup tab and click Save (page 94)</div>
+  <img src="../images/page_0093_0.png" alt="WindowViewer configuration with Preferences tab active, showing Startup settings including minimum access level 9999 and inactivity timeout fields">
+  <div class="caption">WindowViewer configuration with Preferences tab active, showing Startup settings including minimum access level 9999 and inactivity timeout fields</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0094_1.png" alt="WindowMaker notification popup confirming WindowViewer configuration successfully updated">
-  <div class="caption">WindowMaker confirms that the WindowViewer configuration was successfully updated (page 94)</div>
-</ol>
-
-<div class="key-concept">
-  <strong>Key Concept:</strong> Home windows are the windows that open automatically when WindowViewer starts in production. You must configure these before deploying — otherwise, no windows will appear at runtime.
+  <img src="../images/page_0093_1.png" alt="WindowViewer Startup tab displaying Home windows section with five window thumbnails and Save button in bottom right">
+  <div class="caption">WindowViewer Startup tab displaying Home windows section with five window thumbnails and Save button in bottom right</div>
 </div>
 
-<!-- ============================================================ -->
-<h2>10.4 Deploy the Application</h2>
-<p class="page-ref">Reference: Module 2, Lab 4 (pages 95–96)</p>
-
-<p>Exit WindowMaker, check in your changes, then deploy the ViewEngine and InTouchViewApp to the production node.</p>
-
-<ol start="15">
-  <li>On the backstage menu, select <strong>Exit</strong> to close WindowMaker. Check in <code>$MixerView</code> when prompted.</li>
-</ol>
+<p>Do Not Copy 2-54 AVEVA™ Training 13. In Home windows, select the following windows:  AlarmDisplay  ContentDisplay  Logon  Navigation  OverviewDisplay 14. Click Save. A WindowMaker notification message appears, indicating WindowViewer configuration successfully updated.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0095_0.png" alt="WindowMaker backstage menu with Exit option highlighted">
-  <div class="caption">Exit WindowMaker from the backstage menu — check in $MixerView when prompted (page 95)</div>
-</div>
-
-<ol start="16">
-  <li>In the IDE, in the Deployment view, right-click <strong>ViewEngine1</strong> and select <strong>Deploy</strong>.</li>
-</ol>
-
-<div class="screenshot">
-  <img src="../images/page_0095_1.png" alt="Deployment view showing ViewEngine1 with right-click context menu offering Deploy option">
-  <div class="caption">Right-click ViewEngine1 in the Deployment view and select Deploy (page 95)</div>
-</div>
-
-<ol start="17">
-  <li>In the Deploy dialog, leave all default settings and click <strong>Deploy</strong>.</li>
-  <li>When the progress shows "Deploy complete," click <strong>Close</strong>.</li>
-</ol>
-
-<div class="screenshot">
-  <img src="../images/page_0096_0.png" alt="Deploy dialog showing deployment defaults with cascade deploy checked and Deploy button highlighted">
-  <div class="caption">The Deploy dialog — leave defaults and click Deploy to deploy both ViewEngine1 and MixerView_001 (page 96)</div>
+  <img src="../images/page_0094_0.png" alt="WindowViewer Startup tab with all five home windows (AlarmDisplay, ContentDisplay, Logon, Navigation, OverviewDisplay) selected with Save button">
+  <div class="caption">WindowViewer Startup tab with all five home windows (AlarmDisplay, ContentDisplay, Logon, Navigation, OverviewDisplay) selected with Save button</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0096_1.png" alt="Deploying Objects progress dialog showing Deploy complete with success status and Close button">
-  <div class="caption">Deployment progress dialog — wait for "Deploy complete" and click Close (page 96)</div>
+  <img src="../images/page_0094_1.png" alt="WindowMaker notification dialog confirming WindowViewer configuration successfully updated with information icon">
+  <div class="caption">WindowMaker notification dialog confirming WindowViewer configuration successfully updated with information icon</div>
 </div>
 
-<div class="tip">
-  <strong>Tip:</strong> After deployment completes, the MixerView instance shows an orange synchronization icon indicating final sync on the production node. Once syncing finishes, the icon changes to the fully deployed state.
-</div>
-
-<!-- ============================================================ -->
-<h2>10.5 Launch in Runtime</h2>
-<p class="page-ref">Reference: Module 2, Lab 4 (pages 97–98)</p>
-
-<p>Finally, navigate to the production node and open the deployed application in WindowViewer to verify it runs correctly.</p>
-
-<ol start="19">
-  <li>Switch to the production node (your instructor will provide the node name).</li>
-  <li>From the Windows Start menu, open <strong>Application Manager</strong>.</li>
-</ol>
+<p>Do Not Copy 2-55 AVEVA™ InTouch for System Platform 2023 15. On the backstage menu, select Exit to close WindowMaker and then check in $MixerView. Deploy the Managed InTouch Application Now, you will deploy ViewEngine1 and MixerView_001 to the production node. 16. In the IDE, in the Deployment view, right-click ViewEngine1 and select Deploy.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0097_0.png" alt="Deployment view showing the synchronization icon progression from orange (syncing) to blue (deployed)">
-  <div class="caption">The sync icon progression: orange (synchronizing) to blue (fully deployed) (page 97)</div>
+  <img src="../images/page_0095_0.png" alt="Configure backstage menu with WindowViewer option highlighted among other configuration categories">
+  <div class="caption">Configure backstage menu with WindowViewer option highlighted among other configuration categories</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0097_1.png" alt="AVEVA Application Manager showing the $MixerView tile with Managed 1920x975 resolution label">
-  <div class="caption">Application Manager shows the $MixerView application tile on the InTouch tab (page 97)</div>
+  <img src="../images/page_0095_1.png" alt="Deployment view with $MixerView selected and right-click context menu showing Deploy option highlighted">
+  <div class="caption">Deployment view with $MixerView selected and right-click context menu showing Deploy option highlighted</div>
 </div>
 
-<ol start="21">
-  <li>On the InTouch tab, click the <strong>WindowViewer</strong> button on the $MixerView tile to open the application in runtime.</li>
-</ol>
-
-<p>The Application Manager closes and after a few moments, InTouch WindowViewer opens with the $MixerView application in runtime. The home windows open automatically, and the animated clock appears in the Logon window — confirming that the deployment was successful.</p>
+<p>Do Not Copy 2-56 AVEVA™ Training The Deploy dialog box appears. 17. Leave all default settings and click Deploy. The Deploying Objects dialog box shows progress of the deployment process. 18. When the progress shows Deploy complete, click Close.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0098_0.png" alt="Application Manager with WindowViewer button highlighted on the $MixerView tile">
-  <div class="caption">Click the WindowViewer button on the $MixerView tile to launch the application in runtime (page 98)</div>
+  <img src="../images/page_0096_0.png" alt="Deploy 2 objects dialog box with General tab showing Cascade deploy checked, Skip selected for deployed objects, and On scan for initial state">
+  <div class="caption">Deploy 2 objects dialog box with General tab showing Cascade deploy checked, Skip selected for deployed objects, and On scan for initial state</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0098_1.png" alt="InTouch WindowViewer running the $MixerView application showing all five home windows with the clock in the Logon window">
-  <div class="caption">The deployed $MixerView application running in WindowViewer with all five home windows displayed and the clock animating in the Logon window (page 98)</div>
+  <img src="../images/page_0096_1.png" alt="Deploying Objects dialog showing Deploy complete status with log details of ViewEngine1 and MixerView_01 deployment to PROD_Platform1">
+  <div class="caption">Deploying Objects dialog showing Deploy complete status with log details of ViewEngine1 and MixerView_01 deployment to PROD_Platform1</div>
 </div>
 
-<ol start="22">
-  <li>Leave the application running on the production node and switch back to the engineering node.</li>
-</ol>
+<p>Do Not Copy 2-57 AVEVA™ InTouch for System Platform 2023 As soon as the deployment completes, the icon for the MixerView instance displays an orange synchronization icon, which indicates the final synchronization of the application on the production node. Once this process completes, the icon changes to fully deployed. View the Deployed Application in WindowViewer Finally, you will navigate to the production node and open the deployed $MixerView application in runtime. 19. Switch to the production node. Note: Your instructor will provide the name of your production node. 20. From the Windows Start menu, open Application Manager. The AVEVA Application Manager opens.</p>
 
-<div class="key-concept">
-  <strong>Key Concept:</strong> The deployment process is now complete. The $MixerView application is running on the production node via the ViewEngine, displaying all configured home windows with live data.
+<div class="screenshot">
+  <img src="../images/page_0097_0.png" alt="Deployment view showing ViewEngine1 expanded with MixerView_001 displaying an orange synchronization icon during final deployment sync">
+  <div class="caption">Deployment view showing ViewEngine1 expanded with MixerView_001 displaying an orange synchronization icon during final deployment sync</div>
 </div>
 
-<!-- ============================================================ -->
+<div class="screenshot">
+  <img src="../images/page_0097_1.png" alt="AVEVA Application Manager showing the InTouch tab with $MixerView application tile displaying Managed 1920x975 status">
+  <div class="caption">AVEVA Application Manager showing the InTouch tab with $MixerView application tile displaying Managed 1920x975 status</div>
+</div>
+
+<p>Do Not Copy 2-58 AVEVA™ Training 21. On the InTouch tab, in the $MixerView tile, click the WindowViewer button to open the application in runtime. The Application Manager closes and after a few moments, InTouch WindowViewer opens and the $MixerView application displays in runtime. Notice the home windows are opened and the animated clock appears in the Logon window. 22. Leave the application running on the production node and switch back to the engineering node. <End of Lab></p>
+
+<div class="screenshot">
+  <img src="../images/page_0098_0.png" alt="AVEVA Application Manager with $MixerView selected and WindowViewer button highlighted in the toolbar ribbon">
+  <div class="caption">AVEVA Application Manager with $MixerView selected and WindowViewer button highlighted in the toolbar ribbon</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0098_1.png" alt="InTouch WindowViewer runtime displaying the deployed $MixerView application with Logon window, analog clock, Navigation panel, and ContentDisplay area">
+  <div class="caption">InTouch WindowViewer runtime displaying the deployed $MixerView application with Logon window, analog clock, Navigation panel, and ContentDisplay area</div>
+</div>
+
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> Why do you create a derived template from $ViewEngine instead of using the base template directly?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Creating a derived template (like $gViewEngine) allows you to customize ViewEngine settings for your specific project while preserving the base template. It follows the same derivation pattern used for all Galaxy objects — you derive templates for project-specific configurations.</p></details>
-
-  <p><strong>2.</strong> What is the relationship between ViewEngine1 and MixerView_001 in the deployment hierarchy?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">MixerView_001 (the InTouchViewApp instance) is assigned to ViewEngine1 (the ViewEngine instance). The ViewEngine hosts and executes the InTouch application — its scan rate determines the scan rate of the InTouchViewApp.</p></details>
-
-  <p><strong>3.</strong> Why is it important to configure home windows before deploying?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Home windows are the windows that open automatically when WindowViewer starts in production. If you don't configure them, no windows will appear when the application launches on the production node — operators would see an empty runtime.</p></details>
-
-  <p><strong>4.</strong> What do the different deployment icon states (orange vs. blue) indicate?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">The orange icon indicates that final synchronization of the application on the production node is still in progress. The blue icon indicates that deployment is fully complete and the application is ready to run.</p></details>
-
-  <p><strong>5.</strong> How do you launch a deployed Managed InTouch application for the first time?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">On the production node, open AVEVA Application Manager from the Windows Start menu, go to the InTouch tab, and click the WindowViewer button on the application tile. This only needs to be done the first time — subsequent starts launch WindowViewer automatically.</p></details>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Lab 4 – Deploying an InTouch Application?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
 </div>
 
 <p class="source">Module 2 — Getting Started. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: Lesson L11 — Symbol Overview + Graphic Editor</p>
 
 <script>
 
@@ -362,12 +256,12 @@ function saveProgress() {
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
-  try { localStorage.setItem('aveva-lesson-progress', JSON.stringify(checks)); } catch(e) {}
+  try { localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks)); } catch(e) {}
   updateProgressText();
 }
 function loadProgress() {
   var data = null;
-  try { data = localStorage.getItem('aveva-lesson-progress'); } catch(e) {}
+  try { data = localStorage.getItem('intouch-lesson-progress'); } catch(e) {}
   if (!data) { updateProgressText(); return; }
   try {
     var checks = JSON.parse(data);

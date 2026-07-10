@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 1: Course Introduction</title>
+<title>Lesson L03: Lab 1 – Creating and Deploying a Galaxy</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -13,12 +13,12 @@
   .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
   .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
   .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
-  table { border-collapse: collapse; width: 100%%; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
   th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
   th { background: #f5f5f5; }
   code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
   .screenshot { text-align: center; margin: 1.5em 0; }
-  .screenshot img { max-width: 100%%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
   .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
   .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
   .quiz h3 { margin-top: 0; }
@@ -35,9 +35,9 @@
 <body>
 
 <nav>
-  <a href="L02-System-Platform-Overview.html">&larr; Lesson 2: System Platform Overview</a> &nbsp;|&nbsp;
-  <a href="L04-Encryption-Requirements.html">Lesson 4: Encrypted Communication &rarr;</a>
+  <a href="L02-System-Platform-Overview.html">&larr; System Platform Overview</a> &nbsp;|&nbsp; <a href="L04-Encryption-Requirements.html">Encrypted Communication + System Requirements &rarr;</a>
 </nav>
+
 <nav style="margin-bottom:1.5em;">
 <details style="background:#f5f5f5;padding:0.8em;border-radius:6px;border:1px solid #ddd;margin-bottom:1.5em;">
 <summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">&#128218; All Lessons</summary>
@@ -46,393 +46,268 @@
 <strong style="color:#2c5f2d;">&#9989; Progress: <span id="progress-text">0 / 40 completed</span></strong>
 </div>
 <strong>Module 1 &#8212; Introduction</strong><br>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" checked onchange="saveProgress()"> <a href="L01-Course-Introduction.html" style="font-weight:bold;">L01: Course Introduction</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction.html">L01: Course Introduction</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-System-Platform-Overview.html">L02: System Platform Overview</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" checked onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html" style="font-weight:bold;">L03: Lab 1 &#8211; Creating and Deploying a Galaxy</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L03" checked onchange="saveProgress()"> <a href="L03-Lab1-Creating-Galaxy.html" style="font-weight:bold;">L03: Lab 1 – Creating and Deploying a Galaxy</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Encryption-Requirements.html">L04: Encrypted Communication + System Requirements</a></label>
 <strong>Module 2 &#8212; Getting Started</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-InTouch-Visualization-Objects.html">L05: InTouch Visualization + Automation Objects</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 &#8211; Creating a Managed InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-Lab2-Managed-InTouch-App.html">L06: Lab 2 – Creating a Managed InTouch Application</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-WindowMaker-Development.html">L07: InTouch Development Environment</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 &#8211; Building the Application Layout</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Lab3-Application-Layout.html">L08: Lab 3 – Building the Application Layout</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Runtime-Environment.html">L09: Runtime Environment and Application Design</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 &#8211; Deploying an InTouch Application</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Lab4-Deploy-InTouch-App.html">L10: Lab 4 – Deploying an InTouch Application</a></label>
 <strong>Module 3 &#8212; Symbols</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Symbol-Overview-Graphic-Editor.html">L11: Symbol Overview + Graphic Editor</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 &#8211; Building a Process Overview</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Lab5-Process-Overview.html">L12: Lab 5 – Building a Process Overview</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Graphics-With-Objects.html">L13: Graphics with Objects</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 &#8211; Creating the Mixer Components</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Lab6-Mixer-Components.html">L14: Lab 6 – Creating the Mixer Components</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Editor-Tools-Animations.html">L15: Graphic Editor Tools and Animations</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 &#8211; Creating the Mixer Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Lab7-Mixer-Display.html">L16: Lab 7 – Creating the Mixer Display</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-OwningObject-Lab8-Mixers.html">L17: The OwningObject Property + Lab 8</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Custom-Properties.html">L18: Custom Properties</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 &#8211; Creating a Custom Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab9-Custom-Symbol.html">L19: Lab 9 – Creating a Custom Symbol</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Scripts-In-Graphics.html">L20: Scripts in Graphics</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 &#8211; Creating a Navigation Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab10-Navigation-Symbol.html">L21: Lab 10 – Creating a Navigation Symbol</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Galaxy-Styles.html">L22: Galaxy Styles</a></label>
 <strong>Module 4 &#8212; Widgets</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Widgets-Lab11-Carousel.html">L23: Widgets Overview + Lab 11</a></label>
 <strong>Module 5 &#8212; Alarms and Events Visualization</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-Alarming-Overview-Lab12.html">L24: Alarming Overview + Lab 12</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 &#8211; Alarm Aggregation</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">L25: Lab 13 – Alarm Aggregation</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">L26: Live Alarms Visualization</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 &#8211; Current Alarms Display</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 &#8211; Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">L27: Lab 14 – Current Alarms Display</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">L28: Lab 15 – Alarm Popup Symbol</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">L29: Historical Alarms + Lab 16</a></label>
 <strong>Module 6 &#8212; Trend Visualization</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">L30: Historization + Real-Time Trending</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 &#8211; Adding Trending to Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab17-Adding-Trending.html">L31: Lab 17 – Adding Trending to Graphics</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Multi-Pens-Trend.html">L32: Multi Pens Trend</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 &#8211; Trend Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab18-Trend-Popup.html">L33: Lab 18 – Trend Popup Symbol</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Historian-Trend-Lab19.html">L34: Historian Client Trend + Lab 19</a></label>
 <strong>Module 7 &#8212; Security</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Security-Overview.html">L35: Security Overview</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 &#8211; Security Features in Graphics</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Lab20-Security-Features.html">L36: Lab 20 – Security Features in Graphics</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Signed-Writes-Lab21.html">L37: Signed Writes + Lab 21</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Runtime-Customization-Lab22.html">L38: Runtime Customization + Lab 22</a></label>
 <strong>Module 8 &#8212; Web Client</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Web-Client-Overview.html">L39: Web Client Overview</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 &#8211; Using the Web Client</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Lab23-Web-Client.html">L40: Lab 23 – Using the Web Client</a></label>
 </div>
 </details>
 </nav>
 
-<h1>Lesson 3: Lab 1 &ndash; Creating and Deploying a Galaxy</h1>
-<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 1, Lab 1 (pages 11&ndash;30)</p>
-<p class="page-ref">A hands-on lab where you create a Galaxy, import prebuilt Mixer objects, configure multi-node deployment and Historian, deploy the Galaxy, and verify data connections.</p>
+<h1>Lesson L03: Lab 1 – Creating and Deploying a Galaxy</h1>
+<p class="page-ref">Module 1 — Introduction | Pages 11–30</p>
 
-<!-- ============================================================ -->
-<h2>3.1 Lab Introduction</h2>
-<p class="page-ref">Reference: Module 1, Lab 1 (pages 11&ndash;12)</p>
+<p>Do Not Copy 1-7 AVEVA™ InTouch for System Platform 2023 AVEVA™ System Platform Overview AVEVA System Platform, formerly Wonderware System Platform, is an industrial software platform built on ArchestrA technology. It contains an integrated set of services and an extensible data model to manage plant control and information management systems. System Platform supports both the supervisory control layer and the manufacturing execution system layer, presenting them as a single information source. System Platform and its clients provide the framework and tools for developing, executing, monitoring, and visualizing your applications. Services such as data acquisition, historization, and alarming are provided by System Platform components. Services such as visualization and trending are provided by System Platform clients. The System Platform software is based on industry standards and Microsoft technologies, such as Windows, .NET, SQL Server, IIS, and others. ArchestrA provides the fundamental technology and services for the multi-user, object-oriented platform. System Platform Components and Clients System Platform components access and process external data from controllers, software applications, and other data sources. System Platform clients access information from System Platform. System Platform components are as follows:  AVEVA™ Application Server is the heart of System Platform. It provides an object- oriented framework with tools for developing and deploying applications.  AVEVA™ Historian provides process data historization and alarm and event logging for Application Server. Data is exposed through SQL Server and/or an Open Data Protocol (oData) interface.  AVEVA™ Communication Drivers provide the platform for communication with controllers and other data sources. Besides controller-specific protocols, they support open communication connectivity protocols such as MQTT, OPC DA, and OPC UA. This section describes fundamental concepts about AVEVA System Platform and AVEVA System Platform Enterprise. It also introduces ArchestrA technology.</p>
 
-<p>In this lab, you will create a Galaxy and connect to it using the System Platform IDE. Then you will import some prebuilt automation objects that represent a Mixer application and configure them for a multi-node environment. You will also configure an AppEngine to historize data to Historian.</p>
-
-<p>Once the Galaxy is created and configured, you will deploy it and use Object Viewer to verify that attributes are receiving data at runtime. The Galaxy you create in this lab will be used for all other labs in this course.</p>
-
-<div class="lab">
-  <strong>Lab Objectives:</strong> Upon completion, you will be able to create a Galaxy, import objects into it, deploy those objects, and verify data connections using Object Viewer.
+<div class="screenshot">
+  <img src="../images/page_0011.png" alt="AVEVA System Platform architecture diagram showing the layered components: Controllers/Software/Data Sources at the bottom, AVEVA Application Server/Historian/Communication Drivers in the core infrastructure layer, and Supervisory Clients (Operations Management Interface, InTouch for System Platform) and Historian Clients at the top, all built on Microsoft Technologies and Industry Standards.">
+  <div class="caption">AVEVA System Platform architecture diagram showing the layered components: Controllers/Software/Data Sources at the bottom, AVEVA Application Server/Historian/Communication Drivers in the core infrastructure layer, and Supervisory Clients (Operations Management Interface, InTouch for System Platform) and Historian Clients at the top, all built on Microsoft Technologies and Industry Standards.</div>
 </div>
 
-<!-- ============================================================ -->
-<h2>3.2 Creating the Galaxy</h2>
-<p class="page-ref">Reference: Module 1, Lab 1 (pages 12&ndash;15)</p>
+<p>Do Not Copy 1-8 AVEVA™ Training Formerly called OI Servers, they also include legacy DA Servers and IO Servers. System Platform also communicates directly with third-party drivers, such as third-party OPC Server. System Platform clients include:  Supervisory clients run the operator interface and provide real-time access to Application Server data, alarms, and events. There are two supervisory client products, based on different technologies. Both can coexist in the same System Platform solution.  AVEVA™ Operations Management Interface has a rapid-design visualization framework with tools and provides out-of-the-box navigation to display content based on the application’s data model.  AVEVA™ InTouch for System Platform is based on traditional development tools to create displays and the corresponding navigation framework from scratch. It is not included with AVEVA System Platform Enterprise. Supervisory client applications can be accessed remotely through a web browser with the use of AVEVA™ InTouch Access Anywhere. With InTouch Access Anywhere, you simply enter a URL in a web browser running on a desktop computer or mobile device and log on, without the necessity of having any separate client application installed on the portable device or desktop computer.  AVEVA™ Historian Client is a collection of tools for accessing and reporting on data historized with Historian. This client includes a Trend application for plotting data on a graphical display, a Query application for constructing SQL queries through a point-and- click interface, and add-ins to Microsoft Excel and Word for generating reports.  AVEVA™ Historian Client Web is a browser-based tool for quick data query, trending, and analysis of data historized with Historian. It provides an intuitive interface for easy access and use. Together, System Platform and its clients provide the core services needed to develop, implement, and deploy industrial automation applications. Some of these services include:  Real-time data acquisition from field devices  Scaling, statistics, and manipulation of data  Process control  Alarm triggering, logging, acknowledgment, and management  Historization, trending, and analysis of process data  Visualization of real-time process data  Reporting Applications built on System Platform are extensible through the use of scripting within the product itself or through several available toolkits. For example, an application can access a third-party web service by means of a script.</p>
 
-<p>First, you will create a Galaxy based on the Blank Galaxy template and connect to it.</p>
+<p>Do Not Copy 1-9 AVEVA™ InTouch for System Platform 2023 ArchestrA Technology ArchestrA is a distributed architecture developed for supervisory control and manufacturing information systems. It is an open and extensible technology based on a distributed, object- oriented design. It leverages the Microsoft .NET Framework for the industrial automation world. ArchestrA provides the following system services:  Object management for creating object-oriented applications  A component object framework for application modeling of plants, factories, and equipment  A common, global name space for all application types, from single-node to distributed networked applications  Inter-process advanced communications with system maintenance and diagnostic information  Centralized security services with support for multi-user environments for development and runtime  Version management for every object in the application, including logging of development operations Most of these services are exposed, configured, and managed by Application Server. AVEVA™ System Platform Enterprise Overview AVEVA System Platform Enterprise builds upon the core technology of AVEVA System Platform to bring enhanced user accessibility and exclusive visualization extensions, specifically for enterprise users in assembling an AVEVA Unified Operations Center (UOC) solution. This includes the AVEVA Operations Management Interface (OMI) Web Client, allowing applications to be viewed in a standard web browser. AVEVA System Platform Enterprise is an AVEVA Flex subscription activated product. System Platform Enterprise Features Exclusive features of System Platform Enterprise include:  A web client for Operations Management Interface (OMI)  Additional web widgets  ScatterChart widget  Breadcrumb widget  NavigationTree widget  Hamburger widget  TitleBar widget  Graphic Repeater widget  MapApp widget  Additional OMI Apps  Power BI OMI app  PI Vision app  Sankey app  UOC documentation System Platform Enterprise does not include InTouch HMI (WindowMaker and WindowViewer), InTouch Web client, and InTouch Workspaces.</p>
 
-<div class="lab">
-  <strong>Step 1.</strong> Open the System Platform IDE. The Galaxies dialog box appears.
+<p>Do Not Copy 1-10 AVEVA™ Training</p>
+
+<p>Do Not Copy 1-11 AVEVA™ InTouch for System Platform 2023 Introduction In this lab, you will create a Galaxy and connect to it using the System Platform IDE. Then you will import some prebuilt automation objects that represent a Mixer application and configure some of them. For example, you will configure platforms to work in a multi-node environment and an AppEngine to historize data to Historian. Once the Galaxy is created and configured, you will deploy it and use Object Viewer to verify that attributes are receiving data at runtime. The Galaxy you create in this lab will be used for the other labs in this course. Objectives Upon completion of this lab, you will be able to:  Create a Galaxy  Import objects into a Galaxy  Deploy objects  Verify data connections using Object Viewer</p>
+
+<p>Do Not Copy 1-12 AVEVA™ Training Create the Galaxy First, you will create a Galaxy based on the Blank Galaxy template and connect to it. 1. Open the System Platform IDE. The Galaxies dialog box appears.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0016.png" alt="AVEVA System Platform IDE startup screen with the Galaxies dialog box. The Home tab is active, showing a server connection field (S01ENG), New Galaxy templates (Default Galaxy selected, Blank Galaxy, InTouch Base, Reactor Demo), and Recent/Pinned/On server tabs for existing projects.">
+  <div class="caption">AVEVA System Platform IDE startup screen with the Galaxies dialog box. The Home tab is active, showing a server connection field (S01ENG), New Galaxy templates (Default Galaxy selected, Blank Galaxy, InTouch Base, Reactor Demo), and Recent/Pinned/On server tabs for existing projects.</div>
+</div>
+
+<p>Do Not Copy 1-13 AVEVA™ InTouch for System Platform 2023 2. In the New area, select the Blank Galaxy template. Note: Be sure to select the Blank Galaxy template. This will create a Galaxy that contains only base template objects. In later steps, you will import some prebuilt objects into your Galaxy. The Create Galaxy dialog box appears. 3. In Galaxy name, enter TrainingGalaxy. The Connect to this Galaxy option is checked by default.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0017_0.png" alt="Create Galaxy dialog box with empty Galaxy name field, template set to Default_EMPTY.cab, and 'Connect to this Galaxy' checkbox checked. The Create button is disabled waiting for user input.">
+  <div class="caption">Create Galaxy dialog box with empty Galaxy name field, template set to Default_EMPTY.cab, and 'Connect to this Galaxy' checkbox checked. The Create button is disabled waiting for user input.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0016.png" alt="System Platform IDE Galaxies dialog box with Home tab active, showing server field, Galaxy templates (Default, Blank, InTouch Base, Reactor Demo), and Recent/Pinned/On server tabs">
-  <div class="caption">The Galaxies dialog box in the System Platform IDE, showing available Galaxy templates on the Home tab (page 1-12)</div>
+  <img src="../images/page_0017_1.png" alt="Create Galaxy dialog box with 'TrainingGalaxy' entered as the Galaxy name, Default_EMPTY.cab template selected, 'Connect to this Galaxy' checked, and the Create button now enabled (blue).">
+  <div class="caption">Create Galaxy dialog box with 'TrainingGalaxy' entered as the Galaxy name, Default_EMPTY.cab template selected, 'Connect to this Galaxy' checked, and the Create button now enabled (blue).</div>
 </div>
 
-<div class="lab">
-  <strong>Step 2.</strong> In the New area, select the <strong>Blank Galaxy</strong> template. Be sure to select Blank Galaxy &mdash; this creates a Galaxy containing only base template objects. You will import prebuilt objects in a later step.
-</div>
+<p>Do Not Copy 1-14 AVEVA™ Training 4. Click Create. The Create Galaxy dialog box shows the progress of the Galaxy creation process, as well as informational message details. This will take a few moments. It is important to review the messages shown in the Create Galaxy dialog box to make sure no errors occurred. When the Galaxy creation process indicates Successfully created TrainingGalaxy, the Close button becomes enabled.</p>
 
-<div class="lab">
-  <strong>Step 3.</strong> In Galaxy name, enter <code>TrainingGalaxy</code>. The Connect to this Galaxy option is checked by default.
+<div class="screenshot">
+  <img src="../images/page_0018_0.png" alt="Create Galaxy progress dialog showing 'Creating galaxy TrainingGalaxy on S01ENG...' with a progress bar at approximately 50%. The Details section shows completed steps including Restore galaxy begin, Get database connection information, Get file repository information, Remove restore directory, and Restore from backup files. The Close button is grayed out while creation is in progress.">
+  <div class="caption">Create Galaxy progress dialog showing 'Creating galaxy TrainingGalaxy on S01ENG...' with a progress bar at approximately 50%. The Details section shows completed steps including Restore galaxy begin, Get database connection information, Get file repository information, Remove restore directory, and Restore from backup files. The Close button is grayed out while creation is in progress.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0017_0.png" alt="Create Galaxy dialog with empty Galaxy name field, template set to Default_EMPTY.cab, Connect to this Galaxy checked, Create button disabled">
-  <div class="caption">The Create Galaxy dialog before entering a name &mdash; the Create button is grayed out (page 1-13)</div>
+  <img src="../images/page_0018_1.png" alt="Create Galaxy success confirmation dialog showing 'Successfully created TrainingGalaxy on S01ENG.' The Details section lists completed steps including Restore file repository, Restore global data, Remove temporary files, Distributing Galaxy data, and Successfully Deployed ASB Services. The Close button is now enabled.">
+  <div class="caption">Create Galaxy success confirmation dialog showing 'Successfully created TrainingGalaxy on S01ENG.' The Details section lists completed steps including Restore file repository, Restore global data, Remove temporary files, Distributing Galaxy data, and Successfully Deployed ASB Services. The Close button is now enabled.</div>
+</div>
+
+<p>Do Not Copy 1-15 AVEVA™ InTouch for System Platform 2023 5. Click Close. After a few moments, the Galaxy opens in the System Platform IDE.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0019.png" alt="AVEVA System Platform IDE main workspace with TrainingGalaxy project connected to S01ENG server. The ribbon toolbar shows Home tab functions including Edit, Import/Export, Create Object Types (Instance, Template, Screen, Layout, Symbol), Deploy/Check-in. Left panes show Templates hierarchy and Deployment/Model-Tagnname hierarchy with TrainingGalaxy as root.">
+  <div class="caption">AVEVA System Platform IDE main workspace with TrainingGalaxy project connected to S01ENG server. The ribbon toolbar shows Home tab functions including Edit, Import/Export, Create Object Types (Instance, Template, Screen, Layout, Symbol), Deploy/Check-in. Left panes show Templates hierarchy and Deployment/Model-Tagnname hierarchy with TrainingGalaxy as root.</div>
+</div>
+
+<p>Do Not Copy 1-16 AVEVA™ Training Import the Training Objects Next, you will import the prebuilt objects for the mixer application. You will use these objects for the rest of this lab and throughout this course. 6. On the ribbon, select the Galaxy menu, and then select Import | Objects | From package. Selecting the Galaxy menu opens the System Platform IDE backstage. The Import Objects from package dialog box appears. 7. Navigate to C:\Training and select Lab 1 - InTouch for System Platform 2023.aaPKG.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0020_0.png" alt="AVEVA System Platform IDE backstage Import menu with 'Objects &gt; From package' selected. A Windows file dialog titled 'Import Objects from package' is open, currently showing the Documents folder with subfolders.">
+  <div class="caption">AVEVA System Platform IDE backstage Import menu with 'Objects &gt; From package' selected. A Windows file dialog titled 'Import Objects from package' is open, currently showing the Documents folder with subfolders.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0017_1.png" alt="Create Galaxy dialog with TrainingGalaxy entered as the name, Create button now active (blue)">
-  <div class="caption">After entering TrainingGalaxy, the Create button becomes active (page 1-13)</div>
+  <img src="../images/page_0020_1.png" alt="Windows 'Import Objects from package' file dialog navigated to C:\Training folder. The file 'Lab 1 - InTouch for System Platform 2023.aaPKG' (17,997 KB) is selected, with file type filter set to Package files (*.aaPKG; *.aaPDF).">
+  <div class="caption">Windows 'Import Objects from package' file dialog navigated to C:\Training folder. The file 'Lab 1 - InTouch for System Platform 2023.aaPKG' (17,997 KB) is selected, with file type filter set to Package files (*.aaPKG; *.aaPDF).</div>
 </div>
 
-<div class="lab">
-  <strong>Step 4.</strong> Click <strong>Create</strong>. The dialog shows the Galaxy creation progress and informational messages. Review the messages to ensure no errors occurred. When you see &ldquo;Successfully created TrainingGalaxy,&rdquo; the Close button becomes enabled.
+<p>Do Not Copy 1-17 AVEVA™ InTouch for System Platform 2023 8. Click Open to begin the import process. The Import preferences dialog box appears.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0021.png" alt="Import preferences dialog with three conflict resolution rules: (1) Same Tagname and Codebase: Overwrite if higher version; (2) Base Templates with different revision: Migrate; (3) Same Tagname but different Codebase: Skip. Also has 'Never overwrite unprotected with protected' checkbox checked. Cancel and Import buttons at bottom.">
+  <div class="caption">Import preferences dialog with three conflict resolution rules: (1) Same Tagname and Codebase: Overwrite if higher version; (2) Base Templates with different revision: Migrate; (3) Same Tagname but different Codebase: Skip. Also has 'Never overwrite unprotected with protected' checkbox checked. Cancel and Import buttons at bottom.</div>
+</div>
+
+<p>Do Not Copy 1-18 AVEVA™ Training 9. Leave the default import preferences and click Import. The Import Objects from package dialog box shows the progress of the import process, as well as informational message details. It is important to review the messages shown in the Import Objects from package dialog box to make sure no errors occurred. 10. When the import progress indicates Imported completed, click Close. 11. In the top-left corner of the backstage view, click the left arrow button to return to the main page of the System Platform IDE.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0022_0.png" alt="Import Objects from package completion dialog showing 'Import completed. Please review the details below.' The Details log shows object creation messages and summary: 'Imported total of 162 object(s) from 1 file(s)'. Close button available.">
+  <div class="caption">Import Objects from package completion dialog showing 'Import completed. Please review the details below.' The Details log shows object creation messages and summary: 'Imported total of 162 object(s) from 1 file(s)'. Close button available.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0018_0.png" alt="Create Galaxy progress dialog at 50%, showing restore steps in progress, Close button disabled">
-  <div class="caption">Galaxy creation in progress &mdash; the progress bar shows the restore steps (page 1-14)</div>
+  <img src="../images/page_0022_1.png" alt="AVEVA System Platform IDE backstage Import menu view after import completion, showing Import &gt; Objects &gt; From package option with the left navigation sidebar including Home, New, Open, User, AVEVA Connect, Import (active), Export, Configure, Close.">
+  <div class="caption">AVEVA System Platform IDE backstage Import menu view after import completion, showing Import &gt; Objects &gt; From package option with the left navigation sidebar including Home, New, Open, User, AVEVA Connect, Import (active), Export, Configure, Close.</div>
+</div>
+
+<p>Do Not Copy 1-19 AVEVA™ InTouch for System Platform 2023 Configure the Platforms Next, you will configure the network address for each platform. The engineering node (GRPlatform) will be used for project development and a production node (PROD_Platform1) will be used as a runtime environment for object deployment and testing. 12. In the Deployment view, expand TrainingGalaxy, and then double-click GRPlatform to open its configuration editor. 13. On the General tab, in the Network address field, enter the local computer name. Note: Your instructor will provide the node name of this computer. In the example below, S01ENG is shown as the computer name. 14. In the top-right corner of the window, click the Save and Close button.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0023_0.png" alt="Deployment panel showing the hierarchy tree: TrainingGalaxy &gt; Unassigned Host, GRPlatform (selected/highlighted), PROD_Platform1 (with red warning icon). Bottom tabs show Model-Tagname, Deployment (active), Derivation.">
+  <div class="caption">Deployment panel showing the hierarchy tree: TrainingGalaxy &gt; Unassigned Host, GRPlatform (selected/highlighted), PROD_Platform1 (with red warning icon). Bottom tabs show Model-Tagname, Deployment (active), Derivation.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0018_1.png" alt="Create Galaxy success dialog showing all steps complete, Close button enabled">
-  <div class="caption">Galaxy creation completed successfully &mdash; all restore steps finished (page 1-14)</div>
-</div>
-
-<div class="lab">
-  <strong>Step 5.</strong> Click <strong>Close</strong>. After a few moments, the Galaxy opens in the System Platform IDE.
+  <img src="../images/page_0023_1.png" alt="GRPlatform configuration editor with General tab active. Fields show Network address: S01ENG, empty History store forward directory, and Minimum RAM: 1024 MB. Asterisk in title indicates unsaved changes.">
+  <div class="caption">GRPlatform configuration editor with General tab active. Fields show Network address: S01ENG, empty History store forward directory, and Minimum RAM: 1024 MB. Asterisk in title indicates unsaved changes.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0019.png" alt="System Platform IDE main workspace with TrainingGalaxy connected, showing ribbon toolbar with Edit, Import/Export, Create, Deploy/Check-in sections, and left panes with Templates and Deployment hierarchy">
-  <div class="caption">The System Platform IDE with TrainingGalaxy open and ready for work (page 1-15)</div>
+  <img src="../images/page_0023_2.png" alt="GRPlatform configuration editor showing the Engine History tab with attribute fields. The toolbar at top shows Deploy, Check-in, Save, Find, Assign, Runtime buttons. An S01ENG identifier is visible in a selector field.">
+  <div class="caption">GRPlatform configuration editor showing the Engine History tab with attribute fields. The toolbar at top shows Deploy, Check-in, Save, Find, Assign, Runtime buttons. An S01ENG identifier is visible in a selector field.</div>
 </div>
 
-<!-- ============================================================ -->
-<h2>3.3 Importing Training Objects</h2>
-<p class="page-ref">Reference: Module 1, Lab 1 (pages 16&ndash;18)</p>
+<p>Do Not Copy 1-20 AVEVA™ Training The Check-in dialog box appears. 15. In Comment, enter a comment. Note: Entering a comment in the Check-in dialog box is optional, but recommended. 16. Click Check-in. 17. In the Deployment view, double-click PROD_Platform1 to open its configuration editor.</p>
 
-<p>Next, you will import the prebuilt objects for the mixer application. You will use these objects for the rest of this lab and throughout the course.</p>
-
-<div class="lab">
-  <strong>Step 6.</strong> On the ribbon, select the <strong>Galaxy</strong> menu, then select <strong>Import | Objects | From package</strong>. The Import Objects from package dialog box appears.
+<div class="screenshot">
+  <img src="../images/page_0024_0.png" alt="Check-in dialog box with a Comment field containing: 'Node name blank. Changed Node name to S01ENG. Because Node name cannot be blank.' Checkbox option to 'Do not prompt for check-in comments in the future' is unchecked. Cancel and Check-in buttons at bottom.">
+  <div class="caption">Check-in dialog box with a Comment field containing: 'Node name blank. Changed Node name to S01ENG. Because Node name cannot be blank.' Checkbox option to 'Do not prompt for check-in comments in the future' is unchecked. Cancel and Check-in buttons at bottom.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0020_0.png" alt="IDE backstage Import menu with Objects > From package selected, file dialog open">
-  <div class="caption">Selecting Import > Objects > From package from the Galaxy backstage menu (page 1-16)</div>
+  <img src="../images/page_0024_1.png" alt="Deployment panel showing the hierarchy tree with PROD_Platform1 selected and expanded, showing its child AppEngine1. Bottom tabs show Model-Tagname, Deployment (active), Derivation.">
+  <div class="caption">Deployment panel showing the hierarchy tree with PROD_Platform1 selected and expanded, showing its child AppEngine1. Bottom tabs show Model-Tagname, Deployment (active), Derivation.</div>
 </div>
 
-<div class="lab">
-  <strong>Step 7.</strong> Navigate to <code>C:\Training</code> and select <code>Lab 1 - InTouch for System Platform 2023.aaPKG</code>.
+<p>Do Not Copy 1-21 AVEVA™ InTouch for System Platform 2023 18. On the General tab, in Network address, enter your designated production server computer name. Note: Your instructor will provide the node name of this computer. In the example below, S01PROD is shown as the computer name. 19. Save and close the PROD_Platform1 configuration editor, and then check in the object. Configure the Engine for Historian Next, you will configure the Historian connection for the application engine. 20. In the Deployment view, double-click AppEngine1 to open its configuration editor.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0025_0.png" alt="AppEngine1 configuration editor with General tab active. Settings include Engine startup type: Auto, Scan period: 500 ms, Enable storage to historian (checked), Enable Tag Hierarchy (checked), Historian node: S01ENG. Asterisk indicates unsaved changes.">
+  <div class="caption">AppEngine1 configuration editor with General tab active. Settings include Engine startup type: Auto, Scan period: 500 ms, Enable storage to historian (checked), Enable Tag Hierarchy (checked), Historian node: S01ENG. Asterisk indicates unsaved changes.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0020_1.png" alt="File dialog navigated to C:\Training, Lab 1 package file selected (17,997 KB)">
-  <div class="caption">Selecting the Lab 1 package file for import (page 1-16)</div>
+  <img src="../images/page_0025_1.png" alt="Deployment panel showing expanded hierarchy: TrainingGalaxy &gt; PROD_Platform1 &gt; AppEngine1 expanded to show Line1, Line2, Packaging, Plant, and ProdPLC1 nodes.">
+  <div class="caption">Deployment panel showing expanded hierarchy: TrainingGalaxy &gt; PROD_Platform1 &gt; AppEngine1 expanded to show Line1, Line2, Packaging, Plant, and ProdPLC1 nodes.</div>
 </div>
 
-<div class="lab">
-  <strong>Step 8.</strong> Click <strong>Open</strong> to begin the import process. The Import preferences dialog box appears.
+<p>Do Not Copy 1-22 AVEVA™ Training 21. On the General tab, in Historian, enter the node name of the computer where Historian is installed. Note: Your instructor will provide the node name of this computer. In the example below, S01ENG is shown as the Historian node name. 22. Save and close the AppEngine1 configuration editor, and then check in the object. Configure the Data Source Next, you will configure the simulated data source for the mixers. This data source will be used throughout this course. 23. In the Deployment view, ensure AppEngine1 is expanded. 24. Double-click ProdPLC1 to open its configuration editor.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0026_0.png" alt="ProdPLC1 configuration editor with General tab active. Fields show Server node: S01PROD, Server name: MBTCP, Detect connection alarm (unchecked), and empty Priority field. Asterisk indicates unsaved changes.">
+  <div class="caption">ProdPLC1 configuration editor with General tab active. Fields show Server node: S01PROD, Server name: MBTCP, Detect connection alarm (unchecked), and empty Priority field. Asterisk indicates unsaved changes.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0021.png" alt="Import preferences dialog with conflict resolution rules and Cancel/Import buttons">
-  <div class="caption">Import preferences dialog &mdash; leave the defaults and click Import (page 1-17)</div>
+  <img src="../images/page_0026_1.png" alt="Deployment panel with expanded hierarchy: TrainingGalaxy &gt; PROD_Platform1 &gt; AppEngine1 &gt; Line1 (with Mixer100, Mixer200, Mixer300, Mixer400), Line2. A right-click context menu is open on TrainingGalaxy showing options: Validate, Deploy..., Undeploy..., Upload Changes, Synchronize Views, Properties.">
+  <div class="caption">Deployment panel with expanded hierarchy: TrainingGalaxy &gt; PROD_Platform1 &gt; AppEngine1 &gt; Line1 (with Mixer100, Mixer200, Mixer300, Mixer400), Line2. A right-click context menu is open on TrainingGalaxy showing options: Validate, Deploy..., Undeploy..., Upload Changes, Synchronize Views, Properties.</div>
 </div>
 
-<div class="key-concept">
-  <strong>Key Concept:</strong> The import preferences control how conflicts are resolved when objects with the same Tagname already exist in the Galaxy. The default settings (overwrite if higher version, migrate templates, skip different codebases) are suitable for this lab.
-</div>
+<p>Do Not Copy 1-23 AVEVA™ InTouch for System Platform 2023 25. On the General tab, in Server node, enter the node name of the computer that will provide data to the Galaxy. Note: Your instructor will provide this information. In the example below, S01PROD is shown. 26. Save and close the ProdPLC1 configuration editor, and then check in the object. Deploy the Galaxy Now, you will deploy the Galaxy. 27. In the Deployment view, right-click TrainingGalaxy and select Deploy.</p>
 
-<div class="lab">
-  <strong>Step 9.</strong> Leave the default import preferences and click <strong>Import</strong>. The import progress dialog shows completion status. Review messages to ensure no errors occurred.
+<div class="screenshot">
+  <img src="../images/page_0027_0.png" alt="Deployment panel with right-click context menu open on TrainingGalaxy node. Menu options include Validate, Deploy..., Undeploy..., Upload Changes, Synchronize Views (Ctrl+Shift+Z), and Properties (Alt+Enter).">
+  <div class="caption">Deployment panel with right-click context menu open on TrainingGalaxy node. Menu options include Validate, Deploy..., Undeploy..., Upload Changes, Synchronize Views (Ctrl+Shift+Z), and Properties (Alt+Enter).</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0022_0.png" alt="Import completion dialog showing 162 objects imported from 1 file, Close button available">
-  <div class="caption">Import completed successfully &mdash; 162 objects were imported from the package file (page 1-18)</div>
+  <img src="../images/page_0027_1.png" alt="Deployment panel showing the full hierarchy with TrainingGalaxy expanded: GRPlatform, PROD_Platform1 &gt; AppEngine1 &gt; Line1 (Mixer100 selected/highlighted), Line2. Right-click context menu on Mixer100 shows: Set as Default, Export, Object Help..., View in Object Viewer (highlighted), Synchronize Views, Properties.">
+  <div class="caption">Deployment panel showing the full hierarchy with TrainingGalaxy expanded: GRPlatform, PROD_Platform1 &gt; AppEngine1 &gt; Line1 (Mixer100 selected/highlighted), Line2. Right-click context menu on Mixer100 shows: Set as Default, Export, Object Help..., View in Object Viewer (highlighted), Synchronize Views, Properties.</div>
 </div>
 
-<div class="lab">
-  <strong>Step 10.</strong> When import is complete, click <strong>Close</strong>.
-  <strong>Step 11.</strong> Click the back arrow in the top-left corner of the backstage view to return to the main IDE page.
+<p>Do Not Copy 1-24 AVEVA™ Training The Deploy dialog box appears.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0028.png" alt="Deploy 128 objects dialog with General tab active. Deployment defaults: Cascade deploy checked, Include redundant partner unchecked. Deployed objects: Skip selected, Force off scan checked, Preserve runtime changes checked. Undeployed objects: Deploy new objects checked. Initial scan state: On scan selected. Note about deploying host objects forcing redeploy. Cancel and Deploy buttons.">
+  <div class="caption">Deploy 128 objects dialog with General tab active. Deployment defaults: Cascade deploy checked, Include redundant partner unchecked. Deployed objects: Skip selected, Force off scan checked, Preserve runtime changes checked. Undeployed objects: Deploy new objects checked. Initial scan state: On scan selected. Note about deploying host objects forcing redeploy. Cancel and Deploy buttons.</div>
+</div>
+
+<p>Do Not Copy 1-25 AVEVA™ InTouch for System Platform 2023 28. Leave the deployment default settings and click Deploy. The Deploying Objects dialog box shows the progress of the deployment process, as well as informational message details. This will take a few moments. It is important to review the messages shown in the Deploying Objects dialog box to make sure no errors occurred. 29. When the deployment progress shows Deploy complete, click Close. Verify Data in Runtime Finally, you will verify the data in runtime by viewing the object attributes in Object Viewer. 30. In the Deployment view, expand the Line1 area, and then right-click the Mixer100 instance and select View in Object Viewer. Note: You can right-click any object in the Deployment view to open Object Viewer.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0029_0.png" alt="Deploying Objects progress dialog showing 'Deploy complete. Please review the details below.' The Details log shows deployment of DI Network Object, 8 Areas (Line1, etc.), 116 Automation Objects, and 125 objects placed OnScan. Final line: '[SUCCESS] Deploy Completed. Deployed 127 object(s) out of a total 127 selected object(s)'.">
+  <div class="caption">Deploying Objects progress dialog showing 'Deploy complete. Please review the details below.' The Details log shows deployment of DI Network Object, 8 Areas (Line1, etc.), 116 Automation Objects, and 125 objects placed OnScan. Final line: '[SUCCESS] Deploy Completed. Deployed 127 object(s) out of a total 127 selected object(s)'.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0022_1.png" alt="IDE backstage view after import, showing left navigation with Home, New, Open, Import, Export options">
-  <div class="caption">The backstage view after import &mdash; click the back arrow to return to the IDE (page 1-18)</div>
+  <img src="../images/page_0029_1.png" alt="Deployment panel showing expanded hierarchy: TrainingGalaxy &gt; PROD_Platform1 &gt; AppEngine1 &gt; Line1 with Mixer100 selected/highlighted, along with Mixer200, Mixer300, Mixer400. Right-click context menu on Mixer100 with 'View in Object Viewer' option highlighted.">
+  <div class="caption">Deployment panel showing expanded hierarchy: TrainingGalaxy &gt; PROD_Platform1 &gt; AppEngine1 &gt; Line1 with Mixer100 selected/highlighted, along with Mixer200, Mixer300, Mixer400. Right-click context menu on Mixer100 with 'View in Object Viewer' option highlighted.</div>
 </div>
 
-<!-- ============================================================ -->
-<h2>3.4 Configuring Platforms</h2>
-<p class="page-ref">Reference: Module 1, Lab 1 (pages 19&ndash;21)</p>
+<p>Do Not Copy 1-26 AVEVA™ Training The Object Viewer window appears, showing the list of attributes for Mixer100. 31. At the bottom of the window, right-click in the Watch List 1 pane and select Open. The Open dialog box appears.</p>
 
-<p>Next, you will configure the network address for each platform. The engineering node (GRPlatform) will be used for project development and a production node (PROD_Platform1) will be used as a runtime environment for deployment and testing.</p>
-
-<div class="lab">
-  <strong>Step 12.</strong> In the Deployment view, expand TrainingGalaxy, and then double-click <strong>GRPlatform</strong> to open its configuration editor.
-  <strong>Step 13.</strong> On the General tab, in the Network address field, enter the local computer name (your instructor will provide this &mdash; in the example, <code>S01ENG</code>).
-  <strong>Step 14.</strong> Click the <strong>Save and Close</strong> button.
+<div class="screenshot">
+  <img src="../images/page_0030_0.png" alt="Object Viewer window showing attributes for Mixer100. Left pane lists objects (Inlet1_001, Inlet1_002, Level_001, Mixer100 selected). Right pane shows attributes table with Tagname: Mixer100, ScanStateCmd: true, ScanState: true, SecurityGroup: Default, Area: Line1, Host: Line1, AlarmMode: Enable, ConfigVersion: 1. All quality values show 'C0:Good'.">
+  <div class="caption">Object Viewer window showing attributes for Mixer100. Left pane lists objects (Inlet1_001, Inlet1_002, Level_001, Mixer100 selected). Right pane shows attributes table with Tagname: Mixer100, ScanStateCmd: true, ScanState: true, SecurityGroup: Default, Area: Line1, Host: Line1, AlarmMode: Enable, ConfigVersion: 1. All quality values show 'C0:Good'.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0023_0.png" alt="Deployment panel showing TrainingGalaxy tree with GRPlatform and PROD_Platform1">
-  <div class="caption">Deployment view with GRPlatform highlighted &mdash; double-click to open its configuration (page 1-19)</div>
+  <img src="../images/page_0030_1.png" alt="Object Viewer window with a right-click context menu open over the Watch List 1 pane at the bottom. The context menu shows options including Modify..., View Detailed Info, Remove from Watch, Activate, Suspend, Add Attribute Reference..., Add Watch Window, Remove Watch Window, Rename Tab..., Open... (highlighted), Save, Save As...">
+  <div class="caption">Object Viewer window with a right-click context menu open over the Watch List 1 pane at the bottom. The context menu shows options including Modify..., View Detailed Info, Remove from Watch, Activate, Suspend, Add Attribute Reference..., Add Watch Window, Remove Watch Window, Rename Tab..., Open... (highlighted), Save, Save As...</div>
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0023_1.png" alt="GRPlatform configuration editor with General tab showing Network address set to S01ENG">
-  <div class="caption">Setting the Network address for the GRPlatform (engineering node) (page 1-19)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0023_2.png" alt="GRPlatform configuration editor showing Save button in top-right corner">
-  <div class="caption">Click Save and Close to save the GRPlatform configuration (page 1-19)</div>
-</div>
-
-<p>The Check-in dialog box appears.</p>
-
-<div class="lab">
-  <strong>Step 15.</strong> In Comment, enter a comment describing your changes (optional but recommended).
-  <strong>Step 16.</strong> Click <strong>Check-in</strong>.
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0024_0.png" alt="Check-in dialog with Comment field containing a description of changes made">
-  <div class="caption">The Check-in dialog &mdash; enter an optional comment describing the changes (page 1-20)</div>
-</div>
-
-<div class="lab">
-  <strong>Step 17.</strong> In the Deployment view, double-click <strong>PROD_Platform1</strong> to open its configuration editor.
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0024_1.png" alt="Deployment panel with PROD_Platform1 selected and expanded showing AppEngine1 child">
-  <div class="caption">Deployment view with PROD_Platform1 selected for configuration (page 1-20)</div>
-</div>
-
-<div class="lab">
-  <strong>Step 18.</strong> On the General tab, in Network address, enter your designated production server computer name (e.g., <code>S01PROD</code>).
-  <strong>Step 19.</strong> Save, close, and check in the PROD_Platform1 object.
-</div>
-
-<!-- ============================================================ -->
-<h2>3.5 Configuring the Engine for Historian</h2>
-<p class="page-ref">Reference: Module 1, Lab 1 (pages 22&ndash;23)</p>
-
-<p>Next, you will configure the Historian connection for the application engine.</p>
-
-<div class="lab">
-  <strong>Step 20.</strong> In the Deployment view, double-click <strong>AppEngine1</strong> to open its configuration editor.
-  <strong>Step 21.</strong> On the General tab, in Historian, enter the node name of the computer where Historian is installed (e.g., <code>S01ENG</code>).
-  <strong>Step 22.</strong> Save, close, and check in AppEngine1.
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0025_0.png" alt="AppEngine1 configuration editor with General tab showing Historian node field set to S01ENG, storage enabled">
-  <div class="caption">Configuring the Historian connection for AppEngine1 (page 1-21)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0025_1.png" alt="Deployment panel showing expanded hierarchy under PROD_Platform1 with AppEngine1 children: Line1, Line2, Packaging, Plant, ProdPLC1">
-  <div class="caption">The Deployment view showing the expanded AppEngine1 hierarchy (page 1-21)</div>
-</div>
-
-<!-- ============================================================ -->
-<h2>3.6 Configuring the Data Source</h2>
-<p class="page-ref">Reference: Module 1, Lab 1 (pages 22&ndash;23)</p>
-
-<p>You will now configure the simulated data source for the mixers. This data source will be used throughout this course.</p>
-
-<div class="lab">
-  <strong>Step 23.</strong> In the Deployment view, ensure AppEngine1 is expanded.
-  <strong>Step 24.</strong> Double-click <strong>ProdPLC1</strong> to open its configuration editor.
-  <strong>Step 25.</strong> On the General tab, in Server node, enter the node name of the computer providing data (e.g., <code>S01PROD</code>).
-  <strong>Step 26.</strong> Save, close, and check in ProdPLC1.
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0026_0.png" alt="ProdPLC1 configuration editor with General tab showing Server node set to S01PROD and Server name MBTCP">
-  <div class="caption">Configuring the ProdPLC1 data source with the production server node (page 1-22)</div>
-</div>
-
-<!-- ============================================================ -->
-<h2>3.7 Deploying the Galaxy</h2>
-<p class="page-ref">Reference: Module 1, Lab 1 (pages 23&ndash;25)</p>
-
-<p>Now you will deploy the Galaxy. Deployment sends all configured objects to their target platforms where they execute at runtime.</p>
-
-<div class="lab">
-  <strong>Step 27.</strong> In the Deployment view, right-click <strong>TrainingGalaxy</strong> and select <strong>Deploy</strong>.
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0026_1.png" alt="Right-click context menu on TrainingGalaxy showing Deploy option highlighted">
-  <div class="caption">Right-click TrainingGalaxy and select Deploy to begin deployment (page 1-23)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0027_0.png" alt="Deployment panel with context menu showing Deploy, Validate, Undeploy options">
-  <div class="caption">The deployment context menu with Deploy option selected (page 1-23)</div>
-</div>
-
-<p>The Deploy dialog box appears showing deployment options.</p>
-
-<div class="tip">
-  <strong>Tip:</strong> For a first-time deployment, the default settings are typically appropriate. Cascade deploy ensures all child objects are deployed along with their parent. The &ldquo;On scan&rdquo; initial state means objects begin collecting data immediately after deployment.
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0028.png" alt="Deploy dialog box with default settings: Cascade deploy checked, Skip for deployed objects, Deploy new objects, On scan state">
-  <div class="caption">The Deploy dialog with default deployment settings (page 1-24)</div>
-</div>
-
-<div class="lab">
-  <strong>Step 28.</strong> Leave the deployment default settings and click <strong>Deploy</strong>. Review the messages to ensure no errors occurred.
-  <strong>Step 29.</strong> When deployment shows &ldquo;Deploy complete,&rdquo; click <strong>Close</strong>.
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0029_0.png" alt="Deploying Objects progress dialog showing Deploy complete with 127 out of 127 objects deployed successfully">
-  <div class="caption">Deployment completed successfully &mdash; all 127 objects were deployed (page 1-25)</div>
-</div>
-
-<!-- ============================================================ -->
-<h2>3.8 Verifying Data in Runtime</h2>
-<p class="page-ref">Reference: Module 1, Lab 1 (pages 25&ndash;27)</p>
-
-<p>Finally, you will verify the data in runtime by viewing object attributes in Object Viewer. This confirms that your deployment is working and attributes are receiving live data.</p>
-
-<div class="lab">
-  <strong>Step 30.</strong> In the Deployment view, expand Line1, right-click <strong>Mixer100</strong>, and select <strong>View in Object Viewer</strong>.
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0029_1.png" alt="Deployment panel with Mixer100 selected, right-click context menu showing View in Object Viewer highlighted">
-  <div class="caption">Right-click Mixer100 and select View in Object Viewer to inspect live data (page 1-25)</div>
-</div>
-
-<p>The Object Viewer window appears, showing the list of attributes for Mixer100.</p>
-
-<div class="lab">
-  <strong>Step 31.</strong> At the bottom of the window, right-click in the <strong>Watch List 1</strong> pane and select <strong>Open</strong>.
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0030_0.png" alt="Object Viewer showing Mixer100 attributes table with values, timestamps, and C0:Good quality indicators">
-  <div class="caption">Object Viewer displaying live attribute data for Mixer100 (page 1-26)</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0030_1.png" alt="Object Viewer with Watch List context menu showing Open option highlighted">
-  <div class="caption">Right-click the Watch List pane and select Open to load a saved watch list (page 1-26)</div>
-</div>
-
-<div class="lab">
-  <strong>Step 32.</strong> Navigate to <code>C:\Training</code>, select <code>Lab 1 - WatchList</code>, and click <strong>Open</strong>.
-  <strong>Step 33.</strong> Verify that the quality is <strong>Good</strong> for every attribute in the Mixer100 and ProdPLC1 watch windows. Notify your instructor if any attribute shows a different quality status.
-  <strong>Step 34.</strong> When finished, close Object Viewer.
-</div>
-
-<div class="key-concept">
-  <strong>Key Concept:</strong> The &ldquo;Good&rdquo; quality code confirms that each attribute is receiving valid data from the simulated data source. If quality shows anything other than Good, it indicates a communication or configuration issue that needs investigation.
-</div>
-
-<p><em>&lt;End of Lab&gt;</em></p>
-
-<!-- ============================================================ -->
 <div class="quiz">
   <h3>Knowledge Check</h3>
-  <p><strong>1.</strong> Why do you select the Blank Galaxy template instead of the Default Galaxy template when creating a new Galaxy?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">The Blank Galaxy template creates a Galaxy containing only base template objects, allowing you to import specific prebuilt objects into a clean environment. The Default Galaxy would include pre-existing objects that might conflict with the training objects.</p></details>
-
-  <p><strong>2.</strong> What must be configured before deployment to ensure objects communicate on the network?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">Each platform must have its Network address set to the correct computer name (e.g., S01ENG for the engineering node, S01PROD for the production node). Without correct network addresses, the IDE cannot communicate with the target hosts.</p></details>
-
-  <p><strong>3.</strong> What does a quality code of &ldquo;Good&rdquo; in Object Viewer indicate?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">It confirms that the attribute is receiving valid data from the data source. A quality code other than Good indicates a communication or configuration problem that needs investigation.</p></details>
-
-  <p><strong>4.</strong> How many objects were imported from the training package and deployed to the Galaxy?</p>
-  <details><summary>Click to reveal answer</summary><p class="answer">162 objects were imported from the package file, and 127 objects were deployed to the Galaxy during the deployment step.</p></details>
+  <details>
+    <summary>Q1: What are the key concepts covered in this lesson about Lab 1 – Creating and Deploying a Galaxy?</summary>
+    <p class="answer">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to AVEVA System Platform?</summary>
+    <p class="answer">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p>
+  </details>
 </div>
 
-<p class="source">Module 1 &mdash; Introduction. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson 4 &mdash; Encrypted Communication + System Requirements</p>
+<p class="source">Module 1 — Introduction. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Next: Lesson L04 — Encrypted Communication + System Requirements</p>
 
 <script>
+
 function saveProgress() {
   var checks = {};
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
-  try { localStorage.setItem('aveva-lesson-progress', JSON.stringify(checks)); } catch(e) {}
+  try { localStorage.setItem('intouch-lesson-progress', JSON.stringify(checks)); } catch(e) {}
   updateProgressText();
 }
 function loadProgress() {
   var data = null;
-  try { data = localStorage.getItem('aveva-lesson-progress'); } catch(e) {}
+  try { data = localStorage.getItem('intouch-lesson-progress'); } catch(e) {}
   if (!data) { updateProgressText(); return; }
   try {
     var checks = JSON.parse(data);
@@ -449,6 +324,7 @@ function updateProgressText() {
   if (el) el.textContent = done + ' / ' + total + ' completed';
 }
 document.addEventListener('DOMContentLoaded', loadProgress);
+
 </script>
 </body>
 </html>
