@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 31: Lab17 Adding Trending</title>
+<title>Lesson 31: Lab 17 – Adding Trending to Graphics</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -77,7 +77,7 @@
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">25: Lab 13 – Alarm Aggregation</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">26: Live Alarms Visualization</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">27: Lab 14 – Current Alarms Display</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">28: Lab 15 – Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html">28: Alarm Historization + Historical Alarm Display</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">29: Historical Alarms + Lab 16</a></label>
 <strong>Module 6 &#8212; Trend Visualization</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">30: Historization + Real-Time Trending</a></label>
@@ -97,143 +97,131 @@
 </details>
 </nav>
 
-<h1>Lesson 31: Lab17 Adding Trending</h1>
+<h1>Lesson 31: Lab 17 — Adding Trending to Graphics</h1>
 <p class="page-ref">Module 6 — Trend Visualization | Pages 387–400</p>
 
-<p>Introduction In this lab, you will display a real-time data plot. This will be done using Single Pen trend graphics for Level and Temperature in the mixing process graphic. Objectives Upon completion of this lab, you will be able to:  Configure the SA_Trend_SinglePen symbol to display real-time and historical data</p>
+<div class="lab">
+<strong>Lab 17 — Adding Trending to Graphics</strong><br>
+<p>In this lab, you will display a real-time data plot using the <strong>SA_Trend_SinglePen</strong> symbol from the Situational Awareness Library. By embedding Level and Temperature trend charts directly inside the mixing process graphic, operators gain an immediate visual sense of how key process variables evolve over time — without navigating to a separate trend window.</p>
 
-<div class="screenshot">
-  <img src="../images/page_0387.png" alt="Runtime HMI screen showing Mixer100 on Line1 with Select Mixer dropdown, P&amp;ID schematic with Pump1/2_001, Inlet1/2_001, Mixer tank with Level trend chart (99.49 value, gray filled area over 5-min time scale), Temperature trend chart (119.29°C, wave pattern), Agitator_001 (50.04 rpm), Outlet_001, and Alarms button">
-  <div class="caption">Runtime HMI screen showing Mixer100 on Line1 with Select Mixer dropdown, P&amp;ID schematic with Pump1/2_001, Inlet1/2_001, Mixer tank with Level trend chart (99.49 value, gray filled area over 5-min time scale), Temperature trend chart (119.29°C, wave pattern), Agitator_001 (50.04 rpm), Outlet_001, and Alarms button</div>
+<strong>Objectives:</strong>
+<ul>
+<li>Configure the SA_Trend_SinglePen symbol to display real-time and historical data</li>
+<li>Use Substitute References and Substitute Strings to redirect generic symbol bindings to specific object attributes</li>
+<li>Embed trend graphics into a process display using Relative References so that each mixer instance shows its own data</li>
+</ul>
 </div>
 
-<p>Create the Level and Temperature Trends First, you will create LevelTrend_Detailed and TemperatureTrend_Detailed symbols in the $Mixer template. To do so, you will embed and configure SA_Trend_SinglePen from the Situational Awareness Library. 1. In the IDE, on the Templates tab, in the Training\Project template toolset, open the $Mixer template for editing. 2. In Content, add a new symbol named LevelTrend_Detailed, and then open it for editing. 3. From the Toolbox tab, embed Situational Awareness Library\Trends\ SA_Trend_SinglePen.</p>
+<h2>31.1 Creating the Level Trend</h2>
+
+<p>The process begins inside the <strong>$Mixer</strong> template, where you add a new symbol called <strong>LevelTrend_Detailed</strong>. Once opened for editing, you search the Toolbox tab for <em>"single"</em> and drag the <strong>SA_Trend_SinglePen</strong> onto the canvas. This pre-built symbol from the Situational Awareness Library includes a trend chart, a vertical meter, alarm limit indicators, and a floating tooltip — all wired together and ready to be configured through its wizard options.</p>
+
+<p>The wizard exposes a rich set of properties that control how the trend looks and behaves. For the Level trend, you configure it as a smooth <em>Line</em> plot with an alarm border, a vertical <em>Level</em>-type meter, and all four alarm limit indicators (HiHi, Hi, Lo, LoLo) enabled. The floating tooltip is also turned on so that operators can hover over the chart to see the current PV, maximum, minimum, and average values at any point in time.</p>
+
+<table>
+<thead>
+<tr><th>Property</th><th>Value</th><th>Purpose</th></tr>
+</thead>
+<tbody>
+<tr><td>Name</td><td>LevelTrend</td><td>Internal identifier for the embedded symbol</td></tr>
+<tr><td>PlotType</td><td>Line</td><td>Smooth line plot rather than stepped</td></tr>
+<tr><td>AlarmBorder</td><td>True</td><td>Highlights the border when the value enters an alarm state</td></tr>
+<tr><td>Meter</td><td>True</td><td>Shows a vertical meter beside the trend</td></tr>
+<tr><td>MeterType</td><td>Level</td><td>Meter styled as a level indicator</td></tr>
+<tr><td>FloatingTooltip</td><td>True</td><td>Shows PV, Max, Min, Avg on hover</td></tr>
+<tr><td>AlarmHiHiLimitIndicator</td><td>True</td><td>Shows the HiHi alarm limit on the meter</td></tr>
+<tr><td>AlarmHiLimitIndicator</td><td>True</td><td>Shows the Hi alarm limit on the meter</td></tr>
+<tr><td>AlarmLoLimitIndicator</td><td>True</td><td>Shows the Lo alarm limit on the meter</td></tr>
+<tr><td>AlarmLoLoLimitIndicator</td><td>True</td><td>Shows the LoLo alarm limit on the meter</td></tr>
+</tbody>
+</table>
 
 <div class="screenshot">
   <img src="../images/page_0388.png" alt="WindowMaker design canvas with SA_Trend_SinglePen object selected (blue handles), trend graph showing jagged line with gray shaded area, Toolbox tab active with search for 'single' showing 4 matching assets: DigitalMeter_Single, ISA_VenturiTube, SA_Trend_SinglePen highlighted">
-  <div class="caption">WindowMaker design canvas with SA_Trend_SinglePen object selected (blue handles), trend graph showing jagged line with gray shaded area, Toolbox tab active with search for 'single' showing 4 matching assets: DigitalMeter_Single, ISA_VenturiTube, SA_Trend_SinglePen highlighted</div>
+  <div class="caption">Embedding SA_Trend_SinglePen — search for "single" in the Toolbox and drag the trend symbol onto the canvas.</div>
 </div>
-
-<p>4. Name the embedded graphic LevelTrend and configure wizard options as follows: Name: LevelTrend YAxisRangeType: ClipOutOfRangeValue PlotType: Line Label: True SymbolMode: Advanced AlarmBorder: True Meter: True MeterType: Level EngUnitsType: CustomPropertyLabel AlarmLimitIndicators: True AlarmHiHiLimitIndicator: True AlarmHiLimitIndicator: True AlarmLoLimitIndicator: True AlarmLoLoLimitIndicator: True FloatingTooltip: True</p>
 
 <div class="screenshot">
   <img src="../images/page_0389.png" alt="Properties panel for LevelTrend showing wizard options: Type=SimpleTrend, Historian=AutoDetect, TimePeriodMode=Moving, YAxisRangeType=ClipOutOfRangeValue, PlotType=Line, Meter=True, MeterType=Level, AlarmBorder=True, FloatingTooltip=True, plus alarm limit indicators all enabled">
-  <div class="caption">Properties panel for LevelTrend showing wizard options: Type=SimpleTrend, Historian=AutoDetect, TimePeriodMode=Moving, YAxisRangeType=ClipOutOfRangeValue, PlotType=Line, Meter=True, MeterType=Level, AlarmBorder=True, FloatingTooltip=True, plus alarm limit indicators all enabled</div>
+  <div class="caption">LevelTrend wizard properties — all alarm limit indicators and the floating tooltip are enabled for comprehensive monitoring.</div>
 </div>
 
-<p>5. Right-click LevelTrend and select Substitute | Substitute References. 6. Use Find & Replace to replace all references to Me.PV with Me.Level.PV. Your references should appear as follows: 7. Change Me.Level.PV.EngUnitsRangeMax to Me.Level.PV.EngUnitsMax. 8. Change Me.Level.PV.EngUnitsRangeMin to Me.Level.PV.EngUnitsMin. 9. Click OK to close Substitute Reference.</p>
+<h2>31.2 Reconfiguring References with Substitute Tools</h2>
+
+<p>At this point, the SA_Trend_SinglePen still contains its generic references — everything points to <code>Me.PV</code>, which is a placeholder. To connect the trend to the actual Level attribute of the mixer, you use the <strong>Substitute References</strong> tool. Right-clicking the trend and selecting <em>Substitute &gt; Substitute References</em> opens a dialog where you can find and replace all occurrences of <code>Me.PV</code> with <code>Me.Level.PV</code> in a single operation. This bulk replacement updates the data source, alarm references, and engineering unit references across thirteen tag bindings simultaneously — a significant time-saver compared to editing each one individually.</p>
 
 <div class="screenshot">
   <img src="../images/page_0390.png" alt="Substitute Reference dialog showing find-and-replace operation changing Me.PV to Me.Level.PV across 13 tag references including AlarmMostUrgentAcked, EngUnits, HiLimit, LoLimit, EngUnitsMax/Min, with 13 strings replaced successfully">
-  <div class="caption">Substitute Reference dialog showing find-and-replace operation changing Me.PV to Me.Level.PV across 13 tag references including AlarmMostUrgentAcked, EngUnits, HiLimit, LoLimit, EngUnitsMax/Min, with 13 strings replaced successfully</div>
+  <div class="caption">Substitute References — 13 references updated from Me.PV to Me.Level.PV in a single operation.</div>
 </div>
 
-<p>10. Use Substitute Strings to change the text Label to Level. 11. Click OK to close Substitute Strings.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0391.png" alt="Substitute Strings dialog showing string replacement list with Old/New columns, Label replaced with Level (highlighted in blue), other strings unchanged (60, 7, 8, Avg:, day, EU, hr, Max:, min, Min:, PV:, sec), String 26 of 31">
-  <div class="caption">Substitute Strings dialog showing string replacement list with Old/New columns, Label replaced with Level (highlighted in blue), other strings unchanged (60, 7, 8, Avg:, day, EU, hr, Max:, min, Min:, PV:, sec), String 26 of 31</div>
+<div class="pitfall">
+<strong>Warning:</strong> The bulk replacement does not catch everything. The generic SA_Trend_SinglePen uses <code>EngUnitsRangeMax</code> and <code>EngUnitsRangeMin</code> as property names, but the actual Level attribute properties are named <code>EngUnitsMax</code> and <code>EngUnitsMin</code>. Because the find-and-replace only changes the prefix (Me.PV → Me.Level.PV), these two suffixes must be corrected manually after the bulk operation — otherwise the engineering unit range will not resolve correctly at runtime.
 </div>
 
-<p>12. On the Properties tab, in Custom Properties, change the EnableFill property to True and the FillColor property to Gray. Note: The description of the FillColor custom property shown at the bottom of the screen shot above indicates there are eight color choices for the fill color. The color you selected (Gray) is one of these colors. The Level meter in this course uses this filled area to represent a Volumetric Flow measured in liters per second for the mixing process. 13. Save and close the graphic.</p>
+<p>Next, the <strong>Substitute Strings</strong> tool is used to change the text label from "Label" to "Level" throughout the symbol. Finally, on the Properties tab, the custom properties <code>EnableFill</code> is set to <em>True</em> and <code>FillColor</code> is set to <em>Gray</em>. This fills the area under the trend line with a shaded region, which in this course visually represents the volumetric flow of liquid measured in liters per second through the mixing process.</p>
 
 <div class="screenshot">
   <img src="../images/page_0392.png" alt="Properties panel showing LevelTrend custom properties including EnableFill=True, FillColor=Gray (with help text listing valid colors: Red, Green, Blue, Yellow, Orange, Brown, White, Gray), alarm limits (HiHi, Hi, Lo, LoLo), Pen=M.e.LevelPV, EngUnits=True, PVVisible=True">
-  <div class="caption">Properties panel showing LevelTrend custom properties including EnableFill=True, FillColor=Gray (with help text listing valid colors: Red, Green, Blue, Yellow, Orange, Brown, White, Gray), alarm limits (HiHi, Hi, Lo, LoLo), Pen=M.e.LevelPV, EngUnits=True, PVVisible=True</div>
+  <div class="caption">Custom properties — EnableFill=True and FillColor=Gray add a shaded area under the level trend line.</div>
 </div>
 
-<p>Now, you will duplicate LevelTrend_Detailed to create TemperatureTrend_Detailed in the $Mixer template. Then you will modify the duplicate. 14. In Content, with LevelTrend_Detailed selected, click Duplicate. 15. Name the duplicate TemperatureTrend_Detailed and open it for editing. 16. On the canvas, select the graphic.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0393.png" alt="Content panel showing AlarmSeverityPanel, LevelTrend_Detailed (selected/highlighted), MixingProcess_Detailed, and MixingProcess listed, with Duplicate (Ctrl+D) button active for duplicating LevelTrend_Detailed to create TemperatureTrend_Detailed">
-  <div class="caption">Content panel showing AlarmSeverityPanel, LevelTrend_Detailed (selected/highlighted), MixingProcess_Detailed, and MixingProcess listed, with Duplicate (Ctrl+D) button active for duplicating LevelTrend_Detailed to create TemperatureTrend_Detailed</div>
+<div class="tip">
+<strong>Tip:</strong> The <code>FillColor</code> property only recognizes eight named colors: Red, Green, Blue, Yellow, Orange, Brown, White, and Gray. If you enter any other value, the fill silently falls back to no fill — no error is shown, but the shaded area disappears.
 </div>
 
-<p>17. On the Properties tab, change the properties as follows: 18. Use Substitute Strings to change Level to Temperature. Name: TemperatureTrend MeterType: Temperature EnableFill: False</p>
+<h2>31.3 Creating the Temperature Trend by Duplication</h2>
+
+<p>Rather than building a second trend from scratch, you duplicate the <strong>LevelTrend_Detailed</strong> symbol and rename the copy <strong>TemperatureTrend_Detailed</strong>. This approach ensures consistency and saves time. Once the duplicate is opened for editing, three property changes are made: the <em>Name</em> becomes <code>TemperatureTrend</code>, the <em>MeterType</em> changes to <code>Temperature</code>, and <em>EnableFill</em> is set to <em>False</em> — because the Temperature trend uses a line-only display for visual clarity.</p>
+
+<p>After the property changes, <strong>Substitute Strings</strong> replaces the word "Level" with "Temperature" throughout the symbol, and <strong>Substitute References</strong> redirects all <code>Me.Level.PV</code> references to <code>Me.Temperature.PV</code>. This completes the repurposing of the duplicated symbol.</p>
 
 <div class="screenshot">
   <img src="../images/page_0394.png" alt="Substitute Strings dialog showing Find What='Level', Replace with='Temperature', Replace All button highlighted, 1 string replaced out of 31 total, for changing Level references to Temperature in the duplicated trend object">
-  <div class="caption">Substitute Strings dialog showing Find What='Level', Replace with='Temperature', Replace All button highlighted, 1 string replaced out of 31 total, for changing Level references to Temperature in the duplicated trend object</div>
+  <div class="caption">Substitute Strings — changing the Level label to Temperature in the duplicated trend symbol.</div>
 </div>
 
-<p>19. Use Substitute References to change Level to Temperature. 20. Save and close the graphic. 21. In Content, open MixingProcess_Detailed for editing. 22. On the canvas, select the Level and Temperature meters and delete them.</p>
+<h2>31.4 Embedding Trends into the Mixer Process Graphic</h2>
 
-<div class="screenshot">
-  <img src="../images/page_0395_0.png" alt="MixingProcess_Detailed design canvas showing $Mixer area with SA_Agitator_Settler, SA_Pump_Blower_RotaryValve (x2), SA_Valve_And_Damper (x3) symbols, ##.## EU placeholders, blue selection handles around the entire Mixer group, Alarms button top right">
-  <div class="caption">MixingProcess_Detailed design canvas showing $Mixer area with SA_Agitator_Settler, SA_Pump_Blower_RotaryValve (x2), SA_Valve_And_Damper (x3) symbols, ##.## EU placeholders, blue selection handles around the entire Mixer group, Alarms button top right</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0395_1.png" alt="MixingProcess_Detailed design canvas with Level and Temperature meters selected for deletion, showing SA_Agitator_Settler, SA_Pump_Blower_RotaryValve, SA_Valve_And_Damper symbols with yellow alarm indicators and green status indicators">
-  <div class="caption">MixingProcess_Detailed design canvas with Level and Temperature meters selected for deletion, showing SA_Agitator_Settler, SA_Pump_Blower_RotaryValve, SA_Valve_And_Damper symbols with yellow alarm indicators and green status indicators</div>
-</div>
-
-<p>23. From Relative References, embed Me.TemperatureTrend_Detailed and place in the bottom half of the Tank. 24. Move the agitator graphic to the right of the Mixer tank as shown below.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0396_0.png" alt="MixingProcess design canvas showing $Mixer area with Temperature trend chart embedded (PV, Max, Min, Avg placeholders, ##.## EU, time axis 10-60 min), SA_Agitator_Settler on right, SA_Pump_Blower_RotaryValve and SA_Valve_And_Damper on left inlet lines, Alarms button">
-  <div class="caption">MixingProcess design canvas showing $Mixer area with Temperature trend chart embedded (PV, Max, Min, Avg placeholders, ##.## EU, time axis 10-60 min), SA_Agitator_Settler on right, SA_Pump_Blower_RotaryValve and SA_Valve_And_Damper on left inlet lines, Alarms button</div>
-</div>
+<p>With both trend symbols created, the next step is to embed them inside the <strong>MixingProcess_Detailed</strong> graphic. You open that graphic for editing and delete the original Level and Temperature meter objects — they are now superseded by the new trend displays. Using <strong>Relative References</strong>, you embed <code>Me.TemperatureTrend_Detailed</code> in the bottom half of the mixer tank, and <code>Me.LevelTrend_Detailed</code> in the top half. The agitator graphic is moved to the right of the tank to make room, and the tank itself is resized to accommodate both trend widgets.</p>
 
 <div class="screenshot">
   <img src="../images/page_0396_1.png" alt="MixingProcess design canvas with Level trend chart and Temperature trend chart both embedded inside the Mixer vessel rectangle, SA_Agitator_Settler on right, inlet pump/valve assemblies on left, outlet valve on bottom right, all with ##.## EU placeholders">
-  <div class="caption">MixingProcess design canvas with Level trend chart and Temperature trend chart both embedded inside the Mixer vessel rectangle, SA_Agitator_Settler on right, inlet pump/valve assemblies on left, outlet valve on bottom right, all with ##.## EU placeholders</div>
+  <div class="caption">Both trend charts embedded in the mixer vessel — Level on top, Temperature on bottom, with equipment symbols on either side.</div>
 </div>
 
-<p>25. From Relative References, embed Me.LevelTrend_Detailed and place it in the top half of the tank above the temperature graphic. 26. Resize the tank graphic to fit the Level and Temperature graphics. 27. Save and close the graphic. 28. Save and close and check in the $Mixer template.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0397_0.png" alt="MixingProcess design canvas showing Level and Temperature trend charts inside Mixer vessel, SA_Agitator_Settler with speed readout, SA_Pump_Blower_RotaryValve and SA_Valve_And_Damper symbols, blue selection handles around Mixer group">
-  <div class="caption">MixingProcess design canvas showing Level and Temperature trend charts inside Mixer vessel, SA_Agitator_Settler with speed readout, SA_Pump_Blower_RotaryValve and SA_Valve_And_Damper symbols, blue selection handles around Mixer group</div>
+<div class="key-concept">
+<strong>Key Concept: Relative References for Embedding</strong><br>
+When you embed a symbol using <strong>Relative References</strong> (e.g., <code>Me.LevelTrend_Detailed</code>), InTouch automatically resolves the references to the correct instance at runtime. This is what allows the same $Mixer template to display different trend data for each mixer instance — Mixer100 shows Mixer100's data, Mixer200 shows Mixer200's data. Without Relative References, you would need to manually reconfigure every reference for each mixer, which is impractical in any real deployment.
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0397_1.png" alt="MixingProcess design canvas with Level and Temperature trends embedded in mixer tank, agitator symbol, inlet pumps and valves, outlet valve, all connected by green flow lines with process value placeholders">
-  <div class="caption">MixingProcess design canvas with Level and Temperature trends embedded in mixer tank, agitator symbol, inlet pumps and valves, outlet valve, all connected by green flow lines with process value placeholders</div>
-</div>
+<h2>31.5 Testing in Runtime</h2>
 
-<p>Test in Runtime Now, you will view the trend graphics in runtime. 29. In WindowMaker, click Runtime. 30. In the ContentDisplay window, observe the Level and Temperature trends. 31. Place the mouse pointer on one of the trends and verify the floating tooltip appears. The floating tooltip contains the current value, limits, and average (Max minus Min). Additionally, in the meter on the right, alarm limits are shown for HiHi, Hi, Lo, and LoLo. The graphic also shows the alarm border when in alarm. 32. Click Development! to return to WindowMaker. <End of Lab></p>
+<p>Switching to Runtime reveals the payoff of all this configuration work. Inside the ContentDisplay window, the Level and Temperature trends update in real time, scrolling smoothly as new data arrives. Hovering the mouse over a trend reveals the <strong>floating tooltip</strong>, which displays the current PV, maximum, minimum, and average values — all computed over the visible time window. The vertical meter on the right shows alarm limit indicators for HiHi, Hi, Lo, and LoLo, and the alarm border activates whenever the process value enters an alarm state, giving operators an immediate visual cue that something requires attention.</p>
 
 <div class="screenshot">
   <img src="../images/page_0398_0.png" alt="Runtime ContentDisplay showing Mixer100 on Line1 with Level trend chart (sawtooth pattern, 99.49 current value, 5-min reversed time scale), Temperature trend chart (119.29°C, wave pattern), pump/inlet/outlet symbols, Alarms button, Agitator_001 at 50.04 rpm">
-  <div class="caption">Runtime ContentDisplay showing Mixer100 on Line1 with Level trend chart (sawtooth pattern, 99.49 current value, 5-min reversed time scale), Temperature trend chart (119.29°C, wave pattern), pump/inlet/outlet symbols, Alarms button, Agitator_001 at 50.04 rpm</div>
+  <div class="caption">Runtime — Level (99.49) and Temperature (119.29°C) trends update live inside the mixer vessel display.</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0398_1.png" alt="Runtime HMI with Level and Temperature trend charts showing real-time data, floating tooltip visible on trend with PV, Max, Min, Avg values, alarm limit indicators (HiHi, Hi, Lo, LoLo) on meter display">
-  <div class="caption">Runtime HMI with Level and Temperature trend charts showing real-time data, floating tooltip visible on trend with PV, Max, Min, Avg values, alarm limit indicators (HiHi, Hi, Lo, LoLo) on meter display</div>
-</div>
-
-<p>Introduction The Graphic Editor offers two trend controls as built-in methods for plotting multiple pens simultaneously. The first of these (and not part of this course) is the Trend Client control. The Trend Client control can be used in symbols to chart attribute current values from Application Server and current tag values from the InTouch HMI software. The Trend Client supports two sources of data: real-time and historical. Real-time data can be sourced from Application Server object attributes or from InTouch tags. Historical data can be sourced from Historian or InTouch .lgh files. The following shows the TrendClient tool in the Tools pane and the control placed on the canvas in the Graphic Editor. This section describes the Trend Client control as a real-time trend plot. It introduces Multi Pens Trend as a real-time trend solution and explains backfilling data from Historian.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0399.png" alt="Tools palette showing all HMI design tools in grid layout with Multi Pens Trend tool highlighted/selected at bottom, text 'Multi Pens Trend' displayed below the tool grid for adding multi-variable trend charts">
-  <div class="caption">Tools palette showing all HMI design tools in grid layout with Multi Pens Trend tool highlighted/selected at bottom, text 'Multi Pens Trend' displayed below the tool grid for adding multi-variable trend charts</div>
-</div>
-
-<h2>Multi-Pen Trend</h2>
-
-<p>Multi Pens Trend The second multi pens control (and the focus on this course) is the Multi Pens Trend. The Multi Pens Trend displays a succession of process values with multiple trend lines in a single trend chart. It is available from the Tools pane in the Graphic Editor. Once you place the Multi Pens Trend control on the canvas, the Edit Animations dialog box appears with options for the Multi Pens Trend animation. Through the animation, you can configure options for adding trend pens and their references, along with trend details, pen options, and other settings. A maximum of eight pens can be configured. The reference for a pen is the data source that appears as the value shown by the trend. It can be an external reference such as an object attribute, an InTouch tag, or a custom property. Constants and expressions are not allowed. You can enter the reference in the Reference field or use the ellipsis next to the field to select a reference. Reference details include the Min and Max range and units of measure for the values of a selected pen.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0400_0.png" alt="Edit Animations dialog for MultiPensTrend1 showing Trend Pens tab with 3 pens configured: Temperature (blue, Me.Temperature.PV), Level (green, Me.Level.PV), Agitator (beige, Me.Agitator.PV), with pen details section showing Min=0, Max=10, Plot=Step Line, Source section with Historian/InTouch Log History options">
-  <div class="caption">Edit Animations dialog for MultiPensTrend1 showing Trend Pens tab with 3 pens configured: Temperature (blue, Me.Temperature.PV), Level (green, Me.Level.PV), Agitator (beige, Me.Agitator.PV), with pen details section showing Min=0, Max=10, Plot=Step Line, Source section with Historian/InTouch Log History options</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0400_1.png" alt="Edit Animations dialog showing Multi Pens Trend configuration with Trend Pens table (Temperature, Level, Agitator pens with color-coded references), Agitator Details with range settings (Min=0, Max=10), Pen Options with color/weight/pattern, Source section for data source configuration, Options tab visible">
-  <div class="caption">Edit Animations dialog showing Multi Pens Trend configuration with Trend Pens table (Temperature, Level, Agitator pens with color-coded references), Agitator Details with range settings (Min=0, Max=10), Pen Options with color/weight/pattern, Source section for data source configuration, Options tab visible</div>
+  <div class="caption">Floating tooltip — hovering reveals PV (30.09), Max (98.71), Min (0.00), and Avg (49.35) with alarm limit markers on the meter.</div>
 </div>
 
 <div class="quiz">
   <h3>Quiz — Test Your Understanding</h3>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What are the key concepts covered in this lesson about Lab 17 – Adding Trending to Graphics?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: How does this topic relate to AVEVA System Platform?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: Why do you need to manually change EngUnitsRangeMax to EngUnitsMax after using Substitute References?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">The generic SA_Trend_SinglePen uses <code>EngUnitsRangeMax/Min</code> as property names, but the actual object attribute properties are named <code>EngUnitsMax/Min</code>. The bulk find-and-replace of <code>Me.PV</code> to <code>Me.Level.PV</code> doesn't change the property suffix, so these two names must be corrected manually.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: What does the EnableFill property do, and why is it set to False for the Temperature trend?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">EnableFill adds a shaded area under the trend line, filled with the color specified in FillColor. It is set to True for Level (to visually represent volumetric flow) and False for Temperature (which uses a line-only display for clarity).</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q3: What is the purpose of using Relative References when embedding trends into the mixer graphic?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Relative References (e.g., <code>Me.LevelTrend_Detailed</code>) allow InTouch to automatically resolve references to the correct instance at runtime. This means the same $Mixer template can display different data for each mixer instance (Mixer100, Mixer200, etc.) without manual reconfiguration.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q4: What information does the floating tooltip display when you hover over a trend at runtime?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">The floating tooltip displays the current <strong>PV</strong> (process value), <strong>Max</strong> (maximum in the window), <strong>Min</strong> (minimum in the window), and <strong>Avg</strong> (average, computed as Max minus Min). The meter beside the trend also shows alarm limit indicators for HiHi, Hi, Lo, and LoLo.</p></details>
 </div>
 
-<p class="source">Module 6 — Trend Visualization. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Source: AVEVA™ Training Manual, Module 6 — Trend Visualization, Lab 17 (pages 387–400)</p>
 <p class="source">Next: Lesson L32 — Multi Pens Trend</p>
 
 <script>

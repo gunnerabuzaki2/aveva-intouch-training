@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 15: Editor Tools Animations</title>
+<title>Lesson 15: Graphic Editor Tools and Animations</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -11,8 +11,8 @@
   h3 { font-size: 1.1em; color: #555; }
   .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
   .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
-  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
   .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
   table { border-collapse: collapse; width: 100%; margin: 1em 0; }
   th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
   th { background: #f5f5f5; }
@@ -27,8 +27,6 @@
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
   .page-ref { font-size: 0.8em; color: #999; }
-  .checkbox-label { cursor: pointer; }
-  .checkbox-label input { margin-right: 0.3em; }
   #progress-text { color: #2c5f2d; font-weight: bold; }
 </style>
 </head>
@@ -97,103 +95,156 @@
 </details>
 </nav>
 
-<h1>Lesson 15: Editor Tools Animations</h1>
+<h1>Lesson 15: Graphic Editor Tools and Animations</h1>
 <p class="page-ref">Module 3 — Symbols | Pages 173–180</p>
 
-<p>Connectors and Connection Points A connector is a line drawn between graphic elements. It starts at a connection point on one graphic element and ends at a connection point on another element. Connectors are particularly useful for complex graphics like flow diagrams, industrial piping, or electrical wiring diagrams that incorporate many lines between graphic elements. Connectors change length or orientation in response to changes to the connected graphic elements during design or runtime. Graphic elements can be moved, resized, or rotated and still maintain the connector between elements. Connection points are the locations on a graphic element to attach a connector. A default set of connection points appear on the bounding rectangle around a graphic element or an embedded graphic. You can also add custom connection points to graphic elements or embedded graphics if you want to place a connector at a different position than on a bounding rectangle.</p>
+<h2>15.1 Connectors and Connection Points</h2>
+
+<p>When building complex graphics like piping diagrams, flow charts, or wiring schematics, you need elements that stay connected even when you move or resize them. That's exactly what <strong>connectors</strong> do. A connector is a line drawn between two graphic elements that starts at a connection point on one element and ends at a connection point on another. Unlike a plain line, a connector automatically adjusts its length and orientation when the connected elements are moved, resized, or rotated.</p>
+
+<p><strong>Connection points</strong> are the anchor locations on a graphic element where connectors can attach. Every element has a default set of connection points on its bounding rectangle. You can also add custom connection points using the Connection Point tool — just click on the element where you want a new point to appear (shown as a small green rectangle).</p>
 
 <div class="screenshot">
-  <img src="../images/page_0173_0.png" alt="Graphic Editor canvas showing red rounded rectangle and blue circle connected by dashed blue animation link line between their green connection points, demonstrating connector between graphic elements">
-  <div class="caption">Graphic Editor canvas showing red rounded rectangle and blue circle connected by dashed blue animation link line between their green connection points, demonstrating connector between graphic elements</div>
+  <img src="../images/page_0173_0.png" alt="Graphic Editor canvas showing two elements connected by a dashed blue line between their green connection points">
+  <div class="caption">Connectors link graphic elements at connection points. When you move either element, the connector automatically adjusts to maintain the link.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0173_1.png" alt="Graphic Editor with selected red circle object showing blue resize handles and green bounding box, with Graphics Object Palette panel displaying reusable HMI symbol library items">
-  <div class="caption">Graphic Editor with selected red circle object showing blue resize handles and green bounding box, with Graphics Object Palette panel displaying reusable HMI symbol library items</div>
+  <img src="../images/page_0174_1.png" alt="Graphic Editor canvas showing SA_Pump and SA_Valve symbols connected by a dashed blue line with alarm status indicators">
+  <div class="caption">Connectors linking industrial symbols together — the line automatically adjusts when either symbol is moved or resized.</div>
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0173_2.png" alt="Canvas showing red circle with green crosshair interaction point on left, and custom gray equipment graphic with Label text and green interaction hotspot on right, demonstrating basic and complex interactive elements">
-  <div class="caption">Canvas showing red circle with green crosshair interaction point on left, and custom gray equipment graphic with Label text and green interaction hotspot on right, demonstrating basic and complex interactive elements</div>
+<p>To draw a connector, select the Connector tool, click a connection point on the first element, drag to a connection point on the second element, and release. If you need to draw multiple connectors, double-click the Connector tool to keep it active — click another tool or press Esc to deactivate it.</p>
+
+<div class="key-concept">
+<strong>Key Concept: Connectors vs. Static Lines</strong><br>
+A static line stays in one place even when you move the elements it appears to connect. A <strong>connector</strong> is anchored to connection points and automatically repositions when elements move. Always use connectors for flow diagrams, piping, and any graphic where elements might be repositioned during design or runtime.
 </div>
 
-<p>Draw a Connector You can use the Connector tool to draw a connector between graphic elements. To draw a single connector between two elements, move your mouse over the first element and click a connection point. Then press and hold your left mouse button, drag the mouse to the second graphic element, and release the mouse when you are over the selected connection point. The connector appears as a line between the two elements. If you want to draw multiple connectors, you can double-click the Connector tool. Double-clicking a tool saves time by not requiring you to reselect the tool when using it to draw multiple elements of the same type on the canvas one after the other. Clicking another tool or pressing the Esc key will cancel the operation.</p>
+<h2>15.2 Drawing Tools Overview</h2>
+
+<p>The Graphic Editor provides a comprehensive set of drawing tools in the Tools pane. These include:</p>
 
 <div class="screenshot">
-  <img src="../images/page_0174_0.png" alt="Legacy floating Tools palette toolbar showing 30 drawing and interaction tools organized in rows: selection arrow, lines, shapes, text tools, checkboxes, sliders, buttons, trend charts, and symbol factory">
-  <div class="caption">Legacy floating Tools palette toolbar showing 30 drawing and interaction tools organized in rows: selection arrow, lines, shapes, text tools, checkboxes, sliders, buttons, trend charts, and symbol factory</div>
+  <img src="../images/page_0171_0.png" alt="Tools palette showing drawing tools including selection pointer, line, rectangle, oval, polygon, arc, image import, text tools, and more">
+  <div class="caption">The Graphic Editor Tools pane provides a full set of drawing tools for creating custom graphics from basic shapes.</div>
 </div>
 
+<ul>
+<li><strong>Basic shapes</strong> — lines, rectangles, rounded rectangles, ellipses, and polygons for building custom graphics from scratch.</li>
+<li><strong>Complex shapes</strong> — polylines, curves, arcs (2-point and 3-point), pies, and chords for more detailed drawings.</li>
+<li><strong>Text tools</strong> — plain Text elements (no border, no wrap) and Text Box elements (with border, background, and text wrapping).</li>
+<li><strong>Pointer tool</strong> — for selecting and moving elements on the canvas.</li>
+<li><strong>Windows common controls</strong> — combo boxes, radio button groups, calendar controls, and other interactive UI elements.</li>
+<li><strong>Status tool</strong> — for showing quality and status of selected attributes at runtime.</li>
+</ul>
+
+<p>You can double-click any drawing tool to keep it active for placing multiple elements of the same type, which is a significant time saver when building complex graphics.</p>
+
+<h2>15.3 Visualization Animations</h2>
+
+<p>Animations are what transform static graphics into dynamic, data-driven displays. You configure animations through the <strong>Edit Animations</strong> dialog, which you access by double-clicking an element or selecting it and choosing Edit Animations from the context menu. There are two broad categories: visualization animations and interaction animations.</p>
+
+<p><strong>Visualization animations</strong> change an element's appearance based on data:</p>
+<ul>
+<li><strong>Visibility</strong> — show or hide an element based on a Boolean expression.</li>
+<li><strong>Fill Style</strong> — change the fill color or pattern based on a condition.</li>
+<li><strong>Line Style</strong> — change line color, style, or width.</li>
+<li><strong>Text Style</strong> — change font, color, or size of text elements.</li>
+<li><strong>Blink</strong> — make an element flash to draw attention.</li>
+<li><strong>Alarm Border</strong> — add a colored border that reflects the alarm state of a linked attribute.</li>
+<li><strong>Value Display</strong> — display real-time data values in a text element.</li>
+</ul>
+
 <div class="screenshot">
-  <img src="../images/page_0174_1.png" alt="Graphic Editor canvas showing SA_Pump_Blower_RotaryValve and SA_Valve_And_Damper industrial symbols connected by dashed blue line with yellow alarm status indicators, demonstrating asset linking">
-  <div class="caption">Graphic Editor canvas showing SA_Pump_Blower_RotaryValve and SA_Valve_And_Damper industrial symbols connected by dashed blue line with yellow alarm status indicators, demonstrating asset linking</div>
+  <img src="../images/page_0176.png" alt="Edit Animations dialog showing the popup menu with all available animation types">
+  <div class="caption">The Edit Animations dialog provides access to all visualization and interaction animations available for the selected element type.</div>
 </div>
 
-<p>Add a Connection Point You can use the Connection Point tool to place additional connection points on a graphic element. To add a single connection point, move your mouse to a location on a graphic element where you want to place a new connection point and click once. The new connection point appears as a green rectangle at the location you selected. Connection points can be added within the bounding rectangle of the hosting element of the embedded graphic. If you want to add multiple connection points, you can double-click the Connect tool. Double- clicking a tool saves time by not requiring you to reselect the tool when using it to draw multiple elements of the same type on the canvas one after the other. Clicking another tool or pressing the Esc key will cancel the operation.</p>
+<h2>15.4 Value Display Animations</h2>
 
-<div class="screenshot">
-  <img src="../images/page_0175_0.png" alt="Tools palette showing 24 tools in 4 rows including selection arrow, line/polyline, rectangle, ellipse, filled shapes, arc, image import, static text, checkbox, radio button, slider, push button, trend chart, gauge, and tag linker tools">
-  <div class="caption">Tools palette showing 24 tools in 4 rows including selection arrow, line/polyline, rectangle, ellipse, filled shapes, arc, image import, static text, checkbox, radio button, slider, push button, trend chart, gauge, and tag linker tools</div>
+<p>The <strong>Value Display</strong> animation is one of the most commonly used — it lets a text element display real-time data from your automation objects. You can configure it to show:</p>
+<ul>
+<li>A <strong>Boolean</strong> value as a message (e.g., "Running" / "Stopped")</li>
+<li>An <strong>Analog</strong> value with configurable decimal places</li>
+<li>A <strong>String</strong> value</li>
+<li>A <strong>Time or Date</strong> value</li>
+<li>The <strong>tag name</strong>, hierarchical name, or contained name of the hosting object</li>
+<li>A value based on <strong>Truth Table</strong> conditions (multiple expressions evaluated in order)</li>
+<li>A value based on <strong>Bit State</strong> conditions (individual bits of an integer value)</li>
+</ul>
+
+<div class="key-concept">
+<strong>Key Concept: Truth Table vs. Bit State Value Display</strong><br>
+Use <strong>Truth Table</strong> when you need to evaluate multiple independent expressions and display different text for each. Use <strong>Bit State</strong> when a single integer value encodes multiple status bits (common with equipment status registers where different bits represent different states).
 </div>
 
+<h2>15.5 Interaction Animations</h2>
+
+<p><strong>Interaction animations</strong> let operators interact with the display at runtime:</p>
+<ul>
+<li><strong>Pushbutton</strong> — makes an element clickable to trigger a command or script.</li>
+<li><strong>Show Symbol</strong> — opens a popup symbol when an element is clicked.</li>
+<li><strong>Slider Horizontal/Vertical</strong> — creates a slider control for adjusting setpoints.</li>
+<li><strong>Action Scripts</strong> — runs custom script code when an element is clicked.</li>
+<li><strong>Disable</strong> — disables an element (and its animations) based on a condition, without losing its configuration.</li>
+</ul>
+
+<p>You can have both visualization and interaction animations on the same element. For example, a button might have a Fill Style animation (to change color based on state) and a Pushbutton animation (to trigger an action when clicked). You can also cut, copy, and paste animations between elements — only compatible animation types will be pasted.</p>
+
+<h2>15.6 Element Style Animations</h2>
+
+<p><strong>Element Style</strong> animations apply predefined visual styles to elements based on conditions. Instead of manually configuring colors, fonts, and borders for every state, you define an Element Style once and apply it through an animation. Element Style animations support three evaluation modes:</p>
+<ul>
+<li><strong>Boolean</strong> — applies one style when True, another when False.</li>
+<li><strong>Truth Table</strong> — applies different styles based on which expression evaluates to True.</li>
+<li><strong>Bit State</strong> — applies styles based on individual bit states of an integer value.</li>
+</ul>
+
 <div class="screenshot">
-  <img src="../images/page_0175_1.png" alt="Graphic Editor showing SA_Valve_And_Damper label text object selected with white bounding box, with valve/damper graphic below showing green connection nodes and yellow alarm indicator">
-  <div class="caption">Graphic Editor showing SA_Valve_And_Damper label text object selected with white bounding box, with valve/damper graphic below showing green connection nodes and yellow alarm indicator</div>
+  <img src="../images/page_0177_1.png" alt="Edit Animations dialog showing Element Style animation with Boolean state expression and style assignments">
+  <div class="caption">An Element Style animation applies predefined visual styles based on a Boolean, Truth Table, or Bit State expression — ensuring consistent appearance across your application.</div>
 </div>
 
-<p>Animations Animations can be used to change the appearance of graphic elements and allow users to interact with the view application at runtime. Some animations can be driven by data from automation objects, element properties, and other data sources. You configure animations with the Edit Animations dialog box You can use:  Visualization animations such as Visibility, Fill Style, Line Style, Text Style, Element Style, and more.  Interaction animations such as Disable, User Input, Slider Horizontal, Slider Vertical, Pushbutton, Action Scripts, and more. Elements in your graphic can have one or more animations. You can disable and enable individual animations. You can also cut, copy, and paste animations between elements. Only animations supported by the target element are pasted. You can also substitute references and strings in animations. Not all animations are available for all element types. Some animations do not make logical sense, such as line style with a text element. You cannot select or copy these invalid combinations.</p>
+<h2>15.7 Containment Relationships and Lab Introduction</h2>
 
-<div class="screenshot">
-  <img src="../images/page_0176.png" alt="Edit Animations dialog with empty Animations pane showing prompt to add animations, with popup menu displaying all available animation types: Visibility, Fill Style, Line Style, Text Style, Blink, Element Style, Alarm Border, Value Display, Pushbutton, Show Symbol, and others">
-  <div class="caption">Edit Animations dialog with empty Animations pane showing prompt to add animations, with popup menu displaying all available animation types: Visibility, Fill Style, Line Style, Text Style, Blink, Element Style, Alarm Border, Value Display, Pushbutton, Show Symbol, and others</div>
+<p>Automation objects can be organized in <strong>containment relationships</strong>, where one object is nested inside another. When working with contained objects, symbols can use relative references (like <code>Me.PV</code>) that automatically resolve through the containment hierarchy. This means a symbol defined in a contained object (like a valve) can be embedded into a symbol of the container object (like a mixer), and all the <code>Me.</code> references will resolve correctly at runtime.</p>
+
+<div class="tip">
+<strong>Tip: Template-Level Containment Requires Explicit Embedding</strong><br>
+At the template level, if the container template needs symbols from its contained templates, you must explicitly add a symbol to the container template and embed the contained symbols using relative references. The containment resolution only works at runtime, not at design time in the IDE.
 </div>
 
-<p>Value Display Animations For text elements, you can add Value Display animations to specify values at runtime. You can configure it to show:  A Boolean value as a Message  An Analog value  A string value  A time or date value  The tag name, hierarchical name or contained name of the hosting object  A value based on Truth Table conditions  A value based on Bit State conditions Disable Animation You can enable or disable animations for an element. When you disable an animation, its configuration is not lost. You can see each animation independently from each other. You can also disable animations from the Animation Summary pane in the bottom-right corner of the Graphic Editor. Element Style Animation You can use Element Style animations to apply element styles to an element or group of elements.  Boolean: Applies element styles based on a binary True, 1, On or False, 0, Off condition.  Truth Table: Applies element styles based on a set of evaluated values or expressions.  Bit State: Applies element styles based on bit state conditions.</p>
+<p>This concept is the foundation for Lab 7, where you'll create a <strong>MixingProcess_Detailed</strong> symbol in the $Mixer template that combines the agitator, level, pump, temperature, and valve graphics you created in the previous lab — all organized to represent the complete mixing process for a single mixer instance.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0177_0.png" alt="Edit Animations dialog showing Value Display animation with Name tab selected, configured to display Tag Name from the linked data tag, with Boolean, Analog, String, Time, Truth Table, and Bit State tabs also available">
-  <div class="caption">Edit Animations dialog showing Value Display animation with Name tab selected, configured to display Tag Name from the linked data tag, with Boolean, Analog, String, Time, Truth Table, and Bit State tabs also available</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0177_1.png" alt="Edit Animations dialog showing Element Style animation for Button1 object with Boolean state expression Cmd1, True state set to Intensity4 style, False state set to None, with Pushbutton interaction also enabled">
-  <div class="caption">Edit Animations dialog showing Element Style animation for Button1 object with Boolean state expression Cmd1, True state set to Intensity4 style, False state set to None, with Pushbutton interaction also enabled</div>
-</div>
-
-<p>Containment Relationships Application objects can be included in a containment relationship. When working in a containment relationship, symbols in each object can be embedded in other objects within the same containment by using relative references. In this way, the relative references within the embedded symbols will be resolved without further configuration. For example, if a contained object includes a symbol that is configured using relative references (such as Me.PV), the symbol can be embedded in a symbol of the container object. At the template level of containment, if the container template needs to include symbols from its contain templates, then you must add a symbol in the container template and embed the symbols from the contained templates through relative referencing. Element Styles Element Styles define a set of visual properties that determine the appearance of text, lines, graphic outlines, and interior fills shown in Industrial Graphics. They provide a means for developers to establish consistent visual standards in their applications. When applied to a graphic, the Element Style sets preconfigured visual property values that take precedence over the graphic’s native visual properties. The ElementStyle property on the Properties tab provides a list of element styles that can be applied to graphics. For more information of Element Styles, refer to Section 8, “Galaxy Styles.”</p>
-
-<p>Introduction In this lab, you will embed graphics in a containment relationship to create a composite view of the agitator, level, pumps, temperature, and valves in the Mixer application. You will add a symbol to the $Mixer template that will combine the contained graphics organized to represent the entire mixing process. To this symbol, you will also add text elements, animations, connection points, connectors, and apply element styles. Objectives Upon completion of this lab, you will be able to:  Add a symbol in an automation object  Embed graphics from relative references  Configure and embed graphics within a containment relationship  Add Text elements and configure Value Display animations  Apply element styles to elements  Use connectors and connection points  Change element display order  Replace a graphic in a frame window</p>
-
-<div class="screenshot">
-  <img src="../images/page_0179.png" alt="Mixer100 process mimic diagram showing complete mixer system with Agitator_001 (0.00 rpm), Level_001 (54.43 l), Temperature_001 (134.98°C), two inlet feed lines with pumps and valves, and outlet discharge valve">
-  <div class="caption">Mixer100 process mimic diagram showing complete mixer system with Agitator_001 (0.00 rpm), Level_001 (54.43 l), Temperature_001 (134.98°C), two inlet feed lines with pumps and valves, and outlet discharge valve</div>
-</div>
-
-<p>Create the Mixer Symbol First, you will create a MixingProcess_Detailed symbol in the $Mixer template. This symbol will contain the graphics you created in the previous lab for the agitator, level, pumps, temperature, and valves. 1. In the IDE, on the Templates tab, in the Training\Project template toolset, double-click the $Mixer template to open it for editing. 2. In Content, click the Add button. 3. In Name, enter MixingProcess_Detailed. 4. In Description, enter Includes symbols from all contained objects.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0180_0.png" alt="Content pane showing empty $Mixer content area with Add button highlighted and tooltip showing Ctrl+= shortcut, prompting user to create or link content">
-  <div class="caption">Content pane showing empty $Mixer content area with Add button highlighted and tooltip showing Ctrl+= shortcut, prompting user to create or link content</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0180_1.png" alt="Content pane showing MixingProcess_Detailed object selected in list with description Includes symbols from all contained objects, in $Mixer container with unsaved changes indicator">
-  <div class="caption">Content pane showing MixingProcess_Detailed object selected in list with description Includes symbols from all contained objects, in $Mixer container with unsaved changes indicator</div>
+  <img src="../images/page_0179.png" alt="Mixer100 process mimic diagram showing complete mixer system with agitator, level, temperature, pumps, and valves">
+  <div class="caption">The end goal: a complete mixer process mimic showing all equipment components working together in a single composite display.</div>
 </div>
 
 <div class="quiz">
   <h3>Quiz — Test Your Understanding</h3>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What are the key concepts covered in this lesson about Graphic Editor Tools and Animations?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: How does this topic relate to AVEVA System Platform?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What is the key difference between a connector and a static line?</summary>
+    <p style="margin-top:0.5em;">A static line is just a fixed graphic element that doesn't respond to changes in surrounding elements. A <strong>connector</strong> is anchored to connection points on two elements and automatically adjusts its length, position, and orientation when either element is moved, resized, or rotated. This makes connectors essential for flow diagrams and piping layouts.</p></details>
+
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: Name three types of visualization animations and explain what each does.</summary>
+    <p style="margin-top:0.5em;"><strong>Visibility</strong> shows or hides an element based on a Boolean condition. <strong>Fill Style</strong> changes an element's fill color or pattern based on data. <strong>Value Display</strong> makes a text element show real-time data values from automation objects. Other examples include Alarm Border (colored border reflecting alarm state), Blink (flashing for attention), and Text Style (changing font properties).</p></details>
+
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q3: When would you use a Truth Table Value Display instead of a simple Analog display?</summary>
+    <p style="margin-top:0.5em;">Use a <strong>Truth Table</strong> when you need to display different text based on multiple independent conditions — for example, showing "Low" when a value is below 25, "Normal" when between 25 and 75, and "High" when above 75. A simple Analog display just shows the raw number; a Truth Table lets you map ranges or conditions to meaningful text labels.</p></details>
+
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q4: What are the two categories of animations, and how do they differ?</summary>
+    <p style="margin-top:0.5em;"><strong>Visualization animations</strong> change an element's appearance (color, visibility, text content) based on data — they're passive displays. <strong>Interaction animations</strong> let operators take action (clicking a button, moving a slider, triggering a script) — they're active controls. Many elements can have both types simultaneously.</p></details>
+
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q5: Why are relative <code>Me.</code> references important for containment relationships?</summary>
+    <p style="margin-top:0.5em;">Relative <code>Me.</code> references allow a symbol defined in one object to be embedded in a container object's symbol, and the references automatically resolve to the correct instance at runtime. Without relative references, you'd need to hardcode specific tag names for each equipment instance, making the symbol non-reusable across different mixers.</p></details>
 </div>
 
 <p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>
 <p class="source">Next: Lesson L16 — Lab 7 – Creating the Mixer Display</p>
 
 <script>
-
 function saveProgress() {
   var checks = {};
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
@@ -221,7 +272,6 @@ function updateProgressText() {
   if (el) el.textContent = done + ' / ' + total + ' completed';
 }
 document.addEventListener('DOMContentLoaded', loadProgress);
-
 </script>
 </body>
 </html>

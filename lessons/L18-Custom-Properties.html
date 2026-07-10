@@ -100,119 +100,114 @@
 <h1>Lesson 18: Custom Properties</h1>
 <p class="page-ref">Module 3 — Symbols | Pages 217–222</p>
 
-<p>Data Type The data type for the custom property can be Boolean, Double, ElapsedTime, Float, Integer, String, Time, or HistorySummary. An icon for the selected data type appears at the top of the dialog box. Default Value The Default Value is the initial default value for the custom property. It can be a literal value, reference, or expression. You can click the ellipsis button to browse for a reference using the Galaxy Browser. If the selected data type is String, Time, or ElapsedTime, click the button to the left of the Default Value field to indicate whether the default value is a static value or a reference to a value.  Static Text: The default value is a static value. This mode treats the Default Value field as text.  Expression or Reference: The default value is an expression or a reference. This mode treats the Default Value field as a lookup list or evaluation of a mathematical expression or a logic expression. Visibility The Visibility setting determines whether the custom property is visible to be configured when the symbol is embedded. Any property marked as Private is not visible in an embedded symbol. This can be used to hide configurations that you do not want designers to modify. Data Type Icon Boolean Double Elapsed Time Float Integer String Time History Summary</p>
+<p>As your InTouch HMI graphics grow more sophisticated, a recurring design challenge emerges: how do you create a single symbol that can be reused across many different pieces of equipment without hard-coding every piece of data? Imagine building a command panel that must work equally well for a valve, a pump, and an agitator. Each of these requires different labels, different command references, and perhaps different data types. Copying and pasting the symbol for each equipment type would be tedious and error-prone. Custom properties provide the answer. They allow you to define named, configurable attributes on a symbol so that any engineer embedding that symbol can adjust its behaviour from the Properties tab — without ever opening the symbol for editing.</p>
+
+<p>In this lesson, you will learn what custom properties are, how to create and configure them through the Edit Custom Properties dialog, and how they interact with the Button tool, Pushbutton animations, and Show Symbol animations. You will also encounter the TreatAsIcon property — a small but critical Boolean that must be set correctly before interaction animations will function on embedded graphics.</p>
+
+<h2>Understanding Custom Properties</h2>
+
+<div class="key-concept">
+<strong>Custom Properties</strong> are named, configurable attributes that you define on a graphic symbol to extend its functionality. When a graphic containing custom properties is embedded inside another graphic, those properties appear on the Properties tab in the Custom Properties category. This makes the symbol flexible and reusable: a consumer can adjust its behaviour — changing button labels, default setpoints, or connection strings — without ever modifying the symbol's internal graphics or animations.
+</div>
+
+<p>A custom property is more than a simple text field. It can hold a literal value such as <code>True</code> or <code>"Open"</code>, but it can also reference an automation object attribute like <code>Tank1.InletValve.PV</code>, or a relative reference such as <code>Me.Cmd</code> that resolves to the hosting object's command attribute at runtime. You can even chain custom properties together: one symbol's property can forward its value to a custom property on an embedded symbol, creating a cascade of references that automatically adapts to the host object. Script functions and expressions are also valid, giving you considerable power in a small configuration surface.</p>
+
+<p>The Edit Custom Properties dialog supports eight data types, each represented by a distinct icon: Boolean for True/False flags, Double and Float for numeric values (with differing precision), Integer for whole numbers, String for text, Time and ElapsedTime for temporal values, and HistorySummary for aggregated historical data. Choosing the right data type matters because it determines what the property can hold and how it interacts with animations and scripts at runtime.</p>
+
+<table>
+<tr><th>Data Type</th><th>Typical Use Case</th></tr>
+<tr><td>Boolean</td><td>Command states, on/off flags, visibility toggles</td></tr>
+<tr><td>Double</td><td>High-precision setpoints, flow rates, temperatures</td></tr>
+<tr><td>Float</td><td>Standard-precision process values</td></tr>
+<tr><td>Integer</td><td>Counters, indices, mode numbers</td></tr>
+<tr><td>String</td><td>Button labels, descriptions, alarm messages</td></tr>
+<tr><td>Time</td><td>Time-of-day values, scheduling references</td></tr>
+<tr><td>ElapsedTime</td><td>Durations, run-time accumulators</td></tr>
+<tr><td>HistorySummary</td><td>Historical data summaries for trending</td></tr>
+</table>
+
+<h2>Creating and Configuring Custom Properties</h2>
+
+<p>You create and edit custom properties through the <strong>Edit Custom Properties</strong> dialog. To open it, right-click the canvas in the Graphic Editor and choose <strong>Custom Properties</strong>, or simply press <kbd>Ctrl+M</kbd>. The dialog presents a property grid on the left and a configuration panel on the right. Click the <strong>Add custom property</strong> button (the <code>+</code> icon) to create a new entry, then configure it using four fields.</p>
+
+<p>The <strong>Data Type</strong> drop-down determines what the property can hold. The <strong>Default Value</strong> field accepts a literal value, a tag reference, or an expression — and for String, Time, and ElapsedTime types, a toggle button to the left lets you switch between <em>Static Text</em> mode (the field is treated as a plain string) and <em>Expression or Reference</em> mode (the field is evaluated as a tag reference or mathematical expression at runtime). The <strong>Visibility</strong> field controls whether the property is <em>Public</em> (visible and editable on the Properties tab when the symbol is embedded) or <em>Private</em> (hidden from consumers, protecting internal configuration). Finally, the <strong>Description</strong> field provides a brief note explaining the property's purpose, which is especially helpful when symbols come from built-in libraries.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0217_0.png" alt="Dual-segment status/beacon indicator with top green section showing white exclamation mark (!) for active cautionary state and bottom red section showing white empty circle for inactive/stopped state, used as alarm process state indicator on HMI screens">
-  <div class="caption">Dual-segment status/beacon indicator with top green section showing white exclamation mark (!) for active cautionary state and bottom red section showing white empty circle for inactive/stopped state, used as alarm process state indicator on HMI screens</div>
+  <img src="../images/page_0216_0.png" alt="Edit Custom Properties dialog with empty property grid">
+  <div class="caption">The Edit Custom Properties dialog showing the + Add custom property button, an empty property grid, and the right-side panel with Data Type, Default Value, Visibility, and Description fields.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0217_1.png" alt="Analog Meter control with fan-shaped gauge dial showing green safe zones on left and right, black center zone, red needle pointing to current value, and green circular status indicator light in bottom-right corner for real-time process visualization">
-  <div class="caption">Analog Meter control with fan-shaped gauge dial showing green safe zones on left and right, black center zone, red needle pointing to current value, and green circular status indicator light in bottom-right corner for real-time process visualization</div>
+  <img src="../images/page_0216_2.png" alt="CommandPanel showing Cmd property with Me.Cmd reference">
+  <div class="caption">Edit Custom Properties dialog for CommandPanel showing the Cmd property: Data Type = Boolean, Default Value = Me.Cmd, Visibility = Public.</div>
+</div>
+
+<div class="pitfall">
+<strong>Warning:</strong> If you switch a String property's Default Value to "Expression or Reference" mode without providing a valid expression or reference, a red border and warning icon appear. The dialog will refuse to close until a valid value is entered. This is a deliberate safety check — an empty reference at runtime would produce unpredictable results.
+</div>
+
+<div class="tip">
+<strong>Tip:</strong> When designing symbols for reuse, set the most commonly needed properties to Public and leave internal bookkeeping properties as Private. This keeps the Properties tab clean for consumers while preserving the symbol's internal logic.
+</div>
+
+<h2>The Button Tool and Pushbutton Animation</h2>
+
+<p>InTouch's Graphic Editor includes a <strong>Button tool</strong> that lets you place interactive push buttons directly on the canvas. To create a button, select the Button tool from the Tools pane, click and drag diagonally to define its size, then type a label and press Enter. The button appears with default styling that you can refine through the Properties tab — adjusting the <code>Text</code>, <code>Width</code>, <code>Height</code>, and <code>ElementStyle</code> properties to match your design.</p>
+
+<p>A button by itself is just a visual element. To make it perform an action at runtime, you apply a <strong>Pushbutton animation</strong>. This animation writes a value to a Boolean, analog, or string reference when the operator presses or releases the button. For example, setting the Boolean Reference to <code>Cmd</code> and the Action to <em>Set</em> will write <code>True</code> to the command attribute whenever the button is pressed — exactly what you need for an "Open" or "Start" command. Conversely, the <em>Reset</em> action writes <code>False</code>, making it suitable for "Close" or "Stop" buttons.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0218_0.png" alt="Tools palette with Button tool visible">
+  <div class="caption">The Tools palette containing 18 tool buttons arranged in a 3-row by 6-column grid, including the interactive Button tool.</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0217_2.png" alt="Cropped Windows system tray IME language mode indicator showing circular clock-style icon split into light blue left segment and red right segment with small tick mark, indicating Chinese input method is active">
-  <div class="caption">Cropped Windows system tray IME language mode indicator showing circular clock-style icon split into light blue left segment and red right segment with small tick mark, indicating Chinese input method is active</div>
+  <img src="../images/page_0218_2.png" alt="Pushbutton animation configuration dialog">
+  <div class="caption">Edit Animations dialog for a Pushbutton with Boolean Reference = Cmd and Action = Set (on press).</div>
 </div>
 
+<h2>Show Symbol and Hide Symbol Animations</h2>
+
+<p>Building interactive popups — command panels, detail views, and configuration dialogs that appear on demand — is a fundamental requirement in most HMI applications. InTouch provides the <strong>Show Symbol</strong> animation for exactly this purpose. When a user clicks an element at runtime, the specified graphic appears as a popup window. You control the popup's behaviour through several options: which graphic appears (selected by name or browsed via the Galaxy Browser), whether the window has a title bar and close button, whether it is modal (blocking interaction with other windows) or modeless, whether it can be resized, and its initial position and size. A shortcut key can also be assigned for keyboard-driven access.</p>
+
+<p>The complementary <strong>Hide Symbol</strong> animation closes a popup that was previously shown. Together, Show Symbol and Hide Symbol give you complete control over the popup lifecycle without writing any script code.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0217_3.png" alt="Analog angular gauge with quarter-circle arc showing green safe zone on left, black zone on right, red needle pointing to current value, black pivot point at bottom-right, green pilot light indicator for running/active status">
-  <div class="caption">Analog angular gauge with quarter-circle arc showing green safe zone on left, black zone on right, red needle pointing to current value, black pivot point at bottom-right, green pilot light indicator for running/active status</div>
+  <img src="../images/page_0219.png" alt="Show Symbol animation configuration dialog">
+  <div class="caption">Edit Animations dialog showing Show Symbol configuration with Reference, Title, Modal, Position, and Size settings.</div>
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0217_4.png" alt="AVEVA InTouch WindowViewer runtime environment showing Tagname Dictionary with $System folder containing system tags ($Hour, $Minute, $Second, $Day, $Month, $Year), Tagname Dictionary dialog for Tank1_Level tag with Type=Memory Real, and workspace showing tag list">
-  <div class="caption">AVEVA InTouch WindowViewer runtime environment showing Tagname Dictionary with $System folder containing system tags ($Hour, $Minute, $Second, $Day, $Month, $Year), Tagname Dictionary dialog for Tank1_Level tag with Type=Memory Real, and workspace showing tag list</div>
+<h2>The TreatAsIcon Property</h2>
+
+<p>There is one critical detail that trips up many developers when they first attempt to add interaction animations to embedded graphics. By default, when a graphic is embedded inside another symbol, its own internal animations take precedence over any animations defined on the parent. This means that a Show Symbol animation you add to the embedded graphic will not work until you change a single Boolean setting: <strong>TreatAsIcon</strong>.</p>
+
+<div class="key-concept">
+<strong>TreatAsIcon</strong> is a Boolean property on embedded graphics. When set to <em>True</em>, it enables interaction animations — such as Show Symbol and Pushbutton — defined on the embedded graphic, allowing it to respond to user clicks at runtime. When set to <em>False</em> (the default), the embedded graphic's own animations take precedence and parent-level interactions are blocked. You must set TreatAsIcon to True <em>before</em> adding a Show Symbol animation, or the animation may not activate properly.
 </div>
 
+<p>Think of TreatAsIcon as a gatekeeper. In its default False state, the embedded graphic is treated as a passive, display-only element — its internal animations run, but no new interaction animations can be layered on top. Flip it to True, and the graphic becomes an interactive element that can respond to user clicks, open popups, and display dynamic labels. Without TreatAsIcon set to True, a valve symbol embedded in a process display would remain inert: the operator could see the valve's status but could not click it to open a command panel.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0217_5.png" alt="Close-up of purple stylized 3D letter 'T' icon with gradient fill and dark border, likely representing the Trends module or Tag management tool in AVEVA InTouch toolbar">
-  <div class="caption">Close-up of purple stylized 3D letter 'T' icon with gradient fill and dark border, likely representing the Trends module or Tag management tool in AVEVA InTouch toolbar</div>
+  <img src="../images/page_0220.png" alt="Properties panel showing TreatAsIcon set to True">
+  <div class="caption">Properties panel for SA_Agitator_Settler showing the Runtime Behavior section with TreatAsIcon = True highlighted.</div>
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0217_6.png" alt="Analog-style clock widget with white face, gray border, hour hand at 12, minute hand at 6 (12:30), second hand at 12, small tick markers at hour positions, for real-time time display on HMI screens">
-  <div class="caption">Analog-style clock widget with white face, gray border, hour hand at 12, minute hand at 6 (12:30), second hand at 12, small tick markers at hour positions, for real-time time display on HMI screens</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0217_7.png" alt="Blue square icon with white summation (Σ) symbol representing mathematical calculation operation, black checkmark indicating expression validation passed, yellow warning triangle with exclamation mark for non-critical advisory notice in tag/expression editor">
-  <div class="caption">Blue square icon with white summation (Σ) symbol representing mathematical calculation operation, black checkmark indicating expression validation passed, yellow warning triangle with exclamation mark for non-critical advisory notice in tag/expression editor</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0217_8.png" alt="Gold/metallic 3D serif letter 'T' icon with black rectangular border on white background, representing the Text tool button in AVEVA InTouch WindowMaker toolbar for placing text objects on HMI screens">
-  <div class="caption">Gold/metallic 3D serif letter 'T' icon with black rectangular border on white background, representing the Text tool button in AVEVA InTouch WindowMaker toolbar for placing text objects on HMI screens</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0217_9.png" alt="Tag Browser/Explorer icon showing yellow/orange rounded rectangular data record with blue magnifying glass overlay, representing the tool for browsing, searching, and managing tags in AVEVA InTouch projects">
-  <div class="caption">Tag Browser/Explorer icon showing yellow/orange rounded rectangular data record with blue magnifying glass overlay, representing the tool for browsing, searching, and managing tags in AVEVA InTouch projects</div>
-</div>
-
-<p>Description The Description provides a brief note about the custom property. For symbols from a built-in library, the description contains helpful tips on how to use the custom property. Button Tool You can use the Button tool to add buttons to your graphics. To draw a button, select the Button tool from the Tools pane, click the canvas, drag the shape of the button, and release the mouse. Text on the button appears in edit mode and you can type a label for the button and press Enter. You can also use the Text property to specify the label for the button, as well as size properties and others from the Properties tab. You can apply animations, such as Pushbutton, Value Display, Element Style, and others to configure the button. Pushbutton Animation You can configure an element with a Pushbutton animation to change Boolean, analog, or string references.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0218_0.png" alt="Tools palette with 18 tool buttons in 3-row by 6-column grid including selection, line, rectangle, rounded rectangle, oval, pie chart, polyline, polygon, freehand, bitmap, symbol, group, arc, rounded corner, curved arc, static text, dynamic text, and interactive button tools">
-  <div class="caption">Tools palette with 18 tool buttons in 3-row by 6-column grid including selection, line, rectangle, rounded rectangle, oval, pie chart, polyline, polygon, freehand, bitmap, symbol, group, arc, rounded corner, curved arc, static text, dynamic text, and interactive button tools</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0218_1.png" alt="Close-up of 'Open' push-button element selected in design mode with blue square selection handles at corners and midpoints, light gray background with thin black border, on grid workspace background for HMI button placement and resizing">
-  <div class="caption">Close-up of 'Open' push-button element selected in design mode with blue square selection handles at corners and midpoints, light gray background with thin black border, on grid workspace background for HMI button placement and resizing</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0218_2.png" alt="Edit Animations dialog for Pushbutton (Button1) with Interaction section showing Pushbutton Enabled, Boolean Reference=Cmd, Action=Set (on press), for configuring button to set Cmd tag to active state when pressed">
-  <div class="caption">Edit Animations dialog for Pushbutton (Button1) with Interaction section showing Pushbutton Enabled, Boolean Reference=Cmd, Action=Set (on press), for configuring button to set Cmd tag to active state when pressed</div>
-</div>
-
-<p>Show Symbol and Hide Symbol Animations You can configure an element with a Show Symbol animation, which shows a specified graphic as a pop-up window when the element is clicked at runtime. The animation pops-up the specified graphic independent of any InTouch window at a specified position when a user clicks the element at runtime.  You can configure options such as:  Which graphic appears in the new window  If the window has a title bar, and if so if it has a caption  If the window is modal or modeless  If the window has a close button  If the window can be resized  The initial position of the window  The size of the window  A shortcut key for showing the graphic To specify the graphic, you can enter the name in the Reference field or browse for the graphic with the Galaxy Browser. You can configure an element with a Hide Symbol animation. The Hide Symbol animation lets you close:  The current graphic  A graphic that is shown by a specified element.  You can also configure a shortcut key for closing the graphic.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0219.png" alt="Edit Animations dialog showing Show Symbol configuration for Agitator: Reference=CommandPanelWithSetpoint, Has title bar checked, Title=OwningObject, Modal selected, Has close button checked, Position=Below Parent Symbol at 0,0, Size=Relative To Symbol at 100%, for opening command panel popup">
-  <div class="caption">Edit Animations dialog showing Show Symbol configuration for Agitator: Reference=CommandPanelWithSetpoint, Has title bar checked, Title=OwningObject, Modal selected, Has close button checked, Position=Below Parent Symbol at 0,0, Size=Relative To Symbol at 100%, for opening command panel popup</div>
-</div>
-
-<p>TreatAsIcon Property Setting TreatAsIcon to True enables interaction animations for an embedded graphic. If TreatAsIcon is False, the animations defined in the graphic take precedence.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0220.png" alt="Properties panel for SA_Agitator_Settler showing Runtime Behavior section with TreatAsIcon=True highlighted, Enabled=True, OwningObject=Symbol/SA_Agitator_Settler, Visible=True, ZoomPercent=100, for configuring embedded graphic interaction behavior">
-  <div class="caption">Properties panel for SA_Agitator_Settler showing Runtime Behavior section with TreatAsIcon=True highlighted, Enabled=True, OwningObject=Symbol/SA_Agitator_Settler, Visible=True, ZoomPercent=100, for configuring embedded graphic interaction behavior</div>
-</div>
-
-<p>Introduction In this lab, you will create custom symbols to be used as command panels for opening and closing valves, starting and stopping pumps and agitators, and changing the speed setpoint for an agitator. In the command panel graphic, you will create and configure custom properties that will be used in animations. You will add button elements and configure them with Pushbutton and Element Style animations. Finally, in the Agitator_Detailed, Pump_Detailed, and Valve_Detailed graphics, you will add Show Symbol animations to show their respective command panels at runtime. Objectives Upon completion of this lab, you will be able to:  Create and configure custom properties in a graphic  Use the Button tool  Use Pushbutton animations  Use Element Style animations  Use Show Symbol animations  Add the Quality & Status element to a custom graphic  Configure the TreatAsIcon property of embedded graphics</p>
-
-<div class="screenshot">
-  <img src="../images/page_0221.png" alt="Three runtime control windows side by side: Inlet1_001 (valve with Open/Close buttons, Close highlighted), Pump1_001 (pump with Start/Stop buttons, Stop highlighted), Agitator_001 (agitator with Start/Stop buttons, Stop highlighted, and Speed setpoint input showing 0.00 rpm)">
-  <div class="caption">Three runtime control windows side by side: Inlet1_001 (valve with Open/Close buttons, Close highlighted), Pump1_001 (pump with Start/Stop buttons, Stop highlighted), Agitator_001 (agitator with Start/Stop buttons, Stop highlighted, and Speed setpoint input showing 0.00 rpm)</div>
-</div>
-
-<p>Create a Command Panel Symbol First, you will create a CommandPanel graphic with buttons that can be used at runtime to operate valves and pumps. 1. In the IDE, on the Graphics tab, in the Training toolset, create a new symbol named CommandPanel and open it for editing. Now you will add custom properties to the graphic. 2. Right-click the canvas to set focus on the canvas, and then select Custom Properties. Edit Custom Properties appears. 3. Click the Add custom property button. 4. Name the new custom property as Cmd and press Enter.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0222_0.png" alt="Right-click context menu on canvas showing Paste (Ctrl+V), Select All (F2 grayed), Substitute (submenu arrow), Custom Properties... (Ctrl+M highlighted), Scripts... (F10), Embed Industrial Graphic... (Ctrl+G) options for canvas operations">
-  <div class="caption">Right-click context menu on canvas showing Paste (Ctrl+V), Select All (F2 grayed), Substitute (submenu arrow), Custom Properties... (Ctrl+M highlighted), Scripts... (F10), Embed Industrial Graphic... (Ctrl+G) options for canvas operations</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0222_1.png" alt="Edit Custom Properties dialog with + Add custom property button, empty property grid with Name and Default Value columns, right panel with empty Data Type, Default Value, Visibility, Description fields ready for creating new custom property">
-  <div class="caption">Edit Custom Properties dialog with + Add custom property button, empty property grid with Name and Default Value columns, right panel with empty Data Type, Default Value, Visibility, Description fields ready for creating new custom property</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0222_2.png" alt="Custom Properties table showing Cmd property with Default Value=False, selected/highlighted in blue, with + and - buttons for managing properties in the CommandPanel symbol">
-  <div class="caption">Custom Properties table showing Cmd property with Default Value=False, selected/highlighted in blue, with + and - buttons for managing properties in the CommandPanel symbol</div>
+<div class="pitfall">
+<strong>Warning:</strong> Always set TreatAsIcon = True before adding a Show Symbol animation to an embedded graphic. If you add the animation first and then toggle TreatAsIcon, the animation may not register properly and will fail silently at runtime. The correct order of operations is: open the graphic for editing, select the embedded element, set TreatAsIcon = True, and only then add the Show Symbol animation.
 </div>
 
 <div class="quiz">
   <h3>Quiz — Test Your Understanding</h3>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What are the key concepts covered in this lesson about Custom Properties?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: How does this topic relate to AVEVA System Platform?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What is the difference between Public and Private custom properties?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">A <strong>Public</strong> custom property is visible and editable on the Properties tab when the symbol is embedded in another graphic — this is what consumers use to configure the symbol's behaviour. A <strong>Private</strong> custom property is hidden from consumers, which protects internal configurations from accidental changes.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: When would you use "Expression or Reference" mode instead of "Static Text" mode for a String custom property?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Use "Expression or Reference" mode when the default value should be a tag reference (like <code>Me.Cmd.OffMsg</code>) or a runtime expression. "Static Text" mode treats the field as a fixed string literal that never changes. The choice depends on whether the label needs to adapt at runtime or remain constant.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q3: Why must TreatAsIcon be set to True before adding a Show Symbol animation?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">When TreatAsIcon is False (the default), the embedded graphic's internal animations take precedence and new interaction animations are blocked. Setting it to True opens the gate, enabling the Show Symbol animation to respond to user clicks and open popup windows. The setting must be applied first so the animation registers correctly.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q4: What does the Pushbutton animation's "Set" action do compared to "Reset"?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;"><strong>Set</strong> writes <code>True</code> (or 1) to the referenced Boolean tag when the button is pressed, signalling an "on" command. <strong>Reset</strong> writes <code>False</code> (or 0), signalling an "off" command. Together, Set and Reset implement Start/Stop or Open/Close button pairs.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q5: Can a custom property hold a reference to another custom property on an embedded symbol? What is this technique called?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Yes. A custom property can reference a custom property on an embedded symbol, creating a chain of property forwarding. When the outer symbol's property value changes, the embedded symbol's property automatically receives the forwarded value. This technique makes symbols composable — complex panels can be assembled from simpler, independently configurable building blocks.</p></details>
 </div>
 
 <p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>

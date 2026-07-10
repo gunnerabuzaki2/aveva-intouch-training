@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 24: Alarming Overview Lab12</title>
+<title>Lesson 24: Alarming Overview + Lab 12</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -97,211 +97,126 @@
 </details>
 </nav>
 
-<h1>Lesson 24: Alarming Overview Lab12</h1>
+<h1>Lesson 24: Alarming Overview + Lab 12</h1>
 <p class="page-ref">Module 5 — Alarms and Events Visualization | Pages 293–320</p>
 
-<p>Visualization</p>
+<h2>Understanding the Difference Between Alarms and Events</h2>
 
-<div class="screenshot">
-  <img src="../images/page_0293.png" alt="Cover photo for Alarms and Events Visualization module — stock image of people working at computers in a training/classroom setting, used as a decorative module header">
-  <div class="caption">Cover photo for Alarms and Events Visualization module — stock image of people working at computers in a training/classroom setting, used as a decorative module header</div>
+<p>When a production line is running smoothly, operators rarely think about notifications. But the moment a tank level climbs too high, a motor stops unexpectedly, or a temperature drifts beyond its safe range, the operator needs to know — instantly, clearly, and with enough context to act. This is where <strong>alarms</strong> and <strong>events</strong> come in, and understanding the distinction between the two is foundational to building effective visualization in System Platform.</p>
+
+<p>Not all runtime notifications carry the same weight. System Platform draws a sharp line between <strong>alarms</strong>, which signal abnormal conditions that demand an operator's immediate attention, and <strong>events</strong>, which are informational records of things that happened at a point in time. A pump that should be running but has stopped generates an alarm. A configuration change that was committed by an engineer generates an event. The difference matters because alarms have severity levels and require acknowledgment, while events are simply logged for reference.</p>
+
+<div class="key-concept">
+<strong>Key Concept: Alarms vs. Events</strong><br>
+Alarms represent abnormal conditions requiring immediate operator attention — such as a temperature exceeding a high limit, a pump that should be running but is stopped, or a tank level dropping below its safe threshold. Alarms carry severity levels (from Low to Critical) and require acknowledgment. Events, by contrast, are occurrences logged at a specific point in time — such as a configuration change, a platform coming back online, or a data value changing beyond a tracking threshold. Events are informational and do not require acknowledgment. Configuration actions within the Galaxy Repository (like imports or checkouts) and messages sent to the SMC Logger are <em>not</em> considered events, even though they may log messages.
 </div>
 
-<p>Module Objectives  Provide a brief review of the concept of alarms and events  Introduce how System Platform handles alarms and events  Introduce the Alarm Border animation and how to customize Alarm Border Styles  Introduce Alarms aggregation and Alarm Severity  Introduce Alarm Shelving features</p>
+<h2>How System Platform Routes Alarms: The Provider/Consumer Model</h2>
 
-<p>What are Alarms and Events? System alarm and event capabilities allow users to automate the detection, notification, historization, and viewing of the application (process) alarms and events, or system/software alarms and events. Alarms and events occur in the runtime system. Events and alarms are different and the system distinguishes between the two. Alarms represent the occurrence of a condition that is considered abnormal in nature and requires immediate attention from a user. An event is an occurrence of a condition at a certain point in time. Examples of alarms include:  A process measurement that has exceeded a predefined limit, such as a high temperature limit  A process device that is not in the desired state, such as a stopped pump that should be running Examples of events include:  The system engineer has changed the runtime system configuration, such as the deployment of a new AutomationObject  A Platform has come back online after it had a failure or shutdown The following items are not considered alarms or events:  Configuration actions within the Galaxy Repository, such as an import or a checkout  A message sent to the system logger (SMC Logger) Note: Sometimes certain software events may log a message, in addition to generating an event. Logger messages are not events. How Does System Platform Handle Alarms? The Platform as an Alarm Provider A Platform can act as a single Alarm Provider that provides alarms to the InTouch Distributed Alarm subsystem. A Boolean check box is provided in the Platform AutomationObject indicating whether or not it subscribes to Areas for alarm and event reporting. This section provides a brief overview of alarms and events and explains how System Platform handles them. An introduction to the Alarm Border animation, Alarms aggregation, severity, and shelving is also provided.</p>
+<p>Behind the scenes, System Platform uses a <strong>Provider/Consumer</strong> architecture to deliver alarms from the process to the operator's screen. Think of it as a supply chain: the automation objects in your Galaxy generate alarm conditions, the Platform object collects and routes those alarms, and InTouch subscribes to them for display. This separation of concerns means that alarm generation and alarm visualization are decoupled — you can change how alarms are displayed without affecting how they are generated, and vice versa.</p>
 
-<p>The Platform is responsible for routing all alarms and events for all Areas, which have been subscribed to by that Platform, to the distributed alarming infrastructure. An alarm generated by Application Server contains fields that are generated by the alarm functions inside the AutomationObject. Those fields are mapped to fields in InTouch as follows: Alarms: InTouch as an Alarm Consumer The InTouch Alarm Client can be configured to subscribe to alarms and events generated by Alarm Providers. The Alarm Provider is specified by providing the node name and the name of the provider. For System Platform, only one provider exists per Platform (node). In addition, the InTouch Alarm client can be configured to subscribe to only selected Alarm Areas for the provider based on its query filters. Alarm Acknowledgment from Distributed Alarming The InTouch Alarm Client can acknowledge unacknowledged alarms that are reported by the Platform. The Platform receives the acknowledge request and forwards it to the target, which is the AutomationObject acknowledge attribute for the alarm. Security is used as part of this set (it is a UserSetAttribute). An optional comment can be entered, when an acknowledgment is requested. Alarm Enable/Disable The InTouch Alarm Client can enable/disable alarming on any AutomationObject. The Platform receives the enable request and forwards it to the target, the AutomationObject AlarmMode attribute. Security is used as part of this set (it is a UserSetAttribute). Field InTouch Distributed Alarms Mapping Timestamp of alarm event Time Tagname Name Common message text string Comment Area Alarm group Common name for alarm primitive (for example, “PV.HiAlarm”) Alarm Type (string) New alarm state (for example, ACK or RTN) State Priority = 1-999 Priority Value (mxValue) Value Limit (mxValue) Limit Category Class Category SubClass</p>
+<p>A Platform object acts as an <strong>Alarm Provider</strong>, collecting alarms from all the AutomationObjects it hosts and routing them into the distributed alarming infrastructure. InTouch, running on the operator's workstation, acts as an <strong>Alarm Consumer</strong>, subscribing to alarms from specific Platforms and displaying them in whatever form the engineer has configured. The Platform is responsible for routing all alarms and events for subscribed Areas, and each alarm generated by Application Server carries a rich set of fields — timestamp, tagname, name, comment, area, type, state, priority, value, limit, category, and class — that map directly to fields in InTouch's distributed alarm subsystem.</p>
 
-<p>How Does System Platform Handle Events? A Platform is an Event Provider that provides events to the InTouch Distributed Alarm subsystem. This provider routes all events that are generated by AutomationObjects hosted by that Platform to the Application Server. The following tables define how fields in those events are mapped to fields in the Distributed Alarm subsystem. System Events: Security Audit (includes User Data Change) Events: Field Distributed Alarm Subsystem Mapping Type (or Category) = System Type = SYS Timestamp Time Tagname Name Tag description Comment Area Alarm group System event description (“started”, “stopped”) Event Type – if string, or use Comment field N/A State = none (preferred) or “UNACK_RTN” N/A Priority = 1 N/A Provider = Galaxy N/A Event Class = EVENT Field Distributed Alarm Subsystem Mapping Type = Operator Change Type = OPR Timestamp Time Tag.primitive.attribute Name Tag description Comment Area Alarm group View engine name N/A Operator 1 name RequestingEngineName + Operator name Operator 2 name N/A Old value Limit New value Value N/A State = none (preferred) or “UNACK_RTN” N/A Priority = 999 N/A Provider = Galaxy N/A Event Class = EVENT</p>
+<p>This architecture gives you remarkable flexibility. The Alarm Client in InTouch can be configured to subscribe to alarms from specific Platforms (identified by node name and provider), filter alarms by Area using query syntax, acknowledge unacknowledged alarms, and even enable or disable alarming on specific AutomationObjects. The query syntax follows a hierarchical pattern: <code>\\nodename\Galaxy!area!object.attribute</code>. You can use wildcards — for example, <code>\\nodename\Galaxy!area!*.attribute</code> — to match all objects in an area, and you can submit multiple queries simultaneously from different nodes.</p>
 
-<p>Application Change Events: Alarm Queries Alarm queries are used within Alarm Clients to retrieve real-time alarm information and event reports from the Galaxy. The fully qualified syntax of an alarm query to retrieve a single alarm within an object as reported by a specific WinPlatform object is: \\nodename\Galaxy!area!object.attribute If the WinPlatform object that serves as an alarm provider is located in the local computer, the following syntax of the alarm query is allowed: \Galaxy!area!object.attribute The following table lists different variants of the alarm query and their return data: Field Distributed Alarm Subsystem Mapping Type = Data Change Type = LGC Timestamp Time Tag.primitive.attribute Name? or name + comment? Tag description Comment Area Alarm group View engine name Platform (the PC’s node name) Old value Limit New value Value N/A State = none (preferred) or “UNACK_RTN” N/A Priority = 999 N/A Provider = Galaxy Alarm Query Results \\nodename\Galaxy!area All alarms and events from the area object itself. All alarms and events from all the objects hosted in the area. All alarms and events from all subareas contained in the area, as configured in the Model view of the IDE. All alarms and events from all the objects hosted in the contained areas. \\nodename\Galaxy!area!object All alarms and events from the object itself. \\nodename\Galaxy!winplatform All alarms and events from the WinPlatform object itself. \\nodename\Galaxy!engine All alarms and events from the engine object (AppEngine or ViewEngine) itself. \\nodename\Galaxy!dio All alarms and events from the device integration object itself.</p>
+<h2>Alarm Border Animation: Visual Feedback at a Glance</h2>
 
-<p>Use of a Wildcard The asterisk (*) is a wildcard character that may be used to substitute any character or characters in the object.attribute part of the alarm query. The following table lists different examples on the use of the wildcard character on alarm queries and their return data: Only one wildcard character is allowed per alarm query. Using Multiple Queries Multiple queries can be submitted by an Alarm Client. For example, if Area1 and Area2 are two mutually exclusive areas, the following two queries can be submitted at once: \Galaxy!Area1 \Galaxy!Area2 By using multiple queries, it is possible to retrieve alarms from different nodes (WinPlatform objects) at the same time, for example: \\NodeNameA\Galaxy!Area1 \\NodeNameB\Galaxy!Area2 The Alarm Extension An alarm extension can be added to a template or instance Boolean attribute. If added to a template attribute, the alarm extension is automatically locked in derived objects. Attribute arrays cannot be extended. In the Alarm message box, browse and select an existing attribute or type a text string as an alarm message. This text string appears in the InTouch alarm view. The Active alarms state list can show the customized items specified in the Boolean label extension area. It allows the selection of the state that triggers the alarm. If a value is not specified in the Boolean label extension area, True and False are displayed. Alarm Query Results \\nodename\Galaxy!area!object.* All alarms and events from a specific object within an area. \\nodename\Galaxy!area!*.attribute All alarms and events from all the objects in the area for the specific attribute. \\nodename\Galaxy!area!objectprefix* All alarms and events from objects whose name begins with the specific prefix.</p>
+<p>One of the most intuitive ways to draw an operator's attention to an alarm is through the <strong>Alarm Border</strong> animation. Rather than requiring the operator to scan a table of text, this feature draws a colored, blinking border directly around the graphic element that is in an alarm state. The color and fill pattern of the border indicate the alarm's severity and its current acknowledgment state, and an indicator icon in the top-left corner shows the severity level (1 through 4) or the current alarm mode (Shelved, Silenced, or Disabled).</p>
 
-<p>Alarm Border Animation Alarm Border animation shows a highly visible border around a symbol or graphic element when an alarm occurs. The color and fill pattern of the border indicates the severity and current state of the alarm. Plant operators can quickly recognize alarm conditions when Alarm Border animation is used. Alarm Border animation also shows an indicator icon at the top-left corner of the border around a closed graphic element. For open pie or arc graphic elements, the indicator icon is placed at the top-left most location of the start and end points. Alarm severity (1-4) or the current alarm mode (Shelved, Silenced, Disabled) appear as part of the indicator icon. The indicator icon can be shown or hidden as a configurable option of Alarm Border animation. Alarm Border animation can be applied to all types of symbols, except embedded symbols and nested groups. Alarm Border animation can also be applied to graphic elements and grouped elements. Understanding the Behavior of Alarm Border Animations Alarm Border animations appears around a graphic element based on the current state of the object’s aggregated alarm attributes. The appearance of the alarm border itself reflects the current alarm state and the user’s interaction with the alarm.  A symbol’s process value transition into an alarm state: Alarm Border animation appears around the symbol based on alarm severity with blinking  The user acknowledges an alarm with the process value still in an alarm state: Alarm Border animation appears around the symbol without blinking  The alarm value returns to normal without the user acknowledging the alarm: Alarm Border animation remains around the symbol in a defined Return to Normal visual style without blinking  The alarm value returns to normal and the user acknowledges the alarm: Alarm Border animation no longer appears around a symbol  The user suppresses an alarm: Alarm Border animation remains around the symbol in a defined Suppressed visual style; however, an alarm indicator icon does not appear for a Suppressed state Note: Alarm Border animation is not used for alarms in an inhibited or a shelved state.</p>
+<p>The Alarm Border communicates state through a simple visual language that operators can learn in minutes. A blinking border means the alarm just occurred and has not yet been acknowledged. A solid border without blinking means the alarm has been acknowledged but the condition is still active. When the value returns to normal but the operator hasn't acknowledged the alarm yet, a special return-to-normal style is shown. Once the alarm is acknowledged and the value returns to normal, the border disappears entirely. If the operator has suppressed the alarm, a distinct suppressed style is displayed.</p>
 
-<div class="screenshot">
-  <img src="../images/page_0300.png" alt="Two HMI process gauges: a vertical pressure gauge reading 169.00 Pa and a vertical liquid level gauge reading 85.00 EU with a purple alarm indicator and Manual mode symbol">
-  <div class="caption">Two HMI process gauges: a vertical pressure gauge reading 169.00 Pa and a vertical liquid level gauge reading 85.00 EU with a purple alarm indicator and Manual mode symbol</div>
+<div class="key-concept">
+<strong>Key Concept: Alarm Border Behavior States</strong><br>
+The Alarm Border animation cycles through five distinct visual states:
+<ul>
+<li><strong>Blinking border</strong> — The alarm just occurred and the operator has not yet acknowledged it. This is the highest-urgency visual state.</li>
+<li><strong>Solid border (no blink)</strong> — The alarm has been acknowledged but the condition is still active. The operator knows about it and is presumably working on it.</li>
+<li><strong>Return-to-Normal style</strong> — The process value has returned to normal range, but the alarm has not yet been acknowledged. This is a transitional state.</li>
+<li><strong>No border</strong> — The alarm has been acknowledged and the value has returned to normal. The situation is resolved.</li>
+<li><strong>Suppressed style</strong> — The operator has actively suppressed the alarm, typically during maintenance or planned work.</li>
+</ul>
 </div>
 
-<p> If a new alarm condition occurs when Alarm Border animation appears around a symbol, the animation updates to show the new alarm state  In the case of alarms aggregation, Alarm Border animation shows the highest current alarm state The Alarm Border animation can be configured by selecting Alarm Border from the list of Visualization animations. The Alarm Border pane contains mutually exclusive fields to set the referenced attributes for aggregate or individual alarms. For aggregated alarms, users specify the Alarm Border animation by entering an attribute or object name in the Use Standard Alarm-Urgency References field of the Alarm Border pane. The selected object attributes map to the following aggregated alarm attributes:  AlarmMostUrgentInAlarm: Indicates the InAlarm status (True/False) of the highest priority current alarm  AlarmMostUrgentAcked: Indicates the acknowledgment status (True/False) of the highest priority current alarm  AlarmMostUrgentMode: Indicates the mode (Enabled/Silenced/Disabled) of the highest priority current alarm  AlarmMostUrgentSeverity: Indicates the severity as an integer (1-4) of the highest priority current alarm; if no alarms are in an InAlarm state or waiting to be acknowledged, the value is 0  AlarmMostUrgentShelved: Indicates the shelved status (True/False) of the highest priority current alarm To set the Alarm Border animation for individual alarms, users specify references to the following alarm attributes or tags:  InAlarm attribute  Acked attribute  Mode attribute  Severity attribute  Shelved attribute Alarm Border animation subscribes to these attributes. Based on the alarm state of these attributes, Alarm Border animation is applied to the graphic element in runtime.</p>
+<p>The Alarm Border animation can be applied to all symbol types (with the exception of embedded symbols and nested groups) and it supports aggregated alarms — meaning it will show the highest current alarm state across all attributes on a symbol. This is particularly powerful when applied to complex symbols like a mixer, where multiple attributes (level, temperature, agitator speed) can each have independent alarms.</p>
 
-<div class="screenshot">
-  <img src="../images/page_0301.png" alt="Edit Animations dialog for Alarm Border configuration — shows Standard vs Customized Alarm-Urgency References with fields for InAlarmSource, AckedSource, ModeSource, SeveritySource, and ShelvedSource bound to Me.PV attributes">
-  <div class="caption">Edit Animations dialog for Alarm Border configuration — shows Standard vs Customized Alarm-Urgency References with fields for InAlarmSource, AckedSource, ModeSource, SeveritySource, and ShelvedSource bound to Me.PV attributes</div>
+<p>The appearance of each alarm state is controlled by <strong>AlarmBorder Element Styles</strong>. Every combination of severity (1 through 4) and state (Unacknowledged, Acknowledged, Return to Normal) has a dedicated Element Style whose Outline properties — line pattern, weight, and color — can be customized to match your facility's visual standards.</p>
+
+<div class="tip">
+<strong>Tip:</strong> You can customize the Alarm Border indicator icons by replacing the default images in the XML file located in the global data cache. Supported formats include .bmp, .gif, .jpg, .png, .ico, and .emf. This lets you match the indicator icons to your organization's alarm management standards.
 </div>
 
-<p>Configuring Optional Alarm Border Animation Characteristics Users can complete a set of optional tasks to customize the appearance of an Alarm Border animation. Changing the Alarm Border Indicator Icon The Alarm Border animation shows an indicator icon at the top-left corner of the border with alarm severity as a number from 1 to 4. Other indicator images represent alarm suppressed, silenced and shelved modes. A default Alarm Border indicator image is assigned to each alarm mode and severity level. The default images appear in the Image column of the Alarms and events dialog box. The images are saved in an XML file located in the global data cache. The default Alarm Border indicator images can be replaced by custom images. Supported image file types include:  .bmp  .gif  .jpg  .jpeg  .tif  .tiff  .png  .ico  .emf At runtime, the Alarm Border animation reads the XML file in the global data cache. If images are not available in the XML file, an Alarm Indicator does not appear during the animation.</p>
+<h2>Alarm Aggregation and Severity Roll-Up</h2>
 
-<div class="screenshot">
-  <img src="../images/page_0302.png" alt="Alarms and Events configuration dialog — Alarms tab showing four severity levels (Critical 1-250, High 251-500, Medium 501-750, Low 751-999) with Shelve/Historize toggles, Modes section (Inhibited/Disabled, Silenced, Shelved), and Events section (System, Application, User)">
-  <div class="caption">Alarms and Events configuration dialog — Alarms tab showing four severity levels (Critical 1-250, High 251-500, Medium 501-750, Low 751-999) with Shelve/Historize toggles, Modes section (Inhibited/Disabled, Silenced, Shelved), and Events section (System, Application, User)</div>
+<p>In a facility with hundreds of automation objects, operators cannot afford to check each one individually for alarm states. Alarm aggregation solves this problem by automatically rolling up alarm counts from child objects to parent objects in the Galaxy hierarchy. If Mixer100 has 12 Critical alarms and Mixer200 has another 12 Critical alarms, the Line1 node will show 24 Critical alarms. This hierarchical roll-up continues all the way up to the Production or Plant level, giving operators an instant summary of where problems are concentrated.</p>
+
+<p>Alarms are included in aggregation when they are in one of three states: UNACK_ALM (unacknowledged and active), ACK_ALM (acknowledged and still active), or UNACK_RTN (unacknowledged but returned to normal). Importantly, alarms in the ACK_RTN state — acknowledged and returned to normal — are <em>not</em> aggregated, because they represent resolved situations. Silenced alarms are still included in aggregation counts, even though they do not appear in runtime clients.</p>
+
+<h2>Alarm Shelving: Temporary Suppression with a Safety Net</h2>
+
+<p>During planned maintenance or system modifications, operators often need to temporarily suppress specific alarms without permanently disabling them. Alarm shelving provides exactly this capability, and it differs from alarm silencing in several important ways. Shelving has a built-in timeout — alarms automatically return to visibility when the shelving period expires. This is a critical safety feature: it ensures that alarms are not forgotten after maintenance is complete.</p>
+
+<p>Shelving applies to individual alarms only, not to entire areas or hierarchies. Role-based permissions control who can shelve alarms, which severity levels they are allowed to shelve, and how many alarms they can shelve simultaneously. The system also maintains a complete audit trail — recording who shelved the alarm, from which workstation, the reason for shelving, and when it expires.</p>
+
+<div class="pitfall">
+<strong>Pitfall:</strong> Alarm shelving must be enabled at the Area level before individual alarms can be shelved. If you find that you cannot shelve an alarm at runtime, the first place to check is the Area object configuration. This is a common source of confusion during initial setup.
 </div>
 
-<p>Modify Alarm Border Animation Element Styles The color and fill pattern of alarm borders are set by the Outline properties of a set of AlarmBorder Element Styles. The following table shows the Element Styles applied to Alarm Border animations by alarm severity and alarm state. The assignment of these Element Styles to alarm conditions cannot be changed. Only the assigned Element Style's Outline properties can be changed to modify the line pattern, line weight, and line color of alarm borders. Aggregating Alarm State Information Alarm aggregation provides an efficient way to identify whether any alarms on an object are currently in the InAlarm state, the overall status of the most important of those alarms, and how many alarms are active at each level of alarm severity and at each level of containment. This makes it possible to follow a trail from one level to the next to find the underlying cause of a complex object’s alarms. You can view alarm aggregation statuses in runtime clients, such as Object Viewer. You can model alarm aggregation in Managed InTouch applications by using animations, such as the Alarm Border animation with Situational Awareness Library symbols or with symbols. Alarm aggregation functionality can be described for an:  Object  Area  Attribute Alarms are aggregated if they are in one of three states:  UNACK_ALM  ACK_ALM  UNACK_RTN Alarms in the ACK_RTN state are not aggregated. Alarms in silenced mode are aggregated, even though they do not appear in the runtime client. Alarm Severity Alarm State Element Style 1 UnAcknowledged AlarmBorder_Critical_UNACK 1 Acknowledged AlarmBorder_Critical_ACK 1 Return To Normal AlarmBorder_Critical_RTN 2 UnAcknowledged AlarmBorder_High_UNACK 2 Acknowledged AlarmBorder_High_ACK 2 Return To Normal AlarmBorder_High_RTN 3 UnAcknowledged AlarmBorder_Medium_UNACK 3 Acknowledged AlarmBorder_Medium_ACK 3 Return To Normal AlarmBorder_Medium_RTN 4 UnAcknowledged AlarmBorder_Low_UNACK 4 Acknowledged AlarmBorder_Low_ACK 4 Return To Normal AlarmBorder_Low_RTN All Inhibited AlarmBorder_Inhibited All Shelved AlarmBorder_Shelved All Suppressed AlarmBorder_Suppressed All Silenced AlarmBorder_Silenced</p>
+<h2>Lab 12 — Enabling Alarm Border Notifications</h2>
 
-<h2>Alarm Aggregation</h2>
-
-<p>Alarm Aggregation Attributes A set of five attributes provide runtime aggregated alarm status information. These attributes are available for all objects. If alarm aggregation is enabled on the area, the following attributes aggregate their respective alarm status values for the area, for all sub-areas, contained objects, and their descendants assigned to the area. If alarm aggregation is disabled, these attributes remain at their default values. Alarm aggregation attributes on objects behave similarly to alarm aggregation attributes specific to Analog Field attributes. Attribute Description Runtime Access <Attribute>.AlarmCntsBySeverity Array of counts of all alarms that are in UNACK_ALM, ACK_ALM, or UNACK_RTN states on the object, aggregated by severity levels 1-4. Read-Only <Attribute>.AlarmMostUrgentAcked TRUE (default) indicates that no alarms are in the InAlarm state or waiting to be Acked. A value of TRUE also indicates that the most urgent alarm(s) on the object and its descendants in the InAlarm state have been acknowledged, whether or not they are currently InAlarm. Read-Only <Attribute>.AlarmMostUrgentInAlarm FALSE (default) indicates that no alarms are in the InAlarm state or waiting to be Acked. A value of FALSE indicates whether the most urgent alarm(s) on the object and its descendants are in the InAlarm state, whether or not they have been acknowledged. Read-Only <Attribute>.AlarmMostUrgentMode The AlarmMode of the most urgent alarm(s) on this object and its descendants. If no alarms are in the InAlarm state or waiting to be Acked, the value is the same as the AlarmMode for the object. Read-Only <Attribute>.AlarmMostUrgentSeverity Severity level expressed as an integer (1- 4) of the most urgent alarm(s) on the object and its descendants. If no alarm is in the InAlarm state or waiting to be Acked, the value is 0 (zero). Read-Only</p>
-
-<p>Configuring Alarm State Aggregation Configuring alarm state aggregation consists of normal alarm configuration procedures, plus an added step of enabling the aggregation feature on each relevant Area object. Check the Aggregate Alarms check box in the Area object configuration editor to enable alarm aggregation. This sets the value of the AlarmAggregationStateCmd attribute to True.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0305.png" alt="Area object General tab showing alarm historization settings — Historize active/unacknowledged/disabled alarm counter options with storage period and deadband fields, plus Aggregate Alarms and Shelve Alarms checkboxes at the bottom">
-  <div class="caption">Area object General tab showing alarm historization settings — Historize active/unacknowledged/disabled alarm counter options with storage period and deadband fields, plus Aggregate Alarms and Shelve Alarms checkboxes at the bottom</div>
+<div class="lab">
+<strong>Lab Objectives:</strong>
+<ul>
+<li>Enable the Alarm Border feature on the Level_Detailed graphic</li>
+<li>Configure the Shelved custom property to expose alarm shelving state</li>
+<li>Observe Alarm Border animations at runtime</li>
+</ul>
 </div>
 
-<p>Monitoring Alarm State Information at Runtime You can obtain runtime alarm state information using clients, such as Object Viewer or InTouch Tag Viewer. For example, you have configured a Galaxy with ProcessArea1 and ProcessArea2 contained in Plant1. You have two tanks in each process area, with alarms configured on each tank. You can watch the aggregated alarm severity counts at each containment level in Object Viewer. Shelving Alarms You can shelve alarms to temporarily hide them from displays for a fixed period. Alarms continue to be historized, even when they are shelved. Shelving typically is used to reduce alarm noise, or to temporarily suppress alarms that might be triggered during system modifications or repairs, allowing you to focus on correcting other more urgent alarms. Shelving is similar to silencing an alarm, but shelved alarms differ from silenced alarms in the following ways:  Shelved alarms have a built-in associated timeout. Shelved alarms are automatically unshelved when the configured shelving period expires. You can also manually unshelve alarms and return them to an active, displayed state.  Alarm shelving must be enabled at an area level, but shelving applies only to individual alarms. You cannot shelve a hierarchy of alarms for an entire area or for an entire object. You cannot propagate alarm shelving through the Model view hierarchy.  The system enforces role-based limitations on permission to shelve alarms, alarm severity levels that can be shelved, and the total number of alarms a user can shelve. The system tracks who shelved the alarm, from what workstation, the reason for shelving the alarm, when shelving began, and when shelving will expire. Shelved alarms aggregate in similar fashion to silenced alarms. Enabling Alarm Shelving Alarm shelving is configured from the IDE Configuration menu, and is enabled on the Area object. Shelving Alarms at Runtime Use a runtime client to shelve and unshelve alarms. From Application Server, you can use Object Viewer to monitor and control shelved alarm attributes. From a Managed InTouch application, you can use an embedded Alarm Control and at least one animation to write to the AlarmShelveCmd attribute.</p>
+<h3>Step 1: Enable the AlarmBorder Wizard Option</h3>
 
-<p>Graphics Introduction In this lab, for the purpose of notifying an operator of an alarm condition, you will enable the built- in Alarm Border feature in the level meter graphic. Objectives Upon completion of this lab, you will be able to:  Enable alarm notifications for a graphic using the Alarm Border feature</p>
+<p>Open the <strong>Level_Detailed</strong> symbol for editing. Select the LevelMeter element, right-click, and choose Custom Properties. You will notice that there are no alarm-related properties yet — this is because the AlarmBorder feature has not been enabled. Close the dialog and return to the Properties tab, where you will set two critical properties:</p>
 
-<div class="screenshot">
-  <img src="../images/page_0307.png" alt="Lab 12 title page: Mixer100 process overview graphic showing a mixing tank with Level_001 (96.96 L, yellow alarm border priority 2), Temperature_001 (125.64°C), Agitator_001 (0.00 rpm), two inlet pumps/valves, and an outlet valve">
-  <div class="caption">Lab 12 title page: Mixer100 process overview graphic showing a mixing tank with Level_001 (96.96 L, yellow alarm border priority 2), Temperature_001 (125.64°C), Agitator_001 (0.00 rpm), two inlet pumps/valves, and an outlet valve</div>
-</div>
+<table>
+<tr><th>Property</th><th>Value</th></tr>
+<tr><td>SymbolMode</td><td>Advanced</td></tr>
+<tr><td>AlarmBorder</td><td>True</td></tr>
+</table>
 
-<p>Enable the AlarmBorder Feature First, you will configure the AlarmBorder wizard option for the Level_Detailed graphic. 1. In the IDE, on the Graphics tab, in the Training toolset, open Level_Detailed for editing. 2. On the canvas, right-click LevelMeter and select Custom Properties. The list of Custom Properties appears, but there are no alarm properties. In the next steps, you will add alarm features to the graphic. 3. Click OK to close Edit Custom Properties. 4. On the Properties tab, configure the properties as follows: SymbolMode: Advanced AlarmBorder: True</p>
-
-<div class="screenshot">
-  <img src="../images/page_0308_0.png" alt="Edit Custom Properties dialog for LevelMeter — showing pre-existing properties: EngUnits, EngUnitsVisible, LabelVisible, PVRangeFullScaleMax, PVRangeFullScaleMin, PVVisible — before enabling AlarmBorder">
-  <div class="caption">Edit Custom Properties dialog for LevelMeter — showing pre-existing properties: EngUnits, EngUnitsVisible, LabelVisible, PVRangeFullScaleMax, PVRangeFullScaleMin, PVVisible — before enabling AlarmBorder</div>
-</div>
+<p>Setting AlarmBorder to True is the switch that activates the entire alarm border subsystem for this symbol. It tells InTouch to monitor alarm states for this element and render the appropriate visual feedback.</p>
 
 <div class="screenshot">
   <img src="../images/page_0308_1.png" alt="LevelMeter Wizard Options panel — showing Level type, Vertical orientation, with AlarmBorder set to True (highlighted in blue) and SymbolMode set to Advanced">
-  <div class="caption">LevelMeter Wizard Options panel — showing Level type, Vertical orientation, with AlarmBorder set to True (highlighted in blue) and SymbolMode set to Advanced</div>
+  <div class="caption">The AlarmBorder option is set to True in the LevelMeter Wizard Options panel.</div>
 </div>
 
-<p>5. Open Edit Custom Properties, and then verify that alarm properties have been added. 6. Select the AlarmMostUrgentShelved property. 7. In Default Value, enter Me.PV.AlarmMostUrgentShelved. 8. Click OK to close Edit Custom Properties. 9. Save and close and check in the graphic.</p>
+<h3>Step 2: Configure the Shelved Property</h3>
+
+<p>Open Edit Custom Properties again. You will now see that additional alarm properties have been automatically added as a result of enabling AlarmBorder. Select <strong>AlarmMostUrgentShelved</strong> and set its Default Value to <code>Me.PV.AlarmMostUrgentShelved</code>. This binding connects the symbol's shelved state to the process variable's alarm system, enabling the shelving indicator to display correctly at runtime. Save, close, and check in the graphic.</p>
 
 <div class="screenshot">
   <img src="../images/page_0309_0.png" alt="Edit Custom Properties dialog after enabling AlarmBorder — now showing additional alarm properties: AlarmIndicatorVisible, AlarmMostUrgentAcked, AlarmMostUrgentInAlarm, AlarmMostUrgentMode, AlarmMostUrgentSeverity, AlarmMostUrgentShelved">
-  <div class="caption">Edit Custom Properties dialog after enabling AlarmBorder — now showing additional alarm properties: AlarmIndicatorVisible, AlarmMostUrgentAcked, AlarmMostUrgentInAlarm, AlarmMostUrgentMode, AlarmMostUrgentSeverity, AlarmMostUrgentShelved</div>
+  <div class="caption">After enabling AlarmBorder, six new alarm properties are automatically added to the custom properties list.</div>
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0309_1.png" alt="AlarmMostUrgentShelved property editor — Boolean type, default value Me.PV.AlarmMostUrgentShelved, Public visibility, with description: 'Indicates if the most severe alarm is shelved'">
-  <div class="caption">AlarmMostUrgentShelved property editor — Boolean type, default value Me.PV.AlarmMostUrgentShelved, Public visibility, with description: 'Indicates if the most severe alarm is shelved'</div>
-</div>
+<h3>Step 3: Test in Runtime</h3>
 
-<p>Test in Runtime Now, you will test how alarm notifications are shown at runtime. 10. In WindowMaker, ensure the ContentDisplay window is open, and then click Runtime. 11. In the ContentDisplay window, observe the Alarm Border animations.</p>
+<p>Open the ContentDisplay window and click Runtime to see your changes in action. Observe the Alarm Border animations on the mixer's level sensor — you will see the border change color and blink based on the alarm severity as the level value changes. Navigate to Line 1 to see Alarm Borders on all four mixers simultaneously, giving you a visual overview of alarm states across the entire production line.</p>
 
 <div class="screenshot">
   <img src="../images/page_0310.png" alt="Runtime test of Alarm Border animations on Mixer100 — three-panel sequence showing Level_001 transitioning from red dashed border (low level 41.88) to yellow priority-2 border (84.32) to red priority-1 border (96.97)">
-  <div class="caption">Runtime test of Alarm Border animations on Mixer100 — three-panel sequence showing Level_001 transitioning from red dashed border (low level 41.88) to yellow priority-2 border (84.32) to red priority-1 border (96.97)</div>
-</div>
-
-<p>12. In the Navigation window, click Line 1 to navigate to the Line1 area, and then in the ContentDisplay window, observe the Alarm Border animations. 13. Click Development! to return to WindowMaker. <End of Lab></p>
-
-<div class="screenshot">
-  <img src="../images/page_0311.png" alt="Line 1 runtime view showing ContentDisplay with four mixers (Mixer100-400) each displaying Alarm Border animations on their level sensors — Mixer100 yellow priority 2, Mixer200 red dashed border, Mixer300 yellow priority 2, Mixer400 red priority 1">
-  <div class="caption">Line 1 runtime view showing ContentDisplay with four mixers (Mixer100-400) each displaying Alarm Border animations on their level sensors — Mixer100 yellow priority 2, Mixer200 red dashed border, Mixer300 yellow priority 2, Mixer400 red priority 1</div>
-</div>
-
-<p>Overview Introduction In this lab, you will build an overview graphic to show alarm aggregation for the Production area. This overview graphic will show a topology of the areas and objects using an SA_AlarmSeverity symbol to represent each one. Additionally, you will add an alarm severity indicator to your navigation buttons. Optional steps are provided to add additional mixers to the overview graphic. Objectives Upon completion of this lab, you will be able to:  Use the SA_AlarmSeverity symbol to display alarm information and change alarm modes  Add alarm aggregation information to navigation buttons</p>
-
-<div class="screenshot">
-  <img src="../images/page_0313.png" alt="Alarm Aggregation Overview diagram — hierarchical tree showing Production → Line1/Line2 → Mixer100/200/300/400 with SA_AlarmSeverity widgets displaying Critical/High/Medium severity counts, Active/UnAcked counts, and Enable mode at each node">
-  <div class="caption">Alarm Aggregation Overview diagram — hierarchical tree showing Production → Line1/Line2 → Mixer100/200/300/400 with SA_AlarmSeverity widgets displaying Critical/High/Medium severity counts, Active/UnAcked counts, and Enable mode at each node</div>
-</div>
-
-<p>Add Alarm Severity Symbols to $gArea and $Mixer First, you will create graphics in the $gArea and $Mixer templates using the AlarmPanel wizard option. Then, in the SystemNavigation graphic, you will add an AlarmSeverityIndicator to some buttons. 1. In the IDE, on the Templates tab, in the Training\Global toolset, open the $gArea template for editing. 2. In the Object Editor, select the Attributes tab. 3. In Content, click Add, name the symbol AlarmSeverityLabels, and then open it for editing.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0314_0.png" alt="IDE Object Editor — Content list under SgArea template showing AlarmSeverityLabels entry, with Add button (Ctrl+=) tooltip highlighted for creating a new Content symbol">
-  <div class="caption">IDE Object Editor — Content list under SgArea template showing AlarmSeverityLabels entry, with Add button (Ctrl+=) tooltip highlighted for creating a new Content symbol</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0314_1.png" alt="SgArea template Content list showing AlarmSeverityLabels and AlarmSeverityPanel entries — Duplicate button (Ctrl+D) tooltip highlighted on the toolbar">
-  <div class="caption">SgArea template Content list showing AlarmSeverityLabels and AlarmSeverityPanel entries — Duplicate button (Ctrl+D) tooltip highlighted on the toolbar</div>
-</div>
-
-<p>4. On the Toolbox tab, search for severity, and then drag SA_AlarmSeverity to the canvas. 5. On the Properties tab, set the Label property to False. 6. Save and close the graphic.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0315_0.png" alt="Graphic editor canvas with SA_AlarmSeverity widget selected — showing Critical/High/Medium severity rows with colored icons, Mode selector, and placeholder counts — Assets tab open with 'severity' search showing SA_AlarmSeverity component">
-  <div class="caption">Graphic editor canvas with SA_AlarmSeverity widget selected — showing Critical/High/Medium severity rows with colored icons, Mode selector, and placeholder counts — Assets tab open with 'severity' search showing SA_AlarmSeverity component</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0315_1.png" alt="SA_AlarmSeverity1 widget properties — Wizard Options showing Type: AlarmSeverityIndicator, IsAreaObject: True, ShelvedEnable: False, all four severity indicators enabled, Label: False, with Critical/High/Medium/Low severity icons visible on the canvas">
-  <div class="caption">SA_AlarmSeverity1 widget properties — Wizard Options showing Type: AlarmSeverityIndicator, IsAreaObject: True, ShelvedEnable: False, all four severity indicators enabled, Label: False, with Critical/High/Medium/Low severity icons visible on the canvas</div>
-</div>
-
-<p>7. In Content, click Duplicate, name the duplicate AlarmSeverityPanel, and then open it for editing. 8. On the canvas, select the graphic and configure properties as follows: ‘ 9. On the canvas, right-click the graphic and select Copy. To save time, you will reuse this copy in later steps. 10. Save and close the graphic. 11. Save and close and check in the $gArea template. Type: AlarmPanel Label: True LabelType: ObjectTagname Background: True AlarmBorder: True</p>
-
-<div class="screenshot">
-  <img src="../images/page_0316_0.png" alt="Content list in Object Editor showing AlarmSeverityLabels and AlarmSeverityPanel — AlarmSeverityPanel is selected with Duplicate tooltip visible, demonstrating the duplication step to create the AlarmPanel variant">
-  <div class="caption">Content list in Object Editor showing AlarmSeverityLabels and AlarmSeverityPanel — AlarmSeverityPanel is selected with Duplicate tooltip visible, demonstrating the duplication step to create the AlarmPanel variant</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0316_1.png" alt="SA_AlarmSeverity1 widget reconfigured as AlarmPanel — Wizard Options showing Type: AlarmPanel, IsAreaObject: True, Label: True, LabelType: ObjectTagname, Background: True, AlarmBorder: True, with Critical/High/Medium severity rows and Mode/Active/UnAcked fields on canvas">
-  <div class="caption">SA_AlarmSeverity1 widget reconfigured as AlarmPanel — Wizard Options showing Type: AlarmPanel, IsAreaObject: True, Label: True, LabelType: ObjectTagname, Background: True, AlarmBorder: True, with Critical/High/Medium severity rows and Mode/Active/UnAcked fields on canvas</div>
-</div>
-
-<p>Next, you will add an alarm panel to the $Mixer template. 12. In the IDE, on the Templates tab, in the Training\Project template toolset, open the $Mixer template for editing. 13. In Content, add a symbol named AlarmSeverityPanel, and then open it for editing. 14. On the canvas, right-click and select Paste. 15. Click the canvas to paste the graphic copied in an earlier step.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0317_0.png" alt="IDE Templates tree — $Mixer template expanded under Project showing child Agitator object, with Attributes tab active displaying Alarm.Condition attribute described as 'Mixer malfunction status'">
-  <div class="caption">IDE Templates tree — $Mixer template expanded under Project showing child Agitator object, with Attributes tab active displaying Alarm.Condition attribute described as 'Mixer malfunction status'</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0317_1.png" alt="SA_AlarmSeverity widget pasted into $Mixer template — showing Critical/High/Medium severity rows with placeholder counts, Mode selector, and properties panel with IsAreaObject: False">
-  <div class="caption">SA_AlarmSeverity widget pasted into $Mixer template — showing Critical/High/Medium severity rows with placeholder counts, Mode selector, and properties panel with IsAreaObject: False</div>
-</div>
-
-<p>16. In Properties, set IsAreaObject to False. The $Mixer automation object is not an area object. 17. Save and close the graphic. 18. Save and close and check in the $Mixer template. Create the Alarm Overview Graphic Next, you will create a graphic that will display Alarm Severity symbols from area and mixer objects. 19. On the Graphics tab, in the Training toolset, create a symbol named AlarmAggregationOverview, and then open it for editing. 20. On the canvas, right-click and select Embed Industrial Graphic. 21. From Instances, embed Production\AlarmSeverityPanel.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0318_0.png" alt="SA_AlarmSeverity widget configured for non-area object — Wizard Options showing Type: AlarmPanel, IsAreaObject: False, ShelvedEnable: False, CommandPanel: True, Label: True, LabelType: ObjectTagname, with severity icons on canvas">
-  <div class="caption">SA_AlarmSeverity widget configured for non-area object — Wizard Options showing Type: AlarmPanel, IsAreaObject: False, ShelvedEnable: False, CommandPanel: True, Label: True, LabelType: ObjectTagname, with severity icons on canvas</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0318_1.png" alt="Galaxy Browser — Instances tree with Production folder selected, showing AlarmSeverityLabels and AlarmSeverityPanel reusable components with their alarm severity display layouts">
-  <div class="caption">Galaxy Browser — Instances tree with Production folder selected, showing AlarmSeverityLabels and AlarmSeverityPanel reusable components with their alarm severity display layouts</div>
-</div>
-
-<p>22. At the top-center of the canvas, click to place the graphic. 23. Embed AlarmSeverityPanel from the following Instances:  Line1  Line2  Mixer100  Mixer200  Mixer300  Mixer400 24. Use the alignment tools on the toolbar to arrange the graphics as shown below: Production Line1 Line2 Mixer100 Mixer200 Mixer300 Mixer400</p>
-
-<div class="screenshot">
-  <img src="../images/page_0319_0.png" alt="Single SA_AlarmSeverity widget preview — showing Critical/High/Medium severity rows with colored icons, Mode dropdown, and placeholder count fields, selected on design canvas">
-  <div class="caption">Single SA_AlarmSeverity widget preview — showing Critical/High/Medium severity rows with colored icons, Mode dropdown, and placeholder count fields, selected on design canvas</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0319_1.png" alt="Alarm Aggregation Overview graphic in design mode — six SA_AlarmSeverity widgets arranged in a grid layout for Production/Line1/Line2/Mixer100-400, each showing severity levels, Mode selector, and Active/UnAcked count placeholders">
-  <div class="caption">Alarm Aggregation Overview graphic in design mode — six SA_AlarmSeverity widgets arranged in a grid layout for Production/Line1/Line2/Mixer100-400, each showing severity levels, Mode selector, and Active/UnAcked count placeholders</div>
-</div>
-
-<p>25. In Tools, double-click Connector. 26. To show the relationship of the hierarchical structure, click and drag connectors as shown below: 27. In Tools, click Pointer to cancel the connector operation.</p>
-
-<div class="screenshot">
-  <img src="../images/page_0320_0.png" alt="Tools palette with Connector tool highlighted — showing the full grid of drawing tools (Select, Line, Rectangle, Ellipse, Arc, Text, Group, etc.) with Connector tool active for drawing hierarchy lines between alarm widgets">
-  <div class="caption">Tools palette with Connector tool highlighted — showing the full grid of drawing tools (Select, Line, Rectangle, Ellipse, Arc, Text, Group, etc.) with Connector tool active for drawing hierarchy lines between alarm widgets</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0320_1.png" alt="Complete alarm aggregation overview with connector lines drawn — hierarchical tree layout connecting Production → Line1/Line2 → Mixer100/200/300/400 with SA_AlarmSeverity widgets at each node showing severity counts and status">
-  <div class="caption">Complete alarm aggregation overview with connector lines drawn — hierarchical tree layout connecting Production → Line1/Line2 → Mixer100/200/300/400 with SA_AlarmSeverity widgets at each node showing severity counts and status</div>
-</div>
-
-<div class="screenshot">
-  <img src="../images/page_0320_2.png" alt="Graphics editor Tools palette — classic toolbar showing Pointer (active), Line, Crosshair, Rectangle, Circle, Text, Eraser, Brush, Fill, Eyedropper, Crop, Rotate, Zoom, Undo/Redo tools for the graphic editor">
-  <div class="caption">Graphics editor Tools palette — classic toolbar showing Pointer (active), Line, Crosshair, Rectangle, Circle, Text, Eraser, Brush, Fill, Eyedropper, Crop, Rotate, Zoom, Undo/Redo tools for the graphic editor</div>
+  <div class="caption">Alarm Border animations transitioning through different severity states as the level value changes at runtime.</div>
 </div>
 
 <div class="quiz">
   <h3>Quiz — Test Your Understanding</h3>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What are the key concepts covered in this lesson about Alarming Overview + Lab 12?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: How does this topic relate to AVEVA System Platform?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What is the key difference between an alarm and an event in System Platform?</summary>
+    <p class="answer">Alarms represent abnormal conditions requiring immediate operator attention (e.g., high temperature, stopped pump) and have severity levels and acknowledgment states. Events are informational occurrences logged at a point in time (e.g., configuration changes, platform recovery) that do not require acknowledgment.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: What happens visually when an operator acknowledges an active alarm?</summary>
+    <p class="answer">The Alarm Border animation changes from blinking to a solid (non-blinking) border. The border remains visible until the alarm value returns to normal and the operator acknowledges it, at which point the border disappears entirely.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q3: How does shelving differ from silencing an alarm?</summary>
+    <p class="answer">Shelved alarms have a built-in timeout and automatically return after the configured period. Shelving applies to individual alarms only (not entire areas), enforces role-based permissions, and tracks audit information (who, where, reason, duration). Silenced alarms have no automatic timeout.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q4: Which alarm states are included in alarm aggregation?</summary>
+    <p class="answer">UNACK_ALM, ACK_ALM, and UNACK_RTN states are aggregated. Alarms in ACK_RTN are not aggregated. Silenced alarms are aggregated even though they don't appear in runtime clients.</p></details>
 </div>
 
 <p class="source">Module 5 — Alarms and Events Visualization. AVEVA InTouch for System Platform 2023 Training.</p>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 7: WindowMaker Development</title>
+<title>Lesson 7: The InTouch Development Environment</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -97,49 +97,171 @@
 </details>
 </nav>
 
-<h1>Lesson 7: WindowMaker Development</h1>
+<h1>Lesson 7: The InTouch Development Environment</h1>
 <p class="page-ref">Module 2 — Getting Started | Pages 55–60</p>
 
-<p>Environment The WindowMaker Interface The WindowMaker user interface (UI) adheres to Windows standards. WindowMaker supports features including, but not limited to, right-click mouse support, floating and docking toolbars, pull- down menus, and context-sensitive help. Right-click menus provide quick access to frequently used commands and a customizable color palette that provides 16.7 million color support, limited only by your video display. The WindowMaker development environment is configurable. When WindowMaker is initially opened, most of the available UI elements are automatically displayed, including all toolbars and Industrial Graphics. The following figure shows the components of WindowMaker, which is the development environment. When creating a new application and running WindowMaker for the first time, its components will automatically appear in the default configuration as shown. The WindowMaker views include:  Windows: List of user-created Native and Frame windows  Supertags: Template maker for constructing Supertags, which is a hierarchical tag structure  Tools: Quick access to major WindowMaker utilities  Scripts: Access to the global script type editors in WindowMaker  Canvas: WindowMaker workspace  Industrial Graphics: List of items in the Graphics tab from the IDE  Properties: List of Frame window properties This section provides a brief overview of the features of the WindowMaker environment and its settings and describes InTouch windows.</p>
+<p>Now that your Managed InTouch application exists, it is time to learn the tool you will use to build every display window inside it: <strong>WindowMaker</strong>. WindowMaker is the InTouch development environment — the place where you draw graphics, define animations, configure windows, and wire up navigation. This lesson introduces its interface, explains how the ribbon organizes design features, walks through the configuration options that shape your workflow, and covers the four types of windows you can create.</p>
+
+<h2>7.1 The WindowMaker Interface</h2>
+
+<p>WindowMaker's user interface follows standard Windows conventions, so it should feel familiar from the first moment you open it. You get right-click context menus for quick access to frequently used commands, floating and docking toolbars that you can rearrange to suit your workflow, pull-down menus for less common operations, and context-sensitive help that responds to whatever you have selected. A customizable color palette provides support for 16.7 million colors — limited only by your video display hardware.</p>
+
+<p>When WindowMaker opens for the first time after application initialization, it displays its full default configuration. Every toolbar, every panel, every ribbon tab is visible, giving you an overview of everything available. The environment is configurable, however — you can show, hide, and rearrange panels as your comfort level grows. The figure below shows the default layout with its major components labeled.</p>
 
 <div class="screenshot">
   <img src="../images/page_0055.png" alt="Full WindowMaker development environment showing the Home ribbon with Clipboard, Insert, and Alignment groups, left panel with Windows and Scripts tabs, right panel with Industrial Graphics tree under TrainingGalaxy, and an empty design canvas">
-  <div class="caption">Full WindowMaker development environment showing the Home ribbon with Clipboard, Insert, and Alignment groups, left panel with Windows and Scripts tabs, right panel with Industrial Graphics tree under TrainingGalaxy, and an empty design canvas</div>
+  <div class="caption">The default WindowMaker layout: ribbons at the top, Windows and Scripts panels on the left, Industrial Graphics and Properties panels on the right, and the empty design canvas in the center.</div>
 </div>
 
-<p>WindowMaker Ribbon The WindowMaker ribbons (menus) contain all of the design features you can use to create an InTouch application. These include both legacy features for supporting legacy InTouch applications and modern features for supporting Managed InTouch applications. The ribbons are organized by the tasks and workflows that an InTouch application designer would use to build and modify their applications.  File (Backstage): Contains options for New, Open, Save, Close, Delete, User, AVEVA Connect, Import, Export, Configure, and Exit Opens the backstage of WindowMaker. The primary uses for this menu include creating and modifying windows, importing and exporting files, and configuring the behavior of WindowMaker and WindowViewer.  Home: Contains options for Clipboard, Insert, Alignment, Arrange, Spacing, Graphic, Cell, Alarms, and Tags Opens primitive workflow tools, such as copy and paste, alignment, grouping, and major WindowMaker utilities, such as Alarm groups and the Tag dictionary.  Draw (Legacy only): Contains options for Mode, Insert, Shapes, Format, Alignment, Arrange, Spacing, Trends, and SmartSymbol Used to draw legacy visual elements, such as lines, ellipses, and rectangles, format fonts, and to place original InTouch objects, such as SmartSymbols, Real-time, and Historical trends.  Animation: Contains options for Mode, Links, Graphic, Cell, Object, Bitmap, and Substitute Used to animate legacy visual elements with legacy InTouch animations. Additionally, this menu allows you to substitute tags and substitute strings.  Properties: Contains options for Graphic, Symbol Factory, and Clients Supports hierarchical symbol and instance selection from Application Server’s model. Additionally, this menu contains legacy features for Symbol Factory and NAD notification.  View: Contains options for View, Cloud drive, Update, Application, and Theme Used to show and hide WindowMaker views, to access AVEVA Connect, and to set the Dark mode Theme.  Help: Help Help topics for System Platform products, such as InTouch for System Platform, are available as Web help, which can be viewed and searched in your default browser.</p>
+<p>The WindowMaker interface is organized into seven distinct views, each serving a specific purpose in your development workflow:</p>
+
+<table>
+<thead>
+<tr><th>View</th><th>Purpose</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Windows</strong></td><td>Lists all user-created Native and Frame windows. This is where you navigate between windows during development.</td></tr>
+<tr><td><strong>Supertags</strong></td><td>Template maker for constructing Supertags — a hierarchical tag structure that lets you define reusable tag groups.</td></tr>
+<tr><td><strong>Tools</strong></td><td>Quick access to major WindowMaker utilities such as the Tag dictionary and Alarm groups.</td></tr>
+<tr><td><strong>Scripts</strong></td><td>Access to the global script type editors (Application, Key, Condition, Data change, and ActiveX event scripts).</td></tr>
+<tr><td><strong>Canvas</strong></td><td>The central design workspace where you draw and arrange graphics.</td></tr>
+<tr><td><strong>Industrial Graphics</strong></td><td>Displays items from the Graphics tab of the IDE — the symbols, libraries, and other graphical assets available to your application.</td></tr>
+<tr><td><strong>Properties</strong></td><td>Shows the editable properties of the currently selected element (or the Frame window if nothing is selected).</td></tr>
+</tbody>
+</table>
+
+<div class="key-concept">
+<strong>Key Concept: Canvas vs. Windows Panel</strong><br>
+The <strong>Canvas</strong> is where you work — it is the blank drawing surface. The <strong>Windows panel</strong> lists all the windows in your application and lets you switch between them. Think of the Windows panel as a file explorer and the Canvas as the open document. You double-click a window in the panel to open it on the Canvas for editing.
+</div>
+
+<h2>7.2 The WindowMaker Ribbon</h2>
+
+<p>The ribbon at the top of WindowMaker contains all of the design features you need to build an InTouch application. It includes both legacy features for maintaining older InTouch applications and modern features for Managed InTouch applications. The ribbons are organized by the tasks and workflows that a designer would follow — from basic clipboard operations to advanced animation and scripting.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0056.png" alt="WindowMaker Home ribbon toolbar expanded showing functional groups: Clipboard (Paste, Cut, Copy, Duplicate), Insert (Button, Text, Graphics, SmartSymbol, Wizards), Alignment (left, center, right, top, middle, bottom), Arrange (Bring to front, Send to back, Rotate), and Spacing (Horizontal, Vertical, Center points)"Module 2 - Getting Started">
-  <div class="caption">WindowMaker Home ribbon toolbar expanded showing functional groups: Clipboard (Paste, Cut, Copy, Duplicate), Insert (Button, Text, Graphics, SmartSymbol, Wizards), Alignment (left, center, right, top, middle, bottom), Arrange (Bring to front, Send to back, Rotate), and Spacing (Horizontal, Vertical, Center points)</div>
+  <img src="../images/page_0056.png" alt="WindowMaker Home ribbon toolbar expanded showing functional groups: Clipboard (Paste, Cut, Copy, Duplicate), Insert (Button, Text, Graphics, SmartSymbol, Wizards), Alignment (left, center, right, top, middle, bottom), Arrange (Bring to front, Send to back, Rotate), and Spacing (Horizontal, Vertical, Center points)">
+  <div class="caption">The WindowMaker Home ribbon, organized into functional groups for clipboard operations, inserting objects, aligning elements, and arranging layers.</div>
 </div>
 
-<p>WindowMaker Configuration Screen Use the WindowMaker configuration screen to configure preferences and options affecting the behavior of WindowMaker. You can access the configuration screen by clicking File | Configure | WindowMaker. Some configuration options include locking window size to protect graphic distortion when resolution changes; showing tag count to display the number of tags that are used in the application; and disabling script auto complete to prevent constant change under the cursor while the script is being written. InTouch Windows The InTouch application is comprised of windows that can contain graphics, text, animations, and scripts. In the upper left corner of WindowMaker, the + button is used to create new windows. When first creating the window, you define its properties, such as Name and Window type. Window Type options include the following:  Replace: Automatically closes any windows it intersects when it appears on the screen, including popup and replace type windows.  Overlay: Appears on top of the currently displayed windows and can be larger than the windows it is overlaying. Clicking on any visible portion of a window behind an overlay window makes that window active.  Popup: Is similar to an overlay window, yet always stays on top of all other open windows even if another window is clicked.  Frame: This window type is used to host a single graphic. Frame windows enable panning and zooming at runtime.</p>
+<p>Each ribbon tab serves a distinct role in the development workflow:</p>
+
+<p><strong>File (Backstage)</strong> — Opens the backstage view where you create and manage windows, import and export files, and configure the behavior of both WindowMaker and WindowViewer. This is the command center for application-level operations.</p>
+
+<p><strong>Home</strong> — The everyday workflow tab. It contains clipboard tools (copy, paste, duplicate), the Insert group (buttons, SmartSymbols, text, graphics, wizards), alignment and arrangement tools, and access to major utilities like the Tag dictionary and Alarm groups.</p>
+
+<p><strong>Draw (Legacy only)</strong> — Used to draw legacy visual elements: lines, ellipses, rectangles, and other basic shapes. Also handles font formatting and the placement of original InTouch objects such as SmartSymbols, real-time trends, and historical trends. This tab exists primarily for maintaining older applications; for new Managed InTouch applications, you will primarily use the industrial graphics approach.</p>
+
+<p><strong>Animation</strong> — Provides the tools for animating legacy visual elements with InTouch-specific animations. Also handles tag substitution and string substitution, which let you rewire an animation's data source without rebuilding the graphic.</p>
+
+<p><strong>Properties</strong> — Supports hierarchical symbol and instance selection from Application Server's model. This is how you navigate the parent-child relationships between objects and configure the properties of selected symbols. It also contains legacy features for the Symbol Factory and NAD notification.</p>
+
+<p><strong>View</strong> — Controls which WindowMaker panels are visible, provides access to AVEVA Connect (the cloud-based graphics repository), and lets you set the Dark mode theme for the editor.</p>
+
+<p><strong>Help</strong> — Opens web-based help topics for System Platform products in your default browser.</p>
+
+<div class="tip">
+<strong>Tip:</strong> If you are working primarily with Managed InTouch applications, you will spend most of your time on the <strong>Home</strong> tab. The <strong>Draw</strong> and <strong>Animation</strong> tabs are essential for legacy applications but are used less frequently in modern System Platform deployments where industrial graphics (symbols) handle the visual representation.
+</div>
+
+<h2>7.3 WindowMaker Configuration</h2>
+
+<p>Before you begin creating windows, it is worth understanding the configuration options that shape how WindowMaker behaves. You can access these settings by clicking <strong>File &gt; Configure &gt; WindowMaker</strong> in the backstage view. The configuration screen lets you control several preferences that affect your day-to-day development experience.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0057.png" alt="WindowMaker configuration screen accessed via File &gt; Configure, showing the WindowMaker settings panel with title bar text, supertag template path, and checkboxes for options including Store supertags data, Show tag count, Disable script autocomplete, Lock window size, Enable fast switch, and Show grid"Section 3 - Introduction to the InTouch Development Environment">
-  <div class="caption">WindowMaker configuration screen accessed via File &gt; Configure, showing the WindowMaker settings panel with title bar text, supertag template path, and checkboxes for options including Store supertags data, Show tag count, Disable script autocomplete, Lock window size, Enable fast switch, and Show grid</div>
+  <img src="../images/page_0057.png" alt="WindowMaker configuration screen accessed via File > Configure, showing the WindowMaker settings panel with title bar text, supertag template path, and checkboxes for options including Store supertags data, Show tag count, Disable script autocomplete, Lock window size, Enable fast switch, and Show grid">
+  <div class="caption">The WindowMaker configuration screen, accessed from File &gt; Configure, controls how the editor behaves during development.</div>
 </div>
 
-<p>The following example shows window properties: Working with Frame Windows Frame windows enable you to host graphics that can support pan, zoom, and touch capabilities. Frame windows do not:  Support multiple graphics  Host native InTouch controls  Host ActiveX controls  Host SmartSymbols  Support undo/redo actions for window components  Flip or rotate actions for an embedded symbol  Print window information  Support cut, copy, paste, or duplicate operations  Provide cross reference support for graphics embedded in frame windows  Support window conversion to symbols  Support creating new instances, editing instances or selecting alternate instances of embedded automation object graphics</p>
+<p>Some of the most useful configuration options include:</p>
+
+<ul>
+  <li><strong>Lock window size</strong> — Prevents graphic distortion when the resolution changes between development and production. When enabled, the window dimensions you set at design time are preserved regardless of the target display resolution.</li>
+  <li><strong>Show tag count</strong> — Displays the total number of tags used in the application. Useful for monitoring complexity and staying within licensing or performance limits.</li>
+  <li><strong>Disable script autocomplete</strong> — Prevents the autocomplete dropdown from appearing under your cursor while you are writing scripts. Some developers find autocomplete distracting when they are typing quickly.</li>
+  <li><strong>Enable fast switch</strong> — Speeds up switching between open windows during development.</li>
+  <li><strong>Show grid</strong> — Displays a grid on the canvas to help with alignment of graphics.</li>
+</ul>
+
+<div class="tip">
+<strong>Tip:</strong> The <strong>Lock window size</strong> option is especially valuable when your development machine has a different resolution than the production operator stations. Enabling it ensures that a window designed at 1920×1080 on your laptop will display identically on a 1280×1024 operator panel — the window will not stretch or distort, though its visible area may be clipped.
+</div>
+
+<h2>7.4 InTouch Window Types</h2>
+
+<p>An InTouch application is a collection of windows. Each window can contain graphics, text, animations, and scripts. When you create a new window (by clicking the <strong>+</strong> button in the upper-left corner of WindowMaker), you must choose a window type. The type determines how the window interacts with other open windows at runtime. There are four types:</p>
+
+<p><strong>Replace</strong> — This is the most common window type. When a Replace window opens, it automatically closes any other windows it overlaps, including other Replace and Popup windows. Replace windows are ideal for primary display screens — operator stations typically have a single Replace window visible at a time, with navigation buttons switching between different screens.</p>
+
+<p><strong>Overlay</strong> — An Overlay window appears on top of whatever is currently displayed but does not close the underlying windows. It can be larger than the windows it covers. Clicking on any visible portion of a window behind the Overlay makes that window active. Overlay windows are useful for pop-up details or secondary information panels that appear alongside the main display.</p>
+
+<p><strong>Popup</strong> — Similar to an Overlay, but with a critical difference: a Popup window always stays on top of all other open windows, even if you click on a different window. This makes Popups ideal for alarm notifications, system messages, or any display that must remain visible regardless of what the operator is doing.</p>
+
+<p><strong>Frame</strong> — A Frame window hosts a single graphic and enables pan, zoom, and touch capabilities at runtime. Frame windows are useful for displaying large graphics (such as plant-wide overview maps) that an operator needs to navigate by scrolling and zooming.</p>
+
+<div class="key-concept">
+<strong>Key Concept: Choosing the Right Window Type</strong><br>
+The window type you choose has a direct impact on operator experience. Use <strong>Replace</strong> for main navigation screens, <strong>Overlay</strong> for supplementary panels that appear alongside the main display, <strong>Popup</strong> for critical alerts that must never be hidden, and <strong>Frame</strong> for large graphics that need pan and zoom. Mixing types within a single application is normal — most applications use a combination of all four.
+</div>
+
+<h2>7.5 Window Properties</h2>
+
+<p>Every window has a set of properties that control its appearance and behavior. When you create a new window or select an existing one, the Properties panel on the right side of WindowMaker shows the editable attributes. Key properties include:</p>
+
+<ul>
+  <li><strong>Name</strong> — The unique identifier for the window (e.g., <em>Navigation</em>, <em>OverviewDisplay</em>).</li>
+  <li><strong>Window type</strong> — Replace, Overlay, Popup, or Frame (see above).</li>
+  <li><strong>Location</strong> — The X and Y coordinates of the window's top-left corner.</li>
+  <li><strong>Size</strong> — The width and height in pixels.</li>
+  <li><strong>Window color</strong> — The background color of the window.</li>
+  <li><strong>Title bar</strong> — Whether the window has a visible title bar at runtime.</li>
+  <li><strong>Close button</strong> — Whether the operator can close the window at runtime.</li>
+  <li><strong>Size controls</strong> — Whether the window can be resized by the operator at runtime.</li>
+</ul>
 
 <div class="screenshot">
-  <img src="../images/page_0058.png" alt="Window Properties dialog for a Navigation window configured as Replace type with dimensions 1300x120 pixels, white background, no title bar, single frame style, close button enabled, and size controls disabled"Module 2 - Getting Started">
-  <div class="caption">Window Properties dialog for a Navigation window configured as Replace type with dimensions 1300x120 pixels, white background, no title bar, single frame style, close button enabled, and size controls disabled</div>
+  <img src="../images/page_0058.png" alt="Window Properties dialog for a Navigation window configured as Replace type with dimensions 1300x120 pixels, white background, no title bar, single frame style, close button enabled, and size controls disabled">
+  <div class="caption">Example window properties for a Navigation window — a narrow Replace window at the top of the screen with no title bar and no resize handles.</div>
 </div>
 
-<p>Template Windows Template windows are reusable application windows that serve as a mature starting point for creating new windows. They also allow designers to create reusable standards. Windows marked as templates are listed separately under the Templates Windows folder. Note that modifying the original template window does not change the windows that were previously built from it. Duplicating Windows To create copy of an existing window, open the window to be duplicated and on the File menu, select Save Window As and rename the new window. Create a Button and Edit the Label Click the Button tool found in the Draw ribbon to draw a button in a WindowMaker window. After clicking the tool, move the cursor over the window. The cursor changes to a cross hair (+). Click and drag in the window to draw a button, and then release the mouse, when the size is adequate. Right-click the new button and select Substitute | Substitute Strings to change the button text. Double-click the button to add animation.</p>
+<div class="pitfall">
+<strong>Warning: Frame Window Limitations</strong><br>
+Frame windows provide pan and zoom capabilities, but they come with significant restrictions. Frame windows <strong>do not</strong> support multiple graphics, native InTouch controls, ActiveX controls, or SmartSymbols. They also do not support undo/redo, flip/rotate, print, cut/copy/paste, cross-reference, window-to-symbol conversion, or instance editing. If you need any of these features, use a different window type. Frame windows are specifically designed for hosting a single graphic with pan/zoom navigation.
+</div>
+
+<h2>7.6 Template Windows and Duplication</h2>
+
+<p>As your application grows, you will find yourself creating windows that are variations of each other — the same navigation bar, the same layout structure, the same color scheme. Rather than rebuilding these elements from scratch each time, you can use <strong>template windows</strong>. A template window is a reusable starting point that lives in the Templates Windows folder in the Windows panel. When you mark a window as a template, it is listed separately, and you can use it as the basis for new windows without modifying the original.</p>
+
+<p>An important detail: modifying a template window does <em>not</em> change windows that were previously built from it. The template is a snapshot at the moment of creation, not a live link. This means you can safely evolve a template over time while preserving the consistency of windows already derived from earlier versions.</p>
+
+<p>When you want to create an exact copy of an existing window — rather than a variation — use the <strong>Save Window As</strong> command from the File menu. Open the window you want to duplicate, select Save Window As, and give the new window a different name. The copy is independent of the original from that point forward.</p>
+
+<h2>7.7 Creating a Button</h2>
+
+<p>To place a button in a window, select the <strong>Button tool</strong> from the Draw ribbon. Move your cursor over the window — it changes to a crosshair (+). Click and drag to define the button's size, then release the mouse button. The button appears with default text.</p>
+
+<p>To change the button's label, right-click the button and select <strong>Substitute &gt; Substitute Strings</strong>. This opens the string substitution dialog where you can set the text that appears on the button at runtime. To add animation — such as navigation behavior when the button is clicked — double-click the button to open the animation configuration dialog.</p>
+
+<div class="tip">
+<strong>Tip:</strong> In a Managed InTouch application, you will often use industrial graphics (symbols) instead of raw buttons. However, understanding how raw buttons work is important for legacy applications and for quick prototyping. The Substitute Strings mechanism is also used extensively when customizing symbols at the instance level.
+</div>
 
 <div class="quiz">
   <h3>Quiz — Test Your Understanding</h3>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What are the key concepts covered in this lesson about InTouch Development Environment?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: How does this topic relate to AVEVA System Platform?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What are the four window types in InTouch, and how does each one behave at runtime?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;"><strong>Replace</strong> closes any overlapping windows when it opens. <strong>Overlay</strong> appears on top but lets you click through to underlying windows. <strong>Popup</strong> stays on top of all windows even when another is clicked. <strong>Frame</strong> hosts a single graphic with pan/zoom capabilities.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: What is the difference between a template window and a regular window?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">A template window is a reusable starting point that appears in the Templates Windows folder. You can create new windows from it, but modifying the template does not change windows that were previously built from it. Regular windows are standalone — they do not serve as starting points for other windows.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q3: Why would you enable the "Lock window size" configuration option?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Lock window size preserves the window dimensions you set at design time, preventing graphic distortion when the production node has a different resolution than the development machine. Without it, windows may stretch or compress on displays with different aspect ratios.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q4: What are the limitations of Frame windows compared to other window types?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Frame windows cannot host multiple graphics, native InTouch controls, ActiveX controls, or SmartSymbols. They do not support undo/redo, flip/rotate, print, cut/copy/paste, cross-reference, window-to-symbol conversion, or instance editing. They are designed specifically for single-graphic pan/zoom navigation.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q5: How do you change the text label on a button you have drawn in WindowMaker?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Right-click the button and select Substitute &gt; Substitute Strings. This opens the string substitution dialog where you can define the text that will appear on the button at runtime. You can also double-click the button to add animation behavior.</p></details>
 </div>
 
-<p class="source">Module 2 — Getting Started. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson L08 — Lab 3 – Building the Application Layout</p>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 2, Section 3 (pages 55–60)</p>
 
 <script>
 

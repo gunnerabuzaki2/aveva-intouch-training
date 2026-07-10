@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 28: Lab15 Alarm Popup</title>
+<title>Lesson 28: Alarm HistORIZATION & Historical Alarm Display</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -77,7 +77,7 @@
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab13-Alarm-Aggregation.html">25: Lab 13 – Alarm Aggregation</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Live-Alarms-Visualization.html">26: Live Alarms Visualization</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab14-Current-Alarms-Display.html">27: Lab 14 – Current Alarms Display</a></label>
-<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" checked onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html" style="font-weight:bold;">28: Lab 15 – Alarm Popup Symbol</a></label>
+<label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L28" checked onchange="saveProgress()"> <a href="L28-Lab15-Alarm-Popup.html" style="font-weight:bold;">28: Alarm Historization + Historical Alarm Display</a></label>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Historical-Alarms-Lab16.html">29: Historical Alarms + Lab 16</a></label>
 <strong>Module 6 &#8212; Trend Visualization</strong><br>
 <label style="cursor:pointer;display:block;margin:0.1em 0;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Historization-RealTime-Trends.html">30: Historization + Real-Time Trending</a></label>
@@ -97,45 +97,115 @@
 </details>
 </nav>
 
-<h1>Lesson 28: Lab15 Alarm Popup</h1>
+<h1>Lesson 28: Alarm Historization &amp; Historical Alarm Display</h1>
 <p class="page-ref">Module 5 — Alarms and Events Visualization | Pages 363–368</p>
 
-<p>Object Setup At the Object level, events can be historized by checking the Log system events in addition to user events check box in the Log change feature. Alarms can be historized by enabling the State alarm feature. Configuring the Alarm Client Tool The Alarm Client tool can be configured for historization by selecting one of the historical options in the Client Mode drop-down list. Once selected, the following options can be configured:  Authentication Mode  Server Name  Database Name</p>
+<h2>28.1 Enabling Historization at the Object Level</h2>
+
+<p>In AVEVA System Platform, alarms and events are generated continuously as the process runs. However, once an alarm returns to normal or an event completes, it disappears from the live alarm display. To preserve a permanent record for analysis, auditing, and regulatory compliance, you need to <em>historize</em> — that is, log — these alarms and events to a database. Historization happens at two levels: the individual object level and the system-wide Alarm DB Logger level.</p>
+
+<div class="key-concept">
+<strong>Key Concept: Object-Level Historization</strong><br>
+At the object level, events can be historized by checking the <em>Log system events in addition to user events</em> checkbox in the Log Change feature. Alarms can be historized by enabling the <em>State alarm</em> feature. Together, these two settings ensure that both user-initiated actions (like setpoint changes) and system-generated alarms (like high-temperature conditions) are recorded.
+</div>
+
+<p>To enable historization on a specific attribute, open the Object Editor in the IDE and navigate to the attribute you want to track. In the Feature Controls section, you will find two key checkboxes:</p>
+
+<ul>
+<li><strong>State alarm</strong> — When checked, this enables alarm logging for the attribute. You can configure alarm details such as category, priority (0–999), alarm message, and active alarm state.</li>
+<li><strong>Log change</strong> — When checked, this enables event and attribute change logging, recording every time the value changes and who initiated the change.</li>
+</ul>
 
 <div class="screenshot">
   <img src="../images/page_0363_0.png" alt="Object Viewer showing SMixer.Inlet1 object with Attributes tab selected, displaying Cmd, LSClosed, and LSOpen valve attributes, with LSClosed properties panel showing Boolean data type, state alarm configuration with priority 500, and I/O link to hardware device">
-  <div class="caption">Object Viewer showing SMixer.Inlet1 object with Attributes tab selected, displaying Cmd, LSClosed, and LSOpen valve attributes, with LSClosed properties panel showing Boolean data type, state alarm configuration with priority 500, and I/O link to hardware device</div>
+  <div class="caption">Object Viewer — the LSClosed attribute has State alarm enabled (priority 500) and Log change checked, ensuring both alarms and events for this limit switch are historized.</div>
 </div>
+
+<h2>28.2 Configuring the Alarm Client for Historical Mode</h2>
+
+<p>The Alarm Client tool is the primary control used to display alarms in InTouch HMI graphics. By default, it shows <em>live</em> (current) alarms. However, you can switch it to <em>Historical</em> mode to retrieve and display alarms and events that have been stored in the alarm database. To do this, double-click the Alarm Client element on your canvas to open the Edit Animations dialog, then configure the following under Alarm Mode:</p>
+
+<ul>
+<li><strong>Client Mode</strong> — Select one of the historical options from the drop-down list: <em>Historical Alarms</em>, <em>Historical Events</em>, or <em>Historical Alarms and Events</em>.</li>
+<li><strong>Authentication Mode</strong> — Typically set to <em>Windows Integrated</em> for domain environments.</li>
+<li><strong>Server Name</strong> — The hostname or IP of the SQL Server hosting the alarm database.</li>
+<li><strong>Database Name</strong> — The name of the alarm database (e.g., <code>History Blocks</code> or <code>WWAlmDb</code>).</li>
+</ul>
 
 <div class="screenshot">
   <img src="../images/page_0363_1.png" alt="Edit Animations dialog for an AlarmClient element showing Alarm Mode configuration with Client Mode set to Historical Alarms, database connectivity settings using Windows Integrated authentication to server SD1ENG and database WWAlmDb, with a Test Connection button">
-  <div class="caption">Edit Animations dialog for an AlarmClient element showing Alarm Mode configuration with Client Mode set to Historical Alarms, database connectivity settings using Windows Integrated authentication to server SD1ENG and database WWAlmDb, with a Test Connection button</div>
+  <div class="caption">Edit Animations — AlarmClient configured for Historical Alarms mode with Windows Integrated authentication and a Test Connection button to verify database connectivity.</div>
 </div>
 
-<p>Alarm DB Logger Manager The legacy Alarm DB Logger application can be used to start and stop logging operations. The Alarm DB Logger Manager can start as a service or a normal application. Use the Alarm DB Logger configuration wizard to configure alarm logging, which is started from within the Alarm DB Logger Manager. The Alarm DB Logger Manager shows the percentage fill of the Smart Cache with alarm records. The alarms are cached when the SQL Server connection is down or when alarms occur faster than Alarm DB Logger can log them to the alarm database. Configuring Alarm Database Logging To log Galaxy alarm and event data to the alarm database, do the following from within the Alarm DB Logger Manager:  Configure the connection to the alarm database  Select which alarms to log to the alarm database  Set the interval to log records to the alarm database  Select which method to run the Alarm DB Logger A connection between the Alarm DB Logger and the alarm database must also be established. The Alarm DB Logger only works with SQL Server authentication and the SQL Server authentication must be set to mixed mode. Configuring Which Alarms to Log In the Alarm DB Logger Manager configuration wizard, define one or more queries to select alarms from Galaxy alarm providers. Select a range of alarm priority values that are part of the database query. Use the following query syntax for remote nodes: \\NodeName\Provider!AlarmGroup Use the following query syntax for the local node: \Provider!AlarmGroup Example: \\ProdSvr\InTouch!$System The following is an example of using a Galaxy alarm provider. This query provides all alarms from a specific area. \\Galaxy!Area Alarm Database The Alarm Database stores alarms and events from the Alarm Manager to a SQL Server database. Use the Alarm DB Logger utility to continuously log alarms and events to the Alarm Database. Set the Alarm Control to show one of the following:  Historical alarms from the Alarm Database  Historical events from the Alarm Database  Historical alarms and events from the Alarm Database</p>
+<div class="tip">
+<strong>Tip:</strong> Always click <em>Test Connection</em> after entering your database settings. This verifies that the Alarm Client can reach the SQL Server and that the authentication credentials are valid before you proceed.
+</div>
 
-<h2>Historical Alarms</h2>
+<h2>28.3 Alarm DB Logger and Database Configuration</h2>
 
-<p>Historical Alarms When the Alarm Control is configured in the Historical Alarms mode, only alarms stored in the Alarm Database are shown. Historical Events When the Alarm Control is configured in the Historical Events mode, only events stored in the Alarm Database are shown. Historical Alarms and Events When the Alarm Control is configured in the Historical Alarms and Events mode, both alarms and events stored in the Alarm Database are displayed. Configure the Alarm Control to show historical alarms or events, or both, which includes the following:  Server name hosting the Alarm Database  Authentication information to connect to the Alarm Database  Maximum number of records to retrieve from the Alarm Database  Time range or duration to show in the Alarm Control  If the Alarm Control should update to the current client time</p>
+<p>The Alarm DB Logger Manager is a legacy utility that manages the continuous logging of alarms and events from the Galaxy to a SQL Server database. It can run either as a Windows service (recommended for production) or as a normal desktop application. The Logger includes a <em>Smart Cache</em> that buffers alarm records when the SQL Server connection is temporarily unavailable or when alarms arrive faster than the Logger can write them.</p>
 
-<p>Introduction In a previous lab, you created an alarm display for visualization of current alarms and events. In this lab, you will use the Alarm Client to create an alarm display for visualization of historical alarms and events logged in the alarm database. You will use the ShowGraphic() script function to display the historical alarms. Objectives Upon completion of this lab, you will be able to:  Use and configure the Alarm Client to visualize historical alarms and events  Create a filter in runtime</p>
+<p>Configuring alarm database logging involves four steps:</p>
 
-<p>Create and Configure the Historical Alarm Display First, you will create and configure an alarm display to retrieve historical information. 1. In the IDE, on the Graphics tab, in the Training toolset, create a new symbol named AlarmHistDisplay, and then open it for editing. 2. In Tools, click Alarm Client and place it on the canvas. Note: Leave some room above the Alarm Client on the canvas where you will configure some text and buttons later in this lab. 3. Name the element AlarmClient. 4. Double-click AlarmClient to open it for editing.</p>
+<ol>
+<li><strong>Configure the database connection</strong> — The Alarm DB Logger requires SQL Server authentication in <em>mixed mode</em>. Windows Integrated authentication is not supported for the Logger itself.</li>
+<li><strong>Select which alarms to log</strong> — Define one or more queries using Galaxy alarm provider syntax. For remote nodes, use <code>\\NodeName\Provider!AlarmGroup</code>; for local nodes, use <code>\Provider!AlarmGroup</code>. For example, <code>\\ProdSvr\InTouch!$System</code> selects all alarms from the $System group on the ProdSvr node.</li>
+<li><strong>Set the logging interval</strong> — Controls how frequently the Logger writes cached records to the database.</li>
+<li><strong>Select the run method</strong> — Choose whether to run as a service or as a desktop application.</li>
+</ol>
+
+<div class="pitfall">
+<strong>Warning:</strong> The Alarm DB Logger only works with SQL Server authentication set to <em>mixed mode</em>. If your SQL Server is configured for Windows Integrated authentication only, the Logger will fail to connect. Ensure mixed mode is enabled before proceeding.
+</div>
+
+<h2>28.4 Historical Display Modes</h2>
+
+<p>Once alarm data is logged to the database, the Alarm Control can be configured to display it in three modes:</p>
+
+<table>
+<thead>
+<tr><th>Mode</th><th>What It Shows</th><th>ClientMode Value</th></tr>
+</thead>
+<tbody>
+<tr><td>Historical Alarms</td><td>Only alarm records from the database</td><td>3</td></tr>
+<tr><td>Historical Events</td><td>Only event records (user actions, system events)</td><td>4</td></tr>
+<tr><td>Historical Alarms &amp; Events</td><td>Both alarms and events combined</td><td>5</td></tr>
+</tbody>
+</table>
+
+<p>When configuring the Alarm Control for any historical mode, you need to specify:</p>
+
+<ul>
+<li>The <strong>server name</strong> hosting the Alarm Database</li>
+<li><strong>Authentication information</strong> to connect to the database</li>
+<li>The <strong>maximum number of records</strong> to retrieve</li>
+<li>The <strong>time range or duration</strong> to display</li>
+<li>Whether the Alarm Control should <strong>auto-update</strong> to the current client time</li>
+</ul>
+
+<div class="key-concept">
+<strong>Key Concept: ClientMode Values</strong><br>
+The Alarm Client's ClientMode property is an integer that controls which display mode is active: 3 = Historical Alarms, 4 = Historical Events, 5 = Historical Alarms &amp; Events. You can switch modes at runtime by writing these values to the ClientMode property via pushbutton animations — a pattern you will implement in Lab 16.
+</div>
 
 <div class="screenshot">
   <img src="../images/page_0368.png" alt="Alarm Summary Object (Alarm Viewer control) in WindowMaker design mode displaying a tabular alarm list with columns for User, State, Node, Group, and Name, showing four alarm states: ACK, ACK_RTN, UNACK (yellow highlighted), and UNACK_RTN for a test tag">
-  <div class="caption">Alarm Summary Object (Alarm Viewer control) in WindowMaker design mode displaying a tabular alarm list with columns for User, State, Node, Group, and Name, showing four alarm states: ACK, ACK_RTN, UNACK (yellow highlighted), and UNACK_RTN for a test tag</div>
+  <div class="caption">Alarm Viewer control in design mode — this is the base Alarm Client element that will be configured for historical display in the lab.</div>
 </div>
 
 <div class="quiz">
   <h3>Quiz — Test Your Understanding</h3>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What are the key concepts covered in this lesson about Lab 15 – Alarm Popup Symbol?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: How does this topic relate to AVEVA System Platform?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: At the object level, which two checkboxes must be enabled to historize both alarms and events for an attribute?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">You must enable <strong>State alarm</strong> (to historize alarms) and <strong>Log system events in addition to user events</strong> in the Log Change feature (to historize events). Both must be checked for complete historization.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: What authentication mode does the Alarm DB Logger require for its SQL Server connection?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">The Alarm DB Logger requires <strong>SQL Server authentication in mixed mode</strong>. Windows Integrated authentication is not supported by the Logger itself — this is a common pitfall in production environments.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q3: What is the ClientMode value used to display combined Historical Alarms &amp; Events?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">The ClientMode value is <strong>5</strong> for combined Historical Alarms &amp; Events. (3 = Historical Alarms only, 4 = Historical Events only.)</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q4: What is the purpose of the Smart Cache in the Alarm DB Logger Manager?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">The Smart Cache buffers alarm records when the SQL Server connection is down or when alarms arrive faster than the Logger can write them to the database. The Logger displays the percentage fill of the cache so operators can monitor its status.</p></details>
 </div>
 
-<p class="source">Module 5 — Alarms and Events Visualization. AVEVA InTouch for System Platform 2023 Training.</p>
+<p class="source">Source: AVEVA™ Training Manual, Module 5 — Alarms and Events Visualization, Section 3 (pages 363–368)</p>
 <p class="source">Next: Lesson L29 — Historical Alarms + Lab 16</p>
 
 <script>

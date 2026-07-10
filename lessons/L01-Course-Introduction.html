@@ -100,36 +100,91 @@
 <h1>Lesson 1: Course Introduction</h1>
 <p class="page-ref">Module 1 — Introduction | Pages 1–6</p>
 
-<p>August 2023AVEVA™ Training Part Number 11-MO-8600-0032 A V E V A ™ T R A I N I N G AVEVA™InTouch for System Platform 2023</p>
+<p>This section sets the stage for the entire course. It describes what you will learn, what you should already know, and how the four days of training are organized. If you are new to the AVEVA InTouch ecosystem, this lesson will give you a clear roadmap of what lies ahead.</p>
 
-<div class="screenshot">
-  <img src="../images/page_0001.png" alt="AVEVA corporate wordmark logo in dark violet color, serving as the cover page branding for the AVEVA InTouch for System Platform 2023 training manual">
-  <div class="caption">AVEVA corporate wordmark logo in dark violet color, serving as the cover page branding for the AVEVA InTouch for System Platform 2023 training manual</div>
+<h2>1.1 What This Course Covers</h2>
+
+<p>The AVEVA InTouch for System Platform 2023 course is a four-day, instructor-led training program designed to give you a thorough overview of the features and capabilities of AVEVA InTouch when used as part of the System Platform ecosystem. Over the course of four days, you will learn how to build and deploy visualization applications, create graphics, visualize alarms and events, analyze trends and historical data, and implement security controls in an InTouch application. Hands-on labs are woven throughout the course to reinforce each concept with practical experience.</p>
+
+<div class="key-concept">
+<strong>Key Concept: InTouch as a Visualization Client</strong><br>
+InTouch for System Platform is not a standalone product — it is a visualization client that works together with AVEVA Application Server. Your displays, graphics, and operator interfaces are all powered by real-time data flowing from the Application Server Galaxy. Understanding this relationship is essential: Application Server provides the data engine, while InTouch provides the screens that operators interact with.
 </div>
 
-<p>© 2023 AVEVA Group Limited and its subsidiaries. All rights reserved. AVEVA and the AVEVA logo are a trademark or registered trademark of AVEVA Group Limited in the U.S. and other countries. No part of this documentation shall be reproduced, stored in a retrieval system, or transmitted by any means, electronic, mechanical, photocopying, recording, or otherwise, without the prior written permission of AVEVA. No liability is assumed with respect to the use of the information contained herein. Although precaution has been taken in the preparation of this documentation, AVEVA assumes no responsibility for errors or omissions. The information in this documentation is subject to change without notice and does not represent a commitment on the part of AVEVA. The software described in this documentation is furnished under a license agreement. This software may be used or copied only in accordance with the terms of such license agreement. ArchestrA, Aquis, Avantis, Citect, DYNSIM, eDNA, EYESIM, InBatch, InduSoft, InStep, IntelaTrac, InTouch, OASyS, PIPEPHASE, PRiSM, PRO/II, PROVISION, ROMeo, SIM4ME, SimCentral, SimSci, Skelta, SmartGlance, Spiral Software, Termis, WindowMaker, WindowViewer, and Wonderware are trademarks of AVEVA and/or its subsidiaries. An extensive listing of AVEVA trademarks can be found at: https:// sw.aveva.com/legal. All other brands may be trademarks of their respective owners. Contact Information AVEVA Group Limited High Cross Madingley Road Cambridge CB3 OHB. UK https://sw.aveva.com/ For information on how to contact sales, customer training, and technical support, see https://sw.aveva.com/ contact.</p>
+<p>This course is intended for individuals who need to configure or modify AVEVA InTouch for System Platform applications. If you are a system integrator, control engineer, or application developer working with AVEVA visualization tools, this course will give you the foundational knowledge you need.</p>
 
-<p>Table of Contents 1 AVEVA™ InTouch for System Platform 2020 R2 Table of Contents Introduction .................................................................................1-1 Getting Started ............................................................................2-1 Symbols .......................................................................................3-1 Widgets ........................................................................................4-1 Alarms and Events Visualization...............................................5-1 Trend Visualization .....................................................................6-1</p>
+<h2>1.2 Prerequisites</h2>
 
-<p>2 AVEVA™ InTouch for System Platform 2020 R2 Security ....................................................................................... 7-1 Web Client................................................................................... 8-1</p>
+<p>Before diving into the course material, you should have a working knowledge of industrial automation software concepts. More specifically, familiarity with the following Application Server features and technologies will help you get the most out of this training:</p>
 
-<div class="screenshot">
-  <img src="../images/page_0005.png" alt="Stock photograph of four diverse people seated at desktop computers in a training classroom or collaborative workspace, representing the course introduction for the AVEVA InTouch for System Platform training">
-  <div class="caption">Stock photograph of four diverse people seated at desktop computers in a training classroom or collaborative workspace, representing the course introduction for the AVEVA InTouch for System Platform training</div>
+<ul>
+<li><strong>System Platform IDE</strong> — the Integrated Development Environment used to design and configure applications</li>
+<li><strong>AutomationObjects</strong> and their role in the Galaxy — the building blocks of every System Platform application</li>
+<li><strong>Alarms</strong> and how they are configured on attributes — critical for process safety and operator awareness</li>
+<li><strong>Historization of attributes</strong> and data logging — recording process data over time for analysis</li>
+<li><strong>Security models and permissions</strong> — controlling who can do what within the application</li>
+<li><strong>The deployment model</strong> for pushing objects to runtime — moving from development to live operation</li>
+<li><strong>The plant model</strong> and how areas are organized — structuring your application to mirror the physical plant</li>
+<li><strong>QuickScript.NET scripting language</strong> — extending application logic with custom scripts</li>
+</ul>
+
+<div class="tip">
+<strong>Tip:</strong> If you are new to System Platform, consider reviewing the AVEVA Application Server fundamentals before starting this course. The InTouch visualization layer builds directly on concepts from Application Server — particularly AutomationObjects, the Galaxy, and the deployment model.
 </div>
 
-<p>Module Objectives  Review the course agenda  Explain System Platform  Describe encrypted communication  Describe the system and licensing requirements for System Platform</p>
+<h2>1.3 Course Objectives</h2>
+
+<p>Upon completion of this course, you will be able to accomplish the following:</p>
+
+<ul>
+<li><strong>Describe</strong> the visualization components of AVEVA InTouch for System Platform and how they relate to Application Server</li>
+<li><strong>Create and run</strong> visualization applications using WindowMaker and WindowViewer</li>
+<li><strong>Understand and apply</strong> situational awareness concepts to design effective operator displays</li>
+<li><strong>Create and use</strong> graphics effectively, including symbols, animations, and custom properties</li>
+<li><strong>Implement navigation</strong> for visualization applications — building a logical flow between screens</li>
+<li><strong>Implement alarm visualization</strong> in your displays — live alarms, historical alarms, and alarm popups</li>
+<li><strong>Implement both real-time and historical trending</strong> — from simple trend pens to Historian Client controls</li>
+<li><strong>Implement security controls</strong> in your visualization application — authentication, permissions, and runtime lockdown</li>
+<li><strong>View graphics in a web browser</strong> using AVEVA InTouch Access Anywhere</li>
+</ul>
+
+<h2>1.4 Course Structure and Agenda</h2>
+
+<p>The course is organized into eight modules, each building on the knowledge from the previous one. Here is a summary of what each module covers:</p>
+
+<table>
+<thead>
+<tr><th>Module</th><th>Topic</th><th>Key Areas</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>Introduction</td><td>System Platform overview, encryption, system requirements</td></tr>
+<tr><td>2</td><td>Getting Started</td><td>InTouch visualization, automation objects, WindowMaker, WindowViewer</td></tr>
+<tr><td>3</td><td>Symbols</td><td>Industrial graphics, Graphic Editor, animations, custom properties, scripts</td></tr>
+<tr><td>4</td><td>Widgets</td><td>HTML5 widget controls, Carousel widget</td></tr>
+<tr><td>5</td><td>Alarms and Events</td><td>Alarm overview, live alarms, historical alarms, aggregation</td></tr>
+<tr><td>6</td><td>Trend Visualization</td><td>Historization, real-time trending, Multi Pens, Historian Client</td></tr>
+<tr><td>7</td><td>Security</td><td>Authentication, permissions, signed writes, runtime lockdown</td></tr>
+<tr><td>8</td><td>Web Client</td><td>Web Client features and deployment</td></tr>
+</tbody>
+</table>
+
+<p>Each module includes a mix of instructional content and hands-on labs. The labs build upon each other — the Galaxy you create in Lab 1 will be the foundation for every subsequent lab in the course.</p>
+
+<div class="pitfall">
+<strong>Important:</strong> Do not skip the early labs. Lab 1 creates the Galaxy that all subsequent labs depend on. If you fall behind on the setup, later exercises will not work correctly.
+</div>
 
 <div class="quiz">
   <h3>Quiz — Test Your Understanding</h3>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What are the key concepts covered in this lesson about Course Introduction?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: How does this topic relate to AVEVA System Platform?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: How many days does the AVEVA InTouch for System Platform 2023 course run?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">The course is a 4-day, instructor-led class.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: What is the primary prerequisite knowledge area that students should have before taking this course?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Students should have knowledge of industrial automation software concepts and familiarity with the Application Server IDE, AutomationObjects, alarms, historization, security, deployment, plant model, and QuickScript.NET.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q3: Why is it important not to skip Lab 1?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Lab 1 creates the Galaxy that is used throughout all subsequent labs in the course. Skipping it means later labs will not have the required foundation to work correctly.</p></details>
 </div>
 
-<p class="source">Module 1 — Introduction. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson L02 — System Platform Overview</p>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 1, Section 1 (pages 1–6)</p>
 
 <script>
 

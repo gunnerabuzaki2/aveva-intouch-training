@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 9: Runtime Environment</title>
+<title>Lesson 9: Runtime Environment and Application Design</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -97,40 +97,164 @@
 </details>
 </nav>
 
-<h1>Lesson 9: Runtime Environment</h1>
+<h1>Lesson 9: Runtime Environment and Application Design</h1>
 <p class="page-ref">Module 2 — Getting Started | Pages 81–86</p>
 
-<p>WindowViewer WindowViewer provides the runtime environment for InTouch applications. When an application is started in WindowViewer, the windows that are configured to open by default are started in runtime, unless WindowViewer is called from WindowMaker for testing the application. In this case, the windows opened in WindowMaker are opened in WindowViewer. Information displayed in WindowViewer is real-time application data from the plant floor. Processes can then be controlled by the operator by clicking items on the screen. WindowViewer Properties WindowMaker includes many options for customizing the WindowViewer runtime environment. For example, you can set the blink frequency for Blink animations, the system inactivity timeout and warning values for automatic logoff, and the windows that are automatically opened when WindowViewer is started. These customizations for runtime are found in WindowMaker by selecting File | Configure | WindowViewer. The following tabs are available:  Preferences: Contains miscellaneous WindowViewer runtime behavior options, such as I/O, automatic logoff, and virtual keyboard access.  Application type: Contains options for licensing support.  Window: Contains options for hiding and showing runtime menu items, locking down keyboard keys, and application resolution.  Memory: Sets the minimums in RAM for storing and retrieving Industrial graphics.  Startup: Contains the selection of windows to open on startup.  Advanced format: Contains runtime data precision and numerical formatting options.  Managed application: Contains settings for the working directory of the deployed application, script timeout period, and operator experience for deployed changes. This section provides a brief overview of InTouch WindowViewer and explains how to deploy and run a Managed InTouch application.</p>
+<p>Up to this point, you have been working in WindowMaker — the InTouch development environment where you design windows, embed graphics, and configure animations. But an HMI application is only useful when it is running and displaying real-time data to operators. That runtime environment is provided by <strong>WindowViewer</strong>. In this lesson, you will learn how WindowViewer works, how InTouch applications integrate with Application Server through the <strong>InTouchViewApp</strong> and <strong>ViewEngine</strong> objects, and how to deploy and launch your application in production.</p>
+
+<h2>WindowViewer: The InTouch Runtime</h2>
+
+<p>WindowViewer is the program that executes InTouch applications at runtime. When an application is started in WindowViewer, the windows that are configured to open by default are launched automatically — unless WindowViewer was called from WindowMaker for testing purposes, in which case only the windows that were open in the editor are displayed.</p>
+
+<div class="key-concept">
+<strong>Key Concept: WindowViewer</strong><br>
+WindowViewer is the InTouch runtime engine. It displays real-time application data from the plant floor, allowing operators to monitor processes and interact with controls by clicking items on the screen. WindowViewer reads tag values, executes scripts, and renders the windows you designed in WindowMaker.
+</div>
+
+<p>The information displayed in WindowViewer comes from real-time data sources — PLCs, Historians, Application Server, and other industrial data providers. Operators can interact with the application by clicking buttons, entering values, acknowledging alarms, and navigating between screens. All of these interactions happen through the runtime, not the development environment.</p>
+
+<h2>WindowViewer Properties</h2>
+
+<p>WindowMaker provides extensive options for customizing the WindowViewer runtime experience. These configuration settings are accessed through <strong>File → Configure → WindowViewer</strong> and are organized into several tabs, each controlling a different aspect of runtime behavior.</p>
 
 <div class="screenshot">
   <img src="../images/page_0081.png" alt="WindowViewer configuration screen showing the Preferences tab with startup settings (Startup as icon, Enable tag viewer, Minimum access level set to 9999), and inactivity timeout settings (Warning and Timeout both set to 0 seconds)">
-  <div class="caption">WindowViewer configuration screen showing the Preferences tab with startup settings (Startup as icon, Enable tag viewer, Minimum access level set to 9999), and inactivity timeout settings (Warning and Timeout both set to 0 seconds)</div>
+  <div class="caption">The WindowViewer configuration screen with the Preferences tab — startup and inactivity timeout settings are visible.</div>
 </div>
 
-<p>InTouchViewApp The InTouchViewApp object represents an InTouch application in the Application Server environment. The InTouchViewApp object manages the check-in, check-out, and deployment of an InTouch application. The InTouchViewApp object includes the capabilities of the Application Server InTouchProxy object, so that InTouch tags can be referenced by Application Server Message Exchange clients as InTouchViewApp attributes. The InTouchViewApp object is used to incorporate InTouch applications into an overall system defined by a Application Server Galaxy. The Application Server system manages:  Check-in and check-out for multiple users  Security restrictions on who can deploy the InTouch application and when the InTouch application can be deployed  Backup and restore  Deployment and undeployment The InTouchViewApp object allows application objects running on a ViewEngine object to access InTouch tags as if they were Application Server attributes of the InTouchViewApp object itself. The tags are browsed through the standard Application Server attribute browser. You can create an InTouch application by deriving an InTouchViewApp object from the standard template $InTouchViewApp. Creation includes the choice of starting a new application from scratch or through the use of an application template. Application templates enable you to quickly create a new application based on the standards specified in the template. You select which template you want to base your application on using the Application Template Browser. The templates available in the Application Templates Browser are exported .aaPKG files that are loaded from an Application Templates folder in the InTouch installation directory. For example: C:\Program Files(x86)\Wonderware\InTouch\ApplicationTemplates You can also create an InTouch application using a copy of an existing application. Either way, opening an InTouchViewApp object launches WindowMaker. There is no object editor for the InTouchViewApp object. In WindowMaker, in File | Configure | WindowViewer, the Managed application tab contains settings for managing the update and deployment behavior for InTouch. You can assign multiple InTouchViewApp objects to the same ViewEngine object to make multiple InTouch applications available on a node. However, only one InTouch application per node can run at a time. To run an InTouch application on an Application Server Platform:  Create and assign a ViewEngine object to a Platform.  Create an instance of the InTouchViewApp object from the template that defines the InTouch application.  Assign the InTouchViewApp instance object to the ViewEngine instance object.  Deploy the ViewEngine object and the InTouchViewApp objects assigned to the ViewEngine object.  Run the AVEVA Application Manager to select the application and run WindowViewer; this only needs to be done the first time.</p>
+<p>The available tabs and their purposes are:</p>
 
-<p>ViewEngine A ViewEngine object is a simplified version of an AppEngine object. A ViewEngine object hosts InTouchViewApp objects, as well as ViewApp objects. The ViewEngine object supports common engine features, such as deployment, undeployment, startup, and shutdown. The ViewEngine does not support redundancy. One ViewEngine object can handle several InTouchViewApp objects. However, only one InTouch application per node can run at a time. The ViewEngine object:  Is assigned to and deployed to a WinPlatform object  Hosts and executes InTouchViewApp objects; the scan rate of the ViewEngine object determines the scan rate of all its hosted InTouchViewApp objects  Contains the logic to set up and initialize InTouchViewApp objects when they are initially deployed and started, so that they can communicate with other objects within the Galaxy  Does not need to be running in order for WindowViewer to execute its scripts or access process data  Can host Application Server scripts and UDAs; these continue to run when WindowViewer is shut down  Provides a set of configuration and runtime attributes  Contains its own set of runtime diagnostic attributes that can be monitored, alarmed, and historized  Can include the Historian as part of the ViewEngine object configuration; all InTouchViewApp objects that the ViewEngine object hosts use this historian  Does not support redundancy Historization and alarm options of the ViewEngine object may not need to be used. Because a ViewEngine object only hosts InTouchViewApp objects, InTouchViewApp objects only serve as a proxy for InTouch tags. As such, when referencing tags as InTouchViewApp attributes, a shorter ScanPeriod on the ViewEngine object can minimize the latency of tag value updates.</p>
+<table>
+  <tr><th>Tab</th><th>Purpose</th></tr>
+  <tr><td><strong>Preferences</strong></td><td>Miscellaneous runtime behavior: I/O settings, automatic logoff, and virtual keyboard access. Controls how WindowViewer behaves during normal operation.</td></tr>
+  <tr><td><strong>Application type</strong></td><td>Licensing support options — determines how the application is licensed in production.</td></tr>
+  <tr><td><strong>Window</strong></td><td>Controls which runtime menu items are visible, which keyboard keys are locked down, and the application's display resolution.</td></tr>
+  <tr><td><strong>Memory</strong></td><td>Sets minimum RAM allocations for storing and retrieving Industrial Graphics. Important for performance tuning.</td></tr>
+  <tr><td><strong>Startup</strong></td><td>Specifies which windows open automatically when WindowViewer starts. This is where you define your "home" windows.</td></tr>
+  <tr><td><strong>Advanced format</strong></td><td>Runtime data precision and numerical formatting options — controls how values are displayed to operators.</td></tr>
+  <tr><td><strong>Managed application</strong></td><td>Settings for the deployed application's working directory, script timeout period, and how operator changes to deployed applications are handled.</td></tr>
+</table>
 
-<p>Deploy a Managed InTouch Application Associating all Galaxy graphics with an InTouchViewApp template enables deployed and published InTouch applications to run graphic requests made of any graphic in the Galaxy without having to embed them in the application. Before a Managed InTouch application can be used in a production environment, it must be deployed to the target platform(s) from the IDE. An instance of the $InTouchViewApp template is treated as any other object and must be deployed to the target node. You can deploy a Managed InTouch application from the IDE to the local node or a remote node. After you deploy the application, you can run it in WindowViewer on the remote node.</p>
+<div class="tip">
+<strong>Tip:</strong> The Startup tab is one of the most important configuration areas. The windows you select here will open automatically when WindowViewer launches in production. Make sure to select all the windows that form your application layout — in our case, Navigation, Logon, AlarmDisplay, OverviewDisplay, and ContentDisplay.
+</div>
+
+<h2>InTouchViewApp: The Galaxy Integration Object</h2>
+
+<p>When InTouch is used within an AVEVA Application Server Galaxy, the InTouch application is represented by an <strong>InTouchViewApp</strong> object. This object serves as the bridge between the InTouch HMI layer and the Application Server's model-driven architecture. It manages the entire lifecycle of the InTouch application within the Galaxy.</p>
+
+<div class="key-concept">
+<strong>Key Concept: InTouchViewApp</strong><br>
+The InTouchViewApp object represents an InTouch application in the Application Server environment. It manages check-in, check-out, and deployment of the application, and enables InTouch tags to be referenced as Application Server attributes through Message Exchange.
+</div>
+
+<p>The InTouchViewApp object inherits from the standard <code>$InTouchViewApp</code> template and includes the capabilities of the Application Server InTouchProxy object. This means that InTouch tags can be browsed through the standard Application Server attribute browser and referenced by any Message Exchange client as InTouchViewApp attributes.</p>
+
+<p>The Application Server Galaxy manages the InTouchViewApp through several key capabilities:</p>
+
+<ul>
+  <li><strong>Check-in and check-out</strong> for multiple users — enabling collaborative development with version control</li>
+  <li><strong>Security restrictions</strong> on who can deploy the application and when deployment is permitted</li>
+  <li><strong>Backup and restore</strong> — protecting against accidental data loss</li>
+  <li><strong>Deployment and undeployment</strong> — pushing applications to target platforms and pulling them back</li>
+</ul>
+
+<p>To create an InTouch application, you derive an InTouchViewApp object from the <code>$InTouchViewApp</code> template. You can start from scratch or use an application template — exported <code>.aaPKG</code> files stored in the InTouch installation directory (typically <code>C:\Program Files(x86)\Wonderware\InTouch\ApplicationTemplates</code>). You can also create an application by copying an existing one. In all cases, opening the InTouchViewApp object launches WindowMaker for editing.</p>
+
+<div class="pitfall">
+<strong>Pitfall:</strong> There is no dedicated object editor for the InTouchViewApp in the IDE. Double-clicking the object opens WindowMaker directly. This can be confusing if you expect to see an attribute editor like other Application Server objects.
+</div>
+
+<h2>ViewEngine: The Runtime Host</h2>
+
+<p>The <strong>ViewEngine</strong> object is a simplified version of the AppEngine, purpose-built to host InTouchViewApp objects (and ViewApp objects) at runtime. It is the execution environment that runs your InTouch HMI application within the Application Server Galaxy.</p>
+
+<div class="key-concept">
+<strong>Key Concept: ViewEngine</strong><br>
+A ViewEngine object is assigned to and deployed on a WinPlatform. It hosts and executes InTouchViewApp objects, and its scan rate determines the scan rate of all hosted InTouch applications. One ViewEngine can host multiple InTouchViewApp objects, but only one InTouch application can run per node at a time.
+</div>
+
+<p>The ViewEngine provides a rich set of capabilities beyond simply hosting InTouch windows:</p>
+
+<ul>
+  <li><strong>Deployment management</strong> — it supports deploy, undeploy, startup, and shutdown of hosted applications</li>
+  <li><strong>Initialization logic</strong> — it contains the logic to set up InTouchViewApp objects when they are first deployed, enabling communication with other objects in the Galaxy</li>
+  <li><strong>Application Server scripts and UDAs</strong> — these continue to run even when WindowViewer is shut down, providing a persistent execution layer</li>
+  <li><strong>Historian integration</strong> — the ViewEngine can include Historian configuration, and all hosted InTouchViewApp objects share this historian</li>
+  <li><strong>Runtime diagnostics</strong> — the ViewEngine provides its own diagnostic attributes that can be monitored, alarmed, and historized</li>
+</ul>
+
+<div class="tip">
+<strong>Tip:</strong> The ViewEngine's scan rate directly affects how quickly tag value updates appear in the runtime. A shorter ScanPeriod on the ViewEngine minimizes latency when referencing InTouch tags as InTouchViewApp attributes. However, keep in mind that Historization and alarm options of the ViewEngine may not always be necessary since InTouchViewApp objects primarily serve as tag proxies.
+</div>
+
+<div class="pitfall">
+<strong>Pitfall:</strong> The ViewEngine does <strong>not</strong> support redundancy. If high availability is required for your visualization layer, this limitation must be considered in your system architecture.
+</div>
+
+<h2>Deploying a Managed InTouch Application</h2>
+
+<p>Before a Managed InTouch application can be used in a production environment, it must be deployed to the target platform(s) from the IDE. An instance of the <code>$InTouchViewApp</code> template is treated like any other Application Server object — it must be assigned to a target node and deployed.</p>
+
+<p>Deployment can target either the local node or a remote node. After deployment, you can run the application in WindowViewer on the remote node. The deployment process pushes the application files, configuration, and graphics to the target platform where the ViewEngine will host and execute them.</p>
 
 <div class="screenshot">
   <img src="../images/page_0084.png" alt="Application Manager tree view with ViewApps section expanded showing SMixerView object with a right-click context menu offering Deploy, Undeploy, Upload Changes, Assign To, Set as Default, Export, Properties, and other management options">
-  <div class="caption">Application Manager tree view with ViewApps section expanded showing SMixerView object with a right-click context menu offering Deploy, Undeploy, Upload Changes, Assign To, Set as Default, Export, Properties, and other management options</div>
+  <div class="caption">Right-clicking the InTouchViewApp instance in the IDE reveals deployment and management options including Deploy, Undeploy, and Upload Changes.</div>
 </div>
 
-<p>AVEVA Application Manager When the Application Manager is first run, it searches the computer for any existing InTouch applications. Applications appear as tiles in the interface. When a managed application tile is selected, several toolbar buttons are grayed out, such as WindowMaker, DBLoad, and DBDump. These functions are not available for Managed InTouch applications. To run a Managed InTouch application, click the WindowViewer button on the tile for the application.</p>
+<p>One important detail: associating all Galaxy graphics with the InTouchViewApp template means that deployed and published InTouch applications can render any graphic from the Galaxy without having to embed it directly in the application. This significantly reduces application file size and ensures visual consistency across the entire system.</p>
+
+<h2>AVEVA Application Manager</h2>
+
+<p>The <strong>AVEVA Application Manager</strong> is the standalone tool for managing and launching InTouch applications on a local machine. When first run, it scans the computer for existing InTouch applications and displays them as tiles in a visual interface.</p>
 
 <div class="screenshot">
   <img src="../images/page_0085.png" alt="AVEVA Application Manager showing the $MixerView application tile with WindowViewer launch button, resolution labeled as Managed 1920x975, and toolbar buttons for WindowMaker (grayed out for managed apps), WindowViewer, DBLoad, and DBDump">
-  <div class="caption">AVEVA Application Manager showing the $MixerView application tile with WindowViewer launch button, resolution labeled as Managed 1920x975, and toolbar buttons for WindowMaker (grayed out for managed apps), WindowViewer, DBLoad, and DBDump</div>
+  <div class="caption">The Application Manager showing the $MixerView application tile — note that WindowMaker is grayed out because this is a Managed InTouch application.</div>
+</div>
+
+<div class="key-concept">
+<strong>Key Concept: Managed vs. Unmanaged Applications</strong><br>
+In the Application Manager, some toolbar buttons — such as WindowMaker, DBLoad, and DBDump — are grayed out for Managed InTouch applications. This is because Managed InTouch applications are controlled through the Application Server Galaxy (IDE), not through the local Application Manager. To run a Managed application, click the <strong>WindowViewer</strong> button on its tile.
+</div>
+
+<p>The Application Manager displays important information about each application tile, including the resolution setting (for example, "Managed 1920×975") and the available launch options. For Managed InTouch applications, the primary action is to launch WindowViewer — all development and configuration work happens through the Galaxy IDE.</p>
+
+<h2>The Development-to-Runtime Workflow</h2>
+
+<p>Understanding the complete workflow from design to production is essential for any InTouch developer. Here is the typical sequence:</p>
+
+<ol>
+  <li><strong>Design in WindowMaker</strong> — create windows, embed Industrial Graphics, configure animations and scripts</li>
+  <li><strong>Test with fast-switch</strong> — use the Runtime button to jump into WindowViewer for quick testing</li>
+  <li><strong>Check in to Galaxy</strong> — commit your changes to the InTouchViewApp template in the IDE</li>
+  <li><strong>Configure WindowViewer settings</strong> — set startup windows, lock window size, configure runtime options</li>
+  <li><strong>Deploy from IDE</strong> — push the InTouchViewApp and ViewEngine instances to the target platform</li>
+  <li><strong>Launch in production</strong> — use Application Manager on the target machine to start WindowViewer</li>
+</ol>
+
+<div class="tip">
+<strong>Tip:</strong> When using the Runtime fast-switch from WindowMaker, the windows that were open in the editor are the ones displayed in runtime — not the startup windows you configured. This is useful for testing specific windows during development, but always verify the final result by launching through Application Manager in production mode.
 </div>
 
 <div class="quiz">
-  <h3>Quiz — Test Your Understanding</h3>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What are the key concepts covered in this lesson about Runtime Environment and Application Design?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: How does this topic relate to AVEVA System Platform?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <h3>Quiz &#8212; Test Your Understanding</h3>
+
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What is WindowViewer, and how does it differ from WindowMaker?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;"><strong>WindowMaker</strong> is the development environment where you design windows, embed graphics, and configure animations. <strong>WindowViewer</strong> is the runtime environment that executes the application, displaying real-time data from plant floor sources and allowing operators to interact with the HMI.</p></details>
+
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: What role does the InTouchViewApp object play in the Application Server Galaxy?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">The InTouchViewApp object represents the InTouch application within the Galaxy. It manages check-in/check-out, deployment, security, and backup/restore. It also enables InTouch tags to be referenced as Application Server attributes through Message Exchange, bridging the HMI and automation layers.</p></details>
+
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q3: What is the ViewEngine object, and what determines its scan rate?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">The ViewEngine is a simplified AppEngine that hosts and executes InTouchViewApp objects at runtime. It is assigned to a WinPlatform, and its configured scan rate determines the scan rate of all InTouchViewApp objects it hosts. A shorter ScanPeriod reduces tag value update latency.</p></details>
+
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q4: Why are WindowMaker, DBLoad, and DBDump buttons grayed out for Managed InTouch applications in the Application Manager?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Managed InTouch applications are controlled through the Application Server Galaxy IDE, not through the local Application Manager. Development tasks like editing (WindowMaker), database load (DBLoad), and database dump (DBDump) are performed in the IDE. The Application Manager is used primarily to launch WindowViewer for production use.</p></details>
+
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q5: What happens to Application Server scripts and UDAs hosted by a ViewEngine when WindowViewer is shut down?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Application Server scripts and UDAs (User Defined Attributes) hosted by the ViewEngine <strong>continue to run</strong> even when WindowViewer is shut down. The ViewEngine provides a persistent execution layer independent of the HMI runtime.</p></details>
 </div>
 
 <p class="source">Module 2 — Getting Started. AVEVA InTouch for System Platform 2023 Training.</p>

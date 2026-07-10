@@ -97,69 +97,137 @@
 </details>
 </nav>
 
-<h1>Lesson 34: Historian Trend Lab19</h1>
+<h1>Lesson 34: Historian Client Trend + Lab 19</h1>
 <p class="page-ref">Module 6 — Trend Visualization | Pages 431–438</p>
 
-<p>5. Add a custom property named HistServer and configure it as follows: Note: Your instructor will provide the Historian node name. 6. Click OK to close Edit Custom Properties. Data Type: String Default Value: <HistorianNodeName> Visibility: Private</p>
+<p>In Lab 18, you built the TrendHistDisplay symbol and connected it to the Historian server using <code>AddServerEx()</code>. Now it is time to complete the integration: you will add the server initialization property, wire up the script, add a navigation button so operators can reach the trend from anywhere in the application, and then thoroughly test it at runtime by comparing mixer levels and experimenting with live mode.</p>
+
+<h2>34.1 Configuring the Historian Connection</h2>
+
+<p>The TrendHistDisplay symbol needs to know which Historian server to connect to. Rather than hard-coding a server name into a script, you store it in a custom property. This makes the symbol portable — you can deploy it to a different server simply by changing the default value, without touching any scripts.</p>
+
+<h3>Adding the HistServer Custom Property</h3>
+<p>Open TrendHistDisplay in the Graphic Editor. Right-click the canvas and select Custom Properties. Add a new property with these settings:</p>
+
+<table>
+  <tr><th>Property</th><th>Setting</th></tr>
+  <tr><td>Name</td><td><code>HistServer</code></td></tr>
+  <tr><td>Data Type</td><td>String</td></tr>
+  <tr><td>Default Value</td><td>Your Historian node name (your instructor will provide this)</td></tr>
+  <tr><td>Visibility</td><td>Private</td></tr>
+</table>
 
 <div class="screenshot">
   <img src="../images/page_0431.png" alt="Screenshot of the Edit Custom Properties dialog showing the HistServer custom property configured as String data type with default value S01ENG and Private visibility (hidden when symbol is embedded)">
-  <div class="caption">Screenshot of the Edit Custom Properties dialog showing the HistServer custom property configured as String data type with default value S01ENG and Private visibility (hidden when symbol is embedded)</div>
+  <div class="caption">The HistServer property stores the Historian node name. Private visibility keeps it hidden from operators at runtime.</div>
 </div>
 
-<p>7. Right-click the canvas and select Scripts. 8. In Predefined Scripts, in the Trigger type drop-down list, verify On Show is selected. 9. In the script body, enter the following: Note: You may use the applicable script in C:\Training\Lab19 - Building a Historian Client Trend Display.txt. 'Add a server using integrated security. Trend.AddServerEx(HistServer,"","",false); 10. Click OK to close Edit Scripts. 11. Save and close and check in the graphic. Add a Navigation Button for Displaying TrendHistDisplay Next, you will add a button to the SystemNavigation symbol to display the TrendHistDisplay graphic. 12. On the Graphics tab, open SystemNavigation for editing. 13. On the canvas, duplicate the Historical Alarms button and place the duplicate to the right of the original. 14. Use Substitute Strings to change the button text to Historian Client Trend.</p>
+<p>Click OK to close the dialog. The Private visibility ensures that when TrendHistDisplay is embedded as a component inside another graphic, operators cannot see or change the server name — only developers can modify it at design time.</p>
+
+<h3>Writing the Server Initialization Script</h3>
+<p>Next, you need to tell the <code>aaTrendControl</code> which server to use. Right-click the canvas and open Scripts. In the Predefined Scripts section, confirm that the Trigger type is set to <strong>On Show</strong>. This is critical: the script runs every time the symbol becomes visible, which means the server connection is established fresh each time the trend window opens.</p>
+
+<p>Enter the following script body:</p>
+
+<p><code>Trend.AddServerEx(HistServer, "", "", false);</code></p>
 
 <div class="screenshot">
   <img src="../images/page_0432_0.png" alt="Screenshot of the Edit Scripts dialog showing Predefined Scripts with On Show trigger type and VBScript code: Trend.AddServerEx(HistServer,&quot;&quot;,false) to add a Historian server using integrated security">
-  <div class="caption">Screenshot of the Edit Scripts dialog showing Predefined Scripts with On Show trigger type and VBScript code: Trend.AddServerEx(HistServer,&quot;&quot;,false) to add a Historian server using integrated security</div>
+  <div class="caption">The On Show script calls AddServerEx to connect the trend to the Historian server when the symbol is displayed.</div>
 </div>
+
+<div class="key-concept">
+<strong>Key Concept: <code>AddServerEx()</code> vs. <code>AddServer()</code>.</strong> The <code>AddServerEx()</code> function takes additional parameters for username, password, and an integrated-security flag. By passing <code>false</code> for the last parameter, you tell the control to use Windows integrated authentication — no separate credentials are needed when the operator is already logged into a domain-joined workstation.
+</div>
+
+<p>Click OK to close Edit Scripts. Save, close, and check in the graphic.</p>
+
+<h2>34.2 Adding Navigation</h2>
+
+<p>An operator should not have to hunt through a file system to find the trend display. You will add a button to the SystemNavigation symbol so the Historian Client Trend is accessible from the main navigation bar — just like Mixers, Alarm Overview, and the other views.</p>
+
+<h3>Duplicating a Navigation Button</h3>
+<p>Open the SystemNavigation symbol for editing. Find the Historical Alarms button, duplicate it, and move the copy to the right. Use Substitute Strings to change the button text to "Historian Client Trend".</p>
 
 <div class="screenshot">
   <img src="../images/page_0432_1.png" alt="Screenshot of the SystemNavigation symbol editor showing six navigation buttons arranged horizontally on a grid canvas: Mixers, Line 1, Line 2, Alarm Overview, Historical Alarms, and the newly added Historian Client Trend button">
-  <div class="caption">Screenshot of the SystemNavigation symbol editor showing six navigation buttons arranged horizontally on a grid canvas: Mixers, Line 1, Line 2, Alarm Overview, Historical Alarms, and the newly added Historian Client Trend button</div>
+  <div class="caption">The navigation bar now includes six buttons, with the new Historian Client Trend button on the far right.</div>
 </div>
 
-<p>15. For the new button, open Edit Custom Properties and change the GraphicName default value to TrendHistDisplay. 16. Click OK to close Edit Custom Properties. 17. Save and close and check in the graphic.</p>
+<p>Open the custom properties for the new button and change the <code>GraphicName</code> default value to <code>TrendHistDisplay</code>. This tells the navigation button which graphic to display when clicked.</p>
 
 <div class="screenshot">
   <img src="../images/page_0433.png" alt="Screenshot of the Edit Custom Properties dialog for EmbeddedSymbol5 showing the GraphicName property set to TrendHistDisplay with Public visibility, with other properties listed (GetButtonText, WindowModal, WindowName, WindowResizable)">
-  <div class="caption">Screenshot of the Edit Custom Properties dialog for EmbeddedSymbol5 showing the GraphicName property set to TrendHistDisplay with Public visibility, with other properties listed (GetButtonText, WindowModal, WindowName, WindowResizable)</div>
+  <div class="caption">Setting GraphicName to TrendHistDisplay links the navigation button to the trend display symbol.</div>
 </div>
 
-<p>Test in Runtime Now, you will view the Historian Client Trend in runtime. 18. In WindowMaker, click Runtime. 19. In the Navigation window, click Historian Client Trend. After a moment, the trend appears. 20. In Tags, select Level_001.PV and drag it to the chart. The chart displays Level with alarm limits highlighted where orange represents HiHi and LoLo, and yellow represents Hi and Lo.</p>
+<p>Save, close, and check in the graphic. The navigation is now complete.</p>
+
+<h2>34.3 Testing at Runtime</h2>
+
+<p>Now the real test begins. You will exercise every feature of the Historian Client Trend: single-tag viewing, multi-tag comparison, preset time ranges, and live mode.</p>
+
+<h3>Single-Tag Trend View</h3>
+<p>Switch to Runtime and click the Historian Client Trend button in the navigation. After a moment, the trend appears with the Tag Picker panel showing the S01ENG server. In the Tags list, select <code>Level_001.PV</code> and drag it onto the chart. The chart immediately displays the mixer level with alarm limits highlighted — orange for HiHi and LoLo, yellow for Hi and Lo.</p>
 
 <div class="screenshot">
   <img src="../images/page_0434.png" alt="Screenshot of the TrendHistDisplay window showing the Historian Client Trend with Tag Picker panel (S01ENG server, Level_001.PV tag selected), a trend chart displaying cyclic mixer level data with annotated values (69.87 at 1:21:47 PM, 53.99 at 1:25:17 PM), and time range controls for a 5-minute window">
-  <div class="caption">Screenshot of the TrendHistDisplay window showing the Historian Client Trend with Tag Picker panel (S01ENG server, Level_001.PV tag selected), a trend chart displaying cyclic mixer level data with annotated values (69.87 at 1:21:47 PM, 53.99 at 1:25:17 PM), and time range controls for a 5-minute window</div>
+  <div class="caption">A single mixer level trend showing the characteristic fill-and-drain cycle with alarm limit bands.</div>
 </div>
 
-<p>Now, you will add additional tags. 21. In Tags, select the following tags and drag them to the chart. Note: To select multiple tags at once, you can press and hold Ctrl or Shift.  Level_002.PV  Level_003.PV  Level_004.PV  Level_005.PV  Level_006.PV  Level_007.PV  Level_008.PV The comparative display of the overlapping mixer levels demonstrates the time difference for filling and draining each tank, including latency.</p>
+<div class="key-concept">
+<strong>Key Concept: Drag-and-drop tag selection.</strong> The Historian Client Trend does not require you to pre-configure which tags to display. Operators pick any tag from the Historian database and drag it onto the chart at runtime. This makes the trend a powerful diagnostic tool for troubleshooting unexpected process behavior.
+</div>
+
+<h3>Multi-Tag Comparison</h3>
+<p>The real power of this trend is comparing multiple mixers side by side. In the Tags panel, select <code>Level_002.PV</code> through <code>Level_008.PV</code> — hold Ctrl or Shift for multi-select — and drag them all onto the chart. Each tag appears as a different colored line.</p>
 
 <div class="screenshot">
   <img src="../images/page_0435.png" alt="Screenshot of the TrendHistDisplay with multiple Level tags (Level_002.PV through Level_008.PV) selected and displayed as overlapping colored trend lines on the chart, showing comparative mixer level data with annotated values and delta calculations">
-  <div class="caption">Screenshot of the TrendHistDisplay with multiple Level tags (Level_002.PV through Level_008.PV) selected and displayed as overlapping colored trend lines on the chart, showing comparative mixer level data with annotated values and delta calculations</div>
+  <div class="caption">Multiple mixer levels displayed as overlapping trend lines reveal the time offsets and latency between different mixers.</div>
 </div>
 
-<p>22. Drag other tags to the trend chart and observe the trends. 23. Above the chart, in the middle drop-down list, select 1 minute. 24. Click Enable or disable live or replay mode. The chart begins scrolling continuously.</p>
+<p>The overlapping lines tell a story: each mixer fills and drains at slightly different times, and the horizontal offset between lines reveals the latency. You can also drag other tags — temperature, flow, speed — to see how different process variables correlate.</p>
+
+<h3>Time Range and Live Mode</h3>
+<p>Use the time range dropdown above the chart to select "1 minute". The chart zooms into that window, showing higher resolution. Then click the Enable/Disable live mode button — the chart begins scrolling continuously, updating in real time as new data arrives from the Historian.</p>
 
 <div class="screenshot">
   <img src="../images/page_0436_0.png" alt="Screenshot of the TrendHistDisplay with a preset time range dropdown menu open showing options from 1 minute to Previous Hour, with multiple mixer level trend lines displayed as colored lines on the chart with time axis from 1:21:49 PM to 1:26:49 PM">
-  <div class="caption">Screenshot of the TrendHistDisplay with a preset time range dropdown menu open showing options from 1 minute to Previous Hour, with multiple mixer level trend lines displayed as colored lines on the chart with time axis from 1:21:49 PM to 1:26:49 PM</div>
+  <div class="caption">The preset time range menu offers quick access to common analysis windows.</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0436_1.png" alt="Screenshot of the TrendHistDisplay in live/replay mode showing real-time mixer level trends with a 1-minute time window (1:43:51 to 1:44:51 PM), live value markers (red at 0.20, blue at 75.60), and Level_005 through Level_008.PV tags in the active tag panel">
-  <div class="caption">Screenshot of the TrendHistDisplay in live/replay mode showing real-time mixer level trends with a 1-minute time window (1:43:51 to 1:44:51 PM), live value markers (red at 0.20, blue at 75.60), and Level_005 through Level_008.PV tags in the active tag panel</div>
+  <div class="caption">In live mode, the chart scrolls continuously, giving operators a real-time window into the process.</div>
 </div>
 
-<p>25. Close the TrendHistDisplay window. 26. Click Development! to return to WindowMaker. <End of Lab></p>
+<div class="tip">
+<strong>Tip:</strong> Live mode is especially useful during commissioning or when an operator suspects an intermittent problem. The scrolling display makes it easy to spot transient spikes or dips that might be missed in a static historical view.
+</div>
+
+<p>Close the TrendHistDisplay window and click Development to return to WindowMaker. <strong>&lt;End of Lab&gt;</strong></p>
+
+<div class="pitfall">
+<strong>Watch Out:</strong> If the trend shows "No Data" after dragging a tag, the Historian may not be archiving that tag. Verify in the Historian configuration that the tag is included in an archive and that data collection is active. Also check that the time range you selected actually contains data for that tag.
+</div>
 
 <div class="quiz">
   <h3>Quiz — Test Your Understanding</h3>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What are the key concepts covered in this lesson about Historian Client Trend + Lab 19?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: How does this topic relate to AVEVA System Platform?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: Why is the HistServer custom property set to Private visibility instead of Public?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Private visibility hides the property when TrendHistDisplay is embedded as a component in another graphic. Since the server name is an internal configuration detail, operators should not see or modify it at runtime. Only developers need access during design time.</p></details>
+
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: What does the third parameter (false) in <code>AddServerEx(HistServer, "", "", false)</code> control?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">The fourth parameter controls whether integrated (Windows) security is used. When set to <code>false</code>, the control uses Windows integrated authentication — the operator's domain credentials are passed automatically without requiring a separate username and password prompt.</p></details>
+
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q3: How do you select multiple tags in the Tag Picker to compare them on the same trend chart?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Hold Ctrl (for individual multi-select) or Shift (for range select) while clicking tags in the Tags panel. Then drag the entire selection onto the chart. Each tag appears as a different colored line, making it easy to compare values across multiple mixers or process variables.</p></details>
+
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q4: What happens when you click the Enable/Disable live mode button on the trend chart?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">The chart switches from a static historical view to a continuously scrolling display. New data points are added in real time as they arrive from the Historian, giving operators a live window into current process behavior. This is particularly useful during commissioning or troubleshooting transient events.</p></details>
+
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q5: Why must the AddServerEx script use the On Show trigger rather than On Initialize?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">The On Show trigger fires every time the symbol becomes visible, which means the server connection is re-established each time the trend window opens. This ensures a fresh, valid connection. On Initialize only runs once when the symbol is first loaded, so if the connection drops or the window is closed and reopened, the trend would not reconnect.</p></details>
 </div>
 
 <p class="source">Module 6 — Trend Visualization. AVEVA InTouch for System Platform 2023 Training.</p>

@@ -97,69 +97,167 @@
 </details>
 </nav>
 
-<h1>Lesson 33: Lab18 Trend Popup</h1>
+<h1>Lesson 33: Lab 18 – Trend Popup Symbol</h1>
 <p class="page-ref">Module 6 — Trend Visualization | Pages 423–430</p>
 
-<p>aaHistClientQuery Control The aaHistClientQuery control runs the Historian Client Query program (or a functional subset) from within the InTouch HMI software or a .NET container like Visual Basic .NET or Internet Explorer. Query is a client application that retrieves data from a Historian database or any SQL Server database and returns the results in a table format. If querying the Historian database, choose from a number of predefined query types and easily select the options for each type, eliminating the need to know SQL syntax. Custom queries can also be written, if the SQL syntax and the schema of the database are known.</p>
+<p>When operators need to investigate historical data, they typically want a flexible tool where they can pick tags on the fly, choose time ranges, and see results in a table or chart. In the previous lessons you worked with InTouch's built-in Trend object, which is great for fixed, predefined trends. But what if you need a more interactive, ad-hoc query experience directly inside your HMI? That is exactly what the Historian Client .NET controls provide. In this lesson, you will learn what these controls do, and then build a reusable Trend Popup symbol that embeds the Historian Client Trend for drag-and-drop tag exploration at runtime.</p>
+
+<h2>33.1 The Historian Client .NET Controls</h2>
+
+<p>AVEVA ships a set of .NET controls that can be embedded in InTouch windows (or in any .NET container like Visual Basic .NET or a web browser). Each control handles a specific piece of the historical-data workflow: picking tags, choosing time ranges, running queries, and displaying results. Understanding each control will make it easier to assemble them into a complete trend popup.</p>
+
+<h3>aaHistClientQuery</h3>
+<p>The <code>aaHistClientQuery</code> control runs the Historian Client Query program — or a functional subset of it — right inside InTouch. Query retrieves data from a Historian database (or any Microsoft SQL Server database) and returns the results in a table format. If you are querying the Historian database, you can choose from several predefined query types and select options through a user interface, eliminating the need to know SQL syntax. For more advanced use cases, you can also write custom SQL queries as long as you know the SQL syntax and the database schema.</p>
 
 <div class="screenshot">
   <img src="../images/page_0423.png" alt="Screenshot of the aaHistClientQuery control showing a Historian Client Query interface with Tag Picker panel (LOCALHOST server with TT_001.PV selected), time range selection (October 12, 2007), and historical data results grid with 100 rows of temperature readings">
-  <div class="caption">Screenshot of the aaHistClientQuery control showing a Historian Client Query interface with Tag Picker panel (LOCALHOST server with TT_001.PV selected), time range selection (October 12, 2007), and historical data results grid with 100 rows of temperature readings</div>
+  <div class="caption">The aaHistClientQuery control provides a full query interface with tag selection, time range, and a results grid — all without writing SQL.</div>
 </div>
 
-<p>aaHistClientTagPicker Control The aaHistClientTagPicker control displays the hierarchy of objects in the Historian database (for example, tags, InTouch nodes, events, and so on) in a hierarchical format. Unlike the other Historian Client controls, the aaHistClientTagPicker control does not provide a user interface to select and connect to a Historian. A programmatic interface needs to be added to allow this functionality. The following code can be used in a script to allow a user to log on to the Historian located in the localhost: aaTagPicker1.Servers.Add( "localhost" );</p>
+<h3>aaHistClientTagPicker</h3>
+<p>The <code>aaHistClientTagPicker</code> control displays the hierarchy of objects in the Historian database — tags, InTouch nodes, events, and so on — in a tree-style browser. Unlike the other controls, it does not include a built-in user interface for connecting to a Historian server. You need to add a programmatic connection. For example, to connect to the local Historian, you would call:</p>
+
+<p><code>aaTagPicker1.Servers.Add("localhost");</code></p>
 
 <div class="screenshot">
   <img src="../images/page_0424.png" alt="Screenshot of the aaHistClientTagPicker control showing a Tag Picker dialog with LOCALHOST server tree (Public Groups, Private Groups), tag list with columns for Tag Name (Agitator_001.PV through LIT_002.PV), Description, and I/O Address, plus filter tabs for All, Analog, Discrete, String, and Event">
-  <div class="caption">Screenshot of the aaHistClientTagPicker control showing a Tag Picker dialog with LOCALHOST server tree (Public Groups, Private Groups), tag list with columns for Tag Name (Agitator_001.PV through LIT_002.PV), Description, and I/O Address, plus filter tabs for All, Analog, Discrete, String, and Event</div>
+  <div class="caption">The Tag Picker presents a hierarchical view of all available tags, with filter tabs for Analog, Discrete, String, and Event types.</div>
 </div>
 
-<p>aaHistClientTimeRangePicker Control The aaHistClientTimeRangePicker control allows date and time parameters to be selected.</p>
+<h3>aaHistClientTimeRangePicker</h3>
+<p>The <code>aaHistClientTimeRangePicker</code> control lets users select date and time parameters for a query. It offers a calendar popup for picking start and end dates, plus preset duration shortcuts (1 minute through 4 hours) so operators can quickly zoom into a recent window without manually calculating timestamps.</p>
 
 <div class="screenshot">
   <img src="../images/page_0425_0.png" alt="Screenshot of the aaHistClientTimeRangePicker control showing start and end date-time fields (October 12, 2007) with a calendar popup for October 2007 highlighting the 12th, and a time offset field showing 00:00:00">
-  <div class="caption">Screenshot of the aaHistClientTimeRangePicker control showing start and end date-time fields (October 12, 2007) with a calendar popup for October 2007 highlighting the 12th, and a time offset field showing 00:00:00</div>
+  <div class="caption">The Time Range Picker offers both a calendar interface and preset durations for quick time window selection.</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0425_1.png" alt="Screenshot of the aaHistClientTimeRangePicker control showing a dropdown menu with preset time duration options (1 minute through 4 hours) with 30 minutes currently highlighted, and start/end timestamp fields showing a 5-minute span">
-  <div class="caption">Screenshot of the aaHistClientTimeRangePicker control showing a dropdown menu with preset time duration options (1 minute through 4 hours) with 30 minutes currently highlighted, and start/end timestamp fields showing a 5-minute span</div>
+  <div class="caption">Preset duration options let operators jump to common time windows with a single click.</div>
 </div>
 
-<p>aaHistClientActiveDataGrid Control The aaHistClientActiveDataGrid control can run any SQL query from any Historian or Microsoft SQL Server database and return the results in a grid. Note: The aaHistClientActiveDataGrid control does not support data definition or data manipulation queries. Unlike the other Historian Client controls, the aaHistClientActiveDataGrid control does not provide a user interface to select and connect to a SQL Server or specify the query that will feed data to the grid. A programmatic interface needs to be added to allow this functionality. The following code can be used in a script to connect to the local Historian as aaUser and query history data for the SysTimeSec tag: aaTagPicker1.Servers.Add( "localhost" ); aaHistClientActiveDataGrid1.ServerName = "localhost"; aaHistClientActiveDataGrid1.UserName = "aaUser"; aaHistClientActiveDataGrid1.Password = "pwUser"; aaHistClientActiveDataGrid1.DatabaseName = "Runtime"; aaHistClientActiveDataGrid1.SQLString = "SELECT * FROM History WHERE Tagname = 'SysTimeSec'"; aaHistClientActiveDataGrid1.Connected = 1;</p>
+<h3>aaHistClientActiveDataGrid</h3>
+<p>The <code>aaHistClientActiveDataGrid</code> control can run any SQL query against a Historian or SQL Server database and display the results in a grid. It does not support data-definition or data-manipulation queries (INSERT, UPDATE, DELETE) — only SELECT queries. Like the Tag Picker, it requires programmatic setup. Here is an example that connects to the local Historian and queries historical data for the <code>SysTimeSec</code> tag:</p>
+
+<p><code>aaHistClientActiveDataGrid1.ServerName = "localhost";</code><br>
+<code>aaHistClientActiveDataGrid1.UserName = "aaUser";</code><br>
+<code>aaHistClientActiveDataGrid1.Password = "pwUser";</code><br>
+<code>aaHistClientActiveDataGrid1.DatabaseName = "Runtime";</code><br>
+<code>aaHistClientActiveDataGrid1.SQLString = "SELECT * FROM History WHERE Tagname = 'SysTimeSec'";</code><br>
+<code>aaHistClientActiveDataGrid1.Connected = 1;</code></p>
 
 <div class="screenshot">
   <img src="../images/page_0426.png" alt="Screenshot of the aaHistClientActiveDataGrid control showing a historical data grid with SysTimeSec tag entries, columns for DateTime, TagName, Value, and vValue, displaying a per-second counter that rolls over from 59 to 0 at minute boundaries">
-  <div class="caption">Screenshot of the aaHistClientActiveDataGrid control showing a historical data grid with SysTimeSec tag entries, columns for DateTime, TagName, Value, and vValue, displaying a per-second counter that rolls over from 59 to 0 at minute boundaries</div>
+  <div class="caption">The Active DataGrid displays query results with DateTime, TagName, Value, and validated-Value columns.</div>
 </div>
 
-<p>aaHistClientSingleValueEntry Control Use the aaHistClientSingleValueEntry control to manually add a tag value to the Historian database.</p>
+<h3>aaHistClientSingleValueEntry</h3>
+<p>The <code>aaHistClientSingleValueEntry</code> control provides a simple interface for manually adding a single tag value to the Historian database. This is useful for recording operator-entered observations or manual data points that are not connected to a PLC.</p>
 
 <div class="screenshot">
   <img src="../images/page_0427.png" alt="Screenshot of the aaHistClientSingleValueEntry control showing a Select tag dialog with LOCALHOST server highlighted, tag list showing Agitator speed and Inlet tags with Tag Name, Description, and I/O Address columns, and filter/search options at the bottom">
-  <div class="caption">Screenshot of the aaHistClientSingleValueEntry control showing a Select tag dialog with LOCALHOST server highlighted, tag list showing Agitator speed and Inlet tags with Tag Name, Description, and I/O Address columns, and filter/search options at the bottom</div>
+  <div class="caption">The Single Value Entry control lets operators manually insert data points into the Historian database.</div>
 </div>
 
-<p>Display Introduction In this lab, you will create a symbol and embed the Historian Client Trend. This trend will be used to display and compare levels from different mixers. Additionally, you will add navigation to open this trend and view alarm highlights for the levels at runtime. Objectives Upon completion of this lab, you will be able to:  Embed the Historian Client Trend .NET control in a symbol  Use the AddServerEx() script function to initialize the Historian Client Trend  Use the Historian Client Trend Tag Picker to add tags to the trend at runtime</p>
-
-<div class="screenshot">
-  <img src="../images/page_0429.png" alt="Screenshot of the aaTrendControl embedded in InTouch HMI showing a historical trend display with Tag Picker panel (S01ENG server, Level_001.PV through Level_008.PV tags), time range controls for a 5-minute window, and a trend chart with annotated data points">
-  <div class="caption">Screenshot of the aaTrendControl embedded in InTouch HMI showing a historical trend display with Tag Picker panel (S01ENG server, Level_001.PV through Level_008.PV tags), time range controls for a 5-minute window, and a trend chart with annotated data points</div>
+<div class="key-concept">
+<strong>Key Concept: The Historian Client controls are .NET components.</strong> They must be embedded in InTouch graphics using the Toolbox search. Unlike native InTouch objects, they often require script-based initialization (calling methods like <code>AddServerEx()</code>) rather than simple property binding.
 </div>
 
-<p>Create a Historian Client Trend Display First, you will create a symbol and embed a Historian Client Trend .NET control. 1. In the IDE, on the Graphics tab, in the Training toolset, create a symbol named TrendHistDisplay, and then open it for editing. 2. On the Toolbox tab, search for aatrend and then drag aaTrendControl to the canvas. 3. Name the graphic Trend. 4. Right-click the canvas and select Custom Properties.</p>
+<h2>33.2 Building the TrendHistDisplay Symbol</h2>
+
+<p>In this lab, you will create a symbol called <strong>TrendHistDisplay</strong> that embeds the <code>aaTrendControl</code>. The resulting symbol will let operators pick any tag from the Historian at runtime, drag it onto a chart, and compare mixer levels with alarm highlights. You will also wire up navigation so that this trend can be opened from the main navigation bar.</p>
+
+<div class="lab">
+<strong>Lab Objectives:</strong> Upon completion, you will be able to embed the Historian Client Trend .NET control in a symbol, use the <code>AddServerEx()</code> script function to initialize the trend server connection, and use the Historian Client Trend Tag Picker to add tags to the trend at runtime.
+</div>
+
+<h3>Step 1: Create the Symbol and Place the Trend Control</h3>
+<p>Open the IDE and navigate to the Graphics tab. In the Training toolset, create a new symbol named <strong>TrendHistDisplay</strong> and open it for editing. Switch to the Toolbox tab, search for <code>aatrend</code>, and drag the <code>aaTrendControl</code> onto the canvas. Name the graphic element <code>Trend</code>.</p>
 
 <div class="screenshot">
   <img src="../images/page_0430.png" alt="Screenshot of the InTouch HMI Graphic Editor showing an empty aaTrendControl component placed on the canvas with Tag Picker panel (empty Servers and Tags sections), time range controls, and the Toolbox search panel showing aaTrendControl as the matching component">
-  <div class="caption">Screenshot of the InTouch HMI Graphic Editor showing an empty aaTrendControl component placed on the canvas with Tag Picker panel (empty Servers and Tags sections), time range controls, and the Toolbox search panel showing aaTrendControl as the matching component</div>
+  <div class="caption">After dragging the aaTrendControl to the canvas, you will see the empty trend with its Tag Picker panel and time range controls ready for configuration.</div>
+</div>
+
+<h3>Step 2: Add a Custom Property and Initialization Script</h3>
+<p>Right-click the canvas and open Custom Properties. Add a new custom property called <code>HistServer</code> with the following settings:</p>
+
+<table>
+  <tr><th>Setting</th><th>Value</th></tr>
+  <tr><td>Data Type</td><td>String</td></tr>
+  <tr><td>Default Value</td><td>Your Historian node name (e.g., <code>S01ENG</code>)</td></tr>
+  <tr><td>Visibility</td><td>Private</td></tr>
+</table>
+
+<p>The Private visibility means this property is hidden when the symbol is embedded in another graphic — a good practice for internal configuration values.</p>
+
+<p>Next, right-click the canvas and open Scripts. In the Predefined Scripts section, make sure the Trigger type is set to <strong>On Show</strong>. Enter the following script body:</p>
+
+<p><code>Trend.AddServerEx(HistServer, "", "", false);</code></p>
+
+<div class="key-concept">
+<strong>Key Concept: <code>AddServerEx()</code> initializes the Historian connection at runtime.</strong> The <code>On Show</code> trigger fires when the symbol becomes visible, ensuring the server is connected every time the trend window opens. The <code>false</code> parameter specifies that integrated (Windows) security is used for the connection.
+</div>
+
+<div class="tip">
+<strong>Tip:</strong> Your instructor will provide the correct Historian node name for your environment. Do not hard-code the server name in the script — using the custom property makes the symbol portable across different installations.
+</div>
+
+<h3>Step 3: Add Navigation</h3>
+<p>Save, close, and check in the TrendHistDisplay symbol. Then open the <strong>SystemNavigation</strong> symbol for editing. Duplicate the Historical Alarms button and place the copy to the right. Use Substitute Strings to change the button text to "Historian Client Trend".</p>
+
+<p>Open the custom properties of the new button and change the <code>GraphicName</code> default value to <code>TrendHistDisplay</code>. Save, close, and check in the graphic.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0432_1.png" alt="Screenshot of the SystemNavigation symbol editor showing six navigation buttons arranged horizontally on a grid canvas: Mixers, Line 1, Line 2, Alarm Overview, Historical Alarms, and the newly added Historian Client Trend button">
+  <div class="caption">The navigation bar now includes a Historian Client Trend button alongside the existing navigation options.</div>
+</div>
+
+<h3>Step 4: Test in Runtime</h3>
+<p>Click Runtime in WindowMaker and navigate to the Historian Client Trend. After a moment the trend appears. Open the Tags panel, select <code>Level_001.PV</code>, and drag it onto the chart. The chart displays the mixer level with alarm limits highlighted — orange for HiHi and LoLo, yellow for Hi and Lo.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0434.png" alt="Screenshot of the TrendHistDisplay window showing the Historian Client Trend with Tag Picker panel (S01ENG server, Level_001.PV tag selected), a trend chart displaying cyclic mixer level data with annotated values (69.87 at 1:21:47 PM, 53.99 at 1:25:17 PM), and time range controls for a 5-minute window">
+  <div class="caption">A single mixer level trend showing cyclic fill-and-drain behavior with alarm limit highlights.</div>
+</div>
+
+<p>Now add more tags. In the Tags panel, select <code>Level_002.PV</code> through <code>Level_008.PV</code> (hold Ctrl or Shift for multi-select) and drag them to the chart. The overlapping colored lines show how each mixer fills and drains at slightly different times — you can see the latency between them.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0435.png" alt="Screenshot of the TrendHistDisplay with multiple Level tags (Level_002.PV through Level_008.PV) selected and displayed as overlapping colored trend lines on the chart, showing comparative mixer level data with annotated values and delta calculations">
+  <div class="caption">Multiple mixer levels displayed as overlapping trend lines reveal the time offsets between different mixers.</div>
+</div>
+
+<p>Use the time range dropdown to select 1 minute, then click the Enable/Disable live mode button. The chart begins scrolling continuously, showing real-time data as it arrives.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0436_0.png" alt="Screenshot of the TrendHistDisplay with a preset time range dropdown menu open showing options from 1 minute to Previous Hour, with multiple mixer level trend lines displayed as colored lines on the chart with time axis from 1:21:49 PM to 1:26:49 PM">
+  <div class="caption">The preset time range menu lets you quickly zoom into different historical windows.</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0436_1.png" alt="Screenshot of the TrendHistDisplay in live/replay mode showing real-time mixer level trends with a 1-minute time window (1:43:51 to 1:44:51 PM), live value markers (red at 0.20, blue at 75.60), and Level_005 through Level_008.PV tags in the active tag panel">
+  <div class="caption">In live mode, the chart scrolls continuously, showing real-time mixer levels as they change.</div>
+</div>
+
+<div class="pitfall">
+<strong>Watch Out:</strong> The Historian Client Trend is a .NET control. If the Historian server is not running or the node name in the <code>HistServer</code> property is incorrect, the Tag Picker will show an empty server list and no tags will be available. Always verify connectivity before troubleshooting the trend itself.
 </div>
 
 <div class="quiz">
   <h3>Quiz — Test Your Understanding</h3>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What are the key concepts covered in this lesson about Lab 18 – Trend Popup Symbol?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: How does this topic relate to AVEVA System Platform?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What script function initializes the Historian connection when the TrendHistDisplay symbol is shown at runtime?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">The <code>Trend.AddServerEx(HistServer, "", "", false)</code> function is called in an On Show script. It takes the server name from the custom property and uses integrated (Windows) security.</p></details>
+
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: Why is the <code>HistServer</code> custom property set to Private visibility instead of Public?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Private visibility hides the property when the symbol is embedded in another graphic. Since <code>HistServer</code> is an internal configuration value (the Historian node name), operators do not need to see or modify it — only developers need access during design time.</p></details>
+
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q3: Which Historian Client control would you use to manually record an operator's field observation into the Historian database?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">The <code>aaHistClientSingleValueEntry</code> control. It provides a simple interface for manually inserting a single tag value into the Historian, which is ideal for operator-entered observations that are not connected to a PLC.</p></details>
+
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q4: In the TrendHistDisplay, what do the orange and yellow alarm highlights on the trend chart represent?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Orange represents the extreme alarm limits (HiHi and LoLo), while yellow represents the warning alarm limits (Hi and Lo). These highlights let operators instantly see when a value is approaching or exceeding alarm thresholds.</p></details>
 </div>
 
 <p class="source">Module 6 — Trend Visualization. AVEVA InTouch for System Platform 2023 Training.</p>

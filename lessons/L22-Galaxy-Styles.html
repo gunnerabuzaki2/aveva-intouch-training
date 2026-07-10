@@ -11,7 +11,6 @@
   h3 { font-size: 1.1em; color: #555; }
   .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
   .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
-  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
   .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
   table { border-collapse: collapse; width: 100%; margin: 1em 0; }
   th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
@@ -27,15 +26,12 @@
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
   .page-ref { font-size: 0.8em; color: #999; }
-  .checkbox-label { cursor: pointer; }
-  .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="L21-Lab10-Navigation-Symbol.html">&larr; Lab 10 – Creating a Navigation Symbol</a> &nbsp;|&nbsp; <a href="L23-Widgets-Lab11-Carousel.html">Widgets Overview + Lab 11 &rarr;</a>
+  <a href="L21-Lab10-Navigation-Symbol.html">&larr; Lab 10 – Navigation Symbol</a> &nbsp;|&nbsp; <a href="L23-Widgets-Lab11-Carousel.html">Widgets Overview + Lab 11 &rarr;</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -100,68 +96,148 @@
 <h1>Lesson 22: Galaxy Styles</h1>
 <p class="page-ref">Module 3 — Symbols | Pages 277–280</p>
 
-<p>Alarm Element Styles Alarm Element styles define the visual appearance of alarm severity, alarm states, and user acknowledgment. The four severities are color coded as:  Red - Critical  Yellow - High  Cyan - Medium  Magenta - Low The visual indicators also includes three states of these severities:  ACK - acknowledged but in alarm  RTN - return to normal but unacknowledged  UNACK - unacknowledged and in alarm The Alarm Element styles also include alarm border styles in the form of visual outlines. Trend Element Styles Trend Element styles support the SA_SinglePen and SA_MultiTrendPen symbols found in the Situation Awareness Library. User defined Styles This list provides 24 user-customizable styles. Format Styles Format styles are used to provide visual overrides for numerical values displayed in the InTouchViewApp. These styles allow overriding the format of value range, fixed width, and precision for each numerical value. This allows standardization across the InTouchViewApp for the display of numbers. The list also contains 25 user-defined format styles.</p>
+<h2>22.1 What Are Galaxy Styles?</h2>
 
-<p>Manage Style List In the top-right of the Styles area, buttons are available for adding and deleting style cards, as well as displaying a menu of options for importing and exporting style cards. Add or Delete a Style Card You can add new Style card to the list of styles by clicking the Add button. The card that is selected when you click Add is duplicated with a incremented name and a copy of all styles from the selected card. The new card can be renamed and edited. You can delete a card by selecting a card and clicking the Delete button.</p>
+<p>In a well-designed HMI, visual consistency is not optional — it is essential. When operators scan a screen full of graphics, they need to instantly recognize what is normal, what is alarming, and what needs their attention. Galaxy Styles provide the mechanism for enforcing this consistency across your entire InTouch application.</p>
 
-<div class="screenshot">
-  <img src="../images/page_0278.png" alt="Styles management panel showing Standard_Style listed as the default style card, with add, delete, and vertical ellipsis (import/export options) buttons in the top action bar">
-  <div class="caption">Styles management panel showing Standard_Style listed as the default style card, with add, delete, and vertical ellipsis (import/export options) buttons in the top action bar</div>
+<div class="key-concept">
+<strong>Key Concept: Galaxy Styles</strong><br>
+A Galaxy Style is a collection of visual overrides that define how graphics appear at runtime. Styles control everything from text fonts and colors to alarm border patterns, ensuring that every symbol in your Galaxy follows the same visual language.
 </div>
 
-<p>Import and Export Style Cards The Configure Styles area provides a menu for importing one or more styles and for exporting all styles. In the top-right of the Configure Styles area, click the vertical ellipsis to display the menu.  Import allows you to import one or more styles. Additional styles are available in the product installation path: C:\Program Files (x86)\ArchestrA\FrameWork\Bin\AdditionalElementStyles This folder contains a list of XML files which may be imported for use in your Galaxy.  Export All allows you to export all of the style cards from the list. The export file format is XML type. Manage Style Cards Each style card allows you to make default, rename, duplicate, delete, and export that style. In the bottom-right of a card, click the vertical ellipsis to display a menu of options.  Make default activates the selected style card for the Galaxy. Only one style card can be active (default) in the Galaxy at a time.  Rename allows you to rename the selected style card. Alternatively, you can click the title of the card to make the title editable or select a card and press F2.  Duplicate makes a copy of the selected style card. Alternatively, you can select a card and press Ctrl+D.  Delete allows you to delete the selected style card.  Export allows you to export the selected style card.</p>
+<p>Think of Galaxy Styles as a centralized theme system. Instead of manually setting colors and fonts on each individual graphic element, you define a style once and apply it across the application. This means that when your corporate visual standards change, you only need to update the style — not every symbol individually.</p>
+
+<h2>22.2 The Six Style Categories</h2>
+
+<p>Galaxy Styles are organized into six categories, each controlling a different aspect of visual presentation:</p>
+
+<table>
+<thead>
+<tr><th>Style Category</th><th>What It Controls</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Quality &amp; Status</strong></td><td>Visual indicators for data quality states — communication errors, configuration errors, warnings, bad quality, security errors, and more</td></tr>
+<tr><td><strong>HMI Element</strong></td><td>Appearance of text, fills, lines, and outlines on graphic elements — fonts, colors, blink settings, and line patterns</td></tr>
+<tr><td><strong>Alarm Element</strong></td><td>Visual appearance of alarm severity, alarm states, and user acknowledgment indicators</td></tr>
+<tr><td><strong>Trend Element</strong></td><td>Visual properties for the SA_SinglePen and SA_MultiTrendPen symbols from the Situation Awareness Library</td></tr>
+<tr><td><strong>User Defined</strong></td><td>24 customizable styles for your own visual needs</td></tr>
+<tr><td><strong>Format</strong></td><td>Visual overrides for numerical values in InTouchViewApp, including value range, fixed width, and precision</td></tr>
+</tbody>
+</table>
+
+<h2>22.3 Quality &amp; Status Styles</h2>
+
+<p>The Quality &amp; Status tab is where you define how data quality problems appear visually. When a sensor loses communication or a device enters an error state, the graphic needs to communicate this immediately. You can configure text, fill, outline, blink, and display icons for each quality state.</p>
+
+<p>The default <strong>Standard_Style</strong> includes icons for all standard quality states: Communication Error, Configuration Error, Pending, Operational Error, Software Error, Security Error, Warning, Out Of Service, Device Failure, Bad, Uncertain, Initializing, and Live Value Playback. Each state has a configurable visual override that takes precedence over the native graphic properties.</p>
 
 <div class="screenshot">
-  <img src="../images/page_0279_0.png" alt="Application Manager showing a partial view of application entries with plus and minus buttons, and an open context menu with Import and Export all options for managing InTouch application style cards">
-  <div class="caption">Application Manager showing a partial view of application entries with plus and minus buttons, and an open context menu with Import and Export all options for managing InTouch application style cards</div>
+  <img src="../images/page_0275_0.png" alt="Styles Configuration interface showing Standard_Style with Quality & Status tab active, displaying status icons for various error and warning states">
+  <div class="caption">The Styles Configuration interface showing the Quality & Status tab with icons for each data quality state</div>
 </div>
 
-<div class="screenshot">
-  <img src="../images/page_0279_1.png" alt="Style Manager with HPHMI and Metal style cards listed, HPHMI selected with Quality &amp; Status and HMI Element tabs, and a right-click context menu showing Make default, Rename (F2), Duplicate (Ctrl+D), Delete, and Export options">
-  <div class="caption">Style Manager with HPHMI and Metal style cards listed, HPHMI selected with Quality &amp; Status and HMI Element tabs, and a right-click context menu showing Make default, Rename (F2), Duplicate (Ctrl+D), Delete, and Export options</div>
+<h2>22.4 Alarm Element Styles</h2>
+
+<p>Alarm Element styles define the visual appearance of alarm severity and state at runtime. The system uses four severity levels, each color-coded:</p>
+
+<table>
+<thead>
+<tr><th>Severity</th><th>Color</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>Red</td><td>Critical</td></tr>
+<tr><td>2</td><td>Yellow</td><td>High</td></tr>
+<tr><td>3</td><td>Cyan</td><td>Medium</td></tr>
+<tr><td>4</td><td>Magenta</td><td>Low</td></tr>
+</tbody>
+</table>
+
+<p>Each severity level also has three states that affect the visual presentation:</p>
+
+<ul>
+<li><strong>ACK</strong> — The alarm has been acknowledged but is still in alarm condition</li>
+<li><strong>RTN</strong> — The alarm has returned to normal but has not been acknowledged</li>
+<li><strong>UNACK</strong> — The alarm is active and has not been acknowledged</li>
+</ul>
+
+<p>Alarm Element styles also include alarm border styles in the form of visual outlines. These borders appear around graphics when alarms activate, providing a highly visible notification to operators.</p>
+
+<h2>22.5 HMI Element Styles</h2>
+
+<p>An HMI Element style defines the visual properties of text, fills, lines, and outlines on graphic elements. These styles override the native visual properties of elements, allowing you to standardize appearance across all symbols in your Galaxy.</p>
+
+<p>The key visual properties you can override include:</p>
+
+<ul>
+<li><strong>Text:</strong> Font, size, style, color, and blink settings</li>
+<li><strong>Fill:</strong> Fill color and blink settings</li>
+<li><strong>Line:</strong> Line patterns, weight, color, and blink settings</li>
+<li><strong>Outline:</strong> Whether outlines are shown or hidden</li>
+</ul>
+
+<div class="pitfall">
+<strong>Important:</strong> Predefined styles cannot be deleted, and new styles cannot be added to a Galaxy Style list. You can only modify the visual overrides within existing styles. If you need a completely new visual approach, you must duplicate an existing style card and modify the copy.
 </div>
+
+<h2>22.6 Managing Style Cards</h2>
+
+<p>The Styles area lists each style as a card. The <strong>Standard_Style</strong> is the default active style for every Galaxy. From the configuration area, you can:</p>
+
+<ul>
+<li><strong>Add</strong> a new style card by clicking the + button — this duplicates the selected card with an incremented name</li>
+<li><strong>Delete</strong> a style card by selecting it and clicking the − button</li>
+<li><strong>Make Default</strong> to activate a different style for the Galaxy (only one can be active at a time)</li>
+<li><strong>Rename</strong> by clicking the card title or pressing F2</li>
+<li><strong>Duplicate</strong> by pressing Ctrl+D</li>
+<li><strong>Export</strong> individual style cards as XML files</li>
+</ul>
+
+<p>You can also import additional style cards from the installation path: <code>C:\Program Files (x86)\ArchestrA\Framework\Bin\AdditionalElementStyles</code>. This folder contains XML files with predefined styles that can be loaded into your Galaxy.</p>
+
+<div class="tip">
+<strong>Tip:</strong> Use the <em>Export All</em> option to back up your entire style configuration. This is especially useful before making significant changes to your visual standards — you can always import the backup if something goes wrong.
+</div>
+
+<h2>22.7 Trend Element and Format Styles</h2>
+
+<p><strong>Trend Element styles</strong> support the SA_SinglePen and SA_MultiTrendPen symbols found in the Situation Awareness Library. These styles control the visual appearance of trend pen displays.</p>
+
+<p><strong>Format styles</strong> provide visual overrides for numerical values displayed in InTouchViewApp. They allow you to standardize the format of value ranges, fixed widths, and decimal precision across your application. The list includes 25 user-defined format styles that can be customized to match your display requirements.</p>
 
 <div class="quiz">
   <h3>Quiz — Test Your Understanding</h3>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What are the key concepts covered in this lesson about Galaxy Styles?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: How does this topic relate to AVEVA System Platform?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: How many categories of styles are available in a Galaxy Style?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Six categories: Quality &amp; Status, HMI Element, Alarm Element, Trend Element, User Defined, and Format.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: What happens when you click the Add (+) button in the Styles area?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">The currently selected style card is duplicated with an incremented name. The new card can then be renamed and edited.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q3: What color is assigned to Critical severity alarms?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Red is assigned to Critical (severity 1) alarms.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q4: Can you delete the default Standard_Style from a Galaxy?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">No, predefined styles cannot be deleted. You can only modify their visual overrides or create new styles by duplicating existing ones.</p></details>
 </div>
 
-<p class="source">Module 3 — Symbols. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson L23 — Widgets Overview + Lab 11</p>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 3, Section 8 (pages 277–280)</p>
 
 <script>
-
 function saveProgress() {
   var checks = {};
   document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
     checks[cb.dataset.lesson] = cb.checked;
   });
   try { localStorage.setItem('aveva-lesson-progress', JSON.stringify(checks)); } catch(e) {}
-  updateProgressText();
 }
-function loadProgress() {
-  var data = null;
-  try { data = localStorage.getItem('aveva-lesson-progress'); } catch(e) {}
-  if (!data) { updateProgressText(); return; }
+(function() {
   try {
-    var checks = JSON.parse(data);
+    var checks = JSON.parse(localStorage.getItem('aveva-lesson-progress') || '{}');
+    var count = 0;
     document.querySelectorAll('input[data-lesson]').forEach(function(cb) {
       if (checks[cb.dataset.lesson]) cb.checked = true;
+      if (cb.checked) count++;
     });
+    document.getElementById('progress-text').textContent = count + ' / 40 completed';
   } catch(e) {}
-  updateProgressText();
-}
-function updateProgressText() {
-  var total = document.querySelectorAll('input[data-lesson]').length;
-  var done = document.querySelectorAll('input[data-lesson]:checked').length;
-  var el = document.getElementById('progress-text');
-  if (el) el.textContent = done + ' / ' + total + ' completed';
-}
-document.addEventListener('DOMContentLoaded', loadProgress);
-
+})();
 </script>
+
 </body>
 </html>

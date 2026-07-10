@@ -100,24 +100,123 @@
 <h1>Lesson 2: System Platform Overview</h1>
 <p class="page-ref">Module 1 — Introduction | Pages 7–10</p>
 
-<p>Course Description The AVEVA™ InTouch for System Platform 2023 course is a 4-day, instructor-led class designed to provide an overview of the features and functionalities released with AVEVA InTouch for System Platform. It covers the components and capabilities of the software, as well as topics to help you build and deploy an AVEVA InTouch for System Platform visualization application. It also introduces tools for creating graphics, visualizing alarms and events, visualizing trends and history, and implementing security in an AVEVA InTouch for System Platform application. Hands- on labs are provided to reinforce the knowledge necessary to use the AVEVA InTouch for System Platform software. Objectives Upon completion of this course, you will be able to:  Describe AVEVA InTouch for System Platform visualization components  Create and run visualization applications  Describe situational awareness concepts  Create and use graphics  Implement navigation for visualization applications  Implement alarm visualization  Implement real-time and historical trending  Implement visualization application security  View graphics in a browser Audience Individuals who need to configure or modify AVEVA InTouch for System Platform applications Prerequisites Knowledge of the following tools, features, and technologies is required.  Industrial automation software concepts  From the AVEVA™ Application Server software product:  System Platform IDE  AutomationObjects  Alarms of attributes  Historization of attributes  Security  Deployment model  Plant model  QuickScript.NET scripting language This section describes the objectives, prerequisites, intended audience, and agenda for the course.</p>
+<p>This section describes fundamental concepts about AVEVA System Platform and AVEVA System Platform Enterprise. It also introduces ArchestrA technology — the distributed architecture that makes everything possible. If you understand the layers described here, the rest of the course will make much more sense.</p>
 
-<p>Course Outline This section describes the objectives, prerequisites, intended audience, and agenda for the course. This section describes fundamental concepts about AVEVA System Platform and AVEVA System Platform Enterprise. It also introduces ArchestrA technology. This section describes the encrypted communication for end-to-end communication between server and client software applications. This section describes system requirements for System Platform software and introduces the licensing model. This section introduces visualization concepts and describes InTouch for System Platform as one of the visualization clients of Application Server. It also introduces AVEVA Connect for graphics. This section introduces the InTouchViewApp and ViewEngine automation objects. This section provides a brief overview of the features of the WindowMaker environment and its settings and describes InTouch windows. This section provides a brief overview of InTouch WindowViewer and explains how to deploy and run a Managed InTouch application. This section introduces industrial graphics, including managing them in the System Platform IDE and the out-of-the-box symbol libraries provided with Application Server. It also provides an overview of Situational Awareness concepts. This section describes the Graphic Editor, including an overview of its interface and using it to create graphics. This section provides a brief overview of using graphics in automation objects and referencing them.</p>
+<h2>2.1 What is AVEVA System Platform?</h2>
 
-<p>This section provides an overview of graphic tools available in the Graphic Editor, as well as visualization and interaction animations. It also reviews containment relationships between automation objects. This section introduces the OwningObject property and Windows common controls. This section provides a brief overview of custom properties for symbols. It also describes the Button tool and explains how to use the PushButton and Show Symbol animations. Additionally, it describes the TreatAsIcon property. This section provides a brief overview of the scripting environment, explains execution types and triggers, and introduces ShowGraphic functions. This section explains how to work with Galaxy Styles. This section describes using HTML5 widgets in your InTouch for System Platform application and introduces the Carousel widget. This section provides a brief overview of alarms and events and explains how System Platform handles them. An introduction to the Alarm Border animation, Alarms aggregation, severity, and shelving is also provided. This section explains how to use the Alarm Client control in your InTouch for System Platform application to visualize live alarms. This section explains how to use the Alarm Client control in your InTouch for System Platform application to visualize historical alarms and events. This section provides a brief review of how Application Server handles the configuration and logging of historical data. This section introduces the Trend pen and two situational awareness symbols for trending and explains how to configure them. This section describes the Trend Client control as a real-time trend plot. It introduces Multi Pens Trend as a real-time trend solution and explains backfilling data from Historian.</p>
+<p>AVEVA System Platform, formerly known as Wonderware System Platform, is an industrial software platform built on ArchestrA technology. It provides an integrated set of services and an extensible data model for managing plant control and information management systems. What makes System Platform particularly powerful is that it supports both the supervisory control layer and the manufacturing execution system layer, presenting them as a unified information source.</p>
 
-<p>This section provides a brief overview of the Historian Client Trend control. This section provides an overview of security in Application Server, including authentication modes, permissions, roles, and users. It also describes security classifications for attributes, the security audit trail, InTouch security tags, and script functions. This section provides a brief overview of the Secured Write and Verified Write security classifications, the Can Verify Writes Operational permission, and the Secured Write and Verified Write dialog boxes. This section explains how to customize the runtime environment to more fully secure and protect the application. It also describes how to configure the InTouch runtime environment for inactivity and introduces the EnableDisableKeys() script function. This section describes the Web Client features and dependencies.</p>
+<div class="key-concept">
+<strong>Key Concept: Components vs. Clients</strong><br>
+System Platform has a clear separation between <em>components</em> (which access and process external data from controllers and other sources) and <em>clients</em> (which access information from System Platform for visualization and reporting). Understanding this distinction is fundamental to working with the architecture.
+</div>
+
+<p>The System Platform software is built on industry standards and Microsoft technologies including Windows, .NET, SQL Server, and IIS. ArchestrA provides the foundational technology and services that make the multi-user, object-oriented platform possible. Together, System Platform and its clients provide the framework and tools for developing, executing, monitoring, and visualizing your industrial applications.</p>
+
+<p>Think of System Platform as a layered system with three groups:</p>
+
+<div class="screenshot">
+  <img src="../images/page_0011.png" alt="AVEVA System Platform Architecture Diagram">
+  <div class="caption">System Platform layered architecture — Supervisory Clients on top, System Platform Components in the middle, and Field Devices at the bottom (Module 1, page 1-7)</div>
+</div>
+
+<table>
+<thead>
+<tr><th>Layer</th><th>Components</th><th>What They Do</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>Supervisory Clients</strong></td>
+  <td>OMI (Operations Management Interface), InTouch for System Platform, Historian Client</td>
+  <td>The screens the operator sees — HMI visualization, trending, data analysis</td>
+</tr>
+<tr>
+  <td><strong>System Platform Components</strong></td>
+  <td>Application Server, Historian, Communication Drivers</td>
+  <td>The engine room — handles data, logic, alarms, historization</td>
+</tr>
+<tr>
+  <td><strong>External Data Sources</strong></td>
+  <td>Controllers (PLCs, RTUs), Software (ERP, MES), Data Sources</td>
+  <td>Real field devices providing process data</td>
+</tr>
+</tbody>
+</table>
+
+<h2>2.2 System Platform Components</h2>
+
+<p>System Platform includes three core components that handle the heavy lifting of data acquisition, processing, and storage:</p>
+
+<p><strong>AVEVA Application Server</strong> is the heart of System Platform. It provides an object-oriented framework with tools for developing and deploying applications. Everything in System Platform revolves around the Application Server and the Galaxy it manages. When you create AutomationObjects, configure attributes, set up alarms, and define deployment models, you are working within Application Server.</p>
+
+<p><strong>AVEVA Historian</strong> provides process data historization, along with alarm and event logging for Application Server. Data stored in Historian is exposed through SQL Server and/or an Open Data Protocol (oData) interface, making it accessible for reporting and analysis. Historian is what enables you to look back at what happened yesterday, last week, or last month.</p>
+
+<p><strong>AVEVA Communication Drivers</strong> provide the platform for communicating with controllers and other data sources. Beyond controller-specific protocols, they also support open connectivity protocols such as MQTT, OPC DA, and OPC UA. These drivers were formerly called OI Servers and also include legacy DA Servers and IO Servers. System Platform can also communicate directly with third-party drivers, such as third-party OPC Servers, giving you flexibility in how you connect to your existing control infrastructure.</p>
+
+<h2>2.3 System Platform Clients</h2>
+
+<p>System Platform clients are the visualization and reporting tools that sit on top of the core components. There are two categories of clients worth understanding:</p>
+
+<p><strong>Supervisory Clients</strong> run the operator interface and provide real-time access to Application Server data, alarms, and events. There are two supervisory client products, and both can coexist in the same System Platform solution:</p>
+
+<ul>
+<li><strong>AVEVA Operations Management Interface (OMI)</strong> has a rapid-design visualization framework with tools and provides out-of-the-box navigation based on the application's data model. OMI is the newer, model-driven approach to building operator displays.</li>
+<li><strong>AVEVA InTouch for System Platform</strong> uses traditional development tools to create displays and the corresponding navigation framework from scratch. This is the course you are taking — you will learn to build InTouch applications from the ground up. Note that InTouch is not included with AVEVA System Platform Enterprise.</li>
+</ul>
+
+<p>Supervisory client applications can also be accessed remotely through a web browser using <strong>AVEVA InTouch Access Anywhere</strong>. With Access Anywhere, you simply enter a URL in a web browser and log on — no separate client application needs to be installed on the remote device. This is particularly useful for mobile operators or managers who need occasional access to process screens.</p>
+
+<p><strong>AVEVA Historian Client</strong> is a collection of tools for accessing and reporting on historized data. It includes a Trend application for plotting data graphically, a Query application for building SQL queries through a point-and-click interface, and add-ins for Microsoft Excel and Word for generating reports. <strong>AVEVA Historian Client Web</strong> provides similar capabilities through a browser-based interface.</p>
+
+<h2>2.4 Core Services Provided by System Platform</h2>
+
+<p>Together, System Platform and its clients deliver the core services needed to develop, implement, and deploy industrial automation applications:</p>
+
+<ul>
+<li><strong>Real-time data acquisition</strong> from field devices (PLCs, RTUs)</li>
+<li><strong>Scaling, statistics, and manipulation</strong> of data</li>
+<li><strong>Process control</strong></li>
+<li><strong>Alarm triggering, logging, acknowledgment, and management</strong></li>
+<li><strong>Historization, trending, and analysis</strong> of process data</li>
+<li><strong>Visualization</strong> of real-time process data</li>
+<li><strong>Reporting</strong></li>
+</ul>
+
+<p>Applications built on System Platform are extensible through scripting within the product itself or through available toolkits. For example, a script can access a third-party web service to integrate external data into your application.</p>
+
+<h2>2.5 ArchestrA Technology</h2>
+
+<p>ArchestrA is the distributed architecture that underpins System Platform. It is an open and extensible technology based on a distributed, object-oriented design, leveraging the Microsoft .NET Framework for the industrial automation world. ArchestrA provides several critical system services:</p>
+
+<ul>
+<li><strong>Object management</strong> for creating object-oriented applications</li>
+<li>A <strong>component object framework</strong> for modeling plants, factories, and equipment</li>
+<li>A <strong>common, global namespace</strong> for all application types, from single-node to distributed networked applications</li>
+<li><strong>Inter-process communications</strong> with system maintenance and diagnostic information</li>
+<li><strong>Centralized security services</strong> supporting multi-user environments for development and runtime</li>
+<li><strong>Version management</strong> for every object, including logging of development operations</li>
+</ul>
+
+<p>Most of these services are exposed, configured, and managed through Application Server. When you work in the IDE and deploy objects to runtime, you are using ArchestrA services under the hood.</p>
+
+<div class="key-concept">
+<strong>Key Concept: System Platform vs. System Platform Enterprise</strong><br>
+System Platform Enterprise builds on the core technology to add enhanced user accessibility and exclusive visualization extensions for enterprise users building AVEVA Unified Operations Center (UOC) solutions. Enterprise includes the OMI Web Client and additional widgets (ScatterChart, NavigationTree, Graphic Repeater, MapApp, etc.) and OMI Apps (Power BI, PI Vision, Sankey). However, Enterprise does <em>not</em> include InTouch HMI (WindowMaker and WindowViewer), the InTouch Web Client, or InTouch Workspaces. This is an important distinction — if you are working with InTouch, you need the standard System Platform, not Enterprise.
+</div>
 
 <div class="quiz">
   <h3>Quiz — Test Your Understanding</h3>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What are the key concepts covered in this lesson about System Platform Overview?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: How does this topic relate to AVEVA System Platform?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What are the three core components of AVEVA System Platform?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">AVEVA Application Server, AVEVA Historian, and AVEVA Communication Drivers.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: What technology does ArchestrA leverage to provide its services?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">ArchestrA leverages the Microsoft .NET Framework, providing an open and extensible distributed object-oriented platform.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q3: What is the key difference between AVEVA System Platform and System Platform Enterprise?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">System Platform Enterprise adds exclusive features like the OMI Web Client, additional web widgets, and OMI Apps (Power BI, PI Vision, Sankey), but it does NOT include InTouch HMI (WindowMaker/WindowViewer), InTouch Web Client, or InTouch Workspaces.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q4: How can supervisory client applications be accessed remotely?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Through AVEVA InTouch Access Anywhere, which allows remote access via a web browser on a desktop or mobile device without requiring a separate client application to be installed.</p></details>
 </div>
 
-<p class="source">Module 1 — Introduction. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson L03 — Lab 1 – Creating and Deploying a Galaxy</p>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 1, Section 2 (pages 7–10)</p>
 
 <script>
 

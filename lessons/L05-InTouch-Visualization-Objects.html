@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 5: InTouch Visualization Objects</title>
+<title>Lesson 5: InTouch Visualization + Automation Objects</title>
 <style>
   body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
@@ -97,34 +97,126 @@
 </details>
 </nav>
 
-<h1>Lesson 5: InTouch Visualization Objects</h1>
+<h1>Lesson 5: InTouch Visualization + Automation Objects</h1>
 <p class="page-ref">Module 2 — Getting Started | Pages 41–46</p>
 
-<div class="screenshot">
-  <img src="../images/page_0041.png" alt="Stock photograph of four diverse people seated at desktop computers in a modern training or collaborative workspace, used as the Getting Started module cover page for the AVEVA InTouch for System Platform course">
-  <div class="caption">Stock photograph of four diverse people seated at desktop computers in a modern training or collaborative workspace, used as the Getting Started module cover page for the AVEVA InTouch for System Platform course</div>
+<h2>5.1 Visualization Concepts</h2>
+
+<p>Application Server provides tools for developing interactive and animated graphical displays. The behavior of these displays — including animations and visual representations — can be linked to properties of processes and equipment through real-time data provided by System Platform. This means your graphics are not static images; they are live, dynamic windows into your plant's operation.</p>
+
+<p>System Platform visualization clients support multiple user interface capabilities, including keyboard, mouse, tablet, and touch-screen inputs, as well as multi-screen outputs. This flexibility ensures that operators can interact with the system using whatever input method is most appropriate for their environment.</p>
+
+<div class="key-concept">
+<strong>Key Concept: Two Visualization Clients</strong><br>
+System Platform offers two visualization clients that can coexist in the same solution and share data and graphics: <strong>InTouch for System Platform</strong> (traditional development tools for creating displays from scratch) and <strong>Operations Management Interface (OMI)</strong> (a modern visualization engine for OT/IT convergence with rapid-design capabilities). Note that InTouch is not included with System Platform Enterprise.
 </div>
 
-<p>Module Objectives  Describe visualization concepts  Introduce the InTouchViewApp object  Introduce the ViewEngine object  Provide a brief overview of the features of the WindowMaker environment and its settings  Describe InTouch windows  Provide a brief overview of the InTouch WindowViewer and its settings</p>
+<h2>5.2 What is InTouch for System Platform?</h2>
 
-<p>Introduction Application Server provides tools for developing interactive and animated graphical displays. The behavior of these displays, including animations and visual representations, can be associated with properties of processes and equipment through real-time data provided by System Platform. System Platform visualization clients provide multiple user interface capabilities, including keyboard, mouse, tablet, and touch-screen inputs, as well as multi-screen outputs. Visualization Clients System Platform clients for visualization are InTouch for System Platform and Operations Management Interface. Both run the operator interface and display data from objects defined in an Application Server Galaxy. They can coexist in the same System Platform solution and share data and graphics.  AVEVA™ InTouch for System Platform provides traditional development tools for creating displays and corresponding navigation. It is not included with AVEVA System Platform Enterprise.  AVEVA™ Operations Management Interface leverages both HMI and SCADA systems to deliver a convergence platform for both Operational Technology (OT) and Information Technology (IT). It provides a visualization engine for rich, modern user experiences across platforms. What is InTouch for System Platform? InTouch for System Platform is configured and licensed to be used as a visualization client in conjunction with System Platform, displaying data from objects defined in an Application Server Galaxy. What is a Managed InTouch Application? A Managed InTouch application is one that is created from within the System Platform IDE, and deployed as an object in the Application Server application. Creating a managed application allows use of symbols. A Managed InTouch application exhibits the same kind of behavior as other objects in the IDE, such as the ability to check out and check in, but opens in an external development environment called WindowMaker. InTouch Components InTouch consists of three main components:  WindowMaker is the InTouch development environment, where object-oriented graphics are used to create animated, click-sensitive display windows. Graphics are embedded in InTouch windows.  WindowViewer is the runtime environment used to display the graphic windows created in WindowMaker.  Application Manager organizes the applications that are created. This section introduces visualization concepts and describes InTouch for System Platform as one of the visualization clients of Application Server. It also introduces AVEVA Connect for graphics.</p>
+<p>InTouch for System Platform is configured and licensed as a visualization client that works alongside System Platform, displaying data from objects defined in an Application Server Galaxy. It uses traditional development tools to create displays and navigation, giving you full control over the look and feel of your operator interfaces.</p>
 
-<p>Visualization Content Several types of content that can be used to build visualization client applications. Industrial Graphics Industrial graphics allow you to create customized graphical representations of processes and integrate other visualization tools into your application. They can be embedded or associated with automation objects in Application Server, so that alarms, history, logic, graphics, and so on can all be defined with the same automation object. This allows greater flexibility of application development, including:  Object reuse: Objects can be derived from templates and preconfigured to work within the environment in which they are embedded to reference applicable object attributes.  Centralized development: Application development can be centralized, including graphical representations of equipment. Industrial graphics are also referred to as symbols in Application Server. Client Controls Client controls provide functionality contained in .NET controls that you can use in symbols. External .NET controls can be imported into a Galaxy and used in symbols by embedding them. Symbols with embedded .NET controls are supported by InTouch for System Platform. Widget Controls Application Server includes widget controls, which are HTML5 widget controls. AVEVA Connect for Graphics AVEVA Connect provides a cloud-based repository that lets you share graphics between locations, Galaxies, and nodes. You can sign in to AVEVA Connect within the System Platform IDE to add AVEVA Connect to the Graphics tab, which provides a centralized storage and access point for reusable industrial graphics. Graphics in AVEVA Connect are stored in stores, which can be global, tenant, or user specific. Multiple drives can be configured within each store, and each drive can be configured with different access levels for different users. An AVEVA Connect account is required to manage graphics in the cloud. AVEVA Connect users can have read-only or read/write access, depending on the access granted by their administrator. Read-only users can view graphics in the cloud, but cannot upload or download graphics. Multiple users can access the graphics in the same drive, but only one user at a time can edit or save a graphic to the drive.</p>
+<p>A critical distinction is that of a <strong>Managed InTouch Application</strong>. A managed application is one that is created from within the System Platform IDE and deployed as an object in the Application Server application. This is different from a standalone InTouch application. Creating a managed application allows you to use symbols (industrial graphics), and the application exhibits the same behavior as other IDE objects — it can be checked out, checked in, and deployed through the standard System Platform workflow. However, it opens in an external development environment called WindowMaker.</p>
 
-<p>InTouchViewApp Object The InTouchViewApp object represents an InTouch application in the Application Server environment. The InTouchViewApp object manages the check-in, check-out, and deployment of an InTouch application. The InTouchViewApp object includes the capabilities of the Application Server InTouchProxy object, so that InTouch tags can be referenced by Application Server Message Exchange clients as InTouchViewApp attributes. The InTouchViewApp object is used to incorporate InTouch applications into an overall system defined by a Application Server Galaxy. The Application Server system manages:  Check-in and check-out for multiple users  Security restrictions on who can deploy the InTouch application and when the InTouch application can be deployed  Backup and restore  Deployment and undeployment The InTouchViewApp object allows application objects running on a ViewEngine object to access InTouch tags as if they were Application Server attributes of the InTouchViewApp object itself. The tags are browsed through the standard Application Server attribute browser. InTouchViewApp Object Rules Some key aspects of an InTouchViewApp object include:  InTouchViewApp instances cannot be created from the InTouchViewApp base template.  Only one level of the InTouchViewApp template can be derived from the base InTouchViewApp template.  An instance of the InTouchViewApp cannot be derived from an existing instance of the InTouchViewApp.  InTouchViewApp objects cannot host other objects.  Only ViewEngine objects can host and deploy InTouchViewApp objects.  In the Model view, an InTouchViewApp object can be assigned to an Area Object, if the InTouchViewApp object’s alarms should to belong to that area.  Undeployment of an InTouchViewApp object is not permitted, if it is currently loaded on a target node.  When the file copying process at the end of an InTouchViewApp object deployment is still underway, the only allowable operation is to undeploy the object; this will cancel the deployment and remove any partially copied files. Existing InTouch Applications When creating an InTouchViewApp object to handle an existing InTouch application, the InTouch application files are transferred to a file repository directory. The original InTouch application files are not modified or deleted. Do not access files in the file repository directly or make assumptions about the file repository structure. This section introduces the InTouchViewApp and ViewEngine automation objects.</p>
+<h2>5.3 InTouch Components</h2>
 
-<p>When making changes to the InTouchViewApp InTouch application using WindowMaker launched from the IDE, the original InTouch application is not changed. Once the InTouchViewApp object is created, deleting the original InTouch application does not affect the InTouchViewApp object’s application. If an InTouchViewApp object that represents an existing InTouch application is deleted, the application files are removed from the file repository directory, but the existing application is not affected. New InTouch Applications When creating an InTouchViewApp object for a new InTouch application, WindowMaker is started by the IDE. ViewEngine Object A ViewEngine object is a simplified version of an AppEngine object. A ViewEngine object hosts InTouchViewApp objects, as well as ViewApp objects. The ViewEngine object supports common engine features, such as deployment, undeployment, startup, and shutdown. The ViewEngine does not support redundancy. One ViewEngine object can handle several InTouchViewApp objects. However, only one InTouch application per node can run at a time. The ViewEngine object:  Is assigned to and deployed to a WinPlatform object  Hosts and executes InTouchViewApp objects; the scan rate of the ViewEngine object determines the scan rate of all its hosted InTouchViewApp objects  Contains the logic to set up and initialize InTouchViewApp objects when they are initially deployed and started, so that they can communicate with other objects within the Galaxy  Does not need to be running in order for WindowViewer to execute its scripts or access process data  Can host Application Server scripts and UDAs; these continue to run when WindowViewer is shut down  Provides a set of configuration and runtime attributes  Contains its own set of runtime diagnostic attributes that can be monitored, alarmed, and historized  Can include the Historian as part of the ViewEngine object configuration; all InTouchViewApp objects that the ViewEngine object hosts use this historian  Does not support redundancy Historization and alarm options of the ViewEngine object may not need to be used. Because a ViewEngine object only hosts InTouchViewApp objects, InTouchViewApp objects only serve as a proxy for InTouch tags. As such, when referencing tags as InTouchViewApp attributes, a shorter ScanPeriod on the ViewEngine object can minimize the latency of tag value updates.</p>
+<p>InTouch consists of three main components that work together:</p>
+
+<table>
+<thead>
+<tr><th>Component</th><th>Purpose</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>WindowMaker</strong></td><td>Development environment</td><td>Where you create animated, click-sensitive display windows using object-oriented graphics. Graphics are embedded in InTouch windows.</td></tr>
+<tr><td><strong>WindowViewer</strong></td><td>Runtime environment</td><td>Displays the graphic windows created in WindowMaker. This is what operators interact with during production.</td></tr>
+<tr><td><strong>Application Manager</strong></td><td>Organization tool</td><td>Organizes the applications that are created.</td></tr>
+</tbody>
+</table>
+
+<h2>5.4 Visualization Content Types</h2>
+
+<p>Several types of content can be used to build visualization client applications:</p>
+
+<p><strong>Industrial Graphics</strong> (also called symbols) allow you to create customized graphical representations of processes and integrate other visualization tools. They can be embedded or associated with automation objects in Application Server, meaning alarms, history, logic, and graphics can all be defined with the same automation object. This enables two major benefits: <em>object reuse</em> (objects derived from templates are preconfigured to reference applicable attributes) and <em>centralized development</em> (graphical representations are managed centrally).</p>
+
+<p><strong>Client Controls</strong> provide functionality through .NET controls that you can embed in symbols. External .NET controls can be imported into a Galaxy and used in symbols — symbols with embedded .NET controls are fully supported by InTouch for System Platform.</p>
+
+<p><strong>Widget Controls</strong> are HTML5 widget controls included in Application Server, providing modern web-standard UI components.</p>
+
+<div class="key-concept">
+<strong>Key Concept: AVEVA Connect for Graphics</strong><br>
+AVEVA Connect provides a cloud-based repository for sharing graphics between locations, Galaxies, and nodes. Graphics are stored in stores (which can be global, tenant, or user-specific) with configurable access levels. This allows teams to build centralized graphic libraries that multiple users and projects can access. An AVEVA Connect account is required, and users can have read-only or read/write access depending on their role.
+</div>
+
+<h2>5.5 InTouchViewApp Object</h2>
+
+<p>The InTouchViewApp object is the automation object that represents an InTouch application within the Application Server environment. It manages the check-in, check-out, and deployment of the InTouch application, integrating it fully into the Galaxy's management framework.</p>
+
+<p>The InTouchViewApp object inherits capabilities from the Application Server InTouchProxy object, which means InTouch tags can be referenced by Application Server Message Exchange clients as InTouchViewApp attributes. This is how other objects in the Galaxy can interact with InTouch tag data as if it were native Application Server data.</p>
+
+<p>Through the InTouchViewApp, Application Server manages:</p>
+
+<ul>
+<li>Check-in and check-out for multiple users</li>
+<li>Security restrictions on who can deploy the application and when</li>
+<li>Backup and restore</li>
+<li>Deployment and undeployment</li>
+</ul>
+
+<h2>5.6 InTouchViewApp Object Rules</h2>
+
+<p>There are several important rules that govern how InTouchViewApp objects can be created and used:</p>
+
+<ul>
+<li>InTouchViewApp <strong>instances cannot be created directly from the base template</strong> — you must first create a derived template</li>
+<li>Only <strong>one level of template derivation</strong> is allowed from the base InTouchViewApp template</li>
+<li>An instance <strong>cannot be derived from an existing instance</strong> — only from templates</li>
+<li>InTouchViewApp objects <strong>cannot host other objects</strong></li>
+<li><strong>Only ViewEngine objects</strong> can host and deploy InTouchViewApp objects</li>
+<li>An InTouchViewApp can be <strong>assigned to an Area Object</strong> if its alarms should belong to that area</li>
+<li><strong>Undeployment is not permitted</strong> if the object is currently loaded on a target node</li>
+</ul>
+
+<div class="pitfall">
+<strong>Important:</strong> When you make changes to the InTouch application through WindowMaker launched from the IDE, the original InTouch application files are not modified. However, you should never access files in the file repository directory directly or make assumptions about the repository structure.
+</div>
+
+<h2>5.7 ViewEngine Object</h2>
+
+<p>The ViewEngine object is a simplified version of the AppEngine object. It is the runtime host for InTouchViewApp objects (and ViewApp objects). Think of the ViewEngine as the engine that makes your InTouch application actually run within the System Platform ecosystem.</p>
+
+<p>Key characteristics of the ViewEngine object:</p>
+
+<ul>
+<li>It is <strong>assigned to and deployed to a WinPlatform object</strong></li>
+<li>It <strong>hosts and executes InTouchViewApp objects</strong>; the ViewEngine's scan rate determines the scan rate of all hosted InTouchViewApp objects</li>
+<li>It contains <strong>initialization logic</strong> for setting up InTouchViewApp objects so they can communicate with other Galaxy objects</li>
+<li>It <strong>does not need to be running</strong> for WindowViewer to execute scripts or access process data</li>
+<li>It can host <strong>Application Server scripts and UDAs</strong> that continue running when WindowViewer is shut down</li>
+<li>It provides configuration and <strong>runtime attributes</strong></li>
+<li>It contains <strong>runtime diagnostic attributes</strong> that can be monitored, alarmed, and historized</li>
+<li>It can include <strong>Historian configuration</strong> — all hosted InTouchViewApp objects use this historian</li>
+<li>It does <strong>not support redundancy</strong></li>
+</ul>
+
+<div class="tip">
+<strong>Tip:</strong> Because InTouchViewApp objects serve as proxies for InTouch tags, using a shorter ScanPeriod on the ViewEngine object can minimize the latency of tag value updates when referencing tags as InTouchViewApp attributes. However, the historization and alarm options of the ViewEngine may not always be needed depending on your architecture.
+</div>
 
 <div class="quiz">
   <h3>Quiz — Test Your Understanding</h3>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What are the key concepts covered in this lesson about InTouch Visualization + Automation Objects?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Review the sections above for the main topics, step-by-step procedures, and important configuration details.</p></details>
-  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: How does this topic relate to AVEVA System Platform?</summary>
-    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">This is part of the InTouch HMI layer, which integrates with Application Server's Galaxy for a complete visualization solution.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q1: What are the three main components of InTouch?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">WindowMaker (development environment), WindowViewer (runtime environment), and Application Manager (organizes applications).</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q2: Why must you create a derived template before creating an InTouchViewApp instance?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">InTouchViewApp instances cannot be created directly from the base template. You must first create a derived template (one level of derivation allowed), then create instances from that derived template.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q3: What type of object can host and deploy InTouchViewApp objects?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Only ViewEngine objects can host and deploy InTouchViewApp objects.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q4: What is the relationship between the ViewEngine's scan rate and its hosted InTouchViewApp objects?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">The ViewEngine's scan rate determines the scan rate of all its hosted InTouchViewApp objects. A shorter ScanPeriod on the ViewEngine can minimize tag value update latency.</p></details>
+  <details><summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Q5: What is the difference between industrial graphics, client controls, and widget controls?</summary>
+    <p class="answer" style="display:block;color:#2c5f2d;font-weight:bold;margin-top:0.3em;">Industrial graphics (symbols) are customized graphical representations that can be associated with automation objects. Client controls are .NET controls that can be embedded in symbols. Widget controls are HTML5-based controls provided by Application Server.</p></details>
 </div>
 
-<p class="source">Module 2 — Getting Started. AVEVA InTouch for System Platform 2023 Training.</p>
-<p class="source">Next: Lesson L06 — Lab 2 – Creating a Managed InTouch Application</p>
+<p class="source">Source: AVEVA InTouch for System Platform 2023 Training Manual, Module 2, Sections 1–2 (pages 41–46)</p>
 
 <script>
 
