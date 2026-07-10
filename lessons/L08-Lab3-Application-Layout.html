@@ -100,30 +100,14 @@
 <h1>Lesson 8: Lab3 Application Layout</h1>
 <p class="page-ref">Module 2 — Getting Started | Pages 61–80</p>
 
-<p>Introduction</p>
-<p>In this lab, you will create windows for the Managed InTouch application created in the previous</p>
-<p>lab. You will create a Navigation window, a Logon window, an AlarmDisplay window, an</p>
-<p>OverviewDisplay window, and a ContentDisplay window.</p>
-<p>The steps and screen shots used in this lab are designed for a resolution of 1920 x 1080.</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Create InTouch windows</p>
-<p></p>
-<p>Configure InTouch window properties</p>
+<p>Introduction In this lab, you will create windows for the Managed InTouch application created in the previous lab. You will create a Navigation window, a Logon window, an AlarmDisplay window, an OverviewDisplay window, and a ContentDisplay window. The steps and screen shots used in this lab are designed for a resolution of 1920 x 1080. Objectives Upon completion of this lab, you will be able to:  Create InTouch windows  Configure InTouch window properties</p>
 
 <div class="screenshot">
   <img src="../images/page_0061.png" alt="InTouch WindowViewer in development mode showing the empty application layout template with a Navigation panel at top-left, Logon overlay at top-right, an empty OverviewDisplay panel at bottom-left, and a ContentDisplay area at bottom-right — all windows are created but empty.">
   <div class="caption">InTouch WindowViewer in development mode showing the empty application layout template with a Navigation panel at top-left, Logon overlay at top-right, an empty OverviewDisplay panel at bottom-left, and a ContentDisplay area at bottom-right — all windows are created but empty.</div>
 </div>
 
-<p>Create New Windows</p>
-<p>In the following steps, you will create the windows you will use in your InTouch application.</p>
-<p>First you will create the Navigation window. In later labs, you will add buttons to this window that</p>
-<p>will allow operators to navigate to other windows at runtime.</p>
-<p>1.</p>
-<p>In the top-left corner of WindowMaker, click the New (+) button.</p>
-<p>The New area of the backstage view appears.</p>
+<p>Create New Windows In the following steps, you will create the windows you will use in your InTouch application. First you will create the Navigation window. In later labs, you will add buttons to this window that will allow operators to navigate to other windows at runtime. 1. In the top-left corner of WindowMaker, click the New (+) button. The New area of the backstage view appears.</p>
 
 <div class="screenshot">
   <img src="../images/page_0062_0.png" alt="WindowMaker Home ribbon toolbar showing Clipboard group (Paste, Cut, Copy, Duplicate) and Insert group (Button, Text, Graphics, SmartSymbol, Wizards), with the Windows panel on the left listing Unassigned/Template/Backup folders, and an empty Canvas workspace.">
@@ -135,139 +119,63 @@
   <div class="caption">WindowMaker New screen displaying Available templates with two options: Native window (white background, basic empty window) and Frame window (light blue background, framed window with controls).</div>
 </div>
 
-<p>2.</p>
-<p>In Available templates, select Frame window.</p>
+<p>2. In Available templates, select Frame window.</p>
 
 <div class="screenshot">
   <img src="../images/page_0063.png" alt="WindowMaker New screen with the Frame window template selected (highlighted in light blue), ready to create a new frame window.">
   <div class="caption">WindowMaker New screen with the Frame window template selected (highlighted in light blue), ready to create a new frame window.</div>
 </div>
 
-<p>3.</p>
-<p>In Name, enter Navigation.</p>
-<p>4.</p>
-<p>In Comment, enter Display system navigation graphics.</p>
-<p>5.</p>
-<p>In the Window type drop-down list, select Overlay.</p>
-<p>6.</p>
-<p>Configure the Location and Size as follows:</p>
-<p>7.</p>
-<p>Uncheck the Title bar and Size controls check boxes.</p>
-<p>The properties should appear as follows:</p>
-<p>X:</p>
-<p>0</p>
-<p>Y:</p>
-<p>0</p>
-<p>Width:</p>
-<p>1300</p>
-<p>Height:</p>
-<p>120</p>
+<p>3. In Name, enter Navigation. 4. In Comment, enter Display system navigation graphics. 5. In the Window type drop-down list, select Overlay. 6. Configure the Location and Size as follows: 7. Uncheck the Title bar and Size controls check boxes. The properties should appear as follows: X: 0 Y: 0 Width: 1300 Height: 120</p>
 
 <div class="screenshot">
   <img src="../images/page_0064.png" alt="Window properties dialog for creating the Navigation window: Name=Navigation, Comment=Display system navigation, Window type=Overlay, Location X:0 Y:0, Size Width:1300 Height:120, Window color=White, Title bar unchecked, Size controls unchecked, with Create button enabled."Module 2 - Getting Started">
   <div class="caption">Window properties dialog for creating the Navigation window: Name=Navigation, Comment=Display system navigation, Window type=Overlay, Location X:0 Y:0, Size Width:1300 Height:120, Window color=White, Title bar unchecked, Size controls unchecked, with Create button enabled.</div>
 </div>
 
-<p>8.</p>
-<p>Click Create.</p>
-<p>The backstage view closes and the Navigation window appears.</p>
-<p>Next, you will create another window and name it Logon. Later in this lab, you will place a clock on</p>
-<p>it to display the current time. Then, in a later lab, you will add a symbol to this window that will</p>
-<p>allow users to log in to the application.</p>
-<p>9.</p>
-<p>In the top-left corner of WindowMaker, click the New (+) button.</p>
-<p>10. In Available templates, ensure Frame window is selected.</p>
+<p>8. Click Create. The backstage view closes and the Navigation window appears. Next, you will create another window and name it Logon. Later in this lab, you will place a clock on it to display the current time. Then, in a later lab, you will add a symbol to this window that will allow users to log in to the application. 9. In the top-left corner of WindowMaker, click the New (+) button. 10. In Available templates, ensure Frame window is selected.</p>
 
 <div class="screenshot">
   <img src="../images/page_0065.png" alt="WindowMaker showing the Navigation window successfully created — it appears in the Windows panel tree (highlighted under Unassigned) and as a dashed rectangle on the Canvas, with its properties (Overlay, Location 0,0) displayed in the Properties panel.">
   <div class="caption">WindowMaker showing the Navigation window successfully created — it appears in the Windows panel tree (highlighted under Unassigned) and as a dashed rectangle on the Canvas, with its properties (Overlay, Location 0,0) displayed in the Properties panel.</div>
 </div>
 
-<p>11. In Name, enter Logon.</p>
-<p>12. In Comment, enter Display logon and clock graphics.</p>
-<p>13. In the Window type drop-down list, ensure Overlay is selected.</p>
-<p>14. Configure the Location and Size as follows:</p>
-<p>The properties should appear as follows:</p>
-<p>15. Click Create.</p>
-<p>X:</p>
-<p>1300</p>
-<p>Y:</p>
-<p>0 (default)</p>
-<p>Width:</p>
-<p>620</p>
-<p>Height:</p>
-<p>120 (default)</p>
+<p>11. In Name, enter Logon. 12. In Comment, enter Display logon and clock graphics. 13. In the Window type drop-down list, ensure Overlay is selected. 14. Configure the Location and Size as follows: The properties should appear as follows: 15. Click Create. X: 1300 Y: 0 (default) Width: 620 Height: 120 (default)</p>
 
 <div class="screenshot">
   <img src="../images/page_0066.png" alt="Window properties dialog for creating the Logon window: Name=Logon, Comment=Display logon and clock, Window type=Overlay, Location X:1300 Y:0, Size Width:620 Height:120, Window color=White, Title bar unchecked, Size controls unchecked, with the Width field highlighted for editing."Module 2 - Getting Started">
   <div class="caption">Window properties dialog for creating the Logon window: Name=Logon, Comment=Display logon and clock, Window type=Overlay, Location X:1300 Y:0, Size Width:620 Height:120, Window color=White, Title bar unchecked, Size controls unchecked, with the Width field highlighted for editing.</div>
 </div>
 
-<p>16. In Canvas, scroll to the right to view the Logon window.</p>
-<p>17. In Canvas, scroll back to the left to reset the view.</p>
+<p>16. In Canvas, scroll to the right to view the Logon window. 17. In Canvas, scroll back to the left to reset the view.</p>
 
 <div class="screenshot">
   <img src="../images/page_0067.png" alt="WindowMaker showing the Logon window created alongside the Navigation window — both appear in the Windows panel (Navigation and Logon listed), and the Canvas shows the two side-by-side overlay windows.">
   <div class="caption">WindowMaker showing the Logon window created alongside the Navigation window — both appear in the Windows panel (Navigation and Logon listed), and the Canvas shows the two side-by-side overlay windows.</div>
 </div>
 
-<p>Next, you will create another window and name it AlarmDisplay. In a later lab, you will add the</p>
-<p>Alarm Client symbol to this window to display current alarms.</p>
-<p>18. In WindowMaker, click the New (+) button.</p>
-<p>19. In Available templates, ensure Frame window is selected.</p>
-<p>20. In Name, enter AlarmDisplay.</p>
-<p>21. In Comment, enter Display live alarms.</p>
-<p>22. In the Window type drop-down list, ensure Overlay is selected.</p>
-<p>23. Configure the Location and Size as follows:</p>
-<p>The properties should appear as follows:</p>
-<p>X:</p>
-<p>0</p>
-<p>Y:</p>
-<p>120</p>
-<p>Width:</p>
-<p>1920</p>
-<p>Height:</p>
-<p>200</p>
+<p>Next, you will create another window and name it AlarmDisplay. In a later lab, you will add the Alarm Client symbol to this window to display current alarms. 18. In WindowMaker, click the New (+) button. 19. In Available templates, ensure Frame window is selected. 20. In Name, enter AlarmDisplay. 21. In Comment, enter Display live alarms. 22. In the Window type drop-down list, ensure Overlay is selected. 23. Configure the Location and Size as follows: The properties should appear as follows: X: 0 Y: 120 Width: 1920 Height: 200</p>
 
 <div class="screenshot">
   <img src="../images/page_0068.png" alt="Window properties dialog for creating the AlarmDisplay window: Name=AlarmDisplay, Comment=Display live alarms, Window type=Overlay, Location X:0 Y:120, Size Width:1920 Height:200, Window color=White, Title bar unchecked, Size controls unchecked, with Create button ready."Module 2 - Getting Started">
   <div class="caption">Window properties dialog for creating the AlarmDisplay window: Name=AlarmDisplay, Comment=Display live alarms, Window type=Overlay, Location X:0 Y:120, Size Width:1920 Height:200, Window color=White, Title bar unchecked, Size controls unchecked, with Create button ready.</div>
 </div>
 
-<p>24. Click Create.</p>
-<p>The AlarmDisplay window appears.</p>
+<p>24. Click Create. The AlarmDisplay window appears.</p>
 
 <div class="screenshot">
   <img src="../images/page_0069.png" alt="WindowMaker showing the AlarmDisplay window created and displayed in the Canvas — the three-section split screen (Navigation, Logon, AlarmDisplay) is visible with dashed borders, and AlarmDisplay is highlighted in the Windows panel.">
   <div class="caption">WindowMaker showing the AlarmDisplay window created and displayed in the Canvas — the three-section split screen (Navigation, Logon, AlarmDisplay) is visible with dashed borders, and AlarmDisplay is highlighted in the Windows panel.</div>
 </div>
 
-<p>Next, you will create another window and name it OverviewDisplay. In a later lab, you will add</p>
-<p>dashboard graphics to this window to display data for the Mixer application.</p>
-<p>25. In WindowMaker, click the New (+) button.</p>
-<p>26. In Available templates, ensure Frame window is selected.</p>
-<p>27. In Name, enter OverviewDisplay.</p>
-<p>28. In Comment, enter Display system overview graphics.</p>
-<p>29. In the Window type drop-down list, ensure Overlay is selected.</p>
-<p>30. Configure the Location and Size as follows:</p>
-<p>31. In Window color, click the ellipsis button.</p>
-<p>X:</p>
-<p>0 (default)</p>
-<p>Y:</p>
-<p>320</p>
-<p>Width:</p>
-<p>420</p>
-<p>Height:</p>
-<p>680</p>
+<p>Next, you will create another window and name it OverviewDisplay. In a later lab, you will add dashboard graphics to this window to display data for the Mixer application. 25. In WindowMaker, click the New (+) button. 26. In Available templates, ensure Frame window is selected. 27. In Name, enter OverviewDisplay. 28. In Comment, enter Display system overview graphics. 29. In the Window type drop-down list, ensure Overlay is selected. 30. Configure the Location and Size as follows: 31. In Window color, click the ellipsis button. X: 0 (default) Y: 320 Width: 420 Height: 680</p>
 
 <div class="screenshot">
   <img src="../images/page_0070.png" alt="Window properties dialog for creating the OverviewDisplay window: Name=OverviewDisplay, Comment=Display system overview, Window type=Overlay, Location X:0 Y:320, Size Width:420 Height:680, Window color=White, Title bar unchecked, Size controls unchecked."Module 2 - Getting Started">
   <div class="caption">Window properties dialog for creating the OverviewDisplay window: Name=OverviewDisplay, Comment=Display system overview, Window type=Overlay, Location X:0 Y:320, Size Width:420 Height:680, Window color=White, Title bar unchecked, Size controls unchecked.</div>
 </div>
 
-<p>Color Dialog appears.</p>
-<p>32. Select the Web tab and scroll to the bottom of the color list.</p>
-<p>33. Select Wheat.</p>
+<p>Color Dialog appears. 32. Select the Web tab and scroll to the bottom of the color list. 33. Select Wheat.</p>
 
 <div class="screenshot">
   <img src="../images/page_0071_0.png" alt="Color Dialog window with the Professional tab selected, showing a full RGB/HSL color picker with gradient square, hue slider, RGB values all at 255 (white), and the preview box showing white (#FFFFFF).">
@@ -279,10 +187,7 @@
   <div class="caption">Color Dialog window with the Web tab selected, showing the list of standard web color names. Wheat color (#F5DEB3) is highlighted/selected in the list, with the preview box showing the Wheat beige color.</div>
 </div>
 
-<p>34. Click OK to close Color Dialog.</p>
-<p>The properties should appear as follows:</p>
-<p>35. Click Create.</p>
-<p>The OverviewDisplay window appears.</p>
+<p>34. Click OK to close Color Dialog. The properties should appear as follows: 35. Click Create. The OverviewDisplay window appears.</p>
 
 <div class="screenshot">
   <img src="../images/page_0072_0.png" alt="OverviewDisplay window properties dialog now showing Window color set to Wheat (light beige), with the updated color swatch visible, and the Create button ready to finalize the window.">
@@ -294,36 +199,14 @@
   <div class="caption">WindowMaker showing the OverviewDisplay window created — the Canvas now displays four window sections (Navigation, Logon, AlarmDisplay, and OverviewDisplay with its Wheat/tan background color visible in the lower-left area).</div>
 </div>
 
-<p>Next, you will create another window and name it ContentDisplay. In a later lab, you will add mixer</p>
-<p>graphics to this window.</p>
-<p>36. In WindowMaker, click the New (+) button.</p>
-<p>37. In Available templates, ensure Frame window is selected.</p>
-<p>38. In Name, enter ContentDisplay.</p>
-<p>39. In Comment, enter Display system graphics.</p>
-<p>40. In the Window type drop-down list, select Replace.</p>
-<p>41. Configure the Location and Size as follows:</p>
-<p>42. In Window color, click the ellipsis button to open Color Dialog.</p>
-<p>43. On the Web tab, scroll to the bottom of the color list and select White.</p>
-<p>44. Click OK to close Color Dialog.</p>
-<p>X:</p>
-<p>420</p>
-<p>Y:</p>
-<p>320 (default)</p>
-<p>Width:</p>
-<p>1500</p>
-<p>Height:</p>
-<p>680 (default)</p>
+<p>Next, you will create another window and name it ContentDisplay. In a later lab, you will add mixer graphics to this window. 36. In WindowMaker, click the New (+) button. 37. In Available templates, ensure Frame window is selected. 38. In Name, enter ContentDisplay. 39. In Comment, enter Display system graphics. 40. In the Window type drop-down list, select Replace. 41. Configure the Location and Size as follows: 42. In Window color, click the ellipsis button to open Color Dialog. 43. On the Web tab, scroll to the bottom of the color list and select White. 44. Click OK to close Color Dialog. X: 420 Y: 320 (default) Width: 1500 Height: 680 (default)</p>
 
 <div class="screenshot">
   <img src="../images/page_0073.png" alt="Window properties dialog for creating the ContentDisplay window: Name=ContentDisplay, Comment=Display system graphics, Window type=Replace (not Overlay), Location X:420 Y:320, Size Width:1500 Height:680, Window color=White, Title bar checked (enabled), Size controls unchecked.">
   <div class="caption">Window properties dialog for creating the ContentDisplay window: Name=ContentDisplay, Comment=Display system graphics, Window type=Replace (not Overlay), Location X:420 Y:320, Size Width:1500 Height:680, Window color=White, Title bar checked (enabled), Size controls unchecked.</div>
 </div>
 
-<p>45. Check the Title bar check box.</p>
-<p>The Create button is enabled after checking Title bar.</p>
-<p>The properties should appear as follows:</p>
-<p>46. Click Create.</p>
-<p>The ContentDisplay window appears.</p>
+<p>45. Check the Title bar check box. The Create button is enabled after checking Title bar. The properties should appear as follows: 46. Click Create. The ContentDisplay window appears.</p>
 
 <div class="screenshot">
   <img src="../images/page_0074_0.png" alt="WindowMaker Windows panel showing all five created windows listed: AlarmDisplay, ContentDisplay (selected), Logon, Navigation, and OverviewDisplay, with the ContentDisplay properties visible in the Properties panel.">
@@ -335,11 +218,7 @@
   <div class="caption">WindowMaker Canvas showing the complete application layout with all five windows: Navigation (top), Logon (top-right with dashed border), AlarmDisplay (middle strip), OverviewDisplay (lower-left with Wheat/tan color), and ContentDisplay (large lower-right area with title bar).</div>
 </div>
 
-<p>Embed a Symbol</p>
-<p>Now, you will embed a clock graphic in the Logon window to display the current time.</p>
-<p>47. In Canvas, scroll to the right to show the Logon window.</p>
-<p>48. In Industrial Graphics, expand Industrial Graphic Library \ Clocks.</p>
-<p>49. From Industrial Graphics, drag ClockAnalogWall to the Logon window.</p>
+<p>Embed a Symbol Now, you will embed a clock graphic in the Logon window to display the current time. 47. In Canvas, scroll to the right to show the Logon window. 48. In Industrial Graphics, expand Industrial Graphic Library \ Clocks. 49. From Industrial Graphics, drag ClockAnalogWall to the Logon window.</p>
 
 <div class="screenshot">
   <img src="../images/page_0075_0.png" alt="WindowMaker Canvas scrolled to the right showing the Logon window, with the Industrial Graphics library open on the right side showing TrainingGalaxy &gt; Industrial Graphic Library &gt; Clocks folder expanded, ready to drag ClockAnalogWall onto the window.">
@@ -356,17 +235,7 @@
   <div class="caption">WindowMaker Canvas showing the ClockAnalogWall analog clock widget placed on the Logon window, selected with a dashed border, displaying the current time — the clock has a white face, black bezel, and black numerals with hands at approximately 12:00.</div>
 </div>
 
-<p>The clock appears in the Logon window.</p>
-<p>The graphic is positioned and resized to fit the window.</p>
-<p>50. In Canvas, scroll back to the left to reset the view.</p>
-<p>Test in Runtime</p>
-<p>Now, you will check to see if everything you configured works as intended in the runtime</p>
-<p>environment. InTouch uses a program named WindowViewer for its runtime environment. Clicking</p>
-<p>the Runtime fast switch opens WindowViewer.</p>
-<p>51. In the top-right corner, click Runtime to display the windows in the runtime environment.</p>
-<p>Note:</p>
-<p>WindowMaker automatically saves any open windows before displaying them in the</p>
-<p>runtime environment.</p>
+<p>The clock appears in the Logon window. The graphic is positioned and resized to fit the window. 50. In Canvas, scroll back to the left to reset the view. Test in Runtime Now, you will check to see if everything you configured works as intended in the runtime environment. InTouch uses a program named WindowViewer for its runtime environment. Clicking the Runtime fast switch opens WindowViewer. 51. In the top-right corner, click Runtime to display the windows in the runtime environment. Note: WindowMaker automatically saves any open windows before displaying them in the runtime environment.</p>
 
 <div class="screenshot">
   <img src="../images/page_0076_0.png" alt="InTouch WindowViewer runtime mode showing all five application windows in their configured positions: Navigation (top-left), Logon (top-right with analog clock), AlarmDisplay (middle strip), OverviewDisplay (bottom-left with Wheat background), and ContentDisplay (large bottom-right with title bar).">
@@ -378,15 +247,7 @@
   <div class="caption">Close-up of the analog clock widget in WindowViewer runtime, showing a round clock with metallic bezel, white face, black Arabic numerals, and hands displaying the current time (approximately 12:00).</div>
 </div>
 
-<p>After a moment, WindowViewer opens and all five windows appear.</p>
-<p>The windows are labeled below, so you can identify them.</p>
-<p>In the upper-right corner, the current time is displayed in the clock.</p>
-<p>52. Click Development! to return to WindowMaker.</p>
-<p>Navigation</p>
-<p>AlarmDisplay</p>
-<p>OverviewDisplay</p>
-<p>Logon</p>
-<p>ContentDisplay</p>
+<p>After a moment, WindowViewer opens and all five windows appear. The windows are labeled below, so you can identify them. In the upper-right corner, the current time is displayed in the clock. 52. Click Development! to return to WindowMaker. Navigation AlarmDisplay OverviewDisplay Logon ContentDisplay</p>
 
 <div class="screenshot">
   <img src="../images/page_0077_0.png" alt="InTouch WindowViewer in runtime mode with the Development! label visible in the top-right corner, showing all five application windows laid out with labels: Navigation, AlarmDisplay, OverviewDisplay, Logon, and ContentDisplay.">
@@ -398,14 +259,7 @@
   <div class="caption">Close-up of the analog clock in WindowViewer runtime showing approximately 2:11 with a silver metallic bezel, white face with black numerals, black hour/minute hands, and a red second hand.</div>
 </div>
 
-<p>Lock the Window Size</p>
-<p>Finally, you will enable Lock window size, to prevent windows from changing their scale when the</p>
-<p>application is viewed at a different resolution.</p>
-<p>53. In WindowMaker, click the New (+) button.</p>
-<p>54. Select Configure | WindowMaker.</p>
-<p>The WindowMaker configuration appears.</p>
-<p>55. Check Lock window size.</p>
-<p>56. Click Save.</p>
+<p>Lock the Window Size Finally, you will enable Lock window size, to prevent windows from changing their scale when the application is viewed at a different resolution. 53. In WindowMaker, click the New (+) button. 54. Select Configure | WindowMaker. The WindowMaker configuration appears. 55. Check Lock window size. 56. Click Save.</p>
 
 <div class="screenshot">
   <img src="../images/page_0078_0.png" alt="WindowMaker File &gt; Configure menu showing the WindowMaker configuration page with various checkboxes including Lock window size (currently unchecked), Enable fast switch (checked), Show grid (checked), and other editor settings.">
@@ -417,14 +271,7 @@
   <div class="caption">WindowMaker Configuration of editing environment dialog with the Lock window size checkbox now checked (blue checkmark), along with Enable fast switch and Show grid also checked, and Save button highlighted.</div>
 </div>
 
-<p>A WindowMaker notification appears, indicating it is necessary to restart WindowMaker.</p>
-<p>57. Close WindowMaker.</p>
-<p>Closing WindowMaker also closes WindowViewer.</p>
-<p>After a moment, the Check-in dialog box appears.</p>
-<p>58. In Comment, enter Created windows and configured Lock Window Size.</p>
-<p>59. Click Check-in to check in the $MixerView template.</p>
-<p>60. When the check-in progress completes, click Close.</p>
-<p><End of Lab></p>
+<p>A WindowMaker notification appears, indicating it is necessary to restart WindowMaker. 57. Close WindowMaker. Closing WindowMaker also closes WindowViewer. After a moment, the Check-in dialog box appears. 58. In Comment, enter Created windows and configured Lock Window Size. 59. Click Check-in to check in the $MixerView template. 60. When the check-in progress completes, click Close. <End of Lab></p>
 
 <div class="screenshot">
   <img src="../images/page_0079_0.png" alt="WindowMaker notification dialog box with an information icon, stating: 'WindowMaker configuration successfully updated. It is necessary to restart WindowMaker for the changes to take effect.'">

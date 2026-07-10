@@ -100,39 +100,7 @@
 <h1>Lesson 18: Custom Properties</h1>
 <p class="page-ref">Module 3 — Symbols | Pages 217–222</p>
 
-<p>Data Type</p>
-<p>The data type for the custom property can be Boolean, Double, ElapsedTime, Float, Integer,</p>
-<p>String, Time, or HistorySummary. An icon for the selected data type appears at the top of the</p>
-<p>dialog box.</p>
-<p>Default Value</p>
-<p>The Default Value is the initial default value for the custom property. It can be a literal value,</p>
-<p>reference, or expression. You can click the ellipsis button to browse for a reference using the</p>
-<p>Galaxy Browser.</p>
-<p>If the selected data type is String, Time, or ElapsedTime, click the button to the left of the Default</p>
-<p>Value field to indicate whether the default value is a static value or a reference to a value.</p>
-<p></p>
-<p>Static Text:</p>
-<p>The default value is a static value. This mode treats the Default Value</p>
-<p>field as text.</p>
-<p></p>
-<p>Expression or Reference:</p>
-<p>The default value is an expression or a reference. This</p>
-<p>mode treats the Default Value field as a lookup list or evaluation of a mathematical</p>
-<p>expression or a logic expression.</p>
-<p>Visibility</p>
-<p>The Visibility setting determines whether the custom property is visible to be configured when the</p>
-<p>symbol is embedded. Any property marked as Private is not visible in an embedded symbol. This</p>
-<p>can be used to hide configurations that you do not want designers to modify.</p>
-<p>Data Type</p>
-<p>Icon</p>
-<p>Boolean</p>
-<p>Double</p>
-<p>Elapsed Time</p>
-<p>Float</p>
-<p>Integer</p>
-<p>String</p>
-<p>Time</p>
-<p>History Summary</p>
+<p>Data Type The data type for the custom property can be Boolean, Double, ElapsedTime, Float, Integer, String, Time, or HistorySummary. An icon for the selected data type appears at the top of the dialog box. Default Value The Default Value is the initial default value for the custom property. It can be a literal value, reference, or expression. You can click the ellipsis button to browse for a reference using the Galaxy Browser. If the selected data type is String, Time, or ElapsedTime, click the button to the left of the Default Value field to indicate whether the default value is a static value or a reference to a value.  Static Text: The default value is a static value. This mode treats the Default Value field as text.  Expression or Reference: The default value is an expression or a reference. This mode treats the Default Value field as a lookup list or evaluation of a mathematical expression or a logic expression. Visibility The Visibility setting determines whether the custom property is visible to be configured when the symbol is embedded. Any property marked as Private is not visible in an embedded symbol. This can be used to hide configurations that you do not want designers to modify. Data Type Icon Boolean Double Elapsed Time Float Integer String Time History Summary</p>
 
 <div class="screenshot">
   <img src="../images/page_0217_0.png" alt="Dual-segment status/beacon indicator with top green section showing white exclamation mark (!) for active cautionary state and bottom red section showing white empty circle for inactive/stopped state, used as alarm process state indicator on HMI screens">
@@ -184,20 +152,7 @@
   <div class="caption">Tag Browser/Explorer icon showing yellow/orange rounded rectangular data record with blue magnifying glass overlay, representing the tool for browsing, searching, and managing tags in AVEVA InTouch projects</div>
 </div>
 
-<p>Description</p>
-<p>The Description provides a brief note about the custom property. For symbols from a built-in</p>
-<p>library, the description contains helpful tips on how to use the custom property.</p>
-<p>Button Tool</p>
-<p>You can use the Button tool to add buttons to your graphics.</p>
-<p>To draw a button, select the Button tool from the Tools pane, click the canvas, drag the shape of</p>
-<p>the button, and release the mouse. Text on the button appears in edit mode and you can type a</p>
-<p>label for the button and press Enter. You can also use the Text property to specify the label for the</p>
-<p>button, as well as size properties and others from the Properties tab.</p>
-<p>You can apply animations, such as Pushbutton, Value Display, Element Style, and others to</p>
-<p>configure the button.</p>
-<p>Pushbutton Animation</p>
-<p>You can configure an element with a Pushbutton animation to change Boolean, analog, or string</p>
-<p>references.</p>
+<p>Description The Description provides a brief note about the custom property. For symbols from a built-in library, the description contains helpful tips on how to use the custom property. Button Tool You can use the Button tool to add buttons to your graphics. To draw a button, select the Button tool from the Tools pane, click the canvas, drag the shape of the button, and release the mouse. Text on the button appears in edit mode and you can type a label for the button and press Enter. You can also use the Text property to specify the label for the button, as well as size properties and others from the Properties tab. You can apply animations, such as Pushbutton, Value Display, Element Style, and others to configure the button. Pushbutton Animation You can configure an element with a Pushbutton animation to change Boolean, analog, or string references.</p>
 
 <div class="screenshot">
   <img src="../images/page_0218_0.png" alt="Tools palette with 18 tool buttons in 3-row by 6-column grid including selection, line, rectangle, rounded rectangle, oval, pie chart, polyline, polygon, freehand, bitmap, symbol, group, arc, rounded corner, curved arc, static text, dynamic text, and interactive button tools">
@@ -214,99 +169,28 @@
   <div class="caption">Edit Animations dialog for Pushbutton (Button1) with Interaction section showing Pushbutton Enabled, Boolean Reference=Cmd, Action=Set (on press), for configuring button to set Cmd tag to active state when pressed</div>
 </div>
 
-<p>Show Symbol and Hide Symbol Animations</p>
-<p>You can configure an element with a Show Symbol animation, which shows a specified graphic as</p>
-<p>a pop-up window when the element is clicked at runtime. The animation pops-up the specified</p>
-<p>graphic independent of any InTouch window at a specified position when a user clicks the element</p>
-<p>at runtime.</p>
-<p></p>
-<p>You can configure options such as:</p>
-<p></p>
-<p>Which graphic appears in the new window</p>
-<p></p>
-<p>If the window has a title bar, and if so if it has a caption</p>
-<p></p>
-<p>If the window is modal or modeless</p>
-<p></p>
-<p>If the window has a close button</p>
-<p></p>
-<p>If the window can be resized</p>
-<p></p>
-<p>The initial position of the window</p>
-<p></p>
-<p>The size of the window</p>
-<p></p>
-<p>A shortcut key for showing the graphic</p>
-<p>To specify the graphic, you can enter the name in the Reference field or browse for the graphic</p>
-<p>with the Galaxy Browser.</p>
-<p>You can configure an element with a Hide Symbol animation. The Hide Symbol animation lets you</p>
-<p>close:</p>
-<p></p>
-<p>The current graphic</p>
-<p></p>
-<p>A graphic that is shown by a specified element.</p>
-<p></p>
-<p>You can also configure a shortcut key for closing the graphic.</p>
+<p>Show Symbol and Hide Symbol Animations You can configure an element with a Show Symbol animation, which shows a specified graphic as a pop-up window when the element is clicked at runtime. The animation pops-up the specified graphic independent of any InTouch window at a specified position when a user clicks the element at runtime.  You can configure options such as:  Which graphic appears in the new window  If the window has a title bar, and if so if it has a caption  If the window is modal or modeless  If the window has a close button  If the window can be resized  The initial position of the window  The size of the window  A shortcut key for showing the graphic To specify the graphic, you can enter the name in the Reference field or browse for the graphic with the Galaxy Browser. You can configure an element with a Hide Symbol animation. The Hide Symbol animation lets you close:  The current graphic  A graphic that is shown by a specified element.  You can also configure a shortcut key for closing the graphic.</p>
 
 <div class="screenshot">
   <img src="../images/page_0219.png" alt="Edit Animations dialog showing Show Symbol configuration for Agitator: Reference=CommandPanelWithSetpoint, Has title bar checked, Title=OwningObject, Modal selected, Has close button checked, Position=Below Parent Symbol at 0,0, Size=Relative To Symbol at 100%, for opening command panel popup">
   <div class="caption">Edit Animations dialog showing Show Symbol configuration for Agitator: Reference=CommandPanelWithSetpoint, Has title bar checked, Title=OwningObject, Modal selected, Has close button checked, Position=Below Parent Symbol at 0,0, Size=Relative To Symbol at 100%, for opening command panel popup</div>
 </div>
 
-<p>TreatAsIcon Property</p>
-<p>Setting TreatAsIcon to True enables interaction animations for an embedded graphic. If</p>
-<p>TreatAsIcon is False, the animations defined in the graphic take precedence.</p>
+<p>TreatAsIcon Property Setting TreatAsIcon to True enables interaction animations for an embedded graphic. If TreatAsIcon is False, the animations defined in the graphic take precedence.</p>
 
 <div class="screenshot">
   <img src="../images/page_0220.png" alt="Properties panel for SA_Agitator_Settler showing Runtime Behavior section with TreatAsIcon=True highlighted, Enabled=True, OwningObject=Symbol/SA_Agitator_Settler, Visible=True, ZoomPercent=100, for configuring embedded graphic interaction behavior">
   <div class="caption">Properties panel for SA_Agitator_Settler showing Runtime Behavior section with TreatAsIcon=True highlighted, Enabled=True, OwningObject=Symbol/SA_Agitator_Settler, Visible=True, ZoomPercent=100, for configuring embedded graphic interaction behavior</div>
 </div>
 
-<p>Introduction</p>
-<p>In this lab, you will create custom symbols to be used as command panels for opening and closing</p>
-<p>valves, starting and stopping pumps and agitators, and changing the speed setpoint for an</p>
-<p>agitator.</p>
-<p>In the command panel graphic, you will create and configure custom properties that will be used in</p>
-<p>animations. You will add button elements and configure them with Pushbutton and Element Style</p>
-<p>animations.</p>
-<p>Finally, in the Agitator_Detailed, Pump_Detailed, and Valve_Detailed graphics, you will add Show</p>
-<p>Symbol animations to show their respective command panels at runtime.</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Create and configure custom properties in a graphic</p>
-<p></p>
-<p>Use the Button tool</p>
-<p></p>
-<p>Use Pushbutton animations</p>
-<p></p>
-<p>Use Element Style animations</p>
-<p></p>
-<p>Use Show Symbol animations</p>
-<p></p>
-<p>Add the Quality & Status element to a custom graphic</p>
-<p></p>
-<p>Configure the TreatAsIcon property of embedded graphics</p>
+<p>Introduction In this lab, you will create custom symbols to be used as command panels for opening and closing valves, starting and stopping pumps and agitators, and changing the speed setpoint for an agitator. In the command panel graphic, you will create and configure custom properties that will be used in animations. You will add button elements and configure them with Pushbutton and Element Style animations. Finally, in the Agitator_Detailed, Pump_Detailed, and Valve_Detailed graphics, you will add Show Symbol animations to show their respective command panels at runtime. Objectives Upon completion of this lab, you will be able to:  Create and configure custom properties in a graphic  Use the Button tool  Use Pushbutton animations  Use Element Style animations  Use Show Symbol animations  Add the Quality & Status element to a custom graphic  Configure the TreatAsIcon property of embedded graphics</p>
 
 <div class="screenshot">
   <img src="../images/page_0221.png" alt="Three runtime control windows side by side: Inlet1_001 (valve with Open/Close buttons, Close highlighted), Pump1_001 (pump with Start/Stop buttons, Stop highlighted), Agitator_001 (agitator with Start/Stop buttons, Stop highlighted, and Speed setpoint input showing 0.00 rpm)">
   <div class="caption">Three runtime control windows side by side: Inlet1_001 (valve with Open/Close buttons, Close highlighted), Pump1_001 (pump with Start/Stop buttons, Stop highlighted), Agitator_001 (agitator with Start/Stop buttons, Stop highlighted, and Speed setpoint input showing 0.00 rpm)</div>
 </div>
 
-<p>Create a Command Panel Symbol</p>
-<p>First, you will create a CommandPanel graphic with buttons that can be used at runtime to operate</p>
-<p>valves and pumps.</p>
-<p>1.</p>
-<p>In the IDE, on the Graphics tab, in the Training toolset, create a new symbol named</p>
-<p>CommandPanel and open it for editing.</p>
-<p>Now you will add custom properties to the graphic.</p>
-<p>2.</p>
-<p>Right-click the canvas to set focus on the canvas, and then select Custom Properties.</p>
-<p>Edit Custom Properties appears.</p>
-<p>3.</p>
-<p>Click the Add custom property button.</p>
-<p>4.</p>
-<p>Name the new custom property as Cmd and press Enter.</p>
+<p>Create a Command Panel Symbol First, you will create a CommandPanel graphic with buttons that can be used at runtime to operate valves and pumps. 1. In the IDE, on the Graphics tab, in the Training toolset, create a new symbol named CommandPanel and open it for editing. Now you will add custom properties to the graphic. 2. Right-click the canvas to set focus on the canvas, and then select Custom Properties. Edit Custom Properties appears. 3. Click the Add custom property button. 4. Name the new custom property as Cmd and press Enter.</p>
 
 <div class="screenshot">
   <img src="../images/page_0222_0.png" alt="Right-click context menu on canvas showing Paste (Ctrl+V), Select All (F2 grayed), Substitute (submenu arrow), Custom Properties... (Ctrl+M highlighted), Scripts... (F10), Embed Industrial Graphic... (Ctrl+G) options for canvas operations">

@@ -100,294 +100,34 @@
 <h1>Lesson 4: Encryption Requirements</h1>
 <p class="page-ref">Module 1 — Introduction | Pages 31–40</p>
 
-<p>32. Navigate to C:\Training, select Lab 1 - WatchList, and then click Open.</p>
-<p>The Mixer100 and ProdPLC1 watch windows appear with some attributes already added.</p>
-<p>You can resize the watch window if needed to view the attributes.</p>
-<p>33. In the Mixer100 and ProdPLC1 watch windows, verify that the quality is Good for every</p>
-<p>attribute.</p>
-<p>Note:</p>
-<p>Notify your instructor if any of your attributes display any other quality status.</p>
-<p>34. When you are finished reviewing attribute data, close Object Viewer.</p>
-<p><End of Lab></p>
+<p>32. Navigate to C:\Training, select Lab 1 - WatchList, and then click Open. The Mixer100 and ProdPLC1 watch windows appear with some attributes already added. You can resize the watch window if needed to view the attributes. 33. In the Mixer100 and ProdPLC1 watch windows, verify that the quality is Good for every attribute. Note: Notify your instructor if any of your attributes display any other quality status. 34. When you are finished reviewing attribute data, close Object Viewer. <End of Lab></p>
 
 <div class="screenshot">
   <img src="../images/page_0031.png" alt="Data Grid (ActiveX control) displaying real-time tag values for Mixer100 and ProdPLC1, including attributes like Level.PV (63.83394), Temperature.PV, Pump status (Stopped), and valve positions (Open/Closed), with quality codes showing C0:Good and timestamps">
   <div class="caption">Data Grid (ActiveX control) displaying real-time tag values for Mixer100 and ProdPLC1, including attributes like Level.PV (63.83394), Temperature.PV, Pump status (Stopped), and valve positions (Open/Closed), with quality codes showing C0:Good and timestamps</div>
 </div>
 
-<p>The end-to-end communication between software applications (server and client) can be</p>
-<p>encrypted and secured to prevent eavesdropping and malicious tampering (also known as: Man-</p>
-<p>in-the-Middle) attacks.</p>
-<p>To enable encrypted network communication, one of the nodes in the network must be configured</p>
-<p>to host and run the System Management Server (SMS). The role of the System Management</p>
-<p>Server is to generate, manage, and distribute secure digital certificates used for establishing and</p>
-<p>maintaining secure communications.</p>
-<p>All other nodes need to be configured to connect to the SMS so they all become part of the same</p>
-<p>community.</p>
-<p>The SMS does not need to be available at runtime for secure communications to be established.</p>
-<p>In fact, once joined to the SMS, a node will not need access to the SMS until it is time to renew the</p>
-<p>certificates.</p>
-<p>Protocols that Benefit From Encrypted Communication</p>
-<p>With encrypted communication, all of the following protocols are secured:</p>
-<p></p>
-<p>SuiteLink</p>
-<p></p>
-<p>Message Exchange (MX)</p>
-<p></p>
-<p>iData</p>
-<p></p>
-<p>iBrowse</p>
-<p></p>
-<p>HCAL</p>
-<p>This section describes the encrypted communication for end-to-end communication between</p>
-<p>server and client software applications.</p>
+<p>The end-to-end communication between software applications (server and client) can be encrypted and secured to prevent eavesdropping and malicious tampering (also known as: Man- in-the-Middle) attacks. To enable encrypted network communication, one of the nodes in the network must be configured to host and run the System Management Server (SMS). The role of the System Management Server is to generate, manage, and distribute secure digital certificates used for establishing and maintaining secure communications. All other nodes need to be configured to connect to the SMS so they all become part of the same community. The SMS does not need to be available at runtime for secure communications to be established. In fact, once joined to the SMS, a node will not need access to the SMS until it is time to renew the certificates. Protocols that Benefit From Encrypted Communication With encrypted communication, all of the following protocols are secured:  SuiteLink  Message Exchange (MX)  iData  iBrowse  HCAL This section describes the encrypted communication for end-to-end communication between server and client software applications.</p>
 
-<p>Software that Supports Secured Communication</p>
-<p>The following software supports secured communication:</p>
-<p></p>
-<p>Application Server 2017 Update 3 and later</p>
-<p></p>
-<p>InTouch Operations Management Interface 2017 Update 3 and later</p>
-<p></p>
-<p>InTouch for System Platform 2017 Update 3 and later</p>
-<p></p>
-<p>*OI Server</p>
-<p></p>
-<p>InTouch Web Client in 2017 Update 3 and later</p>
-<p></p>
-<p>Historian 2017 Update 3 and later</p>
-<p></p>
-<p>Sentinel System Monitor 1.1 for System Platform 2017 Update 3 and later</p>
-<p>*Communications from the specific OI Server to any other products listed above can be encrypted.</p>
-<p>This is generic and applies to all OI Server versions.</p>
+<p>Software that Supports Secured Communication The following software supports secured communication:  Application Server 2017 Update 3 and later  InTouch Operations Management Interface 2017 Update 3 and later  InTouch for System Platform 2017 Update 3 and later  *OI Server  InTouch Web Client in 2017 Update 3 and later  Historian 2017 Update 3 and later  Sentinel System Monitor 1.1 for System Platform 2017 Update 3 and later *Communications from the specific OI Server to any other products listed above can be encrypted. This is generic and applies to all OI Server versions.</p>
 
 <div class="screenshot">
   <img src="../images/page_0034.png" alt="AVEVA System Platform architecture diagram showing encrypted communication between components including Historian Tier 1 and Tier 2, Application Servers (AOS1, AOS2), Operations Management Interface, InTouch HMI, Communication Drivers, InTouch Web Servers, and System Monitor, connected via MX, SuiteLink, iData, HCAL, and HTTPS protocols"Software that Supports Secured Communication">
   <div class="caption">AVEVA System Platform architecture diagram showing encrypted communication between components including Historian Tier 1 and Tier 2, Application Servers (AOS1, AOS2), Operations Management Interface, InTouch HMI, Communication Drivers, InTouch Web Servers, and System Monitor, connected via MX, SuiteLink, iData, HCAL, and HTTPS protocols</div>
 </div>
 
-<p>Node-to-Node Communication</p>
-<p>Node-to-node communication is unsecured under certain scenarios, including the following:</p>
-<p></p>
-<p>The version of the software installed on one or more nodes is earlier than 2017 Update 3</p>
-<p>(Communication Driver version has no impact)</p>
-<p></p>
-<p>One node points to a System Management Server, but there is no System Management</p>
-<p>Server configured on the other node</p>
-<p></p>
-<p>There is no System Management Server configured for both nodes</p>
-<p>Please note that if one node points to one System Management Server and the other node points</p>
-<p>to another System Management Server, there will be NO network connection between the nodes.</p>
+<p>Node-to-Node Communication Node-to-node communication is unsecured under certain scenarios, including the following:  The version of the software installed on one or more nodes is earlier than 2017 Update 3 (Communication Driver version has no impact)  One node points to a System Management Server, but there is no System Management Server configured on the other node  There is no System Management Server configured for both nodes Please note that if one node points to one System Management Server and the other node points to another System Management Server, there will be NO network connection between the nodes.</p>
 
 <div class="screenshot">
   <img src="../images/page_0035.png" alt="Network security deployment diagram showing three communities: Community 1 and Community 2 (both in Secured Mode with nodes pointing to SMS1 and SMS2 respectively, all connections green/secure), and Legacy (Unsecured Mode with no SMS configuration, all connections yellow/unsecured), with a legend defining secured, unsecured, and no connection states">
   <div class="caption">Network security deployment diagram showing three communities: Community 1 and Community 2 (both in Secured Mode with nodes pointing to SMS1 and SMS2 respectively, all connections green/secure), and Legacy (Unsecured Mode with no SMS configuration, all connections yellow/unsecured), with a legend defining secured, unsecured, and no connection states</div>
 </div>
 
-<p>Software and Hardware Requirements</p>
-<p>The following topics describe software and hardware requirements for System Platform.</p>
-<p>Note: Please refer to the readme file that came with your software for more details about</p>
-<p>hardware and software requirements, compatibility information, key product notes, and additional</p>
-<p>resources. Or, visit the Knowledge & Support Center at https://softwaresupport.aveva.com.</p>
-<p>Software Requirements</p>
-<p>The following table lists supported and preferred software requirements for various nodes in your</p>
-<p>system:</p>
-<p>Hardware Requirements</p>
-<p>The following tables list minimum and recommended hardware requirements.</p>
-<p></p>
-<p>For server nodes, such as AppEngine host (Application Objects Server), and the System</p>
-<p>Platform IDE (development environment):</p>
-<p></p>
-<p>For client nodes, such as nodes that run WindowViewer, an Operations Management</p>
-<p>Interface application, Historian Client, and remote System Platform IDE:</p>
-<p>This section describes system requirements for System Platform software and introduces the</p>
-<p>licensing model.</p>
-<p>Development</p>
-<p>(System Platform IDE)</p>
-<p>Galaxy</p>
-<p>Repository</p>
-<p>Automation</p>
-<p>Object Server</p>
-<p>Supervisory</p>
-<p>Client</p>
-<p>Windows Server</p>
-<p>Preferred</p>
-<p>Preferred</p>
-<p>Preferred</p>
-<p>Supported</p>
-<p>Windows Workstation</p>
-<p>Supported</p>
-<p>Supported</p>
-<p>Supported</p>
-<p>Preferred</p>
-<p>SQL Server</p>
-<p>Not required</p>
-<p>Required</p>
-<p>Not required</p>
-<p>Not required</p>
-<p>.NET Framework</p>
-<p>Required</p>
-<p>Required</p>
-<p>Required</p>
-<p>Required</p>
-<p>Level</p>
-<p>Logical</p>
-<p>Processors</p>
-<p>RAM</p>
-<p>Storage</p>
-<p>Display</p>
-<p>(Resolution)</p>
-<p>Network</p>
-<p>Speed</p>
-<p>Small</p>
-<p>Minimum</p>
-<p>4</p>
-<p>2 GB</p>
-<p>100 GB</p>
-<p>1024 x 768</p>
-<p>100 Mbps</p>
-<p>1-25K I/O per node</p>
-<p>Recommended</p>
-<p>8</p>
-<p>4 GB</p>
-<p>200 GB</p>
-<p>1920 x 1080</p>
-<p>1 Gbps</p>
-<p>Medium</p>
-<p>Minimum</p>
-<p>8</p>
-<p>8 GB</p>
-<p>200 GB</p>
-<p>1024 x 768</p>
-<p>1 Gbps</p>
-<p>25-50K I/O per node</p>
-<p>Recommended</p>
-<p>16</p>
-<p>12 GB</p>
-<p>500 GB</p>
-<p>1920 x 1080</p>
-<p>1 Gbps</p>
-<p>Large</p>
-<p>Minimum</p>
-<p>16</p>
-<p>16 GB</p>
-<p>500 GB</p>
-<p>1024 x 768</p>
-<p>1 Gbps</p>
-<p>> 50K I/O per node</p>
-<p>Recommended</p>
-<p>32</p>
-<p>24 GB</p>
-<p>1 TB</p>
-<p>1920 x 1080</p>
-<p>Dual 1 Gbps</p>
-<p>Level</p>
-<p>Logical</p>
-<p>Processors</p>
-<p>RAM</p>
-<p>Storage</p>
-<p>Display</p>
-<p>(Resolution)</p>
-<p>Network</p>
-<p>Minimum</p>
-<p>4</p>
-<p>1 GB</p>
-<p>100 GB</p>
-<p>1024 x 768</p>
-<p>100 Mbps</p>
-<p>Recommended</p>
-<p>8</p>
-<p>4 GB</p>
-<p>200 GB</p>
-<p>1920 x 1080</p>
-<p>1 Gbps</p>
+<p>Software and Hardware Requirements The following topics describe software and hardware requirements for System Platform. Note: Please refer to the readme file that came with your software for more details about hardware and software requirements, compatibility information, key product notes, and additional resources. Or, visit the Knowledge & Support Center at https://softwaresupport.aveva.com. Software Requirements The following table lists supported and preferred software requirements for various nodes in your system: Hardware Requirements The following tables list minimum and recommended hardware requirements.  For server nodes, such as AppEngine host (Application Objects Server), and the System Platform IDE (development environment):  For client nodes, such as nodes that run WindowViewer, an Operations Management Interface application, Historian Client, and remote System Platform IDE: This section describes system requirements for System Platform software and introduces the licensing model. Development (System Platform IDE) Galaxy Repository Automation Object Server Supervisory Client Windows Server Preferred Preferred Preferred Supported Windows Workstation Supported Supported Supported Preferred SQL Server Not required Required Not required Not required .NET Framework Required Required Required Required Level Logical Processors RAM Storage Display (Resolution) Network Speed Small Minimum 4 2 GB 100 GB 1024 x 768 100 Mbps 1-25K I/O per node Recommended 8 4 GB 200 GB 1920 x 1080 1 Gbps Medium Minimum 8 8 GB 200 GB 1024 x 768 1 Gbps 25-50K I/O per node Recommended 16 12 GB 500 GB 1920 x 1080 1 Gbps Large Minimum 16 16 GB 500 GB 1024 x 768 1 Gbps > 50K I/O per node Recommended 32 24 GB 1 TB 1920 x 1080 Dual 1 Gbps Level Logical Processors RAM Storage Display (Resolution) Network Minimum 4 1 GB 100 GB 1024 x 768 100 Mbps Recommended 8 4 GB 200 GB 1920 x 1080 1 Gbps</p>
 
-<p></p>
-<p>For all-in-one nodes with all products on a single node. An all-in-one node includes</p>
-<p>Application Server, InTouch, Historian, Historian Client, and Licensing components.</p>
-<p>Licensing</p>
-<p>The following topics provide general information about System Platform licensing.</p>
-<p>Note: Please contact your local distributor for details about licensing and pricing.</p>
-<p>Licensing Models</p>
-<p>Two licensing models are available:</p>
-<p></p>
-<p>Perpetual licensing offers permanent licenses with no expiration date. A perpetual</p>
-<p>license applies to a specific purchased software version.</p>
-<p></p>
-<p>Flex licensing offers subscription-based licenses that are renewed for a specific term.</p>
-<p>The license is for credits redeemable to access a wide range of software based on needs</p>
-<p>at the time. Visit https://sw.aveva.com/flex-subscription for more information on the Flex</p>
-<p>program.</p>
-<p>Note: Subscription-based licenses are also available for development consignments (for</p>
-<p>example, System Integrator consignments).</p>
-<p>For more information on licensing and licensing requirements, contact your local distributor.</p>
-<p>Activated Licensing</p>
-<p>AVEVA software is licensed-enforced using an activated licensing framework with an activation</p>
-<p>code. Management and activation of licenses are performed with the following components, which</p>
-<p>are installed as part of the installation of your purchased products:</p>
-<p></p>
-<p>License Server: Acquires, stores, maintains, and serves licenses. It supports redundancy</p>
-<p>and failover.</p>
-<p></p>
-<p>License Manager: Web-based user interface to access and maintain licenses.</p>
-<p>License activation can be performed online or offline. Activation requires Internet access in both</p>
-<p>cases. Consult your sales representative for availability of email and phone activation.</p>
-<p></p>
-<p>Online refers to Internet access on the License Server network.</p>
-<p></p>
-<p>Offline refers to activate off-site.</p>
-<p>Refer to the documentation provided with your software product for more information on using the</p>
-<p>License Server and License Manager.</p>
-<p>Level</p>
-<p>Logical</p>
-<p>Processors</p>
-<p>RAM</p>
-<p>Storage</p>
-<p>Network</p>
-<p>Small</p>
-<p>1K I/O max</p>
-<p>Minimum</p>
-<p>8</p>
-<p>8 GB</p>
-<p>200 GB</p>
-<p>100 Mbps</p>
-<p>Recommended</p>
-<p>12</p>
-<p>12 GB</p>
-<p>500 GB</p>
-<p>1 Gbps</p>
-<p>Medium</p>
-<p>20K I/O max</p>
-<p>Minimum</p>
-<p>12</p>
-<p>16 GB</p>
-<p>500 GB</p>
-<p>1 Gbps</p>
-<p>Recommended</p>
-<p>16</p>
-<p>32 GB</p>
-<p>1 TB</p>
-<p>1 Gbps</p>
-<p>Large</p>
-<p>100K I/O max</p>
-<p>Minimum</p>
-<p>20</p>
-<p>32 GB</p>
-<p>2 TB</p>
-<p>1 Gbps</p>
-<p>Recommended</p>
-<p>24</p>
-<p>64 GB</p>
-<p>4 TB</p>
-<p>1 Gbps</p>
+<p> For all-in-one nodes with all products on a single node. An all-in-one node includes Application Server, InTouch, Historian, Historian Client, and Licensing components. Licensing The following topics provide general information about System Platform licensing. Note: Please contact your local distributor for details about licensing and pricing. Licensing Models Two licensing models are available:  Perpetual licensing offers permanent licenses with no expiration date. A perpetual license applies to a specific purchased software version.  Flex licensing offers subscription-based licenses that are renewed for a specific term. The license is for credits redeemable to access a wide range of software based on needs at the time. Visit https://sw.aveva.com/flex-subscription for more information on the Flex program. Note: Subscription-based licenses are also available for development consignments (for example, System Integrator consignments). For more information on licensing and licensing requirements, contact your local distributor. Activated Licensing AVEVA software is licensed-enforced using an activated licensing framework with an activation code. Management and activation of licenses are performed with the following components, which are installed as part of the installation of your purchased products:  License Server: Acquires, stores, maintains, and serves licenses. It supports redundancy and failover.  License Manager: Web-based user interface to access and maintain licenses. License activation can be performed online or offline. Activation requires Internet access in both cases. Consult your sales representative for availability of email and phone activation.  Online refers to Internet access on the License Server network.  Offline refers to activate off-site. Refer to the documentation provided with your software product for more information on using the License Server and License Manager. Level Logical Processors RAM Storage Network Small 1K I/O max Minimum 8 8 GB 200 GB 100 Mbps Recommended 12 12 GB 500 GB 1 Gbps Medium 20K I/O max Minimum 12 16 GB 500 GB 1 Gbps Recommended 16 32 GB 1 TB 1 Gbps Large 100K I/O max Minimum 20 32 GB 2 TB 1 Gbps Recommended 24 64 GB 4 TB 1 Gbps</p>
 
-<p>Azure Active Directory</p>
-<p>Starting with System Platform 2023, user identity authentication and single sign-on via Azure</p>
-<p>Active Directory (AD) is supported. After setting Galaxy security to use an external identity</p>
-<p>provider, Azure AD can be used to authenticate users. System Platform users can then use their</p>
-<p>Microsoft-managed identities to log into the System Platform IDE, Operations Control</p>
-<p>Management Console, Operations Management Interface ViewApps, and to perform secured and</p>
-<p>verified writes.</p>
+<p>Azure Active Directory Starting with System Platform 2023, user identity authentication and single sign-on via Azure Active Directory (AD) is supported. After setting Galaxy security to use an external identity provider, Azure AD can be used to authenticate users. System Platform users can then use their Microsoft-managed identities to log into the System Platform IDE, Operations Control Management Console, Operations Management Interface ViewApps, and to perform secured and verified writes.</p>
 
 <div class="quiz">
   <h3>Quiz — Test Your Understanding</h3>

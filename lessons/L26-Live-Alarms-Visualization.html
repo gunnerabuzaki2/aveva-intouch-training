@@ -100,56 +100,21 @@
 <h1>Lesson 26: Live Alarms Visualization</h1>
 <p class="page-ref">Module 5 — Alarms and Events Visualization | Pages 341–350</p>
 
-<p>Event</p>
-<p>Use Event to configure scripts that are executed when a client control event occurs.</p>
-<p>In the Event drop-down list, select the event to run a script. For the selected event, the Parameters</p>
-<p>list shows:</p>
-<p></p>
-<p>Type: The data type of each parameter</p>
-<p></p>
-<p>Name: The name of each parameter</p>
+<p>Event Use Event to configure scripts that are executed when a client control event occurs. In the Event drop-down list, select the event to run a script. For the selected event, the Parameters list shows:  Type: The data type of each parameter  Name: The name of each parameter</p>
 
 <div class="screenshot">
   <img src="../images/page_0341.png" alt="AVEVA InTouch AlarmClient Edit Animations dialog showing Event configuration tab (8 of 8) with AutoSizeChanged event, parameters sender/System.Object and e/System.EventArgs, blank script editor ready for custom event-triggered code">
   <div class="caption">AVEVA InTouch AlarmClient Edit Animations dialog showing Event configuration tab (8 of 8) with AutoSizeChanged event, parameters sender/System.Object and e/System.EventArgs, blank script editor ready for custom event-triggered code</div>
 </div>
 
-<p>Introduction</p>
-<p>In this lab, you will create a graphic and add the Alarm Client to it. The Alarm Client will be</p>
-<p>configured to query, filter, and display current alarms at runtime. Additionally, you will use the</p>
-<p>Alarm Client to acknowledge alarms.</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Use and configure the Alarm Client to visualize current alarms</p>
-<p></p>
-<p>Configure and select alarm filters in the Alarm Client</p>
+<p>Introduction In this lab, you will create a graphic and add the Alarm Client to it. The Alarm Client will be configured to query, filter, and display current alarms at runtime. Additionally, you will use the Alarm Client to acknowledge alarms. Objectives Upon completion of this lab, you will be able to:  Use and configure the Alarm Client to visualize current alarms  Configure and select alarm filters in the Alarm Client</p>
 
 <div class="screenshot">
   <img src="../images/page_0343.png" alt="Alarm Viewer in AVEVA InTouch showing current alarms in a tabular grid with columns User1, State, Node, Group, Name, AlarmComment, Type, TimeLCT; displaying 6 of 53 alarms with UNACK_RTN state for communication and LoLo/Lo alarms for production lines">
   <div class="caption">Alarm Viewer in AVEVA InTouch showing current alarms in a tabular grid with columns User1, State, Node, Group, Name, AlarmComment, Type, TimeLCT; displaying 6 of 53 alarms with UNACK_RTN state for communication and LoLo/Lo alarms for production lines</div>
 </div>
 
-<p>Create an Alarm Display</p>
-<p>First, you will create a symbol with the Alarm Client. Then, you will add queries and filters for use</p>
-<p>at runtime.</p>
-<p>1.</p>
-<p>In the IDE, on the Graphics tab, in the Training toolset, create a new symbol named</p>
-<p>AlarmLiveDisplay, and then open it for editing.</p>
-<p>2.</p>
-<p>In Tools, click Alarm Client and place it on the canvas.</p>
-<p>You will now configure the Alarm Client to filter the alarms for the Line1, Line2, and Production</p>
-<p>areas.</p>
-<p>3.</p>
-<p>On the canvas, double-click the Alarm Client to configure it.</p>
-<p>4.</p>
-<p>With Alarm Mode selected, ensure Client Mode is set to Current Alarms.</p>
-<p>5.</p>
-<p>In Alarm Query, enter \\<NodeName>\Galaxy!Production.</p>
-<p>Note:</p>
-<p>Your instructor will provide your node name. In a real-world scenario, the node name</p>
-<p>would point to a production node for the plant. For the purposes of this course, you will use the</p>
-<p>GR node to provide alarms.</p>
+<p>Create an Alarm Display First, you will create a symbol with the Alarm Client. Then, you will add queries and filters for use at runtime. 1. In the IDE, on the Graphics tab, in the Training toolset, create a new symbol named AlarmLiveDisplay, and then open it for editing. 2. In Tools, click Alarm Client and place it on the canvas. You will now configure the Alarm Client to filter the alarms for the Line1, Line2, and Production areas. 3. On the canvas, double-click the Alarm Client to configure it. 4. With Alarm Mode selected, ensure Client Mode is set to Current Alarms. 5. In Alarm Query, enter \\<NodeName>\Galaxy!Production. Note: Your instructor will provide your node name. In a real-world scenario, the node name would point to a production node for the plant. For the purposes of this course, you will use the GR node to provide alarms.</p>
 
 <div class="screenshot">
   <img src="../images/page_0344_0.png" alt="AVEVA InTouch Tools palette showing drawing and HMI tools including selection, line, rectangle, ellipse, arc, text, gauge, and the highlighted Alarm Client tool with tooltip for adding an alarm display component to the canvas">
@@ -161,11 +126,7 @@
   <div class="caption">Edit Animations dialog for AlarmClient showing Alarm Mode configuration (1 of 8): Client Mode set to Current Alarms, Alarm Query path set to \\SO1ENG\Galaxy\Production, Use Default Ack Comment unchecked</div>
 </div>
 
-<p>6.</p>
-<p>In Animations, select Queries and Filters.</p>
-<p>7.</p>
-<p>In Query and Filter Favorites, click Add new filter.</p>
-<p>Add Query or Filter appears.</p>
+<p>6. In Animations, select Queries and Filters. 7. In Query and Filter Favorites, click Add new filter. Add Query or Filter appears.</p>
 
 <div class="screenshot">
   <img src="../images/page_0345_0.png" alt="AlarmClient Queries and Filters configuration (4 of 8): Default query showing condition (Node='SO1ENG' AND Provider='Galaxy' AND Group='Production'), empty Filters section with Add new filter button">
@@ -177,11 +138,7 @@
   <div class="caption">Add Query or Filter dialog showing empty filter builder with left panel of alarm fields (User1, State, Node, Group, Name, etc.), green arrow buttons for moving fields, Group/AND/OR logic buttons, Operator dropdown and Value input, OK and Cancel buttons</div>
 </div>
 
-<p>8.</p>
-<p>In Query or Filter Name, enter Line1.</p>
-<p>9.</p>
-<p>On the left, in the filter criteria list, select Group, and then click the right arrow button.</p>
-<p>Group is added to the filter definition list.</p>
+<p>8. In Query or Filter Name, enter Line1. 9. On the left, in the filter criteria list, select Group, and then click the right arrow button. Group is added to the filter definition list.</p>
 
 <div class="screenshot">
   <img src="../images/page_0346_0.png" alt="Add Query or Filter dialog with filter named 'Line1', Comment field selected in left panel, Group folder in center, ready to add filter criteria using Group/AND/OR logic and Operator/Value configuration">
@@ -193,10 +150,7 @@
   <div class="caption">Add Query or Filter dialog with filter named 'Line1', Group field selected with = operator set, Value field empty, green arrow buttons for field movement, ready to define Line1 filter criteria</div>
 </div>
 
-<p>10. In the filter definition list, select Group, and then on the right side, in the Operator drop-down</p>
-<p>list, verify = is selected.</p>
-<p>11. In Value, enter Line1.</p>
-<p>12. Click Set.</p>
+<p>10. In the filter definition list, select Group, and then on the right side, in the Operator drop-down list, verify = is selected. 11. In Value, enter Line1. 12. Click Set.</p>
 
 <div class="screenshot">
   <img src="../images/page_0347_0.png" alt="Add Query or Filter dialog showing Group field added to filter definition with = operator and Value set to 'Line1', Set button highlighted for confirming the Group=Line1 filter condition">
@@ -208,11 +162,7 @@
   <div class="caption">Add Query or Filter dialog with completed Line1 filter showing Group='Line1' condition in the filter rule display, Set button highlighted, filter ready to be saved with OK</div>
 </div>
 
-<p>The filter definition list is updated.</p>
-<p>13. Click OK to close Add Query or Filter.</p>
-<p>In Filters, the new filter is listed.</p>
-<p>14. Click the Add new filter button.</p>
-<p>15. In Query or Filter Name, enter Line2.</p>
+<p>The filter definition list is updated. 13. Click OK to close Add Query or Filter. In Filters, the new filter is listed. 14. Click the Add new filter button. 15. In Query or Filter Name, enter Line2.</p>
 
 <div class="screenshot">
   <img src="../images/page_0348_0.png" alt="Add Query or Filter dialog with Line1 filter fully configured showing Group='Line1' equality condition, filter rule displayed in center panel, ready to save">
@@ -234,13 +184,7 @@
   <div class="caption">Add Query or Filter dialog showing new filter being created with name 'Line2', empty filter builder ready for defining the Line2 filter criteria</div>
 </div>
 
-<p>16. In the filter criteria list, select Group, and then click the right arrow button.</p>
-<p>17. In the filter definition list, select Group, and then in Value, enter Line2.</p>
-<p>18. Click Set.</p>
-<p>19. Click OK to close Add Query or Filter.</p>
-<p>20. Add a third filter for Group named Production with a value of Production.</p>
-<p>The Production filter is added.</p>
-<p>21. Click OK to close Edit Animations.</p>
+<p>16. In the filter criteria list, select Group, and then click the right arrow button. 17. In the filter definition list, select Group, and then in Value, enter Line2. 18. Click Set. 19. Click OK to close Add Query or Filter. 20. Add a third filter for Group named Production with a value of Production. The Production filter is added. 21. Click OK to close Edit Animations.</p>
 
 <div class="screenshot">
   <img src="../images/page_0349_0.png" alt="Add Query or Filter dialog with Line2 filter: Group field added with = operator and Value set to 'Line2', filter condition ready to be saved">
@@ -257,18 +201,7 @@
   <div class="caption">Filters management panel showing three filters listed: Line1 (Group='Line1'), Line2 (Group='Line2'), and Production (Group='Production' with checkbox checked and blue background indicating active selection)</div>
 </div>
 
-<p>22. Click AlarmClient and configure it as follows:</p>
-<p>23. Save and close and check in the graphic.</p>
-<p>Test in Runtime</p>
-<p>Now, you will view current alarms in runtime.</p>
-<p>24. In WindowMaker, embed AlarmLiveDisplay on the AlarmDisplay window.</p>
-<p>25. In Properties, uncheck Maintain aspect ratio.</p>
-<p>AlarmLiveDisplay is stretched to fit the window.</p>
-<p>26. Click Runtime and verify that current alarms are displayed in the AlarmDisplay window.</p>
-<p>Width:</p>
-<p>1920</p>
-<p>Height:</p>
-<p>200</p>
+<p>22. Click AlarmClient and configure it as follows: 23. Save and close and check in the graphic. Test in Runtime Now, you will view current alarms in runtime. 24. In WindowMaker, embed AlarmLiveDisplay on the AlarmDisplay window. 25. In Properties, uncheck Maintain aspect ratio. AlarmLiveDisplay is stretched to fit the window. 26. Click Runtime and verify that current alarms are displayed in the AlarmDisplay window. Width: 1920 Height: 200</p>
 
 <div class="screenshot">
   <img src="../images/page_0350_0.png" alt="WindowMaker development environment showing AlarmLiveDisplay embedded in ContentDisplay window with alarm table grid, Consumed Materials panel, Select Mixer dropdown, and Industrial Graphics library with AlarmLiveDisplay highlighted in Properties panel">

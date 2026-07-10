@@ -102,200 +102,31 @@
 
 <h2>System Platform Overview</h2>
 
-<p>AVEVA™ System Platform Overview</p>
-<p>AVEVA System Platform, formerly Wonderware System Platform, is an industrial software platform</p>
-<p>built on ArchestrA technology. It contains an integrated set of services and an extensible data</p>
-<p>model to manage plant control and information management systems. System Platform supports</p>
-<p>both the supervisory control layer and the manufacturing execution system layer, presenting them</p>
-<p>as a single information source.</p>
-<p>System Platform and its clients provide the framework and tools for developing, executing,</p>
-<p>monitoring, and visualizing your applications. Services such as data acquisition, historization, and</p>
-<p>alarming are provided by System Platform components. Services such as visualization and</p>
-<p>trending are provided by System Platform clients.</p>
-<p>The System Platform software is based on industry standards and Microsoft technologies, such as</p>
-<p>Windows, .NET, SQL Server, IIS, and others. ArchestrA provides the fundamental technology and</p>
-<p>services for the multi-user, object-oriented platform.</p>
-<p>System Platform Components and Clients</p>
-<p>System Platform components access and process external data from controllers, software</p>
-<p>applications, and other data sources. System Platform clients access information from System</p>
-<p>Platform.</p>
-<p>System Platform components are as follows:</p>
-<p></p>
-<p>AVEVA™ Application Server is the heart of System Platform. It provides an object-</p>
-<p>oriented framework with tools for developing and deploying applications.</p>
-<p></p>
-<p>AVEVA™ Historian provides process data historization and alarm and event logging for</p>
-<p>Application Server. Data is exposed through SQL Server and/or an Open Data Protocol</p>
-<p>(oData) interface.</p>
-<p></p>
-<p>AVEVA™ Communication Drivers provide the platform for communication with</p>
-<p>controllers and other data sources. Besides controller-specific protocols, they support</p>
-<p>open communication connectivity protocols such as MQTT, OPC DA, and OPC UA.</p>
-<p>This section describes fundamental concepts about AVEVA System Platform and AVEVA System</p>
-<p>Platform Enterprise. It also introduces ArchestrA technology.</p>
+<p>AVEVA™ System Platform Overview AVEVA System Platform, formerly Wonderware System Platform, is an industrial software platform built on ArchestrA technology. It contains an integrated set of services and an extensible data model to manage plant control and information management systems. System Platform supports both the supervisory control layer and the manufacturing execution system layer, presenting them as a single information source. System Platform and its clients provide the framework and tools for developing, executing, monitoring, and visualizing your applications. Services such as data acquisition, historization, and alarming are provided by System Platform components. Services such as visualization and trending are provided by System Platform clients. The System Platform software is based on industry standards and Microsoft technologies, such as Windows, .NET, SQL Server, IIS, and others. ArchestrA provides the fundamental technology and services for the multi-user, object-oriented platform. System Platform Components and Clients System Platform components access and process external data from controllers, software applications, and other data sources. System Platform clients access information from System Platform. System Platform components are as follows:  AVEVA™ Application Server is the heart of System Platform. It provides an object- oriented framework with tools for developing and deploying applications.  AVEVA™ Historian provides process data historization and alarm and event logging for Application Server. Data is exposed through SQL Server and/or an Open Data Protocol (oData) interface.  AVEVA™ Communication Drivers provide the platform for communication with controllers and other data sources. Besides controller-specific protocols, they support open communication connectivity protocols such as MQTT, OPC DA, and OPC UA. This section describes fundamental concepts about AVEVA System Platform and AVEVA System Platform Enterprise. It also introduces ArchestrA technology.</p>
 
 <div class="screenshot">
   <img src="../images/page_0011.png" alt="AVEVA System Platform architecture diagram showing the layered components: Controllers/Software/Data Sources at the bottom, AVEVA Application Server/Historian/Communication Drivers in the core infrastructure layer, and Supervisory Clients (Operations Management Interface, InTouch for System Platform) and Historian Clients at the top, all built on Microsoft Technologies and Industry Standards.">
   <div class="caption">AVEVA System Platform architecture diagram showing the layered components: Controllers/Software/Data Sources at the bottom, AVEVA Application Server/Historian/Communication Drivers in the core infrastructure layer, and Supervisory Clients (Operations Management Interface, InTouch for System Platform) and Historian Clients at the top, all built on Microsoft Technologies and Industry Standards.</div>
 </div>
 
-<p>Formerly called OI Servers, they also include legacy DA Servers and IO Servers. System</p>
-<p>Platform also communicates directly with third-party drivers, such as third-party OPC</p>
-<p>Server.</p>
-<p>System Platform clients include:</p>
-<p></p>
-<p>Supervisory clients run the operator interface and provide real-time access to</p>
-<p>Application Server data, alarms, and events. There are two supervisory client products,</p>
-<p>based on different technologies. Both can coexist in the same System Platform solution.</p>
-<p></p>
-<p>AVEVA™ Operations Management Interface has a rapid-design visualization</p>
-<p>framework with tools and provides out-of-the-box navigation to display content based</p>
-<p>on the application’s data model.</p>
-<p></p>
-<p>AVEVA™ InTouch for System Platform is based on traditional development tools to</p>
-<p>create displays and the corresponding navigation framework from scratch. It is not</p>
-<p>included with AVEVA System Platform Enterprise.</p>
-<p>Supervisory client applications can be accessed remotely through a web browser with the</p>
-<p>use of AVEVA™ InTouch Access Anywhere. With InTouch Access Anywhere, you simply</p>
-<p>enter a URL in a web browser running on a desktop computer or mobile device and log on,</p>
-<p>without the necessity of having any separate client application installed on the portable</p>
-<p>device or desktop computer.</p>
-<p></p>
-<p>AVEVA™ Historian Client is a collection of tools for accessing and reporting on data</p>
-<p>historized with Historian. This client includes a Trend application for plotting data on a</p>
-<p>graphical display, a Query application for constructing SQL queries through a point-and-</p>
-<p>click interface, and add-ins to Microsoft Excel and Word for generating reports.</p>
-<p></p>
-<p>AVEVA™ Historian Client Web is a browser-based tool for quick data query, trending,</p>
-<p>and analysis of data historized with Historian. It provides an intuitive interface for easy</p>
-<p>access and use.</p>
-<p>Together, System Platform and its clients provide the core services needed to develop, implement,</p>
-<p>and deploy industrial automation applications. Some of these services include:</p>
-<p></p>
-<p>Real-time data acquisition from field devices</p>
-<p></p>
-<p>Scaling, statistics, and manipulation of data</p>
-<p></p>
-<p>Process control</p>
-<p></p>
-<p>Alarm triggering, logging, acknowledgment, and management</p>
-<p></p>
-<p>Historization, trending, and analysis of process data</p>
-<p></p>
-<p>Visualization of real-time process data</p>
-<p></p>
-<p>Reporting</p>
-<p>Applications built on System Platform are extensible through the use of scripting within the product</p>
-<p>itself or through several available toolkits. For example, an application can access a third-party</p>
-<p>web service by means of a script.</p>
+<p>Formerly called OI Servers, they also include legacy DA Servers and IO Servers. System Platform also communicates directly with third-party drivers, such as third-party OPC Server. System Platform clients include:  Supervisory clients run the operator interface and provide real-time access to Application Server data, alarms, and events. There are two supervisory client products, based on different technologies. Both can coexist in the same System Platform solution.  AVEVA™ Operations Management Interface has a rapid-design visualization framework with tools and provides out-of-the-box navigation to display content based on the application’s data model.  AVEVA™ InTouch for System Platform is based on traditional development tools to create displays and the corresponding navigation framework from scratch. It is not included with AVEVA System Platform Enterprise. Supervisory client applications can be accessed remotely through a web browser with the use of AVEVA™ InTouch Access Anywhere. With InTouch Access Anywhere, you simply enter a URL in a web browser running on a desktop computer or mobile device and log on, without the necessity of having any separate client application installed on the portable device or desktop computer.  AVEVA™ Historian Client is a collection of tools for accessing and reporting on data historized with Historian. This client includes a Trend application for plotting data on a graphical display, a Query application for constructing SQL queries through a point-and- click interface, and add-ins to Microsoft Excel and Word for generating reports.  AVEVA™ Historian Client Web is a browser-based tool for quick data query, trending, and analysis of data historized with Historian. It provides an intuitive interface for easy access and use. Together, System Platform and its clients provide the core services needed to develop, implement, and deploy industrial automation applications. Some of these services include:  Real-time data acquisition from field devices  Scaling, statistics, and manipulation of data  Process control  Alarm triggering, logging, acknowledgment, and management  Historization, trending, and analysis of process data  Visualization of real-time process data  Reporting Applications built on System Platform are extensible through the use of scripting within the product itself or through several available toolkits. For example, an application can access a third-party web service by means of a script.</p>
 
 <h2>ArchestrA Technology</h2>
 
-<p>ArchestrA Technology</p>
-<p>ArchestrA is a distributed architecture developed for supervisory control and manufacturing</p>
-<p>information systems. It is an open and extensible technology based on a distributed, object-</p>
-<p>oriented design. It leverages the Microsoft .NET Framework for the industrial automation world.</p>
-<p>ArchestrA provides the following system services:</p>
-<p></p>
-<p>Object management for creating object-oriented applications</p>
-<p></p>
-<p>A component object framework for application modeling of plants, factories, and</p>
-<p>equipment</p>
-<p></p>
-<p>A common, global name space for all application types, from single-node to distributed</p>
-<p>networked applications</p>
-<p></p>
-<p>Inter-process advanced communications with system maintenance and diagnostic</p>
-<p>information</p>
-<p></p>
-<p>Centralized security services with support for multi-user environments for development</p>
-<p>and runtime</p>
-<p></p>
-<p>Version management for every object in the application, including logging of development</p>
-<p>operations</p>
-<p>Most of these services are exposed, configured, and managed by Application Server.</p>
-<p>AVEVA™ System Platform Enterprise Overview</p>
-<p>AVEVA System Platform Enterprise builds upon the core technology of AVEVA System Platform to</p>
-<p>bring enhanced user accessibility and exclusive visualization extensions, specifically for enterprise</p>
-<p>users in assembling an AVEVA Unified Operations Center (UOC) solution. This includes the</p>
-<p>AVEVA Operations Management Interface (OMI) Web Client, allowing applications to be viewed in</p>
-<p>a standard web browser. AVEVA System Platform Enterprise is an AVEVA Flex subscription</p>
-<p>activated product.</p>
-<p>System Platform Enterprise Features</p>
-<p>Exclusive features of System Platform Enterprise include:</p>
-<p></p>
-<p>A web client for Operations Management Interface (OMI)</p>
-<p></p>
-<p>Additional web widgets</p>
-<p></p>
-<p>ScatterChart widget</p>
-<p></p>
-<p>Breadcrumb widget</p>
-<p></p>
-<p>NavigationTree widget</p>
-<p></p>
-<p>Hamburger widget</p>
-<p></p>
-<p>TitleBar widget</p>
-<p></p>
-<p>Graphic Repeater widget</p>
-<p></p>
-<p>MapApp widget</p>
-<p></p>
-<p>Additional OMI Apps</p>
-<p></p>
-<p>Power BI OMI app</p>
-<p></p>
-<p>PI Vision app</p>
-<p></p>
-<p>Sankey app</p>
-<p></p>
-<p>UOC documentation</p>
-<p>System Platform Enterprise does not include InTouch HMI (WindowMaker and WindowViewer),</p>
-<p>InTouch Web client, and InTouch Workspaces.</p>
+<p>ArchestrA Technology ArchestrA is a distributed architecture developed for supervisory control and manufacturing information systems. It is an open and extensible technology based on a distributed, object- oriented design. It leverages the Microsoft .NET Framework for the industrial automation world. ArchestrA provides the following system services:  Object management for creating object-oriented applications  A component object framework for application modeling of plants, factories, and equipment  A common, global name space for all application types, from single-node to distributed networked applications  Inter-process advanced communications with system maintenance and diagnostic information  Centralized security services with support for multi-user environments for development and runtime  Version management for every object in the application, including logging of development operations Most of these services are exposed, configured, and managed by Application Server. AVEVA™ System Platform Enterprise Overview AVEVA System Platform Enterprise builds upon the core technology of AVEVA System Platform to bring enhanced user accessibility and exclusive visualization extensions, specifically for enterprise users in assembling an AVEVA Unified Operations Center (UOC) solution. This includes the AVEVA Operations Management Interface (OMI) Web Client, allowing applications to be viewed in a standard web browser. AVEVA System Platform Enterprise is an AVEVA Flex subscription activated product. System Platform Enterprise Features Exclusive features of System Platform Enterprise include:  A web client for Operations Management Interface (OMI)  Additional web widgets  ScatterChart widget  Breadcrumb widget  NavigationTree widget  Hamburger widget  TitleBar widget  Graphic Repeater widget  MapApp widget  Additional OMI Apps  Power BI OMI app  PI Vision app  Sankey app  UOC documentation System Platform Enterprise does not include InTouch HMI (WindowMaker and WindowViewer), InTouch Web client, and InTouch Workspaces.</p>
 
-<p>Introduction</p>
-<p>In this lab, you will create a Galaxy and connect to it using the System Platform IDE. Then you will</p>
-<p>import some prebuilt automation objects that represent a Mixer application and configure some of</p>
-<p>them. For example, you will configure platforms to work in a multi-node environment and an</p>
-<p>AppEngine to historize data to Historian.</p>
-<p>Once the Galaxy is created and configured, you will deploy it and use Object Viewer to verify that</p>
-<p>attributes are receiving data at runtime.</p>
-<p>The Galaxy you create in this lab will be used for the other labs in this course.</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Create a Galaxy</p>
-<p></p>
-<p>Import objects into a Galaxy</p>
-<p></p>
-<p>Deploy objects</p>
-<p></p>
-<p>Verify data connections using Object Viewer</p>
+<p>Introduction In this lab, you will create a Galaxy and connect to it using the System Platform IDE. Then you will import some prebuilt automation objects that represent a Mixer application and configure some of them. For example, you will configure platforms to work in a multi-node environment and an AppEngine to historize data to Historian. Once the Galaxy is created and configured, you will deploy it and use Object Viewer to verify that attributes are receiving data at runtime. The Galaxy you create in this lab will be used for the other labs in this course. Objectives Upon completion of this lab, you will be able to:  Create a Galaxy  Import objects into a Galaxy  Deploy objects  Verify data connections using Object Viewer</p>
 
 <h2>Creating the Galaxy</h2>
 
-<p>Create the Galaxy</p>
-<p>First, you will create a Galaxy based on the Blank Galaxy template and connect to it.</p>
-<p>1.</p>
-<p>Open the System Platform IDE.</p>
-<p>The Galaxies dialog box appears.</p>
+<p>Create the Galaxy First, you will create a Galaxy based on the Blank Galaxy template and connect to it. 1. Open the System Platform IDE. The Galaxies dialog box appears.</p>
 
 <div class="screenshot">
   <img src="../images/page_0016.png" alt="AVEVA System Platform IDE startup screen with the Galaxies dialog box. The Home tab is active, showing a server connection field (S01ENG), New Galaxy templates (Default Galaxy selected, Blank Galaxy, InTouch Base, Reactor Demo), and Recent/Pinned/On server tabs for existing projects.">
   <div class="caption">AVEVA System Platform IDE startup screen with the Galaxies dialog box. The Home tab is active, showing a server connection field (S01ENG), New Galaxy templates (Default Galaxy selected, Blank Galaxy, InTouch Base, Reactor Demo), and Recent/Pinned/On server tabs for existing projects.</div>
 </div>
 
-<p>2.</p>
-<p>In the New area, select the Blank Galaxy template.</p>
-<p>Note:</p>
-<p>Be sure to select the Blank Galaxy template. This will create a Galaxy that contains</p>
-<p>only base template objects. In later steps, you will import some prebuilt objects into your</p>
-<p>Galaxy.</p>
-<p>The Create Galaxy dialog box appears.</p>
-<p>3.</p>
-<p>In Galaxy name, enter TrainingGalaxy.</p>
-<p>The Connect to this Galaxy option is checked by default.</p>
+<p>2. In the New area, select the Blank Galaxy template. Note: Be sure to select the Blank Galaxy template. This will create a Galaxy that contains only base template objects. In later steps, you will import some prebuilt objects into your Galaxy. The Create Galaxy dialog box appears. 3. In Galaxy name, enter TrainingGalaxy. The Connect to this Galaxy option is checked by default.</p>
 
 <div class="screenshot">
   <img src="../images/page_0017_0.png" alt="Create Galaxy dialog box with empty Galaxy name field, template set to Default_EMPTY.cab, and 'Connect to this Galaxy' checkbox checked. The Create button is disabled waiting for user input.">
@@ -307,14 +138,7 @@
   <div class="caption">Create Galaxy dialog box with 'TrainingGalaxy' entered as the Galaxy name, Default_EMPTY.cab template selected, 'Connect to this Galaxy' checked, and the Create button now enabled (blue).</div>
 </div>
 
-<p>4.</p>
-<p>Click Create.</p>
-<p>The Create Galaxy dialog box shows the progress of the Galaxy creation process, as well as</p>
-<p>informational message details. This will take a few moments.</p>
-<p>It is important to review the messages shown in the Create Galaxy dialog box to make sure no</p>
-<p>errors occurred.</p>
-<p>When the Galaxy creation process indicates Successfully created TrainingGalaxy, the</p>
-<p>Close button becomes enabled.</p>
+<p>4. Click Create. The Create Galaxy dialog box shows the progress of the Galaxy creation process, as well as informational message details. This will take a few moments. It is important to review the messages shown in the Create Galaxy dialog box to make sure no errors occurred. When the Galaxy creation process indicates Successfully created TrainingGalaxy, the Close button becomes enabled.</p>
 
 <div class="screenshot">
   <img src="../images/page_0018_0.png" alt="Create Galaxy progress dialog showing 'Creating galaxy TrainingGalaxy on S01ENG...' with a progress bar at approximately 50%. The Details section shows completed steps including Restore galaxy begin, Get database connection information, Get file repository information, Remove restore directory, and Restore from backup files. The Close button is grayed out while creation is in progress.">
@@ -326,9 +150,7 @@
   <div class="caption">Create Galaxy success confirmation dialog showing 'Successfully created TrainingGalaxy on S01ENG.' The Details section lists completed steps including Restore file repository, Restore global data, Remove temporary files, Distributing Galaxy data, and Successfully Deployed ASB Services. The Close button is now enabled.</div>
 </div>
 
-<p>5.</p>
-<p>Click Close.</p>
-<p>After a few moments, the Galaxy opens in the System Platform IDE.</p>
+<p>5. Click Close. After a few moments, the Galaxy opens in the System Platform IDE.</p>
 
 <div class="screenshot">
   <img src="../images/page_0019.png" alt="AVEVA System Platform IDE main workspace with TrainingGalaxy project connected to S01ENG server. The ribbon toolbar shows Home tab functions including Edit, Import/Export, Create Object Types (Instance, Template, Screen, Layout, Symbol), Deploy/Check-in. Left panes show Templates hierarchy and Deployment/Model-Tagnname hierarchy with TrainingGalaxy as root.">
@@ -337,15 +159,7 @@
 
 <h2>Import the Training Objects</h2>
 
-<p>Import the Training Objects</p>
-<p>Next, you will import the prebuilt objects for the mixer application. You will use these objects for the</p>
-<p>rest of this lab and throughout this course.</p>
-<p>6.</p>
-<p>On the ribbon, select the Galaxy menu, and then select Import | Objects | From package.</p>
-<p>Selecting the Galaxy menu opens the System Platform IDE backstage.</p>
-<p>The Import Objects from package dialog box appears.</p>
-<p>7.</p>
-<p>Navigate to C:\Training and select Lab 1 - InTouch for System Platform 2023.aaPKG.</p>
+<p>Import the Training Objects Next, you will import the prebuilt objects for the mixer application. You will use these objects for the rest of this lab and throughout this course. 6. On the ribbon, select the Galaxy menu, and then select Import | Objects | From package. Selecting the Galaxy menu opens the System Platform IDE backstage. The Import Objects from package dialog box appears. 7. Navigate to C:\Training and select Lab 1 - InTouch for System Platform 2023.aaPKG.</p>
 
 <div class="screenshot">
   <img src="../images/page_0020_0.png" alt="AVEVA System Platform IDE backstage Import menu with 'Objects &gt; From package' selected. A Windows file dialog titled 'Import Objects from package' is open, currently showing the Documents folder with subfolders.">
@@ -357,24 +171,14 @@
   <div class="caption">Windows 'Import Objects from package' file dialog navigated to C:\Training folder. The file 'Lab 1 - InTouch for System Platform 2023.aaPKG' (17,997 KB) is selected, with file type filter set to Package files (*.aaPKG; *.aaPDF).</div>
 </div>
 
-<p>8.</p>
-<p>Click Open to begin the import process.</p>
-<p>The Import preferences dialog box appears.</p>
+<p>8. Click Open to begin the import process. The Import preferences dialog box appears.</p>
 
 <div class="screenshot">
   <img src="../images/page_0021.png" alt="Import preferences dialog with three conflict resolution rules: (1) Same Tagname and Codebase: Overwrite if higher version; (2) Base Templates with different revision: Migrate; (3) Same Tagname but different Codebase: Skip. Also has 'Never overwrite unprotected with protected' checkbox checked. Cancel and Import buttons at bottom.">
   <div class="caption">Import preferences dialog with three conflict resolution rules: (1) Same Tagname and Codebase: Overwrite if higher version; (2) Base Templates with different revision: Migrate; (3) Same Tagname but different Codebase: Skip. Also has 'Never overwrite unprotected with protected' checkbox checked. Cancel and Import buttons at bottom.</div>
 </div>
 
-<p>9.</p>
-<p>Leave the default import preferences and click Import.</p>
-<p>The Import Objects from package dialog box shows the progress of the import process, as</p>
-<p>well as informational message details.</p>
-<p>It is important to review the messages shown in the Import Objects from package dialog box</p>
-<p>to make sure no errors occurred.</p>
-<p>10. When the import progress indicates Imported completed, click Close.</p>
-<p>11. In the top-left corner of the backstage view, click the left arrow button to return to the main</p>
-<p>page of the System Platform IDE.</p>
+<p>9. Leave the default import preferences and click Import. The Import Objects from package dialog box shows the progress of the import process, as well as informational message details. It is important to review the messages shown in the Import Objects from package dialog box to make sure no errors occurred. 10. When the import progress indicates Imported completed, click Close. 11. In the top-left corner of the backstage view, click the left arrow button to return to the main page of the System Platform IDE.</p>
 
 <div class="screenshot">
   <img src="../images/page_0022_0.png" alt="Import Objects from package completion dialog showing 'Import completed. Please review the details below.' The Details log shows object creation messages and summary: 'Imported total of 162 object(s) from 1 file(s)'. Close button available.">
@@ -388,17 +192,7 @@
 
 <h2>Configure the Platforms</h2>
 
-<p>Configure the Platforms</p>
-<p>Next, you will configure the network address for each platform. The engineering node</p>
-<p>(GRPlatform) will be used for project development and a production node (PROD_Platform1) will</p>
-<p>be used as a runtime environment for object deployment and testing.</p>
-<p>12. In the Deployment view, expand TrainingGalaxy, and then double-click GRPlatform to open</p>
-<p>its configuration editor.</p>
-<p>13. On the General tab, in the Network address field, enter the local computer name.</p>
-<p>Note:</p>
-<p>Your instructor will provide the node name of this computer.</p>
-<p>In the example below, S01ENG is shown as the computer name.</p>
-<p>14. In the top-right corner of the window, click the Save and Close button.</p>
+<p>Configure the Platforms Next, you will configure the network address for each platform. The engineering node (GRPlatform) will be used for project development and a production node (PROD_Platform1) will be used as a runtime environment for object deployment and testing. 12. In the Deployment view, expand TrainingGalaxy, and then double-click GRPlatform to open its configuration editor. 13. On the General tab, in the Network address field, enter the local computer name. Note: Your instructor will provide the node name of this computer. In the example below, S01ENG is shown as the computer name. 14. In the top-right corner of the window, click the Save and Close button.</p>
 
 <div class="screenshot">
   <img src="../images/page_0023_0.png" alt="Deployment panel showing the hierarchy tree: TrainingGalaxy &gt; Unassigned Host, GRPlatform (selected/highlighted), PROD_Platform1 (with red warning icon). Bottom tabs show Model-Tagname, Deployment (active), Derivation.">
@@ -415,12 +209,7 @@
   <div class="caption">GRPlatform configuration editor showing the Engine History tab with attribute fields. The toolbar at top shows Deploy, Check-in, Save, Find, Assign, Runtime buttons. An S01ENG identifier is visible in a selector field.</div>
 </div>
 
-<p>The Check-in dialog box appears.</p>
-<p>15. In Comment, enter a comment.</p>
-<p>Note:</p>
-<p>Entering a comment in the Check-in dialog box is optional, but recommended.</p>
-<p>16. Click Check-in.</p>
-<p>17. In the Deployment view, double-click PROD_Platform1 to open its configuration editor.</p>
+<p>The Check-in dialog box appears. 15. In Comment, enter a comment. Note: Entering a comment in the Check-in dialog box is optional, but recommended. 16. Click Check-in. 17. In the Deployment view, double-click PROD_Platform1 to open its configuration editor.</p>
 
 <div class="screenshot">
   <img src="../images/page_0024_0.png" alt="Check-in dialog box with a Comment field containing: 'Node name blank. Changed Node name to S01ENG. Because Node name cannot be blank.' Checkbox option to 'Do not prompt for check-in comments in the future' is unchecked. Cancel and Check-in buttons at bottom.">
@@ -432,15 +221,7 @@
   <div class="caption">Deployment panel showing the hierarchy tree with PROD_Platform1 selected and expanded, showing its child AppEngine1. Bottom tabs show Model-Tagname, Deployment (active), Derivation.</div>
 </div>
 
-<p>18. On the General tab, in Network address, enter your designated production server computer</p>
-<p>name.</p>
-<p>Note:</p>
-<p>Your instructor will provide the node name of this computer.</p>
-<p>In the example below, S01PROD is shown as the computer name.</p>
-<p>19. Save and close the PROD_Platform1 configuration editor, and then check in the object.</p>
-<p>Configure the Engine for Historian</p>
-<p>Next, you will configure the Historian connection for the application engine.</p>
-<p>20. In the Deployment view, double-click AppEngine1 to open its configuration editor.</p>
+<p>18. On the General tab, in Network address, enter your designated production server computer name. Note: Your instructor will provide the node name of this computer. In the example below, S01PROD is shown as the computer name. 19. Save and close the PROD_Platform1 configuration editor, and then check in the object. Configure the Engine for Historian Next, you will configure the Historian connection for the application engine. 20. In the Deployment view, double-click AppEngine1 to open its configuration editor.</p>
 
 <div class="screenshot">
   <img src="../images/page_0025_0.png" alt="AppEngine1 configuration editor with General tab active. Settings include Engine startup type: Auto, Scan period: 500 ms, Enable storage to historian (checked), Enable Tag Hierarchy (checked), Historian node: S01ENG. Asterisk indicates unsaved changes.">
@@ -452,17 +233,7 @@
   <div class="caption">Deployment panel showing expanded hierarchy: TrainingGalaxy &gt; PROD_Platform1 &gt; AppEngine1 expanded to show Line1, Line2, Packaging, Plant, and ProdPLC1 nodes.</div>
 </div>
 
-<p>21. On the General tab, in Historian, enter the node name of the computer where Historian is</p>
-<p>installed.</p>
-<p>Note:</p>
-<p>Your instructor will provide the node name of this computer.</p>
-<p>In the example below, S01ENG is shown as the Historian node name.</p>
-<p>22. Save and close the AppEngine1 configuration editor, and then check in the object.</p>
-<p>Configure the Data Source</p>
-<p>Next, you will configure the simulated data source for the mixers. This data source will be used</p>
-<p>throughout this course.</p>
-<p>23. In the Deployment view, ensure AppEngine1 is expanded.</p>
-<p>24. Double-click ProdPLC1 to open its configuration editor.</p>
+<p>21. On the General tab, in Historian, enter the node name of the computer where Historian is installed. Note: Your instructor will provide the node name of this computer. In the example below, S01ENG is shown as the Historian node name. 22. Save and close the AppEngine1 configuration editor, and then check in the object. Configure the Data Source Next, you will configure the simulated data source for the mixers. This data source will be used throughout this course. 23. In the Deployment view, ensure AppEngine1 is expanded. 24. Double-click ProdPLC1 to open its configuration editor.</p>
 
 <div class="screenshot">
   <img src="../images/page_0026_0.png" alt="ProdPLC1 configuration editor with General tab active. Fields show Server node: S01PROD, Server name: MBTCP, Detect connection alarm (unchecked), and empty Priority field. Asterisk indicates unsaved changes.">
@@ -474,15 +245,7 @@
   <div class="caption">Deployment panel with expanded hierarchy: TrainingGalaxy &gt; PROD_Platform1 &gt; AppEngine1 &gt; Line1 (with Mixer100, Mixer200, Mixer300, Mixer400), Line2. A right-click context menu is open on TrainingGalaxy showing options: Validate, Deploy..., Undeploy..., Upload Changes, Synchronize Views, Properties.</div>
 </div>
 
-<p>25. On the General tab, in Server node, enter the node name of the computer that will provide</p>
-<p>data to the Galaxy.</p>
-<p>Note:</p>
-<p>Your instructor will provide this information.</p>
-<p>In the example below, S01PROD is shown.</p>
-<p>26. Save and close the ProdPLC1 configuration editor, and then check in the object.</p>
-<p>Deploy the Galaxy</p>
-<p>Now, you will deploy the Galaxy.</p>
-<p>27. In the Deployment view, right-click TrainingGalaxy and select Deploy.</p>
+<p>25. On the General tab, in Server node, enter the node name of the computer that will provide data to the Galaxy. Note: Your instructor will provide this information. In the example below, S01PROD is shown. 26. Save and close the ProdPLC1 configuration editor, and then check in the object. Deploy the Galaxy Now, you will deploy the Galaxy. 27. In the Deployment view, right-click TrainingGalaxy and select Deploy.</p>
 
 <div class="screenshot">
   <img src="../images/page_0027_0.png" alt="Deployment panel with right-click context menu open on TrainingGalaxy node. Menu options include Validate, Deploy..., Undeploy..., Upload Changes, Synchronize Views (Ctrl+Shift+Z), and Properties (Alt+Enter).">
@@ -501,18 +264,7 @@
   <div class="caption">Deploy 128 objects dialog with General tab active. Deployment defaults: Cascade deploy checked, Include redundant partner unchecked. Deployed objects: Skip selected, Force off scan checked, Preserve runtime changes checked. Undeployed objects: Deploy new objects checked. Initial scan state: On scan selected. Note about deploying host objects forcing redeploy. Cancel and Deploy buttons.</div>
 </div>
 
-<p>28. Leave the deployment default settings and click Deploy.</p>
-<p>The Deploying Objects dialog box shows the progress of the deployment process, as well as</p>
-<p>informational message details. This will take a few moments.</p>
-<p>It is important to review the messages shown in the Deploying Objects dialog box to make</p>
-<p>sure no errors occurred.</p>
-<p>29. When the deployment progress shows Deploy complete, click Close.</p>
-<p>Verify Data in Runtime</p>
-<p>Finally, you will verify the data in runtime by viewing the object attributes in Object Viewer.</p>
-<p>30. In the Deployment view, expand the Line1 area, and then right-click the Mixer100 instance</p>
-<p>and select View in Object Viewer.</p>
-<p>Note:</p>
-<p>You can right-click any object in the Deployment view to open Object Viewer.</p>
+<p>28. Leave the deployment default settings and click Deploy. The Deploying Objects dialog box shows the progress of the deployment process, as well as informational message details. This will take a few moments. It is important to review the messages shown in the Deploying Objects dialog box to make sure no errors occurred. 29. When the deployment progress shows Deploy complete, click Close. Verify Data in Runtime Finally, you will verify the data in runtime by viewing the object attributes in Object Viewer. 30. In the Deployment view, expand the Line1 area, and then right-click the Mixer100 instance and select View in Object Viewer. Note: You can right-click any object in the Deployment view to open Object Viewer.</p>
 
 <div class="screenshot">
   <img src="../images/page_0029_0.png" alt="Deploying Objects progress dialog showing 'Deploy complete. Please review the details below.' The Details log shows deployment of DI Network Object, 8 Areas (Line1, etc.), 116 Automation Objects, and 125 objects placed OnScan. Final line: '[SUCCESS] Deploy Completed. Deployed 127 object(s) out of a total 127 selected object(s)'.">
@@ -524,9 +276,7 @@
   <div class="caption">Deployment panel showing expanded hierarchy: TrainingGalaxy &gt; PROD_Platform1 &gt; AppEngine1 &gt; Line1 with Mixer100 selected/highlighted, along with Mixer200, Mixer300, Mixer400. Right-click context menu on Mixer100 with 'View in Object Viewer' option highlighted.</div>
 </div>
 
-<p>The Object Viewer window appears, showing the list of attributes for Mixer100.</p>
-<p>31. At the bottom of the window, right-click in the Watch List 1 pane and select Open.</p>
-<p>The Open dialog box appears.</p>
+<p>The Object Viewer window appears, showing the list of attributes for Mixer100. 31. At the bottom of the window, right-click in the Watch List 1 pane and select Open. The Open dialog box appears.</p>
 
 <div class="screenshot">
   <img src="../images/page_0030_0.png" alt="Object Viewer window showing attributes for Mixer100. Left pane lists objects (Inlet1_001, Inlet1_002, Level_001, Mixer100 selected). Right pane shows attributes table with Tagname: Mixer100, ScanStateCmd: true, ScanState: true, SecurityGroup: Default, Area: Line1, Host: Line1, AlarmMode: Enable, ConfigVersion: 1. All quality values show 'C0:Good'.">
