@@ -100,39 +100,173 @@
 <h1>Lesson L36: Lab 20 – Security Features in Graphics</h1>
 <p class="page-ref">Module 7 — Security | Pages 473–500</p>
 
-<p>Do Not Copy 7-35 AVEVA™ InTouch for System Platform 2023 Assigning Users to Roles After creating users and roles, you can assign users to roles. On the Users page, all users in the Galaxy and the roles they are assigned are listed. By default, the new user is associated with the Default role, but not the Administrator role. Users can be assigned to more than one role. Note: All users are automatically assigned to the Default role in addition to any newly created roles that are assigned to them. The best way to manage permissions is to limit the permissions of the Default role to those permissions people should have. Then, add users to other roles with permissions for other parts of Application Server. The Administrator user can log on any authentication mode, except when security is disabled. When logged on as Administrator on the Galaxy Repository node, change the password of any Galaxy user without providing the old password:  In Galaxy authentication mode, edit the User Name in the Change Password dialog box.  In OS-based authentication modes, the User Name of the OS user is shown; user information cannot be edited. This section provides a brief overview of the Secured Write and Verified Write security classifications, the Can Verify Writes Operational permission, and the Secured Write and Verified Write dialog boxes.</p>
+<p>Assigning Users to Roles</p>
+<p>After creating users and roles, you can assign users to roles. On the Users page, all users in the</p>
+<p>Galaxy and the roles they are assigned are listed.</p>
+<p>By default, the new user is associated with the Default role, but not the Administrator role. Users</p>
+<p>can be assigned to more than one role.</p>
+<p>Note: All users are automatically assigned to the Default role in addition to any newly created</p>
+<p>roles that are assigned to them. The best way to manage permissions is to limit the permissions of</p>
+<p>the Default role to those permissions people should have. Then, add users to other roles with</p>
+<p>permissions for other parts of Application Server.</p>
+<p>The Administrator user can log on any authentication mode, except when security is disabled.</p>
+<p>When logged on as Administrator on the Galaxy Repository node, change the password of any</p>
+<p>Galaxy user without providing the old password:</p>
+<p></p>
+<p>In Galaxy authentication mode, edit the User Name in the Change Password dialog box.</p>
+<p></p>
+<p>In OS-based authentication modes, the User Name of the OS user is shown; user</p>
+<p>information cannot be edited.</p>
+<p>This section provides a brief overview of the Secured Write and Verified Write security</p>
+<p>classifications, the Can Verify Writes Operational permission, and the Secured Write and Verified</p>
+<p>Write dialog boxes.</p>
 
 <div class="screenshot">
   <img src="../images/page_0473.png" alt="Security settings Users tab showing user list (Administrator, DefaultUser, TUser) with role assignments — Administrator and Default roles available, TUser assigned to Default and Training roles">
   <div class="caption">Security settings Users tab showing user list (Administrator, DefaultUser, TUser) with role assignments — Administrator and Default roles available, TUser assigned to Default and Training roles</div>
 </div>
 
-<p>Do Not Copy 7-36 AVEVA™ Training About OS Group-Based Security If the OS Group-based Authentication Mode is used, understand the Windows operating system, particularly its user permissions, groups, and security features. OS Group-based security uses these Windows features. When using local OS Groups as Roles, each node within the Galaxy must have the same OS Users, Groups, and user-group mappings to get the same level of access to the user at each node. Connecting to a Remote Node for the First Time A newly-added user working on a computer with no access to the Galaxy Repository node cannot write to an attribute on a remote node, if that user has never logged on to the remote node. This is true, even if the user is given sufficient runtime operational permissions to do writes. To enable remote writing capabilities, log on to the remote node at least one time. Using InTouch Access Levels Security The Roles page includes the Access Level column. The Access Level is an InTouch function. In InTouch, access levels are a schema for prioritizing runtime functions. In the security model, it only maps to InTouch values and has no prioritizing characteristics. The maximum value is 9999 and the minimum is 0 (zero). If a user is assigned more than one role with different access levels, the higher access value is passed to InTouch. Using Secured and Verified Writes Assign Secured Write or Verified Write security classification to a configurable attribute. These security classifications require authentication to perform runtime writes to the configured attribute. With authentication, users can write to such attributes by:  Any assignment in a script that sets the value of the attribute, such as A=B; where A references an attribute that is configured for Secured Write or Verified Write security classification  Any action on an animation graphic that alters the value of an attribute that has Secured Write or Verified Write security classification, such as a user input, a slider, an up/down button on a counter, or any other such actions  A script that uses the SignedWrite() function Operators can write to attributes configured with Secured Write or Verified Write security classification, even if another user is logged on. This does not affect the session of the logged on user. To do this:  The operator must have the Can Modify ''Operate'' Attributes Operational permission to perform the Verified Write.  The verifier must have the Can Verify Writes Operational permission to confirm the Verified Write. Note: The Secured and Verified Write features work only when security is enabled on both the Galaxy and InTouch applications and do not work if either Galaxy or InTouch security is set to None.</p>
+<p>About OS Group-Based Security</p>
+<p>If the OS Group-based Authentication Mode is used, understand the Windows operating system,</p>
+<p>particularly its user permissions, groups, and security features. OS Group-based security uses</p>
+<p>these Windows features. When using local OS Groups as Roles, each node within the Galaxy</p>
+<p>must have the same OS Users, Groups, and user-group mappings to get the same level of access</p>
+<p>to the user at each node.</p>
+<p>Connecting to a Remote Node for the First Time</p>
+<p>A newly-added user working on a computer with no access to the Galaxy Repository node cannot</p>
+<p>write to an attribute on a remote node, if that user has never logged on to the remote node. This is</p>
+<p>true, even if the user is given sufficient runtime operational permissions to do writes. To enable</p>
+<p>remote writing capabilities, log on to the remote node at least one time.</p>
+<p>Using InTouch Access Levels Security</p>
+<p>The Roles page includes the Access Level column. The Access Level is an InTouch function.</p>
+<p>In InTouch, access levels are a schema for prioritizing runtime functions. In the security model, it</p>
+<p>only maps to InTouch values and has no prioritizing characteristics.</p>
+<p>The maximum value is 9999 and the minimum is 0 (zero). If a user is assigned more than one role</p>
+<p>with different access levels, the higher access value is passed to InTouch.</p>
+<p>Using Secured and Verified Writes</p>
+<p>Assign Secured Write or Verified Write security classification to a configurable attribute. These</p>
+<p>security classifications require authentication to perform runtime writes to the configured attribute.</p>
+<p>With authentication, users can write to such attributes by:</p>
+<p></p>
+<p>Any assignment in a script that sets the value of the attribute, such as A=B; where A</p>
+<p>references an attribute that is configured for Secured Write or Verified Write security</p>
+<p>classification</p>
+<p></p>
+<p>Any action on an animation graphic that alters the value of an attribute that has Secured</p>
+<p>Write or Verified Write security classification, such as a user input, a slider, an up/down</p>
+<p>button on a counter, or any other such actions</p>
+<p></p>
+<p>A script that uses the SignedWrite() function</p>
+<p>Operators can write to attributes configured with Secured Write or Verified Write security</p>
+<p>classification, even if another user is logged on. This does not affect the session of the logged on</p>
+<p>user. To do this:</p>
+<p></p>
+<p>The operator must have the Can Modify ''Operate'' Attributes Operational permission to</p>
+<p>perform the Verified Write.</p>
+<p></p>
+<p>The verifier must have the Can Verify Writes Operational permission to confirm the</p>
+<p>Verified Write.</p>
+<p>Note:</p>
+<p>The Secured and Verified Write features work only when security is enabled on both</p>
+<p>the Galaxy and InTouch applications and do not work if either Galaxy or InTouch security is set</p>
+<p>to None.</p>
 
-<p>Do Not Copy 7-37 AVEVA™ InTouch for System Platform 2023 Secured Write or Verified Write Dialog Boxes and Script Functions At runtime, the Secured Write or Verified Write dialog boxes appear when the operator attempts to write to an attribute configured with Secured Write or Verified Write. The dialogs enable configurable user input that can be used to provide information about the Secured or Verified Write. Create a symbol and associate it with an attribute configured with Secured or Verified Write. Add the script function to the symbol. The source to be written is passed as a parameter to the function. Use the SignedWrite() script function to configure these inputs. The script function can only be used for attributes configured with Secured Write or Verified Write and symbol scripts, not for application object scripts. Reason Description The reason description is specific to an attribute. It explains the purpose of the attribute and the impact of changing it. If a reason description is not configured, the reason description area is blank. It is possible to use a script to directly assign a value to an attribute that requires Secured or Verified Write. When the script is ran, the Secured or Verified Write dialog box appears and the reason description area displays a Field Attribute description, if there is one. If the attribute is not a Field Attribute or does not have a description, then the reason description area displays the description of the ApplicationObject to which the attribute belongs. Predefined Comment List The predefined Comment list enables the operator to comment on changing the attribute by selecting from a predefined list of comments.</p>
+<p>Secured Write or Verified Write Dialog Boxes and Script Functions</p>
+<p>At runtime, the Secured Write or Verified Write dialog boxes appear when the operator attempts to</p>
+<p>write to an attribute configured with Secured Write or Verified Write. The dialogs enable</p>
+<p>configurable user input that can be used to provide information about the Secured or Verified</p>
+<p>Write.</p>
+<p>Create a symbol and associate it with an attribute configured with Secured or Verified Write. Add</p>
+<p>the script function to the symbol. The source to be written is passed as a parameter to the function.</p>
+<p>Use the SignedWrite() script function to configure these inputs. The script function can only be</p>
+<p>used for attributes configured with Secured Write or Verified Write and symbol scripts, not for</p>
+<p>application object scripts.</p>
+<p>Reason Description</p>
+<p>The reason description is specific to an attribute. It explains the purpose of the attribute and the</p>
+<p>impact of changing it. If a reason description is not configured, the reason description area is</p>
+<p>blank.</p>
+<p>It is possible to use a script to directly assign a value to an attribute that requires Secured or</p>
+<p>Verified Write. When the script is ran, the Secured or Verified Write dialog box appears and the</p>
+<p>reason description area displays a Field Attribute description, if there is one. If the attribute is not a</p>
+<p>Field Attribute or does not have a description, then the reason description area displays the</p>
+<p>description of the ApplicationObject to which the attribute belongs.</p>
+<p>Predefined Comment List</p>
+<p>The predefined Comment list enables the operator to comment on changing the attribute by</p>
+<p>selecting from a predefined list of comments.</p>
 
 <div class="screenshot">
   <img src="../images/page_0475.png" alt="Secured Write dialog for Agitator_001.Cmd with Value: true, Comment: start the motor, authenticated as operator1 on ArchestA domain — single-user secured authentication required">
   <div class="caption">Secured Write dialog for Agitator_001.Cmd with Value: true, Comment: start the motor, authenticated as operator1 on ArchestA domain — single-user secured authentication required</div>
 </div>
 
-<p>Do Not Copy 7-38 AVEVA™ Training Editable Comment Box Enables the operator to enter a comment in the Comment field. Note: The reason message and Comment field and list are displayed in the Secured Write or Verified Write dialog box, only in InTouch WindowViewer and not in Object Viewer. About Secured and Verified Writes Logged Information Following a Secured or Verified Write, a security Event is written to the event log that includes the following information:  The signee name  Verifier name, if any  Type of write: Secured Write or Verified Write  Comment, if any entered by user  Reason Description, if any provided  Field Attribute description, if any, or the Short Description of the ApplicationObject, if no Field Attribute description exists</p>
+<p>Editable Comment Box</p>
+<p>Enables the operator to enter a comment in the Comment field.</p>
+<p>Note: The reason message and Comment field and list are displayed in the Secured Write or</p>
+<p>Verified Write dialog box, only in InTouch WindowViewer and not in Object Viewer.</p>
+<p>About Secured and Verified Writes Logged Information</p>
+<p>Following a Secured or Verified Write, a security Event is written to the event log that includes the</p>
+<p>following information:</p>
+<p></p>
+<p>The signee name</p>
+<p></p>
+<p>Verifier name, if any</p>
+<p></p>
+<p>Type of write: Secured Write or Verified Write</p>
+<p></p>
+<p>Comment, if any entered by user</p>
+<p></p>
+<p>Reason Description, if any provided</p>
+<p></p>
+<p>Field Attribute description, if any, or the Short Description of the ApplicationObject, if no</p>
+<p>Field Attribute description exists</p>
 
-<p>Do Not Copy 7-39 AVEVA™ InTouch for System Platform 2023 Introduction In this lab, you will test the InTouch Secured Write and Verified Write functions when writing to attributes configured with Secured Write and Verified Write security classifications. To be able to test this functionality, you will modify the mixer valves with security classifications. You will also create new security Roles and Users to represent the operator and supervisor accounts that will access the system. Objectives Upon completion of this lab, you will be able to:  Use the Secured Write and Verified Write functions in InTouch  Enable the Operate and Can Verify Write permissions</p>
+<p>Introduction</p>
+<p>In this lab, you will test the InTouch Secured Write and Verified Write functions when writing to</p>
+<p>attributes configured with Secured Write and Verified Write security classifications. To be able to</p>
+<p>test this functionality, you will modify the mixer valves with security classifications. You will also</p>
+<p>create new security Roles and Users to represent the operator and supervisor accounts that will</p>
+<p>access the system.</p>
+<p>Objectives</p>
+<p>Upon completion of this lab, you will be able to:</p>
+<p></p>
+<p>Use the Secured Write and Verified Write functions in InTouch</p>
+<p></p>
+<p>Enable the Operate and Can Verify Write permissions</p>
 
 <div class="screenshot">
   <img src="../images/page_0477.png" alt="Side-by-side comparison of Secured Write dialog (supervisor1, single-user auth for Agitator_001.Cmd) and Verified Write dialog (dual-operator/verifier auth for Agitator_001.Speed.SP value 25.0)">
   <div class="caption">Side-by-side comparison of Secured Write dialog (supervisor1, single-user auth for Agitator_001.Cmd) and Verified Write dialog (dual-operator/verifier auth for Agitator_001.Speed.SP value 25.0)</div>
 </div>
 
-<p>Do Not Copy 7-40 AVEVA™ Training Create and Configure Roles and Users First, you will configure additional roles and users that will be used to test both secured and verified writes. 1. Close WindowMaker and check in the $MixerView template. Note: Remember that security configuration requires that all objects are checked in. The Find tool is useful for this task. 2. In the IDE, on the Galaxy menu, select Configure | Security. 3. On the Roles tab, in Define security roles, select the Default role. 4. In Operational permissions, uncheck Default and then expand it. 5. Under Alarms, check Can Acknowledge Alarms.</p>
+<p>Create and Configure Roles and Users</p>
+<p>First, you will configure additional roles and users that will be used to test both secured and</p>
+<p>verified writes.</p>
+<p>1.</p>
+<p>Close WindowMaker and check in the $MixerView template.</p>
+<p>Note:</p>
+<p>Remember that security configuration requires that all objects are checked in. The</p>
+<p>Find tool is useful for this task.</p>
+<p>2.</p>
+<p>In the IDE, on the Galaxy menu, select Configure | Security.</p>
+<p>3.</p>
+<p>On the Roles tab, in Define security roles, select the Default role.</p>
+<p>4.</p>
+<p>In Operational permissions, uncheck Default and then expand it.</p>
+<p>5.</p>
+<p>Under Alarms, check Can Acknowledge Alarms.</p>
 
 <div class="screenshot">
   <img src="../images/page_0478.png" alt="Security settings Roles tab — Default role selected, showing IDE Permissions tree and Operational permissions with Can Acknowledge Alarms checked, access level 0">
   <div class="caption">Security settings Roles tab — Default role selected, showing IDE Permissions tree and Operational permissions with Can Acknowledge Alarms checked, access level 0</div>
 </div>
 
-<p>Do Not Copy 7-41 AVEVA™ InTouch for System Platform 2023 6. Click Add new Role (+). 7. Name the new role Operators with an Access level of 1000. 8. In Operational permissions, expand Default, and then check Can Modify “Operate” Attributes.</p>
+<p>6.</p>
+<p>Click Add new Role (+).</p>
+<p>7.</p>
+<p>Name the new role Operators with an Access level of 1000.</p>
+<p>8.</p>
+<p>In Operational permissions, expand Default, and then check Can Modify “Operate”</p>
+<p>Attributes.</p>
 
 <div class="screenshot">
   <img src="../images/page_0479_0.png" alt="Security settings Roles tab — newly created Operators role with access level 1000, all General and Operational permissions unchecked">
@@ -144,7 +278,18 @@
   <div class="caption">Security settings Roles tab — Operators role permissions showing Can Modify 'Operate' Attributes checked under Operational permissions (access level 1000)</div>
 </div>
 
-<p>Do Not Copy 7-42 AVEVA™ Training 9. Add a new role named Supervisors with an Access level of 5000. 10. In Operational permissions, expand Default, and then under Alarms, check the following:  Can Shelve Alarms  Can Modify Alarm Modes  Can Modify Plant States 11. Scroll down to the bottom and check Can Verify Writes. 12. On the Users tab, add a new user named Operator1 with a Full name of Operator One. 13. In the Role list, check Operators to associate the Operators role with Operator1.</p>
+<p>9.</p>
+<p>Add a new role named Supervisors with an Access level of 5000.</p>
+<p>10. In Operational permissions, expand Default, and then under Alarms, check the following:</p>
+<p></p>
+<p>Can Shelve Alarms</p>
+<p></p>
+<p>Can Modify Alarm Modes</p>
+<p></p>
+<p>Can Modify Plant States</p>
+<p>11. Scroll down to the bottom and check Can Verify Writes.</p>
+<p>12. On the Users tab, add a new user named Operator1 with a Full name of Operator One.</p>
+<p>13. In the Role list, check Operators to associate the Operators role with Operator1.</p>
 
 <div class="screenshot">
   <img src="../images/page_0480_0.png" alt="Security settings Roles tab — Supervisors role (access level 5000) with Can Shelve Alarms, Can Modify Alarm Modes, Can Modify Plant States, and Can Verify Writes all checked">
@@ -156,21 +301,43 @@
   <div class="caption">Security settings Users tab — Operator1 (Operator One) assigned to Default and Operators roles with access levels 0 and 1000</div>
 </div>
 
-<p>Do Not Copy 7-43 AVEVA™ InTouch for System Platform 2023 14. Click Change Password. 15. In both New Password and Confirm New Password, enter ww. 16. Click Save to close Change Password.</p>
+<p>14. Click Change Password.</p>
+<p>15. In both New Password and Confirm New Password, enter ww.</p>
+<p>16. Click Save to close Change Password.</p>
 
 <div class="screenshot">
   <img src="../images/page_0481.png" alt="Change Password dialog for Operator1 — Old password field empty, New password and Confirm new password both filled with masked characters, Save and Cancel buttons"Do Not Copy" watermark">
   <div class="caption">Change Password dialog for Operator1 — Old password field empty, New password and Confirm new password both filled with masked characters, Save and Cancel buttons</div>
 </div>
 
-<p>Do Not Copy 7-44 AVEVA™ Training 17. Add another user named Operator2 and configure it as follows: Full name: Operator Two Role: Operators Password: ww</p>
+<p>17. Add another user named Operator2 and configure it as follows:</p>
+<p>Full name:</p>
+<p>Operator Two</p>
+<p>Role:</p>
+<p>Operators</p>
+<p>Password:</p>
+<p>ww</p>
 
 <div class="screenshot">
   <img src="../images/page_0482.png" alt="Security settings Users tab — Operator2 (Operator Two) assigned to Default and Operators roles, access levels 0 and 1000"DO NOT COPY" watermark">
   <div class="caption">Security settings Users tab — Operator2 (Operator Two) assigned to Default and Operators roles, access levels 0 and 1000</div>
 </div>
 
-<p>Do Not Copy 7-45 AVEVA™ InTouch for System Platform 2023 18. Add another user named Supervisor1 and configure it as follows: 19. Click Save and exit the backstage. Configure Attributes with Signed Write Security Classifications Next, you will configure agitator objects with attributes with signed write security classifications. 20. On the Templates tab, in the Training \ Project toolset, double-click $Mixer.Agitator to open it for editing. 21. In Attributes, ensure the Cmd attribute is selected. 22. In the right pane, in Initial value, click the Security Classification icon, and then select SecuredWrite. Full name: Supervisor One Role: Supervisors Password: ww</p>
+<p>18. Add another user named Supervisor1 and configure it as follows:</p>
+<p>19. Click Save and exit the backstage.</p>
+<p>Configure Attributes with Signed Write Security Classifications</p>
+<p>Next, you will configure agitator objects with attributes with signed write security classifications.</p>
+<p>20. On the Templates tab, in the Training \ Project toolset, double-click $Mixer.Agitator to open</p>
+<p>it for editing.</p>
+<p>21. In Attributes, ensure the Cmd attribute is selected.</p>
+<p>22. In the right pane, in Initial value, click the Security Classification icon, and then select</p>
+<p>SecuredWrite.</p>
+<p>Full name:</p>
+<p>Supervisor One</p>
+<p>Role:</p>
+<p>Supervisors</p>
+<p>Password:</p>
+<p>ww</p>
 
 <div class="screenshot">
   <img src="../images/page_0483_0.png" alt="Security settings Users tab — Supervisor1 (Supervisor One) assigned to Default and Supervisors roles, access levels 0 and 5000">
@@ -182,7 +349,16 @@
   <div class="caption">$Mixer.Agitator attribute editor — Cmd attribute selected, Security Classification dropdown open showing options: FreeAccess, Operate, SecuredWrite, VerifiedWrite, Tune, Configure, ViewOnly</div>
 </div>
 
-<p>Do Not Copy 7-46 AVEVA™ Training 23. In Initial value, click the Lock icon to lock it. This will propagate the security classification change to the instances when you deploy. 24. In Attributes, select the Speed.SP attribute. 25. In Initial value, click the Security Classification icon, and then select VerifiedWrite. 26. In Initial value, click the Lock icon to lock it. 27. Save and close the $Mixer.Agitator template, and check it in. 28. Open $Mixer.Agitator again. 29. In Attributes, ensure the Cmd attribute is selected. 30. In Initial value, click the Lock icon to unlock it. This will allow the attribute values to be changed at runtime.</p>
+<p>23. In Initial value, click the Lock icon to lock it.</p>
+<p>This will propagate the security classification change to the instances when you deploy.</p>
+<p>24. In Attributes, select the Speed.SP attribute.</p>
+<p>25. In Initial value, click the Security Classification icon, and then select VerifiedWrite.</p>
+<p>26. In Initial value, click the Lock icon to lock it.</p>
+<p>27. Save and close the $Mixer.Agitator template, and check it in.</p>
+<p>28. Open $Mixer.Agitator again.</p>
+<p>29. In Attributes, ensure the Cmd attribute is selected.</p>
+<p>30. In Initial value, click the Lock icon to unlock it.</p>
+<p>This will allow the attribute values to be changed at runtime.</p>
 
 <div class="screenshot">
   <img src="../images/page_0484_0.png" alt="$Mixer.Agitator attribute editor — Cmd attribute with lock icon (initial value locked), Description: Command, Data type: Boolean, Writeability: User writable, False label: Stop, True label: Start">
@@ -204,7 +380,13 @@
   <div class="caption">Cmd attribute editor — Data type: Boolean, Writeability: User writable, Initial value: Stop (unlocked), False label: Stop, True label: Start, Available features section below</div>
 </div>
 
-<p>Do Not Copy 7-47 AVEVA™ InTouch for System Platform 2023 31. In Attributes, select Speed.SP. 32. In Initial value, click the Lock icon to unlock it. 33. Save and close the $Mixer.Agitator template, and check it in. Redeploy the Agitator Objects Now, you will redeploy the updated agitator instances. 34. In the Derivation view, expand $UserDefined\$Motor\$Agitator\$Mixer.Agitator. The agitator instances indicate that changes are pending deployment.</p>
+<p>31. In Attributes, select Speed.SP.</p>
+<p>32. In Initial value, click the Lock icon to unlock it.</p>
+<p>33. Save and close the $Mixer.Agitator template, and check it in.</p>
+<p>Redeploy the Agitator Objects</p>
+<p>Now, you will redeploy the updated agitator instances.</p>
+<p>34. In the Derivation view, expand $UserDefined\$Motor\$Agitator\$Mixer.Agitator.</p>
+<p>The agitator instances indicate that changes are pending deployment.</p>
 
 <div class="screenshot">
   <img src="../images/page_0485_0.png" alt="Speed.SP attribute editor — locked state with padlock icon at top-right, Name: Speed.SP, Description: Speed setpoint, Data type: Float, Initial value: 0.0, Eng units: rpm">
@@ -216,14 +398,32 @@
   <div class="caption">Derivation tree view showing $UserDefined/$Motor/$Agitator/$Mixer.Agitator hierarchy with Agitator_001 through Agitator_008 instances — change pending deployment indicators visible</div>
 </div>
 
-<p>Do Not Copy 7-48 AVEVA™ Training 35. In the Derivation view, select Agitator_001, press and hold Shift, and then select Agitator_008. All eight Agitator instances are selected. 36. Right-click the selection and select Deploy. 37. Keep the default settings and click Deploy. When the deployment is complete, Deploying Objects indicates eight Agitator objects are deployed. 38. Click Close.</p>
+<p>35. In the Derivation view, select Agitator_001, press and hold Shift, and then select</p>
+<p>Agitator_008.</p>
+<p>All eight Agitator instances are selected.</p>
+<p>36. Right-click the selection and select Deploy.</p>
+<p>37. Keep the default settings and click Deploy.</p>
+<p>When the deployment is complete, Deploying Objects indicates eight Agitator objects are</p>
+<p>deployed.</p>
+<p>38. Click Close.</p>
 
 <div class="screenshot">
   <img src="../images/page_0486.png" alt="Derivation tree view with right-click context menu open on Agitator instances — Deploy option highlighted, other options include Check Out, Check In, Validate, Delete, Undeploy"DO NOT COPY" watermark">
   <div class="caption">Derivation tree view with right-click context menu open on Agitator instances — Deploy option highlighted, other options include Check Out, Check In, Validate, Delete, Undeploy</div>
 </div>
 
-<p>Do Not Copy 7-49 AVEVA™ InTouch for System Platform 2023 Test in Runtime Finally, you will test writing to attributes of the agitator instances as different users. 39. On the Templates tab, in Training\ViewApps, double-click $MixerView to open WindowMaker. 40. Click Open to open the selected windows. 41. Click Runtime. WindowViewer opens with no user logged in. 42. In the Navigation window, click Alarm Overview. 43. In AlarmAggregationOverview, in the Production alarm panel, click the up-arrow to the right of the Mode label. A command panel with a drop-down appears. 44. Click the down-arrow and select Disable.</p>
+<p>Test in Runtime</p>
+<p>Finally, you will test writing to attributes of the agitator instances as different users.</p>
+<p>39. On the Templates tab, in Training\ViewApps, double-click $MixerView to open</p>
+<p>WindowMaker.</p>
+<p>40. Click Open to open the selected windows.</p>
+<p>41. Click Runtime.</p>
+<p>WindowViewer opens with no user logged in.</p>
+<p>42. In the Navigation window, click Alarm Overview.</p>
+<p>43. In AlarmAggregationOverview, in the Production alarm panel, click the up-arrow to the right</p>
+<p>of the Mode label.</p>
+<p>A command panel with a drop-down appears.</p>
+<p>44. Click the down-arrow and select Disable.</p>
 
 <div class="screenshot">
   <img src="../images/page_0487_0.png" alt="AlarmAggregationOverview — Production node alarm summary (Critical: 24, High: 16, Medium: 10), Mode dropdown expanded showing Enable option, Active: 18, UnAcked: 50">
@@ -235,7 +435,11 @@
   <div class="caption">Production alarm panel — Mode dropdown expanded with Enable, Disable, Silence, and Inhibit options visible, alarm counts displayed above</div>
 </div>
 
-<p>Do Not Copy 7-50 AVEVA™ Training The Apply button appears. 45. Click Apply. Because no user is currently logged in, alarms are not disabled. Disabling alarms requires the Can Modify Alarm Modes permission. Next you will log in as a user with this permission. 46. Close AlarmAggregationOverview.</p>
+<p>The Apply button appears.</p>
+<p>45. Click Apply.</p>
+<p>Because no user is currently logged in, alarms are not disabled. Disabling alarms requires the</p>
+<p>Can Modify Alarm Modes permission. Next you will log in as a user with this permission.</p>
+<p>46. Close AlarmAggregationOverview.</p>
 
 <div class="screenshot">
   <img src="../images/page_0488_0.png" alt="Production alarm panel — Mode set to Enable with Apply button visible, alarm severity counts (Critical: 24, High: 16) shown, Mode dropdown expanded">
@@ -247,28 +451,45 @@
   <div class="caption">AlarmAggregationOverview — full hierarchical view with Production &gt; Line1/Line2 &gt; Mixer100–800, all nodes showing Mode: Enable, alarm counts aggregated at each level</div>
 </div>
 
-<p>Do Not Copy 7-51 AVEVA™ InTouch for System Platform 2023 47. In the Logon window, click Logon. 48. In User name, enter Supervisor1 with a Password of ww, and then click OK. Supervisor One is logged in. This user has permission to modify alarm modes. 49. In the Navigation window, click Alarm Overview. 50. In AlarmAggregationOverview, in the Production alarm panel, click the up-arrow to the right of the Mode label. 51. Click the down-arrow and select Disable. 52. Click Apply. Alarms are disabled.</p>
+<p>47. In the Logon window, click Logon.</p>
+<p>48. In User name, enter Supervisor1 with a Password of ww, and then click OK.</p>
+<p>Supervisor One is logged in. This user has permission to modify alarm modes.</p>
+<p>49. In the Navigation window, click Alarm Overview.</p>
+<p>50. In AlarmAggregationOverview, in the Production alarm panel, click the up-arrow to the right</p>
+<p>of the Mode label.</p>
+<p>51. Click the down-arrow and select Disable.</p>
+<p>52. Click Apply.</p>
+<p>Alarms are disabled.</p>
 
 <div class="screenshot">
   <img src="../images/page_0489.png" alt="AlarmAggregationOverview — Mode dropdown expanded on Production node showing Disable option being selected, alarm counts visible (Critical: 24, High: 16, Active: 12, UnAcked: 50)">
   <div class="caption">AlarmAggregationOverview — Mode dropdown expanded on Production node showing Disable option being selected, alarm counts visible (Critical: 24, High: 16, Active: 12, UnAcked: 50)</div>
 </div>
 
-<p>Do Not Copy 7-52 AVEVA™ Training 53. Use the Production alarm panel to enable alarms. Alarms are enabled. 54. Close AlarmAggregationOverview.</p>
+<p>53. Use the Production alarm panel to enable alarms.</p>
+<p>Alarms are enabled.</p>
+<p>54. Close AlarmAggregationOverview.</p>
 
 <div class="screenshot">
   <img src="../images/page_0490.png" alt="AlarmAggregationOverview — all nodes (Production, Line1, Line2, Mixer100–800) showing Mode: Disable, alarm aggregation turned off across entire hierarchy">
   <div class="caption">AlarmAggregationOverview — all nodes (Production, Line1, Line2, Mixer100–800) showing Mode: Disable, alarm aggregation turned off across entire hierarchy</div>
 </div>
 
-<p>Do Not Copy 7-53 AVEVA™ InTouch for System Platform 2023 Next, you will use secured write. 55. In the ContentDisplay window, click Agitator_001. The command panel appears.</p>
+<p>Next, you will use secured write.</p>
+<p>55. In the ContentDisplay window, click Agitator_001.</p>
+<p>The command panel appears.</p>
 
 <div class="screenshot">
   <img src="../images/page_0491.png" alt="Agitator_001 control panel with Start/Stop buttons and Speed setpoint: 75.00 rpm — agitator stopped, alarm overview and trend graph visible in background"Do Not Copy" watermark">
   <div class="caption">Agitator_001 control panel with Start/Stop buttons and Speed setpoint: 75.00 rpm — agitator stopped, alarm overview and trend graph visible in background</div>
 </div>
 
-<p>Do Not Copy 7-54 AVEVA™ Training 56. On the command panel, click Start. Secured Write appears. Notice that the current logged in user, supervisor1, appears in Username. 57. In Comment, enter Attempt to start the motor. 58. In Password, enter ww. 59. Click OK.</p>
+<p>56. On the command panel, click Start.</p>
+<p>Secured Write appears.</p>
+<p>Notice that the current logged in user, supervisor1, appears in Username.</p>
+<p>57. In Comment, enter Attempt to start the motor.</p>
+<p>58. In Password, enter ww.</p>
+<p>59. Click OK.</p>
 
 <div class="screenshot">
   <img src="../images/page_0492_0.png" alt="Secured Write dialog for Agitator_001.Cmd — supervisor1 username entered, password empty, Domain: ArchestA, attribute set to true, empty Command and Comment fields">
@@ -280,7 +501,20 @@
   <div class="caption">Secured Write dialog for Agitator_001.Cmd — supervisor1 with password entered (masked ●●●), Comment: Attempt to start the motor, OK and Cancel buttons</div>
 </div>
 
-<p>Do Not Copy 7-55 AVEVA™ InTouch for System Platform 2023 The Quality & Status indicator shows the write operation failed. Supervisor One does not have the Operate permission. Next you will log on as a user with the Operate permission. 60. Close the Agitator_001 command panel. 61. Log on as Operator1 with a password of ww. 62. Click Agitator_001 and attempt to start the motor. 63. In Secured Write, for Comment, enter Start motor, for Password, enter ww, and then click OK. The motor starts. Operator One has the Operate permission. 64. Close the Agitator_001 command panel. Next, you will use verified write. 65. Click Agitator_001. 66. In the command panel, click the value to the right of Speed setpoint, enter 25, and press Enter. Verified Write appears.</p>
+<p>The Quality & Status indicator shows the write operation failed. Supervisor One does not have</p>
+<p>the Operate permission. Next you will log on as a user with the Operate permission.</p>
+<p>60. Close the Agitator_001 command panel.</p>
+<p>61. Log on as Operator1 with a password of ww.</p>
+<p>62. Click Agitator_001 and attempt to start the motor.</p>
+<p>63. In Secured Write, for Comment, enter Start motor, for Password, enter ww, and then click</p>
+<p>OK.</p>
+<p>The motor starts. Operator One has the Operate permission.</p>
+<p>64. Close the Agitator_001 command panel.</p>
+<p>Next, you will use verified write.</p>
+<p>65. Click Agitator_001.</p>
+<p>66. In the command panel, click the value to the right of Speed setpoint, enter 25, and</p>
+<p>press Enter.</p>
+<p>Verified Write appears.</p>
 
 <div class="screenshot">
   <img src="../images/page_0493_0.png" alt="Agitator_001 control panel — Start/Stop buttons with Speed setpoint: 75.00 rpm, agitator in stopped state, process trend graph in background">
@@ -292,7 +526,11 @@
   <div class="caption">Verified Write dialog for Agitator_001.Speed.SP — Value: 25.0, Operator: operator1 (password empty), Verifier section blank, OK button disabled awaiting credentials</div>
 </div>
 
-<p>Do Not Copy 7-56 AVEVA™ Training 67. In Comment, enter Adjust rpm. 68. In Operator, for Username, enter Operator1, for Password, enter ww, and then click OK. 69. In Verifier, for Username, enter Operator2, for Password, enter ww, and then click OK. The Quality & Status indicator shows the write operation failed. Operator Two does not have the Can Verify Write permission. Next you will try again using Supervisor One as the verifier.</p>
+<p>67. In Comment, enter Adjust rpm.</p>
+<p>68. In Operator, for Username, enter Operator1, for Password, enter ww, and then click OK.</p>
+<p>69. In Verifier, for Username, enter Operator2, for Password, enter ww, and then click OK.</p>
+<p>The Quality & Status indicator shows the write operation failed. Operator Two does not have</p>
+<p>the Can Verify Write permission. Next you will try again using Supervisor One as the verifier.</p>
 
 <div class="screenshot">
   <img src="../images/page_0494_0.png" alt="Verified Write dialog — Comment: Adjust rpm, Operator: operator1 (password masked), Verifier: operator2 (password masked), ArchestA domain, dual-authorization in progress">
@@ -304,7 +542,15 @@
   <div class="caption">Agitator_001 control panel — Start/Stop buttons with Speed setpoint: 75.00 rpm, agitator running (motor active state)</div>
 </div>
 
-<p>Do Not Copy 7-57 AVEVA™ InTouch for System Platform 2023 70. In the command panel, click the value to the right of Speed setpoint, enter 25, and press Enter. Verified Write appears. 71. In Comment, enter Adjust rpm. 72. In Operator, for Username, enter Operator1, for Password, enter ww, and then click OK. 73. In Verifier, for Username, enter Supervisor1, for Password, enter ww, and then click OK. The Quality & Status indicator shows the write operation succeeded. The Speed setpoint is updated to 25 rpm. This is because Supervisor One has the Can Verify Write permission. 74. Close the command panel.</p>
+<p>70. In the command panel, click the value to the right of Speed setpoint, enter 25, and press</p>
+<p>Enter.</p>
+<p>Verified Write appears.</p>
+<p>71. In Comment, enter Adjust rpm.</p>
+<p>72. In Operator, for Username, enter Operator1, for Password, enter ww, and then click OK.</p>
+<p>73. In Verifier, for Username, enter Supervisor1, for Password, enter ww, and then click OK.</p>
+<p>The Quality & Status indicator shows the write operation succeeded. The Speed setpoint is</p>
+<p>updated to 25 rpm. This is because Supervisor One has the Can Verify Write permission.</p>
+<p>74. Close the command panel.</p>
 
 <div class="screenshot">
   <img src="../images/page_0495_0.png" alt="Verified Write dialog — Operator: operator1 (password masked), Verifier: supervisor1 (password masked), ArchestA domain, OK button active and ready to confirm">
@@ -316,23 +562,107 @@
   <div class="caption">Agitator_001 control panel — Speed setpoint updated to 25.00 rpm after successful verified write, Start/Stop buttons visible</div>
 </div>
 
-<p>Do Not Copy 7-58 AVEVA™ Training Next, you will use the Alarm Client to verify events were generated for both successful and unsuccessful verified writes. 75. In the Navigation window, click Historical Alarms. 76. In AlarmHistDisplay, click Historical Events. Events are listed. The Alarm Client shows Verified Write access denied and Verified Write success messages. In the example below, column widths were adjusted to highlight important information. You may need to scroll to the right to view the Operator column. 77. Close AlarmHistDisplay. 78. Click Development! to return to WindowMaker. <End of Lab></p>
+<p>Next, you will use the Alarm Client to verify events were generated for both successful and</p>
+<p>unsuccessful verified writes.</p>
+<p>75. In the Navigation window, click Historical Alarms.</p>
+<p>76. In AlarmHistDisplay, click Historical Events.</p>
+<p>Events are listed. The Alarm Client shows Verified Write access denied and Verified Write</p>
+<p>success messages.</p>
+<p>In the example below, column widths were adjusted to highlight important information. You</p>
+<p>may need to scroll to the right to view the Operator column.</p>
+<p>77. Close AlarmHistDisplay.</p>
+<p>78. Click Development! to return to WindowMaker.</p>
+<p><End of Lab></p>
 
 <div class="screenshot">
   <img src="../images/page_0496.png" alt="AlarmHistDisplay — Historical Events view showing four entries: Secured Write access denied (Supervisor1), Secured Write success (Operator1), Verified Write access denied (Operator1), Verified Write success (Operator1)"Do Not Copy" watermark">
   <div class="caption">AlarmHistDisplay — Historical Events view showing four entries: Secured Write access denied (Supervisor1), Secured Write success (Operator1), Verified Write access denied (Operator1), Verified Write success (Operator1)</div>
 </div>
 
-<p>Do Not Copy 7-59 AVEVA™ InTouch for System Platform 2023 InTouch WindowViewer Timeouts You can configure WindowViewer to automatically log off an inactive operator from an InTouch application. An operator must log on again, after being logged off for inactivity. Setting an automatic inactivity log off period prevents unauthorized access to the InTouch application, when operators leave their workstations unattended. A timer measures the period the operator has not interacted with the running InTouch application. The timer resets each time the operator uses a mouse or any other input device to enter data. The timer is not reset by moving the mouse. A click is required to reset the timer. Setting Home Windows Home windows create the initial user experience at runtime. When WindowViewer starts, the Home windows are displayed. This behavior only occurs when WindowViewer is started from its icon, such as from the Windows Start menu. When clicking the Runtime fast switch in WindowMaker, the Home windows are not displayed in WindowViewer. In WindowViewer runtime settings, you can select the Home windows on the Startup tab. Without Home windows enabled, when WindowViewer starts from its icon, it presents a list of all available windows. If an unauthorized user has access to a list of all windows, they can open windows that may contain vital areas of the plant and potentially shut down processes, stop and start equipment, and change setpoints. It is therefore critical in any security implementation to set the Home windows of WindowViewer to prevent this list of windows from appearing. Home windows should never include windows that give access to critical areas of the plant or intellectual property of the organization. It is a best practice to select windows that unauthorized This section explains how to customize the runtime environment to more fully secure and protect the application. It also describes how to configure the InTouch runtime environment for inactivity and introduces the EnableDisableKeys() script function.</p>
+<p>InTouch WindowViewer Timeouts</p>
+<p>You can configure WindowViewer to automatically log off an inactive operator from an InTouch</p>
+<p>application. An operator must log on again, after being logged off for inactivity. Setting an</p>
+<p>automatic inactivity log off period prevents unauthorized access to the InTouch application, when</p>
+<p>operators leave their workstations unattended.</p>
+<p>A timer measures the period the operator has not interacted with the running InTouch application.</p>
+<p>The timer resets each time the operator uses a mouse or any other input device to enter data. The</p>
+<p>timer is not reset by moving the mouse. A click is required to reset the timer.</p>
+<p>Setting Home Windows</p>
+<p>Home windows create the initial user experience at runtime. When WindowViewer starts, the</p>
+<p>Home windows are displayed. This behavior only occurs when WindowViewer is started from its</p>
+<p>icon, such as from the Windows Start menu. When clicking the Runtime fast switch in</p>
+<p>WindowMaker, the Home windows are not displayed in WindowViewer.</p>
+<p>In WindowViewer runtime settings, you can select the Home windows on the Startup tab.</p>
+<p>Without Home windows enabled, when WindowViewer starts from its icon, it presents a list of all</p>
+<p>available windows. If an unauthorized user has access to a list of all windows, they can open</p>
+<p>windows that may contain vital areas of the plant and potentially shut down processes, stop and</p>
+<p>start equipment, and change setpoints. It is therefore critical in any security implementation to set</p>
+<p>the Home windows of WindowViewer to prevent this list of windows from appearing.</p>
+<p>Home windows should never include windows that give access to critical areas of the plant or</p>
+<p>intellectual property of the organization. It is a best practice to select windows that unauthorized</p>
+<p>This section explains how to customize the runtime environment to more fully secure and protect</p>
+<p>the application. It also describes how to configure the InTouch runtime environment for inactivity</p>
+<p>and introduces the EnableDisableKeys() script function.</p>
 
 <div class="screenshot">
   <img src="../images/page_0497.png" alt="WindowViewer Configure menu — list of configuration categories including Security, WindowMaker, WindowViewer (highlighted), Distributed name manager, Historical logging, Alarms, Languages, Wizards/ActiveX">
   <div class="caption">WindowViewer Configure menu — list of configuration categories including Security, WindowMaker, WindowViewer (highlighted), Distributed name manager, Historical logging, Alarms, Languages, Wizards/ActiveX</div>
 </div>
 
-<p>Do Not Copy 7-60 AVEVA™ Training users can view without exposing important information. Once an authorized user logs in, access can be granted to more vital areas. Locking System Keys You can restrict operator access to standard Windows functions by disabling system keys on the computer running an InTouch application. For example, you can prevent an operator from using the CTRL + ALT + DEL key combination to show the Task Manager dialog box. Disabling system keys prevents operators from switching from the InTouch to another Windows applications. WindowViewer supports two methods for disabling keyboard keys. The first method is by using a set of options on the Window tab when configuring WindowViewer settings. In Miscellaneous, there are check boxes for Disable ALT key, Disable ESC key, and Disable WIN key. These options can be enabled by first disabling the check box Enable fast switch. When these disablements are used, their effect is permanent at runtime. A static approach does not allow dynamic behavior associated with which user is logged on. It permanently disables these keys for all users at runtime. For example, an administrator would not be able to use the WIN key to open the Start menu if it has been disabled using the Disable WIN key filter. The second method uses the EnableDisableKeys() script function to enable and disable the ALT, ESC, and WIN keys. A script can be written to monitor the access level of the current user and include the EnableDisableKeys() with different settings for different users. This second method using a script is dynamic, unlike the first method, which is permanent. A scripting approach can adapt use of keys for users with different responsibilities in the plant. Function Definition The order of the keys in the function is as follows: EnableDisableKeys(AltKey,EscKey,WinKey); When using this function in a script, you would replace AltKey, EscKey, and WinKey with a 1 or 0 for each, where 0 enables the key and 1 disables it. For example: To enable all three keys: EnableDisableKeys(0,0,0) To disable all three keys: EnableDisableKeys(1,1,1); To disable only the WIN key: EnableDisableKeys(0,0,1);</p>
+<p>users can view without exposing important information. Once an authorized user logs in, access</p>
+<p>can be granted to more vital areas.</p>
+<p>Locking System Keys</p>
+<p>You can restrict operator access to standard Windows functions by disabling system keys on the</p>
+<p>computer running an InTouch application. For example, you can prevent an operator from using</p>
+<p>the CTRL + ALT + DEL key combination to show the Task Manager dialog box. Disabling system</p>
+<p>keys prevents operators from switching from the InTouch to another Windows applications.</p>
+<p>WindowViewer supports two methods for disabling keyboard keys.</p>
+<p>The first method is by using a set of options on the Window tab when configuring WindowViewer</p>
+<p>settings. In Miscellaneous, there are check boxes for Disable ALT key, Disable ESC key, and</p>
+<p>Disable WIN key. These options can be enabled by first disabling the check box Enable fast</p>
+<p>switch. When these disablements are used, their effect is permanent at runtime. A static approach</p>
+<p>does not allow dynamic behavior associated with which user is logged on. It permanently disables</p>
+<p>these keys for all users at runtime. For example, an administrator would not be able to use the</p>
+<p>WIN key to open the Start menu if it has been disabled using the Disable WIN key filter.</p>
+<p>The second method uses the EnableDisableKeys() script function to enable and disable the ALT,</p>
+<p>ESC, and WIN keys. A script can be written to monitor the access level of the current user and</p>
+<p>include the EnableDisableKeys() with different settings for different users. This second method</p>
+<p>using a script is dynamic, unlike the first method, which is permanent. A scripting approach can</p>
+<p>adapt use of keys for users with different responsibilities in the plant.</p>
+<p>Function Definition</p>
+<p>The order of the keys in the function is as follows:</p>
+<p>EnableDisableKeys(AltKey,EscKey,WinKey);</p>
+<p>When using this function in a script, you would replace AltKey, EscKey, and WinKey with a 1 or 0</p>
+<p>for each, where 0 enables the key and 1 disables it. For example:</p>
+<p>To enable all three keys:</p>
+<p>EnableDisableKeys(0,0,0)</p>
+<p>To disable all three keys:</p>
+<p>EnableDisableKeys(1,1,1);</p>
+<p>To disable only the WIN key:</p>
+<p>EnableDisableKeys(0,0,1);</p>
 
-<p>Do Not Copy 7-61 AVEVA™ InTouch for System Platform 2023 Introduction In this lab you will configure automatic logoff and secure your application from unauthorized access. When no user is logged into the application, you will hide sensitive information from unauthorized users and restrict access to the application using scripts. You will create two popup windows, one to display a message when inactivity occurs and another to hide the WindowViewer menu bar. Finally, you will create a script to prevent the use of special access keys, including the Alt, Esc, and Win keys. Objectives Upon completion of this lab, you will be able to:  Use InTouch WindowViewer inactivity warning and timeout settings  Use negative dimensions in a window to hide the InTouch WindowViewer menu bar  Use the EnableDisableKeys() script function  Create an InTouch DataChange script  Create an InTouch Condition script  Use the Blink animation</p>
+<p>Introduction</p>
+<p>In this lab you will configure automatic logoff and secure your application from unauthorized</p>
+<p>access. When no user is logged into the application, you will hide sensitive information from</p>
+<p>unauthorized users and restrict access to the application using scripts.</p>
+<p>You will create two popup windows, one to display a message when inactivity occurs and another</p>
+<p>to hide the WindowViewer menu bar.</p>
+<p>Finally, you will create a script to prevent the use of special access keys, including the Alt, Esc,</p>
+<p>and Win keys.</p>
+<p>Objectives</p>
+<p>Upon completion of this lab, you will be able to:</p>
+<p></p>
+<p>Use InTouch WindowViewer inactivity warning and timeout settings</p>
+<p></p>
+<p>Use negative dimensions in a window to hide the InTouch WindowViewer menu bar</p>
+<p></p>
+<p>Use the EnableDisableKeys() script function</p>
+<p></p>
+<p>Create an InTouch DataChange script</p>
+<p></p>
+<p>Create an InTouch Condition script</p>
+<p></p>
+<p>Use the Blink animation</p>
 
 <div class="screenshot">
   <img src="../images/page_0499_0.png" alt="WindowViewer Startup tab — Home Windows grid view showing window previews: AlarmDisplay, Carousel, ContentDisplay, Inactivity, Logon, MenuBarCover, Navigation, OverviewDisplay">
@@ -344,7 +674,11 @@
   <div class="caption">Inactivity settings panel (Warning: 15 seconds, Timeout: 30 seconds) alongside red Inactivity Warning prompt screen with message 'Click mouse or use keyboard to prevent system log off'</div>
 </div>
 
-<p>Do Not Copy 7-62 AVEVA™ Training Configure Automatic Log Off First, you will use the inactivity warning and inactivity timeout settings to automatically log off the current user after a period of inactivity. 1. In WindowMaker, on the File menu, select Configure | WindowViewer.</p>
+<p>Configure Automatic Log Off</p>
+<p>First, you will use the inactivity warning and inactivity timeout settings to automatically log off the</p>
+<p>current user after a period of inactivity.</p>
+<p>1.</p>
+<p>In WindowMaker, on the File menu, select Configure | WindowViewer.</p>
 
 <div class="screenshot">
   <img src="../images/page_0500.png" alt="DataChange Script editor — access control script: IF $AccessLevel &gt; 5000 THEN Hide 'MenuBarCover' and EnableDisableKeys(0,0,0) ELSE Show 'MenuBarCover' and EnableDisableKeys(1,1,1) ENDIF"DO NOT COPY" watermark">

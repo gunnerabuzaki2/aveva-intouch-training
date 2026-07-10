@@ -100,7 +100,19 @@
 <h1>Lesson L28: Lab 15 – Alarm Popup Symbol</h1>
 <p class="page-ref">Module 5 — Alarms and Events Visualization | Pages 363–368</p>
 
-<p>Do Not Copy 5-71 AVEVA™ InTouch for System Platform 2023 Object Setup At the Object level, events can be historized by checking the Log system events in addition to user events check box in the Log change feature. Alarms can be historized by enabling the State alarm feature. Configuring the Alarm Client Tool The Alarm Client tool can be configured for historization by selecting one of the historical options in the Client Mode drop-down list. Once selected, the following options can be configured:  Authentication Mode  Server Name  Database Name</p>
+<p>Object Setup</p>
+<p>At the Object level, events can be historized by checking the Log system events in addition to user</p>
+<p>events check box in the Log change feature. Alarms can be historized by enabling the State alarm</p>
+<p>feature.</p>
+<p>Configuring the Alarm Client Tool</p>
+<p>The Alarm Client tool can be configured for historization by selecting one of the historical options</p>
+<p>in the Client Mode drop-down list. Once selected, the following options can be configured:</p>
+<p></p>
+<p>Authentication Mode</p>
+<p></p>
+<p>Server Name</p>
+<p></p>
+<p>Database Name</p>
 
 <div class="screenshot">
   <img src="../images/page_0363_0.png" alt="Object Viewer showing SMixer.Inlet1 object with Attributes tab selected, displaying Cmd, LSClosed, and LSOpen valve attributes, with LSClosed properties panel showing Boolean data type, state alarm configuration with priority 500, and I/O link to hardware device">
@@ -112,15 +124,103 @@
   <div class="caption">Edit Animations dialog for an AlarmClient element showing Alarm Mode configuration with Client Mode set to Historical Alarms, database connectivity settings using Windows Integrated authentication to server SD1ENG and database WWAlmDb, with a Test Connection button</div>
 </div>
 
-<p>Do Not Copy 5-72 AVEVA™ Training Alarm DB Logger Manager The legacy Alarm DB Logger application can be used to start and stop logging operations. The Alarm DB Logger Manager can start as a service or a normal application. Use the Alarm DB Logger configuration wizard to configure alarm logging, which is started from within the Alarm DB Logger Manager. The Alarm DB Logger Manager shows the percentage fill of the Smart Cache with alarm records. The alarms are cached when the SQL Server connection is down or when alarms occur faster than Alarm DB Logger can log them to the alarm database. Configuring Alarm Database Logging To log Galaxy alarm and event data to the alarm database, do the following from within the Alarm DB Logger Manager:  Configure the connection to the alarm database  Select which alarms to log to the alarm database  Set the interval to log records to the alarm database  Select which method to run the Alarm DB Logger A connection between the Alarm DB Logger and the alarm database must also be established. The Alarm DB Logger only works with SQL Server authentication and the SQL Server authentication must be set to mixed mode. Configuring Which Alarms to Log In the Alarm DB Logger Manager configuration wizard, define one or more queries to select alarms from Galaxy alarm providers. Select a range of alarm priority values that are part of the database query. Use the following query syntax for remote nodes: \\NodeName\Provider!AlarmGroup Use the following query syntax for the local node: \Provider!AlarmGroup Example: \\ProdSvr\InTouch!$System The following is an example of using a Galaxy alarm provider. This query provides all alarms from a specific area. \\Galaxy!Area Alarm Database The Alarm Database stores alarms and events from the Alarm Manager to a SQL Server database. Use the Alarm DB Logger utility to continuously log alarms and events to the Alarm Database. Set the Alarm Control to show one of the following:  Historical alarms from the Alarm Database  Historical events from the Alarm Database  Historical alarms and events from the Alarm Database</p>
+<p>Alarm DB Logger Manager</p>
+<p>The legacy Alarm DB Logger application can be used to start and stop logging operations. The</p>
+<p>Alarm DB Logger Manager can start as a service or a normal application.</p>
+<p>Use the Alarm DB Logger configuration wizard to configure alarm logging, which is started from</p>
+<p>within the Alarm DB Logger Manager.</p>
+<p>The Alarm DB Logger Manager shows the percentage fill of the Smart Cache with alarm records.</p>
+<p>The alarms are cached when the SQL Server connection is down or when alarms occur faster</p>
+<p>than Alarm DB Logger can log them to the alarm database.</p>
+<p>Configuring Alarm Database Logging</p>
+<p>To log Galaxy alarm and event data to the alarm database, do the following from within the Alarm</p>
+<p>DB Logger Manager:</p>
+<p></p>
+<p>Configure the connection to the alarm database</p>
+<p></p>
+<p>Select which alarms to log to the alarm database</p>
+<p></p>
+<p>Set the interval to log records to the alarm database</p>
+<p></p>
+<p>Select which method to run the Alarm DB Logger</p>
+<p>A connection between the Alarm DB Logger and the alarm database must also be established.</p>
+<p>The Alarm DB Logger only works with SQL Server authentication and the SQL Server</p>
+<p>authentication must be set to mixed mode.</p>
+<p>Configuring Which Alarms to Log</p>
+<p>In the Alarm DB Logger Manager configuration wizard, define one or more queries to select alarms</p>
+<p>from Galaxy alarm providers. Select a range of alarm priority values that are part of the database</p>
+<p>query.</p>
+<p>Use the following query syntax for remote nodes:</p>
+<p>\\NodeName\Provider!AlarmGroup</p>
+<p>Use the following query syntax for the local node:</p>
+<p>\Provider!AlarmGroup</p>
+<p>Example:</p>
+<p>\\ProdSvr\InTouch!$System</p>
+<p>The following is an example of using a Galaxy alarm provider. This query provides all alarms from</p>
+<p>a specific area.</p>
+<p>\\Galaxy!Area</p>
+<p>Alarm Database</p>
+<p>The Alarm Database stores alarms and events from the Alarm Manager to a SQL Server</p>
+<p>database. Use the Alarm DB Logger utility to continuously log alarms and events to the Alarm</p>
+<p>Database.</p>
+<p>Set the Alarm Control to show one of the following:</p>
+<p></p>
+<p>Historical alarms from the Alarm Database</p>
+<p></p>
+<p>Historical events from the Alarm Database</p>
+<p></p>
+<p>Historical alarms and events from the Alarm Database</p>
 
-<p>Do Not Copy 5-73 AVEVA™ InTouch for System Platform 2023 Historical Alarms When the Alarm Control is configured in the Historical Alarms mode, only alarms stored in the Alarm Database are shown. Historical Events When the Alarm Control is configured in the Historical Events mode, only events stored in the Alarm Database are shown. Historical Alarms and Events When the Alarm Control is configured in the Historical Alarms and Events mode, both alarms and events stored in the Alarm Database are displayed. Configure the Alarm Control to show historical alarms or events, or both, which includes the following:  Server name hosting the Alarm Database  Authentication information to connect to the Alarm Database  Maximum number of records to retrieve from the Alarm Database  Time range or duration to show in the Alarm Control  If the Alarm Control should update to the current client time</p>
+<h2>Historical Alarms</h2>
 
-<p>Do Not Copy 5-74 AVEVA™ Training</p>
+<p>Historical Alarms</p>
+<p>When the Alarm Control is configured in the Historical Alarms mode, only alarms stored in the</p>
+<p>Alarm Database are shown.</p>
+<p>Historical Events</p>
+<p>When the Alarm Control is configured in the Historical Events mode, only events stored in the</p>
+<p>Alarm Database are shown.</p>
+<p>Historical Alarms and Events</p>
+<p>When the Alarm Control is configured in the Historical Alarms and Events mode, both alarms and</p>
+<p>events stored in the Alarm Database are displayed.</p>
+<p>Configure the Alarm Control to show historical alarms or events, or both, which includes the</p>
+<p>following:</p>
+<p></p>
+<p>Server name hosting the Alarm Database</p>
+<p></p>
+<p>Authentication information to connect to the Alarm Database</p>
+<p></p>
+<p>Maximum number of records to retrieve from the Alarm Database</p>
+<p></p>
+<p>Time range or duration to show in the Alarm Control</p>
+<p></p>
+<p>If the Alarm Control should update to the current client time</p>
 
-<p>Do Not Copy 5-75 AVEVA™ InTouch for System Platform 2023 Introduction In a previous lab, you created an alarm display for visualization of current alarms and events. In this lab, you will use the Alarm Client to create an alarm display for visualization of historical alarms and events logged in the alarm database. You will use the ShowGraphic() script function to display the historical alarms. Objectives Upon completion of this lab, you will be able to:  Use and configure the Alarm Client to visualize historical alarms and events  Create a filter in runtime</p>
+<p>Introduction</p>
+<p>In a previous lab, you created an alarm display for visualization of current alarms and events. In</p>
+<p>this lab, you will use the Alarm Client to create an alarm display for visualization of historical</p>
+<p>alarms and events logged in the alarm database. You will use the ShowGraphic() script function to</p>
+<p>display the historical alarms.</p>
+<p>Objectives</p>
+<p>Upon completion of this lab, you will be able to:</p>
+<p></p>
+<p>Use and configure the Alarm Client to visualize historical alarms and events</p>
+<p></p>
+<p>Create a filter in runtime</p>
 
-<p>Do Not Copy 5-76 AVEVA™ Training Create and Configure the Historical Alarm Display First, you will create and configure an alarm display to retrieve historical information. 1. In the IDE, on the Graphics tab, in the Training toolset, create a new symbol named AlarmHistDisplay, and then open it for editing. 2. In Tools, click Alarm Client and place it on the canvas. Note: Leave some room above the Alarm Client on the canvas where you will configure some text and buttons later in this lab. 3. Name the element AlarmClient. 4. Double-click AlarmClient to open it for editing.</p>
+<p>Create and Configure the Historical Alarm Display</p>
+<p>First, you will create and configure an alarm display to retrieve historical information.</p>
+<p>1.</p>
+<p>In the IDE, on the Graphics tab, in the Training toolset, create a new symbol named</p>
+<p>AlarmHistDisplay, and then open it for editing.</p>
+<p>2.</p>
+<p>In Tools, click Alarm Client and place it on the canvas.</p>
+<p>Note:</p>
+<p>Leave some room above the Alarm Client on the canvas where you will configure</p>
+<p>some text and buttons later in this lab.</p>
+<p>3.</p>
+<p>Name the element AlarmClient.</p>
+<p>4.</p>
+<p>Double-click AlarmClient to open it for editing.</p>
 
 <div class="screenshot">
   <img src="../images/page_0368.png" alt="Alarm Summary Object (Alarm Viewer control) in WindowMaker design mode displaying a tabular alarm list with columns for User, State, Node, Group, and Name, showing four alarm states: ACK, ACK_RTN, UNACK (yellow highlighted), and UNACK_RTN for a test tag">

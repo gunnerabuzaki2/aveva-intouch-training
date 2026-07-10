@@ -100,14 +100,40 @@
 <h1>Lesson L17: The OwningObject Property + Lab 8</h1>
 <p class="page-ref">Module 3 — Symbols | Pages 205–216</p>
 
-<p>Do Not Copy 3-107 AVEVA™ InTouch for System Platform 2023 Introduction In this lab, you will add a Combo Box to provide a drop-down list that operators can use to select which mixer they want to view at runtime. The mechanism used to switch mixers is the OwningObject property. The OwningObject property will be linked to the drop-down list to allow operators to change the instance reference used by the graphic to show data and animations. Objectives Upon completion of this lab, you will be able to:  Use the OwningObject property to dynamically change instance references of a graphic  Add and configure a Combo Box</p>
+<p>Introduction</p>
+<p>In this lab, you will add a Combo Box to provide a drop-down list that operators can use to select</p>
+<p>which mixer they want to view at runtime.</p>
+<p>The mechanism used to switch mixers is the OwningObject property. The OwningObject property</p>
+<p>will be linked to the drop-down list to allow operators to change the instance reference used by the</p>
+<p>graphic to show data and animations.</p>
+<p>Objectives</p>
+<p>Upon completion of this lab, you will be able to:</p>
+<p></p>
+<p>Use the OwningObject property to dynamically change instance references of a graphic</p>
+<p></p>
+<p>Add and configure a Combo Box</p>
 
 <div class="screenshot">
   <img src="../images/page_0205.png" alt="Development view showing generic mixer HMI template with Object Name, Area Name labels, Select Mixer dropdown, and schematic process graphics with placeholder labels for piping, tank/mixer vessel, and input nodes">
   <div class="caption">Development view showing generic mixer HMI template with Object Name, Area Name labels, Select Mixer dropdown, and schematic process graphics with placeholder labels for piping, tank/mixer vessel, and input nodes</div>
 </div>
 
-<p>Do Not Copy 3-108 AVEVA™ Training Create a User Interactive Mixer Selector First, you will create a SwitchedMixingProcess symbol in the $Mixer template, which will be used to switch between mixers at runtime. 1. In the IDE, on the Templates tab, in the Training\Project template toolset, double-click the $Mixer template. 2. In Content, click the Add button. 3. Name the symbol SwitchedMixingProcess, and then click the Edit Content button to open for editing. 4. Right-click the canvas and select Embed Industrial Graphic. 5. In Relative References, verify Me is selected, and then in the Me pane, select MixingProcess_Detailed.</p>
+<p>Create a User Interactive Mixer Selector</p>
+<p>First, you will create a SwitchedMixingProcess symbol in the $Mixer template, which will be</p>
+<p>used to switch between mixers at runtime.</p>
+<p>1.</p>
+<p>In the IDE, on the Templates tab, in the Training\Project template toolset, double-click the</p>
+<p>$Mixer template.</p>
+<p>2.</p>
+<p>In Content, click the Add button.</p>
+<p>3.</p>
+<p>Name the symbol SwitchedMixingProcess, and then click the Edit Content button to open</p>
+<p>for editing.</p>
+<p>4.</p>
+<p>Right-click the canvas and select Embed Industrial Graphic.</p>
+<p>5.</p>
+<p>In Relative References, verify Me is selected, and then in the Me pane, select</p>
+<p>MixingProcess_Detailed.</p>
 
 <div class="screenshot">
   <img src="../images/page_0206_0.png" alt="AVEVA InTouch Content panel showing MixingProcess_Detailed listed under Content section with Add button (Ctrl+=) tooltip visible, for managing HMI screen content in the $Mixer template">
@@ -124,7 +150,20 @@
   <div class="caption">Galaxy Browser - TrainingGalaxy showing Relative References pane with Me hierarchy (Me.Agitator, Me.Inlet1/2, Me.Level, Me.Outlet, Me.Pump1/2, Me.Temperature, Me.Totalizer1-3), and Me pane with MixingProcess_Detailed thumbnail showing tank schematic</div>
 </div>
 
-<p>Do Not Copy 3-109 AVEVA™ InTouch for System Platform 2023 6. Click OK and place MixingProcess_Detailed on the canvas. 7. Name the graphic MixingProcess. Add the Combo Box Next, you will add a Combo Box and a text label to the canvas. 8. Aligned to the right of the $Mixer text, add a Text element with the text Select Mixer. 9. Configure the properties of the Text element as follows: Name: SelectMixer Element Style: Heading</p>
+<p>6.</p>
+<p>Click OK and place MixingProcess_Detailed on the canvas.</p>
+<p>7.</p>
+<p>Name the graphic MixingProcess.</p>
+<p>Add the Combo Box</p>
+<p>Next, you will add a Combo Box and a text label to the canvas.</p>
+<p>8.</p>
+<p>Aligned to the right of the $Mixer text, add a Text element with the text Select Mixer.</p>
+<p>9.</p>
+<p>Configure the properties of the Text element as follows:</p>
+<p>Name:</p>
+<p>SelectMixer</p>
+<p>Element Style:</p>
+<p>Heading</p>
 
 <div class="screenshot">
   <img src="../images/page_0207_0.png" alt="MixingProcess graphic on design canvas showing $Mixer area with Select Mixer label, SA_Pump_Blower_RotaryValve and SA_Valve_And_Damper symbols on inlet lines, SA_Agitator_Settler with ##.### EU placeholder, SA_Meters symbols, green connection nodes for process flow">
@@ -141,7 +180,10 @@
   <div class="caption">Properties panel showing SelectMixer text element with Name=SelectMixer, ElementStyle set to Heading, X=720, Y=140 position coordinates on the HMI canvas</div>
 </div>
 
-<p>Do Not Copy 3-110 AVEVA™ Training Next you will add a Combo Box. 10. In Tools, click Combo Box. 11. Below the Select Mixer text, click and drag diagonally to draw a Combo Box. 12. Name the Combo Box as MixerDropDown.</p>
+<p>Next you will add a Combo Box.</p>
+<p>10. In Tools, click Combo Box.</p>
+<p>11. Below the Select Mixer text, click and drag diagonally to draw a Combo Box.</p>
+<p>12. Name the Combo Box as MixerDropDown.</p>
 
 <div class="screenshot">
   <img src="../images/page_0208_0.png" alt="Tools palette showing all available drawing and HMI tools in a 5-row grid, with the Combo Box tool highlighted at bottom right for adding dropdown selection controls to the canvas">
@@ -158,7 +200,14 @@
   <div class="caption">Properties panel showing MixerDropDown combo box element with Name=MixerDropDown, ElementStyle=None, X=720, Y=170 position coordinates</div>
 </div>
 
-<p>Do Not Copy 3-111 AVEVA™ InTouch for System Platform 2023 13. On the canvas, double-click the Combo Box to open Edit Animations. 14. In Edit Animations, in the Reference field, enter MixingProcess.OwningObject. Note: MixingProcess is the name you gave to the $Mixer.MixingProcess_Detailed graphic that you embedded on the canvas in this lab. The Combo Box will modify the OwningObject property of this graphic at runtime. 15. In Static Values and Captions, click the Add a row [Insert] button five times. One row in the table is needed for each of the eight mixers.</p>
+<p>13. On the canvas, double-click the Combo Box to open Edit Animations.</p>
+<p>14. In Edit Animations, in the Reference field, enter MixingProcess.OwningObject.</p>
+<p>Note:</p>
+<p>MixingProcess is the name you gave to the $Mixer.MixingProcess_Detailed</p>
+<p>graphic that you embedded on the canvas in this lab. The Combo Box will modify the</p>
+<p>OwningObject property of this graphic at runtime.</p>
+<p>15. In Static Values and Captions, click the Add a row [Insert] button five times.</p>
+<p>One row in the table is needed for each of the eight mixers.</p>
 
 <div class="screenshot">
   <img src="../images/page_0209_0.png" alt="Edit Animations dialog for MixerDropDown Combo Box showing Reference field set to MixingProcess.OwningObject, Static tab selected, Submit Value Changes set to Immediately, for linking dropdown selection to OwningObject property">
@@ -170,21 +219,56 @@
   <div class="caption">Static Values and Captions table for Combo Box showing 8 items (Item1-Item8) with Caption and Value columns, Use Values as Captions checked, AllowDuplicates checked, for configuring dropdown list entries</div>
 </div>
 
-<p>Do Not Copy 3-112 AVEVA™ Training Before you enter values in the table, you will enable a property that affects the workflow for entering values. You will also set additional properties. 16. Below the table, check the Use Values as Captions check box. 17. Uncheck AllowDuplicates. 18. In the Type drop-down list, select DropDown.</p>
+<p>Before you enter values in the table, you will enable a property that affects the workflow for</p>
+<p>entering values. You will also set additional properties.</p>
+<p>16. Below the table, check the Use Values as Captions check box.</p>
+<p>17. Uncheck AllowDuplicates.</p>
+<p>18. In the Type drop-down list, select DropDown.</p>
 
 <div class="screenshot">
   <img src="../images/page_0210.png" alt="Static Values and Captions table showing Item4 through Item8 with Caption=Value pairs, Use Values as Captions enabled, Sorted unchecked, AllowDuplicates unchecked, Type set to DropDown for defining dropdown list behavior">
   <div class="caption">Static Values and Captions table showing Item4 through Item8 with Caption=Value pairs, Use Values as Captions enabled, Sorted unchecked, AllowDuplicates unchecked, Type set to DropDown for defining dropdown list behavior</div>
 </div>
 
-<p>Do Not Copy 3-113 AVEVA™ InTouch for System Platform 2023 19. In the Value column, enter the following values, pressing Tab after each entry to move to the next row. Notice that the Caption field automatically uses the value text.  Mixer100  Mixer200  Mixer300  Mixer400  Mixer500  Mixer600  Mixer700  Mixer800 The configuration of your Combo Box animation will appear as follows: 20. Click OK to close Edit Animations. 21. Save and close the graphic. 22. Save and close and check in the $Mixer template.</p>
+<p>19. In the Value column, enter the following values, pressing Tab after each entry to move to the</p>
+<p>next row.</p>
+<p>Notice that the Caption field automatically uses the value text.</p>
+<p></p>
+<p>Mixer100</p>
+<p></p>
+<p>Mixer200</p>
+<p></p>
+<p>Mixer300</p>
+<p></p>
+<p>Mixer400</p>
+<p></p>
+<p>Mixer500</p>
+<p></p>
+<p>Mixer600</p>
+<p></p>
+<p>Mixer700</p>
+<p></p>
+<p>Mixer800</p>
+<p>The configuration of your Combo Box animation will appear as follows:</p>
+<p>20. Click OK to close Edit Animations.</p>
+<p>21. Save and close the graphic.</p>
+<p>22. Save and close and check in the $Mixer template.</p>
 
 <div class="screenshot">
   <img src="../images/page_0211.png" alt="Edit Animations dialog fully configured for MixerDropDown showing 8 mixer entries (Mixer100-Mixer800) in Static Values and Captions table, Reference=MixingProcess.OwningObject, Use Values as Captions checked, Type=DropDown, for runtime mixer selection">
   <div class="caption">Edit Animations dialog fully configured for MixerDropDown showing 8 mixer entries (Mixer100-Mixer800) in Static Values and Captions table, Reference=MixingProcess.OwningObject, Use Values as Captions checked, Type=DropDown, for runtime mixer selection</div>
 </div>
 
-<p>Do Not Copy 3-114 AVEVA™ Training Embed the New Symbol Now, you will replace the symbol in WindowMaker with the new SwitchedMixingProcess symbol you just created. 23. In WindowMaker, in the ContentDisplay window, right-click and select Embed Industrial Graphic to open the Galaxy Browser. 24. In Instances, scroll down and select Mixer100, and then in the Mixer100 pane, select SwitchedMixingProcess. 25. Click OK. 26. In the WindowMaker message, click Yes to replace the symbol. The symbol is replaced.</p>
+<p>Embed the New Symbol</p>
+<p>Now, you will replace the symbol in WindowMaker with the new SwitchedMixingProcess symbol</p>
+<p>you just created.</p>
+<p>23. In WindowMaker, in the ContentDisplay window, right-click and select Embed Industrial</p>
+<p>Graphic to open the Galaxy Browser.</p>
+<p>24. In Instances, scroll down and select Mixer100, and then in the Mixer100 pane, select</p>
+<p>SwitchedMixingProcess.</p>
+<p>25. Click OK.</p>
+<p>26. In the WindowMaker message, click Yes to replace the symbol.</p>
+<p>The symbol is replaced.</p>
 
 <div class="screenshot">
   <img src="../images/page_0212_0.png" alt="Galaxy Browser showing Instances pane with tag list (Inlet2_006-008, Level_001-008, Mixer100-400) and Mixer100 detail pane with MixingProcess_Detailed and SwitchedMixingProcess templates, SwitchedMixingProcess highlighted">
@@ -196,18 +280,55 @@
   <div class="caption">WindowMaker ContentDisplay window showing SwitchedMixingProcess embedded with Object Name, Area Name, Select Mixer dropdown, process graphics (pump, valve, mixer tank symbols) with placeholder labels, and left orange batch control panel</div>
 </div>
 
-<p>Do Not Copy 3-115 AVEVA™ InTouch for System Platform 2023 Test in Runtime Finally, you will test the functionality of the drop-down list. 27. Click Runtime. 28. Use the Select Mixer drop-down list to select Mixer500. 29. Observe that the graphic updates to show Mixer500 names and values. 30. Use the Select Mixer drop-down list to switch to other mixers. 31. When you are finished testing, click Development! to return to WindowMaker. <End of Lab></p>
+<p>Test in Runtime</p>
+<p>Finally, you will test the functionality of the drop-down list.</p>
+<p>27. Click Runtime.</p>
+<p>28. Use the Select Mixer drop-down list to select Mixer500.</p>
+<p>29. Observe that the graphic updates to show Mixer500 names and values.</p>
+<p>30. Use the Select Mixer drop-down list to switch to other mixers.</p>
+<p>31. When you are finished testing, click Development! to return to WindowMaker.</p>
+<p><End of Lab></p>
 
 <div class="screenshot">
   <img src="../images/page_0213.png" alt="Runtime HMI screen showing Mixer500 on Line2 with Select Mixer dropdown, process schematic with Agitator_005 (0.00 rpm), Level_005 (21.17), Temperature_005 (115.45°C), Inlet1/2_005, Pump1/2_005, Outlet_005 components displaying live values">
   <div class="caption">Runtime HMI screen showing Mixer500 on Line2 with Select Mixer dropdown, process schematic with Agitator_005 (0.00 rpm), Level_005 (21.17), Temperature_005 (115.45°C), Inlet1/2_005, Pump1/2_005, Outlet_005 components displaying live values</div>
 </div>
 
-<p>Do Not Copy 3-116 AVEVA™ Training</p>
+<p>Introduction</p>
+<p>You can use custom properties to customize embedded graphics to extend the functionality of the</p>
+<p>graphic. A custom property can contain:</p>
+<p></p>
+<p>A value or valid expression</p>
+<p></p>
+<p>An attribute from the automation object</p>
+<p></p>
+<p>A property of an element or graphic</p>
+<p></p>
+<p>A custom property of an embedded graphic</p>
+<p></p>
+<p>A script function</p>
+<p>Custom properties can be set to either Private or Public:</p>
+<p></p>
+<p>A Private custom property is not exposed when the graphic is embedded.</p>
+<p></p>
+<p>A Public custom property can be customized when the graphic is embedded.</p>
+<p>Custom properties can also have Absolute or Relative references:</p>
+<p></p>
+<p>An Absolute reference to an attribute that is fully defined, such as Tank1.InletValve.PV</p>
+<p></p>
+<p>A Relative reference up the hierarchy to parent objects, such as Me.InletValve.PV</p>
+<p>If public custom properties exist for an embedded graphic, they display on the Properties tab in the</p>
+<p>Custom Properties category when the embedded graphic is selected.</p>
+<p>This section provides a brief overview of custom properties for symbols. It also describes the</p>
+<p>Button tool and explains how to use the PushButton and Show Symbol animations. Additionally, it</p>
+<p>describes the TreatAsIcon property.</p>
 
-<p>Do Not Copy 3-117 AVEVA™ InTouch for System Platform 2023 Introduction You can use custom properties to customize embedded graphics to extend the functionality of the graphic. A custom property can contain:  A value or valid expression  An attribute from the automation object  A property of an element or graphic  A custom property of an embedded graphic  A script function Custom properties can be set to either Private or Public:  A Private custom property is not exposed when the graphic is embedded.  A Public custom property can be customized when the graphic is embedded. Custom properties can also have Absolute or Relative references:  An Absolute reference to an attribute that is fully defined, such as Tank1.InletValve.PV  A Relative reference up the hierarchy to parent objects, such as Me.InletValve.PV If public custom properties exist for an embedded graphic, they display on the Properties tab in the Custom Properties category when the embedded graphic is selected. This section provides a brief overview of custom properties for symbols. It also describes the Button tool and explains how to use the PushButton and Show Symbol animations. Additionally, it describes the TreatAsIcon property.</p>
-
-<p>Do Not Copy 3-118 AVEVA™ Training Create and Edit Custom Properties You use the Edit Custom Properties dialog box to create and edit custom properties. To add a custom property, click the Add custom property (+) button on the top-left of the dialog box. A new line appears in the list of custom properties on the left, and you can enter a name for the new custom property. Then you can configure the custom property in the configuration area on the right.</p>
+<p>Create and Edit Custom Properties</p>
+<p>You use the Edit Custom Properties dialog box to create and edit custom properties. To add a</p>
+<p>custom property, click the Add custom property (+) button on the top-left of the dialog box.</p>
+<p>A new line appears in the list of custom properties on the left, and you can enter a name for the</p>
+<p>new custom property.</p>
+<p>Then you can configure the custom property in the configuration area on the right.</p>
 
 <div class="screenshot">
   <img src="../images/page_0216_0.png" alt="Edit Custom Properties dialog with + Add custom property button, empty property grid with Name and Default Value columns, right panel with Data Type, Default Value, Visibility, Description fields ready for defining new custom properties">
